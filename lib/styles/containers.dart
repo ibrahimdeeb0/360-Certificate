@@ -1,0 +1,157 @@
+import '../../general_exports.dart';
+
+class DefaultContainerStyles {
+  CommonContainerModel containerStyles = const CommonContainerModel(
+    width: 1,
+    height: 1,
+    paddingHorizontal: 0.04,
+    backgroundColor: Colors.white,
+  );
+
+  CommonContainerModel defaultButtonContainer = const CommonContainerModel(
+    width: 1,
+    height: 0.06,
+  );
+
+  CommonContainerModel linkStyle = CommonContainerModel(
+    touchEffect: TouchableEffect(
+      type: TouchTypes.opacity,
+    ),
+  );
+
+  CommonContainerModel genderItemStyle() =>
+      CommonContainerStyle().fullShadow.copyWith(
+            paddingHorizontal: 0.01,
+            paddingVertical: 0.01,
+            marginVertical: 0.01,
+            minWidth: 0.5,
+            touchEffect: TouchableEffect(
+              type: TouchTypes.opacity,
+            ),
+          );
+
+  CommonContainerModel greyCardContainer = CommonContainerModel(
+    backgroundColor: AppColors.greyLight,
+    paddingHorizontal: 0.03,
+    paddingVertical: 0.01,
+    alignment: Alignment.center,
+    borderRadius: 0.02,
+    // height: isRTL ? 0.035 : 0.03,
+    // bottom shadow
+    shadowSpreadRadius: -10.0,
+    shadowBlurRadius: 8.0,
+    shadowOffsetDY: 13.0,
+    shadowOpacity: 0.1,
+  );
+
+  CommonContainerModel dialogContainer({double? height}) =>
+      CommonContainerModel(
+        height: height ?? 0.4,
+        paddingHorizontal: 0.04,
+        backgroundColor: AppColors.white,
+        borderRadius: 0.05,
+        borderColor: AppColors.primary,
+        borderWidth: 1.5,
+        marginHorizontal: 0.08,
+        width: 1,
+      );
+
+  CommonContainerModel bottomSheetContainer({double? height}) =>
+      CommonContainerModel(
+        height: height ?? 0.5,
+        paddingHorizontal: 0.04,
+        backgroundColor: AppColors.white,
+        topLeftRadius: 0.08,
+        topRightRadius: 0.08,
+        width: 1,
+        marginTop: 0.1,
+      );
+
+  CommonContainerModel sheetContainer = const CommonContainerModel(
+    height: 0.3,
+    backgroundColor: Colors.white,
+    topRightRadius: 0.05,
+    topLeftRadius: 0.05,
+    borderRadius: 0.02,
+    shadowSpreadRadius: -10.0,
+    shadowBlurRadius: 20.0,
+    shadowOffsetDY: -15.0,
+    shadowOpacity: 0.2,
+    paddingTop: 0.02,
+  );
+  CommonContainerModel lineSeparator = CommonContainerModel(
+    height: 0.01,
+    marginVertical: 0.02,
+    backgroundColor: AppColors.greyInputs,
+  );
+
+  CommonContainerModel divider = CommonContainerModel(
+    width: 1,
+    marginBottom: 0.02,
+    height: 0.003,
+    backgroundColor: AppColors.greyLight,
+  );
+  CommonContainerModel dividerWithCopy() =>
+      divider.copyWith(width: 0.1, marginHorizontal: 0.01, marginTop: 0.003);
+
+  CommonContainerModel onBoardingDivider() => divider.copyWith(
+      backgroundColor: AppColors.greyLightBorder, width: 0.7, height: 0.002);
+
+  CommonContainerModel profileDivider() => divider.copyWith(
+      backgroundColor: Colors.grey, width: 0.84, height: 0.001);
+
+  CommonContainerModel sliderShadowContainer =
+      CommonContainerStyle().fullShadow.copyWith(
+            marginHorizontal: 0.1,
+            marginBottom: 0.01,
+            paddingHorizontal: 0.02,
+            paddingTop: 0.01,
+            borderRadius: 0.01,
+            shadowBlurRadius: 6.0,
+            height: 0.1,
+          );
+
+  CommonContainerModel sliderContainer = const CommonContainerModel(
+    width: 0.9,
+    height: 0.24,
+    borderRadius: 0.02,
+    clipBehavior: Clip.hardEdge,
+  );
+  CommonContainerModel loginDivider() =>
+      dividerWithCopy().copyWith(width: 0.2, marginHorizontal: 0.02);
+
+  CommonContainerModel defaultBottomSheetContainer(
+          {double? paddingHorizontal}) =>
+      CommonContainerModel(
+        paddingHorizontal: paddingHorizontal ?? 0.04,
+        backgroundColor: AppColors.white,
+        topLeftRadius: 0.07,
+        topRightRadius: 0.07,
+        width: 1,
+        marginTop: 0.1,
+      );
+
+  CommonContainerModel primaryClrCard = CommonContainerModel(
+    width: 1,
+    marginTop: 0.03,
+    paddingHorizontal: 0.03,
+    paddingVertical: 0.02,
+    borderRadius: 0.02,
+    backgroundColor: AppColors.primary,
+    touchEffect: TouchableEffect(
+      type: TouchTypes.opacity,
+      opacity: 0.8,
+    ),
+  );
+
+  CommonContainerModel bottomBorderStyle = CommonContainerModel(
+    width: 1,
+    paddingVertical: 0.02,
+    borderBottomWidth: 2,
+    borderBottomColor: AppColors.greyLight,
+    touchEffect: TouchableEffect(
+      type: TouchTypes.opacity,
+      opacity: 0.7,
+    ),
+  );
+}

@@ -1,0 +1,13 @@
+const String routeSplash = '/splash';
+const String routeLogin = '/login';
+const String routeNotificationScreen = '/notification_screen';
+const String routeHomeBottomBar = '/home_bottom_bar';
+const String routeHome = '/home';
+const String routeCompleteProfile = '/complete_profile';
+const String routeNotifications = '/notifications';
+const String routeAttachment = '/attachment';
+const String routeProfile = '/profile';
+const String routeEditProfile = '/edit_profile';
+const String routeLanguage = '/language';
+const String routeWebViewLoader = '/web_view_loader';
+const String routeOTP = '/OTP';

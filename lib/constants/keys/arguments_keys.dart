@@ -1,0 +1,12 @@
+const String argStatus = 'Status';
+const String argStore = 'Store';
+const String argRoute = 'route';
+const String argTitle = 'title';
+const String argData = 'data';
+const String argFrom = 'from';
+const String argLate = 'late';
+const String argLong = 'long';
+const String argAddress = 'address';
+const String argEdit = 'Edit';
+const String argUrl = 'url';
+const String argId = 'argId';
