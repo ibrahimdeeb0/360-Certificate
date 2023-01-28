@@ -15,7 +15,7 @@ class More extends StatelessWidget {
             return Scaffold(
               backgroundColor: Colors.white,
               appBar: Header(
-                title: 'More Screen',
+                title: 'More',
                 withBack: false,
               ),
               body: CommonContainer(

@@ -11,7 +11,7 @@ class Certificates extends StatelessWidget {
         return Scaffold(
           backgroundColor: Colors.white,
           appBar: Header(
-            title: 'More Screen',
+            title: 'Certificates',
             withBack: false,
           ),
           body: const Center(

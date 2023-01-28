@@ -12,13 +12,14 @@ class HomeBottomBar extends StatelessWidget {
       builder: (HomeBottomBarController controller) {
         return Scaffold(
           backgroundColor: Colors.white,
-          floatingActionButton: FloatingActionButton(
+          floatingActionButton: FloatingActionButton.extended(
             backgroundColor: Color(AppColors.primary),
-            onPressed: () {},
-            child: const Icon(
-              Icons.add,
-              color: Colors.white,
-            ),
+            onPressed: () {
+              // Respond to button press
+            },
+            tooltip: 'Create',
+            icon: const Icon(Icons.add),
+            label: const Text('Create'),
           ),
           body: Stack(
             children: <Widget>[
