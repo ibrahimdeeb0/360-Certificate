@@ -4,7 +4,7 @@ class AppColors {
   // static int black2 = 0xff333333;
   // static int primary = 0xFFBF2132;
   // static int primaryOpacity = 0xFFF4F1EA;
-  // static int grey = 0xff979797;
+  static int grey = 0xff979797;
   static int greyLight = 0xfff4f4f4;
   static int greyDark = 0xff828282;
   static int greyLightBorder = 0xffD8D8D8;
@@ -31,12 +31,12 @@ class AppColors {
   static int green2 = 0xFF46C93A;
   static int deepGreen = 0xFF46B370;
 
-  static int grey = 0xff979797;
-  static int greyHint = 0xFF909090;
-  static int greyFill = 0xFFF7F7F7;
+  // static int grey = 0xff979797;
+  // static int greyHint = 0xFF909090;
+  // static int greyFill = 0xFFF7F7F7;
   static int textGrey = 0xFF707070;
-  static int greyBold = 0xff505050;
-  static int greyOpacity = 0xFFF9F9F9;
+  // static int greyBold = 0xff505050;
+  // static int greyOpacity = 0xFFF9F9F9;
   static int shadowGrey = 0xFFF0F0F0;
 
   static int yellow = 0xFFE3C428;

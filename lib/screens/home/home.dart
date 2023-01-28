@@ -23,7 +23,6 @@ class Home extends StatelessWidget {
                     child: Column(
                       children: <Widget>[
                         SizedBox(height: DEVICE_HEIGHT * 0.03),
-
                         // bottom bar height
                         SizedBox(height: DEVICE_HEIGHT * 0.072),
                       ],

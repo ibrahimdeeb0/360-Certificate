@@ -3,11 +3,13 @@ import '../../general_exports.dart';
 class ExpandableTile extends StatelessWidget {
   const ExpandableTile({
     this.title,
+    this.titleColor,
     this.leftIcon,
     this.children,
     Key? key,
   }) : super(key: key);
   final String? title;
+  final dynamic titleColor;
   final Widget? leftIcon;
   final List<Widget>? children;
 
@@ -23,11 +25,10 @@ class ExpandableTile extends StatelessWidget {
             title: Align(
               child: CommonText(
                 title ?? 'Title',
-                style: appTextStyles.h3StyleBlack().copyWith(
-                      fontSize: fontHeader,
-                      rowMainAxisSize: MainAxisSize.max,
-                      textAlign: TextAlign.start,
-                    ),
+                fontColor: titleColor ?? Colors.black,
+                // fontSize: fontHeader,
+                rowMainAxisSize: MainAxisSize.max,
+                textAlign: TextAlign.start,
                 containerStyle: const CommonContainerModel(
                   paddingBottom: 0.01,
                 ),
@@ -45,8 +46,10 @@ class ExpandableTile extends StatelessWidget {
               controller.isTileExpanded
                   ? Icons.keyboard_arrow_up
                   : Icons.keyboard_arrow_down,
-              size: 18,
-              color: Color(AppColors.grey),
+              size: 24,
+              color: Color(
+                AppColors.primary,
+              ),
             ),
             children: children ?? <Widget>[],
             onExpansionChanged: (bool expanded) {

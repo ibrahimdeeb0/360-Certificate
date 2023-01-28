@@ -1,3 +1,4 @@
+import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../general_exports.dart';
@@ -15,7 +16,88 @@ class HomeBottomBar extends StatelessWidget {
           floatingActionButton: FloatingActionButton.extended(
             backgroundColor: Color(AppColors.primary),
             onPressed: () {
-              // Respond to button press
+              showAnimatedDialog(
+                context: context,
+                barrierDismissible: true,
+                builder: (BuildContext context) {
+                  return CommonContainer(
+                    // width: 0.5,
+                    // height: 0.5,
+                    borderRadius: 0.02,
+                    paddingVertical: 0.008,
+                    marginHorizontal: 0.07,
+                    marginVertical: 0.14,
+                    backgroundColor: Colors.white,
+                    child: Stack(
+                      children: <Widget>[
+                        SingleChildScrollView(
+                          child: Column(
+                            children: <Widget>[
+                              SizedBox(height: DEVICE_HEIGHT * 0.06),
+                              ...controller.bottomBarItems
+                                  .map(
+                                    (dynamic item) => ExpandableTile(
+                                      title: item[keyTitle],
+                                      titleColor: AppColors.primary,
+                                      children: <Widget>[
+                                        ...item[keyItems]
+                                            .map(
+                                              (dynamic childe) => ChildeItems(
+                                                text: childe[keyTitle],
+                                                onPress: childe[keyOnPress],
+                                              ),
+                                            )
+                                            .toList(),
+                                      ],
+                                    ),
+                                  )
+                                  .toList(),
+                              SizedBox(height: DEVICE_HEIGHT * 0.06),
+                            ],
+                          ),
+                        ),
+                        Positioned(
+                          top: 0,
+                          left: 0,
+                          right: 0,
+                          child: CommonText(
+                            'Please Select Certificate Type',
+                            fontSize: fontH3,
+                            fontColor: AppColors.black,
+                            marginBottom: 0.02,
+                            marginTop: 0.01,
+                            containerStyle: CommonContainerModel(
+                              backgroundColor: Colors.white,
+                              width: 1,
+                              alignment: AlignmentDirectional.center,
+                              borderBottomWidth: 2,
+                              borderColor: AppColors.greyLightBorder,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          bottom: 0,
+                          left: 0,
+                          right: 0,
+                          child: CommonButton(
+                            onPress: Get.back,
+                            text: 'Cancel',
+                            height: 0.05,
+                            borderWidth: 1,
+                            borderColor: AppColors.red,
+                            fontColor: AppColors.red,
+                            backgroundColor: Colors.white,
+                            marginHorizontal: 0.02,
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+                animationType: DialogTransitionType.slideFromBottomFade,
+                curve: Curves.fastOutSlowIn,
+                duration: const Duration(milliseconds: 600),
+              );
             },
             tooltip: 'Create',
             icon: const Icon(Icons.add),
@@ -84,60 +166,53 @@ class HomeBottomBar extends StatelessWidget {
   }
 }
 
-class BottomBarIcon extends StatelessWidget {
-  const BottomBarIcon({
+class ChildeItems extends StatelessWidget {
+  const ChildeItems({
     Key? key,
-    this.iconPath,
-    this.title,
-    this.itemIndex,
-    this.color,
+    this.text,
+    this.onPress,
   }) : super(key: key);
-
-  final String? iconPath;
-  final String? title;
-  final int? itemIndex;
-  final dynamic color;
+  final String? text;
+  final Function? onPress;
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<HomeBottomBarController>(
-      builder: (HomeBottomBarController controller) => CommonContainer(
-        height: (controller.selectedIndex != itemIndex)
-            ? 0.09
-            : isTablet(0.07, 0.05),
-        width: isTablet(0.45, 0.25),
-        boxShape: controller.selectedIndex != itemIndex
-            ? BoxShape.rectangle
-            : BoxShape.circle,
-        clipBehavior: Clip.hardEdge,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            if (controller.selectedIndex != itemIndex)
-              SizedBox(
-                height: DEVICE_HEIGHT * isTablet(0, 0.015),
-              ),
-            SvgPicture.asset(
-              iconPath!,
-              width: DEVICE_WIDTH * 0.06,
-              height: DEVICE_WIDTH * 0.06,
-              fit: BoxFit.scaleDown,
-              color: Color(
-                controller.selectedIndex == itemIndex
-                    ? AppColors.white
-                    : AppColors.grey,
-              ),
+    return CommonContainer(
+      onPress: onPress?.call,
+      alignment: AlignmentDirectional.topStart,
+      marginVertical: 0.015,
+      borderBottomWidth: 1,
+      paddingHorizontal: 0.02,
+      borderBottomColor: AppColors.greyLightBorder,
+      touchEffect: TouchableEffect(
+        type: TouchTypes.opacity,
+        duration: 10,
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          CommonText(
+            text ?? '',
+            rowMainAxisSize: MainAxisSize.max,
+            textAlign: TextAlign.start,
+            rowMainAxisAlignment: MainAxisAlignment.spaceBetween,
+            containerStyle: const CommonContainerModel(
+              width: 0.68,
+              paddingBottom: 0.01,
+              // backgroundColor:
+              //     Colors.green,
+              alignment: AlignmentDirectional.topStart,
+              marginLeft: 0.04,
+              marginHorizontal: 0.02,
             ),
-            if (controller.selectedIndex != itemIndex)
-              CommonText(
-                title ?? 'Home',
-                style: appTextStyles.h4GreyMediumStyle(),
-                fontWeight: FontWeight.w600,
-                marginBottom: isTablet(0.0, 0.006),
-                marginTop: isTablet(0.0, 0.006),
-              )
-          ],
-        ),
+            bottomChild: const SizedBox(),
+          ),
+          Icon(
+            Icons.arrow_forward_ios,
+            color: Color(AppColors.grey),
+            size: 20,
+          ),
+        ],
       ),
     );
   }
