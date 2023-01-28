@@ -14,13 +14,17 @@ final DefaultTextInputStyles defaultTextInputStyles = DefaultTextInputStyles();
 final DefaultTextStyles defaultTextStyles = DefaultTextStyles();
 final DefaultContainerStyles defaultContainerStyles = DefaultContainerStyles();
 
-final MyAppController myAppController = Get.put(MyAppController());
+final MyAppController myAppController = Get.find<MyAppController>();
 final HomeBottomBarController homeBottomBarController =
     Get.put(HomeBottomBarController());
 final HomeController homeController = Get.put(HomeController());
+final ProfileController profileController = Get.put(ProfileController());
 final SplashController splashController = Get.put(SplashController());
 final AppLanguageController languageController =
     Get.put(AppLanguageController());
+final MoreController moreController = Get.put(MoreController());
+final CertificatesController certificatesController =
+    Get.put(CertificatesController());
 final GlobalKey<CurvedNavigationBarState> bottomNavigationKey = GlobalKey();
 
 class MyApp extends StatelessWidget {
@@ -54,11 +58,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'Careem',
         primaryColor: Color(AppColors.primary),
+        useMaterial3: true,
       ),
       translations: Translation(),
       // we use the fallbackLocale to handel any error in language files and use the en as default language
-      fallbackLocale: const Locale('ar'),
-      // fallbackLocale: const Locale('en'),
+      // fallbackLocale: const Locale('ar'),
+      fallbackLocale: const Locale('en'),
       debugShowCheckedModeBanner: false,
       initialRoute: routeSplash,
       // initialRoute: routeWinchService,

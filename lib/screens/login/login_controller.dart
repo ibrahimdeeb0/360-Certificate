@@ -1,92 +1,172 @@
-import '../../general_exports.dart';
+import 'package:dio/dio.dart';
+
+import '../../../general_exports.dart';
 
 class LoginController extends GetxController {
-  bool isButtonEnable = false;
-  TextEditingController inputController = TextEditingController();
-  String oldValue = '';
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
-  void onChangeInputValue(String? value) {
-    final String trimValue = value!.trimLeft();
-    final int valueLength = trimValue.length;
+  String? _fcmToken;
 
-    if (valueLength == 2) {
-      final bool isContain = oldValue.contains('-');
-      final String firstSubString = trimValue.substring(0, 1);
+  bool isVisibility = true;
 
-      inputController.value = inputController.value.copyWith(
-        text: isContain ? firstSubString : '$value-',
-        selection: TextSelection(
-          baseOffset: isContain ? firstSubString.length : '$value-'.length,
-          extentOffset: isContain ? firstSubString.length : '$value-'.length,
-        ),
-      );
+  bool isPhoneVerified = false;
+  bool isGuest = true;
+  bool viewOtp = false;
+  FocusNode focusNode = FocusNode();
+  bool rememberMe = false;
 
-      oldValue = isContain ? firstSubString : '$value-';
-    } else if (valueLength == 6) {
-      final String itemValue = trimValue.substring(0, 5);
-      final bool isContain = oldValue.split('-').length > 2;
+  final Dio _dio = Dio();
 
-      inputController.value = inputController.value.copyWith(
-        text: isContain ? itemValue : '$value-',
-        selection: TextSelection(
-          baseOffset: isContain ? itemValue.length : '$value-'.length,
-          extentOffset: isContain ? itemValue.length : '$value-'.length,
-        ),
-      );
-
-      oldValue = isContain ? itemValue : '$value-';
-    }
-    isButtonEnable = valueLength == 10;
-
+  @override
+  Future<void> onInit() async {
+    super.onInit();
+    // _fcmToken = await FirebaseMessaging.instance.getToken();
+    consoleLog(_fcmToken, key: 'fcm_token');
     update();
   }
 
-  void test() {
-    consoleLog(Get.arguments?[keyType]);
+  void visibility() {
+    isVisibility = !isVisibility;
+    update();
   }
 
-  void onPressComplete() {
+  bool emailValidator() {
+    if (RegExp(validationEmail).hasMatch(emailController.text)) {
+      return true;
+    } else {
+      showMessage(
+          description: 'Please Enter a valid email',
+          textColor: COMMON_RED_COLOR);
+      return false;
+    }
+  }
+
+  bool passwordValidator() {
+    if (passwordController.text.length <= 6) {
+      showMessage(
+        description: 'Password should be longer or equal to 6 characters',
+        textColor: COMMON_RED_COLOR,
+      );
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  void loginValidator() {
+    if (emailValidator() && passwordValidator()) {
+      onUserLogin();
+    }
+    update();
+  }
+
+  void onPhoneChanged(String value) {
+    isPhoneVerified = value.length == 9;
+    isGuest = value.length != 9;
+    update();
+  }
+
+  void updateRememberMe() {
+    rememberMe = !rememberMe;
+    update();
+  }
+
+  void onCompleteOTP(String value) {
+    viewOtp = false;
+    Get.toNamed(routeCompleteProfile);
+    update();
+  }
+
+//* =========================== userLogin ================================ //
+
+  Future<void> onUserLogin() async {
     hideKeyboard();
-    Get.toNamed(
-      routeOTP,
-      arguments: <String, dynamic>{
-        keyTitle: '05${inputController.text.replaceAll('-', '')}',
-        keyType: Get.arguments?[keyType],
-      },
-    );
-    consoleLog(inputController.text);
+
+    if (signInValidation()) {
+      startLoading();
+      ApiRequest(
+        method: ApiMethods.post,
+        path: '/login',
+        className: 'LoginController',
+        requestFunction: onUserLogin,
+        body: <String, dynamic>{
+          'email': emailController.text,
+          'password': passwordController.text,
+          'fcm_token': _fcmToken,
+        },
+      ).request(
+        onSuccess: (dynamic data, dynamic response) {
+          consoleLog(response);
+          myAppController.onUserAuthenticated(response);
+          dismissLoading();
+          Get.offAndToNamed(routeHomeBottomBar);
+          // // dismissLoading();
+          // if (data['user']['email_verified_at'] == null) {
+          //   // myAppController.isVerified = false;
+          // } else {
+          //   // myAppController.isVerified = true;
+          //   // homeBottomBarController = Get.put(HomeBottomBarController());
+          //   // homeController = Get.put(HomeController());
+          //   // myProfileController = Get.put(MyProfileController());
+          //   // servicesController = Get.put(ServicesController());
+          //   // materialsController = Get.put(MaterialsController());
+          //   // myAppController = Get.put(MyAppController());
+          //   // jobDiaryController = Get.put(JobDiaryController());
+          //   // certificateController = Get.put(CertificateController());
+          //   // Get.forceAppUpdate();
+          //   Get.offAndToNamed(routeHomeBottomBar);
+          // }
+          // dismissLoading();
+          // update();
+          // // Get.offAndToNamed(routeHome);
+        },
+        // onError: (dynamic error) {
+        //   if (error['data'].isNotEmpty && error['data']['code'] == 403) {
+        //     Get.bottomSheet(
+        //       RestoreAccountBottomSheet(
+        //         restoreData: error['data'],
+        //       ),
+        //     );
+        //   }
+        // },
+      );
+    }
+    update();
   }
 
-  Future<void> onSendVerifyLogin() async {
-    consoleLog(inputController.text.replaceAll('-', ''));
+  Future<void> onRestoreAccount({required String path}) async {
     hideKeyboard();
     startLoading();
-    ApiRequest(
-      method: ApiMethods.post,
-      path: keySendOtp,
-      className: 'LoginController/onVerifyLogin',
-      requestFunction: onSendVerifyLogin,
-      body: <String, dynamic>{
-        'mobile': Get.arguments?[keyType] == LoginTypes.phone
-            ? inputController.text.replaceAll('-', '')
-            : '',
-        'car_number': Get.arguments?[keyType] == LoginTypes.car
-            ? inputController.text.replaceAll('-', '')
-            : '',
-      },
-    ).request(
-      onSuccess: (dynamic data, dynamic response) {
-        Get.toNamed(
-          routeOTP,
-          arguments: <String, dynamic>{
-            keyTitle: inputController.text.replaceAll('-', ''),
-            keyType: Get.arguments?[keyType],
-          },
-        );
+    await _dio.post(path).then(
+      (dynamic value) {
+        Get.back();
+        Get.back();
+        hideKeyboard();
+        consoleLog(value);
+        consoleLog('Success Restore');
+        showMessage(description: 'Your account has been successfully restored');
+        update();
         dismissLoading();
       },
     );
+  }
 
-    update();
+  bool signInValidation() {
+    if (emailController.text.isEmpty && passwordController.text.isEmpty) {
+      showMessage(
+        description: 'Please fill all the fields',
+        textColor: COMMON_RED_COLOR,
+      );
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  void onClose() {
+    focusNode.dispose();
+    super.onClose();
   }
 }

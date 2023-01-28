@@ -1,10 +1,11 @@
 const String iconsPath = 'assets/icons/';
 // ****** ICONS ******
 
+// const String iconAppLogo = '${iconsPath}app_logo.svg';
 const String iconHeaderLogo = '${iconsPath}logo.svg';
 const String iconCheckedBox = '${iconsPath}ic_checked_box.svg';
 const String iconUnCheckedBox = '${iconsPath}ic_unchecked_box.svg';
-const String iconLogo = '${iconsPath}logo.svg';
+// const String iconLogo = '${iconsPath}logo.svg';
 const String iconBoarding1 = '${iconsPath}boarding_1.svg';
 const String iconBoarding2 = '${iconsPath}boarding_2.svg';
 const String iconBoarding3 = '${iconsPath}boarding_3.svg';
@@ -41,7 +42,7 @@ const String iconLoader = '${iconsPath}icon_loader.svg';
 //More Screen Icons
 const String iconAccount = '${iconsPath}icon_account.svg';
 const String iconWallet = '${iconsPath}icon_wallet.svg';
-const String iconServices = '${iconsPath}icon_services.svg';
+// const String iconServices = '${iconsPath}icon_services.svg';
 //
 const String iconPaymentMethods = '${iconsPath}icon_payment_methods.svg';
 const String iconLanguage = '${iconsPath}icon_language.svg';
@@ -72,7 +73,81 @@ const String iconRightRearLight = '${iconsPath}icon_right_rear_light.svg';
 const String iconLeftReaLight = '${iconsPath}icon_left_rear_light.svg';
 const String iconFromToLine = '${iconsPath}from_to_line.svg';
 const String iconFullTripLine = '${iconsPath}full_trip_line.svg';
-
+//** */
+// const String iconAttention = '${iconsPath}icon_attention.svg';
+// const String iconProfilePic = '${iconsPath}icon_profile_pic.svg';
+// // const String iconInvoices = '${iconsPath}icon_invoices.svg';
+// const String iconArrowGo = '${iconsPath}arrow_go.svg';
+// const String iconDeleteAccount = '${iconsPath}icon_delete_account.svg';
+// const String iconChangePassword = '${iconsPath}icon_change_password.svg';
+//
+const String iconAppLogo = '${iconsPath}app_logo.svg';
+// const String iconHome = '${iconsPath}home.svg';
+const String iconJobDiary = '${iconsPath}job_diary.svg';
+const String iconCustomers = '${iconsPath}customers.svg';
+// const String iconMore = '${iconsPath}more.svg';
+const String iconQrCode = '${iconsPath}qr_code.svg';
+const String iconLogo = '${iconsPath}logo.svg';
+const String iconTodyJob = '${iconsPath}jobs.svg';
+const String iconPendingPayment = '${iconsPath}pending_payment.svg';
+const String iconServices = '${iconsPath}services.svg';
+const String iconMaterials = '${iconsPath}icon_materials.svg';
+const String iconHelp = '${iconsPath}help.svg';
+const String iconInvoice = '${iconsPath}invoice.svg';
+const String iconQuotes = '${iconsPath}quotes.svg';
+const String iconReport = '${iconsPath}report.svg';
+const String iconSettings = '${iconsPath}settings.svg';
+const String iconProperties = '${iconsPath}properties.svg';
+const String iconLogout = '${iconsPath}logout.svg';
+const String iconNewQuote = '${iconsPath}icon_new_quote.svg';
+const String iconNewJob = '${iconsPath}icon_new_job.svg';
+const String iconBack = '${iconsPath}icon_back.svg';
+const String iconPerson = '${iconsPath}icon_person.svg';
+const String iconClock = '${iconsPath}icon_clock.svg';
+const String iconService = '${iconsPath}icon_service.svg';
+const String iconLocation = '${iconsPath}icon_location.svg';
+const String iconLocationPath = '${iconsPath}icon_location_path.svg';
+const String iconBooked = '${iconsPath}icon_booked.svg';
+const String iconInProgress = '${iconsPath}icon_in_progress.svg';
+const String iconEnterprise = '${iconsPath}icon_enterprise.svg';
+const String iconPhoneCall = '${iconsPath}icon_phone_call.svg';
+// const String iconPhone = '${iconsPath}icon_phone.svg';
+// const String iconEmail = '${iconsPath}icon_mail.svg';
+const String iconFilter = '${iconsPath}icon_filter.svg';
+const String iconCalendar = '${iconsPath}icon_calendar.svg';
+const String iconAddPerson = '${iconsPath}add_person.svg';
+const String iconSearch = '${iconsPath}icon_search.svg';
+const String iconMonth = '${iconsPath}icon_month.svg';
+const String iconWeek = '${iconsPath}icon_week.svg';
+const String iconDay = '${iconsPath}icon_day.svg';
+const String iconTakeBreak = '${iconsPath}icon_take_break.svg';
+const String iconInvisiblePassword = '${iconsPath}invisible_password.svg';
+const String iconSite = '${iconsPath}icon_site.svg';
+const String iconArrowGo = '${iconsPath}arrow_go.svg';
+const String iconTotalSites = '${iconsPath}total_sites.svg';
+const String iconWorkOrders = '${iconsPath}icon_work_orders.svg';
+const String iconOverdueAmount = '${iconsPath}icon_overdue_amount.svg';
+const String iconInvoices = '${iconsPath}icon_invoices.svg';
+const String iconCustomerSite = '${iconsPath}icon_customer_site.svg';
+const String iconDueAmount = '${iconsPath}icon_due_amount.svg';
+const String iconCertificates = '${iconsPath}icon_certificates.svg';
+const String iconProfilePic = '${iconsPath}icon_profile_pic.svg';
+const String iconChangePassword = '${iconsPath}icon_change_password.svg';
+const String iconAttention = '${iconsPath}icon_attention.svg';
+const String iconClose = '${iconsPath}icon_close.svg';
+const String iconArrowGoDays = '${iconsPath}icon_arrow_go_days.svg';
+const String iconEmailSending = '${iconsPath}icon_email_sending.svg';
+const String iconGoogleMap = '${iconsPath}icon_google_map.svg';
+const String iconWazeMap = '${iconsPath}icon_waze_map.svg';
+const String iconMaps = '${iconsPath}icon_maps.svg';
+const String iconDeleteAccount = '${iconsPath}icon_delete_account.svg';
+const String iconNotification = '${iconsPath}icon_notification.svg';
+const String icon860 = '${iconsPath}icon_860.svg';
+const String iconMM = '${iconsPath}icon_mm.svg';
+const String iconTrue = '${iconsPath}icon_true.svg';
+const String iconForm = '${iconsPath}icon_form.svg';
+const String iconNote = '${iconsPath}icon_note.svg';
+const String iconFormTemplate = '${iconsPath}icon_form_template.svg';
 // ----------------------------------------
 
 const String imagesPath = 'assets/images/';

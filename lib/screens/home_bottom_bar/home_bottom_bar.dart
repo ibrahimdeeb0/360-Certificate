@@ -1,6 +1,3 @@
-import 'dart:io';
-
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../general_exports.dart';
@@ -15,9 +12,16 @@ class HomeBottomBar extends StatelessWidget {
       builder: (HomeBottomBarController controller) {
         return Scaffold(
           backgroundColor: Colors.white,
+          floatingActionButton: FloatingActionButton(
+            backgroundColor: Color(AppColors.primary),
+            onPressed: () {},
+            child: const Icon(
+              Icons.add,
+              color: Colors.white,
+            ),
+          ),
           body: Stack(
             children: <Widget>[
-              // Home
               Visibility(
                 visible: controller.selectedIndex == toHome,
                 child: const Home(),
@@ -25,50 +29,53 @@ class HomeBottomBar extends StatelessWidget {
 
               // Notifications
               Visibility(
-                visible: controller.selectedIndex == toNotifications,
-                child: const Notifications(),
+                visible: controller.selectedIndex == toCertificates,
+                child: const Certificates(),
               ),
 
-              // bottom bar
-              Positioned(
-                bottom: 0,
-                right: 0,
-                left: 0,
-                child: CommonContainer(
-                  style: CommonContainerStyle().fullShadow.copyWith(
-                        backgroundColor: Colors.transparent,
-                        paddingTop: 0.01,
-                        shadowOpacity: 0.1,
-                        shadowBlurRadius: 20,
-                        shadowSpreadRadius: 4,
-                      ),
-                  child: CurvedNavigationBar(
-                    onTap: controller.onChangeIndex,
-                    backgroundColor: Colors.transparent,
-                    buttonBackgroundColor: Color(AppColors.primary),
-                    animationDuration: const Duration(milliseconds: 350),
-                    key: bottomNavigationKey,
-                    curveWidth: isTablet(0.4, 0.25),
-                    curveHeight: isTablet(0.665, 0.53),
-                    curveInside: 0.1,
-                    curveLeftRightRadius: isTablet(0.055, 0.05),
-                    index: controller.selectedIndex,
-                    height: DEVICE_HEIGHT *
-                        isTablet(0.09, (Platform.isIOS ? 0.080 : 0.072)),
-                    defaultHeight: isTablet(DEVICE_HEIGHT * 0.09, 75.0),
-                    items: <Widget>[
-                      ...controller.bottomBarItems.map(
-                        (dynamic item) => BottomBarIcon(
-                          title: '${item[keyTitle]}'.tr,
-                          iconPath: item[iconPath],
-                          itemIndex: controller.bottomBarItems.indexOf(item),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+              // More
+              Visibility(
+                visible: controller.selectedIndex == toMore,
+                child: const More(),
               ),
             ],
+          ),
+          bottomNavigationBar: CommonContainer(
+            borderRadius: 0.02,
+            shadowSpreadRadius: 10.0,
+            shadowBlurRadius: 10.0,
+            shadowOffsetDY: 10.0,
+            shadowOpacity: 0.2,
+            backgroundColor: COMMON_WHITE_COLOR,
+            shadowColor: COMMON_GREY_COLOR,
+            child: BottomNavigationBar(
+              items: <BottomNavigationBarItem>[
+                const BottomNavigationBarItem(
+                  icon: Icon(Icons.home),
+                  label: 'Home',
+                ),
+                BottomNavigationBarItem(
+                  // icon: Icon(Icons.business),
+                  icon: SvgPicture.asset(
+                    iconCertificates,
+                    width: DEVICE_WIDTH * 0.05,
+                    height: DEVICE_WIDTH * 0.05,
+                    color: controller.selectedIndex == 1
+                        ? Color(AppColors.primary)
+                        : Colors.grey[600],
+                  ),
+                  label: 'Certificates',
+                ),
+                const BottomNavigationBarItem(
+                  icon: Icon(Icons.more_horiz),
+                  label: 'More',
+                ),
+              ],
+              currentIndex: controller.selectedIndex,
+              selectedItemColor: Color(AppColors.primary),
+              onTap: controller.onChangeIndex,
+              elevation: 10.0,
+            ),
           ),
         );
       },

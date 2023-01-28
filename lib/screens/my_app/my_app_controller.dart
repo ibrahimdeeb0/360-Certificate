@@ -101,10 +101,26 @@ class MyAppController extends GetxController {
     );
   }
 
+  // void onSignOut() {
+  //   localStorage.removeFromStorage(key: storeUser);
+  //   userData = null;
+  //   Get.offAllNamed(routeLogin);
+  // }
+
   void onSignOut() {
-    localStorage.removeFromStorage(key: storeUser);
+    localStorage.erase();
+    myAppController.localStorage.saveToStorage(
+      key: 'showAlertAttention',
+      value: true,
+    );
     userData = null;
-    Get.offAllNamed(routeLogin);
+    Navigator.of(Get.context!).pushNamedAndRemoveUntil(
+      routeLogin,
+      (Route<dynamic> route) => route.settings.name == routeLogin,
+    );
+    Get.forceAppUpdate();
+
+    // Navigator.popUntil(Get.context!, ModalRoute.withName(routeLogin));
   }
 
   Timer timer({bool isClose = false}) =>

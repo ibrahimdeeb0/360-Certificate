@@ -10,12 +10,16 @@ class SplashScreen extends StatelessWidget {
     setIsRTL(context);
 
     return Scaffold(
-      backgroundColor: Color(AppColors.primary),
+      backgroundColor: Color(AppColors.white),
       body: GetBuilder<SplashController>(
         init: SplashController(),
         builder: (SplashController controller) {
           return Center(
-            child: SvgPicture.asset(iconLogo),
+            child: SvgPicture.asset(
+              iconAppLogo,
+              width: DEVICE_WIDTH * 0.2,
+              height: DEVICE_WIDTH * 0.2,
+            ),
           );
         },
       ),

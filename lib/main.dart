@@ -31,7 +31,8 @@ Future<void> main() async {
 
   await GetStorage.init();
 
-  Get.put<AppLanguageController>(AppLanguageController());
+  Get.put(AppLanguageController());
+  Get.put(MyAppController());
 
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -50,15 +51,19 @@ Future<void> main() async {
       width: 1,
     ),
     inputModel: CommonInputModel(
-      fillColor: const Color(0xffF7F7F7),
+      fillColor: Colors.white70,
       borderRadius: DEVICE_WIDTH * 0.015,
+      borderWidth: 1.5,
+      topLabelContainerStyle: const CommonContainerModel(
+        marginVertical: 0.01,
+      ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.all(
           Radius.circular(DEVICE_WIDTH * 0.015),
         ),
         borderSide: BorderSide(
-          color: getColorType(Colors.black45),
-          width: 1.5,
+          color: getColorType(AppColors.primary),
+          width: 1.8,
         ),
       ),
       disabledBorder: OutlineInputBorder(
@@ -66,17 +71,16 @@ Future<void> main() async {
           Radius.circular(DEVICE_WIDTH * 0.015),
         ),
         borderSide: BorderSide(
-          color: getColorType(Colors.white),
+          color: getColorType(AppColors.grey),
           width: 1.5,
         ),
       ),
       borderColor: Colors.transparent,
-      enabledBorderColor: Colors.transparent,
+      enabledBorderColor: AppColors.grey,
       prefixHeight: 0.027,
       maxLines: 1,
       textInputAction: TextInputAction.next,
       contentPaddingHorizontal: 0.03,
-      contentPaddingVertical: 0.02,
     ),
   );
 

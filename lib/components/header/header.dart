@@ -28,7 +28,7 @@ class Header extends StatelessWidget with PreferredSizeWidget {
 
   @override
   Size get preferredSize =>
-      Size.fromHeight(kToolbarHeight + DEVICE_HEIGHT * isTablet(0.028, 0.01));
+      Size.fromHeight(kToolbarHeight + DEVICE_HEIGHT * isTablet(0.028, 0.00));
 
   @override
   Widget build(BuildContext context) {
@@ -40,11 +40,15 @@ class Header extends StatelessWidget with PreferredSizeWidget {
             shadowOffsetDY: 2,
             shadowBlurRadius: 4,
             paddingTop: 0.02,
+            backgroundColor: Colors.white,
           ),
       child: AppBar(
         elevation: withShadow ? 1 : 0,
-        toolbarHeight: kToolbarHeight + (DEVICE_HEIGHT * isTablet(0.028, 0.01)),
-        backgroundColor: withoutBackGround ? Colors.transparent : Colors.white,
+        toolbarHeight: kToolbarHeight + (DEVICE_HEIGHT * isTablet(0.028, 0.00)),
+        // backgroundColor: withoutBackGround ? Colors.transparent : Colors.white,
+        backgroundColor: Colors.transparent,
+        foregroundColor: Colors.transparent,
+        surfaceTintColor: Colors.white,
         // allow pack icon
         // automaticallyImplyLeading: withBack,
         centerTitle: true,
@@ -68,25 +72,6 @@ class Header extends StatelessWidget with PreferredSizeWidget {
             ),
           ),
         ),
-
-        // CommonContainer(
-        //   marginTop: 0.01,
-        //   onPress: () => withBack
-        //       ? (onPressBack == null ? Get.back() : onPressBack!())
-        //       : Get.toNamed(routeNotificationScreen),
-        //   child: Icon(
-        //     withBack
-        //         ? Icons.arrow_back_ios_rounded
-        //         : Icons.notifications_none_rounded,
-        //     color: Colors.white,
-        //     size: DEVICE_WIDTH * 0.08,
-        //   ),
-        // ),
-        // CommonText(
-        //   title ?? '',
-        //   marginTop: 0.02,
-        //   style: appTextStyles.h2StyleWhite(),
-        // ),
 
         actions: <Widget>[
           if (actionItem != null)
@@ -135,7 +120,6 @@ class Header extends StatelessWidget with PreferredSizeWidget {
                                   ),
                                 )
                               : const Center(),
-              // : const Center(),
             ),
         ],
       ),

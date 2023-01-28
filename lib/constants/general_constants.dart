@@ -30,10 +30,14 @@ const String testImage =
 int? unReadNotifications = 0;
 
 int toHome = 0;
-int toActivities = 1;
-int toMyCars = 2;
-int toNotifications = 3;
-int toMore = 4;
+int toCertificates = 1;
+// int toMyCars = 2;
+// int toNotifications = 3;
+int toMore = 2;
 
 // padding Top Content Screen
 double paddingTopScreens = DEVICE_HEIGHT * 0.03;
+const double paddingChild = 8.0;
+
+String validationEmail =
+    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";

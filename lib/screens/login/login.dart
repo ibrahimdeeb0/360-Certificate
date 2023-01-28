@@ -1,9 +1,6 @@
-import '../../general_exports.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
-enum LoginTypes {
-  phone,
-  car,
-}
+import '../../../general_exports.dart';
 
 class Login extends StatelessWidget {
   const Login({Key? key}) : super(key: key);
@@ -11,78 +8,147 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: Header(
-        title: '',
-        withShadow: false,
-      ),
-      backgroundColor: Colors.white,
+      // resizeToAvoidBottomInset: false,
+      backgroundColor: Color(AppColors.primaryOpacity),
       body: GetBuilder<LoginController>(
         init: LoginController(),
-        builder: (LoginController controller) {
-          return CommonContainer(
-            paddingHorizontal: 0.04,
-            paddingTop: 0.02,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                CommonText(
-                  Get.arguments?[keyType] == LoginTypes.car
-                      ? 'enter_car_number'.tr
-                      : 'enter_mobile_number'.tr,
-                  fontSize: fontH1,
+        builder: (LoginController controller) => SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              // logo and title
+              CommonContainer(
+                style: appContainerStyles.containerStyles.copyWith(
+                  width: .7,
+                  height: .268,
+                  paddingTop: .05,
+                  backgroundColor: AppColors.primaryOpacity,
                 ),
-                CommonText(
-                  Get.arguments?[keyType] == LoginTypes.car
-                      ? 'we_will_send_'.tr
-                      : 'we_will_send'.tr,
-                  marginTop: 0.01,
-                  textAlign: TextAlign.start,
-                  fontColor: Colors.black87,
+                child: SvgPicture.asset(
+                  iconAppLogo,
+                  width: DEVICE_WIDTH * 0.5,
                 ),
-                Directionality(
-                  textDirection: TextDirection.ltr,
-                  child: CommonInput(
-                    hint: '00-000-000',
-                    prefix: Get.arguments?[keyType] == LoginTypes.car
-                        ? null
-                        : const CommonText(
-                            '05',
-                            fontWeight: FontWeight.w600,
+              ),
+              // Login container
+              CommonContainer(
+                style: appContainerStyles.loginContainer.copyWith(
+                  height: 0.73,
+                  topLeftRadius: 0.07,
+                  topRightRadius: 0.07,
+                ),
+                child: Column(
+                  children: <Widget>[
+                    CommonText(
+                      'Login',
+                      style: appTextStyles.h1StyleBlack().copyWith(
+                            fontWeight: FontWeight.w400,
+                            columnCrossAxisAlignment: CrossAxisAlignment.start,
                           ),
-                    marginVertical: 0.04,
-                    maxLength: 10,
-                    contentPaddingHorizontal: 0.03,
-                    controller: controller.inputController,
-                    onChanged: controller.onChangeInputValue,
-                    textInputAction: TextInputAction.done,
-                    keyboardType: TextInputType.number,
-                  ),
-                ),
-                Directionality(
-                  textDirection: TextDirection.ltr,
-                  child: CommonButton(
-                    enabled: controller.isButtonEnable,
-                    onPress: controller.onSendVerifyLogin,
-                    child: CommonText(
-                      'next'.tr,
-                      fontColor: controller.isButtonEnable
-                          ? Colors.white
-                          : Colors.black,
-                      rowCrossAxisAlignment: CrossAxisAlignment.center,
-                      marginHorizontal: 0.01,
-                      leftChild: Icon(
-                        Icons.arrow_back_sharp,
-                        color: controller.isButtonEnable
-                            ? Colors.white
-                            : Colors.black,
+                      containerStyle: const CommonContainerModel(
+                        width: 1,
+                        marginTop: 0.01,
+                        marginBottom: 0.01,
                       ),
                     ),
-                  ),
-                )
-              ],
-            ),
-          );
-        },
+                    CommonInput(
+                      topLabelText: 'Your Email',
+                      hint: 'Enter Your Email',
+                      controller: controller.emailController,
+                    ),
+                    CommonInput(
+                      topLabelText: 'Password',
+                      hint: 'Enter Your Password',
+                      controller: controller.passwordController,
+                      obscureText: controller.isVisibility,
+                      suffix: CommonContainer(
+                        onPress: () => controller.visibility(),
+                        style: const CommonContainerModel(
+                          marginHorizontal: 0.015,
+                        ),
+                        child: Icon(
+                          controller.isVisibility
+                              ? Icons.visibility_off
+                              : Icons.visibility,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                    CommonContainer(
+                      style: const CommonContainerModel(
+                        width: 0.9,
+                        marginVertical: 0.02,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          CommonText(
+                            onPress: controller.updateRememberMe,
+                            containerStyle: CommonContainerModel(
+                              touchEffect:
+                                  TouchableEffect(type: TouchTypes.opacity),
+                            ),
+                            '  Remember me',
+                            style: appTextStyles.h3GreyStyle(),
+                            leftChild: Icon(
+                              controller.rememberMe
+                                  ? Icons.check_box_rounded
+                                  : Icons.check_box_outline_blank_rounded,
+                              color: Color(
+                                controller.rememberMe
+                                    ? AppColors.primary
+                                    : AppColors.grey,
+                              ),
+                            ),
+                          ),
+                          CommonText(
+                            onPress: () {
+                              // consoleLog(myAppController.userData);
+                            },
+                            containerStyle: CommonContainerModel(
+                              touchEffect:
+                                  TouchableEffect(type: TouchTypes.opacity),
+                            ),
+                            'forgot password ?',
+                            style: appTextStyles.h3GreyStyle(),
+                          ),
+                        ],
+                      ),
+                    ),
+                    CommonButton(
+                      text: 'Login',
+                      onPress: () => controller.loginValidator(),
+                      marginBottom: 0.02,
+                    ),
+                    CommonText(
+                      "Don't have an account ?  ",
+                      style: appTextStyles
+                          .h2StyleBlack()
+                          .copyWith(fontSize: fontHeader),
+                      containerStyle: const CommonContainerModel(
+                        marginBottom: 0.02,
+                        alignment: Alignment.topLeft,
+                      ),
+                      rightChild: CommonText(
+                        // onPress: () {
+                        //   Get.to(() => const RegisterScreen());
+                        //   // Get.to(() => const EmailVerifyScreen());
+                        // },
+                        containerStyle: CommonContainerModel(
+                          touchEffect:
+                              TouchableEffect(type: TouchTypes.opacity),
+                        ),
+                        'Register',
+                        style: appTextStyles
+                            .h2StylePrimary()
+                            .copyWith(fontSize: fontHeader),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              // bottom radius container
+            ],
+          ),
+        ),
       ),
     );
   }

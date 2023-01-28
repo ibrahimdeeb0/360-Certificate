@@ -1,9 +1,11 @@
+export 'certificates/index.dart';
 export 'complete_profile/index.dart';
 export 'edit_profile/index.dart';
 export 'home/index.dart';
 export 'home_bottom_bar/index.dart';
 export 'language/index.dart';
 export 'login/index.dart';
+export 'more/index.dart';
 export 'my_app/index.dart';
 export 'notifications/index.dart';
 export 'otp/index.dart';

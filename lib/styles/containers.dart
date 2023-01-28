@@ -154,4 +154,70 @@ class DefaultContainerStyles {
       opacity: 0.7,
     ),
   );
+//** */
+  CommonContainerModel loginContainer = CommonContainerModel(
+    backgroundColor: AppColors.white,
+    width: 1,
+    //height: .4,
+    topLeftRadius: 0.06,
+    topRightRadius: 0.06,
+    paddingHorizontal: 0.06,
+    paddingVertical: 0.02,
+  );
+
+  CommonContainerModel cardHeader({
+    int? backgroundColor,
+    double? height,
+  }) =>
+      CommonContainerModel(
+        width: 1,
+        backgroundColor: backgroundColor ?? AppColors.red,
+        paddingHorizontal: 0.04,
+        paddingVertical: 0.01,
+        height: height ?? 0.06,
+      );
+
+  CommonContainerModel bottomBorderContainer = CommonContainerModel(
+    width: 1,
+    paddingHorizontal: 0.04,
+    paddingTop: 0.02,
+    paddingBottom: 0.015,
+    backgroundColor: AppColors.white,
+    borderBottomWidth: 2,
+    borderBottomColor: AppColors.shadowGrey,
+  );
+
+  CommonContainerModel topBorderContainer = CommonContainerModel(
+    width: 1,
+    paddingHorizontal: 0.04,
+    paddingTop: 0.02,
+    paddingBottom: 0.015,
+    backgroundColor: AppColors.white,
+    borderTopWidth: 4,
+    borderTopColor: AppColors.shadowGrey, //AppColors.shadowGrey,
+  );
+
+  CommonContainerModel cardContainer({
+    dynamic backgroundColor,
+    double? paddingHorizontal,
+    double? paddingVertical,
+    double? marginHorizontal,
+    double? marginTop,
+    double? marginBottom,
+    TouchTypes? touchType,
+  }) =>
+      CommonContainerModel(
+        width: 1,
+        marginBottom: marginBottom ?? 0.015,
+        marginTop: marginTop ?? 0.0,
+        marginHorizontal: marginHorizontal ?? 0.0,
+        paddingVertical: paddingVertical ?? 0.015,
+        paddingHorizontal: paddingHorizontal ?? 0.04,
+        borderRadius: 0.02,
+        backgroundColor:
+            backgroundColor ?? Color(AppColors.grey).withOpacity(0.1),
+        touchEffect: TouchableEffect(
+          type: touchType ?? TouchTypes.opacity,
+        ),
+      );
 }

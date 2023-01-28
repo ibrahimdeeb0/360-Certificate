@@ -1,8 +1,8 @@
 import '../constants/index.dart';
 
 String baseUrl = currentMode == AppMode.dev
-    ? 'http://ahm-jer.com/ahm-services/public/api'
-    : 'https://production_api';
+    ? 'https://360connect.app/solo/api/engineers'
+    : 'https://go.360connect.app/api/engineers';
 
 // *************** Api body keys ****************
 

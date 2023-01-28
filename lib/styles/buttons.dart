@@ -12,5 +12,16 @@ class DefaultButtonStyles {
     width: 0.7,
   );
 
-  CommonButtonModel loginButton() => onBoardingButton.copyWith(height: .06);
+  // CommonButtonModel loginButton() => onBoardingButton.copyWith(height: .06);
+
+  CommonButtonStyle loginButton({int? color}) => defaultButtonStyle().copyWith(
+        containerStyle:
+            appButtonStyles.defaultButtonStyle().containerStyle!.copyWith(
+                  width: 1,
+                  marginBottom: 0.03,
+                ),
+        style: appButtonStyles.defaultButtonStyle().style!.copyWith(
+              backgroundColor: color,
+            ),
+      );
 }

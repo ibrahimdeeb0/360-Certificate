@@ -1,2 +1,10 @@
-export 'profile.dart';
+export 'delete_account_controller.dart';
+export 'delete_account_screen.dart';
+export 'profile_card_plane.dart';
+export 'profile_change_password.dart';
+export 'profile_component.dart';
 export 'profile_controller.dart';
+export 'profile_invoices_controller.dart';
+export 'profile_screen.dart';
+export 'profile_subscription_invoices.dart';
+export 'subscription_invoice_card.dart';
