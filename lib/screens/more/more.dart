@@ -27,6 +27,9 @@ class More extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
+                      // SizedBox(
+                      //   height: DEVICE_HEIGHT * 0.03,
+                      // ),
                       MyListTile(
                         // onTap: () => Get.toNamed(routeViewCustomers),
                         title: 'Customers',
@@ -40,46 +43,6 @@ class More extends StatelessWidget {
                           color: Color(AppColors.grey),
                         ),
                       ),
-                      // MyListTile(
-                      //   onTap: () => Get.toNamed(routeServicesScreen),
-                      //   title: 'Services',
-                      //   leftIcon: SvgPicture.asset(
-                      //     iconServices,
-                      //     color: Color(AppColors.colorBlack3),
-                      //   ),
-                      //   rightIcon: Icon(
-                      //     Icons.arrow_forward_ios_rounded,
-                      //     size: 12,
-                      //     color: Color(AppColors.grey),
-                      //   ),
-                      // ),
-                      // SizedBox(height: DEVICE_HEIGHT * 0.01),
-                      // ExpandableTile(
-                      //   title: 'Materials',
-                      //   leftIcon: SvgPicture.asset(
-                      //     iconMaterials,
-                      //     color: Color(AppColors.colorBlack3),
-                      //   ),
-                      //   children: <Widget>[
-                      //     ChildeTitle(
-                      //       title: 'Add New Materials',
-                      //       onTap: () => Get.toNamed(routeNewMaterials),
-                      //     ),
-                      //     ChildeTitle(
-                      //       title: 'View All Materials',
-                      //       onTap: () {
-                      //         Get.toNamed(routeMaterialsScreen);
-                      //       },
-                      //     ),
-                      //     ChildeTitle(
-                      //       title: 'Materials Needed',
-                      //       onTap: () {
-                      //         // Get.toNamed(routeMaterialsNeeded);
-                      //       }, //Get.toNamed(routeMaterialsNeeded),
-                      //     ),
-                      //   ],
-                      // ),
-                      //SizedBox(height: DEVICE_HEIGHT * 0.01),
 
                       MyListTile(
                         // onTap: () => Get.toNamed(routeViewInvoices),
@@ -151,7 +114,7 @@ class More extends StatelessWidget {
                           iconSettings,
                           color: Color(AppColors.colorBlack3),
                         ),
-                        children: const <Widget>[
+                        children: <Widget>[
                           /*  const ChildeTitle(title: 'Branding'),
                         const ChildeTitle(title: 'Job Categories'),
                         ChildeTitle(
@@ -160,7 +123,7 @@ class More extends StatelessWidget {
                         ), */
                           ChildeTitle(
                             title: 'Forms',
-                            // onTap: () => Get.toNamed(routeForms),
+                            onTap: () => Get.toNamed(routeForms),
                           ),
                           // const ChildeTitle(title: 'Subscription'),
                         ],

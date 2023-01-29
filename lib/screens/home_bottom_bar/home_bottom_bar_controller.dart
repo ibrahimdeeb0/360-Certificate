@@ -2,6 +2,7 @@ import '../../general_exports.dart';
 
 class HomeBottomBarController extends GetxController {
   int selectedIndex = 0;
+
   List<Map<String, dynamic>> bottomBarItems = <Map<String, dynamic>>[
     <String, dynamic>{
       keyTitle: 'Gas',
@@ -59,7 +60,7 @@ class HomeBottomBarController extends GetxController {
         },
         <String, dynamic>{
           keyTitle: 'EICR',
-          keyOnPress: () {},
+          keyOnPress: () => Get.to(() => const EICR()),
         },
       ],
     },

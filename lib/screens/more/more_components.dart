@@ -26,6 +26,7 @@ class ExpandableTile extends StatelessWidget {
               child: CommonText(
                 title ?? 'Title',
                 fontColor: titleColor ?? Colors.black,
+                fontWeight: FontWeight.bold,
                 // fontSize: fontHeader,
                 rowMainAxisSize: MainAxisSize.max,
                 textAlign: TextAlign.start,
@@ -35,7 +36,7 @@ class ExpandableTile extends StatelessWidget {
                 leftChild: Row(
                   children: <Widget>[
                     leftIcon ?? const SizedBox(),
-                    SizedBox(width: DEVICE_WIDTH * 0.05),
+                    if (leftIcon != null) SizedBox(width: DEVICE_WIDTH * 0.05),
                   ],
                 ),
               ),

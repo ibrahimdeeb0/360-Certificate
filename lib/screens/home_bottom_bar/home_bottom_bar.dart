@@ -180,9 +180,10 @@ class ChildeItems extends StatelessWidget {
     return CommonContainer(
       onPress: onPress?.call,
       alignment: AlignmentDirectional.topStart,
-      marginVertical: 0.015,
+      marginVertical: 0.01,
       borderBottomWidth: 1,
       paddingHorizontal: 0.02,
+      paddingBottom: 0.015,
       borderBottomColor: AppColors.greyLightBorder,
       touchEffect: TouchableEffect(
         type: TouchTypes.opacity,
@@ -198,9 +199,6 @@ class ChildeItems extends StatelessWidget {
             rowMainAxisAlignment: MainAxisAlignment.spaceBetween,
             containerStyle: const CommonContainerModel(
               width: 0.68,
-              paddingBottom: 0.01,
-              // backgroundColor:
-              //     Colors.green,
               alignment: AlignmentDirectional.topStart,
               marginLeft: 0.04,
               marginHorizontal: 0.02,
