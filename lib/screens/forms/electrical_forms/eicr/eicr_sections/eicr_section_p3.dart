@@ -7,14 +7,9 @@ class EICRSectionC extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final EICRListsForm formList = EICRListsForm();
+    final EICRListsForm formList = EICRListsForm();
     return CommonContainer(
-      style: CommonContainerModel(
-        backgroundColor: AppColors.white,
-        paddingHorizontal: 0.03,
-        borderRadius: 0.02,
-        paddingVertical: 0.016,
-      ),
+      style: appContainerStyles.formSectionsStyle,
       child: Column(
         children: <Widget>[
           const CustomTextFormTitle(
@@ -33,15 +28,15 @@ class EICRSectionC extends StatelessWidget {
             value: controller.gazSafetyData[formKeyExtentElectricalC],
             onChanged: (dynamic value) => controller.onChangeFormDataValue(
                 formKeyExtentElectricalC, value),
-            suffix: const SuffixInputIcon(
-              // onPress: () => Get.bottomSheet(
-              //   EICRSelectBT(
-              //     controller: controller,
-              //     keyOfValue: formKeyExtentElectricalC,
-              //     listTitles: formList.listExtentSuggestions,
-              //   ),
-              // ),
-              iconWidget: Icon(
+            suffix: SuffixInputIcon(
+              onPress: () => Get.bottomSheet(
+                EICRSelectBT(
+                  controller: controller,
+                  keyOfValue: formKeyExtentElectricalC,
+                  listTitles: formList.listExtentSuggestions,
+                ),
+              ),
+              iconWidget: const Icon(
                 Icons.filter_list,
               ),
             ),
@@ -58,15 +53,15 @@ class EICRSectionC extends StatelessWidget {
             value: controller.gazSafetyData[formKeyAgreedLimitationsC],
             onChanged: (dynamic value) => controller.onChangeFormDataValue(
                 formKeyAgreedLimitationsC, value),
-            suffix: const SuffixInputIcon(
-              // onPress: () => Get.bottomSheet(
-              //  EICRSelectBT(
-              //       controller: controller,
-              //       keyOfValue: formKeyAgreedLimitationsC,
-              //       listTitles: formList.listAgreedSuggestions,
-              //     ),
-              // ),
-              iconWidget: Icon(
+            suffix: SuffixInputIcon(
+              onPress: () => Get.bottomSheet(
+                EICRSelectBT(
+                  controller: controller,
+                  keyOfValue: formKeyAgreedLimitationsC,
+                  listTitles: formList.listAgreedSuggestions,
+                ),
+              ),
+              iconWidget: const Icon(
                 Icons.filter_list,
               ),
             ),

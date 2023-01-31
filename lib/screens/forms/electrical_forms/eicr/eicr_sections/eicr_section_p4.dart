@@ -11,12 +11,7 @@ class EICRSectionD extends StatelessWidget {
   Widget build(BuildContext context) {
     // final EICRListsForm formList = EICRListsForm();
     return CommonContainer(
-      style: CommonContainerModel(
-        backgroundColor: AppColors.white,
-        paddingHorizontal: 0.03,
-        borderRadius: 0.02,
-        paddingVertical: 0.016,
-      ),
+      style: appContainerStyles.formSectionsStyle,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -43,16 +38,6 @@ class EICRSectionD extends StatelessWidget {
                 icon860,
               ),
             ),
-            // CommonIcon(
-            //   path: icon860,
-            //   containerStyle: CommonContainerModel(
-            //     marginTop: 0.12,
-            //     borderRadius: 0.02,
-            //     paddingHorizontal: 0.01,
-            //     paddingVertical: 0.006,
-            //     marginRight: 0.01,
-            //   ),
-            // ),
             maxLines: 6,
             marginBottom: 0.025,
           ),

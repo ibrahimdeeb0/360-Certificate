@@ -1,579 +1,65 @@
+import 'dart:async';
+import 'dart:convert';
+import 'dart:io';
+import 'dart:typed_data';
+
+import 'package:path_provider/path_provider.dart';
+
 import '../../../../general_exports.dart';
 
 class EicrController extends GetxController {
+  EicrController({
+    this.jobId,
+    this.serviceId,
+    this.isTemplate = false,
+    this.templateName,
+    this.tempData,
+    this.updateTemp = false,
+  });
+
+  int selectedId = 0;
+  int numFinalPage = 2;
+  bool isTemplate;
+  String? templateName;
+  dynamic tempData;
+  bool updateTemp;
+
+  bool renderItem = false;
+  int? jobId;
+  int? serviceId;
+  List<Map<String, dynamic>>? selectedImages = <Map<String, dynamic>>[];
+
   DateTime currentTime = DateTime.now();
 
-  List<Map<String, dynamic>> listRenderWidgets = <Map<String, dynamic>>[
-    <String, dynamic>{
-      'head_label': '1.0',
-      'data': <Map<String, dynamic>>[
-        <String, dynamic>{
-          'title': '1.1. Condition Of Service Cable',
-          'form_key': formKey1_1Cable,
-        },
-        <String, dynamic>{
-          'title': '1.2. Condition Of Service Head',
-          'form_key': formKey1_2Head,
-        },
-        <String, dynamic>{
-          'title': '1.3. Condition Of Distributor’s Earthing Arrangement',
-          'form_key': formKey1_3Arrangement,
-        },
-        <String, dynamic>{
-          'title': '1.4. Condition Of Meter Tails - Distributor/Consumer',
-          'form_key': formKey1_4Consumer,
-        },
-        <String, dynamic>{
-          'title':
-              '1.5. Condition Of Metering Equipment Including Isolator (Where Present)',
-          'form_key': formKey1_5Isolator,
-        },
-        <String, dynamic>{
-          'title':
-              '1.6. Person Ordering Work /Duty Holder Notified if Appropriate',
-          'form_key': formKey1_6Appropriate,
-        },
-        <String, dynamic>{
-          'title':
-              '2.0. Presence Of Adequate Arrangements For other Source such as Micro Generators (551.6; 551.7)',
-          'form_key': formKey2_0Generators,
-        },
-      ],
-    },
-    <String, dynamic>{
-      'head_label': '13.0',
-      'data': <Map<String, dynamic>>[
-        <String, dynamic>{
-          'title':
-              '3.1. Presence And Condition Of Distributor’s Earthing Arrangement \n(542.1.2.1; 542.1.2.2)',
-          'form_key': formKey3_1,
-        },
-        <String, dynamic>{
-          'title':
-              '3.2. Presence And Condition Of Earth Electrode Connection Where Applicable \n(542.1.2.3)',
-          'form_key': formKey3_2,
-        },
-        <String, dynamic>{
-          'title':
-              '3.3. Provision of Earthing or Bounding Labels at All Appropriate \n(514.13)',
-          'form_key': formKey3_3,
-        },
-        <String, dynamic>{
-          'title': '3.4. Adequacy Of Earthing Conductor Size (542.3; 543.1.1)',
-          'form_key': formKey3_4,
-        },
-        <String, dynamic>{
-          'title':
-              '3.5. Accessibility Of Earthing Conductor Connections (543.3.2)',
-          'form_key': formKey3_5,
-        },
-        <String, dynamic>{
-          'title':
-              '3.6. Adequacy Of Main Protective Bonding Conductor Sizes (544.1)',
-          'form_key': formKey3_6,
-        },
-        <String, dynamic>{
-          'title':
-              '3.7. Adequacy Of Main Protective Bonding Conductor Connections (543.3.2; 544.1.2)',
-          'form_key': formKey3_7,
-        },
-        <String, dynamic>{
-          'title':
-              '3.8. Accessibility And Condition Of Other Protective Bonding Connections (543.3.3.1; 543.3.2)',
-          'form_key': formKey3_8,
-        },
-      ],
-    },
-    <String, dynamic>{
-      'head_label': '4.0',
-      'data': <Map<String, dynamic>>[
-        <String, dynamic>{
-          'title':
-              '4.1. Adequacy Of Working Space or Accessibility To The Consumer Unit or Distribution Board (132.12; 513.1)',
-          'form_key': formKey4_1,
-        },
-        <String, dynamic>{
-          'title': '4.2. Security Of Fixing (134.1.1)',
-          'form_key': formKey4_2,
-        },
-        <String, dynamic>{
-          'title':
-              '4.3. Condition Of Enclosure(S) In Terms Of Ip Rating Etc (416.2)',
-          'form_key': formKey4_3,
-        },
-        <String, dynamic>{
-          'title':
-              '4.4 Condition Of Enclosure(S) In Terms Of Fire Rating Etc (421.1.201; 526.5)',
-          'form_key': formKey4_4,
-        },
-        <String, dynamic>{
-          'title':
-              '4.5. Enclosure Not Damage or Deteriorated So As To Impair Safety \n(621.2)',
-          'form_key': formKey4_5,
-        },
-        <String, dynamic>{
-          'title':
-              '4.6. Presence Of Main Linked Switch \n(As Required By 537.1.4)',
-          'form_key': formKey4_6,
-        },
-        <String, dynamic>{
-          'title':
-              '4.7. Operation Of Main Switch - (Functional Check)  (612.13.2)',
-          'form_key': formKey4_7,
-        },
-        <String, dynamic>{
-          'title':
-              '4.8. Manual Operation Of Circuit Breakers And RCDs To Prove Disconnection (643.10)',
-          'form_key': formKey4_8,
-        },
-        <String, dynamic>{
-          'title':
-              '4.9. Correct Identification Of Circuit Details And Protective Device (514.8.1; 514.9.1)',
-          'form_key': formKey4_9,
-        },
-        <String, dynamic>{
-          'title':
-              '4.10. Presence Of RCD six-monthly Test Notice, Where Required (514.12.2)',
-          'form_key': formKey4_10,
-        },
-        <String, dynamic>{
-          'title':
-              '4.11. Presence Of Alternative Supply Warning Notice At or Near Consumer Unit/Distribution Board (514.15)',
-          'form_key': formKey4_11,
-        },
-        <String, dynamic>{
-          'title':
-              '4.12. Presence Of Other Required Labelling (Please Specify) (Section 514)',
-          'form_key': formKey4_12,
-        },
-        <String, dynamic>{
-          'title':
-              '4.13. Compatibility of Protective Device, Bases and Other Components; \nCorrect Type and Rating \n(No Signs of Unacceptable Thermal Damage, Arcing or Overheating) \n(411.3.2; 411.4; 411.5; 411.6; Sections 432, 433)',
-          'form_key': formKey4_13,
-        },
-      ],
-    },
-    <String, dynamic>{
-      'head_label': '4.14',
-      'data': <Map<String, dynamic>>[
-        <String, dynamic>{
-          'title':
-              '4.14. Single-Pole Switching Or Protective Devices In Line Conductor Only (132.14.1; 530.3.3)',
-          'form_key': formKey4_14,
-        },
-        <String, dynamic>{
-          'title':
-              '4.15. Protection Against Mechanical Damage Where Cables Enter Consumer Unit/Distribution Board (522.8.1; 522.8.11)',
-          'form_key': formKey4_15,
-        },
-        <String, dynamic>{
-          'title':
-              '4.16. Protection Against Electromagnetic Effects Where Cables Enter Consumer Unit/Distribution Board/Enclosures (521.5.1)',
-          'form_key': formKey4_16,
-        },
-        <String, dynamic>{
-          'title':
-              '4.17. RCD(s) Provided For Fault Protection - Includes RCBOs (411.4.204; 411.5.2; 531.2)',
-          'form_key': formKey4_17,
-        },
-        <String, dynamic>{
-          'title':
-              '4.18. RCD(S) Provided For Additional Protection/Requirements - Includes RCBOs (411.3.3; 415.1)',
-          'form_key': formKey4_18,
-        },
-        <String, dynamic>{
-          'title':
-              '4.19. Confirmation Of Indication That SPD is Functional (651.4)',
-          'form_key': formKey4_19,
-        },
-        <String, dynamic>{
-          'title':
-              '4.20. Confirmation That all Conductor Connections, Including Connections To Busbars, Are Correctly Located In Terminals And Are Tight And Secure (526.1)',
-          'form_key': formKey4_20,
-        },
-        <String, dynamic>{
-          'title':
-              '4.21. Adequate Arrangements Where A Generating Set as a Switched Alternative To The Public Supply (551.6)',
-          'form_key': formKey4_21,
-        },
-        <String, dynamic>{
-          'title':
-              '4.22. Adequate Arrangements Where A Generating Set Operates In Parallel With The Public Supply (551.7)',
-          'form_key': formKey4_22,
-        },
-      ],
-    },
-    <String, dynamic>{
-      'head_label': '5.0',
-      'data': <Map<String, dynamic>>[
-        <String, dynamic>{
-          'title': '5.1. Identification Of Conductors (514.3.1)',
-          'form_key': formKey5_1,
-        },
-        <String, dynamic>{
-          'title':
-              '5.2. Cables Correctly Supported Throughout Their Run (521.10.202; 522.8.5)',
-          'form_key': formKey5_2,
-        },
-        <String, dynamic>{
-          'title': '5.3. Condition Of Insulation Of Live Parts (416.1)',
-          'form_key': formKey5_3,
-        },
-        <String, dynamic>{
-          'title':
-              '5.4. Non-Sheathed Cables Protected By Enclosure In Conduit, Ducting Or Trunking (521.10.1) (To Include The Integrity Of Conduit And Trunking Systems In Metallic And Plastic',
-          'form_key': formKey5_4,
-        },
-        <String, dynamic>{
-          'title':
-              '5.5. Adequacy Of Cables Or Current-Carrying Capacity With Regard For The Type And Nature Of Installation (Section 523)',
-          'form_key': formKey5_5,
-        },
-        <String, dynamic>{
-          'title':
-              '5.6. Co-ordination Between Conductors And Overload Protective Device (433.1; 533.2.1)',
-          'form_key': formKey5_6,
-        },
-        <String, dynamic>{
-          'title':
-              '5.7. Adequacy Of Protective Devices: Type And Rated Current For Fault Protection (411.3)',
-          'form_key': formKey5_7,
-        },
-        <String, dynamic>{
-          'title':
-              '5.8. Presence And Adequacy Of Circuit Protective Conductors (411.3.1; Section 543)',
-          'form_key': formKey5_8,
-        },
-        <String, dynamic>{
-          'title':
-              '5.9 Wiring Systems(S) Appropriate For The Type And Nature Of The Installation And External Influences (Section 522)',
-          'form_key': formKey5_9,
-        },
-        <String, dynamic>{
-          'title':
-              '5.10. Concealed Cables Installed In Prescribed Zones (See Section C in this Report: Extent And Limitations) (522.6.202)',
-          'form_key': formKey5_10,
-        },
-        <String, dynamic>{
-          'title':
-              '5.11. Cables Concealed Under Floors, Above Ceilings, Or In Walls/ Partitions, Adequately Protected Against Damage (See Section C in this Report: Extent And Limitations) (522.6.204)',
-          'form_key': formKey5_11,
-        },
-      ],
-    },
-    <String, dynamic>{
-      'head_label': '5.12',
-      'data': <Map<String, dynamic>>[
-        <String, dynamic>{
-          'title':
-              '* For All Socket-Outlets Of Rating 32A Or Less, Unless And Exception Is Permitted (411.3.3) ',
-          'form_key': formKey5_12_1,
-        },
-        <String, dynamic>{
-          'title':
-              '* For The Supply of Mobile Equipment Not Exceeding 32A Rating For Use Outdoors (411.3.3)',
-          'form_key': formKey5_12_2,
-        },
-        <String, dynamic>{
-          'title':
-              '* For Cables Concealed In Walls at A Depth Of Less Than 50mm (522.6.202; 522.6.203)',
-          'form_key': formKey5_12_3,
-        },
-        <String, dynamic>{
-          'title':
-              '* For Cables Concealed In Walls/Partitions Containing Metal Parts Regardless Of Depth (522.6.203)',
-          'form_key': formKey5_12_4,
-        },
-        <String, dynamic>{
-          'title':
-              '* For Circuit Supply Luminaries within Domestic (Household) Premises (411.3.4)',
-          'form_key': formKey5_12_5,
-        },
-        <String, dynamic>{
-          'title':
-              '5.13. Provision Of Fire Barriers, Sealing Arrangements And Protection Against Thermal Effects (Section 527) ',
-          'form_key': formKey5_13,
-        },
-        <String, dynamic>{
-          'title':
-              '5.14. Band If Cables Segregated/Separated From Band I Cables (528.1)',
-          'form_key': formKey5_14,
-        },
-        <String, dynamic>{
-          'title':
-              '5.15. Cables Segregated or Separated From Communications Cabling (528.2)',
-          'form_key': formKey5_15,
-        },
-        <String, dynamic>{
-          'title':
-              '5.16. Cables Segregated or Separated From Non-Electrical Service (528.3)',
-          'form_key': formKey5_16,
-        },
-      ],
-    },
-    <String, dynamic>{
-      'head_label': '5.17',
-      'data': <Map<String, dynamic>>[
-        <String, dynamic>{
-          'title':
-              '* Connections Soundly Made And Under No Undue Strain (526.6)',
-          'form_key': formKey5_17_1,
-        },
-        <String, dynamic>{
-          'title':
-              '* No Basic Insulation Of A Conductor Visible Outside of The Enclosure (526.8) ',
-          'form_key': formKey5_17_2,
-        },
-        <String, dynamic>{
-          'title':
-              '* Connections Of Live Conductors Adequately Enclosed (526.5)',
-          'form_key': formKey5_17_3,
-        },
-        <String, dynamic>{
-          'title':
-              '* Adequately Connected At The Point Of Entry To Enclosure (Glands, Bushes etc.) (522.8.5)',
-          'form_key': formKey5_17_4,
-        },
-        <String, dynamic>{
-          'title':
-              '5.18. Conditions Of Accessories Including Socket-Outlets, Switches And Joint Boxes (651.2 (v))',
-          'form_key': formKey5_18,
-        },
-        <String, dynamic>{
-          'title':
-              '5.19. Suitability Of Accessories For External Influences (512.2)',
-          'form_key': formKey5_19,
-        },
-        <String, dynamic>{
-          'title':
-              '5.20. Adequacy Of Working  Space/Accessibility To Equipment (132.12; 513.1)',
-          'form_key': formKey5_20,
-        },
-        <String, dynamic>{
-          'title':
-              '5.21. Single-Pole Switching Or Protective Devices In Line Conductors Only (132.14.1, 530.3.2)',
-          'form_key': formKey5_21,
-        },
-      ],
-    },
-    // 7
-    <String, dynamic>{
-      'head_label': '6.0',
-      'data': <Map<String, dynamic>>[
-        <String, dynamic>{
-          'title':
-              '6.1. Additional Protection for All Circuits By A 30mA RCD (not applicable if design pre BS 7671)  (701.411.3.3)',
-          'form_key': formKey6_1,
-        },
-        <String, dynamic>{
-          'title':
-              '6.2. Where Used as A Protective Measure, The Requirements For SELV or PELV have been met (701.414.4.5)',
-          'form_key': formKey6_2,
-        },
-        <String, dynamic>{
-          'title':
-              '6.3. Shaver Supply Units Comply with BS EN 61558-2-5 Formerly BS 3535  (701.512.3)',
-          'form_key': formKey6_3,
-        },
-        <String, dynamic>{
-          'title':
-              '6.4. Presence of Supplementary Bounding Conductors, Unless not Required by BS 7671:2018  (701.415.2)',
-          'form_key': formKey6_4,
-        },
-        <String, dynamic>{
-          'title':
-              '6.5. Low Voltage (e.g 230 V) Socket-Outlets Sited at Least 2.5 m from zone 1  (701.512.2)',
-          'form_key': formKey6_5,
-        },
-        <String, dynamic>{
-          'title':
-              '6.6. Suitability of The Equipment for External Influences for Installed Location in Term of IP Rating  (701.512.2)',
-          'form_key': formKey6_6,
-        },
-        <String, dynamic>{
-          'title':
-              '6.7. Suitability of The Equipment for Installation in A Particular Zone  (701.512.3)',
-          'form_key': formKey6_7,
-        },
-        <String, dynamic>{
-          'title':
-              '6.8. Suitability Of Current-Using Equipment For Particular Within The Location (701.55)',
-          'form_key': formKey6_8,
-        },
-      ],
-    },
-    // 8
-    <String, dynamic>{
-      'head_label': 'input_na',
-      'data': <Map<String, dynamic>>[
-        <String, dynamic>{
-          'title': '8.2',
-          'input_form_key': formKey8_2Input,
-          'button_form_key': formKey8_2BTN,
-        },
-        <String, dynamic>{
-          'title': '8.3',
-          'input_form_key': formKey8_3Input,
-          'button_form_key': formKey8_3BTN,
-        },
-        <String, dynamic>{
-          'title': '8.4',
-          'input_form_key': formKey8_4Input,
-          'button_form_key': formKey8_4BTN,
-        },
-        <String, dynamic>{
-          'title': '8.5',
-          'input_form_key': formKey8_5Input,
-          'button_form_key': formKey8_5BTN,
-        },
-        <String, dynamic>{
-          'title': '8.6',
-          'input_form_key': formKey8_6Input,
-          'button_form_key': formKey8_6BTN,
-        },
-        <String, dynamic>{
-          'title': '8.7',
-          'input_form_key': formKey8_7Input,
-          'button_form_key': formKey8_7BTN,
-        },
-      ],
-    },
-    <String, dynamic>{
-      'head_label': 'input_na_part2',
-      'data': <Map<String, dynamic>>[
-        <String, dynamic>{
-          'title': '8.8',
-          'input_form_key': formKey8_8Input,
-          'button_form_key': formKey8_8BTN,
-        },
-        <String, dynamic>{
-          'title': '8.9',
-          'input_form_key': formKey8_9Input,
-          'button_form_key': formKey8_9BTN,
-        },
-        <String, dynamic>{
-          'title': '8.10',
-          'input_form_key': formKey8_10Input,
-          'button_form_key': formKey8_10BTN,
-        },
-        <String, dynamic>{
-          'title': '8.11',
-          'input_form_key': formKey8_11Input,
-          'button_form_key': formKey8_11BTN,
-        },
-        <String, dynamic>{
-          'title': '8.12',
-          'input_form_key': formKey8_12Input,
-          'button_form_key': formKey8_12BTN,
-        },
-        <String, dynamic>{
-          'title': '8.13',
-          'input_form_key': formKey8_13Input,
-          'button_form_key': formKey8_13BTN,
-        },
-        <String, dynamic>{
-          'title': '8.14',
-          'input_form_key': formKey8_14Input,
-          'button_form_key': formKey8_14BTN,
-        },
-        <String, dynamic>{
-          'title': '8.15',
-          'input_form_key': formKey8_15Input,
-          'button_form_key': formKey8_15BTN,
-        },
-        <String, dynamic>{
-          'title': '8.16',
-          'input_form_key': formKey8_16Input,
-          'button_form_key': formKey8_16BTN,
-        },
-        <String, dynamic>{
-          'title': '8.17',
-          'input_form_key': formKey8_17Input,
-          'button_form_key': formKey8_17BTN,
-        },
-        <String, dynamic>{
-          'title': '8.18',
-          'input_form_key': formKey8_18Input,
-          'button_form_key': formKey8_18BTN,
-        },
-        <String, dynamic>{
-          'title': '8.19',
-          'input_form_key': formKey8_19Input,
-          'button_form_key': formKey8_19BTN,
-        },
-        <String, dynamic>{
-          'title': '8.20',
-          'input_form_key': formKey8_20Input,
-          'button_form_key': formKey8_20BTN,
-        },
-        <String, dynamic>{
-          'title': '8.21',
-          'input_form_key': formKey8_21Input,
-          'button_form_key': formKey8_21BTN,
-        },
-        <String, dynamic>{
-          'title': '8.22',
-          'input_form_key': formKey8_22Input,
-          'button_form_key': formKey8_22BTN,
-        },
-        <String, dynamic>{
-          'title': '8.23',
-          'input_form_key': formKey8_23Input,
-          'button_form_key': formKey8_23BTN,
-        },
-        <String, dynamic>{
-          'title': '8.24',
-          'input_form_key': formKey8_24Input,
-          'button_form_key': formKey8_24BTN,
-        },
-        <String, dynamic>{
-          'title': '8.25',
-          'input_form_key': formKey8_25Input,
-          'button_form_key': formKey8_25BTN,
-        },
-        <String, dynamic>{
-          'title': '8.26',
-          'input_form_key': formKey8_26Input,
-          'button_form_key': formKey8_26BTN,
-        },
-        <String, dynamic>{
-          'title': '8.27',
-          'input_form_key': formKey8_27Input,
-          'button_form_key': formKey8_27BTN,
-        },
-        <String, dynamic>{
-          'title': '8.28',
-          'input_form_key': formKey8_28Input,
-          'button_form_key': formKey8_28BTN,
-        },
-        <String, dynamic>{
-          'title': '8.29',
-          'input_form_key': formKey8_29Input,
-          'button_form_key': formKey8_29BTN,
-        },
-        <String, dynamic>{
-          'title': '8.30',
-          'input_form_key': formKey8_30Input,
-          'button_form_key': formKey8_30BTN,
-        },
-        <String, dynamic>{
-          'title': '8.31',
-          'input_form_key': formKey8_31Input,
-          'button_form_key': formKey8_31BTN,
-        },
-        <String, dynamic>{
-          'title': '8.32',
-          'input_form_key': formKey8_32Input,
-          'button_form_key': formKey8_32BTN,
-        },
-        <String, dynamic>{
-          'title': '8.33',
-          'input_form_key': formKey8_33Input,
-          'button_form_key': formKey8_33BTN,
-        },
-      ],
-    },
-  ];
+  TextEditingController otherController = TextEditingController();
+  ScrollController scrollController = ScrollController();
+
+  // common data for all forms
+  Uint8List? signatureBytes;
+  Uint8List? signatureBytesImage;
+  Uint8List? signatureBytes2;
+  File? customerSignature;
+  Uint8List? customerSignatureBytes;
+  String? htmlContent;
+  String? pdfFilePath;
+
+  final Map<String, dynamic> currentFormData = homeController.formsData
+      .where(
+        (dynamic element) =>
+            element[keyName] ==
+            formNameDomesticElectricalInstallationConditionReport,
+      )
+      .toList()
+      .first;
+
+  List<String> whoIsReceiving = <String>[];
+  TextEditingController dateController = TextEditingController();
+  TextEditingController commentController = TextEditingController();
+
+  List<dynamic> distrBoardDataBase = <dynamic>[];
+  List<dynamic> observationsDataBase = <dynamic>[];
+
+  // bool remedialWorksCompleted = false;
 
   Map<String, dynamic> gazSafetyData = <String, dynamic>{
     'remedial_works_completed': false,
@@ -821,8 +307,360 @@ class EicrController extends GetxController {
     formKeyRemarks: '',
   };
 
-  void onChangeFormDataValue(String? key, dynamic value) {
-    gazSafetyData[key!] = value;
+  Map<String, dynamic> formBody = <String, dynamic>{
+    'form_id': '',
+    keyData: <String, dynamic>{
+      'who_is_receiving': '',
+      'date': '',
+      'comment': '',
+      'signature': '',
+      formKeyGazSafetyData: <Map<String, dynamic>>[],
+    },
+  };
+
+  //*---- Widgets ---- */
+  List<dynamic> listFormSections = <dynamic>[
+    <String, dynamic>{
+      'id': 0,
+      'name': 'a',
+      'title': 'Part 1.  Reason for producing this report',
+    },
+    <String, dynamic>{
+      'id': 1,
+      'name': 'b',
+      'title':
+          'Part 2.  Details of the installation which is the subject of this report',
+    },
+    <String, dynamic>{
+      'id': 2,
+      'name': 'c',
+      'title': 'Part 3.  Extent and limitations of inspection and testing',
+    },
+    <String, dynamic>{
+      'id': 3,
+      'name': 'd',
+      'title': 'Part 4.  Summary of the installation of the installation',
+    },
+    <String, dynamic>{
+      'id': 4,
+      'name': 'e',
+      'title': 'Part 5.  Recommendations',
+    },
+    <String, dynamic>{
+      'id': 5,
+      'name': 'f',
+      'title': 'Part 6.  Supply characteristics & earthing arrangements',
+    },
+    <String, dynamic>{
+      'id': 6,
+      'name': 'g',
+      'title':
+          'Part 7.  Particulars of installation referred to in this report',
+    },
+    <String, dynamic>{
+      'id': 7,
+      'name': 'h',
+      'title': 'Part 8.  Main protective conductors',
+    },
+    <String, dynamic>{
+      'id': 8,
+      'name': 'i',
+      'title': 'Part 9.  Main Switch/Switch-Fuse/Circuit Breaker/RCD',
+    },
+    <String, dynamic>{
+      'id': 9,
+      'name': 'db',
+      'title': 'Part 10.  Distribution Boards',
+    },
+    <String, dynamic>{
+      'id': 10,
+      'name': 'j',
+      'title': 'Part 11.  Test Instruments used',
+    },
+    //
+    <String, dynamic>{
+      'id': 11,
+      'name': 'k1',
+      'title': '',
+    },
+    <String, dynamic>{
+      'id': 12,
+      'name': 'k2',
+      'title': '',
+    },
+    <String, dynamic>{
+      'id': 13,
+      'name': 'k3',
+      'title': '',
+    },
+    <String, dynamic>{
+      'id': 14,
+      'name': 'k4',
+      'title': '',
+    },
+    <String, dynamic>{
+      'id': 15,
+      'name': 'k5',
+      'title': '',
+    },
+    <String, dynamic>{
+      'id': 16,
+      'name': 'k6',
+      'title': '',
+    },
+    <String, dynamic>{
+      'id': 17,
+      'name': 'k7',
+      'title': '',
+    },
+    <String, dynamic>{
+      'id': 18,
+      'name': 'input_field',
+      'title': '',
+    },
+    <String, dynamic>{
+      'id': 19,
+      'name': 'observations',
+      'title': 'Part 11.  Observations',
+    },
+    <String, dynamic>{
+      'id': 20,
+      'name': 'remark',
+      'title': 'Part 12.  Remark',
+    },
+    <String, dynamic>{
+      'id': 21,
+      'name': 'final_page',
+      'title': '',
+    },
+  ];
+
+  Widget returnedSection({
+    required EicrController controller,
+    required String sectionName,
+  }) //
+  {
+    switch (sectionName) {
+      case 'a':
+        {
+          return EICRSectionA(
+            controller: controller,
+          );
+        }
+
+      case 'b':
+        {
+          return EICRSectionB(
+            controller: controller,
+          );
+        }
+      case 'c':
+        {
+          return EICRSectionC(
+            controller: controller,
+          );
+        }
+
+      case 'd':
+        {
+          return EICRSectionD(
+            controller: controller,
+          );
+        }
+      case 'e':
+        {
+          return EICRSectionE(
+            controller: controller,
+          );
+        }
+
+      case 'f':
+        {
+          return EICRSectionF(
+            controller: controller,
+          );
+        }
+
+      case 'g':
+        {
+          return EICRSectionG(
+            controller: controller,
+          );
+        }
+
+      case 'h':
+        {
+          return EICRSectionH(
+            controller: controller,
+          );
+        }
+
+      case 'i':
+        {
+          return EICRSectionI(
+            controller: controller,
+          );
+        }
+
+      case 'db':
+        {
+          return EICRSectionDB(
+            controller: controller,
+          );
+        }
+
+      case 'j':
+        {
+          return EICRSectionJ(
+            controller: controller,
+          );
+        }
+
+      case 'k1':
+        {
+          return EICRSectionKPart1(
+            controller: controller,
+          );
+        }
+
+      case 'k2':
+        {
+          return EICRSectionKPart2(
+            controller: controller,
+          );
+        }
+
+      case 'k3':
+        {
+          return EICRSectionKPart3(
+            controller: controller,
+          );
+        }
+
+      case 'k4':
+        {
+          return EICRSectionKPart4(
+            controller: controller,
+          );
+        }
+
+      case 'k5':
+        {
+          return EICRSectionKPart5(
+            controller: controller,
+          );
+        }
+
+      case 'k6':
+        {
+          return EICRSectionKPart6(
+            controller: controller,
+          );
+        }
+
+      case 'k7':
+        {
+          return EICRSectionKPart7(
+            controller: controller,
+          );
+        }
+      case 'input_field':
+        {
+          return EICRSectionInputField(
+            controller: controller,
+          );
+        }
+      case 'observations':
+        {
+          return SectionObservation(
+            controller: controller,
+          );
+        }
+      case 'remark':
+        {
+          return EICRRemarkSection(
+            controller: controller,
+          );
+        }
+      case 'final_page':
+        {
+          return EICRFinalPage(
+            controller: controller,
+          );
+        }
+
+      default:
+        {
+          return const SizedBox();
+        }
+    }
+  }
+
+  void removeSection(
+    int id,
+    Map<String, dynamic> item,
+  ) //
+  {
+    if (listFormSections
+        .where((dynamic element) => element['id'] == id)
+        .isNotEmpty) {
+      consoleLog('true');
+      listFormSections.removeWhere((dynamic element) => element['id'] == id);
+      update();
+      consoleLogPretty(item);
+      consoleLogPretty(listFormSections);
+    } else if (listFormSections
+        .where((dynamic element) => element['id'] == id)
+        .isEmpty) {
+      consoleLog('false');
+      listFormSections.insert(item['id'], item);
+      update();
+    }
+    update();
+  }
+
+  //*---- Functions Body --------------------------------------------------- */
+
+  @override
+  void onInit() {
+    // removeStoredFormData();
+    super.onInit();
+    if (tempData != null) {
+      formBody = tempData?['data'];
+      if (formBody[keyData][formKeyGazSafetyData].isNotEmpty) {
+        gazSafetyData = formBody[keyData][formKeyGazSafetyData][0];
+      }
+      distrBoardDataBase = gazSafetyData[allDistributionBoardData];
+      observationsDataBase = gazSafetyData[allObservationData];
+      update();
+    }
+  }
+
+  @override
+  Future<void> onReady() async {
+    super.onReady();
+    formBody['form_id'] = currentFormData[keyId];
+    if (isTemplate) {
+      numFinalPage = listFormSections.length - 2;
+      update();
+      consoleLog(numFinalPage, key: 'numFinalPage');
+      // removeStoredFormData();
+    }
+    // await checkStorage();
+  }
+
+  void onAddImage(dynamic data) {
+    if (selectedImages!
+        .where((Map<String, dynamic> element) => element['id'] == data['id'])
+        .isNotEmpty) {
+      selectedImages!
+          .where((Map<String, dynamic> element) => element['id'] == data['id'])
+          .toList()[0] = data;
+    } else {
+      selectedImages!.add(data);
+    }
+    update();
+    consoleLog(selectedImages);
   }
 
   //*----------Section E Part 5---------*//
@@ -834,21 +672,484 @@ class EicrController extends GetxController {
 
   //* Circuit - Page Numbers *//
   String pagesNum() {
-    //   if (isTemplate) {
-    //     if (selectedId == listFormSections.length - 1) {
-    //       return '${listFormSections.length - 1}/${listFormSections.length - 1}';
-    //     } else {
-    //       return '${selectedId + 1}/${listFormSections.length - 1}';
-    //     }
-    //   } else {
-    //     if (selectedId == listFormSections.length) {
-    //       return '${listFormSections.length}/${listFormSections.length}';
-    //     } else {
-    //       return '${selectedId + 1}/${listFormSections.length}';
-    //     }
-    //   }
-    // }
+    if (isTemplate) {
+      if (selectedId == listFormSections.length - 1) {
+        return '${listFormSections.length - 1}/${listFormSections.length - 1}';
+      } else {
+        return '${selectedId + 1}/${listFormSections.length - 1}';
+      }
+    } else {
+      if (selectedId == listFormSections.length) {
+        return '${listFormSections.length}/${listFormSections.length}';
+      } else {
+        return '${selectedId + 1}/${listFormSections.length}';
+      }
+    }
+  }
+  // *****************  Auto Save  functions **************** //
 
-    return '20/20';
+  // void storeFormData() {
+  //   myAppController.localStorage.saveToStorage(
+  //     key: '$storeFormKey-$jobId-$serviceId-${currentFormData[keyId]}',
+  //     value: <String, dynamic>{
+  //       'formBody': formBody,
+  //       'selectedId': selectedId,
+  //       'renderItem': renderItem,
+  //       'gazSafetyData': gazSafetyData,
+  //       'circuitsData': distrBoardDataBase,
+  //       'observationsDataBase': observationsDataBase,
+  //       'signatureBytes': signatureBytes,
+  //     },
+  //   );
+  // }
+
+  // Future<void> checkStorage() async {
+  //   final Map<String, dynamic>? myData =
+  //       await myAppController.localStorage.getFromStorage(
+  //     key: '$storeFormKey-$jobId-$serviceId-${currentFormData[keyId]}',
+  //   );
+  //   consoleLog(myData, key: 'inData');
+  //   consoleLog(myData != null, key: 'inData');
+  //   void continueWithData() {
+  //     formBody = <String, dynamic>{
+  //       ...myData!['formBody'],
+  //       data: <String, dynamic>{
+  //         ...myData['formBody'],
+  //         formKeyGazSafetyData: <Map<String, dynamic>>[
+  //           ...formBody[data][formKeyGazSafetyData],
+  //           ...myData[data][formKeyGazSafetyData],
+  //         ],
+  //       },
+  //     };
+  //     selectedId = myData['selectedId'];
+  //     renderItem = myData['renderItem'];
+  //     signatureBytes = myData['signatureBytes'];
+  //     signatureBytesImage = myData['signatureBytes'];
+  //     gazSafetyData = <String, dynamic>{
+  //       ...myData['gazSafetyData'],
+  //       allDistributionBoardData: <dynamic>[
+  //         ...myData['gazSafetyData'][allDistributionBoardData],
+  //       ],
+  //       allObservationData: <dynamic>[
+  //         ...gazSafetyData[allObservationData],
+  //         ...myData['gazSafetyData'][allObservationData],
+  //       ],
+  //       formKeyEICRdeclaration: <String, dynamic>{
+  //         ...gazSafetyData[formKeyEICRdeclaration],
+  //         ...myData['gazSafetyData'][formKeyEICRdeclaration],
+  //       },
+  //     };
+  //     distrBoardDataBase = <dynamic>[
+  //       ...distrBoardDataBase,
+  //       ...myData['circuitsData'],
+  //     ];
+  //     observationsDataBase = <dynamic>[
+  //       ...observationsDataBase,
+  //       ...myData['observationsDataBase'],
+  //     ];
+  //     update();
+  //     Get.back();
+  //   }
+
+  //   if (myData != null) {
+  //     openDialog(
+  //       description:
+  //           'You entered data before in this form do you want to use it ',
+  //       confirmText: 'Use the data',
+  //       cancelText: 'Remove the data',
+  //       onConfirm: continueWithData,
+  //       onCancel: Get.back,
+  //     );
+  //   }
+  // }
+
+  // void removeStoredFormData() {
+  //   myAppController.localStorage.removeFromStorage(
+  //     key: '$storeFormKey-$jobId-$serviceId-${currentFormData[keyId]}',
+  //   );
+  // }
+
+  //******************************************************* */
+
+  void onChangeFormDataValue(String? key, dynamic value) {
+    gazSafetyData[key!] = value;
+  }
+
+  void onChangeDeclarationValue(String? key, dynamic value) {
+    gazSafetyData[formKeyEICRdeclaration][key!] = value;
+  }
+
+  void onPressNext() {
+    if (isTemplate) {
+      if (selectedId == 17) {
+        selectedId = selectedId + 1;
+        update();
+        Timer(
+          const Duration(milliseconds: 300),
+          () {
+            renderItem = true;
+            update();
+            consoleLog('true');
+          },
+        );
+      } else if (selectedId == 20) {
+        // onSaveTemplate();
+      } else {
+        selectedId = selectedId + 1;
+        update();
+      }
+    }
+    //
+    else {
+      if (selectedId == 21) {
+        consoleLog('this is last Page');
+        onPressFinishReportForm();
+      } else if (selectedId < 21) {
+        if (selectedId == 17) {
+          selectedId = selectedId + 1;
+          update();
+          Timer(
+            const Duration(milliseconds: 300),
+            () {
+              renderItem = true;
+              update();
+              consoleLog('true');
+            },
+          );
+        } else if (selectedId == 18) {
+          selectedId = selectedId + 1;
+          update();
+          Timer(
+            const Duration(milliseconds: 300),
+            () {
+              renderItem = false;
+              update();
+              consoleLog('false');
+            },
+          );
+        } else {
+          selectedId = selectedId + 1;
+          update();
+        }
+      }
+    }
+
+    // storeFormData();
+    scrollController.animateTo(
+      0.0,
+      duration: const Duration(milliseconds: 400),
+      curve: Curves.linear,
+    );
+    consoleLog(selectedId, key: 'selected_Id');
+  }
+
+  void onPressBack() {
+    if (selectedId > 0) {
+      if (selectedId == 19) {
+        selectedId = selectedId - 1;
+        update();
+        consoleLog(selectedId);
+        Timer(
+          const Duration(milliseconds: 300),
+          () {
+            renderItem = true;
+            update();
+            consoleLog('true');
+          },
+        );
+      } else if (selectedId == 18) {
+        selectedId = selectedId - 1;
+        update();
+        consoleLog(selectedId);
+        Timer(
+          const Duration(milliseconds: 300),
+          () {
+            renderItem = false;
+            update();
+            consoleLog('false');
+          },
+        );
+      } else {
+        selectedId = selectedId - 1;
+        update();
+        consoleLog(selectedId);
+      }
+    } else {
+      Get.back();
+    }
+    // storeFormData();
+    scrollController.animateTo(
+      0.0,
+      duration: const Duration(milliseconds: 400),
+      curve: Curves.linear,
+    );
+  }
+
+  String finalPageButton() {
+    if (isTemplate) {
+      if (selectedId == 21) {
+        return 'Save';
+      } else {
+        return 'Next';
+      }
+    }
+    //
+    else {
+      if (selectedId < listFormSections.length - 1) {
+        return 'Next';
+      } else {
+        return 'Save';
+      }
+    }
+  }
+
+  //*----------Template---------------*//
+  // void onSaveTemplate() {
+  //   consoleLog('Save Template');
+  //   openDialog(
+  //     onCancel: Get.back,
+  //     onConfirm: storeTemplate,
+  //   );
+  // }
+
+  // Future<void> storeTemplate() async {
+  //   saveDbCircuitsDataOnFormBody();
+  //   saveObservationsDataBaseBody();
+  //   onPressSave();
+  //   hideKeyboard();
+  //   startLoading();
+  //   if (updateTemp) {
+  //     // ignore: missing_required_param
+  //     ApiRequest(
+  //       method: putMethod,
+  //       path: '/forms/templates/${tempData['id']}/update',
+  //       className: 'ElectricalDangerNotificationController/storeDangerTemplate',
+  //       // requestFunction: storeTemplate,
+  //       body: <String, dynamic>{
+  //         'name': tempData['name'],
+  //         'form_id': tempData['form_id'],
+  //         'data': formBody,
+  //       },
+  //     ).request(
+  //       onSuccess: (dynamic data, dynamic response) {
+  //         Get.find<FormTemplateController>().getFormsTemplates();
+  //         Get
+  //           ..back()
+  //           ..back();
+  //       },
+  //     );
+  //   } else {
+  //     // ignore: missing_required_param
+  //     ApiRequest(
+  //       method: postMethod,
+  //       path: keyStoreFormTemplate,
+  //       className: 'ElectricalDangerNotificationController/storeDangerTemplate',
+  //       // requestFunction: storeTemplate,
+  //       body: <String, dynamic>{
+  //         'name': templateName,
+  //         'form_id': currentFormData[keyId],
+  //         'data': formBody,
+  //       },
+  //     ).request(
+  //       onSuccess: (dynamic data, dynamic response) {
+  //         Get.find<FormTemplateController>().getFormsTemplates();
+  //         // dismissLoading();
+  //         Get
+  //           ..back()
+  //           ..back()
+  //           ..back();
+  //       },
+  //     );
+  //   }
+  // }
+
+  //*********** Save Db Circuits data to Form body *************/
+  void saveDbCircuitsDataOnFormBody() {
+    gazSafetyData[allDistributionBoardData] = distrBoardDataBase;
+    update();
+  }
+
+  //******** Save ObservationsDataBase data to Form body **********/
+  void saveObservationsDataBaseBody() {
+    gazSafetyData[allObservationData] = observationsDataBase;
+    update();
+  }
+
+  // void onPressSave() {
+  //   formBody[data][formKeyGazSafetyData].add(
+  //     <String, dynamic>{
+  //       ...gazSafetyData,
+  //       'id': (formBody[data][formKeyGazSafetyData].length + 1).toString(),
+  //     },
+  //   );
+  //   storeFormData();
+  //   update();
+  // }
+
+  // for Checkbox Values  whoIsReceiving
+  void onUpdateArrayWhoIsReceiving(String? key, dynamic value) {
+    if (whoIsReceiving.contains(value)) {
+      whoIsReceiving.remove(value);
+    } else {
+      whoIsReceiving.add(value);
+    }
+    consoleLog(whoIsReceiving);
+    // storeFormData();
+    update();
+  }
+
+  // *****************  signature functions **************** //
+
+  // ***************** add  **************** //
+  Future<void> setImage(String bytes) async {
+    if (bytes.isNotEmpty) {
+      final Uint8List convertedBytes = base64Decode(bytes);
+      signatureBytes = convertedBytes;
+      update();
+    } else {
+      signatureBytes = null;
+      update();
+    }
+    // storeFormData();
+  }
+
+  Future<void> setCustomerImage(String bytes) async {
+    if (bytes.isNotEmpty) {
+      final Uint8List convertedBytes = base64Decode(bytes);
+      signatureBytes2 = convertedBytes;
+      update();
+    } else {
+      signatureBytes2 = null;
+      update();
+    }
+    // storeFormData();
+  }
+
+  // ***************** clear  ****************
+  void clearSignature() {
+    signatureBytes = null;
+    signatureBytesImage = null;
+    // storeFormData();
+    update();
+  }
+
+  void clearCustomerSignature() {
+    signatureBytes2 = null;
+    customerSignatureBytes = null;
+    // storeFormData();
+    update();
+  }
+
+  // ***************** send   ****************
+  Future<void> onSendSignatureReportForm() async {
+    if (signatureBytes != null) {
+      startLoading();
+      final Directory directory = await getApplicationDocumentsDirectory();
+      final File pathOfImage =
+          await File('${directory.path}/sign.png').create();
+      await pathOfImage.writeAsBytes(signatureBytes!);
+
+      ApiRequest(
+        method: ApiMethods.post,
+        path: addSignature,
+        className:
+            'ElectricalInstallationConditionReportController/onSendSignatureReportForm',
+        requestFunction: onSendSignatureReportForm,
+        body: await addFormDataToJson(
+          file: pathOfImage,
+          jsonObject: <String, dynamic>{},
+          fileKey: 'sign',
+        ),
+      ).request(
+        onSuccess: (dynamic data, dynamic response) {
+          signatureBytesImage = signatureBytes;
+          update();
+          dismissLoading();
+          Get.back();
+        },
+      );
+    } else {
+      showMessage(
+        description: 'Please draw your signature',
+        textColor: AppColors.red,
+      );
+    }
+  }
+
+  // convert customer Signature to File
+  // Future<void> saveCustomerSignature() async {
+  //   final Directory directory = await getApplicationDocumentsDirectory();
+  //   final File pathOfImage = await File(
+  //           '${directory.path}/$storeFormKey-$jobId-$serviceId-${currentFormData[keyId]}_customer_sign.png')
+  //       .create();
+
+  //   if (signatureBytes2 != null) {
+  //     customerSignature = await pathOfImage.writeAsBytes(signatureBytes2!);
+
+  //     if (signatureBytes2 != null) {
+  //       customerSignatureBytes = signatureBytes2!;
+  //     }
+  //   } else {
+  //     showMessage(
+  //       description: 'Please draw Contractor signature',
+  //       textColor: AppColors.red,
+  //     );
+  //   }
+
+  //   update();
+  //   consoleLog(customerSignature, key: 'customerSignature');
+  //   Get.back();
+  // }
+
+  // *****************  Press Finish ****************
+  Future<void> onPressFinishReportForm() async {
+    // formBody[data]['who_is_receiving'] = whoIsReceiving;
+    // formBody[data]['date'] = dateController.text;
+    // formBody[data]['comment'] = commentController.text;
+    saveDbCircuitsDataOnFormBody();
+    saveObservationsDataBaseBody();
+    // onPressSave();
+
+    if (signatureBytes != null) {
+      final int formId = homeController.formsData
+          .where(
+            (dynamic element) =>
+                element[keyName] ==
+                formNameDomesticElectricalInstallationConditionReport,
+          )
+          .first[keyId];
+      startLoading();
+      // ApiRequest(
+      //    path: keyCreateForm,
+      //   className: 'DomesticEICRController/onPressFinishReportForm',
+      //   requestFunction: onPressFinishReportForm,
+      //   body: await addArrayToFormData(
+      //     jsonObject: <String, dynamic>{
+      //       ...formBody,
+      //       'job_id': jobId ?? '',
+      //       'service_id': serviceId ?? '',
+      //     },
+      //     imagesArray: selectedImages,
+      //     customerSignature: customerSignature,
+      //   ),
+      // ).request(
+      //   onSuccess: (dynamic data, dynamic response) async {
+      //     selectedId = 0;
+      //     removeStoredFormData();
+      //     htmlContent = data['html_content'];
+      //     pdfFilePath = await onPressDownloadPdf(
+      //       htmlContent: data['html_content'],
+      //       pdfTitle: 'form$serviceId$jobId$formId',
+      //     );
+      //     update();
+      //     dismissLoading();
+      //   },
+      // );
+    } else {
+      showMessage(
+        description: 'Please draw your signature',
+        textColor: AppColors.red,
+      );
+    }
   }
 }

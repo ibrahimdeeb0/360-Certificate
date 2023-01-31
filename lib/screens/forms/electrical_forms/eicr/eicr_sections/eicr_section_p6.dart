@@ -11,12 +11,8 @@ class EICRSectionF extends StatelessWidget {
   Widget build(BuildContext context) {
     final EICRListsForm formList = EICRListsForm();
     return CommonContainer(
-      style: CommonContainerModel(
-        backgroundColor: AppColors.white,
-        // paddingHorizontal: 0.03,
-        borderRadius: 0.02,
-        paddingVertical: 0.016,
-      ),
+      style: appContainerStyles.formSectionsStyle,
+      paddingHorizontal: 0.0,
       child: Column(
         children: <Widget>[
           const CustomTextFormTitle(
@@ -279,83 +275,87 @@ class EICRSectionF extends StatelessWidget {
             marginTop: 0.02,
             marginBottom: 0.03,
           ),
-          SmallInputField(
-            title: 'Nominal voltage U(o)',
-            value: controller.gazSafetyData[formKeyNominalVoltageF],
-            hint: '230',
-            isInputSelection: true,
-            onTap: () => Get.bottomSheet(
-              EICRSelectBT(
-                listTitles: formList.listNominalVoltage,
-                keyOfValue: formKeyNominalVoltageF,
-                controller: controller,
-              ),
-              isScrollControlled: true,
-            ),
-          ),
-          SmallInputField(
-            title: 'Nominal frequency f(1)',
-            value: controller.gazSafetyData[formKeyNominalFrequencyFF],
-            hint: controller.gazSafetyData[formKeyNominalFrequencyFF],
-            onChanged: (dynamic value) => controller.onChangeFormDataValue(
-                formKeyNominalFrequencyFF, value),
-            suffix: CommonText(
-              'HZ',
-              style: appTextStyles.h3GreyStyle(),
-            ),
-            keyboardType: TextInputType.number,
-            textInputAction: TextInputAction.next,
-          ),
-          SmallInputField(
-            title: 'Earth fault loop impedance Ze(1,2)',
-            value: controller.gazSafetyData[formKeyEarthFaultLoopF],
-            onChanged: (dynamic value) =>
-                controller.onChangeFormDataValue(formKeyEarthFaultLoopF, value),
-            suffix: CommonText(
-              'Ω',
-              style: appTextStyles.h3GreyStyle(),
-            ),
-            keyboardType: TextInputType.number,
-            textInputAction: TextInputAction.next,
-          ),
-          SmallInputField(
-            title: 'PFC Ipf(1,2)',
-            value: controller.gazSafetyData[formKeyPFC],
-            onChanged: (dynamic value) =>
-                controller.onChangeFormDataValue(formKeyPFC, value),
-            suffix: CommonText(
-              'KA',
-              style: appTextStyles.h3GreyStyle(),
-            ),
-            keyboardType: TextInputType.number,
-            textInputAction: TextInputAction.go,
-          ),
-          Row(
-            children: <Widget>[
-              SizedBox(
-                width: DEVICE_WIDTH * 0.02,
-              ),
-              const CommonText(
-                'Note:',
-              ),
-              CommonContainer(
-                width: 0.8,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const <Widget>[
-                    CommonText(
-                      '(1) by enquiry',
-                      marginTop: 0.01,
-                      marginHorizontal: 0.03,
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: DEVICE_WIDTH * 0.03),
+            child: Column(
+              children: <Widget>[
+                SmallInputField(
+                  title: 'Nominal voltage U(o)',
+                  value: controller.gazSafetyData[formKeyNominalVoltageF],
+                  hint: '230',
+                  isInputSelection: true,
+                  onTap: () => Get.bottomSheet(
+                    EICRSelectBT(
+                      listTitles: formList.listNominalVoltage,
+                      keyOfValue: formKeyNominalVoltageF,
+                      controller: controller,
                     ),
-                    CommonText(
-                      '(2) by enquiry or by measurement',
-                      marginHorizontal: 0.03,
+                    isScrollControlled: true,
+                  ),
+                ),
+                SmallInputField(
+                  title: 'Nominal frequency f(1)',
+                  value: controller.gazSafetyData[formKeyNominalFrequencyFF],
+                  hint: controller.gazSafetyData[formKeyNominalFrequencyFF],
+                  onChanged: (dynamic value) => controller
+                      .onChangeFormDataValue(formKeyNominalFrequencyFF, value),
+                  suffix: CommonText(
+                    'HZ',
+                    style: appTextStyles.h3GreyStyle(),
+                  ),
+                  keyboardType: TextInputType.number,
+                  textInputAction: TextInputAction.next,
+                ),
+                SmallInputField(
+                  title: 'Earth fault loop impedance Ze(1,2)',
+                  value: controller.gazSafetyData[formKeyEarthFaultLoopF],
+                  onChanged: (dynamic value) => controller
+                      .onChangeFormDataValue(formKeyEarthFaultLoopF, value),
+                  suffix: CommonText(
+                    'Ω',
+                    style: appTextStyles.h3GreyStyle(),
+                  ),
+                  keyboardType: TextInputType.number,
+                  textInputAction: TextInputAction.next,
+                ),
+                SmallInputField(
+                  title: 'PFC Ipf(1,2)',
+                  value: controller.gazSafetyData[formKeyPFC],
+                  onChanged: (dynamic value) =>
+                      controller.onChangeFormDataValue(formKeyPFC, value),
+                  suffix: CommonText(
+                    'KA',
+                    style: appTextStyles.h3GreyStyle(),
+                  ),
+                  keyboardType: TextInputType.number,
+                  textInputAction: TextInputAction.go,
+                ),
+                Row(
+                  children: <Widget>[
+                    const CommonText(
+                      'Note:',
+                    ),
+                    CommonContainer(
+                      width: 0.7,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: const <Widget>[
+                          CommonText(
+                            '(1) by enquiry',
+                            marginTop: 0.01,
+                            marginHorizontal: 0.03,
+                          ),
+                          CommonText(
+                            '(2) by enquiry or by measurement',
+                            marginHorizontal: 0.03,
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
           CommonContainer(
             style: appContainerStyles.bottomBorderContainer,
@@ -368,55 +368,63 @@ class EICRSectionF extends StatelessWidget {
             fontWeight: FontWeight.bold,
             fontSize: fontH3,
           ),
-          CustomSelectContainer(
-            title: 'BS (EN)',
-            value: controller.gazSafetyData[formKeyBSF],
-            hint: controller.gazSafetyData[formKeyBSF],
-            onTap: () => Get.bottomSheet(
-              EICRSelectBT(
-                listTitles: formList.listBS,
-                keyOfValue: formKeyBSF,
-                controller: controller,
-              ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: DEVICE_WIDTH * 0.03),
+            child: Column(
+              children: <Widget>[
+                CustomSelectContainer(
+                  title: 'BS (EN)',
+                  value: controller.gazSafetyData[formKeyBSF],
+                  hint: controller.gazSafetyData[formKeyBSF],
+                  onTap: () => Get.bottomSheet(
+                    EICRSelectBT(
+                      listTitles: formList.listBS,
+                      keyOfValue: formKeyBSF,
+                      controller: controller,
+                    ),
+                  ),
+                ),
+                SmallInputField(
+                  title: 'Type',
+                  value: controller.gazSafetyData[formKeyTypeF],
+                  hint: controller.gazSafetyData[formKeyTypeF],
+                  onTap: () => Get.bottomSheet(
+                    EICRSelectBT(
+                      listTitles: formList.listTypeH,
+                      keyOfValue: formKeyTypeF,
+                      controller: controller,
+                    ),
+                  ),
+                  isInputSelection: true,
+                ),
+                SmallInputField(
+                  title: 'Rated current',
+                  value: controller.gazSafetyData[formKeyRatedCurrentF],
+                  hint: controller.gazSafetyData[formKeyRatedCurrentF],
+                  onTap: () => Get.bottomSheet(
+                    EICRSelectBT(
+                      listTitles: formList.listRatedCurrentI,
+                      keyOfValue: formKeyRatedCurrentF,
+                      controller: controller,
+                    ),
+                  ),
+                  isInputSelection: true,
+                ),
+                SmallInputField(
+                  title: 'Short circuit capacity',
+                  value: controller.gazSafetyData[formKeyShortCircuitCapacityF],
+                  onChanged: (dynamic value) =>
+                      controller.onChangeFormDataValue(
+                          formKeyShortCircuitCapacityF, value),
+                  suffix: CommonText(
+                    'KA',
+                    style: appTextStyles.h3GreyStyle(),
+                  ),
+                  keyboardType: TextInputType.number,
+                  textInputAction: TextInputAction.go,
+                ),
+              ],
             ),
-          ),
-          SmallInputField(
-            title: 'Type',
-            value: controller.gazSafetyData[formKeyTypeF],
-            hint: controller.gazSafetyData[formKeyTypeF],
-            onTap: () => Get.bottomSheet(
-              EICRSelectBT(
-                listTitles: formList.listTypeH,
-                keyOfValue: formKeyTypeF,
-                controller: controller,
-              ),
-            ),
-            isInputSelection: true,
-          ),
-          SmallInputField(
-            title: 'Rated current',
-            value: controller.gazSafetyData[formKeyRatedCurrentF],
-            hint: controller.gazSafetyData[formKeyRatedCurrentF],
-            onTap: () => Get.bottomSheet(
-              EICRSelectBT(
-                listTitles: formList.listRatedCurrentI,
-                keyOfValue: formKeyRatedCurrentF,
-                controller: controller,
-              ),
-            ),
-            isInputSelection: true,
-          ),
-          SmallInputField(
-            title: 'Short circuit capacity',
-            value: controller.gazSafetyData[formKeyShortCircuitCapacityF],
-            onChanged: (dynamic value) => controller.onChangeFormDataValue(
-                formKeyShortCircuitCapacityF, value),
-            suffix: CommonText(
-              'KA',
-              style: appTextStyles.h3GreyStyle(),
-            ),
-            keyboardType: TextInputType.number,
-            textInputAction: TextInputAction.go,
           ),
         ],
       ),

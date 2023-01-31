@@ -11,13 +11,9 @@ class EICRSectionH extends StatelessWidget {
   Widget build(BuildContext context) {
     final EICRListsForm formList = EICRListsForm();
     return CommonContainer(
-      style: CommonContainerModel(
-        backgroundColor: AppColors.white,
-        paddingHorizontal: 0.03,
-        borderRadius: 0.02,
-        paddingVertical: 0.016,
-      ),
+      style: appContainerStyles.formSectionsStyle,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           const CustomTextFormTitle(
             leftText: 'Part 8. ', //H
@@ -26,7 +22,8 @@ class EICRSectionH extends StatelessWidget {
           const CommonText(
             'Earthing conductor',
             fontWeight: FontWeight.bold,
-            fontSize: fontH3,
+            textAlign: TextAlign.start,
+            marginTop: 0.02,
           ),
 
           CustomSelectContainer(
@@ -69,6 +66,7 @@ class EICRSectionH extends StatelessWidget {
             fontSize: fontH3,
             textAlign: TextAlign.start,
             rowMainAxisSize: MainAxisSize.max,
+            marginBottom: 0.01,
             containerStyle: CommonContainerModel(width: 1),
           ),
           CustomSelectContainer(
@@ -110,6 +108,7 @@ class EICRSectionH extends StatelessWidget {
             'Main protective bonding conductors to extraneous conductive parts',
             fontSize: fontH3,
             textAlign: TextAlign.start,
+            marginBottom: 0.025,
           ),
           //*----
           FormToggleButton(

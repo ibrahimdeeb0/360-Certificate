@@ -165,7 +165,18 @@ const String imageNoTransactions = '${imagesPath}no_transactions.png';
 const String imageSelectCar = '${imagesPath}image_car.png';
 const String imageSearchMap = '${imagesPath}search_map.png';
 const String imageServiceProvider = '${imagesPath}service_provider.png';
+//
+const String imageNoDataFound = '${imagesPath}no.png';
+const String imageSplashBackGround = '${imagesPath}splash_back_ground.jpeg';
+const String imageLogo = '${imagesPath}logo.png';
+const String imageAvatar = '${imagesPath}avatar.png';
+const String imageProfile = '${imagesPath}profile_img.png';
+const String imageDBElectrical = '${imagesPath}db_electrical_image.png';
+const String imageCircuitElectrical =
+    '${imagesPath}circuit_electrical_image.png';
 
+const String imageEmailVerify = '${imagesPath}icon_email_verify.png';
+const String imageFormObserv = '${imagesPath}image_form_observ.png';
 // ----------------------------------------
 
 const String videosPath = 'assets/videos/';

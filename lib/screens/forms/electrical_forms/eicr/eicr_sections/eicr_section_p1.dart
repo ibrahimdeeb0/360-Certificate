@@ -9,12 +9,9 @@ class EICRSectionA extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final EICRListsForm formList = EICRListsForm();
+    final EICRListsForm formList = EICRListsForm();
     return CommonContainer(
-      backgroundColor: AppColors.white,
-      paddingHorizontal: 0.03,
-      borderRadius: 0.02,
-      paddingVertical: 0.016,
+      style: appContainerStyles.formSectionsStyle,
       child: Column(
         children: <Widget>[
           const CustomTextFormTitle(
@@ -29,11 +26,19 @@ class EICRSectionA extends StatelessWidget {
             onChanged: (dynamic value) => controller.onChangeFormDataValue(
                 formKeyReasonProducingA, value),
             suffix: SuffixInputIcon(
-              onPress: () {},
+              onPress: () => Get.bottomSheet(
+                isScrollControlled: true,
+                EICRSelectBT(
+                  controller: controller,
+                  keyOfValue: formKeyReasonProducingA,
+                  listTitles: formList.listReasonsSuggestions,
+                ),
+              ),
               iconWidget: const Icon(
                 Icons.filter_list,
               ),
             ),
+            marginBottom: 0.02,
           ),
           CommonInput(
             topLabelText: 'Date(s) inspection and testing carried out :',

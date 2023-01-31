@@ -8,12 +8,7 @@ class EICRSectionJ extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CommonContainer(
-      style: CommonContainerModel(
-        backgroundColor: AppColors.white,
-        paddingHorizontal: 0.03,
-        borderRadius: 0.02,
-        paddingVertical: 0.016,
-      ),
+      style: appContainerStyles.formSectionsStyle,
       child: Column(
         children: <Widget>[
           const CustomTextFormTitle(

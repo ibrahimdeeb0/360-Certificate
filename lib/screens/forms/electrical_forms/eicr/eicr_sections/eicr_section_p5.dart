@@ -10,12 +10,7 @@ class EICRSectionE extends StatelessWidget {
     return Column(
       children: <Widget>[
         CommonContainer(
-          style: CommonContainerModel(
-            backgroundColor: AppColors.white,
-            paddingHorizontal: 0.03,
-            borderRadius: 0.02,
-            paddingVertical: 0.016,
-          ),
+          style: appContainerStyles.formSectionsStyle,
           child: Column(
             children: <Widget>[
               const CustomTextFormTitle(
@@ -53,13 +48,7 @@ class EICRSectionE extends StatelessWidget {
           ),
         ),
         CommonContainer(
-          style: CommonContainerModel(
-            backgroundColor: AppColors.white,
-            paddingHorizontal: 0.03,
-            borderRadius: 0.02,
-            paddingVertical: 0.016,
-            marginTop: 0.02,
-          ),
+          style: appContainerStyles.formSectionsStyle,
           child: Column(
             children: <Widget>[
               const CustomTextFormTitle(

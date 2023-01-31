@@ -10,12 +10,7 @@ class EICRSectionI extends StatelessWidget {
   Widget build(BuildContext context) {
     final EICRListsForm formList = EICRListsForm();
     return CommonContainer(
-      style: CommonContainerModel(
-        backgroundColor: AppColors.white,
-        paddingHorizontal: 0.03,
-        borderRadius: 0.02,
-        paddingVertical: 0.016,
-      ),
+      style: appContainerStyles.formSectionsStyle,
       child: Column(
         children: <Widget>[
           const CustomTextFormTitle(

@@ -8,17 +8,12 @@ class EICRSectionB extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CommonContainer(
-      style: CommonContainerModel(
-        backgroundColor: AppColors.white,
-        paddingHorizontal: 0.03,
-        borderRadius: 0.02,
-        paddingVertical: 0.016,
-      ),
+      style: appContainerStyles.formSectionsStyle,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           const CustomTextFormTitle(
-            leftText: 'Part2. ',
+            leftText: 'Part 2. ',
             text:
                 'Details of the installation which is the subject of this report',
             marginBottom: 0.01,

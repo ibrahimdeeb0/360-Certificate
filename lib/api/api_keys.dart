@@ -84,3 +84,19 @@ const String firebaseKeyIsUserCancelSearch = 'is_user_cancel_search';
 const String keyCarNumber = 'car_num';
 const String keyCarFactoryYear = 'car_model';
 const String keyCarVin = 'car_vin';
+
+// *************** Forms Names ***************
+
+const String formNamePortableApplianceTesting = 'Portable Appliance Testing';
+const String formNameLandlordHomeownerGazSafetyRecord =
+    'Landlord/Homeowner Gas Safety Record';
+const String formNameMinorElectricalInstallationWorksCert =
+    'Minor Electrical Installation Works Cert';
+const String formNameElectricalDangerNotification =
+    'Electrical Danger Notification';
+const String formNameDomesticElectricalInstallationCertificate =
+    'Domestic Electrical Installation Certificate';
+const String formNameDomesticElectricalInstallationConditionReport =
+    'Domestic Electrical installation Condition report';
+
+const String formKeyGazSafetyData = 'gaz_safety_data';

@@ -20,17 +20,21 @@ class EICR extends StatelessWidget {
             child: Stack(
               children: <Widget>[
                 Positioned(
-                  child: CommonContainer(
-                    paddingHorizontal: 0.03,
-                    height: 1,
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: <Widget>[
-                          SizedBox(height: DEVICE_HEIGHT * 0.03),
-                          EICRRemarkSection(controller: controller),
-                          SizedBox(height: DEVICE_HEIGHT * 0.11),
-                        ],
-                      ),
+                  child: SingleChildScrollView(
+                    controller: controller.scrollController,
+                    child: Column(
+                      children: <Widget>[
+                        ...controller.listFormSections.map(
+                          (dynamic element) =>
+                              element[keyId] == controller.selectedId
+                                  ? controller.returnedSection(
+                                      controller: controller,
+                                      sectionName: element[keyName],
+                                    )
+                                  : const SizedBox(),
+                        ),
+                        SizedBox(height: DEVICE_HEIGHT * 0.11),
+                      ],
                     ),
                   ),
                 ),
@@ -49,8 +53,8 @@ class EICR extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         CommonButton(
-                          onPress: () {},
-                          text: 'Cancel',
+                          onPress: controller.onPressBack,
+                          text: controller.selectedId == 0 ? 'Cancel' : 'Back',
                           backgroundColor: Colors.white,
                           fontColor: AppColors.primary,
                           borderWidth: 1.5,
@@ -58,8 +62,8 @@ class EICR extends StatelessWidget {
                           width: 0.44,
                         ),
                         CommonButton(
-                          onPress: () {},
-                          text: 'Next',
+                          text: controller.finalPageButton(),
+                          onPress: controller.onPressNext,
                           width: 0.44,
                         ),
                       ],

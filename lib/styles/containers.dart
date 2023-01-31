@@ -247,4 +247,14 @@ class DefaultContainerStyles {
     marginBottom: 0.02,
     paddingHorizontal: 0.03,
   );
+
+  CommonContainerModel formSectionsStyle = const CommonContainerModel(
+    backgroundColor: Colors.white,
+    paddingHorizontal: 0.03,
+    borderRadius: 0.02,
+    paddingVertical: 0.016,
+    marginTop: 0.02,
+    marginHorizontal: 0.03,
+    marginBottom: 0.02,
+  );
 }
