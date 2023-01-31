@@ -23,6 +23,33 @@ class DistributionBoardController extends GetxController
     const CircuitDetailsP2(),
   ];
 
+  List<Map<String, dynamic>> spdDetails = <Map<String, dynamic>>[
+    <String, dynamic>{
+      keyId: 0,
+      keyName: 'T1',
+    },
+    <String, dynamic>{
+      keyId: 1,
+      keyName: 'T2',
+    },
+    <String, dynamic>{
+      keyId: 2,
+      keyName: 'T3',
+    },
+    <String, dynamic>{
+      keyId: 3,
+      keyName: 'T1+T2',
+    },
+    <String, dynamic>{
+      keyId: 4,
+      keyName: 'T12+T3',
+    },
+    <String, dynamic>{
+      keyId: 5,
+      keyName: 'N/A',
+    },
+  ];
+
   //**-------Lists ------------------ */
   List<String> listDbRef = <String>[
     'DB1',
@@ -523,7 +550,7 @@ class DistributionBoardController extends GetxController
 
   // SPD Value in Add New Board
   void onChangeSpdValue(String? value) {
-    parentDistrBoardData['formKeyBoardSPDDetails'] = value!;
+    parentDistrBoardData[formKeyBoardSPDDetails] = value!;
     update();
   }
 

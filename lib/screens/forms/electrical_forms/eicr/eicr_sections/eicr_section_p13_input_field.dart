@@ -53,7 +53,6 @@ class EICRSectionInputField extends StatelessWidget {
                   ),
                 ),
               ),
-
               ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
@@ -82,34 +81,37 @@ class EICRSectionInputField extends StatelessWidget {
                   },
                 ),
               ),
-              // if (controller.renderItem)
-              //   ListView.builder(
-              //     shrinkWrap: true,
-              //     physics: const NeverScrollableScrollPhysics(),
-              //     itemCount: formList.listRenderWidgets[9][data].length,
-              //     itemBuilder: (BuildContext ctx, int index) => InputNAButton(
-              //       title: formList.listRenderWidgets[9][data][index][title],
-              //       btnValue: controller.gazSafetyData[formList
-              //           .listRenderWidgets[9][data][index]['button_form_key']],
-              //       inputValue: controller.gazSafetyData[formList
-              //           .listRenderWidgets[9][data][index]['input_form_key']],
-              //       inputHint: 'Typing...',
-              //       inputOnChanged: (dynamic value) {
-              //         controller.onChangeFormDataValue(
-              //           formList.listRenderWidgets[9][data][index]
-              //               ['input_form_key'],
-              //           value,
-              //         );
-              //       },
-              //       btnOnChanged: (dynamic value) {
-              //         controller.onChangeFormDataValue(
-              //           formList.listRenderWidgets[9][data][index]
-              //               ['button_form_key'],
-              //           value,
-              //         );
-              //       },
-              //     ),
-              //   ),
+              if (controller.renderItem)
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: formList.listRenderWidgets[9][keyData].length,
+                  itemBuilder: (BuildContext ctx, int index) => InputNAButton(
+                    title: formList.listRenderWidgets[9][keyData][index]
+                        [keyTitle],
+                    btnValue: controller.gazSafetyData[
+                        formList.listRenderWidgets[9][keyData][index]
+                            ['button_form_key']],
+                    value: controller.gazSafetyData[
+                        formList.listRenderWidgets[9][keyData][index]
+                            ['input_form_key']],
+                    hint: 'Typing...',
+                    onChanged: (dynamic value) {
+                      controller.onChangeFormDataValue(
+                        formList.listRenderWidgets[9][keyData][index]
+                            ['input_form_key'],
+                        value,
+                      );
+                    },
+                    btnOnChanged: (dynamic value) {
+                      controller.onChangeFormDataValue(
+                        formList.listRenderWidgets[9][keyData][index]
+                            ['button_form_key'],
+                        value,
+                      );
+                    },
+                  ),
+                ),
             ],
           ),
         ),

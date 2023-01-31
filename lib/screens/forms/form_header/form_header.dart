@@ -116,6 +116,7 @@ class CircleNumbering extends StatelessWidget {
                     fontWeight: FontWeight.w500,
                     textAlign: TextAlign.center,
                     columnMainAxisAlignment: MainAxisAlignment.center,
+                    rowMainAxisAlignment: MainAxisAlignment.center,
                   ),
               containerStyle: const CommonContainerModel(
                 padding: 0.01,

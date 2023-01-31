@@ -604,15 +604,11 @@ class EicrController extends GetxController {
     if (listFormSections
         .where((dynamic element) => element['id'] == id)
         .isNotEmpty) {
-      consoleLog('true');
       listFormSections.removeWhere((dynamic element) => element['id'] == id);
       update();
-      consoleLogPretty(item);
-      consoleLogPretty(listFormSections);
     } else if (listFormSections
         .where((dynamic element) => element['id'] == id)
         .isEmpty) {
-      consoleLog('false');
       listFormSections.insert(item['id'], item);
       update();
     }
@@ -643,7 +639,6 @@ class EicrController extends GetxController {
     if (isTemplate) {
       numFinalPage = listFormSections.length - 2;
       update();
-      consoleLog(numFinalPage, key: 'numFinalPage');
       // removeStoredFormData();
     }
     // await checkStorage();
@@ -660,7 +655,6 @@ class EicrController extends GetxController {
       selectedImages!.add(data);
     }
     update();
-    consoleLog(selectedImages);
   }
 
   //*----------Section E Part 5---------*//
@@ -789,7 +783,6 @@ class EicrController extends GetxController {
           () {
             renderItem = true;
             update();
-            consoleLog('true');
           },
         );
       } else if (selectedId == 20) {
@@ -813,7 +806,6 @@ class EicrController extends GetxController {
             () {
               renderItem = true;
               update();
-              consoleLog('true');
             },
           );
         } else if (selectedId == 18) {
@@ -824,7 +816,6 @@ class EicrController extends GetxController {
             () {
               renderItem = false;
               update();
-              consoleLog('false');
             },
           );
         } else {
@@ -840,7 +831,6 @@ class EicrController extends GetxController {
       duration: const Duration(milliseconds: 400),
       curve: Curves.linear,
     );
-    consoleLog(selectedId, key: 'selected_Id');
   }
 
   void onPressBack() {
@@ -848,31 +838,26 @@ class EicrController extends GetxController {
       if (selectedId == 19) {
         selectedId = selectedId - 1;
         update();
-        consoleLog(selectedId);
         Timer(
           const Duration(milliseconds: 300),
           () {
             renderItem = true;
             update();
-            consoleLog('true');
           },
         );
       } else if (selectedId == 18) {
         selectedId = selectedId - 1;
         update();
-        consoleLog(selectedId);
         Timer(
           const Duration(milliseconds: 300),
           () {
             renderItem = false;
             update();
-            consoleLog('false');
           },
         );
       } else {
         selectedId = selectedId - 1;
         update();
-        consoleLog(selectedId);
       }
     } else {
       Get.back();

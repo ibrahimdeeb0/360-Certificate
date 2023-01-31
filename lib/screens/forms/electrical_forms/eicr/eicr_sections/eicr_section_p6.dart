@@ -442,6 +442,7 @@ class CustomSelectContainer extends StatelessWidget {
     this.marginHorizontal = 0.0,
     this.marginTop = 0.01,
     this.marginBottom = 0.03,
+    this.width,
   }) : super(key: key);
 
   final String? title;
@@ -451,6 +452,7 @@ class CustomSelectContainer extends StatelessWidget {
   final double? marginHorizontal;
   final double marginTop;
   final double marginBottom;
+  final double? width;
 
   @override
   Widget build(BuildContext context) {
@@ -464,6 +466,7 @@ class CustomSelectContainer extends StatelessWidget {
       marginBottom: marginBottom,
       marginHorizontal: marginHorizontal,
       suffix: const Icon(Icons.keyboard_arrow_down),
+      width: width,
     );
   }
 }
@@ -526,6 +529,8 @@ class SmallInputField extends StatelessWidget {
                 (isInputSelection == true
                     ? const Icon(Icons.keyboard_arrow_down)
                     : const SizedBox()),
+            keyboardType: keyboardType,
+            textInputAction: textInputAction,
           ),
         ],
       ),

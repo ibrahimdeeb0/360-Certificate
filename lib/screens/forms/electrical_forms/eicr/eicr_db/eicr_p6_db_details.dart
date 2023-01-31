@@ -20,10 +20,12 @@ class DistributionBoardDetails extends StatelessWidget {
           ),
           body: CommonContainer(
             style: appContainerStyles.containerStyles,
+            backgroundColor: Colors.white,
             child: SingleChildScrollView(
               child: Column(
                 children: <Widget>[
                   SizedBox(height: DEVICE_HEIGHT * 0.02),
+
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
@@ -38,15 +40,17 @@ class DistributionBoardDetails extends StatelessWidget {
                             controller: controller,
                           ),
                         ),
+                        width: 0.65,
                         marginBottom: 0.02,
                       ),
                       Image.asset(
                         imageDBElectrical,
-                        width: DEVICE_WIDTH * 0.19,
+                        width: DEVICE_WIDTH * 0.23,
                         height: DEVICE_HEIGHT * 0.1,
                       ),
                     ],
                   ),
+
                   SizedBox(height: DEVICE_HEIGHT * 0.01),
                   SmallInputField(
                     title: 'Zs at this Board',
@@ -63,7 +67,11 @@ class DistributionBoardDetails extends StatelessWidget {
                         controller.parentDistrBoardData[formKeyBoardIpfBoard],
                     onChanged: (dynamic value) => controller
                         .onChangeParentDbValues(formKeyBoardIpfBoard, value),
-                    suffix: const CommonText('KA'),
+                    suffix: const CommonText(
+                      'KA',
+                      fontColor: Colors.grey,
+                      fontSize: fontH3,
+                    ),
                     keyboardType: TextInputType.number,
                     textInputAction: TextInputAction.next,
                   ),
@@ -90,7 +98,12 @@ class DistributionBoardDetails extends StatelessWidget {
                       ),
                     ),
                     isInputSelection: true,
-                    suffix: const CommonText('Amps'),
+                    suffix: const CommonText(
+                      'Amps',
+                      fontColor: Colors.grey,
+                      fontSize: fontH4,
+                      marginRight: 0.01,
+                    ),
                   ),
                   SmallInputField(
                     title: 'Supply Conductors',
@@ -138,7 +151,6 @@ class DistributionBoardDetails extends StatelessWidget {
                         controller: controller,
                       ),
                     ),
-                    marginBottom: 0.03,
                   ),
                   FormToggleButton(
                     title: 'Phase Sequence Confirmed',
@@ -185,7 +197,6 @@ class DistributionBoardDetails extends StatelessWidget {
                         controller: controller,
                       ),
                     ),
-                    marginBottom: 0.03,
                   ),
                   SmallInputField(
                     title: 'Rating',
@@ -198,89 +209,51 @@ class DistributionBoardDetails extends StatelessWidget {
                       ),
                     ),
                     isInputSelection: true,
-                    suffix: CommonText('Amps'),
+                    suffix: const CommonText(
+                      'Amps',
+                      fontColor: Colors.grey,
+                      fontSize: fontH3,
+                      marginRight: 0.01,
+                    ),
                   ),
                   // SPD Details
+
                   CommonText(
                     'SPD Details: ',
-                    rowMainAxisSize: MainAxisSize.max,
-                    textAlign: TextAlign.start,
-                    rightChild: CommonText(
-                      controller.parentDistrBoardData['formKeyBoardSPDDetails'],
-                      style: appTextStyles.h3StyleBlack().copyWith(
-                            fontSize: fontBody,
-                            fontFamily: 'outfitBold',
-                          ),
-                      containerStyle:
-                          const CommonContainerModel(marginLeft: 0.02),
+                    containerStyle: const CommonContainerModel(
+                      marginBottom: 0.01,
+                      alignment: AlignmentDirectional.centerStart,
                     ),
-                    bottomChild: CommonContainer(
-                      backgroundColor:
-                          Color(AppColors.textGrey).withOpacity(0.2),
-                      width: 1,
-                      borderRadius: 0.02,
-                      marginTop: 0.01,
-                      paddingVertical: 0.01,
+                    rightChild: CommonText(
+                      controller.parentDistrBoardData[formKeyBoardSPDDetails],
+                      marginHorizontal: 0.015,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  CommonContainer(
+                    borderRadius: 0.02,
+                    clipBehavior: Clip.hardEdge,
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-                          CommonText(
-                            onPress: () => controller.onChangeSpdValue('T1'),
-                            'T1',
-                            containerStyle: CommonContainerModel(
+                          ...controller.spdDetails.map(
+                            (dynamic item) => CommonButton(
+                              text: item[keyName],
+                              onPress: () =>
+                                  controller.onChangeSpdValue(item[keyName]),
                               width: 0.15,
-                              borderRightWidth: 0.6,
-                              borderLeftColor: AppColors.textGrey,
-                            ),
-                          ),
-                          CommonText(
-                            'T2',
-                            onPress: () => controller.onChangeSpdValue('T2'),
-                            containerStyle: CommonContainerModel(
-                              width: 0.15,
-                              borderRightWidth: 0.6,
-                              borderLeftColor: AppColors.textGrey,
-                            ),
-                          ),
-                          CommonText(
-                            'T3',
-                            onPress: () => controller.onChangeSpdValue('T3'),
-                            containerStyle: CommonContainerModel(
-                              width: 0.15,
-                              borderRightWidth: 0.6,
-                              borderLeftColor: AppColors.textGrey,
-                            ),
-                          ),
-                          CommonText(
-                            'T1+T2',
-                            onPress: () => controller.onChangeSpdValue('T1+T2'),
-                            containerStyle: CommonContainerModel(
-                              width: 0.15,
-                              borderRightWidth: 0.6,
-                              borderLeftColor: AppColors.textGrey,
-                            ),
-                          ),
-                          CommonText(
-                            'T2+T3',
-                            onPress: () => controller.onChangeSpdValue('T2+T3'),
-                            containerStyle: CommonContainerModel(
-                              width: 0.15,
-                              borderRightWidth: 0.6,
-                              borderLeftColor: AppColors.textGrey,
-                            ),
-                          ),
-                          CommonText(
-                            'N/A',
-                            onPress: () => controller.onChangeSpdValue('N/A'),
-                            containerStyle: const CommonContainerModel(
-                              width: 0.15,
+                              height: 0.05,
+                              backgroundColor: Colors.grey[300],
+                              fontColor: Colors.black,
+                              borderRadius: 0,
                             ),
                           ),
                         ],
                       ),
                     ),
                   ),
-                  SizedBox(height: DEVICE_HEIGHT * 0.03),
+                  SizedBox(height: DEVICE_HEIGHT * 0.02),
                 ],
               ),
             ),
