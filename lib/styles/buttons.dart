@@ -24,4 +24,13 @@ class DefaultButtonStyles {
               backgroundColor: color,
             ),
       );
+
+//* Forms Style
+  CommonButtonModel bgGreyTextPrimaryStyle = CommonButtonModel(
+    width: 0.2,
+    height: 0.04,
+    borderRadius: 0.015,
+    backgroundColor: Colors.grey.withOpacity(0.2),
+    textStyle: appTextStyles.h3StylePrimary(),
+  );
 }

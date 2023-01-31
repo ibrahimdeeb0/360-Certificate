@@ -20,43 +20,81 @@ class More extends StatelessWidget {
               ),
               body: CommonContainer(
                 style: const CommonContainerModel(
-                  margin: 0.01,
-                  padding: 0.01,
+                  paddingHorizontal: 0.03,
                 ),
                 child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      // SizedBox(
-                      //   height: DEVICE_HEIGHT * 0.03,
-                      // ),
-                      MyListTile(
-                        // onTap: () => Get.toNamed(routeViewCustomers),
-                        title: 'Customers',
-                        leftIcon: SvgPicture.asset(
-                          iconCustomers,
-                          color: Color(AppColors.colorBlack3),
-                        ),
-                        rightIcon: Icon(
-                          Icons.arrow_forward_ios_rounded,
-                          size: 12,
-                          color: Color(AppColors.grey),
+                      SizedBox(height: DEVICE_HEIGHT * 0.03),
+                      CommonButton(
+                        marginBottom: 0.01,
+                        height: 0.07,
+                        overlayColor: Colors.black12,
+                        backgroundColor: Colors.white,
+                        onPress: () {},
+                        width: 1,
+                        borderRadius: 0.0,
+                        child: CommonContainer(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              CommonText(
+                                'Customers',
+                                marginHorizontal: 0.04,
+                                containerStyle: const CommonContainerModel(
+                                  width: 0.7,
+                                  paddingHorizontal: 0.04,
+                                ),
+                                leftChild: SvgPicture.asset(
+                                  iconCustomers,
+                                  color: Color(AppColors.colorBlack3),
+                                ),
+                              ),
+                              Padding(
+                                padding:
+                                    EdgeInsets.only(right: DEVICE_WIDTH * 0.04),
+                                child: Icon(
+                                  Icons.arrow_forward_ios_rounded,
+                                  // size: 12,
+                                  color: Color(AppColors.greyDark),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
 
-                      MyListTile(
-                        // onTap: () => Get.toNamed(routeViewInvoices),
-                        title: 'Finance',
-                        leftIcon: SvgPicture.asset(
-                          iconInvoice,
-                          color: Color(AppColors.colorBlack3),
-                        ),
-                        rightIcon: Icon(
-                          Icons.arrow_forward_ios_rounded,
-                          size: 12,
-                          color: Color(AppColors.grey),
-                        ),
-                      ),
+                      // SizedBox(
+                      //   height: DEVICE_HEIGHT * 0.03,
+                      // ),
+                      // MyListTile(
+                      //   // onTap: () => Get.toNamed(routeViewCustomers),
+                      //   title: 'Customers',
+                      //   leftIcon: SvgPicture.asset(
+                      //     iconCustomers,
+                      //     color: Color(AppColors.colorBlack3),
+                      //   ),
+                      //   rightIcon: Icon(
+                      //     Icons.arrow_forward_ios_rounded,
+                      //     size: 12,
+                      //     color: Color(AppColors.grey),
+                      //   ),
+                      // ),
+
+                      // MyListTile(
+                      //   // onTap: () => Get.toNamed(routeViewInvoices),
+                      //   title: 'Finance',
+                      //   leftIcon: SvgPicture.asset(
+                      //     iconInvoice,
+                      //     color: Color(AppColors.colorBlack3),
+                      //   ),
+                      //   rightIcon: Icon(
+                      //     Icons.arrow_forward_ios_rounded,
+                      //     size: 12,
+                      //     color: Color(AppColors.grey),
+                      //   ),
+                      // ),
                       MyListTile(
                         // onTap: () => Get.to(
                         //   () => const FormTemplate(),

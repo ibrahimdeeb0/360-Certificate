@@ -44,6 +44,7 @@ const String keyOnPress = 'on_press';
 const String keyIsSelected = 'is_selected';
 const String keyValue = 'value';
 const String keyItems = 'items';
+const String formKey = 'form_key';
 
 // *************** Api request function keys ***************
 const String keyRequestFunction = 'requestFunction';

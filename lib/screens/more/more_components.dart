@@ -89,12 +89,9 @@ class MyListTile extends StatelessWidget {
           children: <Widget>[
             CommonText(
               title ?? 'Title',
-              style: appTextStyles.h3StyleBlack().copyWith(
-                    fontSize: fontHeader,
-                    rowMainAxisSize: MainAxisSize.max,
-                    textAlign: TextAlign.start,
-                    columnMainAxisAlignment: MainAxisAlignment.center,
-                  ),
+              rowMainAxisSize: MainAxisSize.max,
+              textAlign: TextAlign.start,
+              columnMainAxisAlignment: MainAxisAlignment.center,
               containerStyle: const CommonContainerModel(
                 width: 0.7,
                 //   backgroundColor: Colors.black26,

@@ -220,4 +220,31 @@ class DefaultContainerStyles {
           type: touchType ?? TouchTypes.opacity,
         ),
       );
+
+  CommonContainerModel formToggleStyle = CommonContainerModel(
+    width: 0.21,
+    backgroundColor: AppColors.greyLightBorder,
+    paddingHorizontal: 0.03,
+    paddingVertical: 0.004,
+    borderRadius: 0.02,
+    alignment: Alignment.center,
+  );
+
+  CommonContainerModel topBottomBorderStyle = CommonContainerModel(
+    borderBottomWidth: 1.6,
+    borderBottomColor: Color(AppColors.textGrey).withOpacity(0.2),
+    borderTopWidth: 1.6,
+    borderTopColor: Color(AppColors.textGrey).withOpacity(0.2),
+    paddingVertical: 0.02,
+    paddingHorizontal: paddingFormsCard,
+  );
+
+  CommonContainerModel formSectionK12Style = const CommonContainerModel(
+    backgroundColor: Colors.white,
+    marginHorizontal: 0.02,
+    borderRadius: 0.02,
+    paddingTop: 0.02,
+    marginBottom: 0.02,
+    paddingHorizontal: 0.03,
+  );
 }

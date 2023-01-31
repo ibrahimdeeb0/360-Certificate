@@ -120,9 +120,6 @@ class Login extends StatelessWidget {
                     ),
                     CommonText(
                       "Don't have an account ?  ",
-                      style: appTextStyles
-                          .h2StyleBlack()
-                          .copyWith(fontSize: fontHeader),
                       containerStyle: const CommonContainerModel(
                         marginBottom: 0.02,
                         alignment: Alignment.topLeft,
@@ -137,9 +134,6 @@ class Login extends StatelessWidget {
                               TouchableEffect(type: TouchTypes.opacity),
                         ),
                         'Register',
-                        style: appTextStyles
-                            .h2StylePrimary()
-                            .copyWith(fontSize: fontHeader),
                       ),
                     ),
                   ],

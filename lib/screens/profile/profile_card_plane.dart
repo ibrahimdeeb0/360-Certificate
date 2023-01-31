@@ -23,12 +23,9 @@ class ProfileCardPlane extends StatelessWidget {
       containerStyle: appContainerStyles.cardHeader(
         backgroundColor: backgroundColor ?? AppColors.green,
       ),
-      rightChild: CommonText(
+      rightChild: const CommonText(
         'Standard',
-        style: appTextStyles.h3StyleWhite().copyWith(
-              fontSize: fontHeader,
-              fontWeight: FontWeight.w600,
-            ),
+        fontWeight: FontWeight.bold,
       ),
     );
   }

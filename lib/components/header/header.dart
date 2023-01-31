@@ -28,7 +28,7 @@ class Header extends StatelessWidget with PreferredSizeWidget {
 
   @override
   Size get preferredSize =>
-      Size.fromHeight(kToolbarHeight + DEVICE_HEIGHT * isTablet(0.028, 0.00));
+      Size.fromHeight(kToolbarHeight + DEVICE_HEIGHT * isTablet(0.028, 0.01));
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,7 @@ class Header extends StatelessWidget with PreferredSizeWidget {
           ),
       child: AppBar(
         elevation: withShadow ? 1 : 0,
-        toolbarHeight: kToolbarHeight + (DEVICE_HEIGHT * isTablet(0.028, 0.00)),
+        toolbarHeight: kToolbarHeight + (DEVICE_HEIGHT * isTablet(0.028, 0.01)),
         // backgroundColor: withoutBackGround ? Colors.transparent : Colors.white,
         backgroundColor: Colors.transparent,
         foregroundColor: Colors.transparent,

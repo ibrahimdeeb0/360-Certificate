@@ -37,7 +37,9 @@ int toMore = 2;
 
 // padding Top Content Screen
 double paddingTopScreens = DEVICE_HEIGHT * 0.03;
+
 const double paddingChild = 8.0;
+const double paddingFormsCard = 0.026;
 
 String validationEmail =
     r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";

@@ -98,8 +98,8 @@ class LoginController extends GetxController {
         },
       ).request(
         onSuccess: (dynamic data, dynamic response) {
-          consoleLog(response);
-          myAppController.onUserAuthenticated(response);
+          // consoleLog(response, key: 'response_user_data');
+          myAppController.onUserAuthenticated(response[keyData]);
           dismissLoading();
           Get.offAndToNamed(routeHomeBottomBar);
           // // dismissLoading();

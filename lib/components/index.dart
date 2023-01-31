@@ -10,6 +10,7 @@ export 'dialog_container/index.dart';
 export 'force_update/index.dart';
 export 'header/index.dart';
 export 'item_card/index.dart';
+export 'list_of_strings/index.dart';
 export 'main_container/main_container.dart';
 export 'on_boarding_item/index.dart';
 export 'pick_photo_bottom_sheet/index.dart';

@@ -251,4 +251,11 @@ class DefaultTextStyles {
     textAlign: TextAlign.start,
     rowMainAxisSize: MainAxisSize.max,
   );
+
+  CommonTextModel textStartStyle = const CommonTextModel(
+    rowMainAxisSize: MainAxisSize.max,
+    rowMainAxisAlignment: MainAxisAlignment.spaceBetween,
+    textAlign: TextAlign.start,
+    columnCrossAxisAlignment: CrossAxisAlignment.start,
+  );
 }
