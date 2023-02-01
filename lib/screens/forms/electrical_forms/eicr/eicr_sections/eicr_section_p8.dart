@@ -60,6 +60,7 @@ class EICRSectionH extends StatelessWidget {
             value: controller.gazSafetyData[formKeyContinuityCheckH1],
             onChangeValue: (dynamic value) => controller.onChangeFormDataValue(
                 formKeyContinuityCheckH1, value),
+            toggleType: FormToggleType.trueFalse,
           ),
           const CommonText(
             'Main protective bonding conductor',
@@ -103,6 +104,7 @@ class EICRSectionH extends StatelessWidget {
             value: controller.gazSafetyData[formKeyContinuityCheckH2],
             onChangeValue: (dynamic value) => controller.onChangeFormDataValue(
                 formKeyContinuityCheckH2, value),
+            toggleType: FormToggleType.trueFalse,
           ),
           const CommonText(
             'Main protective bonding conductors to extraneous conductive parts',
@@ -116,30 +118,35 @@ class EICRSectionH extends StatelessWidget {
             value: controller.gazSafetyData[formKeyWaterInstallationPipesH],
             onChangeValue: (dynamic value) => controller.onChangeFormDataValue(
                 formKeyWaterInstallationPipesH, value),
+            toggleType: FormToggleType.trueFalse,
           ),
           FormToggleButton(
             title: 'Gas installation',
             value: controller.gazSafetyData[formKeyGasInstallationH],
             onChangeValue: (dynamic value) => controller.onChangeFormDataValue(
                 formKeyGasInstallationH, value),
+            toggleType: FormToggleType.trueFalse,
           ),
           FormToggleButton(
             title: 'Oil installation pipes',
             value: controller.gazSafetyData[formKeyOilInstallationPipesH],
             onChangeValue: (dynamic value) => controller.onChangeFormDataValue(
                 formKeyOilInstallationPipesH, value),
+            toggleType: FormToggleType.trueFalse,
           ),
           FormToggleButton(
             title: 'Structural steel',
             value: controller.gazSafetyData[formKeyStructuralSteelH],
             onChangeValue: (dynamic value) => controller.onChangeFormDataValue(
                 formKeyStructuralSteelH, value),
+            toggleType: FormToggleType.trueFalse,
           ),
           FormToggleButton(
             title: 'Other services',
             value: controller.gazSafetyData[formKeyOtherServicesH],
             onChangeValue: (dynamic value) =>
                 controller.onChangeFormDataValue(formKeyOtherServicesH, value),
+            toggleType: FormToggleType.trueFalse,
           ),
         ],
       ),

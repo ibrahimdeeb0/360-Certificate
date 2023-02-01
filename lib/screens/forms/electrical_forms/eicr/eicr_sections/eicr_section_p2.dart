@@ -34,28 +34,28 @@ class EICRSectionB extends StatelessWidget {
           ),
           FormToggleButton(
             title: 'Domestic',
-            toggleType: FormToggleType.trueFalse,
+            toggleType: FormToggleType.yesNo,
             value: controller.gazSafetyData[formKeyDomesticB],
             onChangeValue: (dynamic value) =>
                 controller.onChangeFormDataValue(formKeyDomesticB, value),
           ),
           FormToggleButton(
             title: 'Commercial',
-            toggleType: FormToggleType.trueFalse,
+            toggleType: FormToggleType.yesNo,
             value: controller.gazSafetyData[formKeyDomesticB],
             onChangeValue: (dynamic value) =>
                 controller.onChangeFormDataValue(formKeyDomesticB, value),
           ),
           FormToggleButton(
             title: 'Industrial',
-            toggleType: FormToggleType.trueFalse,
+            toggleType: FormToggleType.yesNo,
             value: controller.gazSafetyData[formKeyDomesticB],
             onChangeValue: (dynamic value) =>
                 controller.onChangeFormDataValue(formKeyDomesticB, value),
           ),
           FormToggleButton(
             title: 'Other',
-            toggleType: FormToggleType.trueFalse,
+            toggleType: FormToggleType.yesNo,
             value: controller.gazSafetyData[formKeyDomesticB],
             onChangeValue: (dynamic value) =>
                 controller.onChangeFormDataValue(formKeyDomesticB, value),

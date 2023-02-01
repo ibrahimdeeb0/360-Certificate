@@ -61,6 +61,7 @@ class EICRSectionKPart1 extends StatelessWidget {
                     );
                   },
                   titleSize: fontBody,
+                  toggleType: FormToggleType.multi,
                 ),
               ),
             ],
@@ -91,6 +92,7 @@ class EICRSectionKPart1 extends StatelessWidget {
                         value);
                   },
                   titleSize: fontBody,
+                  toggleType: FormToggleType.multi,
                 ),
               ),
             ],
@@ -158,6 +160,7 @@ class EICRSectionKPart2 extends StatelessWidget {
                     );
                   },
                   titleSize: fontBody,
+                  toggleType: FormToggleType.multi,
                 ),
               ),
             ],
@@ -200,6 +203,7 @@ class EICRSectionKPart3 extends StatelessWidget {
                     );
                   },
                   titleSize: fontBody,
+                  toggleType: FormToggleType.multi,
                 ),
               ),
             ],
@@ -246,6 +250,7 @@ class EICRSectionKPart4 extends StatelessWidget {
                     );
                   },
                   titleSize: fontBody,
+                  toggleType: FormToggleType.multi,
                 ),
               ),
             ],
@@ -296,6 +301,7 @@ class EICRSectionKPart5 extends StatelessWidget {
                     );
                   },
                   titleSize: fontBody,
+                  toggleType: FormToggleType.multi,
                 ),
               ),
             ],
@@ -346,6 +352,7 @@ class EICRSectionKPart6 extends StatelessWidget {
                     );
                   },
                   titleSize: fontBody,
+                  toggleType: FormToggleType.multi,
                 ),
               ),
             ],
@@ -394,6 +401,7 @@ class EICRSectionKPart7 extends StatelessWidget {
                     );
                   },
                   titleSize: fontBody,
+                  toggleType: FormToggleType.multi,
                 ),
               ),
             ],
@@ -418,6 +426,7 @@ class EICRSectionKPart7 extends StatelessWidget {
                   controller.onChangeFormDataValue(formKey7_1, value);
                 },
                 titleSize: 13.0,
+                toggleType: FormToggleType.multi,
               ),
             ],
           ),
@@ -441,6 +450,7 @@ class EICRSectionKPart7 extends StatelessWidget {
                   controller.onChangeFormDataValue(formKey8_1, value);
                 },
                 titleSize: 13.0,
+                toggleType: FormToggleType.multi,
               ),
             ],
           ),

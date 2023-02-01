@@ -14,9 +14,10 @@ class DistributionBoardDetails extends StatelessWidget {
           backgroundColor: Colors.white,
           appBar: Header(
             title: 'Board Details',
-            // rightText: 'Done',
-            // withActionText: true,
-            // onPressActionText: Get.back,
+            actionItem: ActionItem(
+              type: ActionType.save,
+              onPress: Get.back,
+            ),
           ),
           body: CommonContainer(
             style: appContainerStyles.containerStyles,
@@ -160,6 +161,7 @@ class DistributionBoardDetails extends StatelessWidget {
                       controller.onChangeParentDbValues(
                           formKeyBoardPhaseSequence, value);
                     },
+                    toggleType: FormToggleType.multi,
                   ),
                   SmallInputField(
                     title: 'Supplied From',

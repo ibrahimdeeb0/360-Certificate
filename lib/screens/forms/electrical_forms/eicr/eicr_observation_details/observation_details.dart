@@ -12,6 +12,12 @@ class ObservationDetails extends StatelessWidget {
         return Scaffold(
           appBar: Header(
             title: 'Observation Details',
+            actionItem: ActionItem(
+              type: ActionType.save,
+              onPress: () {
+                consoleLog('value');
+              },
+            ),
             // rightText: 'Done',
             // withActionText: true,
             // onPressActionText: () {
@@ -19,9 +25,8 @@ class ObservationDetails extends StatelessWidget {
             // },
           ),
           body: CommonContainer(
-            style: appContainerStyles.containerStyles.copyWith(
-              backgroundColor: Colors.grey[100],
-            ),
+            style: appContainerStyles.containerStyles,
+            backgroundColor: Colors.grey[100],
             child: SingleChildScrollView(
               child: Column(
                 children: <Widget>[
@@ -35,6 +40,7 @@ class ObservationDetails extends StatelessWidget {
                         controller.onChangeObservationsData(
                             formKeyObservationDetails, value),
                   ),
+                  SizedBox(height: DEVICE_HEIGHT * 0.02),
                   SmallInputField(
                     title: 'Observation Code',
                     value: controller.observationData[formKeyObservationCode],
@@ -100,6 +106,7 @@ class ObservationDetails extends StatelessWidget {
                     AttachContainer(
                       imagePath: controller.selectImage!.path,
                       onRemoveImage: controller.deleteImage,
+                      isAddedImage: controller.selectImage != null,
                     ),
                   // ImagesRowViews(
                   //   imagePath: controller.selectImage!.path,
@@ -123,18 +130,17 @@ class ObservationDetails extends StatelessWidget {
                     ),
                   ),
                   const CommonContainer(
-                    style: CommonContainerModel(
-                      width: 1,
-                      borderWidth: 1,
-                      borderColor: Colors.black12,
-                      marginBottom: 0.03,
-                      marginTop: 0.02,
-                    ),
+                    width: 1,
+                    borderWidth: 1,
+                    borderColor: Colors.black12,
+                    marginBottom: 0.03,
+                    marginTop: 0.02,
                   ),
                   const CommonText(
                     'Observations should be based on the current edition of BS7671 at time of inspection, not a previous edition at time of construction',
                     fontWeight: FontWeight.bold,
-                    containerStyle: CommonContainerModel(marginBottom: 0.02),
+                    marginBottom: 0.03,
+                    textAlign: TextAlign.start,
                   ),
                 ],
               ),
@@ -158,19 +164,29 @@ class ObservationComponents extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CommonText(
-      description ?? '',
-      fontColor: Colors.black54,
-      rowMainAxisSize: MainAxisSize.max,
-      textAlign: TextAlign.start,
-      columnCrossAxisAlignment: CrossAxisAlignment.start,
-      containerStyle: const CommonContainerModel(marginBottom: 0.03),
-      leftChild: CommonText(
-        title ?? '',
-        fontColor: AppColors.red,
-        fontWeight: FontWeight.bold,
-        containerStyle: const CommonContainerModel(marginRight: 0.03),
-      ),
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        CommonText(
+          title ?? '',
+          fontColor: AppColors.red,
+          fontWeight: FontWeight.bold,
+          fontSize: fontH2,
+          containerStyle: const CommonContainerModel(marginRight: 0.03),
+        ),
+        CommonText(
+          description ?? '',
+          fontColor: Colors.black54,
+          rowMainAxisSize: MainAxisSize.max,
+          textAlign: TextAlign.start,
+          columnCrossAxisAlignment: CrossAxisAlignment.start,
+          containerStyle: const CommonContainerModel(
+            marginBottom: 0.03,
+            width: 0.8,
+          ),
+          bottomChild: const SizedBox(),
+        ),
+      ],
     );
   }
 }

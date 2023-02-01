@@ -1,5 +1,3 @@
-import 'package:flutter_svg/svg.dart';
-
 import '../../general_exports.dart';
 
 class Header extends StatelessWidget with PreferredSizeWidget {
@@ -76,50 +74,22 @@ class Header extends StatelessWidget with PreferredSizeWidget {
         actions: <Widget>[
           if (actionItem != null)
             CommonContainer(
-              marginTop: actionItem?.type == ActionType.add ? 0.0 : 0.01,
+              marginTop: 0.01,
               marginBottom: 0.006,
               marginHorizontal: 0.02,
               onPress: actionItem?.onPress?.call,
-              child: actionItem?.type == ActionType.filter
-                  ? Icon(
-                      Icons.filter_list,
-                      color: Colors.white,
-                      size: DEVICE_WIDTH * 0.08,
+              touchEffect: TouchableEffect(
+                type: TouchTypes.scaleAndUp,
+                lowerBound: 0.8,
+              ),
+              child: actionItem?.type == ActionType.save
+                  ? CommonText(
+                      'Save',
+                      fontWeight: FontWeight.bold,
+                      fontColor: AppColors.primary,
+                      marginHorizontal: 0.01,
                     )
-                  : actionItem?.type == ActionType.support
-                      ? CommonText(
-                          'support_center'.tr,
-                          marginHorizontal: 0.02,
-                        )
-                      : actionItem?.type == ActionType.add
-                          ? CircleContainer(
-                              circuitSize: 0.1,
-                              marginHorizontal: 0.02,
-                              backgroundColor: Color(AppColors.greyLight),
-                              iconWidget: const Icon(
-                                Icons.add,
-                                color: Colors.black,
-                              ),
-                            )
-                          : actionItem?.type == ActionType.safety
-                              ? CommonText(
-                                  'safety'.tr,
-                                  rightChild: Padding(
-                                    padding: EdgeInsets.only(
-                                        right: DEVICE_WIDTH * 0.02),
-                                    child: SvgPicture.asset(
-                                      iconSafety,
-                                      width: DEVICE_WIDTH * 0.03,
-                                      height: DEVICE_HEIGHT * 0.03,
-                                    ),
-                                  ),
-                                  containerStyle: CommonContainerModel(
-                                    backgroundColor: AppColors.greyLight,
-                                    borderRadius: 0.15,
-                                    paddingHorizontal: 0.03,
-                                  ),
-                                )
-                              : const Center(),
+                  : const Center(),
             ),
         ],
       ),
@@ -137,8 +107,5 @@ class ActionItem {
 }
 
 enum ActionType {
-  support,
-  safety,
-  filter,
-  add,
+  save,
 }

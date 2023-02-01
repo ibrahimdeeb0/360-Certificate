@@ -64,6 +64,7 @@ class EICRSectionE extends StatelessWidget {
               ),
               FormToggleButton(
                 title: 'Schedule(s) of Inspection, and',
+                toggleType: FormToggleType.trueFalse,
                 value: controller.gazSafetyData[formKeyScheduleInspectionE],
                 onChangeValue: (dynamic value) => controller
                     .onChangeFormDataValue(formKeyScheduleInspectionE, value),
@@ -71,6 +72,7 @@ class EICRSectionE extends StatelessWidget {
 
               FormToggleButton(
                 title: 'Schedule(s) of Test Result Attached',
+                toggleType: FormToggleType.trueFalse,
                 value: controller.gazSafetyData[formKeyScheduleTestE],
                 onChangeValue: (dynamic value) => controller
                     .onChangeFormDataValue(formKeyScheduleTestE, value),

@@ -21,7 +21,6 @@ class CircuitDetailsP1 extends StatelessWidget {
                 'Circuit Assistant',
                 rowMainAxisSize: MainAxisSize.max,
                 fontWeight: FontWeight.bold,
-                fontFamily: 'outfitBold',
                 containerStyle: CommonContainerModel(
                   marginBottom: 0.02,
                 ),
@@ -30,6 +29,7 @@ class CircuitDetailsP1 extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   CustomSelectContainer(
+                    width: 0.7,
                     title: 'Circuit Reference',
                     value:
                         controller.childCircuitData[formKeyCircuitReferenceA],
@@ -45,7 +45,7 @@ class CircuitDetailsP1 extends StatelessWidget {
                   Image.asset(
                     imageCircuitElectrical,
                     width: DEVICE_WIDTH * 0.16,
-                    height: DEVICE_HEIGHT * 0.06,
+                    height: DEVICE_HEIGHT * 0.07,
                   ),
                 ],
               ),
@@ -60,6 +60,7 @@ class CircuitDetailsP1 extends StatelessWidget {
                     isChilde: true,
                   ),
                 ),
+                marginTop: 0.0,
               ),
               SmallInputField(
                 title: 'Type of Wiring',

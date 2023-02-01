@@ -77,6 +77,11 @@ class FormToggleButtonController extends GetxController {
           currentValue = 'LIM';
 
           break;
+
+        case 'LIM':
+          currentValue = 'N/V';
+
+          break;
         case 'N/V':
           currentValue = 'N/A';
 

@@ -15,10 +15,6 @@ class CompleteProfile extends StatelessWidget {
             title: '',
             withShadow: false,
             onPressBack: controller.onPressBack,
-            actionItem: ActionItem(
-              type: ActionType.support,
-              onPress: () => consoleLog('value'),
-            ),
           ),
           backgroundColor: Colors.white,
           body: CommonContainer(

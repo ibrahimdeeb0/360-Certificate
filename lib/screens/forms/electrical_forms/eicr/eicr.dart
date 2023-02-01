@@ -16,7 +16,7 @@ class EICR extends StatelessWidget {
           body: CommonContainer(
             width: 1,
             height: 1,
-            backgroundColor: Colors.black12,
+            backgroundColor: AppColors.greyLightBorder,
             child: Stack(
               children: <Widget>[
                 Positioned(
@@ -33,7 +33,7 @@ class EICR extends StatelessWidget {
                                     )
                                   : const SizedBox(),
                         ),
-                        SizedBox(height: DEVICE_HEIGHT * 0.11),
+                        SizedBox(height: DEVICE_HEIGHT * 0.09),
                       ],
                     ),
                   ),

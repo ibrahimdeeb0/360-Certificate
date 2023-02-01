@@ -30,12 +30,14 @@ class EICRSectionG extends StatelessWidget {
             value: controller.gazSafetyData[formKeyDistributorFacilityG],
             onChangeValue: (dynamic value) => controller.onChangeFormDataValue(
                 formKeyDistributorFacilityG, value),
+            toggleType: FormToggleType.trueFalse,
           ),
           FormToggleButton(
             title: 'Installation earth electrode',
             value: controller.gazSafetyData[formKeyInstallationEarthElectrodeG],
             onChangeValue: (dynamic value) => controller.onChangeFormDataValue(
                 formKeyInstallationEarthElectrodeG, value),
+            toggleType: FormToggleType.trueFalse,
           ),
           CustomSelectContainer(
             onTap: () => Get.bottomSheet(

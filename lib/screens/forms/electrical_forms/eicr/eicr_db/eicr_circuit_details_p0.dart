@@ -12,15 +12,16 @@ class CircuitDetailsP0 extends StatelessWidget {
           backgroundColor: Colors.white,
           appBar: Header(
             title: controller.tabIndex == 0 ? 'Circuit Details' : 'TestResult',
-            // rightText: 'Done',
-            // withActionText: true,
-            // onPressActionText: Get.back,
+            actionItem: ActionItem(
+              type: ActionType.save,
+              onPress: Get.back,
+            ),
           ),
           body: Column(
             children: <Widget>[
               CommonContainer(
                 style: CommonContainerModel(
-                  borderRadius: 0.2,
+                  borderRadius: 0.02,
                   width: 1,
                   height: 0.05,
                   marginTop: 0.02,
@@ -33,12 +34,12 @@ class CircuitDetailsP0 extends StatelessWidget {
                   controller: controller.tabController,
                   indicator: BoxDecoration(
                     color: Color(AppColors.primary),
-                    borderRadius: BorderRadius.circular(25.0),
+                    borderRadius: BorderRadius.circular(2.0),
                   ),
                   labelStyle: TextStyle(
                     color: Color(AppColors.white),
-                    fontFamily: 'outfitBold',
                     fontSize: fontH3,
+                    fontWeight: FontWeight.bold,
                   ),
                   // labelColor: ,
                   unselectedLabelColor: Color(AppColors.primary),
@@ -74,32 +75,3 @@ class CircuitDetailsP0 extends StatelessWidget {
     );
   }
 }
-
-/*
-
-Column(
-                    children: <Widget>[
-                      if (controller.circuitId == 1)
-                        CircuitDetailsP1(controller: controller),
-                      if (controller.circuitId == 2)
-                        CircuitDetailsP2(controller: controller),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          CommonButton(
-                            text: controller.circuitId == 1 ? 'Cancel' : 'Back',
-                            onPress: controller.onPressBackCircuit,
-                            buttonStyle: appButtonStyles.cancelButtonStyle(),
-                          ),
-                          CommonButton(
-                            text: controller.circuitId < 2 ? 'Next' : 'Save',
-                            onPress: controller.onPressNextCircuit,
-                            buttonStyle: appButtonStyles.addButtonStyle(),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: DEVICE_HEIGHT * 0.02),
-                    ],
-                  ),
-
-*/

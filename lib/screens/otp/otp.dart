@@ -12,10 +12,6 @@ class OTP extends StatelessWidget {
       appBar: Header(
         title: '',
         withShadow: false,
-        actionItem: ActionItem(
-          type: ActionType.support,
-          onPress: () => consoleLog('value'),
-        ),
       ),
       backgroundColor: Colors.white,
       body: GetBuilder<OTPController>(

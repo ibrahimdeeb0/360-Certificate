@@ -27,6 +27,7 @@ class EICRSectionF extends StatelessWidget {
             onChangeValue: (dynamic value) => controller.onChangeFormDataValue(
                 formKeyConfirmationSupplyF, value),
             paddingHorizontal: 0.03,
+            toggleType: FormToggleType.trueFalse,
           ),
           CommonText(
             'System Types',
@@ -61,30 +62,35 @@ class EICRSectionF extends StatelessWidget {
                   value: controller.gazSafetyData[formKeyTNCSF],
                   onChangeValue: (dynamic value) =>
                       controller.onChangeFormDataValue(formKeyTNCSF, value),
+                  toggleType: FormToggleType.trueFalse,
                 ),
                 FormToggleButton(
                   title: 'TN-S',
                   value: controller.gazSafetyData[formKeyTNSF],
                   onChangeValue: (dynamic value) =>
                       controller.onChangeFormDataValue(formKeyTNSF, value),
+                  toggleType: FormToggleType.trueFalse,
                 ),
                 FormToggleButton(
                   title: 'TT',
                   value: controller.gazSafetyData[formKeyTTF],
                   onChangeValue: (dynamic value) =>
                       controller.onChangeFormDataValue(formKeyTTF, value),
+                  toggleType: FormToggleType.trueFalse,
                 ),
                 FormToggleButton(
                   title: 'TN-C',
                   value: controller.gazSafetyData[formKeyTNCF],
                   onChangeValue: (dynamic value) =>
                       controller.onChangeFormDataValue(formKeyTNCF, value),
+                  toggleType: FormToggleType.trueFalse,
                 ),
                 FormToggleButton(
                   title: 'IT',
                   value: controller.gazSafetyData[formKeyITF],
                   onChangeValue: (dynamic value) =>
                       controller.onChangeFormDataValue(formKeyITF, value),
+                  toggleType: FormToggleType.trueFalse,
                 ),
               ],
             ),
@@ -129,6 +135,7 @@ class EICRSectionF extends StatelessWidget {
                   value: controller.gazSafetyData[formKeyACF],
                   onChangeValue: (dynamic value) =>
                       controller.onChangeFormDataValue(formKeyACF, value),
+                  toggleType: FormToggleType.trueFalse,
                 ),
                 FormToggleButton(
                   textWidget: const CommonText(
@@ -138,6 +145,7 @@ class EICRSectionF extends StatelessWidget {
                   value: controller.gazSafetyData[formKeyDCF],
                   onChangeValue: (dynamic value) =>
                       controller.onChangeFormDataValue(formKeyDCF, value),
+                  toggleType: FormToggleType.trueFalse,
                 ),
               ],
             ),
@@ -162,6 +170,7 @@ class EICRSectionF extends StatelessWidget {
                       value: controller.gazSafetyData[formKey1Phase2WireF],
                       onChangeValue: (dynamic value) => controller
                           .onChangeFormDataValue(formKey1Phase2WireF, value),
+                      toggleType: FormToggleType.trueFalse,
                     ),
                     FormToggleButton(
                       textWidget: const CommonText(
@@ -172,6 +181,7 @@ class EICRSectionF extends StatelessWidget {
                       value: controller.gazSafetyData[formKey1Phase3WireF],
                       onChangeValue: (dynamic value) => controller
                           .onChangeFormDataValue(formKey1Phase3WireF, value),
+                      toggleType: FormToggleType.trueFalse,
                     ),
                   ],
                 ),
@@ -185,6 +195,7 @@ class EICRSectionF extends StatelessWidget {
                     value: controller.gazSafetyData[formKey2WireF],
                     onChangeValue: (dynamic value) =>
                         controller.onChangeFormDataValue(formKey2WireF, value),
+                    toggleType: FormToggleType.trueFalse,
                   ),
                 ),
               ],
@@ -207,6 +218,7 @@ class EICRSectionF extends StatelessWidget {
                   value: controller.gazSafetyData[formKey2Phase3WireF],
                   onChangeValue: (dynamic value) => controller
                       .onChangeFormDataValue(formKey2Phase3WireF, value),
+                  toggleType: FormToggleType.trueFalse,
                 ),
                 FormToggleButton(
                   textWidget: const CommonText(
@@ -217,6 +229,7 @@ class EICRSectionF extends StatelessWidget {
                   value: controller.gazSafetyData[formKey3WireF],
                   onChangeValue: (dynamic value) =>
                       controller.onChangeFormDataValue(formKey3WireF, value),
+                  toggleType: FormToggleType.trueFalse,
                 ),
               ],
             ),
@@ -241,6 +254,7 @@ class EICRSectionF extends StatelessWidget {
                       value: controller.gazSafetyData[formKey3Phase3WireF],
                       onChangeValue: (dynamic value) => controller
                           .onChangeFormDataValue(formKey3Phase3WireF, value),
+                      toggleType: FormToggleType.trueFalse,
                     ),
                     FormToggleButton(
                       textWidget: const CommonText(
@@ -251,6 +265,7 @@ class EICRSectionF extends StatelessWidget {
                       value: controller.gazSafetyData[formKey3Phase4WireF],
                       onChangeValue: (dynamic value) => controller
                           .onChangeFormDataValue(formKey3Phase4WireF, value),
+                      toggleType: FormToggleType.trueFalse,
                     ),
                   ],
                 ),
@@ -264,6 +279,7 @@ class EICRSectionF extends StatelessWidget {
                     value: controller.gazSafetyData[formKeyOtherF],
                     onChangeValue: (dynamic value) =>
                         controller.onChangeFormDataValue(formKeyOtherF, value),
+                    toggleType: FormToggleType.trueFalse,
                   ),
                 ),
               ],
@@ -506,6 +522,7 @@ class SmallInputField extends StatelessWidget {
       paddingHorizontal: paddingHorizontal,
       marginBottom: marginBottom,
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           CommonText(
             title ?? '',
