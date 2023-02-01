@@ -1,4 +1,3 @@
-import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../general_exports.dart';
@@ -16,88 +15,89 @@ class HomeBottomBar extends StatelessWidget {
           floatingActionButton: FloatingActionButton.extended(
             backgroundColor: Color(AppColors.primary),
             onPressed: () {
-              showAnimatedDialog(
-                context: context,
-                barrierDismissible: true,
-                builder: (BuildContext context) {
-                  return CommonContainer(
-                    // width: 0.5,
-                    // height: 0.5,
-                    borderRadius: 0.02,
-                    paddingVertical: 0.008,
-                    marginHorizontal: 0.07,
-                    marginVertical: 0.14,
-                    backgroundColor: Colors.white,
-                    child: Stack(
-                      children: <Widget>[
-                        SingleChildScrollView(
-                          child: Column(
-                            children: <Widget>[
-                              SizedBox(height: DEVICE_HEIGHT * 0.06),
-                              ...controller.bottomBarItems
-                                  .map(
-                                    (dynamic item) => ExpandableTile(
-                                      title: item[keyTitle],
-                                      titleColor: AppColors.primary,
-                                      children: <Widget>[
-                                        ...item[keyItems]
-                                            .map(
-                                              (dynamic childe) => ChildeItems(
-                                                text: childe[keyTitle],
-                                                onPress: childe[keyOnPress],
-                                              ),
-                                            )
-                                            .toList(),
-                                      ],
-                                    ),
-                                  )
-                                  .toList(),
-                              SizedBox(height: DEVICE_HEIGHT * 0.06),
-                            ],
-                          ),
-                        ),
-                        Positioned(
-                          top: 0,
-                          left: 0,
-                          right: 0,
-                          child: CommonText(
-                            'Please Select Certificate Type',
-                            fontSize: fontH3,
-                            fontColor: AppColors.black,
-                            marginBottom: 0.02,
-                            marginTop: 0.01,
-                            containerStyle: CommonContainerModel(
-                              backgroundColor: Colors.white,
-                              width: 1,
-                              alignment: AlignmentDirectional.center,
-                              borderBottomWidth: 2,
-                              borderColor: AppColors.greyLightBorder,
-                            ),
-                          ),
-                        ),
-                        Positioned(
-                          bottom: 0,
-                          left: 0,
-                          right: 0,
-                          child: CommonButton(
-                            onPress: Get.back,
-                            text: 'Cancel',
-                            height: 0.05,
-                            borderWidth: 1,
-                            borderColor: AppColors.red,
-                            fontColor: AppColors.red,
-                            backgroundColor: Colors.white,
-                            marginHorizontal: 0.02,
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-                animationType: DialogTransitionType.slideFromBottomFade,
-                curve: Curves.fastOutSlowIn,
-                duration: const Duration(milliseconds: 600),
-              );
+              Get.toNamed(routeCreateCustomer);
+              // showAnimatedDialog(
+              //   context: context,
+              //   barrierDismissible: true,
+              //   builder: (BuildContext context) {
+              //     return CommonContainer(
+              //       // width: 0.5,
+              //       // height: 0.5,
+              //       borderRadius: 0.02,
+              //       paddingVertical: 0.008,
+              //       marginHorizontal: 0.07,
+              //       marginVertical: 0.14,
+              //       backgroundColor: Colors.white,
+              //       child: Stack(
+              //         children: <Widget>[
+              //           SingleChildScrollView(
+              //             child: Column(
+              //               children: <Widget>[
+              //                 SizedBox(height: DEVICE_HEIGHT * 0.06),
+              //                 ...controller.bottomBarItems
+              //                     .map(
+              //                       (dynamic item) => ExpandableTile(
+              //                         title: item[keyTitle],
+              //                         titleColor: AppColors.primary,
+              //                         children: <Widget>[
+              //                           ...item[keyItems]
+              //                               .map(
+              //                                 (dynamic childe) => ChildeItems(
+              //                                   text: childe[keyTitle],
+              //                                   onPress: childe[keyOnPress],
+              //                                 ),
+              //                               )
+              //                               .toList(),
+              //                         ],
+              //                       ),
+              //                     )
+              //                     .toList(),
+              //                 SizedBox(height: DEVICE_HEIGHT * 0.06),
+              //               ],
+              //             ),
+              //           ),
+              //           Positioned(
+              //             top: 0,
+              //             left: 0,
+              //             right: 0,
+              //             child: CommonText(
+              //               'Please Select Certificate Type',
+              //               fontSize: fontH3,
+              //               fontColor: AppColors.black,
+              //               marginBottom: 0.02,
+              //               marginTop: 0.01,
+              //               containerStyle: CommonContainerModel(
+              //                 backgroundColor: Colors.white,
+              //                 width: 1,
+              //                 alignment: AlignmentDirectional.center,
+              //                 borderBottomWidth: 2,
+              //                 borderColor: AppColors.greyLightBorder,
+              //               ),
+              //             ),
+              //           ),
+              //           Positioned(
+              //             bottom: 0,
+              //             left: 0,
+              //             right: 0,
+              //             child: CommonButton(
+              //               onPress: Get.back,
+              //               text: 'Cancel',
+              //               height: 0.05,
+              //               borderWidth: 1,
+              //               borderColor: AppColors.red,
+              //               fontColor: AppColors.red,
+              //               backgroundColor: Colors.white,
+              //               marginHorizontal: 0.02,
+              //             ),
+              //           ),
+              //         ],
+              //       ),
+              //     );
+              //   },
+              //   animationType: DialogTransitionType.slideFromBottomFade,
+              //   curve: Curves.fastOutSlowIn,
+              //   duration: const Duration(milliseconds: 600),
+              // );
             },
             tooltip: 'Create',
             icon: const Icon(Icons.add),

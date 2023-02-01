@@ -12,3 +12,4 @@ const String routeLanguage = '/language';
 const String routeWebViewLoader = '/web_view_loader';
 const String routeOTP = '/OTP';
 const String routeForms = '/forms';
+const String routeCreateCustomer = '/create-customer';

@@ -1,5 +1,6 @@
 export 'certificates/index.dart';
 export 'complete_profile/index.dart';
+export 'create_customer/index.dart';
 export 'edit_profile/index.dart';
 export 'forms/index.dart';
 export 'home/index.dart';

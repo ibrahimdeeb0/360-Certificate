@@ -51,4 +51,10 @@ List<GetPage<dynamic>> appRoutes = <GetPage<dynamic>>[
     name: routeForms,
     page: () => const Forms(),
   ),
+  GetPage<CreateCustomer>(
+    name: routeCreateCustomer,
+    page: () => const CreateCustomer(),
+    transition: Transition.downToUp,
+    transitionDuration: const Duration(milliseconds: 400),
+  ),
 ];
