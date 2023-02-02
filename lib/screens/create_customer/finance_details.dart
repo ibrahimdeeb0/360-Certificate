@@ -20,6 +20,7 @@ class FinanceDetails extends StatelessWidget {
           CommonText(
             'Finance Details',
             fontColor: AppColors.blue,
+            fontWeight: FontWeight.bold,
             marginTop: 0.02,
             marginBottom: 0.01,
             containerStyle: const CommonContainerModel(

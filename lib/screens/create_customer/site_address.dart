@@ -34,42 +34,53 @@ class SiteAddress extends StatelessWidget {
             },
           ),
         ),
-        const CommonInput(
+        CommonInput(
           topLabelText: 'Site Name',
           hint: 'Site Name',
+          controller: controller.siteAddressSiteNameController1,
           marginBottom: 0.012,
         ),
         if (controller.radioSiteAddress == false)
           Column(
             children: <Widget>[
-              const CommonInput(
+              CommonInput(
                 topLabelText: 'Address Here',
                 hint: ' Type Address Here',
+                controller: controller.siteAddressAddressNameController,
                 marginBottom: 0.012,
+                onTap: () => Get.bottomSheet(
+                  const SearchAddressBottomSheet(iDTitle: 2),
+                  isScrollControlled: true,
+                  elevation: 0.0,
+                ),
+                enabled: false,
               ),
-              const CommonInput(
-                topLabel: TopLabelText(
+              CommonInput(
+                topLabel: const TopLabelText(
                   text: 'Street Number And Name',
                 ),
                 hint: 'Street Number And Name',
+                controller: controller.siteAddressStreetController,
                 marginBottom: 0.012,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const <Widget>[
+                children: <Widget>[
                   CommonInput(
-                    topLabel: TopLabelText(
+                    topLabel: const TopLabelText(
                       text: 'City',
                     ),
                     hint: 'City ',
+                    controller: controller.siteAddressCityController,
                     width: 0.43,
                     marginBottom: 0.012,
                   ),
                   CommonInput(
-                    topLabel: TopLabelText(
+                    topLabel: const TopLabelText(
                       text: 'Postcode',
                     ),
                     hint: 'Postcode',
+                    controller: controller.siteAddressPostcodeController,
                     width: 0.43,
                     marginBottom: 0.012,
                   ),

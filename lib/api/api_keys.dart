@@ -85,6 +85,15 @@ const String keyCarNumber = 'car_num';
 const String keyCarFactoryYear = 'car_model';
 const String keyCarVin = 'car_vin';
 
+// *************** Woosmap Keys ***************
+const String publicKey = 'woos-5b6fb592-1146-3acf-a259-e3fc6ddd77a4';
+const String urlAutocomplete =
+    'https://api.woosmap.com/localities/autocomplete';
+const String urlDetails = 'https://api.woosmap.com/localities/details';
+const String language = 'gb';
+const String types = 'postal_code|address|locality';
+const String components = '';
+
 // *************** Forms Names ***************
 
 const String formNamePortableApplianceTesting = 'Portable Appliance Testing';

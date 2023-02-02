@@ -19,10 +19,8 @@ class HomeHeader extends StatelessWidget with PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return CommonContainer(
-      style: const CommonContainerModel(
-        paddingTop: 0.02,
-        paddingHorizontal: 0.02,
-      ),
+      paddingTop: 0.02,
+      paddingHorizontal: 0.02,
       child: AppBar(
         elevation: 0,
         toolbarHeight: kToolbarHeight + (DEVICE_HEIGHT * 0.02),
@@ -33,8 +31,8 @@ class HomeHeader extends StatelessWidget with PreferredSizeWidget {
         title: CommonContainer(
           child: SvgPicture.asset(
             iconAppLogo,
-            width: DEVICE_WIDTH * 0.1,
-            height: DEVICE_WIDTH * 0.1,
+            width: DEVICE_WIDTH * 0.07,
+            height: DEVICE_WIDTH * 0.07,
           ),
         ),
 

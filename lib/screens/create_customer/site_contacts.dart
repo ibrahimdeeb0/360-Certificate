@@ -37,25 +37,29 @@ class SiteContacts extends StatelessWidget {
         ),
         if (controller.radioSiteContact == false)
           Column(
-            children: const <Widget>[
+            children: <Widget>[
               CommonInput(
                 topLabelText: 'First Name',
                 hint: 'Enter First Name',
+                controller: controller.siteContactFirstNameController,
                 marginBottom: 0.012,
               ),
               CommonInput(
                 topLabelText: 'Last Name',
                 hint: 'Enter Last Name',
+                controller: controller.siteContactLastNameController,
                 marginBottom: 0.012,
               ),
               CommonInput(
                 topLabelText: 'Phone',
                 hint: 'Enter Phone',
+                controller: controller.siteContactPhoneController,
                 marginBottom: 0.012,
               ),
               CommonInput(
                 topLabelText: 'Email',
                 hint: 'Enter Email',
+                controller: controller.siteContactEmailController,
                 marginBottom: 0.012,
               ),
             ],

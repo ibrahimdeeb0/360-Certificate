@@ -20,6 +20,7 @@ class BillingAddress extends StatelessWidget {
           CommonText(
             'Billing Address',
             fontColor: AppColors.blue,
+            fontWeight: FontWeight.bold,
             marginTop: 0.02,
             marginBottom: 0.01,
             containerStyle: const CommonContainerModel(
@@ -31,6 +32,12 @@ class BillingAddress extends StatelessWidget {
             hint: ' Type Billing Address Here',
             controller: controller.customerBillingAddressController,
             marginBottom: 0.012,
+            onTap: () => Get.bottomSheet(
+              const SearchAddressBottomSheet(iDTitle: 1),
+              isScrollControlled: true,
+              elevation: 0.0,
+            ),
+            enabled: false,
           ),
           CommonInput(
             topLabel: const TopLabelText(

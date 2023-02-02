@@ -1,7 +1,7 @@
 class AppColors {
   // static int white = 0xffffffff;
   static int black = 0xff000000;
-  // static int black2 = 0xff333333;
+  static int black2 = 0xFF4F4F4F;
   // static int primary = 0xFFBF2132;
   // static int primaryOpacity = 0xFFF4F1EA;
   static int grey = 0xff979797;
@@ -19,7 +19,7 @@ class AppColors {
   static int colorBlack2 = 0xFF1E1E1E;
   static int colorBlack3 = 0xFF242424;
   static int black3 = 0xFF565656;
-  static int primary = 0xFF2593F7;
+  static int primary = 0xFF093358;
   static int pp = 0xFF1676CC; //0xFF1671C4;
   static int primaryOpacity = 0xFFDEEFFF; //0xFFF5F5F5 //0xFFDDDCDC
 
@@ -49,6 +49,7 @@ class AppColors {
   static int orangeOpacity = 0xFFFFFCF5;
 
   static int blue = 0xFF364CF7;
+  // static int blue = 0xFF3A5C79;
   static int blue2 = 0xFF134E6F;
   static int deepBlue = 0xFF3F23AD;
   static int blueOpacity = 0xFFF8FBFF;

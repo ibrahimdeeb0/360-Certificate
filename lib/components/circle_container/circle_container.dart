@@ -29,8 +29,9 @@ class CircleContainer extends StatelessWidget {
       marginBottom: marginBottom,
       marginTop: marginTop,
       onPress: onPress?.call,
+      //
       backgroundColor:
-          backgroundColor ?? Color(AppColors.grey).withOpacity(0.16),
+          backgroundColor ?? Color(AppColors.primary).withOpacity(0.1),
       size: circuitSize,
       boxShape: BoxShape.circle,
       alignment: AlignmentDirectional.center,

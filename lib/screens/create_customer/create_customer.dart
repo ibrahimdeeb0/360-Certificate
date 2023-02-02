@@ -52,8 +52,6 @@ class CreateCustomer extends StatelessWidget {
                                 onPress: controller.onBackNext,
                                 backgroundColor: AppColors.primaryOpacity,
                                 fontColor: AppColors.primary,
-                                borderWidth: 2,
-                                borderColor: AppColors.primary,
                               ),
                               CommonButton(
                                 text: 'Next',

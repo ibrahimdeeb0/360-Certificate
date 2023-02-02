@@ -148,6 +148,8 @@ const String iconTrue = '${iconsPath}icon_true.svg';
 const String iconForm = '${iconsPath}icon_form.svg';
 const String iconNote = '${iconsPath}icon_note.svg';
 const String iconFormTemplate = '${iconsPath}icon_form_template.svg';
+const String iconSubscription = '${iconsPath}subscription.svg';
+
 // ----------------------------------------
 
 const String imagesPath = 'assets/images/';
@@ -177,6 +179,7 @@ const String imageCircuitElectrical =
 
 const String imageEmailVerify = '${imagesPath}icon_email_verify.png';
 const String imageFormObserv = '${imagesPath}image_form_observ.png';
+const String imageHello = '${imagesPath}image_hello.png';
 // ----------------------------------------
 
 const String videosPath = 'assets/videos/';

@@ -14,6 +14,7 @@ class CustomerInfo extends StatelessWidget {
         CommonText(
           'Customer Info',
           fontColor: AppColors.blue,
+          fontWeight: FontWeight.bold,
           marginVertical: 0.02,
           containerStyle: const CommonContainerModel(
             alignment: AlignmentDirectional.centerStart,
@@ -49,6 +50,12 @@ class CustomerInfo extends StatelessWidget {
           hint: ' Type Address Here',
           marginBottom: 0.012,
           controller: controller.customerAddressController,
+          onTap: () => Get.bottomSheet(
+            const SearchAddressBottomSheet(iDTitle: 0),
+            isScrollControlled: true,
+            elevation: 0.0,
+          ),
+          enabled: false,
         ),
         CommonInput(
           topLabel: const TopLabelText(
