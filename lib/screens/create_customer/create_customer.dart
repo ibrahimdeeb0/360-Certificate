@@ -27,14 +27,14 @@ class CreateCustomer extends StatelessWidget {
                       child: Column(
                         children: <Widget>[
                           if (controller.currentIndex == 0)
-                            const CustomerInfo(),
+                            CustomerInfo(controller: controller),
                           //* Billing Address *//
                           if (controller.currentIndex == 0 &&
                               !controller.isSelectBilling)
-                            const BillingAddress(),
+                            BillingAddress(controller: controller),
                           //* Finance Details *//
                           if (controller.currentIndex == 0)
-                            const FinanceDetails(),
+                            FinanceDetails(controller: controller),
                           if (controller.currentIndex == 1)
                             CustomerContacts(controller: controller),
                           if (controller.currentIndex == 2)
