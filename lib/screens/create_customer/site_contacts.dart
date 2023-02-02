@@ -64,9 +64,10 @@ class SiteContacts extends StatelessWidget {
           topLabelText: 'Type',
           hint: 'Select Type',
           enabled: false,
+          value: controller.selectedClientTypeOnSiteContact,
           suffix: const Icon(Icons.keyboard_arrow_down),
           onTap: () => Get.bottomSheet(
-            SelectValueBT(
+            SelectTypeBT(
               controller: controller,
               listTitles: controller.contactType,
             ),

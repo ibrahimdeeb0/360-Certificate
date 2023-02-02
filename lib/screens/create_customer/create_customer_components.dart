@@ -87,8 +87,8 @@ class TopLabelText extends StatelessWidget {
   }
 }
 
-class SelectValueBT extends StatelessWidget {
-  const SelectValueBT({
+class SelectTypeBT extends StatelessWidget {
+  const SelectTypeBT({
     required this.listTitles,
     required this.controller,
     this.title,
@@ -111,6 +111,20 @@ class SelectValueBT extends StatelessWidget {
                 .map(
                   (String title) => CommonText(
                     title,
+                    onPress: () {
+                      if (controller.currentIndex == 0) {
+                        controller.selectedCustomerType = title;
+                        controller.update();
+                      } else if (controller.currentIndex == 1) {
+                        controller.selectedClientContactType = title;
+                        controller.update();
+                      } else if (controller.currentIndex == 3) {
+                        controller.selectedClientTypeOnSiteContact = title;
+                        controller.update();
+                      }
+                      hideKeyboard();
+                      Get.back();
+                    },
                     fontColor: AppColors.primary,
                     textAlign: TextAlign.center,
                     containerStyle: CommonContainerModel(
@@ -129,6 +143,56 @@ class SelectValueBT extends StatelessWidget {
             SizedBox(height: DEVICE_HEIGHT * 0.01),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class SelectPaymentTerm extends StatelessWidget {
+  const SelectPaymentTerm({
+    this.title,
+    super.key,
+  });
+  final String? title;
+
+  @override
+  Widget build(BuildContext context) {
+    return BottomSheetContainer(
+      title: title ?? 'Select Payment Term',
+      responsiveContent: true,
+      child: GetBuilder<CreateCustomerController>(
+        init: CreateCustomerController(),
+        builder: (CreateCustomerController controller) {
+          return SingleChildScrollView(
+            child: controller.allPaymentTerms.isNotEmpty
+                ? Column(
+                    children: <Widget>[
+                      SizedBox(height: DEVICE_HEIGHT * 0.03),
+                      ...controller.allPaymentTerms.map(
+                        (dynamic paymentTerms) => ListOfStrings(
+                          name: paymentTerms['name'],
+                          onPress: () {
+                            controller.selectedPaymentTerms = paymentTerms;
+                            Get.back();
+                            controller.update();
+                            consoleLog(controller.selectedPaymentTerms);
+                          },
+                        ),
+                      ),
+                      SizedBox(height: DEVICE_HEIGHT * 0.01),
+                    ],
+                  )
+                : CommonContainer(
+                    paddingTop: 0.1,
+                    paddingBottom: 0.1,
+                    width: 1,
+                    alignment: Alignment.center,
+                    child: CircularProgressIndicator(
+                      color: Color(AppColors.primary),
+                    ),
+                  ),
+          );
+        },
       ),
     );
   }

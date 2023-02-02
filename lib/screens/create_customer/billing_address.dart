@@ -26,43 +26,57 @@ class BillingAddress extends StatelessWidget {
               alignment: AlignmentDirectional.centerStart,
             ),
           ),
-          const CommonInput(
+          CommonInput(
             topLabelText: 'Billing Address',
             hint: ' Type Billing Address Here',
+            controller: controller.customerBillingAddressController,
             marginBottom: 0.012,
           ),
-          const CommonInput(
-            topLabel: TopLabelText(
+          CommonInput(
+            topLabel: const TopLabelText(
               text: 'Street Number And Name',
             ),
             hint: 'Street Number And Name',
+            controller: controller.customerBillingStreetController,
             marginBottom: 0.012,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const <Widget>[
+            children: <Widget>[
               CommonInput(
-                topLabel: TopLabelText(
+                topLabel: const TopLabelText(
                   text: 'City',
                 ),
                 hint: 'City ',
+                controller: controller.customerBillingCityController,
                 width: 0.43,
                 marginBottom: 0.012,
               ),
               CommonInput(
-                topLabel: TopLabelText(
+                topLabel: const TopLabelText(
                   text: 'Postcode',
                 ),
                 hint: 'Postcode',
+                controller: controller.customerBillingPostcodeController,
                 width: 0.43,
                 marginBottom: 0.012,
               ),
             ],
           ),
-          const CommonInput(
+          CommonInput(
             topLabelText: 'Country',
             hint: 'Select Country',
-            suffix: Icon(Icons.keyboard_arrow_down),
+            value: controller.billingSelectedCountry[keyName],
+            suffix: const Icon(Icons.keyboard_arrow_down),
+            onTap: () {
+              controller.getCountries();
+              Get.bottomSheet(
+                const SelectCountry2(),
+                isScrollControlled: true,
+                elevation: 0.0,
+              );
+            },
+            enabled: false,
             marginBottom: 0.012,
           ),
         ],

@@ -26,21 +26,31 @@ class FinanceDetails extends StatelessWidget {
               alignment: AlignmentDirectional.centerStart,
             ),
           ),
-          const CommonInput(
-            topLabel: TopLabelText(
+          CommonInput(
+            topLabel: const TopLabelText(
               text: 'Credit Limit',
             ),
             hint: 'Credit Limit',
+            controller: controller.customerFinanceCreditController,
             marginBottom: 0.012,
           ),
-          const CommonInput(
-            topLabel: TopLabelText(
+          CommonInput(
+            topLabel: const TopLabelText(
               text: 'Payment Terms',
             ),
             hint: 'Payment Terms',
+            value: controller.selectedPaymentTerms?[keyName] ?? '',
+            onTap: () {
+              controller.getPaymentTerms();
+              Get.bottomSheet(
+                const SelectPaymentTerm(),
+                elevation: 0.0,
+                isScrollControlled: true,
+              );
+            },
             marginBottom: 0.012,
             enabled: false,
-            suffix: Icon(Icons.keyboard_arrow_down),
+            suffix: const Icon(Icons.keyboard_arrow_down),
           ),
           CommonText(
             'Send Statements',

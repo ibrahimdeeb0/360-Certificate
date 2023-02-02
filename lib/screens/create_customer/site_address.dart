@@ -78,10 +78,18 @@ class SiteAddress extends StatelessWidget {
               CommonInput(
                 topLabelText: 'Country',
                 hint: 'Select Country',
-                marginBottom: 0.012,
+                value: controller.siteAddressSelectedCountry[keyName],
                 suffix: const Icon(Icons.keyboard_arrow_down),
-                onTap: () {},
+                onTap: () {
+                  controller.getCountries();
+                  Get.bottomSheet(
+                    const SelectCountry3(),
+                    isScrollControlled: true,
+                    elevation: 0.0,
+                  );
+                },
                 enabled: false,
+                marginBottom: 0.012,
               ),
               SizedBox(height: DEVICE_HEIGHT * 0.048),
             ],

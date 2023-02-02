@@ -12,34 +12,39 @@ class CustomerContacts extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        const CommonInput(
+        CommonInput(
           topLabelText: 'First Name',
           hint: 'Enter First Name',
+          controller: controller.clientContactFirstNameController,
           marginBottom: 0.012,
           marginTop: 0.01,
         ),
-        const CommonInput(
+        CommonInput(
           topLabelText: 'Last Name',
           hint: 'Enter Last Name',
+          controller: controller.clientContactLastNameController,
           marginBottom: 0.012,
         ),
-        const CommonInput(
+        CommonInput(
           topLabelText: 'Phone',
           hint: 'Enter Phone',
+          controller: controller.clientContactPhoneController,
           marginBottom: 0.012,
         ),
-        const CommonInput(
+        CommonInput(
           topLabelText: 'Email',
           hint: 'Enter Email',
+          controller: controller.clientContactEmailController,
           marginBottom: 0.012,
         ),
         CommonInput(
           topLabelText: 'Type',
           hint: 'Select Type',
+          value: controller.selectedClientContactType ?? '',
           enabled: false,
           suffix: const Icon(Icons.keyboard_arrow_down),
           onTap: () => Get.bottomSheet(
-            SelectValueBT(
+            SelectTypeBT(
               controller: controller,
               listTitles: controller.clientType,
             ),

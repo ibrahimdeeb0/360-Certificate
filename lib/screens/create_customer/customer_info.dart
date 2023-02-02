@@ -19,11 +19,12 @@ class CustomerInfo extends StatelessWidget {
             alignment: AlignmentDirectional.centerStart,
           ),
         ),
-        const CommonInput(
-          topLabel: TopLabelText(
+        CommonInput(
+          topLabel: const TopLabelText(
             text: 'Customer/ Company Name',
           ),
           hint: 'Enter Customer/ Company Name',
+          controller: controller.customerNameController,
           marginBottom: 0.012,
         ),
         CommonInput(
@@ -31,10 +32,11 @@ class CustomerInfo extends StatelessWidget {
             text: 'Customer Type',
           ),
           hint: 'Select Customer Type',
+          value: controller.selectedCustomerType,
           enabled: false,
           marginBottom: 0.012,
           onTap: () => Get.bottomSheet(
-            SelectValueBT(
+            SelectTypeBT(
               controller: controller,
               listTitles: controller.customerType,
             ),
@@ -42,34 +44,38 @@ class CustomerInfo extends StatelessWidget {
           ),
           suffix: const Icon(Icons.keyboard_arrow_down),
         ),
-        const CommonInput(
+        CommonInput(
           topLabelText: 'Type Address',
           hint: ' Type Address Here',
           marginBottom: 0.012,
+          controller: controller.customerAddressController,
         ),
-        const CommonInput(
-          topLabel: TopLabelText(
+        CommonInput(
+          topLabel: const TopLabelText(
             text: 'Street Number And Name',
           ),
           hint: 'Street Number And Name',
           marginBottom: 0.012,
+          controller: controller.customerStreetController,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: const <Widget>[
+          children: <Widget>[
             CommonInput(
-              topLabel: TopLabelText(
+              topLabel: const TopLabelText(
                 text: 'City',
               ),
               hint: 'City ',
+              controller: controller.customerCityController,
               width: 0.43,
               marginBottom: 0.012,
             ),
             CommonInput(
-              topLabel: TopLabelText(
+              topLabel: const TopLabelText(
                 text: 'Postcode',
               ),
               hint: 'Postcode',
+              controller: controller.customerPostcodeController,
               width: 0.43,
               marginBottom: 0.012,
             ),
@@ -77,11 +83,19 @@ class CustomerInfo extends StatelessWidget {
         ),
         CommonInput(
           topLabelText: 'Country',
-          hint: 'SelectCountry',
+          hint: 'Select Country',
+          value: controller.customerSelectedCountry[keyName],
           marginBottom: 0.012,
           suffix: const Icon(Icons.keyboard_arrow_down),
           enabled: false,
-          onTap: () {},
+          onTap: () {
+            controller.getCountries();
+            Get.bottomSheet(
+              const SelectCountry1(),
+              isScrollControlled: true,
+              elevation: 0.0,
+            );
+          },
         ),
         CommonText(
           'Customer Details Are The Same As The Billing Details ?',
