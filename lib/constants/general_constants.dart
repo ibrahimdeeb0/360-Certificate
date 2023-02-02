@@ -30,10 +30,11 @@ const String testImage =
 int? unReadNotifications = 0;
 
 int toHome = 0;
-int toCertificates = 1;
+int toInvoices = 1;
+int toCertificates = 2;
 // int toMyCars = 2;
 // int toNotifications = 3;
-int toMore = 2;
+int toMore = 3;
 
 // padding Top Content Screen
 double paddingTopScreens = DEVICE_HEIGHT * 0.03;

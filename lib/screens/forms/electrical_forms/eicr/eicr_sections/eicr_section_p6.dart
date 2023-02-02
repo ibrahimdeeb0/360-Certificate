@@ -307,6 +307,7 @@ class EICRSectionF extends StatelessWidget {
                       controller: controller,
                     ),
                     isScrollControlled: true,
+                    elevation: 0.0,
                   ),
                 ),
                 SmallInputField(
@@ -398,6 +399,7 @@ class EICRSectionF extends StatelessWidget {
                       keyOfValue: formKeyBSF,
                       controller: controller,
                     ),
+                    elevation: 0.0,
                   ),
                 ),
                 SmallInputField(
@@ -410,6 +412,7 @@ class EICRSectionF extends StatelessWidget {
                       keyOfValue: formKeyTypeF,
                       controller: controller,
                     ),
+                    elevation: 0.0,
                   ),
                   isInputSelection: true,
                 ),
@@ -423,6 +426,7 @@ class EICRSectionF extends StatelessWidget {
                       keyOfValue: formKeyRatedCurrentF,
                       controller: controller,
                     ),
+                    elevation: 0.0,
                   ),
                   isInputSelection: true,
                 ),

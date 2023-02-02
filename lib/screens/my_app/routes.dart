@@ -57,4 +57,8 @@ List<GetPage<dynamic>> appRoutes = <GetPage<dynamic>>[
     transition: Transition.downToUp,
     transitionDuration: const Duration(milliseconds: 400),
   ),
+  GetPage<Invoices>(
+    name: routeInvoices,
+    page: () => const Invoices(),
+  ),
 ];

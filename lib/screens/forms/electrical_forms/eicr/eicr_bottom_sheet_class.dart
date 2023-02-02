@@ -31,6 +31,7 @@ class EICRSelectBT extends StatelessWidget {
                                 keyOfValue: keyOfValue,
                               ),
                               isScrollControlled: true,
+                              elevation: 0.0,
                             )
                         : () {
                             if (controller.gazSafetyData

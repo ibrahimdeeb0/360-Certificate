@@ -14,30 +14,34 @@ class Forms extends StatelessWidget {
           ),
           body: CommonContainer(
             style: appContainerStyles.containerStyles,
-            child: Column(
-              children: <Widget>[
-                SizedBox(
-                  height: DEVICE_HEIGHT * 0.03,
-                ),
-                ...homeBottomBarController.bottomBarItems
-                    .map(
-                      (dynamic item) => ExpandableTile(
-                        title: item[keyTitle],
-                        titleColor: AppColors.primary,
-                        children: <Widget>[
-                          ...item[keyItems]
-                              .map(
-                                (dynamic childe) => ChildeItems(
-                                  text: childe[keyTitle],
-                                  onPress: childe[keyOnPress],
-                                ),
-                              )
-                              .toList(),
-                        ],
-                      ),
-                    )
-                    .toList(),
-              ],
+            paddingHorizontal: 0.02,
+            child: SingleChildScrollView(
+              child: Column(
+                children: <Widget>[
+                  SizedBox(
+                    height: DEVICE_HEIGHT * 0.02,
+                  ),
+                  ...homeBottomBarController.bottomBarItems
+                      .map(
+                        (dynamic item) => ExpandableTile(
+                          title: item[keyTitle],
+                          titleColor: AppColors.primary,
+                          children: <Widget>[
+                            ...item[keyItems]
+                                .map(
+                                  (dynamic childe) => ChildeItems(
+                                    text: childe[keyTitle],
+                                    onPress: childe[keyOnPress],
+                                  ),
+                                )
+                                .toList(),
+                          ],
+                        ),
+                      )
+                      .toList(),
+                  SizedBox(height: DEVICE_HEIGHT * 0.02),
+                ],
+              ),
             ),
           ),
         );

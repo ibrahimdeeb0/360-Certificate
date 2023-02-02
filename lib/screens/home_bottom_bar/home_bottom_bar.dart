@@ -116,7 +116,13 @@ class HomeBottomBar extends StatelessWidget {
                 child: const Home(),
               ),
 
-              // Notifications
+              // Invoices
+              Visibility(
+                visible: controller.selectedIndex == toInvoices,
+                child: const Invoices(),
+              ),
+
+              // Certificates
               Visibility(
                 visible: controller.selectedIndex == toCertificates,
                 child: const Certificates(),
@@ -139,9 +145,28 @@ class HomeBottomBar extends StatelessWidget {
             shadowColor: COMMON_GREY_COLOR,
             child: BottomNavigationBar(
               items: <BottomNavigationBarItem>[
-                const BottomNavigationBarItem(
-                  icon: Icon(Icons.home),
+                BottomNavigationBarItem(
+                  icon: SvgPicture.asset(
+                    iconHome,
+                    width: DEVICE_WIDTH * 0.05,
+                    height: DEVICE_WIDTH * 0.05,
+                    color: controller.selectedIndex == toHome
+                        ? Color(AppColors.primary)
+                        : Colors.grey[600],
+                  ),
                   label: 'Home',
+                ),
+                BottomNavigationBarItem(
+                  // icon: Icon(Icons.business),
+                  icon: SvgPicture.asset(
+                    iconInvoice,
+                    width: DEVICE_WIDTH * 0.05,
+                    height: DEVICE_WIDTH * 0.05,
+                    color: controller.selectedIndex == toInvoices
+                        ? Color(AppColors.primary)
+                        : Colors.grey[600],
+                  ),
+                  label: 'Invoices',
                 ),
                 BottomNavigationBarItem(
                   // icon: Icon(Icons.business),
@@ -149,14 +174,25 @@ class HomeBottomBar extends StatelessWidget {
                     iconCertificates,
                     width: DEVICE_WIDTH * 0.05,
                     height: DEVICE_WIDTH * 0.05,
-                    color: controller.selectedIndex == 1
+                    color: controller.selectedIndex == toCertificates
                         ? Color(AppColors.primary)
                         : Colors.grey[600],
                   ),
                   label: 'Certificates',
                 ),
-                const BottomNavigationBarItem(
-                  icon: Icon(Icons.more_horiz),
+                BottomNavigationBarItem(
+                  // icon: Icon(Icons.business),
+                  icon: Padding(
+                    padding: EdgeInsets.only(bottom: DEVICE_HEIGHT * 0.01),
+                    child: SvgPicture.asset(
+                      iconMore,
+                      width: DEVICE_WIDTH * 0.015,
+                      height: DEVICE_WIDTH * 0.015,
+                      color: controller.selectedIndex == toMore
+                          ? Color(AppColors.primary)
+                          : Colors.grey[600],
+                    ),
+                  ),
                   label: 'More',
                 ),
               ],
@@ -164,6 +200,11 @@ class HomeBottomBar extends StatelessWidget {
               selectedItemColor: Color(AppColors.primary),
               onTap: controller.onChangeIndex,
               elevation: 10.0,
+              type: BottomNavigationBarType.fixed,
+              selectedLabelStyle: const TextStyle(
+                  fontFamily: 'Careem', fontWeight: FontWeight.bold),
+              unselectedLabelStyle: const TextStyle(
+                  fontFamily: 'Careem', fontWeight: FontWeight.bold),
             ),
           ),
         );

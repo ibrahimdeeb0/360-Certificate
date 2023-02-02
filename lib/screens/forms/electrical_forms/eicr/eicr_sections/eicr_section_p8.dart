@@ -36,6 +36,7 @@ class EICRSectionH extends StatelessWidget {
                 keyOfValue: formKeyConductorMaterialH1,
                 controller: controller,
               ),
+              elevation: 0.0,
             ),
           ),
           SmallInputField(
@@ -47,6 +48,7 @@ class EICRSectionH extends StatelessWidget {
                 keyOfValue: formKeyConductorCsaH1,
                 controller: controller,
               ),
+              elevation: 0.0,
             ),
             isInputSelection: true,
             suffix: SvgPicture.asset(
@@ -80,6 +82,7 @@ class EICRSectionH extends StatelessWidget {
                 keyOfValue: formKeyConductorMaterialH2,
                 controller: controller,
               ),
+              elevation: 0.0,
             ),
           ),
           SmallInputField(
@@ -91,6 +94,7 @@ class EICRSectionH extends StatelessWidget {
                 keyOfValue: formKeyConductorCsaH2,
                 controller: controller,
               ),
+              elevation: 0.0,
             ),
             isInputSelection: true,
             suffix: SvgPicture.asset(

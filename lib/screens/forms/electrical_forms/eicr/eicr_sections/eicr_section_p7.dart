@@ -46,6 +46,7 @@ class EICRSectionG extends StatelessWidget {
                 keyOfValue: formKeyTypeG,
                 controller: controller,
               ),
+              elevation: 0.0,
             ),
             title: 'Type',
             value: controller.gazSafetyData[formKeyTypeG],

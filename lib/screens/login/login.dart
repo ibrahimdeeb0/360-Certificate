@@ -38,11 +38,11 @@ class Login extends StatelessWidget {
                 child: Column(
                   children: <Widget>[
                     CommonText(
-                      'Login',
-                      style: appTextStyles.h1StyleBlack().copyWith(
-                            fontWeight: FontWeight.w400,
-                            columnCrossAxisAlignment: CrossAxisAlignment.start,
-                          ),
+                      'Login your account',
+                      fontWeight: FontWeight.w500,
+                      columnCrossAxisAlignment: CrossAxisAlignment.start,
+                      fontSize: fontH1,
+                      fontColor: AppColors.black3,
                       containerStyle: const CommonContainerModel(
                         width: 1,
                         marginTop: 0.01,
@@ -125,6 +125,7 @@ class Login extends StatelessWidget {
                         alignment: Alignment.topLeft,
                       ),
                       rightChild: CommonText(
+                        onPress: () {},
                         // onPress: () {
                         //   Get.to(() => const RegisterScreen());
                         //   // Get.to(() => const EmailVerifyScreen());
@@ -133,7 +134,8 @@ class Login extends StatelessWidget {
                           touchEffect:
                               TouchableEffect(type: TouchTypes.opacity),
                         ),
-                        'Register',
+                        'Create a new account',
+                        fontColor: AppColors.primary,
                       ),
                     ),
                   ],

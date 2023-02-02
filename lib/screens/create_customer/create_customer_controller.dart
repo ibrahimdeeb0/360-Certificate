@@ -130,9 +130,7 @@ class CreateCustomerController extends GetxController {
 
   void onPressNext() {
     if (currentIndex == 3) {
-      showMessage(
-        description: 'This Last Screen',
-      );
+      Get.toNamed(routeForms);
     } else {
       currentIndex = currentIndex + 1;
       update();

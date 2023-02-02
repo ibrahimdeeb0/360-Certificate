@@ -33,6 +33,7 @@ class EICRSectionA extends StatelessWidget {
                   keyOfValue: formKeyReasonProducingA,
                   listTitles: formList.listReasonsSuggestions,
                 ),
+                elevation: 0.0,
               ),
               iconWidget: const Icon(
                 Icons.filter_list,

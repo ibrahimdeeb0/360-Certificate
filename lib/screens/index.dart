@@ -5,6 +5,7 @@ export 'edit_profile/index.dart';
 export 'forms/index.dart';
 export 'home/index.dart';
 export 'home_bottom_bar/index.dart';
+export 'invoices/index.dart';
 export 'language/index.dart';
 export 'login/index.dart';
 export 'more/index.dart';

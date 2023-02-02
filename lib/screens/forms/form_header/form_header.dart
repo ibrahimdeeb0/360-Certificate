@@ -99,13 +99,13 @@ class CircleNumbering extends StatelessWidget {
               end: 1,
             ),
             duration: const Duration(milliseconds: 700),
-            builder: (BuildContext context, double value, _) =>
-                const CommonContainer(
+            builder: (BuildContext context, double value, _) => CommonContainer(
               boxShape: BoxShape.circle,
               size: 0.11,
               child: CircularProgressIndicator(
                 value: 1,
                 strokeWidth: 3.0,
+                color: Color(AppColors.primary),
               ),
             ),
           ),
