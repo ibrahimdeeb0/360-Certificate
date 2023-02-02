@@ -59,6 +59,7 @@ class FinanceDetails extends StatelessWidget {
                   },
                 ),
               ),
+              SizedBox(height: DEVICE_HEIGHT * 0.03),
             ],
           ),
         );

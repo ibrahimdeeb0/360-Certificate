@@ -19,64 +19,50 @@ class CreateCustomer extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                CommonText(
-                  'Customer Details',
-                  fontWeight: FontWeight.bold,
-                  fontColor: AppColors.primary,
-                  rowMainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  containerStyle: CommonContainerModel(
-                    width: 1,
-                    paddingHorizontal: 0.04,
-                    paddingVertical: 0.016,
-                    backgroundColor: AppColors.greyLight,
-                  ),
-                  rightChild: Stack(
-                    alignment: Alignment.center,
-                    children: <Widget>[
-                      TweenAnimationBuilder<double>(
-                        tween: Tween<double>(
-                          begin: 0.0,
-                          end: 1,
-                          // end: controller.selectedAddCustomerId == 0
-                          //     ? 0.25
-                          //     : controller.selectedAddCustomerId == 1
-                          //         ? 0.5
-                          //         : controller.selectedAddCustomerId == 2
-                          //             ? 0.75
-                          //             : 1,
-                        ),
-                        duration: const Duration(milliseconds: 700),
-                        builder: (BuildContext context, double value, _) =>
-                            CircularProgressIndicator(value: value),
-                      ),
-                      const Align(
-                        child: CommonText(
-                          '1/1',
-                          // controller.selectedAddCustomerId == 0
-                          //     ? '1/4'
-                          //     : controller.selectedAddCustomerId == 1
-                          //         ? '2/4'
-                          //         : controller.selectedAddCustomerId == 2
-                          //             ? '3/4'
-                          //             : '4/4',
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                HeaderTitleCard(controller: controller),
                 Expanded(
                   child: CommonContainer(
                     paddingHorizontal: 0.04,
                     child: SingleChildScrollView(
                       child: Column(
                         children: <Widget>[
-                          const CustomerInfo(),
+                          if (controller.currentIndex == 0)
+                            const CustomerInfo(),
                           //* Billing Address *//
-                          if (!controller.isSelectBilling)
+                          if (controller.currentIndex == 0 &&
+                              !controller.isSelectBilling)
                             const BillingAddress(),
                           //* Finance Details *//
-                          const FinanceDetails(),
-                          SizedBox(height: DEVICE_HEIGHT * 0.02),
+                          if (controller.currentIndex == 0)
+                            const FinanceDetails(),
+                          if (controller.currentIndex == 1)
+                            CustomerContacts(controller: controller),
+                          if (controller.currentIndex == 2)
+                            SiteAddress(controller: controller),
+                          if (controller.currentIndex == 3)
+                            SiteContacts(controller: controller),
+
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              CommonButton(
+                                text: 'Back',
+                                width: 0.44,
+                                marginBottom: 0.02,
+                                onPress: controller.onBackNext,
+                                backgroundColor: AppColors.primaryOpacity,
+                                fontColor: AppColors.primary,
+                                borderWidth: 2,
+                                borderColor: AppColors.primary,
+                              ),
+                              CommonButton(
+                                text: 'Next',
+                                width: 0.44,
+                                marginBottom: 0.02,
+                                onPress: controller.onPressNext,
+                              ),
+                            ],
+                          ),
                         ],
                       ),
                     ),
@@ -86,6 +72,65 @@ class CreateCustomer extends StatelessWidget {
             ),
           );
         },
+      ),
+    );
+  }
+}
+
+class HeaderTitleCard extends StatelessWidget {
+  const HeaderTitleCard({
+    required this.controller,
+    super.key,
+  });
+
+  final CreateCustomerController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return CommonText(
+      controller.titleName(),
+      fontWeight: FontWeight.bold,
+      fontColor: AppColors.primary,
+      rowMainAxisAlignment: MainAxisAlignment.spaceBetween,
+      containerStyle: CommonContainerModel(
+        width: 1,
+        paddingHorizontal: 0.04,
+        paddingVertical: 0.016,
+        backgroundColor: AppColors.greyLight,
+      ),
+      rightChild: Stack(
+        alignment: Alignment.center,
+        children: <Widget>[
+          TweenAnimationBuilder<double>(
+            tween: Tween<double>(
+              begin: 0.0,
+              end: controller.currentIndex == 0
+                  ? 0.25
+                  : controller.currentIndex == 1
+                      ? 0.5
+                      : controller.currentIndex == 2
+                          ? 0.75
+                          : 1,
+            ),
+            duration: const Duration(milliseconds: 700),
+            builder: (BuildContext context, double value, _) =>
+                CircularProgressIndicator(
+              value: value,
+              color: Color(AppColors.primary),
+            ),
+          ),
+          Align(
+            child: CommonText(
+              controller.currentIndex == 0
+                  ? '1/4'
+                  : controller.currentIndex == 1
+                      ? '2/4'
+                      : controller.currentIndex == 2
+                          ? '3/4'
+                          : '4/4',
+            ),
+          ),
+        ],
       ),
     );
   }

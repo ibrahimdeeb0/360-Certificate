@@ -100,8 +100,14 @@ class HomeBottomBar extends StatelessWidget {
               // );
             },
             tooltip: 'Create',
-            icon: const Icon(Icons.add),
-            label: const Text('Create'),
+            icon: const Icon(
+              Icons.add,
+              color: Colors.white,
+            ),
+            label: const CommonText(
+              'Create',
+              fontColor: Colors.white,
+            ),
           ),
           body: Stack(
             children: <Widget>[

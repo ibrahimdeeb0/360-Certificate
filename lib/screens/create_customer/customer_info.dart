@@ -37,6 +37,7 @@ class CustomerInfo extends StatelessWidget {
                   controller: controller,
                   listTitles: controller.customerType,
                 ),
+                elevation: 0.0,
               ),
               suffix: const Icon(Icons.keyboard_arrow_down),
             ),
@@ -73,10 +74,13 @@ class CustomerInfo extends StatelessWidget {
                 ),
               ],
             ),
-            const CommonInput(
+            CommonInput(
               topLabelText: 'Country',
-              hint: 'Country',
+              hint: 'SelectCountry',
               marginBottom: 0.012,
+              suffix: const Icon(Icons.keyboard_arrow_down),
+              enabled: false,
+              onTap: () {},
             ),
             CommonText(
               'Customer Details Are The Same As The Billing Details ?',
