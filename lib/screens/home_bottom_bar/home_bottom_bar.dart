@@ -183,7 +183,10 @@ class HomeBottomBar extends StatelessWidget {
                 BottomNavigationBarItem(
                   // icon: Icon(Icons.business),
                   icon: Padding(
-                    padding: EdgeInsets.only(bottom: DEVICE_HEIGHT * 0.01),
+                    padding: EdgeInsets.only(
+                      bottom: DEVICE_HEIGHT * 0.006,
+                      top: DEVICE_HEIGHT * 0.009,
+                    ),
                     child: SvgPicture.asset(
                       iconMore,
                       width: DEVICE_WIDTH * 0.015,

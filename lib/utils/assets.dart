@@ -149,6 +149,9 @@ const String iconForm = '${iconsPath}icon_form.svg';
 const String iconNote = '${iconsPath}icon_note.svg';
 const String iconFormTemplate = '${iconsPath}icon_form_template.svg';
 const String iconSubscription = '${iconsPath}subscription.svg';
+const String iconOutCerts = '${iconsPath}icon_out_certs.svg';
+const String iconPendingCerts = '${iconsPath}icon_pending_certs.svg';
+const String iconOutInvoices = '${iconsPath}icon_out_invoices.svg';
 
 // ----------------------------------------
 

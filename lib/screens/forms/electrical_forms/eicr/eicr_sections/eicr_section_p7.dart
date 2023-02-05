@@ -63,7 +63,6 @@ class EICRSectionG extends StatelessWidget {
             ),
             keyboardType: TextInputType.number,
             textInputAction: TextInputAction.next,
-            paddingHorizontal: 0.0,
           ),
           CommonInput(
             topLabelText: 'Location of the earth electrode',

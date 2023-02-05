@@ -125,10 +125,12 @@ class ObservationDetailsController extends GetxController {
 
   void onSaveObservationValues() {
     if (selectImage != null) {
-      Get.find<EicrController>().onAddImage({
-        'id': selectedObservation!['id'],
-        'image': selectImage,
-      });
+      Get.find<EicrController>().onAddImage(
+        <String, dynamic>{
+          'id': selectedObservation!['id'],
+          'image': selectImage,
+        },
+      );
     }
     selectedObservation = observationData;
 

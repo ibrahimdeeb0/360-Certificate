@@ -56,4 +56,8 @@ class AppColors {
   static int headerBlue = 0xFF3D3C80;
 
   static int arrowColor = 0xFF43425D;
+
+  static int homeClr1 = 0xFFFFD697;
+  static int homeClr2 = 0xFFDFF2C9;
+  static int homeClr3 = 0xFFE2DEDA;
 }

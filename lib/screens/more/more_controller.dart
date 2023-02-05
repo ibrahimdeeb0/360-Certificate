@@ -11,22 +11,22 @@ class MoreController extends GetxController {
     <String, dynamic>{
       keyTitle: 'Customers',
       keyIcon: iconCustomers,
-      keyOnPress: () {},
+      keyOnPress: () => Get.toNamed(routeCustomers),
     },
     <String, dynamic>{
       keyTitle: 'Form Templates',
       keyIcon: iconFormTemplate,
-      keyOnPress: () {},
+      keyOnPress: () => Get.toNamed(routeFormTemplates),
     },
     <String, dynamic>{
       keyTitle: 'My Settings',
       keyIcon: iconSettings,
-      keyOnPress: () {},
+      keyOnPress: () => Get.toNamed(routeMySettings),
     },
     <String, dynamic>{
       keyTitle: 'My Subscription',
       keyIcon: iconSubscription,
-      keyOnPress: () {},
+      keyOnPress: () => Get.toNamed(routeMySubscription),
     },
     <String, dynamic>{
       keyTitle: 'Logout',
