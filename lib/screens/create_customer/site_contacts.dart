@@ -39,33 +39,47 @@ class SiteContacts extends StatelessWidget {
           Column(
             children: <Widget>[
               CommonInput(
-                topLabelText: 'First Name',
+                topLabel: const TopLabelText(
+                  text: 'First Name',
+                ),
                 hint: 'Enter First Name',
                 controller: controller.siteContactFirstNameController,
+                keyboardType: TextInputType.name,
                 marginBottom: 0.012,
               ),
               CommonInput(
-                topLabelText: 'Last Name',
+                topLabel: const TopLabelText(
+                  text: 'Last Name',
+                ),
                 hint: 'Enter Last Name',
                 controller: controller.siteContactLastNameController,
+                keyboardType: TextInputType.name,
                 marginBottom: 0.012,
               ),
               CommonInput(
-                topLabelText: 'Phone',
+                topLabel: const TopLabelText(
+                  text: 'Phone',
+                ),
                 hint: 'Enter Phone',
                 controller: controller.siteContactPhoneController,
+                keyboardType: TextInputType.phone,
                 marginBottom: 0.012,
               ),
               CommonInput(
-                topLabelText: 'Email',
+                topLabel: const TopLabelText(
+                  text: 'Email',
+                ),
                 hint: 'Enter Email',
                 controller: controller.siteContactEmailController,
+                keyboardType: TextInputType.emailAddress,
                 marginBottom: 0.012,
               ),
             ],
           ),
         CommonInput(
-          topLabelText: 'Type',
+          topLabel: const TopLabelText(
+            text: 'Type',
+          ),
           hint: 'Select Type',
           enabled: false,
           value: controller.selectedClientTypeOnSiteContact,
@@ -80,10 +94,10 @@ class SiteContacts extends StatelessWidget {
         ),
         //
         if (controller.radioSiteContact == true)
-          SizedBox(height: DEVICE_HEIGHT * 0.498),
+          SizedBox(height: DEVICE_HEIGHT * 0.497),
 
         if (controller.radioSiteContact == false)
-          SizedBox(height: DEVICE_HEIGHT * 0.034),
+          SizedBox(height: DEVICE_HEIGHT * 0.033),
       ],
     );
   }

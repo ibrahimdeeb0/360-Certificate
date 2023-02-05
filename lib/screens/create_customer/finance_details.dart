@@ -28,9 +28,7 @@ class FinanceDetails extends StatelessWidget {
             ),
           ),
           CommonInput(
-            topLabel: const TopLabelText(
-              text: 'Credit Limit',
-            ),
+            topLabelText: 'Credit Limit',
             hint: 'Credit Limit',
             controller: controller.customerFinanceCreditController,
             marginBottom: 0.012,

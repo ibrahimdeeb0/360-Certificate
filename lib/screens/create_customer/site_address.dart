@@ -35,7 +35,9 @@ class SiteAddress extends StatelessWidget {
           ),
         ),
         CommonInput(
-          topLabelText: 'Site Name',
+          topLabel: const TopLabelText(
+            text: 'Site Name',
+          ),
           hint: 'Site Name',
           controller: controller.siteAddressSiteNameController1,
           marginBottom: 0.012,

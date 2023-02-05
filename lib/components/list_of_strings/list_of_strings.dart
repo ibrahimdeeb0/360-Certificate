@@ -1,5 +1,3 @@
-import 'package:flutter_svg/flutter_svg.dart';
-
 import '../../general_exports.dart';
 
 class ListOfStrings extends StatelessWidget {
@@ -23,13 +21,14 @@ class ListOfStrings extends StatelessWidget {
     return CommonText(
       name ?? '',
       onPress: onPress ?? () {},
-      style: appTextStyles.h3StyleBlack().copyWith(
-            rowMainAxisSize: MainAxisSize.max,
-            textAlign: TextAlign.start,
-            fontSize: nameSize ?? fontH3,
-          ),
+      rowMainAxisSize: MainAxisSize.max,
+      textAlign: TextAlign.start,
+      fontSize: nameSize ?? fontH3,
+      maxLines: 2,
+      overflow: TextOverflow.ellipsis,
       containerStyle: CommonContainerModel(
-        //paddingHorizontal: 0.04,
+        alignment: AlignmentDirectional.topStart,
+        width: 1,
         marginHorizontal: 0.01,
         paddingVertical: 0.02,
         paddingRight: 0.015,
@@ -37,16 +36,17 @@ class ListOfStrings extends StatelessWidget {
         borderBottomWidth: 1,
         borderBottomColor: Color(AppColors.grey).withOpacity(0.3),
       ),
-      leftChild: Padding(
-        padding: EdgeInsets.only(right: DEVICE_WIDTH * 0.03),
-        child: withLeftIcon
-            ? SvgPicture.asset(
-                leftIcon!,
-                width: 30,
-                height: 30,
-              )
-            : const SizedBox(),
-      ),
+      bottomChild: const SizedBox(),
+      // leftChild: Padding(
+      //   padding: EdgeInsets.only(right: DEVICE_WIDTH * 0.03),
+      //   child: withLeftIcon
+      //       ? SvgPicture.asset(
+      //           leftIcon!,
+      //           width: 30,
+      //           height: 30,
+      //         )
+      //       : const SizedBox(),
+      // ),
     );
   }
 }

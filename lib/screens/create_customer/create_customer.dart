@@ -49,7 +49,7 @@ class CreateCustomer extends StatelessWidget {
                                 text: 'Back',
                                 width: 0.44,
                                 marginBottom: 0.02,
-                                onPress: controller.onBackNext,
+                                onPress: controller.onPressBack,
                                 backgroundColor: AppColors.primaryOpacity,
                                 fontColor: AppColors.primary,
                               ),

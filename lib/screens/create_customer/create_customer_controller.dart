@@ -7,8 +7,8 @@ class CreateCustomerController extends GetxController {
 
   bool isSelectBilling = true;
   bool isSendStatements = false;
-  bool radioSiteAddress = false;
-  bool radioSiteContact = false;
+  bool radioSiteAddress = true;
+  bool radioSiteContact = true;
 
   List<String> customerType = <String>[
     'Commercial',
@@ -114,6 +114,8 @@ class CreateCustomerController extends GetxController {
   List<dynamic>? filterBillingCountries;
   List<dynamic>? filterSiteAddressCountries;
 
+  List<dynamic> allPaymentTerms = <dynamic>[];
+
   //* ----- Map
 
   final Dio _dio = Dio();
@@ -126,19 +128,26 @@ class CreateCustomerController extends GetxController {
   Map<String, dynamic>? addressDetails = <String, dynamic>{};
 
   //*---------------Functions -----------------*//
-  List<dynamic> allPaymentTerms = <dynamic>[];
+  bool validValue = false;
 
   void onPressNext() {
-    if (currentIndex == 3) {
-      Get.toNamed(routeForms);
+    screensValidation();
+
+    if (validValue) {
+      if (currentIndex == 3) {
+        Get.toNamed(routeForms);
+      } else {
+        currentIndex = currentIndex + 1;
+        update();
+      }
     } else {
-      currentIndex = currentIndex + 1;
-      update();
-      consoleLog(currentIndex);
+      showMessage(
+        description: 'Please fill all required fields',
+      );
     }
   }
 
-  void onBackNext() {
+  void onPressBack() {
     if (currentIndex == 0) {
       Get.back();
     } else {
@@ -160,7 +169,64 @@ class CreateCustomerController extends GetxController {
     }
   }
 
+  bool screensValidation() {
+    if (currentIndex == 0) {
+      validValue = isSelectBilling
+          // If Yes
+          ? customerNameController.text.isNotEmpty &&
+              selectedCustomerType != null &&
+              customerStreetController.text.isNotEmpty &&
+              customerCityController.text.isNotEmpty &&
+              customerPostcodeController.text.isNotEmpty &&
+              selectedPaymentTerms != null
+          // If No
+          : customerNameController.text.isNotEmpty &&
+              selectedCustomerType != null &&
+              customerStreetController.text.isNotEmpty &&
+              customerCityController.text.isNotEmpty &&
+              customerPostcodeController.text.isNotEmpty &&
+              selectedPaymentTerms != null &&
+              customerBillingStreetController.text.isNotEmpty &&
+              customerBillingCityController.text.isNotEmpty &&
+              customerBillingPostcodeController.text.isNotEmpty;
+
+      return validValue;
+    } else if (currentIndex == 1) {
+      validValue = clientContactFirstNameController.text.isNotEmpty &&
+          clientContactLastNameController.text.isNotEmpty &&
+          clientContactPhoneController.text.isNotEmpty &&
+          clientContactEmailController.text.isNotEmpty &&
+          selectedClientContactType != null;
+
+      return validValue;
+    } else if (currentIndex == 2) {
+      validValue = radioSiteAddress
+          // If Yes
+          ? siteAddressSiteNameController1.text.isNotEmpty
+          // If No
+          : siteAddressSiteNameController1.text.isNotEmpty &&
+              siteAddressStreetController.text.isNotEmpty &&
+              siteAddressCityController.text.isNotEmpty &&
+              siteAddressPostcodeController.text.isNotEmpty;
+
+      return validValue;
+    } else {
+      validValue = radioSiteContact
+          // If Yes
+          ? selectedClientTypeOnSiteContact != null
+          // If No
+          : selectedClientTypeOnSiteContact != null &&
+              siteContactFirstNameController.text.isNotEmpty &&
+              siteContactLastNameController.text.isNotEmpty &&
+              siteContactPhoneController.text.isNotEmpty &&
+              siteContactEmailController.text.isNotEmpty;
+
+      return validValue;
+    }
+  }
+
   //*----------------- On Search and Filter Countries ----------------*//
+
   void onSearchCountries(String searchValue) {
     filterAllCountries = allCountries
         .where((dynamic country) =>
@@ -255,7 +321,7 @@ class CreateCustomerController extends GetxController {
     update();
   }
 
-  //**---------- *//
+  //* ---------- *//
 
   //* Searching for Address using Autocomplete *//
   void onSearchingAddress(String value) {
@@ -419,6 +485,26 @@ class CreateCustomerController extends GetxController {
               lat: addressLat,
               lng: addressLng,
             );
+            // Auto Fill Billing Address
+            setCustomerBillingAddressData(
+              addressName: data['result']['formatted_address'] ?? '',
+              cityName: addressDetails!['locality'] ?? '',
+              countryName: addressDetails!['country'] ?? '',
+              postCode: addressDetails!['postal_codes'] ?? '',
+              streetName: addressDetails!['route'] ?? '',
+              streetNum: addressDetails!['street_number'] ?? '',
+            );
+            // Auto Fill Site Address
+            setCustomerSiteAddressData(
+              addressName: data['result']['formatted_address'] ?? '',
+              cityName: addressDetails!['locality'] ?? '',
+              countryName: addressDetails!['country'] ?? '',
+              postCode: addressDetails!['postal_codes'] ?? '',
+              streetName: addressDetails!['route'] ?? '',
+              streetNum: addressDetails!['street_number'] ?? '',
+              lat: addressLat,
+              lng: addressLng,
+            );
             hideKeyboard();
             Get.back();
           }
@@ -433,6 +519,17 @@ class CreateCustomerController extends GetxController {
               postCode: addressDetails!['postal_codes'] ?? '',
               streetName: addressDetails!['route'] ?? '',
               streetNum: addressDetails!['street_number'] ?? '',
+            );
+            // Auto Fill Site Address
+            setCustomerSiteAddressData(
+              addressName: data['result']['formatted_address'] ?? '',
+              cityName: addressDetails!['locality'] ?? '',
+              countryName: addressDetails!['country'] ?? '',
+              postCode: addressDetails!['postal_codes'] ?? '',
+              streetName: addressDetails!['route'] ?? '',
+              streetNum: addressDetails!['street_number'] ?? '',
+              lat: addressLat,
+              lng: addressLng,
             );
             hideKeyboard();
             Get.back();

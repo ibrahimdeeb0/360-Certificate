@@ -13,32 +13,46 @@ class CustomerContacts extends StatelessWidget {
     return Column(
       children: <Widget>[
         CommonInput(
-          topLabelText: 'First Name',
+          topLabel: const TopLabelText(
+            text: 'First Name',
+          ),
           hint: 'Enter First Name',
           controller: controller.clientContactFirstNameController,
+          keyboardType: TextInputType.name,
           marginBottom: 0.012,
           marginTop: 0.01,
         ),
         CommonInput(
-          topLabelText: 'Last Name',
+          topLabel: const TopLabelText(
+            text: 'Last Name',
+          ),
           hint: 'Enter Last Name',
           controller: controller.clientContactLastNameController,
+          keyboardType: TextInputType.name,
           marginBottom: 0.012,
         ),
         CommonInput(
-          topLabelText: 'Phone',
+          topLabel: const TopLabelText(
+            text: 'Phone',
+          ),
           hint: 'Enter Phone',
           controller: controller.clientContactPhoneController,
+          keyboardType: TextInputType.phone,
           marginBottom: 0.012,
         ),
         CommonInput(
-          topLabelText: 'Email',
+          topLabel: const TopLabelText(
+            text: 'Email',
+          ),
           hint: 'Enter Email',
           controller: controller.clientContactEmailController,
+          keyboardType: TextInputType.emailAddress,
           marginBottom: 0.012,
         ),
         CommonInput(
-          topLabelText: 'Type',
+          topLabel: const TopLabelText(
+            text: 'Type',
+          ),
           hint: 'Select Type',
           value: controller.selectedClientContactType ?? '',
           enabled: false,
