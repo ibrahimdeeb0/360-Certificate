@@ -3,6 +3,8 @@ import 'package:dio/dio.dart';
 import '../../general_exports.dart';
 
 class CreateCustomerController extends GetxController {
+  Map<String, dynamic> customerData = <String, dynamic>{};
+
   int currentIndex = 0;
 
   bool isSelectBilling = true;
@@ -75,13 +77,12 @@ class CreateCustomerController extends GetxController {
   TextEditingController clientContactPhoneController = TextEditingController();
   TextEditingController clientContactEmailController = TextEditingController();
   String? selectedClientContactType;
-  Map<String, dynamic>? addedClientContact;
 
   //* -------------Add SiteAddress
   TextEditingController siteAddressSiteNameController1 =
       TextEditingController();
-  TextEditingController siteAddressSiteNameController2 =
-      TextEditingController();
+  // TextEditingController siteAddressSiteNameController2 =
+  //     TextEditingController();
   TextEditingController siteAddressAddressNameController =
       TextEditingController();
   TextEditingController siteAddressStreetController = TextEditingController();
@@ -94,7 +95,6 @@ class CreateCustomerController extends GetxController {
     'id': 180,
     'name': 'United Kingdom '
   };
-  Map<String, dynamic>? addedSiteAddress;
   String? siteAddressAddressLat;
   String? siteAddressAddressLng;
   //* -------------Add SiteContact
@@ -104,8 +104,6 @@ class CreateCustomerController extends GetxController {
   TextEditingController siteContactPhoneController = TextEditingController();
   TextEditingController siteContactEmailController = TextEditingController();
   String? selectedClientTypeOnSiteContact;
-
-  Map<String, dynamic>? addedSiteContact;
 
   //* ------
 
@@ -131,11 +129,13 @@ class CreateCustomerController extends GetxController {
   bool validValue = false;
 
   void onPressNext() {
+    Get.toNamed(routeForms);
     screensValidation();
 
     if (validValue) {
       if (currentIndex == 3) {
-        Get.toNamed(routeForms);
+        // Get.toNamed(routeForms);
+        // onAddCustomer();
       } else {
         currentIndex = currentIndex + 1;
         update();
@@ -652,6 +652,67 @@ class CreateCustomerController extends GetxController {
     siteAddressAddressLat = lat;
     siteAddressAddressLng = lng;
     consoleLog('$siteAddressAddressLat , $siteAddressAddressLng');
+    update();
+  }
+
+  //?============= Add customers API ==============*/
+
+  Future<void> onAddCustomer() async {
+    hideKeyboard();
+    // startLoading();
+    ApiRequest(
+      method: ApiMethods.post,
+      path: createCustomer,
+      className: 'NewJobController/onAddCustomer',
+      requestFunction: onAddCustomer,
+      withLoading: true,
+      body: <String, dynamic>{
+        'name': customerNameController.text,
+        'type_id': selectedCustomerType == 'Individual' ? 1 : 2,
+        'address': customerAddressController.text,
+        'street_num': customerStreetController.text,
+        'city': customerCityController.text,
+        'postal_code': customerPostcodeController.text,
+        'country_id': customerSelectedCountry[keyId],
+        //
+        'billing_details': isSelectBilling ? 'yes' : 'no',
+        'billing_address': customerBillingAddressController.text,
+        'billing_street_num': customerBillingStreetController.text,
+        'billing_city': customerBillingCityController.text,
+        'billing_postal_code': customerBillingPostcodeController.text,
+        'billing_country_id': billingSelectedCountry[keyId],
+        'credit_limit': customerFinanceCreditController.text,
+        'payment_terms': selectedPaymentTerms![keyId],
+        'send_statement': isSendStatements ? 'yes' : 'no',
+        //*------------------------------------*//
+        'client_f_name': clientContactFirstNameController.text,
+        'client_l_name': clientContactLastNameController.text,
+        'client_phone': clientContactPhoneController.text,
+        'client_email': clientContactEmailController.text,
+        'client_type': selectedClientContactType,
+        //
+        'copy_site_address': radioSiteAddress ? 'yes' : 'no',
+        'site_name': siteAddressSiteNameController1.text,
+        'site_address': siteAddressAddressNameController.text,
+        'site_street_num': siteAddressStreetController.text,
+        'site_city': siteAddressCityController.text,
+        'site_postal_code': siteAddressPostcodeController.text,
+        'site_country_id': siteAddressSelectedCountry[keyId],
+        //
+        'copy_contact': radioSiteContact ? 'yes' : 'no',
+        'site_contact_type': selectedClientTypeOnSiteContact,
+        'site_contact_f_name': siteContactFirstNameController.text,
+        'site_contact_l_name': siteContactLastNameController.text,
+        'site_contact_phone': siteContactPhoneController.text,
+        'site_contact_email': siteContactEmailController.text,
+      },
+    ).request(
+      onSuccess: (dynamic data, dynamic response) {
+        customerData = response;
+        consoleLogPretty(customerData, key: 'customerData');
+        Get.toNamed(routeForms);
+      },
+    );
     update();
   }
 }
