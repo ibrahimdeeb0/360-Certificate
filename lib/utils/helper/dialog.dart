@@ -5,8 +5,8 @@ void openDialog({
   String? description,
   String? confirmText,
   String? cancelText,
-  Function? onConfirm,
-  Function? onCancel,
+  Function()? onConfirm,
+  Function()? onCancel,
   Widget? child,
 }) {
   Get.defaultDialog(
@@ -22,7 +22,7 @@ void openDialog({
           style: appTextStyles.h3StyleBlack(),
         ),
     confirm: CommonButton(
-      onPress: onConfirm?.call(),
+      onPress: onConfirm?.call,
       text: confirmText ?? 'Confirm',
       // buttonStyle: appButtonStyles.dialogConfirmBTN,
       width: 0.3,
@@ -32,7 +32,7 @@ void openDialog({
       marginLeft: 0.02,
     ),
     cancel: CommonButton(
-      onPress: onCancel?.call(),
+      onPress: onCancel?.call,
       text: cancelText ?? 'Cancel',
       fontColor: AppColors.primary,
       width: 0.3,

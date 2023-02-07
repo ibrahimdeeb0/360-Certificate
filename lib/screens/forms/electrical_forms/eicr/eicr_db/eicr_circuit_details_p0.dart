@@ -36,12 +36,13 @@ class CircuitDetailsP0 extends StatelessWidget {
                     color: Color(AppColors.primary),
                     borderRadius: BorderRadius.circular(2.0),
                   ),
-                  labelStyle: TextStyle(
-                    color: Color(AppColors.white),
+                  labelColor: Colors.white,
+                  indicatorSize: TabBarIndicatorSize.tab,
+                  labelStyle: const TextStyle(
+                    color: Colors.white,
                     fontSize: fontH3,
                     fontWeight: FontWeight.bold,
                   ),
-                  // labelColor: ,
                   unselectedLabelColor: Color(AppColors.primary),
                   tabs: <Widget>[
                     ...controller.tabItems.map(

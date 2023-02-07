@@ -276,7 +276,7 @@ class CircuitDetailsP2 extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                     Padding(
-                      padding: EdgeInsets.only(left: DEVICE_WIDTH * 0.1),
+                      padding: EdgeInsets.only(left: DEVICE_WIDTH * 0.07),
                       child: Switch(
                         activeColor: Color(AppColors.primary),
                         activeTrackColor:

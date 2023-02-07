@@ -59,8 +59,6 @@ class EicrController extends GetxController {
   List<dynamic> distrBoardDataBase = <dynamic>[];
   List<dynamic> observationsDataBase = <dynamic>[];
 
-  // bool remedialWorksCompleted = false;
-
   Map<String, dynamic> gazSafetyData = <String, dynamic>{
     'remedial_works_completed': false,
     // declaration section
@@ -615,7 +613,7 @@ class EicrController extends GetxController {
     update();
   }
 
-  //*---- Functions Body --------------------------------------------------- */
+  //*---- Functions Body ------------------------------------------- */
 
   @override
   void onInit() {
@@ -639,9 +637,9 @@ class EicrController extends GetxController {
     if (isTemplate) {
       numFinalPage = listFormSections.length - 2;
       update();
-      // removeStoredFormData();
+      removeStoredFormData();
     }
-    // await checkStorage();
+    await checkStorage();
   }
 
   void onAddImage(dynamic data) {
@@ -682,86 +680,86 @@ class EicrController extends GetxController {
   }
   // *****************  Auto Save  functions **************** //
 
-  // void storeFormData() {
-  //   myAppController.localStorage.saveToStorage(
-  //     key: '$storeFormKey-$jobId-$serviceId-${currentFormData[keyId]}',
-  //     value: <String, dynamic>{
-  //       'formBody': formBody,
-  //       'selectedId': selectedId,
-  //       'renderItem': renderItem,
-  //       'gazSafetyData': gazSafetyData,
-  //       'circuitsData': distrBoardDataBase,
-  //       'observationsDataBase': observationsDataBase,
-  //       'signatureBytes': signatureBytes,
-  //     },
-  //   );
-  // }
+  void storeFormData() {
+    myAppController.localStorage.saveToStorage(
+      key: '$storeFormKey-$jobId-$serviceId-${currentFormData[keyId]}',
+      value: <String, dynamic>{
+        'formBody': formBody,
+        'selectedId': selectedId,
+        'renderItem': renderItem,
+        'gazSafetyData': gazSafetyData,
+        'circuitsData': distrBoardDataBase,
+        'observationsDataBase': observationsDataBase,
+        'signatureBytes': signatureBytes,
+      },
+    );
+  }
 
-  // Future<void> checkStorage() async {
-  //   final Map<String, dynamic>? myData =
-  //       await myAppController.localStorage.getFromStorage(
-  //     key: '$storeFormKey-$jobId-$serviceId-${currentFormData[keyId]}',
-  //   );
-  //   consoleLog(myData, key: 'inData');
-  //   consoleLog(myData != null, key: 'inData');
-  //   void continueWithData() {
-  //     formBody = <String, dynamic>{
-  //       ...myData!['formBody'],
-  //       data: <String, dynamic>{
-  //         ...myData['formBody'],
-  //         formKeyGazSafetyData: <Map<String, dynamic>>[
-  //           ...formBody[data][formKeyGazSafetyData],
-  //           ...myData[data][formKeyGazSafetyData],
-  //         ],
-  //       },
-  //     };
-  //     selectedId = myData['selectedId'];
-  //     renderItem = myData['renderItem'];
-  //     signatureBytes = myData['signatureBytes'];
-  //     signatureBytesImage = myData['signatureBytes'];
-  //     gazSafetyData = <String, dynamic>{
-  //       ...myData['gazSafetyData'],
-  //       allDistributionBoardData: <dynamic>[
-  //         ...myData['gazSafetyData'][allDistributionBoardData],
-  //       ],
-  //       allObservationData: <dynamic>[
-  //         ...gazSafetyData[allObservationData],
-  //         ...myData['gazSafetyData'][allObservationData],
-  //       ],
-  //       formKeyEICRdeclaration: <String, dynamic>{
-  //         ...gazSafetyData[formKeyEICRdeclaration],
-  //         ...myData['gazSafetyData'][formKeyEICRdeclaration],
-  //       },
-  //     };
-  //     distrBoardDataBase = <dynamic>[
-  //       ...distrBoardDataBase,
-  //       ...myData['circuitsData'],
-  //     ];
-  //     observationsDataBase = <dynamic>[
-  //       ...observationsDataBase,
-  //       ...myData['observationsDataBase'],
-  //     ];
-  //     update();
-  //     Get.back();
-  //   }
+  Future<void> checkStorage() async {
+    final Map<String, dynamic>? myData =
+        await myAppController.localStorage.getFromStorage(
+      key: '$storeFormKey-$jobId-$serviceId-${currentFormData[keyId]}',
+    );
+    consoleLog(myData, key: 'inData');
+    consoleLog(myData != null, key: 'inData');
+    Future<void> continueWithData() async {
+      formBody = <String, dynamic>{
+        ...myData!['formBody'],
+        keyData: <String, dynamic>{
+          ...myData['formBody'],
+          formKeyGazSafetyData: <Map<String, dynamic>>[
+            ...formBody[keyData][formKeyGazSafetyData],
+            ...myData['formBody'][keyData][formKeyGazSafetyData],
+          ],
+        },
+      };
+      selectedId = myData['selectedId'];
+      renderItem = myData['renderItem'];
+      signatureBytes = myData['signatureBytes'];
+      signatureBytesImage = myData['signatureBytes'];
+      gazSafetyData = <String, dynamic>{
+        ...myData['gazSafetyData'],
+        allDistributionBoardData: <dynamic>[
+          ...myData['gazSafetyData'][allDistributionBoardData],
+        ],
+        allObservationData: <dynamic>[
+          ...gazSafetyData[allObservationData],
+          ...myData['gazSafetyData'][allObservationData],
+        ],
+        formKeyEICRdeclaration: <String, dynamic>{
+          ...gazSafetyData[formKeyEICRdeclaration],
+          ...myData['gazSafetyData'][formKeyEICRdeclaration],
+        },
+      };
+      distrBoardDataBase = <dynamic>[
+        ...distrBoardDataBase,
+        ...myData['circuitsData'],
+      ];
+      observationsDataBase = <dynamic>[
+        ...observationsDataBase,
+        ...myData['observationsDataBase'],
+      ];
+      update();
+      Get.back();
+    }
 
-  //   if (myData != null) {
-  //     openDialog(
-  //       description:
-  //           'You entered data before in this form do you want to use it ',
-  //       confirmText: 'Use the data',
-  //       cancelText: 'Remove the data',
-  //       onConfirm: continueWithData,
-  //       onCancel: Get.back,
-  //     );
-  //   }
-  // }
+    if (myData != null) {
+      openDialog(
+        description:
+            'You entered data before in this form do you want to use it ',
+        confirmText: 'Use the data',
+        cancelText: 'Remove the data',
+        onConfirm: continueWithData,
+        onCancel: Get.back,
+      );
+    }
+  }
 
-  // void removeStoredFormData() {
-  //   myAppController.localStorage.removeFromStorage(
-  //     key: '$storeFormKey-$jobId-$serviceId-${currentFormData[keyId]}',
-  //   );
-  // }
+  void removeStoredFormData() {
+    myAppController.localStorage.removeFromStorage(
+      key: '$storeFormKey-$jobId-$serviceId-${currentFormData[keyId]}',
+    );
+  }
 
   //******************************************************* */
 
@@ -825,7 +823,7 @@ class EicrController extends GetxController {
       }
     }
 
-    // storeFormData();
+    storeFormData();
     scrollController.animateTo(
       0.0,
       duration: const Duration(milliseconds: 400),
@@ -862,7 +860,7 @@ class EicrController extends GetxController {
     } else {
       Get.back();
     }
-    // storeFormData();
+    storeFormData();
     scrollController.animateTo(
       0.0,
       duration: const Duration(milliseconds: 400),
@@ -960,16 +958,16 @@ class EicrController extends GetxController {
     update();
   }
 
-  // void onPressSave() {
-  //   formBody[data][formKeyGazSafetyData].add(
-  //     <String, dynamic>{
-  //       ...gazSafetyData,
-  //       'id': (formBody[data][formKeyGazSafetyData].length + 1).toString(),
-  //     },
-  //   );
-  //   storeFormData();
-  //   update();
-  // }
+  void onPressSave() {
+    formBody[keyData][formKeyGazSafetyData].add(
+      <String, dynamic>{
+        ...gazSafetyData,
+        'id': (formBody[keyData][formKeyGazSafetyData].length + 1).toString(),
+      },
+    );
+    storeFormData();
+    update();
+  }
 
   // for Checkbox Values  whoIsReceiving
   void onUpdateArrayWhoIsReceiving(String? key, dynamic value) {
@@ -979,7 +977,7 @@ class EicrController extends GetxController {
       whoIsReceiving.add(value);
     }
     consoleLog(whoIsReceiving);
-    // storeFormData();
+    storeFormData();
     update();
   }
 
@@ -995,7 +993,7 @@ class EicrController extends GetxController {
       signatureBytes = null;
       update();
     }
-    // storeFormData();
+    storeFormData();
   }
 
   Future<void> setCustomerImage(String bytes) async {
@@ -1007,21 +1005,21 @@ class EicrController extends GetxController {
       signatureBytes2 = null;
       update();
     }
-    // storeFormData();
+    storeFormData();
   }
 
   // ***************** clear  ****************
   void clearSignature() {
     signatureBytes = null;
     signatureBytesImage = null;
-    // storeFormData();
+    storeFormData();
     update();
   }
 
   void clearCustomerSignature() {
     signatureBytes2 = null;
     customerSignatureBytes = null;
-    // storeFormData();
+    storeFormData();
     update();
   }
 
@@ -1062,29 +1060,29 @@ class EicrController extends GetxController {
   }
 
   // convert customer Signature to File
-  // Future<void> saveCustomerSignature() async {
-  //   final Directory directory = await getApplicationDocumentsDirectory();
-  //   final File pathOfImage = await File(
-  //           '${directory.path}/$storeFormKey-$jobId-$serviceId-${currentFormData[keyId]}_customer_sign.png')
-  //       .create();
+  Future<void> saveCustomerSignature() async {
+    final Directory directory = await getApplicationDocumentsDirectory();
+    final File pathOfImage = await File(
+            '${directory.path}/$storeFormKey-$jobId-$serviceId-${currentFormData[keyId]}_customer_sign.png')
+        .create();
 
-  //   if (signatureBytes2 != null) {
-  //     customerSignature = await pathOfImage.writeAsBytes(signatureBytes2!);
+    if (signatureBytes2 != null) {
+      customerSignature = await pathOfImage.writeAsBytes(signatureBytes2!);
 
-  //     if (signatureBytes2 != null) {
-  //       customerSignatureBytes = signatureBytes2!;
-  //     }
-  //   } else {
-  //     showMessage(
-  //       description: 'Please draw Contractor signature',
-  //       textColor: AppColors.red,
-  //     );
-  //   }
+      if (signatureBytes2 != null) {
+        customerSignatureBytes = signatureBytes2!;
+      }
+    } else {
+      showMessage(
+        description: 'Please draw Contractor signature',
+        textColor: AppColors.red,
+      );
+    }
 
-  //   update();
-  //   consoleLog(customerSignature, key: 'customerSignature');
-  //   Get.back();
-  // }
+    update();
+    consoleLog(customerSignature, key: 'customerSignature');
+    Get.back();
+  }
 
   // *****************  Press Finish ****************
   Future<void> onPressFinishReportForm() async {
@@ -1093,7 +1091,7 @@ class EicrController extends GetxController {
     // formBody[data]['comment'] = commentController.text;
     saveDbCircuitsDataOnFormBody();
     saveObservationsDataBaseBody();
-    // onPressSave();
+    onPressSave();
 
     if (signatureBytes != null) {
       final int formId = homeController.formsData

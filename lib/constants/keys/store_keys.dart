@@ -10,6 +10,7 @@ String storeLocationPermission = '${currentModeText}_location_permission';
 //   **** Storage Keys *****
 const String languageKey = 'language';
 const String storeShowMapDragBubble = 'showMapDragBubble';
+const String storeFormKey = 'store-form-key';
 
 //   **** Languages *****
 const String keyArabicValue = 'ar';
