@@ -61,24 +61,24 @@ List<GetPage<dynamic>> appRoutes = <GetPage<dynamic>>[
     name: routeInvoices,
     page: () => const Invoices(),
   ),
-GetPage<Customers>(
-  name: routeCustomers,
-   page: () => const Customers(),
- ), 
-GetPage<FormTemplates>(
-  name: routeFormTemplates,
-   page: () => const FormTemplates(),
- ), 
-GetPage<MySettings>(
-  name: routeMySettings,
-   page: () => const MySettings(),
- ), 
-GetPage<MySubscription>(
-  name: routeMySubscription,
-   page: () => const MySubscription(),
- ), 
-GetPage<Search>(
-  name: routeSearch,
-   page: () => const Search(),
- ), 
+  GetPage<Customers>(
+    name: routeCustomers,
+    page: () => const Customers(),
+  ),
+  GetPage<FormTemplate>(
+    name: routeFormTemplates,
+    page: () => const FormTemplate(),
+  ),
+  GetPage<MySettings>(
+    name: routeMySettings,
+    page: () => const MySettings(),
+  ),
+  GetPage<MySubscription>(
+    name: routeMySubscription,
+    page: () => const MySubscription(),
+  ),
+  GetPage<Search>(
+    name: routeSearch,
+    page: () => const Search(),
+  ),
 ];

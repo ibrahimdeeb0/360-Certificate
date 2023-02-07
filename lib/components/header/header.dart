@@ -89,7 +89,12 @@ class Header extends StatelessWidget with PreferredSizeWidget {
                       fontColor: AppColors.primary,
                       marginHorizontal: 0.01,
                     )
-                  : const Center(),
+                  : actionItem?.type == ActionType.add
+                      ? Icon(
+                          Icons.add_circle_outline,
+                          color: Color(AppColors.primary),
+                        )
+                      : const Center(),
             ),
         ],
       ),
@@ -108,4 +113,5 @@ class ActionItem {
 
 enum ActionType {
   save,
+  add,
 }

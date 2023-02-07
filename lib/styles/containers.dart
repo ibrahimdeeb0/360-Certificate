@@ -215,7 +215,7 @@ class DefaultContainerStyles {
         paddingHorizontal: paddingHorizontal ?? 0.04,
         borderRadius: 0.02,
         backgroundColor:
-            backgroundColor ?? Color(AppColors.grey).withOpacity(0.1),
+            backgroundColor ?? Color(AppColors.primary).withOpacity(0.1),
         touchEffect: TouchableEffect(
           type: touchType ?? TouchTypes.opacity,
         ),

@@ -15,14 +15,9 @@ class ObservationDetails extends StatelessWidget {
             actionItem: ActionItem(
               type: ActionType.save,
               onPress: () {
-                consoleLog('value');
+                Get.back();
               },
             ),
-            // rightText: 'Done',
-            // withActionText: true,
-            // onPressActionText: () {
-            //   controller.onSaveObservationValues();
-            // },
           ),
           body: CommonContainer(
             style: appContainerStyles.containerStyles,

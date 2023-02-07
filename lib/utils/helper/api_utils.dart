@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart' as dio_form_data;
 import 'package:image_picker/image_picker.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../../general_exports.dart';
 
 dynamic addFormDataToJson({
   String fileKey = 'avatar',
@@ -42,4 +45,40 @@ Future<void> launchMailto(String to) async {
     Uri.parse('mailto:$to'),
     mode: LaunchMode.externalApplication,
   );
+}
+
+dynamic addArrayToFormData({
+  List<Map<String, dynamic>>? imagesArray,
+  File? customerSignature,
+  Map<String, dynamic>? jsonObject,
+}) async {
+  final List<Map<String, dynamic>> images = <Map<String, dynamic>>[];
+  consoleLogPretty(
+    jsonObject,
+  );
+  for (final Map<String, dynamic> element in imagesArray!) {
+    final dynamic value = await dio_form_data.MultipartFile.fromFile(
+      element['image'].path,
+      filename: element['image'].path.split('/').last,
+    );
+    images.add(<String, dynamic>{
+      'id': element['id'],
+      'image': value,
+    });
+    if (element == imagesArray.last) {
+      jsonObject!['form_images'] = images;
+    }
+  }
+
+  //*  //
+  final dynamic custSignature = await dio_form_data.MultipartFile.fromFile(
+    customerSignature!.path,
+    filename: customerSignature.path.split('/').last,
+  );
+
+  jsonObject!['customer_signature'] = custSignature;
+
+  consoleLog(jsonObject, key: 'Images form data');
+
+  return dio_form_data.FormData.fromMap(jsonObject);
 }

@@ -35,6 +35,7 @@ class DistributionBoardDetails extends StatelessWidget {
                         value: controller.parentDistrBoardData[formKeyDBRef],
                         hint: 'Answer',
                         onTap: () => Get.bottomSheet(
+                          elevation: 0.0,
                           DBSelectBT(
                             listTitles: controller.listDbRef,
                             keyOfValue: formKeyDBRef,
@@ -81,6 +82,7 @@ class DistributionBoardDetails extends StatelessWidget {
                     value: controller
                         .parentDistrBoardData[formKeyBoardMainSwitchTypeBS],
                     onTap: () => Get.bottomSheet(
+                      elevation: 0.0,
                       DBSelectBT(
                         listTitles: controller.listTypeBSEN,
                         keyOfValue: formKeyBoardMainSwitchTypeBS,
@@ -92,6 +94,7 @@ class DistributionBoardDetails extends StatelessWidget {
                     title: 'Rating',
                     value: controller.parentDistrBoardData[formKeyBoardRating],
                     onTap: () => Get.bottomSheet(
+                      elevation: 0.0,
                       DBSelectBT(
                         listTitles: controller.listRating,
                         keyOfValue: formKeyBoardRating,
@@ -111,6 +114,7 @@ class DistributionBoardDetails extends StatelessWidget {
                     value: controller
                         .parentDistrBoardData[formKeyBoardSupplyConductors],
                     onTap: () => Get.bottomSheet(
+                      elevation: 0.0,
                       DBSelectBT(
                         listTitles: controller.listSupplyConductors,
                         keyOfValue: formKeyBoardSupplyConductors,
@@ -128,6 +132,7 @@ class DistributionBoardDetails extends StatelessWidget {
                     title: 'Earth',
                     value: controller.parentDistrBoardData[formKeyBoardEarth],
                     onTap: () => Get.bottomSheet(
+                      elevation: 0.0,
                       DBSelectBT(
                         listTitles: controller.listEarth,
                         keyOfValue: formKeyBoardEarth,
@@ -146,6 +151,7 @@ class DistributionBoardDetails extends StatelessWidget {
                     value:
                         controller.parentDistrBoardData[formKeyBoardLocation],
                     onTap: () => Get.bottomSheet(
+                      elevation: 0.0,
                       DBSelectBT(
                         listTitles: controller.listLocations,
                         keyOfValue: formKeyBoardLocation,
@@ -168,6 +174,7 @@ class DistributionBoardDetails extends StatelessWidget {
                     value: controller
                         .parentDistrBoardData[formKeyBoardSuppliedFrom],
                     onTap: () => Get.bottomSheet(
+                      elevation: 0.0,
                       DBSelectBT(
                         listTitles: controller.listSuppliedFrom,
                         keyOfValue: formKeyBoardSuppliedFrom,
@@ -178,7 +185,10 @@ class DistributionBoardDetails extends StatelessWidget {
                   ),
                   SmallInputField(
                     title: 'No. Of Phases',
+                    value:
+                        controller.parentDistrBoardData[formKeyBoardNoOfPhases],
                     onTap: () => Get.bottomSheet(
+                      elevation: 0.0,
                       DBSelectBT(
                         listTitles: controller.listNoOfPhases,
                         keyOfValue: formKeyBoardNoOfPhases,
@@ -193,6 +203,7 @@ class DistributionBoardDetails extends StatelessWidget {
                         formKeyBoardSupplyProtectiveDeviceType],
                     hint: 'Answer',
                     onTap: () => Get.bottomSheet(
+                      elevation: 0.0,
                       DBSelectBT(
                         listTitles: controller.listBSEN,
                         keyOfValue: formKeyBoardSupplyProtectiveDeviceType,
@@ -204,6 +215,7 @@ class DistributionBoardDetails extends StatelessWidget {
                     title: 'Rating',
                     value: controller.parentDistrBoardData[formKeyBoardRating2],
                     onTap: () => Get.bottomSheet(
+                      elevation: 0.0,
                       DBSelectBT(
                         listTitles: controller.listRatingBSEN,
                         keyOfValue: formKeyBoardRating2,

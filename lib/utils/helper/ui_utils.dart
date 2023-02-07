@@ -1,4 +1,8 @@
+import 'dart:io';
+
+import 'package:flutter_html_to_pdf/flutter_html_to_pdf.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../components/default_pop_up/default_pop_up.dart';
@@ -108,4 +112,22 @@ void openPopUp(Widget? widget) {
     isDismissible: false,
     enableDrag: false,
   );
+}
+
+Future<String> onPressDownloadPdf(
+    {required String htmlContent, required String pdfTitle}) async {
+  final Directory appDocDir = await getApplicationDocumentsDirectory();
+  final String appDocPath = appDocDir.path;
+
+  await FlutterHtmlToPdf.convertFromHtmlContent(
+    htmlContent,
+    appDocPath,
+    pdfTitle,
+  );
+
+  dismissLoading();
+
+  Get.back();
+
+  return '$appDocPath/$pdfTitle.pdf';
 }

@@ -3,7 +3,7 @@ export 'complete_profile/index.dart';
 export 'create_customer/index.dart';
 export 'customers/index.dart';
 export 'edit_profile/index.dart';
-export 'form_templates/index.dart';
+export 'form_template/index.dart';
 export 'forms/index.dart';
 export 'home/index.dart';
 export 'home_bottom_bar/index.dart';

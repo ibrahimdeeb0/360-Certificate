@@ -1,7 +1,12 @@
 import '../../../../general_exports.dart';
 
 class EICR extends StatelessWidget {
-  const EICR({super.key});
+  const EICR({
+    super.key,
+    // this.formController,
+  });
+
+  // final EicrController? formController;
 
   @override
   Widget build(BuildContext context) {

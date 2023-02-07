@@ -40,6 +40,12 @@ class EICRRemarkSection extends StatelessWidget {
                 controller.onChangeFormDataValue(formKeyRemarks, value),
             textInputAction: TextInputAction.newline,
           ),
+          // CommonButton(
+          //   onPress: () {
+          //     consoleLog(controller.isTemplate);
+          //     // consoleLog(Get.arguments);
+          //   },
+          // ),
         ],
       ),
     );
