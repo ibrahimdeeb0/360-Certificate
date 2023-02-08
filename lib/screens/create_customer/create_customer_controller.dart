@@ -3,7 +3,12 @@ import 'package:dio/dio.dart';
 import '../../general_exports.dart';
 
 class CreateCustomerController extends GetxController {
+  List<dynamic> allCustomers = <dynamic>[];
+  List<dynamic>? filterAllCustomers;
+  int? selectedCustomerId;
+
   Map<String, dynamic> customerData = <String, dynamic>{};
+  Map<String, dynamic> addedCustomerData = <String, dynamic>{};
 
   int currentIndex = 0;
 
@@ -126,16 +131,21 @@ class CreateCustomerController extends GetxController {
   Map<String, dynamic>? addressDetails = <String, dynamic>{};
 
   //*---------------Functions -----------------*//
+  @override
+  void onReady() {
+    getAllCustomers();
+    getPaymentTerms();
+    super.onReady();
+  }
+
   bool validValue = false;
 
   void onPressNext() {
-    Get.toNamed(routeForms);
     screensValidation();
 
     if (validValue) {
       if (currentIndex == 3) {
-        // Get.toNamed(routeForms);
-        // onAddCustomer();
+        onAddCustomer();
       } else {
         currentIndex = currentIndex + 1;
         update();
@@ -153,7 +163,6 @@ class CreateCustomerController extends GetxController {
     } else {
       currentIndex = currentIndex - 1;
       update();
-      consoleLog(currentIndex);
     }
   }
 
@@ -185,7 +194,7 @@ class CreateCustomerController extends GetxController {
               customerStreetController.text.isNotEmpty &&
               customerCityController.text.isNotEmpty &&
               customerPostcodeController.text.isNotEmpty &&
-              selectedPaymentTerms != null &&
+              // (selectedPaymentTerms != null || paymentTerm != null) &&
               customerBillingStreetController.text.isNotEmpty &&
               customerBillingCityController.text.isNotEmpty &&
               customerBillingPostcodeController.text.isNotEmpty;
@@ -225,7 +234,24 @@ class CreateCustomerController extends GetxController {
     }
   }
 
-  //*----------------- On Search and Filter Countries ----------------*//
+  //*-----  Select Founded Customer -----*//
+  void onSelectCustomer(int id) {
+    hideKeyboard();
+    selectedCustomerId = id;
+    filterAllCustomers = null;
+    getCustomerData();
+  }
+
+  //*----------------- On Search and Filter Functions ----------------*//
+
+  void onSearchForCustomer(String searchValue) {
+    filterAllCustomers = allCustomers
+        .where((dynamic customer) =>
+            customer[keyName].toLowerCase().contains(searchValue.toLowerCase()))
+        .toList();
+
+    update();
+  }
 
   void onSearchCountries(String searchValue) {
     filterAllCountries = allCountries
@@ -345,7 +371,6 @@ class CreateCustomerController extends GetxController {
         ),
       )
           .then((dynamic response) {
-        consoleLogPretty(response.data, key: 'json_a');
         listAddress = response.data['localities'];
         update();
       });
@@ -365,7 +390,6 @@ class CreateCustomerController extends GetxController {
     switch (addressType) {
       case 'locality':
         {
-          consoleLog(addressType);
           onGetAddressDetails(
             iDTitle: iDTitle,
             publicId: publicId,
@@ -376,7 +400,6 @@ class CreateCustomerController extends GetxController {
 
       case 'address':
         {
-          consoleLog(addressType);
           onGetAddressDetails(
             iDTitle: iDTitle,
             publicId: publicId,
@@ -387,7 +410,6 @@ class CreateCustomerController extends GetxController {
 
       case 'postal_code':
         {
-          consoleLog(addressType);
           onGetAddressDetails(
             iDTitle: iDTitle,
             publicId: publicId,
@@ -398,7 +420,6 @@ class CreateCustomerController extends GetxController {
 
       default:
         {
-          consoleLog(addressType);
           showMessage(
             description:
                 'the only search type is: Locality or Address or Postcode',
@@ -432,7 +453,6 @@ class CreateCustomerController extends GetxController {
     )
         .then(
       (dynamic details) async {
-        consoleLogPretty(details.data, key: 'postal_code_json');
         fillAddressData(
             iDTitle: iDTitle,
             data: details.data,
@@ -450,19 +470,15 @@ class CreateCustomerController extends GetxController {
     required dynamic data,
     required String addressType,
   }) {
-    consoleLog('test fill Address');
     addressData = data;
 
     data['result']['address_components'].forEach((dynamic item) =>
         addressDetails![item['types'][0]] = item['long_name']);
     update();
-    consoleLogPretty(addressData);
-    consoleLogPretty(addressDetails);
-    consoleLog('Type on fillAddressData: $addressType');
     // consoleLog(data['result']['types'].first);
     // final String typePostal = data['result']['types'].first;
-    consoleLog(data['result']['geometry']['location']['lat'].toString());
-    consoleLog(data['result']['geometry']['location']['lng'].toString());
+    // consoleLog(data['result']['geometry']['location']['lat'].toString());
+    // consoleLog(data['result']['geometry']['location']['lng'].toString());
     final String addressLat =
         data['result']['geometry']['location']['lat'].toString();
     final String addressLng =
@@ -583,7 +599,6 @@ class CreateCustomerController extends GetxController {
     required String lat,
     required String lng,
   }) {
-    consoleLog('0 Set Customer Address Details');
     customerAddressController.text = addressName;
     customerCityController.text = cityName;
     customerPostcodeController.text = postCode;
@@ -598,7 +613,7 @@ class CreateCustomerController extends GetxController {
     }
     customerAddressLat = lat;
     customerAddressLng = lng;
-    consoleLog('$customerAddressLat , $customerAddressLng');
+    // consoleLog('$customerAddressLat , $customerAddressLng');
     update();
   }
 
@@ -610,7 +625,7 @@ class CreateCustomerController extends GetxController {
     required String streetName,
     required String streetNum,
   }) {
-    consoleLog('1 Set Billing Address Details');
+    // consoleLog('1 Set Billing Address Details');
     customerBillingAddressController.text = addressName;
     customerBillingCityController.text = cityName;
     customerBillingPostcodeController.text = postCode;
@@ -636,7 +651,7 @@ class CreateCustomerController extends GetxController {
     required String lat,
     required String lng,
   }) {
-    consoleLog('2 Set Customer Site Address Details');
+    // consoleLog('2 Set Customer Site Address Details');
     siteAddressAddressNameController.text = addressName;
     siteAddressCityController.text = cityName;
     siteAddressPostcodeController.text = postCode;
@@ -651,7 +666,7 @@ class CreateCustomerController extends GetxController {
     }
     siteAddressAddressLat = lat;
     siteAddressAddressLng = lng;
-    consoleLog('$siteAddressAddressLat , $siteAddressAddressLng');
+    // consoleLog('$siteAddressAddressLat , $siteAddressAddressLng');
     update();
   }
 
@@ -708,11 +723,157 @@ class CreateCustomerController extends GetxController {
       },
     ).request(
       onSuccess: (dynamic data, dynamic response) {
-        customerData = response;
-        consoleLogPretty(customerData, key: 'customerData');
-        Get.toNamed(routeForms);
+        addedCustomerData = data;
+        consoleLogPretty(addedCustomerData[keyId], key: 'customer_Id');
+        // Get.toNamed(routeForms);
+        Get.toNamed(
+          routeForms,
+          arguments: <String, dynamic>{
+            'customerId': addedCustomerData[keyId],
+          },
+        );
       },
     );
     update();
+  }
+
+  //?============= Get All Customers ==============*/
+
+  Future<void> getAllCustomers() async {
+    hideKeyboard();
+
+    ApiRequest(
+      path: keyGetAllCustomers,
+      className: 'CreateNewCustomerController/getAllCustomers',
+      requestFunction: getAllCustomers,
+      withLoading: true,
+    ).request(
+      onSuccess: (dynamic data, dynamic response) {
+        myAppController.localStorage.saveToStorage(
+          key: 'getAllCustomers',
+          value: data,
+        );
+        allCustomers = data;
+        update();
+      },
+    );
+    if (!myAppController.isInternetConnect) {
+      final dynamic apiData = await myAppController.localStorage.getFromStorage(
+        key: 'getAllCustomers',
+      );
+      allCustomers = apiData;
+      update();
+    }
+
+    update();
+  }
+
+  Future<void> getCustomerData() async {
+    hideKeyboard();
+    startLoading();
+
+    ApiRequest(
+      path: '/customers/$selectedCustomerId/customer',
+      className: 'CreateNewCustomerController/getCustomerData',
+      requestFunction: getCustomerData,
+      // withLoading: true,
+    ).request(
+      onSuccess: (dynamic data, dynamic response) async {
+        myAppController.localStorage.saveToStorage(
+          key: 'getCustomerData',
+          value: data,
+        );
+        customerData = data;
+        await setCustomerData();
+        update();
+        // consoleLogPretty(customerData, key: 'customerData');
+      },
+    );
+    if (!myAppController.isInternetConnect) {
+      final dynamic apiData = await myAppController.localStorage.getFromStorage(
+        key: 'getCustomerData',
+      );
+      customerData = apiData;
+
+      update();
+      dismissLoading();
+    }
+
+    update();
+  }
+
+  // TextEditingController custCountry = TextEditingController();
+
+  String? selectedPaymentTermsValue;
+  String? countryOnPage1;
+  String? countryOnPage1Billing;
+  String? countryOnPage3;
+  String? paymentTerm;
+
+  Future<void> setCustomerData() async {
+    customerNameController.text = customerData['name'];
+    selectedCustomerType = customerData['type'];
+    customerAddressController.text = customerData['address'];
+    customerAddressController.text = customerData['address'] ?? '';
+    customerStreetController.text = customerData['street_num'];
+    customerCityController.text = customerData['city'];
+    customerPostcodeController.text = customerData['postal_code'];
+    // customerAddressController = customerData['country_id'];
+    isSelectBilling = customerData['billing_details'] == 'yes';
+
+    customerBillingAddressController.text =
+        customerData['billing_info']['address'] ?? '';
+    customerBillingStreetController.text =
+        customerData['billing_info']['street_num'];
+    customerBillingCityController.text = customerData['billing_info']['city'];
+    customerBillingPostcodeController.text =
+        customerData['billing_info']['postal_code'];
+
+    customerFinanceCreditController.text =
+        customerData['billing_info']['credit_limit'] ?? '';
+    paymentTerm = customerData['billing_info']['payment_term_id'].toString();
+    isSendStatements = customerData['billing_info']['send_statement'] == 'yes';
+
+    clientContactFirstNameController.text =
+        customerData['contacts'][0]['f_name'];
+    clientContactLastNameController.text =
+        customerData['contacts'][0]['l_name'];
+    clientContactPhoneController.text = customerData['contacts'][0]['phone'];
+    clientContactEmailController.text = customerData['contacts'][0]['email'];
+    selectedClientContactType = customerData['contacts'][0]['type'];
+
+    //
+    siteAddressSiteNameController1.text = customerData['sites'][0]['name'];
+    siteAddressAddressNameController.text =
+        customerData['sites'][0]['address'] ?? '';
+    siteAddressStreetController.text = customerData['sites'][0]['street_num'];
+    siteAddressCityController.text = customerData['sites'][0]['city'];
+    siteAddressPostcodeController.text =
+        customerData['sites'][0]['postal_code'];
+    countryOnPage3 = customerData['sites'][0]['country'];
+
+    //
+    siteContactFirstNameController.text =
+        customerData['sites'][0]['site_contact']['f_name'];
+
+    siteContactLastNameController.text =
+        customerData['sites'][0]['site_contact']['l_name'] ?? '';
+
+    siteContactPhoneController.text =
+        customerData['sites'][0]['site_contact']['phone'];
+
+    siteContactEmailController.text =
+        customerData['sites'][0]['site_contact']['email'];
+
+    selectedClientTypeOnSiteContact =
+        customerData['sites'][0]['site_contact']['type'];
+
+    // selectedPaymentTerms = allPaymentTerms.where((dynamic item) =>
+    //         item['id'] == customerData['billing_info']['payment_term_id'])
+    //     as Map<String, dynamic>;
+
+    update();
+    dismissLoading();
+    consoleLog('Success');
   }
 }

@@ -91,7 +91,8 @@ class SiteAddress extends StatelessWidget {
               CommonInput(
                 topLabelText: 'Country',
                 hint: 'Select Country',
-                value: controller.siteAddressSelectedCountry[keyName],
+                value: controller.countryOnPage3 ??
+                    controller.siteAddressSelectedCountry[keyName],
                 suffix: const Icon(Icons.keyboard_arrow_down),
                 onTap: () {
                   controller.getCountries();

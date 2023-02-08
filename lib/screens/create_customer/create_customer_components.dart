@@ -173,6 +173,7 @@ class SelectPaymentTerm extends StatelessWidget {
                           name: paymentTerms['name'],
                           onPress: () {
                             controller.selectedPaymentTerms = paymentTerms;
+                            controller.paymentTerm = paymentTerms['name'];
                             Get.back();
                             controller.update();
                             consoleLog(controller.selectedPaymentTerms);

@@ -19,6 +19,7 @@ class CustomerInfo extends StatelessWidget {
           containerStyle: const CommonContainerModel(
             alignment: AlignmentDirectional.centerStart,
           ),
+          // onPress: controller.setCustomerData,
         ),
         CommonInput(
           topLabel: const TopLabelText(
@@ -26,8 +27,32 @@ class CustomerInfo extends StatelessWidget {
           ),
           hint: 'Enter Customer/ Company Name',
           controller: controller.customerNameController,
-          marginBottom: 0.012,
+          // marginBottom: 0.012,
+          onChanged: controller.onSearchForCustomer,
         ),
+        if (controller.filterAllCustomers != null)
+          AnimatedContainer(
+            width: DEVICE_WIDTH * 1,
+            height: (controller.customerNameController.text.trim().isNotEmpty)
+                ? DEVICE_HEIGHT * (controller.filterAllCustomers!.length / 15)
+                : DEVICE_HEIGHT * 0.0,
+            color: (controller.customerNameController.text.trim().isNotEmpty)
+                ? Color(AppColors.greyLight)
+                : Colors.transparent,
+            duration: const Duration(milliseconds: 600),
+            child: SingleChildScrollView(
+              child: Column(
+                children: <Widget>[
+                  ...controller.filterAllCustomers!.map(
+                    (dynamic item) => ListOfStrings(
+                      name: item[keyName],
+                      onPress: () => controller.onSelectCustomer(item[keyId]),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
         CommonInput(
           topLabel: const TopLabelText(
             text: 'Customer Type',
@@ -36,6 +61,7 @@ class CustomerInfo extends StatelessWidget {
           value: controller.selectedCustomerType,
           enabled: false,
           marginBottom: 0.012,
+          marginTop: 0.012,
           onTap: () => Get.bottomSheet(
             SelectTypeBT(
               controller: controller,
@@ -91,7 +117,8 @@ class CustomerInfo extends StatelessWidget {
         CommonInput(
           topLabelText: 'Country',
           hint: 'Select Country',
-          value: controller.customerSelectedCountry[keyName],
+          value: controller.countryOnPage1 ??
+              controller.customerSelectedCountry[keyName],
           marginBottom: 0.012,
           suffix: const Icon(Icons.keyboard_arrow_down),
           enabled: false,

@@ -36,11 +36,14 @@ class FinanceDetails extends StatelessWidget {
           CommonInput(
             topLabel: const TopLabelText(
               text: 'Payment Terms',
+              isRequired: false,
             ),
             hint: 'Payment Terms',
-            value: controller.selectedPaymentTerms?[keyName] ?? '',
+            value: controller.paymentTerm ??
+                controller.selectedPaymentTerms?[keyName] ??
+                '',
             onTap: () {
-              controller.getPaymentTerms();
+              // controller.getPaymentTerms();
               Get.bottomSheet(
                 const SelectPaymentTerm(),
                 elevation: 0.0,

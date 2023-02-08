@@ -73,7 +73,8 @@ class BillingAddress extends StatelessWidget {
           CommonInput(
             topLabelText: 'Country',
             hint: 'Select Country',
-            value: controller.billingSelectedCountry[keyName],
+            value: controller.countryOnPage1Billing ??
+                controller.billingSelectedCountry[keyName],
             suffix: const Icon(Icons.keyboard_arrow_down),
             onTap: () {
               controller.getCountries();

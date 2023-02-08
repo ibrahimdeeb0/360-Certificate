@@ -42,7 +42,7 @@ class EICRRemarkSection extends StatelessWidget {
           ),
           // CommonButton(
           //   onPress: () {
-          //     consoleLog(controller.isTemplate);
+          //     consoleLog(Get.arguments);
           //     // consoleLog(Get.arguments);
           //   },
           // ),

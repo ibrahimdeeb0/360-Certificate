@@ -24,6 +24,7 @@ class EicrController extends GetxController {
   String? templateName;
   dynamic tempData;
   bool updateTemp;
+  int? customerId;
 
   bool renderItem = false;
   int? jobId;
@@ -620,12 +621,14 @@ class EicrController extends GetxController {
   @override
   void onInit() {
     if (Get.arguments != null) {
-      isTemplate = Get.arguments['isTemplate'];
+      isTemplate = Get.arguments['isTemplate'] ?? false;
       templateName = Get.arguments['templateName'];
       tempData = Get.arguments['tempData'];
-      updateTemp = Get.arguments['updateTemp'];
+      updateTemp = Get.arguments['updateTemp'] ?? false;
+      customerId = Get.arguments['customerId'];
 
       update();
+      consoleLog(customerId, key: 'customerId');
     }
     // removeStoredFormData();
     super.onInit();
@@ -1102,7 +1105,7 @@ class EicrController extends GetxController {
     saveObservationsDataBaseBody();
     onPressSave();
 
-    if (signatureBytes != null) {
+    if (signatureBytes != null && signatureBytes2 != null) {
       final int formId = homeController.formsData
           .where(
             (dynamic element) =>
@@ -1112,36 +1115,39 @@ class EicrController extends GetxController {
           .first[keyId];
       startLoading();
       ApiRequest(
+        method: ApiMethods.post,
         path: keyCreateForm,
         className: 'DomesticEICRController/onPressFinishReportForm',
         requestFunction: onPressFinishReportForm,
         body: await addArrayToFormData(
           jsonObject: <String, dynamic>{
             ...formBody,
-            'job_id': jobId ?? '',
-            'service_id': serviceId ?? '',
+            'customer_id': 1018,
           },
           imagesArray: selectedImages,
           customerSignature: customerSignature,
         ),
+        formatResponse: true,
       ).request(
         onSuccess: (dynamic data, dynamic response) async {
           selectedId = 0;
           // removeStoredFormData();
           htmlContent = data['html_content'];
+          dismissLoading();
+          Get.offAndToNamed(routeHomeBottomBar);
           pdfFilePath = await onPressDownloadPdf(
             htmlContent: data['html_content'],
             pdfTitle: 'form$serviceId$jobId$formId',
           );
           update();
-          dismissLoading();
         },
       );
     } else {
       showMessage(
-        description: 'Please draw your signature',
+        description: 'All signatures required',
         textColor: AppColors.red,
       );
+      dismissLoading();
     }
   }
 }
