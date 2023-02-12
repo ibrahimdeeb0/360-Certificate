@@ -11,8 +11,8 @@ class ObservationDetailsController extends GetxController {
   XFile? selectImage;
   final ImagePicker _picker = ImagePicker();
   Map<String, dynamic> observationData = <String, dynamic>{
-    formKeyObservationDetails: '',
-    formKeyObservationCode: '',
+    formKeyObservationDetails: 'Details',
+    formKeyObservationCode: 'C1',
   };
 
   @override
@@ -100,8 +100,8 @@ class ObservationDetailsController extends GetxController {
 
   void resetObservationData() {
     observationData = <String, dynamic>{
-      formKeyObservationDetails: '',
-      formKeyObservationCode: '',
+      formKeyObservationDetails: 'Details',
+      formKeyObservationCode: 'C1',
     };
     update();
   }

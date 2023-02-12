@@ -81,4 +81,8 @@ List<GetPage<dynamic>> appRoutes = <GetPage<dynamic>>[
     name: routeSearch,
     page: () => const Search(),
   ),
+  GetPage<EICR>(
+    name: routeFormEICR,
+    page: () => const EICR(),
+  ),
 ];

@@ -19,7 +19,10 @@ class CustomerInfo extends StatelessWidget {
           containerStyle: const CommonContainerModel(
             alignment: AlignmentDirectional.centerStart,
           ),
-          // onPress: controller.setCustomerData,
+          // onPress: () {
+          //   consoleLog(myAppController.selectedForm);
+          //   // consoleLog(myAppController.selectedTemplate);
+          // },
         ),
         CommonInput(
           topLabel: const TopLabelText(

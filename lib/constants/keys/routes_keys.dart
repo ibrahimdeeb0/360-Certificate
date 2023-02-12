@@ -19,3 +19,4 @@ const String routeFormTemplates = '/form_templates';
 const String routeMySettings = '/my_settings';
 const String routeMySubscription = '/my_subscription';
 const String routeSearch = '/search';
+const String routeFormEICR = '/form_eicr';

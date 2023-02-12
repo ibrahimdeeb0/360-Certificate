@@ -12,9 +12,11 @@ class EICR extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<EicrController>(
       init: EicrController(),
+      // global: false,
       builder: (EicrController controller) {
         return Scaffold(
           appBar: FormHeader(
+            withBack: false,
             title: 'EICR',
             circleNumbering: controller.pagesNum(),
           ),

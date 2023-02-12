@@ -21,7 +21,7 @@ class Forms extends StatelessWidget {
                   SizedBox(
                     height: DEVICE_HEIGHT * 0.02,
                   ),
-                  ...homeBottomBarController.bottomBarItems
+                  ...controller.formItems
                       .map(
                         (dynamic item) => ExpandableTile(
                           title: item[keyTitle],
@@ -31,7 +31,11 @@ class Forms extends StatelessWidget {
                                 .map(
                                   (dynamic childe) => ChildeItems(
                                     text: childe[keyTitle],
-                                    onPress: childe[keyOnPress],
+                                    onPress: () {
+                                      if (childe[keyId] == 5) {
+                                        controller.searchTemplate(childe);
+                                      }
+                                    },
                                   ),
                                 )
                                 .toList(),
@@ -46,6 +50,68 @@ class Forms extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+}
+
+class ShowTemplatesBT extends StatelessWidget {
+  const ShowTemplatesBT({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BottomSheetContainer(
+      title: 'Select Template',
+      responsiveContent: true,
+      child: GetBuilder<FormsController>(
+        init: FormsController(),
+        builder: (FormsController controller) {
+          return SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                SizedBox(height: DEVICE_HEIGHT * 0.025),
+                // if (controller.listTemp.isNotEmpty)
+                ...controller.listTemp.map(
+                  (dynamic item) => ShowTemplateCard(
+                    title: item['name'],
+                    onPress: () => controller.onPressView(
+                      formData: item['form'],
+                      tempId: item['id'],
+                    ),
+                  ),
+                ),
+                SizedBox(height: DEVICE_HEIGHT * 0.025),
+              ],
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+
+class ShowTemplateCard extends StatelessWidget {
+  const ShowTemplateCard({
+    super.key,
+    this.title,
+    this.onPress,
+  });
+
+  final String? title;
+  final Function? onPress;
+
+  @override
+  Widget build(BuildContext context) {
+    return CommonText(
+      title ?? 'text',
+      onPress: onPress,
+      textAlign: TextAlign.start,
+      containerStyle: CommonContainerModel(
+        width: 1,
+        paddingHorizontal: 0.04,
+        paddingVertical: 0.015,
+        backgroundColor: Color(AppColors.primary).withOpacity(0.1),
+        borderRadius: 0.02,
+      ),
     );
   }
 }

@@ -127,7 +127,7 @@ Future<String> onPressDownloadPdf(
 
   dismissLoading();
 
-  Get.back();
+  // Get.back();
 
   return '$appDocPath/$pdfTitle.pdf';
 }

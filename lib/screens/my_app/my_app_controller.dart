@@ -16,6 +16,17 @@ class MyAppController extends GetxController {
   List<Map<String, dynamic>> noInternetWaitingRequests =
       <Map<String, dynamic>>[];
 
+  Map<String, dynamic>? selectedCustomer;
+  Map<String, dynamic>? selectedForm;
+  Map<String, dynamic>? selectedTemplate;
+
+  void clearFormAndTemp() {
+    selectedCustomer = null;
+    selectedForm = null;
+    selectedTemplate = null;
+    update();
+  }
+
   @override
   Future<void> onInit() async {
     super.onInit();

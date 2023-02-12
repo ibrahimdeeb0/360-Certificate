@@ -620,6 +620,7 @@ class EicrController extends GetxController {
 
   @override
   void onInit() {
+    consoleLog(tempData, key: 'formTempData');
     if (Get.arguments != null) {
       isTemplate = Get.arguments['isTemplate'] ?? false;
       templateName = Get.arguments['templateName'];
@@ -628,11 +629,14 @@ class EicrController extends GetxController {
       customerId = Get.arguments['customerId'];
 
       update();
-      consoleLog(customerId, key: 'customerId');
+      consoleLog(myAppController.selectedCustomer?[keyId], key: 'customerId');
     }
     // removeStoredFormData();
-    super.onInit();
+
     if (tempData != null) {
+      consoleLog('value');
+      consoleLog(tempData);
+
       formBody = tempData?['data'];
       if (formBody[keyData][formKeyGazSafetyData].isNotEmpty) {
         gazSafetyData = formBody[keyData][formKeyGazSafetyData][0];
@@ -641,6 +645,8 @@ class EicrController extends GetxController {
       observationsDataBase = gazSafetyData[allObservationData];
       update();
     }
+
+    super.onInit();
   }
 
   @override
@@ -1122,7 +1128,7 @@ class EicrController extends GetxController {
         body: await addArrayToFormData(
           jsonObject: <String, dynamic>{
             ...formBody,
-            'customer_id': 1018,
+            'customer_id': myAppController.selectedCustomer?[keyId],
           },
           imagesArray: selectedImages,
           customerSignature: customerSignature,
@@ -1134,12 +1140,21 @@ class EicrController extends GetxController {
           // removeStoredFormData();
           htmlContent = data['html_content'];
           dismissLoading();
-          Get.offAndToNamed(routeHomeBottomBar);
+          myAppController.clearFormAndTemp();
+          // offNamed
+          // Get.offAndToNamed(
+          //   routeHomeBottomBar,
+          // );
+          Get.offNamed(
+            // routeHomeBottomBar,
+            routeHomeBottomBar,
+          );
           pdfFilePath = await onPressDownloadPdf(
             htmlContent: data['html_content'],
             pdfTitle: 'form$serviceId$jobId$formId',
           );
           update();
+          consoleLog(pdfFilePath);
         },
       );
     } else {

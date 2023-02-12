@@ -119,6 +119,12 @@ class CreateCustomerController extends GetxController {
 
   List<dynamic> allPaymentTerms = <dynamic>[];
 
+  String? selectedPaymentTermsValue;
+  String? countryOnPage1;
+  String? countryOnPage1Billing;
+  String? countryOnPage3;
+  String? paymentTerm;
+
   //* ----- Map
 
   final Dio _dio = Dio();
@@ -145,7 +151,17 @@ class CreateCustomerController extends GetxController {
 
     if (validValue) {
       if (currentIndex == 3) {
-        onAddCustomer();
+        if (isAutoFillCust == true) {
+          myAppController.selectedCustomer = customerData;
+          Get.offNamed(
+            myAppController.selectedForm?['form_route'],
+            arguments: {
+              'tempData': myAppController.selectedTemplate,
+            },
+          );
+        } else {
+          onAddCustomer();
+        }
       } else {
         currentIndex = currentIndex + 1;
         update();
@@ -186,8 +202,8 @@ class CreateCustomerController extends GetxController {
               selectedCustomerType != null &&
               customerStreetController.text.isNotEmpty &&
               customerCityController.text.isNotEmpty &&
-              customerPostcodeController.text.isNotEmpty &&
-              selectedPaymentTerms != null
+              customerPostcodeController.text.isNotEmpty
+          // selectedPaymentTerms != null
           // If No
           : customerNameController.text.isNotEmpty &&
               selectedCustomerType != null &&
@@ -235,10 +251,12 @@ class CreateCustomerController extends GetxController {
   }
 
   //*-----  Select Founded Customer -----*//
+  bool isAutoFillCust = false;
   void onSelectCustomer(int id) {
     hideKeyboard();
     selectedCustomerId = id;
     filterAllCustomers = null;
+    isAutoFillCust = true;
     getCustomerData();
   }
 
@@ -725,11 +743,12 @@ class CreateCustomerController extends GetxController {
       onSuccess: (dynamic data, dynamic response) {
         addedCustomerData = data;
         consoleLogPretty(addedCustomerData[keyId], key: 'customer_Id');
+        myAppController.selectedCustomer = data;
         // Get.toNamed(routeForms);
-        Get.toNamed(
-          routeForms,
-          arguments: <String, dynamic>{
-            'customerId': addedCustomerData[keyId],
+        Get.offNamed(
+          myAppController.selectedForm?['form_route'],
+          arguments: {
+            'tempData': myAppController.selectedTemplate,
           },
         );
       },
@@ -777,6 +796,7 @@ class CreateCustomerController extends GetxController {
       className: 'CreateNewCustomerController/getCustomerData',
       requestFunction: getCustomerData,
       // withLoading: true,
+      formatResponse: true,
     ).request(
       onSuccess: (dynamic data, dynamic response) async {
         myAppController.localStorage.saveToStorage(
@@ -804,12 +824,6 @@ class CreateCustomerController extends GetxController {
 
   // TextEditingController custCountry = TextEditingController();
 
-  String? selectedPaymentTermsValue;
-  String? countryOnPage1;
-  String? countryOnPage1Billing;
-  String? countryOnPage3;
-  String? paymentTerm;
-
   Future<void> setCustomerData() async {
     customerNameController.text = customerData['name'];
     selectedCustomerType = customerData['type'];
@@ -831,7 +845,7 @@ class CreateCustomerController extends GetxController {
 
     customerFinanceCreditController.text =
         customerData['billing_info']['credit_limit'] ?? '';
-    paymentTerm = customerData['billing_info']['payment_term_id'].toString();
+    paymentTerm = customerData['billing_info']['payment_term']['name'];
     isSendStatements = customerData['billing_info']['send_statement'] == 'yes';
 
     clientContactFirstNameController.text =
@@ -868,12 +882,14 @@ class CreateCustomerController extends GetxController {
     selectedClientTypeOnSiteContact =
         customerData['sites'][0]['site_contact']['type'];
 
-    // selectedPaymentTerms = allPaymentTerms.where((dynamic item) =>
-    //         item['id'] == customerData['billing_info']['payment_term_id'])
-    //     as Map<String, dynamic>;
-
     update();
     dismissLoading();
     consoleLog('Success');
+  }
+
+  @override
+  void onInit() {
+    // if (Get.arguments != null) {}
+    super.onInit();
   }
 }

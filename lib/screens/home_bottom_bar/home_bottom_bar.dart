@@ -15,7 +15,8 @@ class HomeBottomBar extends StatelessWidget {
           floatingActionButton: FloatingActionButton.extended(
             backgroundColor: Color(AppColors.primary),
             onPressed: () {
-              Get.toNamed(routeCreateCustomer);
+              // Get.toNamed(routeCreateCustomer);
+              Get.toNamed(routeForms);
             },
             tooltip: 'Create',
             icon: const Icon(
