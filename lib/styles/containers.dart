@@ -257,4 +257,13 @@ class DefaultContainerStyles {
     marginHorizontal: 0.03,
     marginBottom: 0.02,
   );
+
+  CommonContainerModel cardStyle = const CommonContainerModel(
+    width: 1,
+    backgroundColor: Color(0xffEBE9E9),
+    paddingHorizontal: 0.04,
+    paddingVertical: 0.015,
+    borderRadius: 0.02,
+    marginBottom: 0.02,
+  );
 }

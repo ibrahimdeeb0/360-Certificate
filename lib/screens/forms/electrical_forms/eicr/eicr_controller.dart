@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:open_filex/open_filex.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:uuid/uuid.dart';
 
@@ -1103,6 +1104,7 @@ class EicrController extends GetxController {
   }
 
   // *****************  Press Finish ****************
+  dynamic resData;
   Future<void> onPressFinishReportForm() async {
     // formBody[data]['who_is_receiving'] = whoIsReceiving;
     // formBody[data]['date'] = dateController.text;
@@ -1133,28 +1135,32 @@ class EicrController extends GetxController {
           imagesArray: selectedImages,
           customerSignature: customerSignature,
         ),
-        formatResponse: true,
+        // formatResponse: true,
       ).request(
         onSuccess: (dynamic data, dynamic response) async {
-          selectedId = 0;
+          // dismissLoading();
+          // selectedId = 0;
           // removeStoredFormData();
+          resData = data;
           htmlContent = data['html_content'];
           dismissLoading();
           myAppController.clearFormAndTemp();
-          // offNamed
-          // Get.offAndToNamed(
-          //   routeHomeBottomBar,
-          // );
+          // // offNamed
+          // // Get.offAndToNamed(
+          // //   routeHomeBottomBar,
+          // // );
           Get.offNamed(
-            // routeHomeBottomBar,
             routeHomeBottomBar,
           );
           pdfFilePath = await onPressDownloadPdf(
             htmlContent: data['html_content'],
-            pdfTitle: 'form$serviceId$jobId$formId',
+            pdfTitle: 'form${formId}certificate${data['form_data']['id']}',
           );
           update();
           consoleLog(pdfFilePath);
+          await OpenFilex.open(
+            pdfFilePath,
+          );
         },
       );
     } else {

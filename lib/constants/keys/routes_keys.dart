@@ -20,3 +20,5 @@ const String routeMySettings = '/my_settings';
 const String routeMySubscription = '/my_subscription';
 const String routeSearch = '/search';
 const String routeFormEICR = '/form_eicr';
+const String routeSortCertificate = '/sort_certificate';
+const String routeCertificateDetails = '/certificate_details';

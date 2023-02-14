@@ -67,10 +67,25 @@ class Home extends StatelessWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
-                                  const HomeCards(),
                                   HomeCards(
+                                    onPress: () => Get.toNamed(
+                                      routeSortCertificate,
+                                      arguments: <String, dynamic>{
+                                        keyTitle: 'Not Complete Certs',
+                                        keyColor: AppColors.homeClr1,
+                                      },
+                                    ),
+                                  ),
+                                  HomeCards(
+                                    onPress: () => Get.toNamed(
+                                      routeSortCertificate,
+                                      arguments: <String, dynamic>{
+                                        keyTitle: 'Completed Certs',
+                                        keyColor: AppColors.homeClr2,
+                                      },
+                                    ),
                                     title: '3',
-                                    subTitle: 'Pending Certs',
+                                    subTitle: 'Completed Certs',
                                     iconPath: iconPendingCerts,
                                     bgColor: AppColors.homeClr2,
                                   ),
@@ -139,10 +154,10 @@ class HomeCards extends StatelessWidget {
     return CommonContainer(
       onPress: onPress,
       backgroundColor: bgColor ?? AppColors.homeClr1,
-      width: width ?? 0.445,
+      width: width ?? 0.45,
       // height: 0.12,
       borderRadius: 0.06,
-      paddingHorizontal: 0.04,
+      paddingHorizontal: 0.02,
       paddingVertical: 0.015,
       marginBottom: 0.015,
       touchEffect: TouchableEffect(
@@ -154,7 +169,7 @@ class HomeCards extends StatelessWidget {
           CommonText(
             title ?? '8',
             fontColor: AppColors.primary,
-            fontSize: 30,
+            fontSize: 28,
             fontWeight: FontWeight.bold,
             rowMainAxisAlignment: MainAxisAlignment.spaceBetween,
             rightChild: SvgPicture.asset(
@@ -168,7 +183,7 @@ class HomeCards extends StatelessWidget {
             ),
           ),
           CommonText(
-            subTitle ?? 'Outstanding Certs',
+            subTitle ?? 'Not Completed Certs',
             fontSize: fontTitle,
             fontColor: AppColors.primary,
           ),

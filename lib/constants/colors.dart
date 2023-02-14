@@ -9,6 +9,8 @@ class AppColors {
   static int greyDark = 0xff828282;
   static int greyLightBorder = 0xffD8D8D8;
   static int greyInputs = 0xffF0F0F0;
+  static int greyBackground = 0xffEBE9E9;
+
   // static int red = 0xffEC4059;
   // static int yellow = 0xffF5D633;
   // static int green = 0xff219653;
@@ -40,6 +42,7 @@ class AppColors {
   static int shadowGrey = 0xFFF0F0F0;
 
   static int yellow = 0xFFE3C428;
+  static int yellowOpacity = 0xffE5E97B;
   static int deepYellow = 0xFFFFA822;
   static int grey2Color = 0xFF92A1B1;
   static int secondaryColor = 0xFF218BF4;

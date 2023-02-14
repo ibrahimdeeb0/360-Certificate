@@ -32,6 +32,13 @@ class EICRFinalPage extends StatelessWidget {
                 marginBottom: 0.02,
               ),
               //*  Name *//
+              // CommonButton(
+              //   onPress: () {
+              //     consoleLogPretty(controller.resData['form_data'],
+              //         key: 'resData');
+              //   },
+              //   text: 'test',
+              // ),
 
               CommonInput(
                 topLabelText: 'Name (Capitals)',

@@ -152,6 +152,7 @@ const String iconSubscription = '${iconsPath}subscription.svg';
 const String iconOutCerts = '${iconsPath}icon_out_certs.svg';
 const String iconPendingCerts = '${iconsPath}icon_pending_certs.svg';
 const String iconOutInvoices = '${iconsPath}icon_out_invoices.svg';
+const String iconPDF = '${iconsPath}icon_pdf.svg';
 
 // ----------------------------------------
 
