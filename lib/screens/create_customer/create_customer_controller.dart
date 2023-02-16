@@ -845,8 +845,13 @@ class CreateCustomerController extends GetxController {
 
     customerFinanceCreditController.text =
         customerData['billing_info']['credit_limit'] ?? '';
-    paymentTerm = customerData['billing_info']['payment_term']['name'];
-    isSendStatements = customerData['billing_info']['send_statement'] == 'yes';
+    paymentTerm = customerData['billing_info']['payment_term'] != null
+        ? customerData['billing_info']['payment_term']['name']
+        : '';
+    // paymentTerm = customerData['billing_info']['payment_term']['name'] ?? '';
+    isSendStatements = customerData['billing_info']['send_statement'] != null
+        ? customerData['billing_info']['send_statement'] == 'yes'
+        : false;
 
     clientContactFirstNameController.text =
         customerData['contacts'][0]['f_name'];

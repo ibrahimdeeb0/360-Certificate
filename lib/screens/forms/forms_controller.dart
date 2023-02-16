@@ -73,21 +73,23 @@ class FormsController extends GetxController {
 
   // bool isNoTemp = false;
   void searchTemplate(Map<String, dynamic> formData) {
-    consoleLog(formData, key: 'formData');
+    // consoleLog(formData, key: 'formData');
     listTemp = <dynamic>[
       ...allFormsTemplates
           .where((dynamic item) => item['form_id'] == formData[keyId])
     ];
-    consoleLogPretty(listTemp);
+    // consoleLogPretty(listTemp);
 
     update();
 
     if (listTemp.isNotEmpty) {
       Get.bottomSheet(
-        const ShowTemplatesBT(),
+        ShowTemplatesBT(
+          formData: formData,
+        ),
       );
     } else if (listTemp.isEmpty) {
-      myAppController.selectedForm = {
+      myAppController.selectedForm = <String, dynamic>{
         ...formData,
         'form_route': routeFormEICR,
       };
@@ -101,6 +103,23 @@ class FormsController extends GetxController {
     }
 
     // consoleLogPretty(listTemp);
+  }
+
+  void goToCreateCert(Map<String, dynamic> formData) {
+    consoleLog(formData, key: 'form_data');
+
+    myAppController.selectedForm = <String, dynamic>{
+      ...formData,
+      'form_route': routeFormEICR,
+    };
+
+    Get.toNamed(
+      routeCreateCustomer,
+    );
+
+    if (Get.isBottomSheetOpen!) {
+      Get.back();
+    }
   }
 
   Future<void> getFormsTemplates() async {
@@ -147,22 +166,12 @@ class FormsController extends GetxController {
         if (Get.isBottomSheetOpen!) {
           Get.back();
         }
-        myAppController.selectedForm = {
+        myAppController.selectedForm = <String, dynamic>{
           ...formData!,
           'form_route': routeFormEICR,
         };
         myAppController.selectedTemplate = data;
         Get.toNamed(routeCreateCustomer);
-        // Get.to(
-        //   () => const EICR(),
-        //   arguments: <String, dynamic>{
-        //     'isTemplate': false,
-        //     'templateName': tempData,
-        //     'tempData': data,
-        //     'updateTemp': false,
-        //     'formId': formId,
-        //   },
-        // );
 
         update();
       },

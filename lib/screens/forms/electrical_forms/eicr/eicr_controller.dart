@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:open_filex/open_filex.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:uuid/uuid.dart';
 
@@ -901,7 +900,7 @@ class EicrController extends GetxController {
       if (selectedId < listFormSections.length - 1) {
         return 'Next';
       } else {
-        return 'Save';
+        return 'Complete';
       }
     }
   }
@@ -1114,6 +1113,7 @@ class EicrController extends GetxController {
     onPressSave();
 
     if (signatureBytes != null && signatureBytes2 != null) {
+      // ignore: unused_local_variable
       final int formId = homeController.formsData
           .where(
             (dynamic element) =>
@@ -1131,6 +1131,7 @@ class EicrController extends GetxController {
           jsonObject: <String, dynamic>{
             ...formBody,
             'customer_id': myAppController.selectedCustomer?[keyId],
+            // 'st'
           },
           imagesArray: selectedImages,
           customerSignature: customerSignature,
@@ -1145,21 +1146,10 @@ class EicrController extends GetxController {
           htmlContent = data['html_content'];
           dismissLoading();
           myAppController.clearFormAndTemp();
-          // // offNamed
-          // // Get.offAndToNamed(
-          // //   routeHomeBottomBar,
-          // // );
+
+          update();
           Get.offNamed(
             routeHomeBottomBar,
-          );
-          pdfFilePath = await onPressDownloadPdf(
-            htmlContent: data['html_content'],
-            pdfTitle: 'form${formId}certificate${data['form_data']['id']}',
-          );
-          update();
-          consoleLog(pdfFilePath);
-          await OpenFilex.open(
-            pdfFilePath,
           );
         },
       );

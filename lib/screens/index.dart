@@ -20,5 +20,5 @@ export 'profile/index.dart';
 export 'search/index.dart';
 export 'splash_screen/index.dart';
 export 'web_view_loader/index.dart';
-export 'sort_certificate/index.dart';
+export 'completed_cert/index.dart';
 export 'certificate_details/index.dart';

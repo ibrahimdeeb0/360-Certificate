@@ -5,81 +5,91 @@ class CustomerDetailsTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        CommonContainer(
-          style: appContainerStyles.cardStyle,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+    return GetBuilder<CertificateDetailsController>(
+        init: CertificateDetailsController(),
+        builder: (CertificateDetailsController controller) {
+          return Column(
             children: <Widget>[
-              const CertTitleItem(
-                title: 'Company/Customer Name',
-                subTitle: 'EICR',
-              ),
-              const CertTitleItem(
-                title: 'Street No & Name',
-                subTitle: '14 Orchard St, Bristol BS1 5EH',
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const <Widget>[
-                  CertTitleItem(
-                    title: 'City',
-                    subTitle: 'London',
-                  ),
-                  CertTitleItem(
-                    title: 'Country',
-                    subTitle: 'UK',
-                  ),
-                  SizedBox(),
-                ],
-              ),
-              const CertTitleItem(
-                title: 'Postcode',
-                subTitle: '00692',
-              ),
-              const CertTitleItem(
-                title: 'Email',
-                subTitle: 'Ahmed@Gmail.Com',
-              ),
               CommonContainer(
-                onPress: () {},
-                touchEffect: TouchableEffect(type: TouchTypes.opacity),
-                marginVertical: 0.015,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const <Widget>[
+                style: appContainerStyles.cardStyle,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
                     CertTitleItem(
-                      title: 'Payment Terms',
-                      subTitle: 'Due Before Cert',
+                      title: 'Company/Customer Name',
+                      subTitle:
+                          '${controller.certDetails['form_data']['customer']['name']}',
                     ),
-                    Icon(Icons.arrow_forward)
+                    CertTitleItem(
+                      title: 'Street No & Name',
+                      subTitle:
+                          '${controller.certDetails['form_data']['customer']['street_num']}',
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        CertTitleItem(
+                          title: 'City',
+                          subTitle:
+                              '${controller.certDetails['form_data']['customer']['city']}',
+                        ),
+                        CertTitleItem(
+                          title: 'Country',
+                          subTitle:
+                              '${controller.certDetails['form_data']['customer']['country']['name']['en']}',
+                        ),
+                        const SizedBox(),
+                      ],
+                    ),
+                    CertTitleItem(
+                      title: 'Postcode',
+                      subTitle:
+                          '${controller.certDetails['form_data']['customer']['postal_code']}',
+                    ),
+                    CertTitleItem(
+                      title: 'Email',
+                      subTitle:
+                          '${controller.certDetails['form_data']['customer']['contacts'][0]['email']}',
+                    ),
+                    CommonContainer(
+                      onPress: () {},
+                      touchEffect: TouchableEffect(type: TouchTypes.opacity),
+                      marginVertical: 0.015,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: const <Widget>[
+                          CertTitleItem(
+                            title: 'Payment Terms',
+                            subTitle: 'Due Before Cert',
+                          ),
+                          Icon(Icons.arrow_forward)
+                        ],
+                      ),
+                    ),
+                    CommonContainer(
+                      onPress: () {},
+                      touchEffect: TouchableEffect(type: TouchTypes.opacity),
+                      marginBottom: 0.015,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: const <Widget>[
+                          CertTitleItem(
+                            title: 'When to send the invoice',
+                            subTitle: 'Per Week',
+                          ),
+                          Icon(Icons.arrow_forward)
+                        ],
+                      ),
+                    ),
+                    const CertTitleItem(
+                      title: 'Overdue Amount ',
+                      subTitle: '3',
+                    ),
                   ],
                 ),
-              ),
-              CommonContainer(
-                onPress: () {},
-                touchEffect: TouchableEffect(type: TouchTypes.opacity),
-                marginBottom: 0.015,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const <Widget>[
-                    CertTitleItem(
-                      title: 'When to send the invoice',
-                      subTitle: 'Per Week',
-                    ),
-                    Icon(Icons.arrow_forward)
-                  ],
-                ),
-              ),
-              const CertTitleItem(
-                title: 'Overdue Amount ',
-                subTitle: '3',
               ),
             ],
-          ),
-        ),
-      ],
-    );
+          );
+        });
   }
 }

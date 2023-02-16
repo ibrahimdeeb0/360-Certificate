@@ -55,18 +55,45 @@ class FormHeader extends StatelessWidget with PreferredSizeWidget {
         ),
 
         // Back Arrow
-        leading: Visibility(
-          visible: withBack,
-          child: CircleContainer(
-            onPress: onPressBack ?? Get.back,
-            marginHorizontal: 0.02,
-            backgroundColor: Color(AppColors.greyLight),
-            iconWidget: const Icon(
-              Icons.arrow_back,
-              color: Colors.black,
-            ),
-          ),
+        leading: CommonText(
+          'Save & Exit',
+          fontColor: AppColors.primary,
+          fontSize: fontH3,
+          fontWeight: FontWeight.bold,
         ),
+        //  CommonButton(
+        //   onPress: () {},
+        //   text: ,
+        //   width: 0.3,
+        //   fontSize: fontH4,
+        //   marginLeft: 0.01,
+        //   marginBottom: 0.004,
+        // ),
+        // CircleContainer(
+        //   onPress: () {},
+        //   // marginHorizontal: 0.02,
+        //   circuitSize: 0.2,
+        //   backgroundColor: Color(AppColors.greyLight),
+        //   iconWidget:
+        //   CommonText(
+        //     'Save and Exit',
+        //     fontSize: fontBody,
+        //     fontColor: AppColors.primary,
+        //   ),
+        // ),
+        // Visibility(
+        //   visible: withBack,
+        //   child:
+        //   CircleContainer(
+        //     onPress: onPressBack ?? Get.back,
+        //     marginHorizontal: 0.02,
+        //     backgroundColor: Color(AppColors.greyLight),
+        //     iconWidget: const Icon(
+        //       Icons.arrow_back,
+        //       color: Colors.black,
+        //     ),
+        //   ),
+        // ),
 
         actions: <Widget>[
           CircleNumbering(numbers: circleNumbering ?? ''),

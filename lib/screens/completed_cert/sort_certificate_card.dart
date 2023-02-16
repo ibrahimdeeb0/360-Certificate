@@ -108,15 +108,16 @@ class SortCertificateCard extends StatelessWidget {
                 color: Color(AppColors.greyDark),
               ),
             ),
-            bottomChild: CommonText(
-              customerCountry ?? 'UK / London',
-              fontSize: fontBody,
-              fontColor: AppColors.greyDark,
-              containerStyle: const CommonContainerModel(
-                alignment: AlignmentDirectional.topStart,
-                marginLeft: 0.057,
-              ),
-            ),
+
+            // bottomChild: CommonText(
+            //   customerCountry ?? 'London',
+            //   fontSize: fontBody,
+            //   fontColor: AppColors.greyDark,
+            //   containerStyle: const CommonContainerModel(
+            //     alignment: AlignmentDirectional.topStart,
+            //     marginLeft: 0.057,
+            //   ),
+            // ),
           ),
         ],
       ),

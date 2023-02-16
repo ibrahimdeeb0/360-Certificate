@@ -67,15 +67,15 @@ class Home extends StatelessWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
-                                  HomeCards(
-                                    onPress: () => Get.toNamed(
-                                      routeSortCertificate,
-                                      arguments: <String, dynamic>{
-                                        keyTitle: 'Not Complete Certs',
-                                        keyColor: AppColors.homeClr1,
-                                      },
-                                    ),
-                                  ),
+                                  const HomeCards(
+                                      // onPress: () => Get.toNamed(
+                                      //   routeSortCertificate,
+                                      //   arguments: <String, dynamic>{
+                                      //     keyTitle: 'Not Complete Certs',
+                                      //     keyColor: AppColors.homeClr1,
+                                      //   },
+                                      // ),
+                                      ),
                                   HomeCards(
                                     onPress: () => Get.toNamed(
                                       routeSortCertificate,

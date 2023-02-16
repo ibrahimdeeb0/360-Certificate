@@ -21,28 +21,26 @@ class Forms extends StatelessWidget {
                   SizedBox(
                     height: DEVICE_HEIGHT * 0.02,
                   ),
-                  ...controller.formItems
-                      .map(
-                        (dynamic item) => ExpandableTile(
-                          title: item[keyTitle],
-                          titleColor: AppColors.primary,
-                          children: <Widget>[
-                            ...item[keyItems]
-                                .map(
-                                  (dynamic childe) => ChildeItems(
-                                    text: childe[keyTitle],
-                                    onPress: () {
-                                      if (childe[keyId] == 5) {
-                                        controller.searchTemplate(childe);
-                                      }
-                                    },
-                                  ),
-                                )
-                                .toList(),
-                          ],
-                        ),
-                      )
-                      .toList(),
+                  ...controller.formItems.map(
+                    (dynamic item) => ExpandableTile(
+                      title: item[keyTitle],
+                      titleColor: AppColors.primary,
+                      children: <Widget>[
+                        ...item[keyItems]
+                            .map(
+                              (dynamic childe) => ChildeItems(
+                                text: childe[keyTitle],
+                                onPress: () {
+                                  if (childe[keyId] == 5) {
+                                    controller.searchTemplate(childe);
+                                  }
+                                },
+                              ),
+                            )
+                            .toList(),
+                      ],
+                    ),
+                  ),
                   SizedBox(height: DEVICE_HEIGHT * 0.02),
                 ],
               ),
@@ -55,7 +53,12 @@ class Forms extends StatelessWidget {
 }
 
 class ShowTemplatesBT extends StatelessWidget {
-  const ShowTemplatesBT({super.key});
+  const ShowTemplatesBT({
+    super.key,
+    this.formData,
+  });
+
+  final Map<String, dynamic>? formData;
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +71,7 @@ class ShowTemplatesBT extends StatelessWidget {
           return SingleChildScrollView(
             child: Column(
               children: <Widget>[
-                SizedBox(height: DEVICE_HEIGHT * 0.025),
+                SizedBox(height: DEVICE_HEIGHT * 0.03),
                 // if (controller.listTemp.isNotEmpty)
                 ...controller.listTemp.map(
                   (dynamic item) => ShowTemplateCard(
@@ -78,6 +81,25 @@ class ShowTemplatesBT extends StatelessWidget {
                       tempId: item['id'],
                     ),
                   ),
+                ),
+
+                CommonButton(
+                  onPress: () {
+                    consoleLog(formData, key: 'form_data');
+                    myAppController.selectedForm = <String, dynamic>{
+                      ...formData!,
+                      'form_route': routeFormEICR,
+                    };
+                    consoleLog(myAppController.selectedForm,
+                        key: 'form_data_Global');
+                    Get.back();
+                    Get.toNamed(
+                      routeCreateCustomer,
+                    );
+                  },
+                  text: 'Continue without template',
+                  backgroundColor: Color(AppColors.primary).withOpacity(0.9),
+                  marginTop: 0.01,
                 ),
                 SizedBox(height: DEVICE_HEIGHT * 0.025),
               ],
@@ -104,6 +126,12 @@ class ShowTemplateCard extends StatelessWidget {
     return CommonText(
       title ?? 'text',
       onPress: onPress,
+      leftChild: CommonText(
+        'Template Name: ',
+        marginRight: 0.015,
+        fontSize: fontBody,
+        fontColor: AppColors.greyDark,
+      ),
       textAlign: TextAlign.start,
       containerStyle: CommonContainerModel(
         width: 1,
@@ -111,6 +139,7 @@ class ShowTemplateCard extends StatelessWidget {
         paddingVertical: 0.015,
         backgroundColor: Color(AppColors.primary).withOpacity(0.1),
         borderRadius: 0.02,
+        marginBottom: 0.02,
       ),
     );
   }
