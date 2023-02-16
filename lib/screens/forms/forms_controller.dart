@@ -92,6 +92,7 @@ class FormsController extends GetxController {
       myAppController.selectedForm = <String, dynamic>{
         ...formData,
         'form_route': routeFormEICR,
+        'is_form_update': false,
       };
       Get.toNamed(
         routeCreateCustomer,
@@ -105,22 +106,22 @@ class FormsController extends GetxController {
     // consoleLogPretty(listTemp);
   }
 
-  void goToCreateCert(Map<String, dynamic> formData) {
-    consoleLog(formData, key: 'form_data');
+  // void goToCreateCert(Map<String, dynamic> formData) {
+  //   consoleLog(formData, key: 'form_data');
 
-    myAppController.selectedForm = <String, dynamic>{
-      ...formData,
-      'form_route': routeFormEICR,
-    };
+  //   myAppController.selectedForm = <String, dynamic>{
+  //     ...formData,
+  //     'form_route': routeFormEICR,
+  //   };
 
-    Get.toNamed(
-      routeCreateCustomer,
-    );
+  //   Get.toNamed(
+  //     routeCreateCustomer,
+  //   );
 
-    if (Get.isBottomSheetOpen!) {
-      Get.back();
-    }
-  }
+  //   if (Get.isBottomSheetOpen!) {
+  //     Get.back();
+  //   }
+  // }
 
   Future<void> getFormsTemplates() async {
     hideKeyboard();
@@ -169,6 +170,7 @@ class FormsController extends GetxController {
         myAppController.selectedForm = <String, dynamic>{
           ...formData!,
           'form_route': routeFormEICR,
+          'is_form_update': false,
         };
         myAppController.selectedTemplate = data;
         Get.toNamed(routeCreateCustomer);

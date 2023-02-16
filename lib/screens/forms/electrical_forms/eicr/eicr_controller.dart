@@ -790,6 +790,7 @@ class EicrController extends GetxController {
     gazSafetyData[formKeyEICRdeclaration][key!] = value;
   }
 
+  bool agreeCreate = true;
   void onPressNext() {
     if (isTemplate) {
       if (selectedId == 17) {
@@ -813,8 +814,12 @@ class EicrController extends GetxController {
     else {
       if (selectedId == 21) {
         consoleLog('this is last Page');
-        onPressFinishReportForm();
+        onCompleteCertificate();
       } else if (selectedId < 21) {
+        if (selectedId == 0 && agreeCreate == true) {
+          onCreateCertificate();
+          agreeCreate = false;
+        }
         if (selectedId == 17) {
           selectedId = selectedId + 1;
           update();
@@ -1103,6 +1108,121 @@ class EicrController extends GetxController {
   }
 
   // *****************  Press Finish ****************
+  int? certId;
+  Future<void> onCreateCertificate() async {
+    saveDbCircuitsDataOnFormBody();
+    saveObservationsDataBaseBody();
+    onPressSave();
+
+    final Map<String, dynamic> certData = <String, dynamic>{
+      ...formBody,
+      'customer_id': myAppController.selectedCustomer?[keyId],
+      'status_id': 13,
+      // 'st'
+    };
+
+    ApiRequest(
+      method: ApiMethods.post,
+      path: keyCreateForm,
+      className: 'EicrController/onCreateCertificate',
+      requestFunction: onCreateCertificate,
+      // withLoading: true,
+      body: selectedImages!.isEmpty
+          ? certData
+          : await addArrayToFormData(
+              jsonObject: certData,
+              imagesArray: selectedImages,
+              customerSignature: customerSignature,
+            ),
+    ).request(
+      onSuccess: (dynamic data, dynamic response) async {
+        certId = data['form_data']['id'];
+        update();
+      },
+    );
+  }
+
+  Future<void> onUpdateCertificate() async {
+    saveDbCircuitsDataOnFormBody();
+    saveObservationsDataBaseBody();
+    onPressSave();
+    final Map<String, dynamic> certData = <String, dynamic>{
+      ...formBody,
+      'customer_id': myAppController.selectedCustomer?[keyId],
+      'status_id': 3,
+      // 'st'
+    };
+    ApiRequest(
+      method: ApiMethods.post,
+      path: '/certificate-form/$certId/update',
+      className: 'EicrController/onUpdateCertificate',
+      requestFunction: onUpdateCertificate,
+      withLoading: true,
+      body: selectedImages!.isEmpty
+          ? certData
+          : await addArrayToFormData(
+              jsonObject: certData,
+              imagesArray: selectedImages,
+              customerSignature: customerSignature,
+            ),
+    ).request(
+      onSuccess: (dynamic data, dynamic response) async {
+        myAppController.clearFormAndTemp();
+        Get.offAndToNamed(routeHomeBottomBar);
+      },
+    );
+  }
+
+  Future<void> onCompleteCertificate() async {
+    saveDbCircuitsDataOnFormBody();
+    saveObservationsDataBaseBody();
+    onPressSave();
+    final Map<String, dynamic> certData = <String, dynamic>{
+      ...formBody,
+      'customer_id': myAppController.selectedCustomer?[keyId],
+      'status_id': 4,
+      // 'st'
+    };
+    if (signatureBytes != null && signatureBytes2 != null) {
+      ApiRequest(
+        method: ApiMethods.post,
+        path: '/certificate-form/$certId/update',
+        className: 'EicrController/onUpdateCertificate',
+        requestFunction: onUpdateCertificate,
+        withLoading: true,
+        body: await addArrayToFormData(
+          jsonObject: certData,
+          imagesArray: selectedImages,
+          customerSignature: customerSignature,
+        ),
+        // body: selectedImages!.isEmpty
+        //     ? certData
+        //     : await addArrayToFormData(
+        //         jsonObject: certData,
+        //         imagesArray: selectedImages,
+        //         customerSignature: customerSignature,
+        //       ),
+      ).request(
+        onSuccess: (dynamic data, dynamic response) async {
+          myAppController.clearFormAndTemp();
+          Get.offAndToNamed(routeHomeBottomBar);
+          // Get.toNamed(
+          //   routeCertificateDetails,
+          //   arguments: <String, dynamic>{
+          //     keyId: certId,
+          //     'customer_id': myAppController.selectedCustomer?[keyId],
+          //   },
+          // );
+        },
+      );
+    } else {
+      showMessage(
+        description: 'All signatures required',
+        textColor: AppColors.red,
+      );
+    }
+  }
+
   dynamic resData;
   Future<void> onPressFinishReportForm() async {
     // formBody[data]['who_is_receiving'] = whoIsReceiving;
@@ -1142,15 +1262,16 @@ class EicrController extends GetxController {
           // dismissLoading();
           // selectedId = 0;
           // removeStoredFormData();
-          resData = data;
-          htmlContent = data['html_content'];
-          dismissLoading();
-          myAppController.clearFormAndTemp();
+          //** */
+          // resData = data;
+          // htmlContent = data['html_content'];
+          // dismissLoading();
+          // myAppController.clearFormAndTemp();
 
-          update();
-          Get.offNamed(
-            routeHomeBottomBar,
-          );
+          // update();
+          // Get.offNamed(
+          //   routeHomeBottomBar,
+          // );
         },
       );
     } else {

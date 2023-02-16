@@ -9,6 +9,8 @@ class FormHeader extends StatelessWidget with PreferredSizeWidget {
     this.withBack = true,
     this.withShadow = true,
     this.circleNumbering,
+    this.showSaveBtn = true,
+    this.onPressSave,
     Key? key,
   }) : super(key: key);
 
@@ -16,8 +18,10 @@ class FormHeader extends StatelessWidget with PreferredSizeWidget {
   final bool withBack;
   final bool withoutBackGround;
   final Function? onPressBack;
+  final Function? onPressSave;
   final bool withOverLay;
   final bool withShadow;
+  final bool showSaveBtn;
   final String? circleNumbering;
 
   @override
@@ -54,13 +58,22 @@ class FormHeader extends StatelessWidget with PreferredSizeWidget {
           style: appTextStyles.h2StyleBlack(),
         ),
 
+        leadingWidth: DEVICE_WIDTH * 0.25,
         // Back Arrow
-        leading: CommonText(
-          'Save & Exit',
-          fontColor: AppColors.primary,
-          fontSize: fontH3,
-          fontWeight: FontWeight.bold,
-        ),
+        leading: showSaveBtn
+            ? CommonText(
+                'Save & Exit', // & Exit,
+                onPress: onPressSave,
+                fontColor: AppColors.primary,
+                fontSize: fontH3,
+                fontWeight: FontWeight.bold,
+                containerStyle: CommonContainerModel(
+                  alignment: Alignment.center,
+                  marginLeft: 0.01,
+                  touchEffect: TouchableEffect(type: TouchTypes.scaleAndFade),
+                ),
+              )
+            : const SizedBox(),
         //  CommonButton(
         //   onPress: () {},
         //   text: ,

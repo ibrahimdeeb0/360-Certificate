@@ -89,6 +89,7 @@ class ShowTemplatesBT extends StatelessWidget {
                     myAppController.selectedForm = <String, dynamic>{
                       ...formData!,
                       'form_route': routeFormEICR,
+                      'is_form_update': false,
                     };
                     consoleLog(myAppController.selectedForm,
                         key: 'form_data_Global');

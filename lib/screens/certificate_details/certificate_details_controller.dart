@@ -18,20 +18,20 @@ class CertificateDetailsController extends GetxController
       keyId: 1,
       'text': 'Customer Details',
     },
-    <String, dynamic>{
-      keyId: 2,
-      'text': 'Notes',
-    },
-    <String, dynamic>{
-      keyId: 3,
-      'text': 'Invoice',
-    },
+    // <String, dynamic>{
+    //   keyId: 2,
+    //   'text': 'Notes',
+    // },
+    // <String, dynamic>{
+    //   keyId: 3,
+    //   'text': 'Invoice',
+    // },
   ];
   List<dynamic> tabViewItems = <dynamic>[
     const CertTab(),
     const CustomerDetailsTab(),
-    const InvoiceTab(),
-    const NotesTab(),
+    // const InvoiceTab(),
+    // const NotesTab(),
   ];
 
   Map<dynamic, dynamic> certDetails = <dynamic, dynamic>{};
@@ -70,6 +70,7 @@ class CertificateDetailsController extends GetxController
       className: 'SortCertificateController/getAllCertificates',
       requestFunction: getCompetedCert,
       // withLoading: true,
+      formatResponse: true,
     ).request(onSuccess: (dynamic data, dynamic response) async {
       myAppController.localStorage.saveToStorage(
         key: 'getCompetedCerts',

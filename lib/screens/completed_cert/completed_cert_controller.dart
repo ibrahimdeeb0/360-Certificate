@@ -8,10 +8,11 @@ class CompletedCertController extends GetxController {
     hideKeyboard();
 
     ApiRequest(
-      path: formGetAllCertificates,
-      className: 'SortCertificateController/getAllCertificates',
+      path: keyCompletedCert,
+      className: 'SortCertificateController/getCompetedCert',
       requestFunction: getCompetedCert,
       withLoading: true,
+      // formatResponse: true,
     ).request(
       onSuccess: (dynamic data, dynamic response) {
         myAppController.localStorage.saveToStorage(

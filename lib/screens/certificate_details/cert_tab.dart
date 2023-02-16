@@ -118,26 +118,29 @@ class CertTab extends StatelessWidget {
                   ),
                 ),
               ),
-            //
-            CommonButton(
-              onPress: () {},
-              text: 'Edit Certificate',
-              backgroundColor: Color(AppColors.primary).withOpacity(0.3),
-              marginBottom: 0.02,
-              marginTop: 0.01,
-              elevation: 0.0,
-              fontColor: AppColors.primary,
-              overlayColor: Colors.black12,
-            ),
-            CommonButton(
-              onPress: () {},
-              text: 'Cancel',
-              backgroundColor: Colors.white,
-              marginBottom: 0.02,
-              elevation: 0.0,
-              fontColor: AppColors.red,
-              overlayColor: Colors.black12,
-            ),
+            if (controller.certDetails['form_data']['status']['status'] !=
+                'Completed')
+              CommonButton(
+                onPress: () {},
+                text: 'Edit Certificate',
+                backgroundColor: Color(AppColors.primary).withOpacity(0.3),
+                marginBottom: 0.02,
+                marginTop: 0.01,
+                elevation: 0.0,
+                fontColor: AppColors.primary,
+                overlayColor: Colors.black12,
+              ),
+            if (controller.certDetails['form_data']['status']['status'] !=
+                'Completed')
+              CommonButton(
+                onPress: () {},
+                text: 'Cancel',
+                backgroundColor: Colors.white,
+                marginBottom: 0.02,
+                elevation: 0.0,
+                fontColor: AppColors.red,
+                overlayColor: Colors.black12,
+              ),
           ],
         );
       },

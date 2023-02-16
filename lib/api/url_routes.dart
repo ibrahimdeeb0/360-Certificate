@@ -41,7 +41,7 @@ const String keyCreateSiteContact = '/site-contact/create';
 const String keyJobUpDateState = '/job/update-status';
 const String keyCertUpDateState = '/certificates/update-status';
 const String keyGetPaymentTerms = '/payment-terms';
-const String keyCreateForm = '/certificate-form/create';
+
 const String keyClosingDates = '/setting/closing-dates';
 const String keySchedule = '/schedule';
 const String keyOperationHours = '/setting/operation-hours';
@@ -63,3 +63,7 @@ const String keyGetAllFormTemplate = '/forms/templates';
 const String keyGetAllCustomers = '/customers/get';
 const String formGetAllCertificates = '/certificate-form';
 const String formGetCertificate = '/certificate-form/customer-certificate?';
+const String keyCreateForm = '/certificate-form/create';
+//
+const String keyCompletedCert = '/certificate-form/complete';
+const String keyUnCompletedCert = '/certificate-form/uncompleted';

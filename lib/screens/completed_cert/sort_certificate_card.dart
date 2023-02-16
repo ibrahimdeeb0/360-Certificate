@@ -52,11 +52,11 @@ class SortCertificateCard extends StatelessWidget {
               CommonText(
                 formType ?? 'Gas',
                 fontWeight: FontWeight.bold,
-                marginHorizontal: 0.04,
-                rightChild: CommonText(
-                  price ?? '£ 125',
-                  fontWeight: FontWeight.bold,
-                ),
+                // marginHorizontal: 0.04,
+                // rightChild: CommonText(
+                //   price ?? '£ 125',
+                //   fontWeight: FontWeight.bold,
+                // ),
               )
             ],
           ),

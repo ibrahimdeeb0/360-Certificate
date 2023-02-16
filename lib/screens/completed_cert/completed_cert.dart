@@ -44,9 +44,10 @@ class CompletedCert extends StatelessWidget {
                       formType: item['form']['type'],
                       price: '£ 0.0',
                       // date: item['created_at'],
+
                       date: DateFormat('dd-MM-yyyy').format(
                           DateTime.parse(item['created_at'].toString())),
-                      certStatus: 'Completed',
+                      certStatus: item['status']['status'],
                       customerName: item['customer']['name'],
                       customerAddress: item['customer']['address'],
                       // customerCountry: item['customer']['name'],
