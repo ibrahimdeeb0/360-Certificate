@@ -1,22 +1,16 @@
 import '../../general_exports.dart';
 
-class CompletedCertController extends GetxController {
-  List<dynamic> allCompetedCert = <dynamic>[];
-  List<dynamic> competedCerts = <dynamic>[];
+class UncompletedCertController extends GetxController {
+  List<dynamic> allUnCompetedCert = <dynamic>[];
+  List<dynamic> unCompetedCerts = <dynamic>[];
 
-  @override
-  void onReady() {
-    super.onReady();
-    getCompetedCert();
-  }
-
-  Future<void> getCompetedCert() async {
+  Future<void> getUnCompetedCert() async {
     hideKeyboard();
 
     ApiRequest(
-      path: keyCompletedCert,
-      className: 'SortCertificateController/getCompetedCert',
-      requestFunction: getCompetedCert,
+      path: keyUnCompletedCert,
+      className: 'SortCertificateController/getUnCompetedCert',
+      requestFunction: getUnCompetedCert,
       withLoading: true,
       // formatResponse: true,
     ).request(
@@ -25,7 +19,7 @@ class CompletedCertController extends GetxController {
           key: 'getCompetedCerts',
           value: data,
         );
-        allCompetedCert = data;
+        allUnCompetedCert = data;
 
         sortedCerts();
         update();
@@ -36,14 +30,14 @@ class CompletedCertController extends GetxController {
       final dynamic apiData = await myAppController.localStorage.getFromStorage(
         key: 'getCompetedCerts',
       );
-      allCompetedCert = apiData;
+      allUnCompetedCert = apiData;
       update();
     }
   }
 
   void sortedCerts() {
-    competedCerts = <dynamic>[
-      ...allCompetedCert.where((dynamic item) => item['customer_id'] != null),
+    unCompetedCerts = <dynamic>[
+      ...allUnCompetedCert.where((dynamic item) => item['customer_id'] != null),
     ];
 
     // consoleLogPretty(competedCerts, key: 'sortedCerts');
@@ -54,8 +48,9 @@ class CompletedCertController extends GetxController {
   //   super.onInit();
   // }
 
-  // @override
-  // void onClose() {
-  //   super.onClose();
-  // }
+  @override
+  void onReady() {
+    super.onReady();
+    getUnCompetedCert();
+  }
 }

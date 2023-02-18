@@ -27,6 +27,7 @@ class EicrController extends GetxController {
   int? customerId;
 
   bool renderItem = false;
+  bool isCertificateCreated = true;
   int? jobId;
   int? serviceId;
   List<Map<String, dynamic>>? selectedImages = <Map<String, dynamic>>[];
@@ -790,8 +791,7 @@ class EicrController extends GetxController {
     gazSafetyData[formKeyEICRdeclaration][key!] = value;
   }
 
-  bool agreeCreate = true;
-  void onPressNext() {
+  void onPressNext({bool fromSave = false}) {
     if (isTemplate) {
       if (selectedId == 17) {
         selectedId = selectedId + 1;
@@ -816,33 +816,40 @@ class EicrController extends GetxController {
         consoleLog('this is last Page');
         onCompleteCertificate();
       } else if (selectedId < 21) {
-        if (selectedId == 0 && agreeCreate == true) {
+        if ((selectedId == 0 || fromSave) && isCertificateCreated) {
           onCreateCertificate();
-          agreeCreate = false;
+          isCertificateCreated = false;
         }
-        if (selectedId == 17) {
-          selectedId = selectedId + 1;
-          update();
-          Timer(
-            const Duration(milliseconds: 300),
-            () {
-              renderItem = true;
-              update();
-            },
-          );
-        } else if (selectedId == 18) {
-          selectedId = selectedId + 1;
-          update();
-          Timer(
-            const Duration(milliseconds: 300),
-            () {
-              renderItem = false;
-              update();
-            },
-          );
+        // if (selectedId == 17) {
+        //   selectedId = selectedId + 1;
+        //   update();
+        //   Timer(
+        //     const Duration(milliseconds: 300),
+        //     () {
+        //       renderItem = true;
+        //       update();
+        //     },
+        //   );
+        // } else if (selectedId == 18) {
+        //   selectedId = selectedId + 1;
+        //   update();
+        //   Timer(
+        //     const Duration(milliseconds: 300),
+        //     () {
+        //       renderItem = false;
+        //       update();
+        //     },
+        //   );
+        // }
+        else if (fromSave) {
+          onUpdateCertificate();
         } else {
           selectedId = selectedId + 1;
           update();
+        }
+        if (fromSave) {
+          myAppController.clearFormAndTemp();
+          Get.offAndToNamed(routeHomeBottomBar);
         }
       }
     }
@@ -983,14 +990,30 @@ class EicrController extends GetxController {
   }
 
   void onPressSave() {
-    formBody[keyData][formKeyGazSafetyData].add(
-      <String, dynamic>{
-        ...gazSafetyData,
-        'id': (formBody[keyData][formKeyGazSafetyData].length + 1).toString(),
-      },
-    );
+    if (formBody[keyData][formKeyGazSafetyData] == <Map<String, dynamic>>[] ||
+        formBody[keyData][formKeyGazSafetyData] == null) {
+      formBody[keyData][formKeyGazSafetyData].add(
+        <String, dynamic>{
+          ...gazSafetyData,
+          'id': (formBody[keyData][formKeyGazSafetyData].length + 1).toString(),
+        },
+      );
+      update();
+      consoleLog(formBody[keyData][formKeyGazSafetyData],
+          key: 'formKeyGazSafetyData == null');
+    } else {
+      formBody[keyData][formKeyGazSafetyData] = <Map<String, dynamic>>[];
+      formBody[keyData][formKeyGazSafetyData].add(
+        <String, dynamic>{
+          ...gazSafetyData,
+          'id': (formBody[keyData][formKeyGazSafetyData].length + 1).toString(),
+        },
+      );
+      update();
+      consoleLog(formBody[keyData][formKeyGazSafetyData],
+          key: 'formKeyGazSafetyData != null');
+    }
     // storeFormData();
-    update();
   }
 
   // for Checkbox Values  whoIsReceiving
@@ -1118,8 +1141,9 @@ class EicrController extends GetxController {
       ...formBody,
       'customer_id': myAppController.selectedCustomer?[keyId],
       'status_id': 13,
-      // 'st'
     };
+
+    consoleLogPretty(certData, key: 'all data create');
 
     ApiRequest(
       method: ApiMethods.post,
@@ -1127,6 +1151,8 @@ class EicrController extends GetxController {
       className: 'EicrController/onCreateCertificate',
       requestFunction: onCreateCertificate,
       // withLoading: true,
+      formatResponse: true,
+
       body: selectedImages!.isEmpty
           ? certData
           : await addArrayToFormData(
@@ -1150,14 +1176,16 @@ class EicrController extends GetxController {
       ...formBody,
       'customer_id': myAppController.selectedCustomer?[keyId],
       'status_id': 3,
-      // 'st'
     };
+    consoleLogPretty(certData, key: 'all data update');
+
+    startLoading();
     ApiRequest(
       method: ApiMethods.post,
       path: '/certificate-form/$certId/update',
       className: 'EicrController/onUpdateCertificate',
       requestFunction: onUpdateCertificate,
-      withLoading: true,
+      // withLoading: true,
       body: selectedImages!.isEmpty
           ? certData
           : await addArrayToFormData(
@@ -1165,12 +1193,13 @@ class EicrController extends GetxController {
               imagesArray: selectedImages,
               customerSignature: customerSignature,
             ),
-    ).request(
-      onSuccess: (dynamic data, dynamic response) async {
-        myAppController.clearFormAndTemp();
-        Get.offAndToNamed(routeHomeBottomBar);
-      },
-    );
+    ).request(onSuccess: (dynamic data, dynamic response) async {
+      myAppController.clearFormAndTemp();
+      certificatesController.getAllCert();
+      Get.offAndToNamed(routeHomeBottomBar);
+    }, onError: (dynamic error) {
+      dismissLoading();
+    });
   }
 
   Future<void> onCompleteCertificate() async {
@@ -1181,40 +1210,36 @@ class EicrController extends GetxController {
       ...formBody,
       'customer_id': myAppController.selectedCustomer?[keyId],
       'status_id': 4,
-      // 'st'
     };
+    consoleLogPretty(certData, key: 'all data complete');
+
     if (signatureBytes != null && signatureBytes2 != null) {
+      startLoading();
       ApiRequest(
         method: ApiMethods.post,
         path: '/certificate-form/$certId/update',
         className: 'EicrController/onUpdateCertificate',
         requestFunction: onUpdateCertificate,
-        withLoading: true,
+        // withLoading: true,
         body: await addArrayToFormData(
           jsonObject: certData,
           imagesArray: selectedImages,
           customerSignature: customerSignature,
         ),
-        // body: selectedImages!.isEmpty
-        //     ? certData
-        //     : await addArrayToFormData(
-        //         jsonObject: certData,
-        //         imagesArray: selectedImages,
-        //         customerSignature: customerSignature,
-        //       ),
-      ).request(
-        onSuccess: (dynamic data, dynamic response) async {
-          myAppController.clearFormAndTemp();
-          Get.offAndToNamed(routeHomeBottomBar);
-          // Get.toNamed(
-          //   routeCertificateDetails,
-          //   arguments: <String, dynamic>{
-          //     keyId: certId,
-          //     'customer_id': myAppController.selectedCustomer?[keyId],
-          //   },
-          // );
-        },
-      );
+      ).request(onSuccess: (dynamic data, dynamic response) async {
+        myAppController.clearFormAndTemp();
+        certificatesController.getAllCert();
+        Get.offAndToNamed(routeHomeBottomBar);
+        // Get.toNamed(
+        //   routeCertificateDetails,
+        //   arguments: <String, dynamic>{
+        //     keyId: certId,
+        //     'customer_id': myAppController.selectedCustomer?[keyId],
+        //   },
+        // );
+      }, onError: (dynamic error) {
+        dismissLoading();
+      });
     } else {
       showMessage(
         description: 'All signatures required',
@@ -1223,63 +1248,63 @@ class EicrController extends GetxController {
     }
   }
 
-  dynamic resData;
-  Future<void> onPressFinishReportForm() async {
-    // formBody[data]['who_is_receiving'] = whoIsReceiving;
-    // formBody[data]['date'] = dateController.text;
-    // formBody[data]['comment'] = commentController.text;
-    saveDbCircuitsDataOnFormBody();
-    saveObservationsDataBaseBody();
-    onPressSave();
+  // dynamic resData;
+  // Future<void> onPressFinishReportForm() async {
+  //   // formBody[data]['who_is_receiving'] = whoIsReceiving;
+  //   // formBody[data]['date'] = dateController.text;
+  //   // formBody[data]['comment'] = commentController.text;
+  //   saveDbCircuitsDataOnFormBody();
+  //   saveObservationsDataBaseBody();
+  //   onPressSave();
 
-    if (signatureBytes != null && signatureBytes2 != null) {
-      // ignore: unused_local_variable
-      final int formId = homeController.formsData
-          .where(
-            (dynamic element) =>
-                element[keyName] ==
-                formNameDomesticElectricalInstallationConditionReport,
-          )
-          .first[keyId];
-      startLoading();
-      ApiRequest(
-        method: ApiMethods.post,
-        path: keyCreateForm,
-        className: 'DomesticEICRController/onPressFinishReportForm',
-        requestFunction: onPressFinishReportForm,
-        body: await addArrayToFormData(
-          jsonObject: <String, dynamic>{
-            ...formBody,
-            'customer_id': myAppController.selectedCustomer?[keyId],
-            // 'st'
-          },
-          imagesArray: selectedImages,
-          customerSignature: customerSignature,
-        ),
-        // formatResponse: true,
-      ).request(
-        onSuccess: (dynamic data, dynamic response) async {
-          // dismissLoading();
-          // selectedId = 0;
-          // removeStoredFormData();
-          //** */
-          // resData = data;
-          // htmlContent = data['html_content'];
-          // dismissLoading();
-          // myAppController.clearFormAndTemp();
+  //   if (signatureBytes != null && signatureBytes2 != null) {
+  //     // ignore: unused_local_variable
+  //     final int formId = homeController.formsData
+  //         .where(
+  //           (dynamic element) =>
+  //               element[keyName] ==
+  //               formNameDomesticElectricalInstallationConditionReport,
+  //         )
+  //         .first[keyId];
+  //     startLoading();
+  //     ApiRequest(
+  //       method: ApiMethods.post,
+  //       path: keyCreateForm,
+  //       className: 'DomesticEICRController/onPressFinishReportForm',
+  //       requestFunction: onPressFinishReportForm,
+  //       body: await addArrayToFormData(
+  //         jsonObject: <String, dynamic>{
+  //           ...formBody,
+  //           'customer_id': myAppController.selectedCustomer?[keyId],
+  //           // 'st'
+  //         },
+  //         imagesArray: selectedImages,
+  //         customerSignature: customerSignature,
+  //       ),
+  //       // formatResponse: true,
+  //     ).request(
+  //       onSuccess: (dynamic data, dynamic response) async {
+  //         // dismissLoading();
+  //         // selectedId = 0;
+  //         // removeStoredFormData();
+  //         //** */
+  //         // resData = data;
+  //         // htmlContent = data['html_content'];
+  //         // dismissLoading();
+  //         // myAppController.clearFormAndTemp();
 
-          // update();
-          // Get.offNamed(
-          //   routeHomeBottomBar,
-          // );
-        },
-      );
-    } else {
-      showMessage(
-        description: 'All signatures required',
-        textColor: AppColors.red,
-      );
-      dismissLoading();
-    }
-  }
+  //         // update();
+  //         // Get.offNamed(
+  //         //   routeHomeBottomBar,
+  //         // );
+  //       },
+  //     );
+  //   } else {
+  //     showMessage(
+  //       description: 'All signatures required',
+  //       textColor: AppColors.red,
+  //     );
+  //     dismissLoading();
+  //   }
+  // }
 }

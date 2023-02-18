@@ -715,7 +715,8 @@ class CreateCustomerController extends GetxController {
         'billing_postal_code': customerBillingPostcodeController.text,
         'billing_country_id': billingSelectedCountry[keyId],
         'credit_limit': customerFinanceCreditController.text,
-        'payment_terms': selectedPaymentTerms![keyId],
+        'payment_terms':
+            selectedPaymentTerms != null ? selectedPaymentTerms![keyId] : null,
         'send_statement': isSendStatements ? 'yes' : 'no',
         //*------------------------------------*//
         'client_f_name': clientContactFirstNameController.text,

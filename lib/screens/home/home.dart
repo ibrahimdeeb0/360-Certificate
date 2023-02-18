@@ -67,24 +67,25 @@ class Home extends StatelessWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
-                                  const HomeCards(
-                                      // onPress: () => Get.toNamed(
-                                      //   routeSortCertificate,
-                                      //   arguments: <String, dynamic>{
-                                      //     keyTitle: 'Not Complete Certs',
-                                      //     keyColor: AppColors.homeClr1,
-                                      //   },
-                                      // ),
-                                      ),
                                   HomeCards(
                                     onPress: () => Get.toNamed(
-                                      routeSortCertificate,
+                                      routeUncompletedCert,
+                                      arguments: <String, dynamic>{
+                                        keyTitle: 'Not Completed Certs',
+                                        keyColor: AppColors.homeClr2,
+                                      },
+                                    ),
+                                    title: '${controller.countUnCompleteCert}',
+                                  ),
+                                  HomeCards(
+                                    onPress: () => Get.toNamed(
+                                      routeCompletedCert,
                                       arguments: <String, dynamic>{
                                         keyTitle: 'Completed Certs',
                                         keyColor: AppColors.homeClr2,
                                       },
                                     ),
-                                    title: '3',
+                                    title: '${controller.countCompleteCert}',
                                     subTitle: 'Completed Certs',
                                     iconPath: iconPendingCerts,
                                     bgColor: AppColors.homeClr2,
@@ -92,7 +93,7 @@ class Home extends StatelessWidget {
                                 ],
                               ),
                               HomeCards(
-                                title: '19',
+                                title: '0',
                                 subTitle: 'Outstanding Invoices',
                                 iconPath: iconOutInvoices,
                                 bgColor:

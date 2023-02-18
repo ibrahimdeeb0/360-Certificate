@@ -61,9 +61,10 @@ const String keyDeleteAccount = '/user/delete';
 const String keyStoreFormTemplate = '/forms/templates/store';
 const String keyGetAllFormTemplate = '/forms/templates';
 const String keyGetAllCustomers = '/customers/get';
-const String formGetAllCertificates = '/certificate-form';
 const String formGetCertificate = '/certificate-form/customer-certificate?';
 const String keyCreateForm = '/certificate-form/create';
 //
+const String formGetAllCertificates = '/certificate-form';
 const String keyCompletedCert = '/certificate-form/complete';
 const String keyUnCompletedCert = '/certificate-form/uncompleted';
+const String formGetCerCount = '/certificate-form/count';

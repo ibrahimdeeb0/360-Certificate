@@ -40,6 +40,7 @@ class SiteAddress extends StatelessWidget {
           ),
           hint: 'Site Name',
           controller: controller.siteAddressSiteNameController1,
+          textInputAction: TextInputAction.done,
           marginBottom: 0.012,
         ),
         if (controller.radioSiteAddress == false)
@@ -85,6 +86,7 @@ class SiteAddress extends StatelessWidget {
                     controller: controller.siteAddressPostcodeController,
                     width: 0.43,
                     marginBottom: 0.012,
+                    textInputAction: TextInputAction.done,
                   ),
                 ],
               ),

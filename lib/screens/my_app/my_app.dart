@@ -25,6 +25,7 @@ final AppLanguageController languageController =
 final MoreController moreController = Get.put(MoreController());
 final CertificatesController certificatesController =
     Get.put(CertificatesController());
+
 final GlobalKey<CurvedNavigationBarState> bottomNavigationKey = GlobalKey();
 
 class MyApp extends StatelessWidget {

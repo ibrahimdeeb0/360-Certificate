@@ -51,49 +51,49 @@ class CustomerDetailsTab extends StatelessWidget {
                       subTitle:
                           '${controller.certDetails['form_data']['customer']['contacts'][0]['email']}',
                     ),
-                    if (controller.certDetails['form_data']['status']
-                            ['status'] !=
-                        'Completed')
-                      CommonContainer(
-                        onPress: () {},
-                        touchEffect: TouchableEffect(type: TouchTypes.opacity),
-                        marginVertical: 0.015,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const <Widget>[
-                            CertTitleItem(
-                              title: 'Payment Terms',
-                              subTitle: 'Due Before Cert',
-                            ),
-                            Icon(Icons.arrow_forward)
-                          ],
-                        ),
-                      ),
-                    if (controller.certDetails['form_data']['status']
-                            ['status'] !=
-                        'Completed')
-                      CommonContainer(
-                        onPress: () {},
-                        touchEffect: TouchableEffect(type: TouchTypes.opacity),
-                        marginBottom: 0.015,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const <Widget>[
-                            CertTitleItem(
-                              title: 'When to send the invoice',
-                              subTitle: 'Per Week',
-                            ),
-                            Icon(Icons.arrow_forward)
-                          ],
-                        ),
-                      ),
-                    if (controller.certDetails['form_data']['status']
-                            ['status'] !=
-                        'Completed')
-                      const CertTitleItem(
-                        title: 'Overdue Amount ',
-                        subTitle: '3',
-                      ),
+                    // if (controller.certDetails['form_data']['status']
+                    //       ['status'] !=
+                    //   'Completed')
+                    // CommonContainer(
+                    //   onPress: () {},
+                    //   touchEffect: TouchableEffect(type: TouchTypes.opacity),
+                    //   marginVertical: 0.015,
+                    //   child: Row(
+                    //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //     children: const <Widget>[
+                    //       CertTitleItem(
+                    //         title: 'Payment Terms',
+                    //         subTitle: 'Due Before Cert',
+                    //       ),
+                    //       Icon(Icons.arrow_forward)
+                    //     ],
+                    //   ),
+                    // ),
+                    // if (controller.certDetails['form_data']['status']
+                    //         ['status'] !=
+                    //     'Completed')
+                    //   CommonContainer(
+                    //     onPress: () {},
+                    //     touchEffect: TouchableEffect(type: TouchTypes.opacity),
+                    //     marginBottom: 0.015,
+                    //     child: Row(
+                    //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //       children: const <Widget>[
+                    //         CertTitleItem(
+                    //           title: 'When to send the invoice',
+                    //           subTitle: 'Per Week',
+                    //         ),
+                    //         Icon(Icons.arrow_forward)
+                    //       ],
+                    //     ),
+                    //   ),
+                    // if (controller.certDetails['form_data']['status']
+                    //         ['status'] !=
+                    //     'Completed')
+                    //   const CertTitleItem(
+                    //     title: 'Overdue Amount ',
+                    //     subTitle: '3',
+                    //   ),
                   ],
                 ),
               ),

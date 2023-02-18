@@ -19,6 +19,7 @@ class CustomerContacts extends StatelessWidget {
           hint: 'Enter First Name',
           controller: controller.clientContactFirstNameController,
           keyboardType: TextInputType.name,
+          textInputAction: TextInputAction.next,
           marginBottom: 0.012,
           marginTop: 0.01,
         ),
@@ -29,6 +30,7 @@ class CustomerContacts extends StatelessWidget {
           hint: 'Enter Last Name',
           controller: controller.clientContactLastNameController,
           keyboardType: TextInputType.name,
+          textInputAction: TextInputAction.next,
           marginBottom: 0.012,
         ),
         CommonInput(
@@ -38,6 +40,7 @@ class CustomerContacts extends StatelessWidget {
           hint: 'Enter Phone',
           controller: controller.clientContactPhoneController,
           keyboardType: TextInputType.phone,
+          textInputAction: TextInputAction.next,
           marginBottom: 0.012,
         ),
         CommonInput(
@@ -48,6 +51,7 @@ class CustomerContacts extends StatelessWidget {
           controller: controller.clientContactEmailController,
           keyboardType: TextInputType.emailAddress,
           marginBottom: 0.012,
+          textInputAction: TextInputAction.done,
         ),
         CommonInput(
           topLabel: const TopLabelText(

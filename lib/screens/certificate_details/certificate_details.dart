@@ -24,8 +24,15 @@ class CertificateDetails extends StatelessWidget {
                       CertificateTitleCard(
                         certCode:
                             '#${controller.certDetails['form_data'][keyId]}',
-                        certStatus: 'Completed',
-                        statusColor: AppColors.green2,
+                        certStatus: controller.certDetails['form_data']
+                            ['status']['status'],
+                        statusColor: controller.certStatus == 'Completed'
+                            ? AppColors.completedClr
+                            : controller.certStatus == 'Canceled'
+                                ? AppColors.canceledClr
+                                : controller.certStatus == 'In Progress'
+                                    ? AppColors.inProgressClr
+                                    : AppColors.pendingClr,
                       ),
                       CommonContainer(
                         paddingHorizontal: 0.04,
@@ -36,7 +43,7 @@ class CertificateDetails extends StatelessWidget {
                             CommonContainer(
                               borderRadius: 0.015,
                               width: 1,
-                              height: 0.075,
+                              height: 0.06,
                               backgroundColor:
                                   Color(AppColors.grey).withOpacity(0.2),
                               clipBehavior: Clip.hardEdge,
@@ -56,10 +63,10 @@ class CertificateDetails extends StatelessWidget {
                                             item[keyId] == controller.tabIndex
                                                 ? Colors.white
                                                 : AppColors.primary,
-                                        fontSize:
-                                            item[keyText] == 'Customer Details'
-                                                ? fontH4
-                                                : fontBody,
+                                        fontSize: fontH3,
+                                        // item[keyText] == 'Customer Details'
+                                        //     ? fontH4
+                                        //     : fontBody,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),

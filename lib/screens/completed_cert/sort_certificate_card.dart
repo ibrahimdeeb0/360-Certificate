@@ -66,11 +66,12 @@ class SortCertificateCard extends StatelessWidget {
             fontColor: AppColors.greyDark,
             rowMainAxisSize: MainAxisSize.max,
             rowMainAxisAlignment: MainAxisAlignment.spaceBetween,
-            rightChild: CommonText(
-              certStatus ?? 'Paid - Cert Sent',
-              fontColor: AppColors.greyDark,
-              fontSize: fontBody,
-            ),
+            rightChild: const SizedBox(),
+            // CommonText(
+            //   certStatus ?? 'Paid - Cert Sent',
+            //   fontColor: AppColors.greyDark,
+            //   fontSize: fontBody,
+            // ),
             containerStyle: const CommonContainerModel(
               marginLeft: 0.078,
               marginTop: 0.01,

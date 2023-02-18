@@ -35,6 +35,9 @@ class CertificateDetailsController extends GetxController
   ];
 
   Map<dynamic, dynamic> certDetails = <dynamic, dynamic>{};
+  String certStatus = 'Pending';
+  int certId = 0;
+  dynamic formBody;
 
   @override
   void onInit() {
@@ -77,6 +80,9 @@ class CertificateDetailsController extends GetxController
         value: data,
       );
       certDetails = data;
+      certStatus = data['form_data']['status']['status'];
+      certId = data['form_data'][keyId];
+      formBody = data['form_data'];
 
       // consoleLog(data['form_data']['form_id'], key: 'form_id');
       // consoleLog(data['form_data']['id'], key: 'cert_id');
@@ -117,6 +123,29 @@ class CertificateDetailsController extends GetxController
         pdfFilePath,
       );
     }
+  }
+
+  Future<void> onCancelCertificate() async {
+    final Map<String, dynamic> certData = <String, dynamic>{
+      ...formBody,
+      'customer_id': myAppController.selectedCustomer?[keyId],
+      'status_id': 6,
+      // 'st'
+    };
+    ApiRequest(
+      method: ApiMethods.post,
+      path: '/certificate-form/$certId/update',
+      className: 'CertificateDetailsController/onCancelCertificate',
+      requestFunction: onCancelCertificate,
+      withLoading: true,
+      body: certData,
+    ).request(
+      onSuccess: (dynamic data, dynamic response) async {
+        myAppController.clearFormAndTemp();
+        Get.back();
+        update();
+      },
+    );
   }
 
   @override

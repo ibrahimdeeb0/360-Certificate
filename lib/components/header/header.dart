@@ -1,25 +1,29 @@
+import 'package:flutter_svg/svg.dart';
+
 import '../../general_exports.dart';
 
 class Header extends StatelessWidget with PreferredSizeWidget {
   Header({
     this.title,
     this.withNotification = false,
-    this.withBag = false,
+    this.withSearch = false,
     this.withoutBackGround = false,
     this.onPressBack,
     this.withOverLay = false,
     this.withBack = true,
     this.withShadow = true,
     this.actionItem,
+    this.onPressSearch,
     Key? key,
   }) : super(key: key);
 
   final String? title;
   final bool withNotification;
-  final bool withBag;
+  final bool withSearch;
   final bool withBack;
   final bool withoutBackGround;
   final Function? onPressBack;
+  final Function? onPressSearch;
   final bool withOverLay;
   final bool withShadow;
   final ActionItem? actionItem;
@@ -94,7 +98,18 @@ class Header extends StatelessWidget with PreferredSizeWidget {
                           Icons.add_circle_outline,
                           color: Color(AppColors.primary),
                         )
-                      : const Center(),
+                      : actionItem?.type == ActionType.filter
+                          ? SvgPicture.asset(iconFilter, color: Colors.black)
+                          : const Center(),
+            ),
+          if (withSearch)
+            CommonContainer(
+              onPress: onPressSearch,
+              marginTop: 0.01,
+              marginBottom: 0.006,
+              marginHorizontal: 0.04,
+              touchEffect: TouchableEffect(type: TouchTypes.opacity),
+              child: SvgPicture.asset(iconSearch, color: Colors.black),
             ),
         ],
       ),
@@ -114,4 +129,6 @@ class ActionItem {
 enum ActionType {
   save,
   add,
+  filter,
+  search,
 }

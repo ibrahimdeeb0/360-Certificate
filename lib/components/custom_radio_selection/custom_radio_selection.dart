@@ -28,10 +28,11 @@ class CustomRadioSelection extends StatelessWidget {
         children: <Widget>[
           CommonText(
             title ?? '',
-            fontColor: isSelected ? AppColors.primary : Colors.black,
+            fontColor: isSelected ? AppColors.primary : AppColors.greyDark,
             leftChild: leftWidget ?? const SizedBox(),
           ),
           Visibility(
+            visible: !showRightText,
             replacement: Row(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
@@ -46,9 +47,8 @@ class CustomRadioSelection extends StatelessWidget {
                 ),
               ],
             ),
-            visible: !showRightText,
             child: Icon(
-              isSelected ? Icons.radio_button_checked : Icons.radio_button_off,
+              isSelected ? Icons.check_circle : Icons.radio_button_off,
               color: isSelected ? Color(AppColors.primary) : Colors.black38,
             ),
           ),

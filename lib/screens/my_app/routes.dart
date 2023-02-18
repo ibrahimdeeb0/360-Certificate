@@ -86,11 +86,15 @@ List<GetPage<dynamic>> appRoutes = <GetPage<dynamic>>[
     page: () => const EICR(),
   ),
   GetPage<CompletedCert>(
-    name: routeSortCertificate,
+    name: routeCompletedCert,
     page: () => const CompletedCert(),
   ),
   GetPage<CertificateDetails>(
     name: routeCertificateDetails,
     page: () => const CertificateDetails(),
+  ),
+  GetPage<UncompletedCert>(
+    name: routeUncompletedCert,
+    page: () => const UncompletedCert(),
   ),
 ];

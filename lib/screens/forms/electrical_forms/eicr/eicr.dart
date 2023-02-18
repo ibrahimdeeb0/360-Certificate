@@ -19,8 +19,8 @@ class EICR extends StatelessWidget {
             withBack: false,
             title: 'EICR',
             circleNumbering: controller.pagesNum(),
-            showSaveBtn: controller.selectedId == 21 ? false : true,
-            onPressSave: controller.onUpdateCertificate,
+            showSaveBtn: controller.selectedId != 21,
+            onPressSave: () => controller.onPressNext(fromSave: true),
           ),
           // floatingActionButton: FloatingActionButton(onPressed: () {
           //   consoleLog(myAppController.selectedForm);

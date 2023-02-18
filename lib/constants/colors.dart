@@ -63,4 +63,9 @@ class AppColors {
   static int homeClr1 = 0xFFFFD697;
   static int homeClr2 = 0xFFDFF2C9;
   static int homeClr3 = 0xFFE2DEDA;
+
+  static int pendingClr = 0xffE5E97B;
+  static int inProgressClr = 0xffFBC78B;
+  static int completedClr = 0xff9EFB8B;
+  static int canceledClr = 0xffF9B2A6;
 }

@@ -81,34 +81,37 @@ class CertTab extends StatelessWidget {
               ),
             ),
             if (!controller.isPDFLoading)
-              CommonContainer(
-                onPress: () async {
-                  // consoleLog(controller.pdfFilePath);
-                  // await OpenFilex.open(
-                  //   controller.pdfFilePath,
-                  // );
-                  controller.preparePDF();
-                },
-                style: appContainerStyles.cardStyle,
-                paddingVertical: 0.01,
-                paddingHorizontal: 0.02,
-                touchEffect: TouchableEffect(type: TouchTypes.opacity),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    CommonText(
-                      'PDF Certificate',
-                      marginHorizontal: 0.02,
-                      leftChild: SvgPicture.asset(iconPDF),
-                    ),
-                    const Icon(Icons.arrow_forward)
-                  ],
+              Visibility(
+                visible: controller.certStatus == 'Completed',
+                child: CommonContainer(
+                  onPress: () async {
+                    // consoleLog(controller.pdfFilePath);
+                    // await OpenFilex.open(
+                    //   controller.pdfFilePath,
+                    // );
+                    controller.preparePDF();
+                  },
+                  style: appContainerStyles.cardStyle,
+                  paddingVertical: 0.01,
+                  paddingHorizontal: 0.02,
+                  touchEffect: TouchableEffect(type: TouchTypes.opacity),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      CommonText(
+                        'PDF Certificate',
+                        marginHorizontal: 0.02,
+                        leftChild: SvgPicture.asset(iconPDF),
+                      ),
+                      const Icon(Icons.arrow_forward)
+                    ],
+                  ),
                 ),
               )
             else
               CommonContainer(
-                width: 0.05,
-                height: 0.02,
+                width: 0.07,
+                height: 0.03,
                 marginBottom: 0.02,
                 child: CircularProgressIndicator(
                   valueColor: AlwaysStoppedAnimation<Color>(
@@ -118,8 +121,8 @@ class CertTab extends StatelessWidget {
                   ),
                 ),
               ),
-            if (controller.certDetails['form_data']['status']['status'] !=
-                'Completed')
+            if (controller.certStatus != 'Completed' &&
+                controller.certStatus != 'Canceled')
               CommonButton(
                 onPress: () {},
                 text: 'Edit Certificate',
@@ -130,10 +133,14 @@ class CertTab extends StatelessWidget {
                 fontColor: AppColors.primary,
                 overlayColor: Colors.black12,
               ),
-            if (controller.certDetails['form_data']['status']['status'] !=
-                'Completed')
+            if (controller.certStatus != 'Completed' &&
+                controller.certStatus != 'Canceled')
               CommonButton(
                 onPress: () {},
+                // onPress: controller.onCancelCertificate,
+                // onPress: () {
+                //   consoleLogPretty(controller.formBody);
+                // },
                 text: 'Cancel',
                 backgroundColor: Colors.white,
                 marginBottom: 0.02,
