@@ -1196,6 +1196,7 @@ class EicrController extends GetxController {
     ).request(onSuccess: (dynamic data, dynamic response) async {
       myAppController.clearFormAndTemp();
       certificatesController.getAllCert();
+      homeController.getCertCount();
       Get.offAndToNamed(routeHomeBottomBar);
     }, onError: (dynamic error) {
       dismissLoading();
@@ -1229,6 +1230,7 @@ class EicrController extends GetxController {
       ).request(onSuccess: (dynamic data, dynamic response) async {
         myAppController.clearFormAndTemp();
         certificatesController.getAllCert();
+        homeController.getCertCount();
         Get.offAndToNamed(routeHomeBottomBar);
         // Get.toNamed(
         //   routeCertificateDetails,
