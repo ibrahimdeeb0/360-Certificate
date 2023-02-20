@@ -18,10 +18,10 @@ class CertificateDetailsController extends GetxController
       keyId: 1,
       'text': 'Customer Details',
     },
-    // <String, dynamic>{
-    //   keyId: 2,
-    //   'text': 'Notes',
-    // },
+    <String, dynamic>{
+      keyId: 2,
+      'text': 'Notes',
+    },
     // <String, dynamic>{
     //   keyId: 3,
     //   'text': 'Invoice',
@@ -30,7 +30,7 @@ class CertificateDetailsController extends GetxController
   List<dynamic> tabViewItems = <dynamic>[
     const CertTab(),
     const CustomerDetailsTab(),
-    // const InvoiceTab(),
+    const InvoiceTab(),
     // const NotesTab(),
   ];
 

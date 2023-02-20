@@ -155,7 +155,7 @@ class CreateCustomerController extends GetxController {
           myAppController.selectedCustomer = customerData;
           Get.offNamed(
             myAppController.selectedForm?['form_route'],
-            arguments: {
+            arguments: <String, Map<String, dynamic>?>{
               'tempData': myAppController.selectedTemplate,
             },
           );
@@ -748,7 +748,7 @@ class CreateCustomerController extends GetxController {
         // Get.toNamed(routeForms);
         Get.offNamed(
           myAppController.selectedForm?['form_route'],
-          arguments: {
+          arguments: <String, Map<String, dynamic>?>{
             'tempData': myAppController.selectedTemplate,
           },
         );
@@ -850,9 +850,9 @@ class CreateCustomerController extends GetxController {
         ? customerData['billing_info']['payment_term']['name']
         : '';
     // paymentTerm = customerData['billing_info']['payment_term']['name'] ?? '';
-    isSendStatements = customerData['billing_info']['send_statement'] != null
-        ? customerData['billing_info']['send_statement'] == 'yes'
-        : false;
+    isSendStatements =
+        !(customerData['billing_info']['send_statement'] == null) ||
+            (customerData['billing_info']['send_statement'] == 'yes');
 
     clientContactFirstNameController.text =
         customerData['contacts'][0]['f_name'];

@@ -72,55 +72,55 @@ class RenderFormController extends GetxController {
     // consoleLog('Form Controller: $formController');
   }
 
-  Future? checkTemplateWidget() {
-    final Map<String, dynamic> currentFormData = homeController.formsData
-        .where((dynamic element) => element[keyId] == formId)
-        .toList()
-        .first;
+  // Future? checkTemplateWidget() {
+  //   final Map<String, dynamic> currentFormData = homeController.formsData
+  //       .where((dynamic element) => element[keyId] == formId)
+  //       .toList()
+  //       .first;
 
-    // consoleLog('Form Name1: ${currentFormData[keyName]}');
+  //   // consoleLog('Form Name1: ${currentFormData[keyName]}');
 
-    switch (currentFormData[keyName]) {
-      // case formNameLandlordHomeownerGazSafetyRecord:
-      //   return LandlordHomeownerGasSafetyRecord(
-      //     formController: formController,
-      //   );
-      // case formNamePortableApplianceTesting:
-      //   return PortableApplianceTesting(
-      //     formController: formController,
-      //   );
+  //   switch (currentFormData[keyName]) {
+  //     // case formNameLandlordHomeownerGazSafetyRecord:
+  //     //   return LandlordHomeownerGasSafetyRecord(
+  //     //     formController: formController,
+  //     //   );
+  //     // case formNamePortableApplianceTesting:
+  //     //   return PortableApplianceTesting(
+  //     //     formController: formController,
+  //     //   );
 
-      // case formNameElectricalDangerNotification:
-      //   return ElectricalDangerNotification(
-      //     formController: formController,
-      //   );
+  //     // case formNameElectricalDangerNotification:
+  //     //   return ElectricalDangerNotification(
+  //     //     formController: formController,
+  //     //   );
 
-      // case formNameDomesticElectricalInstallationCertificate:
-      //   return DomesticElectricalInstallationCertificate(
-      //     formController: formController,
-      //   );
+  //     // case formNameDomesticElectricalInstallationCertificate:
+  //     //   return DomesticElectricalInstallationCertificate(
+  //     //     formController: formController,
+  //     //   );
 
-      // case formNameDomesticElectricalInstallationConditionReport:
-      //   return EICR(
-      //     formController: formController,
-      //   );
+  //     // case formNameDomesticElectricalInstallationConditionReport:
+  //     //   return EICR(
+  //     //     formController: formController,
+  //     //   );
 
-      case formNameDomesticElectricalInstallationConditionReport:
-        return Get.to(
-          () => const EICR(
-              // formController: formController,
-              ),
-        );
-      // EICR(
-      //   formController: formController,
-      // );
+  //     case formNameDomesticElectricalInstallationConditionReport:
+  //       return Get.to(
+  //         () => const EICR(
+  //             // formController: formController,
+  //             ),
+  //       );
+  //     // EICR(
+  //     //   formController: formController,
+  //     // );
 
-      default:
-        return Get.to(
-          () => const EICR(
-              // formController: formController,
-              ),
-        );
-    }
-  }
+  //     default:
+  //       return Get.to(
+  //         () => const EICR(
+  //             // formController: formController,
+  //             ),
+  //       );
+  //   }
+  // }
 }

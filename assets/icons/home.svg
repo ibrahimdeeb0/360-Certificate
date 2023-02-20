@@ -1,3 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="22" height="19.648" viewBox="0 0 22 19.648">
-  <path id="Path_19749" data-name="Path 19749" d="M19,21H5a1,1,0,0,1-1-1V11H1L11.327,1.612a1,1,0,0,1,1.346,0L23,11H20v9A1,1,0,0,1,19,21ZM6,19H18V9.157L12,3.7,6,9.157Z" transform="translate(-1 -1.352)" fill="#556ee6"/>
+<svg id="Group_20706" data-name="Group 20706" xmlns="http://www.w3.org/2000/svg" width="24"
+  height="24" viewBox="0 0 24 24">
+  <path id="Path_33537" data-name="Path 33537" d="M0,0H24V24H0Z" fill="none" />
+  <path id="Path_33538" data-name="Path 33538"
+    d="M19,21H5a1,1,0,0,1-1-1V11H1L11.327,1.612a1,1,0,0,1,1.346,0L23,11H20v9A1,1,0,0,1,19,21ZM6,19H18V9.157L12,3.7,6,9.157Zm2-4h8v2H8Z"
+    fill="#093358" />
 </svg>

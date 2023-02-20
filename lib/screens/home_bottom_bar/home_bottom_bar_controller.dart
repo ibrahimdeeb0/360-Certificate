@@ -7,10 +7,13 @@ class HomeBottomBarController extends GetxController {
     selectedIndex = index;
     update();
   }
+
   // @override
   // void onInit() {
   //   //  implement onInit
   //   super.onInit();
+  //   selectedIndex = 0;
+  //   update();
   // }
   // @override
   // void onReady() {

@@ -42,36 +42,6 @@ class CertificatesController extends GetxController {
     getAllCert();
   }
 
-  Future<void> getAllCert() async {
-    hideKeyboard();
-
-    ApiRequest(
-      path: formGetAllCertificates,
-      className: 'CertificatesController/getAllCert',
-      requestFunction: getAllCert,
-      withLoading: true,
-      // formatResponse: true,
-    ).request(
-      onSuccess: (dynamic data, dynamic response) {
-        myAppController.localStorage.saveToStorage(
-          key: 'getAllCert',
-          value: data,
-        );
-        allCerts = data;
-        sortedCerts();
-        update();
-        // consoleLogPretty(allCompetedCert, key: 'allCompetedCert');
-      },
-    );
-    if (!myAppController.isInternetConnect) {
-      final dynamic apiData = await myAppController.localStorage.getFromStorage(
-        key: 'getCompetedCerts',
-      );
-      allCerts = apiData;
-      update();
-    }
-  }
-
   void sortedCerts() {
     listCert = <dynamic>[
       ...allCerts.where((dynamic item) =>
@@ -79,8 +49,6 @@ class CertificatesController extends GetxController {
     ];
     filteredCert = listCert;
     update();
-
-    consoleLogPretty(listCert, key: 'sortedCerts');
   }
 
   FilterType selectedType = FilterType.all;
@@ -105,5 +73,34 @@ class CertificatesController extends GetxController {
 
     update();
     Get.back();
+  }
+
+  Future<void> getAllCert() async {
+    hideKeyboard();
+
+    ApiRequest(
+      path: formGetAllCertificates,
+      className: 'CertificatesController/getAllCert',
+      requestFunction: getAllCert,
+      withLoading: true,
+      // formatResponse: true,
+    ).request(
+      onSuccess: (dynamic data, dynamic response) {
+        myAppController.localStorage.saveToStorage(
+          key: 'getAllCert',
+          value: data,
+        );
+        allCerts = data;
+        sortedCerts();
+        update();
+      },
+    );
+    if (!myAppController.isInternetConnect) {
+      final dynamic apiData = await myAppController.localStorage.getFromStorage(
+        key: 'getCompetedCerts',
+      );
+      allCerts = apiData;
+      update();
+    }
   }
 }

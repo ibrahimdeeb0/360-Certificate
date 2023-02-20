@@ -36,15 +36,15 @@ class HomeBottomBar extends StatelessWidget {
               ),
 
               // Invoices
-              Visibility(
-                visible: controller.selectedIndex == toInvoices,
-                child: const Invoices(),
-              ),
+              // Visibility(
+              //   visible: controller.selectedIndex == toInvoices,
+              //   child: const Invoices(),
+              // ),
 
               // Certificates
               Visibility(
-                visible: controller.selectedIndex == toCertificates,
-                child: const Certificates(),
+                visible: controller.selectedIndex == toCustomers,
+                child: const Customers(),
               ),
 
               // More
@@ -67,37 +67,37 @@ class HomeBottomBar extends StatelessWidget {
                 BottomNavigationBarItem(
                   icon: SvgPicture.asset(
                     iconHome,
-                    width: DEVICE_WIDTH * 0.05,
-                    height: DEVICE_WIDTH * 0.05,
+                    width: DEVICE_WIDTH * 0.06,
+                    height: DEVICE_WIDTH * 0.06,
                     color: controller.selectedIndex == toHome
                         ? Color(AppColors.primary)
                         : Colors.grey[600],
                   ),
                   label: 'Home',
                 ),
+                // BottomNavigationBarItem(
+                //   // icon: Icon(Icons.business),
+                //   icon: SvgPicture.asset(
+                //     iconInvoice,
+                //     width: DEVICE_WIDTH * 0.05,
+                //     height: DEVICE_WIDTH * 0.05,
+                //     color: controller.selectedIndex == toInvoices
+                //         ? Color(AppColors.primary)
+                //         : Colors.grey[600],
+                //   ),
+                //   label: 'Invoices',
+                // ),
                 BottomNavigationBarItem(
                   // icon: Icon(Icons.business),
                   icon: SvgPicture.asset(
-                    iconInvoice,
+                    iconCustomers,
                     width: DEVICE_WIDTH * 0.05,
                     height: DEVICE_WIDTH * 0.05,
-                    color: controller.selectedIndex == toInvoices
+                    color: controller.selectedIndex == toCustomers
                         ? Color(AppColors.primary)
                         : Colors.grey[600],
                   ),
-                  label: 'Invoices',
-                ),
-                BottomNavigationBarItem(
-                  // icon: Icon(Icons.business),
-                  icon: SvgPicture.asset(
-                    iconCertificates,
-                    width: DEVICE_WIDTH * 0.05,
-                    height: DEVICE_WIDTH * 0.05,
-                    color: controller.selectedIndex == toCertificates
-                        ? Color(AppColors.primary)
-                        : Colors.grey[600],
-                  ),
-                  label: 'Certificates',
+                  label: 'Customers',
                 ),
                 BottomNavigationBarItem(
                   // icon: Icon(Icons.business),

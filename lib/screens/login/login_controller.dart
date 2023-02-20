@@ -83,14 +83,14 @@ class LoginController extends GetxController {
 
   Future<void> onUserLogin() async {
     hideKeyboard();
-
     if (signInValidation()) {
-      startLoading();
+      // startLoading();
       ApiRequest(
         method: ApiMethods.post,
         path: '/login',
         className: 'LoginController',
         requestFunction: onUserLogin,
+        withLoading: true,
         body: <String, dynamic>{
           'email': emailController.text,
           'password': passwordController.text,
@@ -100,8 +100,9 @@ class LoginController extends GetxController {
         onSuccess: (dynamic data, dynamic response) {
           // consoleLog(response, key: 'response_user_data');
           myAppController.onUserAuthenticated(response[keyData]);
-          dismissLoading();
+          // dismissLoading();
           Get.offAndToNamed(routeHomeBottomBar);
+
           // // dismissLoading();
           // if (data['user']['email_verified_at'] == null) {
           //   // myAppController.isVerified = false;
@@ -123,13 +124,7 @@ class LoginController extends GetxController {
           // // Get.offAndToNamed(routeHome);
         },
         // onError: (dynamic error) {
-        //   if (error['data'].isNotEmpty && error['data']['code'] == 403) {
-        //     Get.bottomSheet(
-        //       RestoreAccountBottomSheet(
-        //         restoreData: error['data'],
-        //       ),
-        //     );
-        //   }
+        //   dismissLoading();
         // },
       );
     }

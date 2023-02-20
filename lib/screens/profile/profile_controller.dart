@@ -35,7 +35,7 @@ class ProfileController extends GetxController {
 
   Future<void> getProfileData() async {
     hideKeyboard();
-    startLoading();
+    // startLoading();
     ApiRequest(
       path: keyProfile,
       className: 'MyProfileController/getProfileData',
@@ -48,7 +48,7 @@ class ProfileController extends GetxController {
         );
         userDataProfile = data;
         update();
-        dismissLoading();
+        // dismissLoading();
       },
     );
     if (!myAppController.isInternetConnect) {

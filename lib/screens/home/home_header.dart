@@ -25,6 +25,7 @@ class HomeHeader extends StatelessWidget with PreferredSizeWidget {
         elevation: 0,
         toolbarHeight: kToolbarHeight + (DEVICE_HEIGHT * 0.02),
         backgroundColor: Color(AppColors.white),
+        surfaceTintColor: Colors.white,
         // back and drawer icons
         centerTitle: false,
         // title and icon

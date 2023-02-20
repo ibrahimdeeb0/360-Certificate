@@ -14,6 +14,7 @@ class SortCertificateCard extends StatelessWidget {
     this.customerAddress,
     this.customerCountry,
     this.onPress,
+    this.statusClr,
   });
 
   final String? code;
@@ -25,6 +26,7 @@ class SortCertificateCard extends StatelessWidget {
   final String? customerAddress;
   final String? customerCountry;
   final Function? onPress;
+  final dynamic statusClr;
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +54,7 @@ class SortCertificateCard extends StatelessWidget {
               CommonText(
                 formType ?? 'Gas',
                 fontWeight: FontWeight.bold,
+                fontSize: fontH3,
                 // marginHorizontal: 0.04,
                 // rightChild: CommonText(
                 //   price ?? '£ 125',
@@ -62,20 +65,27 @@ class SortCertificateCard extends StatelessWidget {
           ),
           CommonText(
             date ?? '14-06-2022',
-            fontSize: fontBody,
+            fontSize: fontH3,
             fontColor: AppColors.greyDark,
             rowMainAxisSize: MainAxisSize.max,
             rowMainAxisAlignment: MainAxisAlignment.spaceBetween,
-            rightChild: const SizedBox(),
-            // CommonText(
-            //   certStatus ?? 'Paid - Cert Sent',
-            //   fontColor: AppColors.greyDark,
-            //   fontSize: fontBody,
-            // ),
+            rightChild: CommonText(
+              certStatus ?? 'Completed',
+              fontSize: fontH3,
+              fontColor: Colors.black,
+              fontWeight: FontWeight.w500,
+              containerStyle: CommonContainerModel(
+                backgroundColor:
+                    Color(statusClr ?? AppColors.black).withOpacity(0.4),
+                borderRadius: 0.15,
+                paddingHorizontal: 0.03,
+                paddingVertical: 0.006,
+              ),
+            ),
             containerStyle: const CommonContainerModel(
               marginLeft: 0.078,
               marginTop: 0.01,
-              marginBottom: 0.01,
+              marginBottom: 0.005,
             ),
           ),
           Divider(
@@ -100,8 +110,9 @@ class SortCertificateCard extends StatelessWidget {
             inlineSpans: const <InlineSpan>[],
             textAlign: TextAlign.start,
             rowMainAxisSize: MainAxisSize.max,
-            fontSize: fontBody,
+            fontSize: fontH3,
             fontColor: AppColors.greyDark,
+            rowCrossAxisAlignment: CrossAxisAlignment.start,
             leftChild: Padding(
               padding: EdgeInsets.only(right: DEVICE_WIDTH * 0.02),
               child: SvgPicture.asset(

@@ -9,140 +9,120 @@ class Login extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       // resizeToAvoidBottomInset: false,
-      backgroundColor: Color(AppColors.primaryOpacity),
+      backgroundColor: Colors.white,
       body: GetBuilder<LoginController>(
         init: LoginController(),
         builder: (LoginController controller) => SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              // logo and title
-              CommonContainer(
-                style: appContainerStyles.containerStyles.copyWith(
-                  width: .7,
-                  height: .268,
-                  paddingTop: .05,
-                  backgroundColor: AppColors.primaryOpacity,
-                ),
-                child: SvgPicture.asset(
+          child: CommonContainer(
+            style: appContainerStyles.containerStyles,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                SizedBox(height: DEVICE_HEIGHT * 0.08),
+                SvgPicture.asset(
                   iconAppLogo,
                   width: DEVICE_WIDTH * 0.5,
+                  height: DEVICE_HEIGHT * 0.03,
                 ),
-              ),
-              // Login container
-              CommonContainer(
-                style: appContainerStyles.loginContainer.copyWith(
-                  height: 0.73,
-                  topLeftRadius: 0.07,
-                  topRightRadius: 0.07,
+                CommonText(
+                  'Login your account',
+                  fontWeight: FontWeight.bold,
+                  columnCrossAxisAlignment: CrossAxisAlignment.start,
+                  fontSize: 28,
+                  fontColor: AppColors.black3,
+                  containerStyle: const CommonContainerModel(
+                    width: 1,
+                    marginTop: 0.03,
+                    marginBottom: 0.035,
+                  ),
                 ),
-                child: Column(
+                CommonInput(
+                  topLabelText: 'Your Email',
+                  hint: 'Enter Your Email',
+                  controller: controller.emailController,
+                  marginBottom: 0.02,
+                ),
+                CommonInput(
+                  topLabelText: 'Password',
+                  hint: 'Enter Your Password',
+                  marginBottom: 0.02,
+                  controller: controller.passwordController,
+                  obscureText: controller.isVisibility,
+                  suffix: CommonContainer(
+                    onPress: () => controller.visibility(),
+                    style: const CommonContainerModel(
+                      marginHorizontal: 0.015,
+                    ),
+                    child: Icon(
+                      controller.isVisibility
+                          ? Icons.visibility_off
+                          : Icons.visibility,
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     CommonText(
-                      'Login your account',
-                      fontWeight: FontWeight.w500,
-                      columnCrossAxisAlignment: CrossAxisAlignment.start,
-                      fontSize: fontH1,
-                      fontColor: AppColors.black3,
-                      containerStyle: const CommonContainerModel(
-                        width: 1,
-                        marginTop: 0.01,
-                        marginBottom: 0.01,
+                      onPress: controller.updateRememberMe,
+                      containerStyle: CommonContainerModel(
+                        touchEffect: TouchableEffect(type: TouchTypes.opacity),
                       ),
-                    ),
-                    CommonInput(
-                      topLabelText: 'Your Email',
-                      hint: 'Enter Your Email',
-                      controller: controller.emailController,
-                    ),
-                    CommonInput(
-                      topLabelText: 'Password',
-                      hint: 'Enter Your Password',
-                      controller: controller.passwordController,
-                      obscureText: controller.isVisibility,
-                      suffix: CommonContainer(
-                        onPress: () => controller.visibility(),
-                        style: const CommonContainerModel(
-                          marginHorizontal: 0.015,
-                        ),
-                        child: Icon(
-                          controller.isVisibility
-                              ? Icons.visibility_off
-                              : Icons.visibility,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ),
-                    CommonContainer(
-                      style: const CommonContainerModel(
-                        width: 0.9,
-                        marginVertical: 0.02,
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          CommonText(
-                            onPress: controller.updateRememberMe,
-                            containerStyle: CommonContainerModel(
-                              touchEffect:
-                                  TouchableEffect(type: TouchTypes.opacity),
+                      'Remember me',
+                      fontSize: fontH3,
+                      fontColor: Colors.grey[700],
+                      marginLeft: 0.02,
+                      leftChild: controller.rememberMe
+                          ? Icon(
+                              Icons.check_box_rounded,
+                              color: Color(AppColors.primary),
+                            )
+                          : Icon(
+                              Icons.check_box_outline_blank_rounded,
+                              color: Colors.grey[500],
                             ),
-                            '  Remember me',
-                            style: appTextStyles.h3GreyStyle(),
-                            leftChild: Icon(
-                              controller.rememberMe
-                                  ? Icons.check_box_rounded
-                                  : Icons.check_box_outline_blank_rounded,
-                              color: Color(
-                                controller.rememberMe
-                                    ? AppColors.primary
-                                    : AppColors.grey,
-                              ),
-                            ),
-                          ),
-                          CommonText(
-                            onPress: () {
-                              // consoleLog(myAppController.userData);
-                            },
-                            containerStyle: CommonContainerModel(
-                              touchEffect:
-                                  TouchableEffect(type: TouchTypes.opacity),
-                            ),
-                            'forgot password ?',
-                            style: appTextStyles.h3GreyStyle(),
-                          ),
-                        ],
-                      ),
-                    ),
-                    CommonButton(
-                      text: 'Login',
-                      onPress: () => controller.loginValidator(),
-                      marginBottom: 0.02,
                     ),
                     CommonText(
-                      "Don't have an account ?  ",
-                      containerStyle: const CommonContainerModel(
-                        marginBottom: 0.02,
-                        alignment: Alignment.topLeft,
+                      onPress: () {
+                        // consoleLog(myAppController.userData);
+                      },
+                      containerStyle: CommonContainerModel(
+                        touchEffect: TouchableEffect(type: TouchTypes.opacity),
                       ),
-                      rightChild: CommonText(
-                        onPress: () {},
-                        // onPress: () {
-                        //   Get.to(() => const RegisterScreen());
-                        //   // Get.to(() => const EmailVerifyScreen());
-                        // },
-                        containerStyle: CommonContainerModel(
-                          touchEffect:
-                              TouchableEffect(type: TouchTypes.opacity),
-                        ),
-                        'Create a new account',
-                        fontColor: AppColors.primary,
-                      ),
+                      'forgot password ?',
+                      fontSize: fontH3,
+                      fontColor: Colors.grey[700],
                     ),
                   ],
                 ),
-              ),
-              // bottom radius container
-            ],
+                CommonButton(
+                  text: 'Login',
+                  onPress: () => controller.loginValidator(),
+                  marginBottom: 0.025,
+                  marginTop: 0.04,
+                ),
+                CommonText(
+                  "Don't have an account ?  ",
+                  containerStyle: const CommonContainerModel(
+                    marginBottom: 0.02,
+                    alignment: Alignment.topLeft,
+                  ),
+                  rightChild: CommonText(
+                    onPress: () {},
+                    // onPress: () {
+                    //   Get.to(() => const RegisterScreen());
+                    //   // Get.to(() => const EmailVerifyScreen());
+                    // },
+                    containerStyle: CommonContainerModel(
+                      touchEffect: TouchableEffect(type: TouchTypes.opacity),
+                    ),
+                    'Create a new account',
+                    fontColor: AppColors.primary,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

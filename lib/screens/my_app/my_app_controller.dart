@@ -119,6 +119,7 @@ class MyAppController extends GetxController {
   // }
 
   void onSignOut() {
+    homeBottomBarController.selectedIndex = 0;
     localStorage.erase();
     myAppController.localStorage.saveToStorage(
       key: 'showAlertAttention',
