@@ -34,6 +34,8 @@ class CertificateDetailsController extends GetxController
     // const NotesTab(),
   ];
 
+  // Email test =
+
   Map<dynamic, dynamic> certDetails = <dynamic, dynamic>{};
   String certStatus = 'Pending';
   int certId = 0;

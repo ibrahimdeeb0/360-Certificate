@@ -62,7 +62,7 @@ class ProfileController extends GetxController {
   }
 
   bool isEnablePass = false;
-  void onCheckChangPass() {
+  void onCheckChangPass(String? value) {
     isEnablePass = currentPassController.text.isNotEmpty &&
         newPassController.text.isNotEmpty &&
         confirmNewPassController.text.isNotEmpty;
@@ -74,7 +74,7 @@ class ProfileController extends GetxController {
     hideKeyboard();
     startLoading();
     ApiRequest(
-      method: ApiMethods.post,
+      method: ApiMethods.put,
       path: keyUpdatePassword,
       className: 'MyProfileController/onUpdatePassword',
       requestFunction: onUpdatePassword,

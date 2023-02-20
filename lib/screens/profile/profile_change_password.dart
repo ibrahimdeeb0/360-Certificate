@@ -13,34 +13,35 @@ class ProfileChangePassword extends StatelessWidget {
             title: 'Change Password',
             onPressBack: () {
               hideKeyboard();
+              Get.back();
             },
           ),
           body: CommonContainer(
-            style: appContainerStyles.containerStyles.copyWith(
-              paddingTop: 0.025,
-            ),
+            style: appContainerStyles.containerStyles,
             child: Column(
               children: <Widget>[
                 Expanded(
                   child: SingleChildScrollView(
                     child: Column(
                       children: <Widget>[
+                        SizedBox(height: DEVICE_HEIGHT * 0.03),
                         CommonInput(
-                          text: 'Current Password',
+                          topLabelText: 'Current Password',
                           hint: 'Current Password',
                           controller: controller.currentPassController,
                           keyboardType: TextInputType.visiblePassword,
                           textInputAction: TextInputAction.next,
-                          onChanged: (dynamic a) {
-                            //  controller.isEnablePass();
-                          },
+                          onChanged: controller.onCheckChangPass,
+                          marginBottom: 0.02,
                         ),
                         CommonInput(
-                          text: 'New Password',
+                          topLabelText: 'New Password',
                           hint: 'New Password',
                           controller: controller.newPassController,
                           keyboardType: TextInputType.visiblePassword,
                           textInputAction: TextInputAction.next,
+                          marginBottom: 0.02,
+                          onChanged: controller.onCheckChangPass,
                         ),
                         // CustomInput(
                         //   title: 'New Password',
@@ -50,11 +51,13 @@ class ProfileChangePassword extends StatelessWidget {
                         //   textInputAction: TextInputAction.next,
                         // ),
                         CommonInput(
-                          text: 'Confirm New Password',
+                          topLabelText: 'Confirm New Password',
                           hint: 'Confirm New Password',
                           controller: controller.confirmNewPassController,
                           keyboardType: TextInputType.visiblePassword,
-                          textInputAction: TextInputAction.go,
+                          textInputAction: TextInputAction.done,
+                          onChanged: controller.onCheckChangPass,
+                          marginBottom: 0.02,
                         ),
                         // CustomInput(
                         //   title: 'Confirm New Password',
@@ -68,6 +71,7 @@ class ProfileChangePassword extends StatelessWidget {
                   ),
                 ),
                 CommonButton(
+                  enabled: controller.isEnablePass,
                   onPress: () => controller.onPressNewPass(),
                   text: 'Save New Password',
                   width: 1,
