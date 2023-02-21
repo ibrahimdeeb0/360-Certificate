@@ -109,11 +109,11 @@ class Login extends StatelessWidget {
                     alignment: Alignment.topLeft,
                   ),
                   rightChild: CommonText(
-                    onPress: () {},
-                    // onPress: () {
-                    //   Get.to(() => const RegisterScreen());
-                    //   // Get.to(() => const EmailVerifyScreen());
-                    // },
+                    // onPress: () {},
+                    onPress: () {
+                      Get.to(() => const Register());
+                      // Get.to(() => const EmailVerifyScreen());
+                    },
                     containerStyle: CommonContainerModel(
                       touchEffect: TouchableEffect(type: TouchTypes.opacity),
                     ),

@@ -23,3 +23,4 @@ export 'search/index.dart';
 export 'splash_screen/index.dart';
 export 'uncompleted_cert/index.dart';
 export 'web_view_loader/index.dart';
+export 'register/index.dart';

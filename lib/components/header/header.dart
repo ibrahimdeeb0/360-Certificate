@@ -11,7 +11,7 @@ class Header extends StatelessWidget with PreferredSizeWidget {
     this.onPressBack,
     this.withOverLay = false,
     this.withBack = true,
-    this.withShadow = true,
+    this.withShadow = false,
     this.actionItem,
     this.onPressSearch,
     Key? key,
@@ -64,16 +64,27 @@ class Header extends StatelessWidget with PreferredSizeWidget {
         // Back Arrow
         leading: Visibility(
           visible: withBack,
-          child: CircleContainer(
+          child: CommonContainer(
+            touchEffect: TouchableEffect(type: TouchTypes.opacity),
             onPress: onPressBack ?? Get.back,
-            marginHorizontal: 0.02,
-            backgroundColor: Color(AppColors.greyLight),
-            iconWidget: const Icon(
+            child: const Icon(
               Icons.arrow_back,
               color: Colors.black,
             ),
           ),
         ),
+        // Visibility(
+        //   visible: withBack,
+        //   child: CircleContainer(
+        //     onPress: onPressBack ?? Get.back,
+        //     marginHorizontal: 0.02,
+        //     backgroundColor: Color(AppColors.greyLight),
+        //     iconWidget: const Icon(
+        //       Icons.arrow_back,
+        //       color: Colors.black,
+        //     ),
+        //   ),
+        // ),
 
         actions: <Widget>[
           if (actionItem != null)

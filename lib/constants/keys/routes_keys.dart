@@ -24,3 +24,4 @@ const String routeCompletedCert = '/sort_certificate';
 const String routeCertificateDetails = '/certificate_details';
 const String routeUncompleted = '/uncompleted';
 const String routeUncompletedCert = '/uncompleted_cert';
+const String routeRegister = '/register';
