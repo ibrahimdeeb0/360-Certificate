@@ -30,8 +30,8 @@ class CertificateDetailsController extends GetxController
   List<dynamic> tabViewItems = <dynamic>[
     const CertTab(),
     const CustomerDetailsTab(),
-    const InvoiceTab(),
-    // const NotesTab(),
+    const NotesTab(),
+    // const InvoiceTab(),
   ];
 
   // Email test =

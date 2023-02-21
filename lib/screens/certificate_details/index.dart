@@ -1,3 +1,4 @@
+export 'add_new_note/index.dart';
 export 'certificate_details.dart';
 export 'certificate_details_controller.dart';
 export 'tab_cert_details.dart';

@@ -97,8 +97,12 @@ List<GetPage<dynamic>> appRoutes = <GetPage<dynamic>>[
     name: routeUncompletedCert,
     page: () => const UncompletedCert(),
   ),
-GetPage<Register>(
-  name: routeRegister,
-   page: () => const Register(),
- ), 
+  GetPage<Register>(
+    name: routeRegister,
+    page: () => const Register(),
+  ),
+  GetPage<AddNewNote>(
+    name: routeAddNewNote,
+    page: () => const AddNewNote(),
+  ),
 ];
