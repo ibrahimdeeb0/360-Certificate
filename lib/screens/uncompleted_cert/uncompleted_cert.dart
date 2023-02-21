@@ -10,7 +10,6 @@ class UncompletedCert extends StatelessWidget {
     return Scaffold(
       appBar: Header(
         title: 'Not Completed Certs',
-        withShadow: false,
       ),
       body: GetBuilder<UncompletedCertController>(
         init: UncompletedCertController(),

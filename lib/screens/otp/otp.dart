@@ -11,7 +11,6 @@ class OTP extends StatelessWidget {
     return Scaffold(
       appBar: Header(
         title: '',
-        withShadow: false,
       ),
       backgroundColor: Colors.white,
       body: GetBuilder<OTPController>(

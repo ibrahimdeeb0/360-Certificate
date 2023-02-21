@@ -13,7 +13,6 @@ class CompleteProfile extends StatelessWidget {
         return Scaffold(
           appBar: Header(
             title: '',
-            withShadow: false,
             onPressBack: controller.onPressBack,
           ),
           backgroundColor: Colors.white,

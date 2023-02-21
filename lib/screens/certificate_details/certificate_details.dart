@@ -8,7 +8,6 @@ class CertificateDetails extends StatelessWidget {
     return Scaffold(
       appBar: Header(
         title: 'Certificate',
-        withShadow: false,
       ),
       body: GetBuilder<CertificateDetailsController>(
         init: CertificateDetailsController(),

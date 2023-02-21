@@ -10,7 +10,6 @@ class CompletedCert extends StatelessWidget {
     return Scaffold(
       appBar: Header(
         title: 'Completed Certs',
-        withShadow: false,
       ),
       body: GetBuilder<CompletedCertController>(
         init: CompletedCertController(),
