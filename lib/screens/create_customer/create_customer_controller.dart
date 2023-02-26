@@ -761,7 +761,6 @@ class CreateCustomerController extends GetxController {
 
   Future<void> getAllCustomers() async {
     hideKeyboard();
-
     ApiRequest(
       path: keyGetAllCustomers,
       className: 'CreateNewCustomerController/getAllCustomers',

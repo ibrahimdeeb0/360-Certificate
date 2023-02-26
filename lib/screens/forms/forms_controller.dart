@@ -156,12 +156,13 @@ class FormsController extends GetxController {
     Map<String, dynamic>? formData,
     int? tempId,
   }) {
+    startLoading();
     // get data
     ApiRequest(
       path: '/forms/templates/$tempId/show',
       className: 'AddFormTemplateController/onPressEdit',
       requestFunction: onPressView,
-      withLoading: true,
+      // withLoading: true,
     ).request(
       onSuccess: (dynamic data, dynamic response) {
         if (Get.isBottomSheetOpen!) {
@@ -176,6 +177,9 @@ class FormsController extends GetxController {
         Get.toNamed(routeCreateCustomer);
 
         update();
+        // if (!SmartDialog.config.isExist) {
+        //   startLoading();
+        // }
       },
     );
   }

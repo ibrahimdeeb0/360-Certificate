@@ -1231,7 +1231,7 @@ class EicrController extends GetxController {
         myAppController.clearFormAndTemp();
         certificatesController.getAllCert();
         homeController.getCertCount();
-        Get.offAndToNamed(routeHomeBottomBar);
+        Get.offAllNamed(routeHomeBottomBar);
         // Get.toNamed(
         //   routeCertificateDetails,
         //   arguments: <String, dynamic>{
@@ -1249,64 +1249,4 @@ class EicrController extends GetxController {
       );
     }
   }
-
-  // dynamic resData;
-  // Future<void> onPressFinishReportForm() async {
-  //   // formBody[data]['who_is_receiving'] = whoIsReceiving;
-  //   // formBody[data]['date'] = dateController.text;
-  //   // formBody[data]['comment'] = commentController.text;
-  //   saveDbCircuitsDataOnFormBody();
-  //   saveObservationsDataBaseBody();
-  //   onPressSave();
-
-  //   if (signatureBytes != null && signatureBytes2 != null) {
-  //     // ignore: unused_local_variable
-  //     final int formId = homeController.formsData
-  //         .where(
-  //           (dynamic element) =>
-  //               element[keyName] ==
-  //               formNameDomesticElectricalInstallationConditionReport,
-  //         )
-  //         .first[keyId];
-  //     startLoading();
-  //     ApiRequest(
-  //       method: ApiMethods.post,
-  //       path: keyCreateForm,
-  //       className: 'DomesticEICRController/onPressFinishReportForm',
-  //       requestFunction: onPressFinishReportForm,
-  //       body: await addArrayToFormData(
-  //         jsonObject: <String, dynamic>{
-  //           ...formBody,
-  //           'customer_id': myAppController.selectedCustomer?[keyId],
-  //           // 'st'
-  //         },
-  //         imagesArray: selectedImages,
-  //         customerSignature: customerSignature,
-  //       ),
-  //       // formatResponse: true,
-  //     ).request(
-  //       onSuccess: (dynamic data, dynamic response) async {
-  //         // dismissLoading();
-  //         // selectedId = 0;
-  //         // removeStoredFormData();
-  //         //** */
-  //         // resData = data;
-  //         // htmlContent = data['html_content'];
-  //         // dismissLoading();
-  //         // myAppController.clearFormAndTemp();
-
-  //         // update();
-  //         // Get.offNamed(
-  //         //   routeHomeBottomBar,
-  //         // );
-  //       },
-  //     );
-  //   } else {
-  //     showMessage(
-  //       description: 'All signatures required',
-  //       textColor: AppColors.red,
-  //     );
-  //     dismissLoading();
-  //   }
-  // }
 }
