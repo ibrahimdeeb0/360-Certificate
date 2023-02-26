@@ -29,3 +29,9 @@ extension on String {
     return '${this[0].toUpperCase()}${substring(1).toLowerCase()}';
   }
 }
+
+extension EmptyPadding on num {
+  SizedBox get ph => SizedBox(height: DEVICE_HEIGHT * toDouble());
+
+  SizedBox get pw => SizedBox(width: DEVICE_WIDTH * toDouble());
+}

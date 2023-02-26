@@ -14,7 +14,7 @@ class Profile extends StatelessWidget {
           ),
           body: const ProfileComponent(
             emailAllowance: '0/100',
-            diskSpace: '0/100',
+            diskSpace: '5 GB',
             keepCertUsage: '0/100',
             deleteJobUsage: '0/100',
             // deleteJobUsage: controller.userDataProfile.isNotEmpty

@@ -120,7 +120,7 @@ class ProfileComponent extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           CommonText(
-                            'Delete job usage',
+                            'Cert Usage',
                             style: appTextStyles.h3Style().copyWith(
                                   fontColor: AppColors.textGrey,
                                   textAlign: TextAlign.start,
@@ -130,75 +130,12 @@ class ProfileComponent extends StatelessWidget {
                             containerStyle: const CommonContainerModel(
                               paddingLeft: 0.06,
                               width: 0.43,
-                            ),
-                            bottomChild: Column(
-                              children: <Widget>[
-                                SizedBox(height: DEVICE_HEIGHT * 0.008),
-                                CommonText(
-                                  deleteJobUsage ?? '20/100',
-                                  style: appTextStyles
-                                      .h2StyleBlack()
-                                      .copyWith(textAlign: TextAlign.start),
-                                ),
-                              ],
-                            ),
-                          ),
-                          CommonContainer(
-                            style: CommonContainerModel(
-                              height: 0.05,
-                              borderRightColor:
-                                  Color(AppColors.grey).withOpacity(0.2),
-                              borderRightWidth: 2.5,
-                              marginTop: 0.01,
-                            ),
-                          ),
-                          CommonText(
-                            'Keep Cert Usage',
-                            style: appTextStyles.h3Style().copyWith(
-                                  fontColor: AppColors.textGrey,
-                                  rowMainAxisSize: MainAxisSize.max,
-                                  textAlign: TextAlign.start,
-                                ),
-                            containerStyle: const CommonContainerModel(
-                              width: 0.44,
-                              paddingLeft: 0.085,
                             ),
                             bottomChild: Column(
                               children: <Widget>[
                                 SizedBox(height: DEVICE_HEIGHT * 0.008),
                                 CommonText(
                                   keepCertUsage ?? '45/100',
-                                  style: appTextStyles.h2StyleBlack().copyWith(
-                                        rowMainAxisSize: MainAxisSize.max,
-                                        textAlign: TextAlign.start,
-                                      ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: DEVICE_HEIGHT * 0.02),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          CommonText(
-                            'Disk Space',
-                            style: appTextStyles.h3Style().copyWith(
-                                  fontColor: AppColors.textGrey,
-                                  textAlign: TextAlign.start,
-                                  columnCrossAxisAlignment:
-                                      CrossAxisAlignment.start,
-                                ),
-                            containerStyle: const CommonContainerModel(
-                              paddingLeft: 0.06,
-                              width: 0.43,
-                            ),
-                            bottomChild: Column(
-                              children: <Widget>[
-                                SizedBox(height: DEVICE_HEIGHT * 0.008),
-                                CommonText(
-                                  diskSpace ?? '67/100',
                                   style: appTextStyles
                                       .h2StyleBlack()
                                       .copyWith(textAlign: TextAlign.start),
@@ -234,6 +171,36 @@ class ProfileComponent extends StatelessWidget {
                                         rowMainAxisSize: MainAxisSize.max,
                                         textAlign: TextAlign.start,
                                       ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: DEVICE_HEIGHT * 0.02),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          CommonText(
+                            'Disk Space',
+                            style: appTextStyles.h3Style().copyWith(
+                                  fontColor: AppColors.textGrey,
+                                  textAlign: TextAlign.start,
+                                  columnCrossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                ),
+                            containerStyle: const CommonContainerModel(
+                              paddingLeft: 0.06,
+                              width: 0.43,
+                            ),
+                            bottomChild: Column(
+                              children: <Widget>[
+                                SizedBox(height: DEVICE_HEIGHT * 0.008),
+                                CommonText(
+                                  diskSpace ?? '67/100',
+                                  style: appTextStyles
+                                      .h2StyleBlack()
+                                      .copyWith(textAlign: TextAlign.start),
                                 ),
                               ],
                             ),

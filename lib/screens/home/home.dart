@@ -88,15 +88,7 @@ class HomeSearchBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CommonContainer(
-      shadowColor: COMMON_GREY_COLOR,
-      shadowOpacity: 0.1,
-      shadowSpreadRadius: .5,
-      shadowOffsetDY: 2,
-      shadowBlurRadius: 4,
-      backgroundColor: Colors.white,
-      paddingBottom: 0.01,
-      paddingHorizontal: 0.03,
-      width: 1,
+      style: appContainerStyles.bottomShadowStyle,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[

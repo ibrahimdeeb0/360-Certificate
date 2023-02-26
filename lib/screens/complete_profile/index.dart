@@ -1,2 +1,9 @@
+export 'complete_fill_data.dart';
 export 'complete_profile.dart';
 export 'complete_profile_controller.dart';
+export 'complete_profile_done.dart';
+export 'content_part1.dart';
+export 'content_part2.dart';
+export 'content_part3.dart';
+export 'instruction_screen.dart';
+export 'search_address.dart';

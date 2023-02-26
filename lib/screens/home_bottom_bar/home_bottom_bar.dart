@@ -17,6 +17,7 @@ class HomeBottomBar extends StatelessWidget {
             onPressed: () {
               // Get.toNamed(routeCreateCustomer);
               Get.toNamed(routeForms);
+              // Get.toNamed(routeCompleteProfile);
             },
             tooltip: 'Create',
             icon: const Icon(

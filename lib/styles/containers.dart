@@ -266,4 +266,16 @@ class DefaultContainerStyles {
     borderRadius: 0.02,
     marginBottom: 0.02,
   );
+
+  CommonContainerModel bottomShadowStyle = const CommonContainerModel(
+    shadowColor: COMMON_GREY_COLOR,
+    shadowOpacity: 0.1,
+    shadowSpreadRadius: .5,
+    shadowOffsetDY: 2,
+    shadowBlurRadius: 4,
+    backgroundColor: Colors.white,
+    paddingBottom: 0.01,
+    paddingHorizontal: 0.03,
+    width: 1,
+  );
 }
