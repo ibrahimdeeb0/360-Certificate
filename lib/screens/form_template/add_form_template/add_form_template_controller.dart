@@ -167,6 +167,7 @@ class AddFormTemplateController extends GetxController {
       className: 'AddFormTemplateController/onPressEdit',
       withLoading: true,
       requestFunction: onPressEdit,
+      formatResponse: true,
     ).request(
       onSuccess: (dynamic data, dynamic response) {
         if (Get.isBottomSheetOpen!) {
