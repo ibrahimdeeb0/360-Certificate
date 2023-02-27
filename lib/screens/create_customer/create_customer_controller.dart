@@ -152,12 +152,10 @@ class CreateCustomerController extends GetxController {
     if (validValue) {
       if (currentIndex == 3) {
         if (isAutoFillCust == true) {
-          myAppController.selectedCustomer = customerData;
+          myAppController.certFormInfo[keyCustomerId] = customerData[keyId];
+
           Get.offNamed(
-            myAppController.selectedForm?['form_route'],
-            arguments: <String, Map<String, dynamic>?>{
-              'tempData': myAppController.selectedTemplate,
-            },
+            myAppController.certFormInfo[keyFormRoute],
           );
         } else {
           onAddCustomer();
@@ -743,14 +741,12 @@ class CreateCustomerController extends GetxController {
     ).request(
       onSuccess: (dynamic data, dynamic response) {
         addedCustomerData = data;
-        consoleLogPretty(addedCustomerData[keyId], key: 'customer_Id');
-        myAppController.selectedCustomer = data;
-        // Get.toNamed(routeForms);
+        // consoleLogPretty(addedCustomerData[keyId], key: 'new_customer_data');
+
+        myAppController.certFormInfo[keyCustomerId] = addedCustomerData[keyId];
+
         Get.offNamed(
-          myAppController.selectedForm?['form_route'],
-          arguments: <String, Map<String, dynamic>?>{
-            'tempData': myAppController.selectedTemplate,
-          },
+          myAppController.certFormInfo[keyFormRoute],
         );
       },
     );

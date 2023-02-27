@@ -18,6 +18,11 @@ class EICRSectionA extends StatelessWidget {
             leftText: 'Part 1. ',
             text: 'Reason for producing this report',
           ),
+          // CommonButton(
+          //   onPress: () {
+          //     consoleLog(controller.isTemplate);
+          //   },
+          // ),
           CommonInput(
             topLabelText: '',
             maxLines: 6,

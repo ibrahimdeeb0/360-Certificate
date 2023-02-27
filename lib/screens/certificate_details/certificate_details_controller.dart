@@ -130,10 +130,11 @@ class CertificateDetailsController extends GetxController
   Future<void> onCancelCertificate() async {
     final Map<String, dynamic> certData = <String, dynamic>{
       ...formBody,
-      'customer_id': myAppController.selectedCustomer?[keyId],
+      'customer_id': myAppController.certFormInfo[keyCustomerId],
       'status_id': 6,
       // 'st'
     };
+
     ApiRequest(
       method: ApiMethods.post,
       path: '/certificate-form/$certId/update',
@@ -143,7 +144,7 @@ class CertificateDetailsController extends GetxController
       body: certData,
     ).request(
       onSuccess: (dynamic data, dynamic response) async {
-        myAppController.clearFormAndTemp();
+        // myAppController.clearFormAndTemp();
         Get.back();
         update();
       },

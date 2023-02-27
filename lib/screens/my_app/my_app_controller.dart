@@ -16,9 +16,9 @@ class MyAppController extends GetxController {
   List<Map<String, dynamic>> noInternetWaitingRequests =
       <Map<String, dynamic>>[];
 
-  Map<String, dynamic>? selectedCustomer;
-  Map<String, dynamic>? selectedForm;
-  Map<String, dynamic>? selectedTemplate;
+  // Map<String, dynamic>? selectedCustomer;
+  // Map<String, dynamic>? selectedForm;
+  // Map<String, dynamic>? selectedTemplate;
 
   Map<String, dynamic> certFormInfo = <String, dynamic>{
     keyFormId: null,
@@ -29,10 +29,15 @@ class MyAppController extends GetxController {
     keyFormRoute: null,
   };
 
-  void clearFormAndTemp() {
-    selectedCustomer = null;
-    selectedForm = null;
-    selectedTemplate = null;
+  void clearCertFormInfo() {
+    certFormInfo = <String, dynamic>{
+      keyFormId: null,
+      keyCustomerId: null,
+      keyTemplateData: null,
+      keyFormStatus: null,
+      keyFormDataStatus: null,
+      keyFormRoute: null,
+    };
     update();
   }
 

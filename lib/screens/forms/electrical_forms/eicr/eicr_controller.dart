@@ -17,13 +17,16 @@ class EicrController extends GetxController {
   // });
 
   // int numFinalPage = 2;
-  // bool isTemplate;
+  bool? isTemplate;
+  int? customerId;
+
   // String? templateName;
   // dynamic tempData;
   // bool updateTemp;
+  // int? customerId;
 
   int selectedId = 0;
-  int? customerId;
+  int? certId;
 
   bool renderItem = false;
   // bool isCertificateCreated = true;
@@ -44,15 +47,6 @@ class EicrController extends GetxController {
   Uint8List? customerSignatureBytes;
   String? htmlContent;
   String? pdfFilePath;
-
-  final Map<String, dynamic> currentFormData = homeController.formsData
-      .where(
-        (dynamic element) =>
-            element[keyName] ==
-            formNameDomesticElectricalInstallationConditionReport,
-      )
-      .toList()
-      .first;
 
   List<String> whoIsReceiving = <String>[];
   TextEditingController dateController = TextEditingController();
@@ -617,15 +611,33 @@ class EicrController extends GetxController {
 
   //*---- Functions Body ------------------------------------------- */
 
-  // @override
-  // void onInit() {
-  //   super.onInit();
-  // }
+  @override
+  void onInit() {
+    super.onInit();
+
+    isTemplate =
+        myAppController.certFormInfo[keyFormStatus] == FormStatus.template;
+    customerId = myAppController.certFormInfo[keyCustomerId];
+
+    update();
+    // formBody['form_id'] = currentFormData[keyId];
+    if (myAppController.certFormInfo[keyFormDataStatus] ==
+        FormDataStatus.setTemp) {
+      // set Template Data to form body
+      formBody = myAppController.certFormInfo[keyTemplateData][keyData];
+
+      if (formBody[keyData][formKeyGazSafetyData].isNotEmpty) {
+        gazSafetyData = formBody[keyData][formKeyGazSafetyData][0];
+      }
+      distrBoardDataBase = gazSafetyData[allDistributionBoardData];
+      observationsDataBase = gazSafetyData[allObservationData];
+      update();
+    }
+  }
 
   @override
   Future<void> onReady() async {
     super.onReady();
-    formBody['form_id'] = currentFormData[keyId];
   }
 
   void onAddImage(dynamic data) {
@@ -650,24 +662,24 @@ class EicrController extends GetxController {
 
   //* Circuit - Page Numbers *//
   String pagesNum() {
-    // if (isTemplate) {
-    //   if (selectedId == listFormSections.length - 1) {
-    //     return '${listFormSections.length - 1}/${listFormSections.length - 1}';
-    //   } else {
-    //     return '${selectedId + 1}/${listFormSections.length - 1}';
-    //   }
-    // } else {
-    //   if (selectedId == listFormSections.length) {
-    //     return '${listFormSections.length}/${listFormSections.length}';
-    //   } else {
-    //     return '${selectedId + 1}/${listFormSections.length}';
-    //   }
-    // }
-    if (selectedId == listFormSections.length) {
-      return '${listFormSections.length}/${listFormSections.length}';
+    if (isTemplate!) {
+      if (selectedId == listFormSections.length - 1) {
+        return '${listFormSections.length - 1}/${listFormSections.length - 1}';
+      } else {
+        return '${selectedId + 1}/${listFormSections.length - 1}';
+      }
     } else {
-      return '${selectedId + 1}/${listFormSections.length}';
+      if (selectedId == listFormSections.length) {
+        return '${listFormSections.length}/${listFormSections.length}';
+      } else {
+        return '${selectedId + 1}/${listFormSections.length}';
+      }
     }
+    // if (selectedId == listFormSections.length) {
+    //   return '${listFormSections.length}/${listFormSections.length}';
+    // } else {
+    //   return '${selectedId + 1}/${listFormSections.length}';
+    // }
   }
   // *****************  Auto Save  functions **************** //
   //******************************************************* */
@@ -680,73 +692,48 @@ class EicrController extends GetxController {
     gazSafetyData[formKeyEICRdeclaration][key!] = value;
   }
 
+  bool isCertificateCreated = true;
   void onPressNext({bool fromSave = false}) {
-    // if (isTemplate) {
-    //   if (selectedId == 17) {
-    //     selectedId = selectedId + 1;
-    //     update();
-    //     Timer(
-    //       const Duration(milliseconds: 300),
-    //       () {
-    //         renderItem = true;
-    //         update();
-    //       },
-    //     );
-    //   } else if (selectedId == 20) {
-    //     onSaveTemplate();
-    //   } else {
-    //     selectedId = selectedId + 1;
-    //     update();
-    //   }
-    // }
-    // //
-    // else {
-    //   if (selectedId == 21) {
-    //     consoleLog('this is last Page');
-    //     onCompleteCertificate();
-    //   } else if (selectedId < 21) {
-    //     if ((selectedId == 0 || fromSave) && isCertificateCreated) {
-    //       onCreateCertificate();
-    //       isCertificateCreated = false;
-    //     }
-    //     else if (fromSave) {
-    //       onUpdateCertificate();
-    //     } else {
-    //       selectedId = selectedId + 1;
-    //       update();
-    //     }
-    //     if (fromSave) {
-    //       myAppController.clearFormAndTemp();
-    //       Get.offAndToNamed(routeHomeBottomBar);
-    //     }
-    //   }
-    // }
-
-    if (selectedId == 21) {
-      consoleLog('this is last Page');
-      onCompleteCertificate();
-    } else if (selectedId < 21) {
-      if ((selectedId == 0) || fromSave) {
-        onCreateCertificate();
-      } else if (fromSave) {
-        onUpdateCertificate();
+    if (isTemplate!) {
+      if (selectedId == 20) {
+        // onSaveTemplate();
       } else {
         selectedId = selectedId + 1;
         update();
       }
-      if (fromSave) {
-        myAppController.clearFormAndTemp();
-        Get.offAndToNamed(routeHomeBottomBar);
+    } else {
+      if (selectedId == 21) {
+        consoleLog('this is last Page');
+        onCompleteCertificate();
+      } else if (selectedId < 21) {
+        if ((selectedId == 0 || fromSave) && isCertificateCreated) {
+          onCreateCertificate();
+          isCertificateCreated = false;
+        } else if (fromSave) {
+          onUpdateCertificate();
+        } else {
+          selectedId = selectedId + 1;
+          update();
+        }
+        selectedId = selectedId + 1;
+        update();
+        // if (fromSave) {
+        //   myAppController.clearCertFormInfo();
+        //   Get.offAndToNamed(routeHomeBottomBar);
+        //   homeController.getCertCount();
+        //   certificatesController.getAllCert();
+        // }
       }
     }
 
-    // storeFormData();
     scrollController.animateTo(
       0.0,
       duration: const Duration(milliseconds: 400),
       curve: Curves.linear,
     );
   }
+
+  // storeFormData();
 
   void onPressBack() {
     if (selectedId > 0) {
@@ -764,26 +751,18 @@ class EicrController extends GetxController {
   }
 
   String finalPageButton() {
-    // if (isTemplate) {
-    //   if (selectedId == 21) {
-    //     return 'Save';
-    //   } else {
-    //     return 'Next';
-    //   }
-    // }
-    // //
-    // else {
-    //   if (selectedId < listFormSections.length - 1) {
-    //     return 'Next';
-    //   } else {
-    //     return 'Complete';
-    //   }
-    // }
-
-    if (selectedId < listFormSections.length - 1) {
-      return 'Next';
+    if (isTemplate!) {
+      if (selectedId == 21) {
+        return 'Save';
+      } else {
+        return 'Next';
+      }
     } else {
-      return 'Complete';
+      if (selectedId < listFormSections.length - 1) {
+        return 'Next';
+      } else {
+        return 'Complete';
+      }
     }
   }
 
@@ -869,8 +848,6 @@ class EicrController extends GetxController {
         },
       );
       update();
-      consoleLog(formBody[keyData][formKeyGazSafetyData],
-          key: 'formKeyGazSafetyData == null');
     } else {
       formBody[keyData][formKeyGazSafetyData] = <Map<String, dynamic>>[];
       formBody[keyData][formKeyGazSafetyData].add(
@@ -880,8 +857,6 @@ class EicrController extends GetxController {
         },
       );
       update();
-      consoleLog(formBody[keyData][formKeyGazSafetyData],
-          key: 'formKeyGazSafetyData != null');
     }
     // storeFormData();
   }
@@ -1001,7 +976,7 @@ class EicrController extends GetxController {
   }
 
   // *****************  Press Finish ****************
-  int? certId;
+
   Future<void> onCreateCertificate() async {
     saveDbCircuitsDataOnFormBody();
     saveObservationsDataBaseBody();
@@ -1009,11 +984,11 @@ class EicrController extends GetxController {
 
     final Map<String, dynamic> certData = <String, dynamic>{
       ...formBody,
-      'customer_id': myAppController.selectedCustomer?[keyId],
+      'customer_id': customerId,
       'status_id': 13,
     };
 
-    consoleLogPretty(certData, key: 'all data create');
+    // consoleLogPretty(certData, key: 'all data create');
 
     ApiRequest(
       method: ApiMethods.post,
@@ -1021,7 +996,7 @@ class EicrController extends GetxController {
       className: 'EicrController/onCreateCertificate',
       requestFunction: onCreateCertificate,
       // withLoading: true,
-      formatResponse: true,
+      // formatResponse: true,
 
       body: selectedImages!.isEmpty
           ? certData
@@ -1044,10 +1019,10 @@ class EicrController extends GetxController {
     onPressSave();
     final Map<String, dynamic> certData = <String, dynamic>{
       ...formBody,
-      'customer_id': myAppController.selectedCustomer?[keyId],
+      'customer_id': customerId,
       'status_id': 3,
     };
-    consoleLogPretty(certData, key: 'all data update');
+    // consoleLogPretty(certData, key: 'all data update');
 
     startLoading();
     ApiRequest(
@@ -1064,10 +1039,10 @@ class EicrController extends GetxController {
               customerSignature: customerSignature,
             ),
     ).request(onSuccess: (dynamic data, dynamic response) async {
-      myAppController.clearFormAndTemp();
+      myAppController.clearCertFormInfo();
       certificatesController.getAllCert();
       homeController.getCertCount();
-      Get.offAndToNamed(routeHomeBottomBar);
+      Get.offAllNamed(routeHomeBottomBar);
     }, onError: (dynamic error) {
       dismissLoading();
     });
@@ -1079,10 +1054,10 @@ class EicrController extends GetxController {
     onPressSave();
     final Map<String, dynamic> certData = <String, dynamic>{
       ...formBody,
-      'customer_id': myAppController.selectedCustomer?[keyId],
+      'customer_id': customerId,
       'status_id': 4,
     };
-    consoleLogPretty(certData, key: 'all data complete');
+    // consoleLogPretty(certData, key: 'all data complete');
 
     if (signatureBytes != null && signatureBytes2 != null) {
       startLoading();
@@ -1098,7 +1073,7 @@ class EicrController extends GetxController {
           customerSignature: customerSignature,
         ),
       ).request(onSuccess: (dynamic data, dynamic response) async {
-        myAppController.clearFormAndTemp();
+        myAppController.clearCertFormInfo();
         certificatesController.getAllCert();
         homeController.getCertCount();
         Get.offAllNamed(routeHomeBottomBar);
@@ -1113,10 +1088,12 @@ class EicrController extends GetxController {
         dismissLoading();
       });
     } else {
-      showMessage(
-        description: 'All signatures required',
-        textColor: AppColors.red,
-      );
+      if (!Get.isSnackbarOpen) {
+        showMessage(
+          description: 'All signatures required',
+          textColor: AppColors.red,
+        );
+      }
     }
   }
 }
