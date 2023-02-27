@@ -55,10 +55,10 @@ class Forms extends StatelessWidget {
 class ShowTemplatesBT extends StatelessWidget {
   const ShowTemplatesBT({
     super.key,
-    this.formData,
+    this.formInfo,
   });
 
-  final Map<String, dynamic>? formData;
+  final Map<String, dynamic>? formInfo;
 
   @override
   Widget build(BuildContext context) {
@@ -73,31 +73,24 @@ class ShowTemplatesBT extends StatelessWidget {
               children: <Widget>[
                 SizedBox(height: DEVICE_HEIGHT * 0.03),
                 // if (controller.listTemp.isNotEmpty)
-                ...controller.listTemp.map(
-                  (dynamic item) => ShowTemplateCard(
-                    title: item['name'],
-                    onPress: () => controller.onPressView(
-                      formData: item['form'],
-                      tempId: item['id'],
+                if (controller.listTemp.isNotEmpty)
+                  ...controller.listTemp.map(
+                    (dynamic item) => ShowTemplateCard(
+                      title: item['name'],
+                      onPress: () => controller.onSelectFormTemplate(
+                        formInfo: formInfo,
+                        tempId: item['id'],
+                      ),
                     ),
+                  )
+                else
+                  const CommonText(
+                    'There is no template for this form',
+                    marginVertical: 0.015,
                   ),
-                ),
 
                 CommonButton(
-                  onPress: () {
-                    consoleLog(formData, key: 'form_data');
-                    myAppController.selectedForm = <String, dynamic>{
-                      ...formData!,
-                      'form_route': routeFormEICR,
-                      'is_form_update': false,
-                    };
-                    consoleLog(myAppController.selectedForm,
-                        key: 'form_data_Global');
-                    Get.back();
-                    Get.toNamed(
-                      routeCreateCustomer,
-                    );
-                  },
+                  onPress: () => controller.onSkipTemplate(formInfo!),
                   text: 'Continue without template',
                   backgroundColor: Color(AppColors.primary).withOpacity(0.9),
                   marginTop: 0.01,

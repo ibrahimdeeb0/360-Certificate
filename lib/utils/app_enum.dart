@@ -5,6 +5,7 @@ enum FormStatus {
 }
 
 enum FormDataStatus {
+  newForm,
   setTemp,
   editCert,
   editTemp,

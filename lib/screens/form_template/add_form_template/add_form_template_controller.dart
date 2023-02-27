@@ -1,7 +1,7 @@
 import '../../../general_exports.dart';
 
 class AddFormTemplateController extends GetxController {
-  RenderFormController renderController = Get.put(RenderFormController());
+  // RenderFormController renderController = Get.put(RenderFormController());
 
   TextEditingController templateController = TextEditingController();
   TextEditingController copyNameController = TextEditingController();
@@ -97,9 +97,9 @@ class AddFormTemplateController extends GetxController {
     bool? updateTemp = false,
   }) async {
     hideKeyboard();
-    renderController.formId = formId ?? selectedForm?['id'];
-    renderController.templateName = name ?? templateController.text;
-    renderController.updateTemp = updateTemp;
+    // renderController.formId = formId ?? selectedForm?['id'];
+    // renderController.templateName = name ?? templateController.text;
+    // renderController.updateTemp = updateTemp;
     consoleLog(
         '${formId ?? selectedForm?['id']} + ${name ?? templateController.text}',
         key: 'template_info');

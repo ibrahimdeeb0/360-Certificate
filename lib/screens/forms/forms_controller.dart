@@ -72,56 +72,43 @@ class FormsController extends GetxController {
   }
 
   // bool isNoTemp = false;
-  void searchTemplate(Map<String, dynamic> formData) {
-    // consoleLog(formData, key: 'formData');
+  void searchTemplate(Map<String, dynamic> formInfo) {
+    // Get Templates related to selected Form
     listTemp = <dynamic>[
       ...allFormsTemplates
-          .where((dynamic item) => item['form_id'] == formData[keyId])
+          .where((dynamic item) => item['form_id'] == formInfo[keyId])
     ];
-    // consoleLogPretty(listTemp);
+
+    // set here form info and form page route
+    Get.bottomSheet(
+      ShowTemplatesBT(
+        formInfo: formInfo,
+      ),
+    );
 
     update();
-
-    if (listTemp.isNotEmpty) {
-      Get.bottomSheet(
-        ShowTemplatesBT(
-          formData: formData,
-        ),
-      );
-    } else if (listTemp.isEmpty) {
-      myAppController.selectedForm = <String, dynamic>{
-        ...formData,
-        'form_route': routeFormEICR,
-        'is_form_update': false,
-      };
-      Get.toNamed(
-        routeCreateCustomer,
-      );
-
-      if (Get.isBottomSheetOpen!) {
-        Get.back();
-      }
-    }
-
-    // consoleLogPretty(listTemp);
   }
 
-  // void goToCreateCert(Map<String, dynamic> formData) {
-  //   consoleLog(formData, key: 'form_data');
+  void onSkipTemplate(Map<String, dynamic> formInfo) {
+    consoleLog(formInfo);
+    consoleLog(formInfo, key: 'form_data');
+    myAppController.certFormInfo[keyFormId] = formInfo[keyId];
+    myAppController.certFormInfo[keyFormStatus] = FormStatus.create;
+    myAppController.certFormInfo[keyFormDataStatus] = FormDataStatus.newForm;
+    myAppController.certFormInfo[keyFormRoute] = routeFormEICR;
 
-  //   myAppController.selectedForm = <String, dynamic>{
-  //     ...formData,
-  //     'form_route': routeFormEICR,
-  //   };
-
-  //   Get.toNamed(
-  //     routeCreateCustomer,
-  //   );
-
-  //   if (Get.isBottomSheetOpen!) {
-  //     Get.back();
-  //   }
-  // }
+    consoleLog(myAppController.certFormInfo, key: 'form_data_Global');
+    // myAppController.selectedForm = <String, dynamic>{
+    //   ...formInfo,
+    //   'form_route': routeFormEICR,
+    //   'is_form_update': false,
+    // };
+    // consoleLog(myAppController.selectedForm, key: 'form_data_Global');
+    Get.back();
+    Get.toNamed(
+      routeCreateCustomer,
+    );
+  }
 
   Future<void> getFormsTemplates() async {
     hideKeyboard();
@@ -137,7 +124,7 @@ class FormsController extends GetxController {
           value: data,
         );
         allFormsTemplates = data;
-        consoleLogPretty(allFormsTemplates);
+        consoleLogPretty(allFormsTemplates, key: 'allFormsTemplates');
         update();
         dismissLoading();
       },
@@ -152,8 +139,8 @@ class FormsController extends GetxController {
     }
   }
 
-  void onPressView({
-    Map<String, dynamic>? formData,
+  void onSelectFormTemplate({
+    Map<String, dynamic>? formInfo,
     int? tempId,
   }) {
     startLoading();
@@ -161,26 +148,24 @@ class FormsController extends GetxController {
     ApiRequest(
       path: '/forms/templates/$tempId/show',
       className: 'AddFormTemplateController/onPressEdit',
-      requestFunction: onPressView,
+      requestFunction: onSelectFormTemplate,
       // withLoading: true,
-      formatResponse: true,
+      // formatResponse: true,
     ).request(
       onSuccess: (dynamic data, dynamic response) {
-        if (Get.isBottomSheetOpen!) {
-          Get.back();
-        }
-        myAppController.selectedForm = <String, dynamic>{
-          ...formData!,
-          'form_route': routeFormEICR,
-          'is_form_update': false,
-        };
-        myAppController.selectedTemplate = data;
-        Get.toNamed(routeCreateCustomer);
+        consoleLogPretty(data, key: 'template_data');
+        myAppController.certFormInfo[keyFormId] = formInfo?[keyId];
+        myAppController.certFormInfo[keyFormStatus] = FormStatus.create;
+        myAppController.certFormInfo[keyFormDataStatus] =
+            FormDataStatus.setTemp;
+        myAppController.certFormInfo[keyFormRoute] = routeFormEICR;
+        myAppController.certFormInfo[keyTemplateData] = data;
 
+        consoleLog(myAppController.certFormInfo, key: 'form_data_Global');
+        Get.toNamed(routeCreateCustomer);
         update();
-        // if (!SmartDialog.config.isExist) {
-        //   startLoading();
-        // }
+
+        // dismissLoading();
       },
     );
   }

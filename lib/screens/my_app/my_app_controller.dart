@@ -20,6 +20,15 @@ class MyAppController extends GetxController {
   Map<String, dynamic>? selectedForm;
   Map<String, dynamic>? selectedTemplate;
 
+  Map<String, dynamic> certFormInfo = <String, dynamic>{
+    keyFormId: null,
+    keyCustomerId: null,
+    keyTemplateData: null,
+    keyFormStatus: null,
+    keyFormDataStatus: null,
+    keyFormRoute: null,
+  };
+
   void clearFormAndTemp() {
     selectedCustomer = null;
     selectedForm = null;

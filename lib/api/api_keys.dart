@@ -82,9 +82,12 @@ const String firebaseKeyIsUserCancelTrip = 'is_user_cancel_trip';
 const String firebaseKeyIsUserCancelSearch = 'is_user_cancel_search';
 
 //********** App Keys ***************/
-const String keyCarNumber = 'car_num';
-const String keyCarFactoryYear = 'car_model';
-const String keyCarVin = 'car_vin';
+const String keyFormId = 'form_id';
+const String keyCustomerId = 'customer_id';
+const String keyTemplateData = 'template_data';
+const String keyFormStatus = 'form_status';
+const String keyFormDataStatus = 'form_data_status';
+const String keyFormRoute = 'form_route';
 
 // *************** Woosmap Keys ***************
 const String publicKey = 'woos-5b6fb592-1146-3acf-a259-e3fc6ddd77a4';

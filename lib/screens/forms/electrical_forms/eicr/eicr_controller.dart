@@ -9,27 +9,25 @@ import 'package:uuid/uuid.dart';
 import '../../../../general_exports.dart';
 
 class EicrController extends GetxController {
-  EicrController({
-    this.jobId,
-    this.serviceId,
-    this.isTemplate = false,
-    this.templateName,
-    this.tempData,
-    this.updateTemp = false,
-  });
+  // EicrController({
+  //   // this.isTemplate = false,
+  //   // this.templateName,
+  //   // this.tempData,
+  //   // this.updateTemp = false,
+  // });
+
+  // int numFinalPage = 2;
+  // bool isTemplate;
+  // String? templateName;
+  // dynamic tempData;
+  // bool updateTemp;
 
   int selectedId = 0;
-  int numFinalPage = 2;
-  bool isTemplate;
-  String? templateName;
-  dynamic tempData;
-  bool updateTemp;
   int? customerId;
 
   bool renderItem = false;
-  bool isCertificateCreated = true;
-  int? jobId;
-  int? serviceId;
+  // bool isCertificateCreated = true;
+
   List<Map<String, dynamic>>? selectedImages = <Map<String, dynamic>>[];
   Uuid uuid = const Uuid();
 
@@ -619,47 +617,15 @@ class EicrController extends GetxController {
 
   //*---- Functions Body ------------------------------------------- */
 
-  @override
-  void onInit() {
-    consoleLog(tempData, key: 'formTempData');
-    if (Get.arguments != null) {
-      isTemplate = Get.arguments['isTemplate'] ?? false;
-      templateName = Get.arguments['templateName'];
-      tempData = Get.arguments['tempData'];
-      updateTemp = Get.arguments['updateTemp'] ?? false;
-      customerId = Get.arguments['customerId'];
-
-      update();
-      consoleLog(myAppController.selectedCustomer?[keyId], key: 'customerId');
-    }
-    // removeStoredFormData();
-
-    if (tempData != null) {
-      consoleLog('value');
-      consoleLog(tempData);
-
-      formBody = tempData?['data'];
-      if (formBody[keyData][formKeyGazSafetyData].isNotEmpty) {
-        gazSafetyData = formBody[keyData][formKeyGazSafetyData][0];
-      }
-      distrBoardDataBase = gazSafetyData[allDistributionBoardData];
-      observationsDataBase = gazSafetyData[allObservationData];
-      update();
-    }
-
-    super.onInit();
-  }
+  // @override
+  // void onInit() {
+  //   super.onInit();
+  // }
 
   @override
   Future<void> onReady() async {
     super.onReady();
     formBody['form_id'] = currentFormData[keyId];
-    if (isTemplate) {
-      numFinalPage = listFormSections.length - 2;
-      update();
-      // removeStoredFormData();
-    }
-    // await checkStorage();
   }
 
   void onAddImage(dynamic data) {
@@ -684,103 +650,26 @@ class EicrController extends GetxController {
 
   //* Circuit - Page Numbers *//
   String pagesNum() {
-    if (isTemplate) {
-      if (selectedId == listFormSections.length - 1) {
-        return '${listFormSections.length - 1}/${listFormSections.length - 1}';
-      } else {
-        return '${selectedId + 1}/${listFormSections.length - 1}';
-      }
+    // if (isTemplate) {
+    //   if (selectedId == listFormSections.length - 1) {
+    //     return '${listFormSections.length - 1}/${listFormSections.length - 1}';
+    //   } else {
+    //     return '${selectedId + 1}/${listFormSections.length - 1}';
+    //   }
+    // } else {
+    //   if (selectedId == listFormSections.length) {
+    //     return '${listFormSections.length}/${listFormSections.length}';
+    //   } else {
+    //     return '${selectedId + 1}/${listFormSections.length}';
+    //   }
+    // }
+    if (selectedId == listFormSections.length) {
+      return '${listFormSections.length}/${listFormSections.length}';
     } else {
-      if (selectedId == listFormSections.length) {
-        return '${listFormSections.length}/${listFormSections.length}';
-      } else {
-        return '${selectedId + 1}/${listFormSections.length}';
-      }
+      return '${selectedId + 1}/${listFormSections.length}';
     }
   }
   // *****************  Auto Save  functions **************** //
-
-  // void storeFormData() {
-  //   myAppController.localStorage.saveToStorage(
-  //     key: uuid.v1(),
-  //     value: <String, dynamic>{
-  //       'formBody': formBody,
-  //       'selectedId': selectedId,
-  //       'renderItem': renderItem,
-  //       'gazSafetyData': gazSafetyData,
-  //       'circuitsData': distrBoardDataBase,
-  //       'observationsDataBase': observationsDataBase,
-  //       'signatureBytes': signatureBytes,
-  //     },
-  //   );
-  // }
-
-  // Future<void> checkStorage() async {
-  //   final Map<String, dynamic>? myData =
-  //       await myAppController.localStorage.getFromStorage(
-  //     key: '$storeFormKey-$jobId-$serviceId-${currentFormData[keyId]}',
-  //   );
-  //   consoleLog(myData, key: 'inData');
-  //   consoleLog(myData != null, key: 'inData');
-  //   Future<void> continueWithData() async {
-  //     formBody = <String, dynamic>{
-  //       ...myData!['formBody'],
-  //       keyData: <String, dynamic>{
-  //         ...myData['formBody'],
-  //         formKeyGazSafetyData: <Map<String, dynamic>>[
-  //           ...formBody[keyData][formKeyGazSafetyData],
-  //           ...myData['formBody'][keyData][formKeyGazSafetyData],
-  //         ],
-  //       },
-  //     };
-  //     selectedId = myData['selectedId'];
-  //     renderItem = myData['renderItem'];
-  //     // signatureBytes = myData['signatureBytes'];
-  //     // signatureBytesImage = myData['signatureBytes'];
-  //     gazSafetyData = <String, dynamic>{
-  //       ...myData['gazSafetyData'],
-  //       allDistributionBoardData: <dynamic>[
-  //         ...myData['gazSafetyData'][allDistributionBoardData],
-  //       ],
-  //       allObservationData: <dynamic>[
-  //         ...gazSafetyData[allObservationData],
-  //         ...myData['gazSafetyData'][allObservationData],
-  //       ],
-  //       formKeyEICRdeclaration: <String, dynamic>{
-  //         ...gazSafetyData[formKeyEICRdeclaration],
-  //         ...myData['gazSafetyData'][formKeyEICRdeclaration],
-  //       },
-  //     };
-  //     distrBoardDataBase = <dynamic>[
-  //       ...distrBoardDataBase,
-  //       ...myData['circuitsData'],
-  //     ];
-  //     observationsDataBase = <dynamic>[
-  //       ...observationsDataBase,
-  //       ...myData['observationsDataBase'],
-  //     ];
-  //     update();
-  //     Get.back();
-  //   }
-
-  //   if (myData != null) {
-  //     openDialog(
-  //       description:
-  //           'You entered data before in this form do you want to use it ',
-  //       confirmText: 'Use the data',
-  //       cancelText: 'Remove the data',
-  //       onConfirm: continueWithData,
-  //       onCancel: Get.back,
-  //     );
-  //   }
-  // }
-
-  // void removeStoredFormData() {
-  //   myAppController.localStorage.removeFromStorage(
-  //     key: '$storeFormKey-$jobId-$serviceId-${currentFormData[keyId]}',
-  //   );
-  // }
-
   //******************************************************* */
 
   void onChangeFormDataValue(String? key, dynamic value) {
@@ -792,65 +681,62 @@ class EicrController extends GetxController {
   }
 
   void onPressNext({bool fromSave = false}) {
-    if (isTemplate) {
-      if (selectedId == 17) {
-        selectedId = selectedId + 1;
-        update();
-        Timer(
-          const Duration(milliseconds: 300),
-          () {
-            renderItem = true;
-            update();
-          },
-        );
-      } else if (selectedId == 20) {
-        onSaveTemplate();
+    // if (isTemplate) {
+    //   if (selectedId == 17) {
+    //     selectedId = selectedId + 1;
+    //     update();
+    //     Timer(
+    //       const Duration(milliseconds: 300),
+    //       () {
+    //         renderItem = true;
+    //         update();
+    //       },
+    //     );
+    //   } else if (selectedId == 20) {
+    //     onSaveTemplate();
+    //   } else {
+    //     selectedId = selectedId + 1;
+    //     update();
+    //   }
+    // }
+    // //
+    // else {
+    //   if (selectedId == 21) {
+    //     consoleLog('this is last Page');
+    //     onCompleteCertificate();
+    //   } else if (selectedId < 21) {
+    //     if ((selectedId == 0 || fromSave) && isCertificateCreated) {
+    //       onCreateCertificate();
+    //       isCertificateCreated = false;
+    //     }
+    //     else if (fromSave) {
+    //       onUpdateCertificate();
+    //     } else {
+    //       selectedId = selectedId + 1;
+    //       update();
+    //     }
+    //     if (fromSave) {
+    //       myAppController.clearFormAndTemp();
+    //       Get.offAndToNamed(routeHomeBottomBar);
+    //     }
+    //   }
+    // }
+
+    if (selectedId == 21) {
+      consoleLog('this is last Page');
+      onCompleteCertificate();
+    } else if (selectedId < 21) {
+      if ((selectedId == 0) || fromSave) {
+        onCreateCertificate();
+      } else if (fromSave) {
+        onUpdateCertificate();
       } else {
         selectedId = selectedId + 1;
         update();
       }
-    }
-    //
-    else {
-      if (selectedId == 21) {
-        consoleLog('this is last Page');
-        onCompleteCertificate();
-      } else if (selectedId < 21) {
-        if ((selectedId == 0 || fromSave) && isCertificateCreated) {
-          onCreateCertificate();
-          isCertificateCreated = false;
-        }
-        // if (selectedId == 17) {
-        //   selectedId = selectedId + 1;
-        //   update();
-        //   Timer(
-        //     const Duration(milliseconds: 300),
-        //     () {
-        //       renderItem = true;
-        //       update();
-        //     },
-        //   );
-        // } else if (selectedId == 18) {
-        //   selectedId = selectedId + 1;
-        //   update();
-        //   Timer(
-        //     const Duration(milliseconds: 300),
-        //     () {
-        //       renderItem = false;
-        //       update();
-        //     },
-        //   );
-        // }
-        else if (fromSave) {
-          onUpdateCertificate();
-        } else {
-          selectedId = selectedId + 1;
-          update();
-        }
-        if (fromSave) {
-          myAppController.clearFormAndTemp();
-          Get.offAndToNamed(routeHomeBottomBar);
-        }
+      if (fromSave) {
+        myAppController.clearFormAndTemp();
+        Get.offAndToNamed(routeHomeBottomBar);
       }
     }
 
@@ -864,34 +750,12 @@ class EicrController extends GetxController {
 
   void onPressBack() {
     if (selectedId > 0) {
-      if (selectedId == 19) {
-        selectedId = selectedId - 1;
-        update();
-        Timer(
-          const Duration(milliseconds: 300),
-          () {
-            renderItem = true;
-            update();
-          },
-        );
-      } else if (selectedId == 18) {
-        selectedId = selectedId - 1;
-        update();
-        Timer(
-          const Duration(milliseconds: 300),
-          () {
-            renderItem = false;
-            update();
-          },
-        );
-      } else {
-        selectedId = selectedId - 1;
-        update();
-      }
+      selectedId = selectedId - 1;
+      update();
     } else {
       Get.back();
     }
-    // storeFormData();
+
     scrollController.animateTo(
       0.0,
       duration: const Duration(milliseconds: 400),
@@ -900,82 +764,88 @@ class EicrController extends GetxController {
   }
 
   String finalPageButton() {
-    if (isTemplate) {
-      if (selectedId == 21) {
-        return 'Save';
-      } else {
-        return 'Next';
-      }
-    }
-    //
-    else {
-      if (selectedId < listFormSections.length - 1) {
-        return 'Next';
-      } else {
-        return 'Complete';
-      }
+    // if (isTemplate) {
+    //   if (selectedId == 21) {
+    //     return 'Save';
+    //   } else {
+    //     return 'Next';
+    //   }
+    // }
+    // //
+    // else {
+    //   if (selectedId < listFormSections.length - 1) {
+    //     return 'Next';
+    //   } else {
+    //     return 'Complete';
+    //   }
+    // }
+
+    if (selectedId < listFormSections.length - 1) {
+      return 'Next';
+    } else {
+      return 'Complete';
     }
   }
 
   //*----------Template---------------*//
-  void onSaveTemplate() {
-    consoleLog('Save Template');
-    openDialog(
-      onCancel: Get.back,
-      onConfirm: storeTemplate,
-    );
-  }
+  // void onSaveTemplate() {
+  //   consoleLog('Save Template');
+  //   openDialog(
+  //     onCancel: Get.back,
+  //     onConfirm: storeTemplate,
+  //   );
+  // }
 
-  Future<void> storeTemplate() async {
-    saveDbCircuitsDataOnFormBody();
-    saveObservationsDataBaseBody();
-    onPressSave();
-    hideKeyboard();
-    startLoading();
-    if (updateTemp) {
-      // ignore: missing_required_param
-      ApiRequest(
-        method: ApiMethods.put,
-        path: '/forms/templates/${tempData['id']}/update',
-        className: 'ElectricalDangerNotificationController/storeDangerTemplate',
-        requestFunction: storeTemplate,
-        body: <String, dynamic>{
-          'name': tempData['name'],
-          'form_id': tempData['form_id'],
-          'data': formBody,
-        },
-      ).request(
-        onSuccess: (dynamic data, dynamic response) {
-          Get.find<FormTemplateController>().getFormsTemplates();
-          Get
-            ..back()
-            ..back();
-        },
-      );
-    } else {
-      // ignore: missing_required_param
-      ApiRequest(
-        method: ApiMethods.post,
-        path: keyStoreFormTemplate,
-        className: 'ElectricalDangerNotificationController/storeDangerTemplate',
-        requestFunction: storeTemplate,
-        body: <String, dynamic>{
-          'name': templateName,
-          'form_id': currentFormData[keyId],
-          'data': formBody,
-        },
-      ).request(
-        onSuccess: (dynamic data, dynamic response) {
-          Get.find<FormTemplateController>().getFormsTemplates();
-          // dismissLoading();
-          Get
-            ..back()
-            ..back()
-            ..back();
-        },
-      );
-    }
-  }
+  // Future<void> storeTemplate() async {
+  //   saveDbCircuitsDataOnFormBody();
+  //   saveObservationsDataBaseBody();
+  //   onPressSave();
+  //   hideKeyboard();
+  //   startLoading();
+  //   if (updateTemp) {
+  //     // ignore: missing_required_param
+  //     ApiRequest(
+  //       method: ApiMethods.put,
+  //       path: '/forms/templates/${tempData['id']}/update',
+  //       className: 'ElectricalDangerNotificationController/storeDangerTemplate',
+  //       requestFunction: storeTemplate,
+  //       body: <String, dynamic>{
+  //         'name': tempData['name'],
+  //         'form_id': tempData['form_id'],
+  //         'data': formBody,
+  //       },
+  //     ).request(
+  //       onSuccess: (dynamic data, dynamic response) {
+  //         Get.find<FormTemplateController>().getFormsTemplates();
+  //         Get
+  //           ..back()
+  //           ..back();
+  //       },
+  //     );
+  //   } else {
+  //     // ignore: missing_required_param
+  //     ApiRequest(
+  //       method: ApiMethods.post,
+  //       path: keyStoreFormTemplate,
+  //       className: 'ElectricalDangerNotificationController/storeDangerTemplate',
+  //       requestFunction: storeTemplate,
+  //       body: <String, dynamic>{
+  //         'name': templateName,
+  //         'form_id': currentFormData[keyId],
+  //         'data': formBody,
+  //       },
+  //     ).request(
+  //       onSuccess: (dynamic data, dynamic response) {
+  //         Get.find<FormTemplateController>().getFormsTemplates();
+  //         // dismissLoading();
+  //         Get
+  //           ..back()
+  //           ..back()
+  //           ..back();
+  //       },
+  //     );
+  //   }
+  // }
 
   //*********** Save Db Circuits data to Form body *************/
   void saveDbCircuitsDataOnFormBody() {
