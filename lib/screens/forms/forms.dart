@@ -84,9 +84,11 @@ class ShowTemplatesBT extends StatelessWidget {
                     ),
                   )
                 else
-                  const CommonText(
-                    'There is no template for this form',
-                    marginVertical: 0.015,
+                  CommonText(
+                    'There is no templates for this form',
+                    fontColor: Colors.grey[700],
+                    marginBottom: 0.04,
+                    marginTop: 0.02,
                   ),
 
                 CommonButton(

@@ -19,6 +19,7 @@ class EicrController extends GetxController {
   // int numFinalPage = 2;
   bool? isTemplate;
   int? customerId;
+  int? formId;
 
   // String? templateName;
   // dynamic tempData;
@@ -618,6 +619,8 @@ class EicrController extends GetxController {
     isTemplate =
         myAppController.certFormInfo[keyFormStatus] == FormStatus.template;
     customerId = myAppController.certFormInfo[keyCustomerId];
+    formId = myAppController.certFormInfo[keyFormId];
+    formBody[keyFormId] = myAppController.certFormInfo[keyFormId];
 
     update();
     // formBody['form_id'] = currentFormData[keyId];
