@@ -9,29 +9,19 @@ import 'package:uuid/uuid.dart';
 import '../../../../general_exports.dart';
 
 class EicrController extends GetxController {
-  // EicrController({
-  //   // this.isTemplate = false,
-  //   // this.templateName,
-  //   // this.tempData,
-  //   // this.updateTemp = false,
-  // });
-
-  // int numFinalPage = 2;
-  bool? isTemplate;
-  int? customerId;
   int? formId;
-
-  // String? templateName;
-  // dynamic tempData;
-  // bool updateTemp;
-  // int? customerId;
-
-  int selectedId = 0;
   int? certId;
+  int? customerId;
+  bool? isEditForm;
+  bool? isTemplate;
+  bool? isEditTemplate;
+  dynamic tempData;
+  String? templateName;
 
-  bool renderItem = false;
   // bool isCertificateCreated = true;
 
+  int selectedId = 0;
+  bool renderItem = false;
   List<Map<String, dynamic>>? selectedImages = <Map<String, dynamic>>[];
   Uuid uuid = const Uuid();
 
@@ -616,13 +606,18 @@ class EicrController extends GetxController {
   void onInit() {
     super.onInit();
 
-    isTemplate =
-        myAppController.certFormInfo[keyFormStatus] == FormStatus.template;
     customerId = myAppController.certFormInfo[keyCustomerId];
     formId = myAppController.certFormInfo[keyFormId];
     formBody[keyFormId] = myAppController.certFormInfo[keyFormId];
+    isTemplate =
+        myAppController.certFormInfo[keyFormStatus] == FormStatus.template;
+    isEditTemplate = myAppController.certFormInfo[keyFormDataStatus] ==
+        FormDataStatus.editTemp;
+    if (myAppController.certFormInfo[keyTemplateData] != null &&
+        isTemplate! == false) {
+      tempData = myAppController.certFormInfo[keyTemplateData][keyData];
+    }
 
-    update();
     // formBody['form_id'] = currentFormData[keyId];
     if (myAppController.certFormInfo[keyFormDataStatus] ==
         FormDataStatus.setTemp) {
@@ -636,6 +631,25 @@ class EicrController extends GetxController {
       observationsDataBase = gazSafetyData[allObservationData];
       update();
     }
+    if (myAppController.certFormInfo[keyFormDataStatus] ==
+        FormDataStatus.newTemp) {
+      templateName = myAppController.certFormInfo[keyNameTemp];
+    }
+    if (myAppController.certFormInfo[keyFormDataStatus] ==
+        FormDataStatus.editTemp) {
+      tempData = myAppController.certFormInfo[keyTemplateData];
+      templateName = myAppController.certFormInfo[keyNameTemp];
+      formBody = myAppController.certFormInfo[keyTemplateData][keyData];
+
+      if (formBody[keyData][formKeyGazSafetyData].isNotEmpty) {
+        gazSafetyData = formBody[keyData][formKeyGazSafetyData][0];
+      }
+      distrBoardDataBase = gazSafetyData[allDistributionBoardData];
+      observationsDataBase = gazSafetyData[allObservationData];
+      update();
+    }
+
+    update();
   }
 
   @override
@@ -678,11 +692,6 @@ class EicrController extends GetxController {
         return '${selectedId + 1}/${listFormSections.length}';
       }
     }
-    // if (selectedId == listFormSections.length) {
-    //   return '${listFormSections.length}/${listFormSections.length}';
-    // } else {
-    //   return '${selectedId + 1}/${listFormSections.length}';
-    // }
   }
   // *****************  Auto Save  functions **************** //
   //******************************************************* */
@@ -699,7 +708,7 @@ class EicrController extends GetxController {
   void onPressNext({bool fromSave = false}) {
     if (isTemplate!) {
       if (selectedId == 20) {
-        // onSaveTemplate();
+        onSaveTemplate();
       } else {
         selectedId = selectedId + 1;
         update();
@@ -720,12 +729,6 @@ class EicrController extends GetxController {
         }
         selectedId = selectedId + 1;
         update();
-        // if (fromSave) {
-        //   myAppController.clearCertFormInfo();
-        //   Get.offAndToNamed(routeHomeBottomBar);
-        //   homeController.getCertCount();
-        //   certificatesController.getAllCert();
-        // }
       }
     }
 
@@ -770,64 +773,64 @@ class EicrController extends GetxController {
   }
 
   //*----------Template---------------*//
-  // void onSaveTemplate() {
-  //   consoleLog('Save Template');
-  //   openDialog(
-  //     onCancel: Get.back,
-  //     onConfirm: storeTemplate,
-  //   );
-  // }
+  void onSaveTemplate() {
+    consoleLog('Save Template');
+    openDialog(
+      onCancel: Get.back,
+      onConfirm: storeTemplate,
+    );
+  }
 
-  // Future<void> storeTemplate() async {
-  //   saveDbCircuitsDataOnFormBody();
-  //   saveObservationsDataBaseBody();
-  //   onPressSave();
-  //   hideKeyboard();
-  //   startLoading();
-  //   if (updateTemp) {
-  //     // ignore: missing_required_param
-  //     ApiRequest(
-  //       method: ApiMethods.put,
-  //       path: '/forms/templates/${tempData['id']}/update',
-  //       className: 'ElectricalDangerNotificationController/storeDangerTemplate',
-  //       requestFunction: storeTemplate,
-  //       body: <String, dynamic>{
-  //         'name': tempData['name'],
-  //         'form_id': tempData['form_id'],
-  //         'data': formBody,
-  //       },
-  //     ).request(
-  //       onSuccess: (dynamic data, dynamic response) {
-  //         Get.find<FormTemplateController>().getFormsTemplates();
-  //         Get
-  //           ..back()
-  //           ..back();
-  //       },
-  //     );
-  //   } else {
-  //     // ignore: missing_required_param
-  //     ApiRequest(
-  //       method: ApiMethods.post,
-  //       path: keyStoreFormTemplate,
-  //       className: 'ElectricalDangerNotificationController/storeDangerTemplate',
-  //       requestFunction: storeTemplate,
-  //       body: <String, dynamic>{
-  //         'name': templateName,
-  //         'form_id': currentFormData[keyId],
-  //         'data': formBody,
-  //       },
-  //     ).request(
-  //       onSuccess: (dynamic data, dynamic response) {
-  //         Get.find<FormTemplateController>().getFormsTemplates();
-  //         // dismissLoading();
-  //         Get
-  //           ..back()
-  //           ..back()
-  //           ..back();
-  //       },
-  //     );
-  //   }
-  // }
+  Future<void> storeTemplate() async {
+    hideKeyboard();
+    saveDbCircuitsDataOnFormBody();
+    saveObservationsDataBaseBody();
+    onPressSave();
+    startLoading();
+    if (isEditTemplate!) {
+      // ignore: missing_required_param
+      ApiRequest(
+        method: ApiMethods.put,
+        path: '/forms/templates/${tempData['id']}/update',
+        className: 'ElectricalDangerNotificationController/storeDangerTemplate',
+        requestFunction: storeTemplate,
+        body: <String, dynamic>{
+          'name': templateName,
+          'form_id': tempData['form_id'],
+          'data': formBody,
+        },
+      ).request(
+        onSuccess: (dynamic data, dynamic response) {
+          Get.put(FormTemplateController()).getFormsTemplates();
+          Get
+            ..back()
+            ..back();
+        },
+      );
+    } else {
+      // ignore: missing_required_param
+      ApiRequest(
+        method: ApiMethods.post,
+        path: keyStoreFormTemplate,
+        className: 'EICR/storeTemplate',
+        requestFunction: storeTemplate,
+        body: <String, dynamic>{
+          'name': templateName,
+          'form_id': formId,
+          'data': formBody,
+        },
+      ).request(
+        onSuccess: (dynamic data, dynamic response) {
+          Get.put(FormTemplateController()).getFormsTemplates();
+          // dismissLoading();
+          Get
+            ..back()
+            ..back()
+            ..back();
+        },
+      );
+    }
+  }
 
   //*********** Save Db Circuits data to Form body *************/
   void saveDbCircuitsDataOnFormBody() {

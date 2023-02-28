@@ -58,7 +58,7 @@ class AddFormTemplate extends StatelessWidget {
                 ),
                 CommonButton(
                   enabled: controller.isSelectedForm,
-                  onPress: () => controller.renderFormScreen(),
+                  onPress: controller.onCreate,
                   text: 'Next',
                   marginBottom: 0.02,
                 )

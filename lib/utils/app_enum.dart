@@ -7,8 +7,8 @@ enum FormStatus {
 
 enum FormDataStatus {
   newForm,
+  newTemp,
   setTemp,
   editCert,
   editTemp,
-  copyTemp,
 }

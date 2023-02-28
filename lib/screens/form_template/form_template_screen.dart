@@ -76,10 +76,10 @@ class FormTemplateCard extends StatelessWidget {
       marginHorizontal: 0.04,
       onPress: () => Get.bottomSheet(
         elevation: 0.0,
-        GetBuilder<AddFormTemplateController>(
-          init: AddFormTemplateController(),
+        GetBuilder<FormTemplateController>(
+          init: FormTemplateController(),
           global: false,
-          builder: (AddFormTemplateController? controller) {
+          builder: (FormTemplateController? controller) {
             return BottomSheetContainer(
               height: 0.36,
               title: 'Template Name: $tempName',

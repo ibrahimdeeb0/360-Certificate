@@ -88,6 +88,7 @@ const String keyTemplateData = 'template_data';
 const String keyFormStatus = 'form_status';
 const String keyFormDataStatus = 'form_data_status';
 const String keyFormRoute = 'form_route';
+const String keyNameTemp = 'name_temp';
 
 // *************** Woosmap Keys ***************
 const String publicKey = 'woos-5b6fb592-1146-3acf-a259-e3fc6ddd77a4';

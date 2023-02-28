@@ -72,7 +72,7 @@ class CertificateDetailsController extends GetxController
     ApiRequest(
       path:
           '${formGetCertificate}customer_id=${Get.arguments['customer_id']}&id=${Get.arguments[keyId]}',
-      className: 'SortCertificateController/getAllCertificates',
+      className: 'CertificateDetailsController/getCompetedCert',
       requestFunction: getCompetedCert,
       // withLoading: true,
       formatResponse: true,

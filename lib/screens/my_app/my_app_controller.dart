@@ -27,6 +27,7 @@ class MyAppController extends GetxController {
     keyFormStatus: null,
     keyFormDataStatus: null,
     keyFormRoute: null,
+    keyNameTemp: null,
   };
 
   void clearCertFormInfo() {
@@ -37,6 +38,7 @@ class MyAppController extends GetxController {
       keyFormStatus: null,
       keyFormDataStatus: null,
       keyFormRoute: null,
+      keyNameTemp: null,
     };
     update();
   }
