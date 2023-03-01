@@ -14,16 +14,16 @@ final DefaultTextInputStyles defaultTextInputStyles = DefaultTextInputStyles();
 final DefaultTextStyles defaultTextStyles = DefaultTextStyles();
 final DefaultContainerStyles defaultContainerStyles = DefaultContainerStyles();
 
-final MyAppController myAppController = Get.find<MyAppController>();
-final HomeBottomBarController homeBottomBarController =
+MyAppController myAppController = Get.find<MyAppController>();
+HomeBottomBarController homeBottomBarController =
     Get.put(HomeBottomBarController());
-final HomeController homeController = Get.put(HomeController());
-final ProfileController profileController = Get.put(ProfileController());
+HomeController homeController = Get.put(HomeController());
+ProfileController profileController = Get.put(ProfileController());
 final SplashController splashController = Get.put(SplashController());
 final AppLanguageController languageController =
     Get.put(AppLanguageController());
 final MoreController moreController = Get.put(MoreController());
-final CertificatesController certificatesController =
+CertificatesController certificatesController =
     Get.put(CertificatesController());
 
 final GlobalKey<CurvedNavigationBarState> bottomNavigationKey = GlobalKey();
@@ -34,7 +34,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      locale: Locale(Get.find<AppLanguageController>().appLocale),
+      // locale: Locale(Get.find<AppLanguageController>().appLocale),
+      locale: const Locale('en'),
       builder: (BuildContext context, Widget? child) {
         return ScrollConfiguration(
           behavior:

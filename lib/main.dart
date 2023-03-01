@@ -31,7 +31,7 @@ Future<void> main() async {
 
   await GetStorage.init();
 
-  Get.put(AppLanguageController());
+  // Get.put(AppLanguageController());
   Get.put(MyAppController());
 
   WidgetsFlutterBinding.ensureInitialized();

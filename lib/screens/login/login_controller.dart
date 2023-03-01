@@ -92,36 +92,45 @@ class LoginController extends GetxController {
         requestFunction: onUserLogin,
         withLoading: true,
         body: <String, dynamic>{
-          'email': emailController.text,
-          'password': passwordController.text,
+          'email': emailController.text.trim(),
+          'password': passwordController.text.trim(),
           'fcm_token': _fcmToken,
         },
       ).request(
         onSuccess: (dynamic data, dynamic response) {
-          // consoleLog(response, key: 'response_user_data');
-          myAppController.onUserAuthenticated(response[keyData]);
-          // dismissLoading();
-          Get.offAndToNamed(routeHomeBottomBar);
+          // consoleLog(data['isProfileComplete'], key: 'response_Login');
+          // myAppController.onUserAuthenticated(response[keyData]);
+          // Get.offAndToNamed(routeHomeBottomBar);
 
-          // // dismissLoading();
-          // if (data['user']['email_verified_at'] == null) {
-          //   // myAppController.isVerified = false;
-          // } else {
-          //   // myAppController.isVerified = true;
-          //   // homeBottomBarController = Get.put(HomeBottomBarController());
-          //   // homeController = Get.put(HomeController());
-          //   // myProfileController = Get.put(MyProfileController());
-          //   // servicesController = Get.put(ServicesController());
-          //   // materialsController = Get.put(MaterialsController());
-          //   // myAppController = Get.put(MyAppController());
-          //   // jobDiaryController = Get.put(JobDiaryController());
-          //   // certificateController = Get.put(CertificateController());
-          //   // Get.forceAppUpdate();
-          //   Get.offAndToNamed(routeHomeBottomBar);
-          // }
-          // dismissLoading();
-          // update();
-          // // Get.offAndToNamed(routeHome);
+          if (data['user']['email_verified_at'] == null) {
+            // email not verified
+
+            // myAppController.isVerified = false;
+            // myAppController.userEmail = data['user']['email'];
+
+            Get.off(
+              () => const VerifyAccount(),
+              arguments: <String, dynamic>{
+                'email': data['user']['email'].toString(),
+              },
+            );
+          }
+          // Complete profile is verified
+          else if (data['isProfileComplete']) {
+            myAppController.onUserAuthenticated(response[keyData]);
+
+            homeBottomBarController = Get.put(HomeBottomBarController());
+            homeController = Get.put(HomeController());
+            profileController = Get.put(ProfileController());
+            myAppController = Get.put(MyAppController());
+            certificatesController = Get.put(CertificatesController());
+
+            Get.offAllNamed(routeHomeBottomBar);
+          }
+          // Complete profile not verified
+          else {
+            Get.offAllNamed(routeCompleteProfile);
+          }
         },
         // onError: (dynamic error) {
         //   dismissLoading();

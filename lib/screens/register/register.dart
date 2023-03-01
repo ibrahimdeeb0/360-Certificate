@@ -34,31 +34,39 @@ class Register extends StatelessWidget {
                       text: 'First Name',
                     ),
                     hint: 'Enter Your First Name',
+                    keyboardType: TextInputType.name,
                     marginBottom: 0.02,
                     controller: controller.firstNameController,
+                    onChanged: controller.registerValidator,
                   ),
                   CommonInput(
                     topLabel: const TopLabelText(
                       text: 'Last Name',
                     ),
                     hint: 'Enter Your Last Name',
+                    keyboardType: TextInputType.name,
                     marginBottom: 0.02,
                     controller: controller.lastNameController,
+                    onChanged: controller.registerValidator,
                   ),
                   CommonInput(
                     topLabel: const TopLabelText(
                       text: 'Enter Your Email address',
                     ),
                     hint: 'Email address',
+                    keyboardType: TextInputType.emailAddress,
                     marginBottom: 0.02,
                     controller: controller.emailController,
+                    onChanged: controller.registerValidator,
                   ),
                   CommonInput(
                     topLabel: const TopLabelText(
                       text: 'Phone Number',
                     ),
                     hint: '000 000 000',
+                    keyboardType: TextInputType.phone,
                     controller: controller.phoneController,
+                    onChanged: controller.registerValidator,
                     prefix: const CommonText(
                       '+44',
                       marginHorizontal: 0.03,
@@ -70,6 +78,7 @@ class Register extends StatelessWidget {
                       text: 'Business Type',
                     ),
                     hint: 'Select Your Business Type',
+                    onChanged: controller.registerValidator,
                     marginBottom: 0.02,
                     suffix: const Icon(Icons.keyboard_arrow_down),
                     enabled: false,
@@ -99,9 +108,11 @@ class Register extends StatelessWidget {
                       text: 'Password',
                     ),
                     hint: 'Enter Your Password',
+                    keyboardType: TextInputType.visiblePassword,
                     marginBottom: 0.02,
                     controller: controller.passwordController,
                     obscureText: controller.isVisibility,
+                    onChanged: controller.registerValidator,
                     suffix: CommonContainer(
                       onPress: () => controller.visibility(),
                       child: Icon(
@@ -114,9 +125,9 @@ class Register extends StatelessWidget {
                     textInputAction: TextInputAction.done,
                   ),
                   CommonButton(
-                    onPress: () => Get.toNamed(routeCompleteProfile),
-                    // onPress: controller.onRegister,
-                    // enabled: controller.registerValidator(),
+                    // onPress: () => Get.toNamed(routeCompleteProfile),
+                    onPress: controller.onRegister,
+                    enabled: controller.isBtnEnable,
                     // enabled: true,
                     text: 'Create Account',
                     marginBottom: 0.02,

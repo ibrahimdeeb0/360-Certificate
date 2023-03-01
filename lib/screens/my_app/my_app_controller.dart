@@ -9,6 +9,7 @@ import '../../general_exports.dart';
 class MyAppController extends GetxController {
   dynamic userData;
   bool showMapDragBubble = true;
+  String? userEmail;
   LocalStorage localStorage = LocalStorage();
   Map<String, dynamic> cartData = <String, dynamic>{};
   String? versionName;
@@ -139,17 +140,17 @@ class MyAppController extends GetxController {
   void onSignOut() {
     homeBottomBarController.selectedIndex = 0;
     localStorage.erase();
+    userData = null;
     myAppController.localStorage.saveToStorage(
       key: 'showAlertAttention',
       value: true,
     );
-    userData = null;
-    Navigator.of(Get.context!).pushNamedAndRemoveUntil(
-      routeLogin,
-      (Route<dynamic> route) => route.settings.name == routeLogin,
-    );
-    Get.forceAppUpdate();
-
+    // Navigator.of(Get.context!).pushNamedAndRemoveUntil(
+    //   routeLogin,
+    //   (Route<dynamic> route) => route.settings.name == routeLogin,
+    // );
+    Get.offAllNamed(routeLogin);
+    // Get.forceAppUpdate();
     // Navigator.popUntil(Get.context!, ModalRoute.withName(routeLogin));
   }
 

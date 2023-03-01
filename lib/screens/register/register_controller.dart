@@ -7,6 +7,8 @@ class RegisterController extends GetxController {
   TextEditingController passwordController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
 
+  bool isBtnEnable = false;
+
   List<dynamic> allBusinessType = <dynamic>[];
   List<Map<String, dynamic>> selectedTempBusinessType =
       <Map<String, dynamic>>[];
@@ -37,15 +39,15 @@ class RegisterController extends GetxController {
   //   }
   // }
 
-  bool registerValidator() {
-    final bool validation = firstNameController.text.trim().isNotEmpty &&
+  void registerValidator(String? value) {
+    isBtnEnable = firstNameController.text.trim().isNotEmpty &&
         lastNameController.text.trim().isNotEmpty &&
         emailController.text.trim().isNotEmpty &&
         phoneController.text.trim().isNotEmpty &&
         passwordController.text.trim().isNotEmpty &&
         selectedBusinessType.isNotEmpty;
 
-    return validation;
+    update();
   }
 
   void onSelectTempBusinessType(Map<String, dynamic> item) {
@@ -62,10 +64,10 @@ class RegisterController extends GetxController {
       }
     }
     update();
-    consoleLogPretty(selectedTempBusinessType);
   }
 
   void onSelectBusinessType() {
+    hideKeyboard();
     selectedBusinessType = <Map<String, dynamic>>[];
     selectedBusinessType = selectedTempBusinessType;
     update();
@@ -100,18 +102,26 @@ class RegisterController extends GetxController {
       requestFunction: onRegister,
       withLoading: true,
       body: <String, dynamic>{
-        'first_name': firstNameController.text,
-        'last_name': lastNameController.text,
-        'email': emailController.text,
-        'password': passwordController.text,
-        'phone': phoneController.text,
+        'first_name': firstNameController.text.trim(),
+        'last_name': lastNameController.text.trim(),
+        'email': emailController.text.trim(),
+        'password': passwordController.text.trim(),
+        'phone': '+44${phoneController.text.trim()}',
         'business_type_id':
             selectedBusinessType.map((dynamic item) => item['id']).toList(),
       },
     ).request(
       onSuccess: (dynamic data, dynamic response) {
         showMessage(description: response['message']);
-        // Get.to(() => const EmailVerifyScreen());
+        // Get
+        //   ..back()
+        //   ..toNamed(routeCompleteProfile);
+        Get.to(
+          () => const EmailVerifyScreen(),
+          arguments: <String, dynamic>{
+            'email': emailController.text.trim(),
+          },
+        );
         // dismissLoading();
         update();
       },

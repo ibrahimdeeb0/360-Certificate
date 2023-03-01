@@ -40,7 +40,8 @@ class ApiRequest {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
           'Device-Type': 'MOBILE',
-          'Accept-Language': Get.find<AppLanguageController>().appLocale,
+          'Accept-Language':
+              'en', // Get.find<AppLanguageController>().appLocale
           ...(header ?? <String, dynamic>{}),
         },
       ),
