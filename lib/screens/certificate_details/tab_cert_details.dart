@@ -124,7 +124,7 @@ class CertTab extends StatelessWidget {
             if (controller.certStatus != 'Completed' &&
                 controller.certStatus != 'Canceled')
               CommonButton(
-                onPress: () {},
+                onPress: controller.onEditCert,
                 text: 'Edit Certificate',
                 backgroundColor: Color(AppColors.primary).withOpacity(0.3),
                 marginBottom: 0.02,
@@ -136,7 +136,7 @@ class CertTab extends StatelessWidget {
             if (controller.certStatus != 'Completed' &&
                 controller.certStatus != 'Canceled')
               CommonButton(
-                onPress: () {},
+                onPress: controller.onCancelCertificate,
                 // onPress: controller.onCancelCertificate,
                 // onPress: () {
                 //   consoleLogPretty(controller.formBody);

@@ -114,8 +114,10 @@ class Register extends StatelessWidget {
                     textInputAction: TextInputAction.done,
                   ),
                   CommonButton(
-                    onPress: controller.onRegister,
-                    enabled: controller.registerValidator(),
+                    onPress: () => Get.toNamed(routeCompleteProfile),
+                    // onPress: controller.onRegister,
+                    // enabled: controller.registerValidator(),
+                    // enabled: true,
                     text: 'Create Account',
                     marginBottom: 0.02,
                     marginTop: 0.02,

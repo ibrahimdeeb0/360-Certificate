@@ -15,6 +15,7 @@ class EicrController extends GetxController {
   bool? isEditForm;
   bool? isTemplate;
   bool? isEditTemplate;
+  bool? isUpdateCert;
   dynamic tempData;
   String? templateName;
 
@@ -611,6 +612,8 @@ class EicrController extends GetxController {
     formBody[keyFormId] = myAppController.certFormInfo[keyFormId];
     isTemplate =
         myAppController.certFormInfo[keyFormStatus] == FormStatus.template;
+    isUpdateCert = myAppController.certFormInfo[keyFormDataStatus] ==
+        FormDataStatus.editCert;
     isEditTemplate = myAppController.certFormInfo[keyFormDataStatus] ==
         FormDataStatus.editTemp;
     if (myAppController.certFormInfo[keyTemplateData] != null &&
@@ -646,6 +649,22 @@ class EicrController extends GetxController {
       }
       distrBoardDataBase = gazSafetyData[allDistributionBoardData];
       observationsDataBase = gazSafetyData[allObservationData];
+      update();
+    }
+    if (myAppController.certFormInfo[keyFormDataStatus] ==
+        FormDataStatus.editCert) {
+      certId = myAppController.certFormInfo[keyCertId];
+      formId = myAppController.certFormInfo[keyFormId];
+      customerId = myAppController.certFormInfo[keyCustomerId];
+      formBody['form_id'] = myAppController.certFormInfo[keyFormId];
+      formBody[keyData] = myAppController.certFormInfo[keyTemplateData];
+      if (formBody[keyData][formKeyGazSafetyData].isNotEmpty) {
+        gazSafetyData = formBody[keyData][formKeyGazSafetyData][0];
+      }
+      distrBoardDataBase = gazSafetyData[allDistributionBoardData];
+      observationsDataBase = gazSafetyData[allObservationData];
+      isCertificateCreated = false;
+
       update();
     }
 
@@ -727,8 +746,6 @@ class EicrController extends GetxController {
           selectedId = selectedId + 1;
           update();
         }
-        selectedId = selectedId + 1;
-        update();
       }
     }
 
@@ -801,6 +818,7 @@ class EicrController extends GetxController {
         },
       ).request(
         onSuccess: (dynamic data, dynamic response) {
+          myAppController.clearCertFormInfo();
           Get.put(FormTemplateController()).getFormsTemplates();
           Get
             ..back()
@@ -821,6 +839,7 @@ class EicrController extends GetxController {
         },
       ).request(
         onSuccess: (dynamic data, dynamic response) {
+          myAppController.clearCertFormInfo();
           Get.put(FormTemplateController()).getFormsTemplates();
           // dismissLoading();
           Get

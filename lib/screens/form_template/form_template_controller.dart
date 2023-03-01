@@ -179,7 +179,7 @@ class FormTemplateController extends GetxController {
       body: <String, dynamic>{},
     ).request(
       onSuccess: (dynamic data, dynamic response) {
-        Get.find<FormTemplateController>().getFormsTemplates();
+        getFormsTemplates();
         if (Get.isBottomSheetOpen!) {
           Get.back();
         }

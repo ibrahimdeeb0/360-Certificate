@@ -128,27 +128,40 @@ class CertificateDetailsController extends GetxController
   }
 
   Future<void> onCancelCertificate() async {
-    final Map<String, dynamic> certData = <String, dynamic>{
-      ...formBody,
-      'customer_id': myAppController.certFormInfo[keyCustomerId],
-      'status_id': 6,
-      // 'st'
-    };
-
+    startLoading();
     ApiRequest(
       method: ApiMethods.post,
-      path: '/certificate-form/$certId/update',
+      path:
+          '/certificate-form/${certDetails['form_data'][keyId]}/update-status',
       className: 'CertificateDetailsController/onCancelCertificate',
       requestFunction: onCancelCertificate,
-      withLoading: true,
-      body: certData,
+      // withLoading: true,
+      body: <dynamic, dynamic>{
+        'status_id': 6,
+      },
     ).request(
       onSuccess: (dynamic data, dynamic response) async {
-        // myAppController.clearFormAndTemp();
-        Get.back();
+        Get.offAllNamed(routeHomeBottomBar);
+        homeController.getCertCount();
+        certificatesController.getAllCert();
+
         update();
       },
     );
+  }
+
+  void onEditCert() {
+    consoleLogPretty(certDetails['form_data']['customer']['id']);
+    myAppController.certFormInfo[keyFormDataStatus] = FormDataStatus.editCert;
+    myAppController.certFormInfo[keyCertId] = certDetails['form_data'][keyId];
+    myAppController.certFormInfo[keyCustomerId] =
+        certDetails['form_data']['customer']['id'];
+    myAppController.certFormInfo[keyFormId] =
+        certDetails['form_data']['form_id'];
+    myAppController.certFormInfo[keyTemplateData] =
+        certDetails['form_data']['data'];
+
+    Get.toNamed(routeFormEICR);
   }
 
   @override

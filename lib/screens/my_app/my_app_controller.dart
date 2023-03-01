@@ -22,6 +22,7 @@ class MyAppController extends GetxController {
 
   Map<String, dynamic> certFormInfo = <String, dynamic>{
     keyFormId: null,
+    keyCertId: null,
     keyCustomerId: null,
     keyTemplateData: null,
     keyFormStatus: null,
@@ -33,6 +34,7 @@ class MyAppController extends GetxController {
   void clearCertFormInfo() {
     certFormInfo = <String, dynamic>{
       keyFormId: null,
+      keyCertId: null,
       keyCustomerId: null,
       keyTemplateData: null,
       keyFormStatus: null,

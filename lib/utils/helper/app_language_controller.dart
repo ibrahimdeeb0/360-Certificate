@@ -9,6 +9,7 @@ class AppLanguageController extends GetxController {
   @override
   Future<void> onInit() async {
     super.onInit();
+    changeLanguage('en');
     final dynamic languageCode =
         await localStorage.getFromStorage(key: languageKey);
     appLocale = languageCode ?? appLocale;
