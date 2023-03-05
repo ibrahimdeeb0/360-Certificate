@@ -10,7 +10,7 @@ class HomeController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    getFormsData();
+    // getFormsData();
     getCertCount();
   }
 

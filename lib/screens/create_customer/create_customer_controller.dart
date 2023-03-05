@@ -331,7 +331,7 @@ class CreateCustomerController extends GetxController {
     hideKeyboard();
     if (allCountries.isEmpty) {
       ApiRequest(
-        path: keyGetCountriesPat,
+        path: keyGetCountries,
         className: 'NewJobController/getCountries',
         requestFunction: getCountries,
       ).request(

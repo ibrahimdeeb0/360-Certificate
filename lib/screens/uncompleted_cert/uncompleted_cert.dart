@@ -28,7 +28,7 @@ class UncompletedCert extends StatelessWidget {
                   SizedBox(height: DEVICE_HEIGHT * 0.02),
                   ...controller.unCompetedCerts.map(
                     (dynamic item) {
-                      final String certStatus = item['status']['status'];
+                      final String certStatus = item['status']['name'];
                       return SortCertificateCard(
                         onPress: () => Get.toNamed(
                           routeCertificateDetails,

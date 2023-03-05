@@ -31,6 +31,24 @@ class ContentPart1 extends StatelessWidget {
                       .isNotEmpty,
                 ),
               ),
+              ...controller.unActiveForms.map(
+                (Map<String, dynamic> item) => CustomSelectCheckbox(
+                  title: item[keyName],
+                  wihBottomBorder: false,
+                  onPress: () {
+                    consoleLog('test unActive ');
+                    const SnackBar snackBar = SnackBar(
+                      content: CommonText(
+                        'This Form Not Active',
+                        fontColor: Colors.white,
+                      ),
+                      duration: Duration(seconds: 1),
+                    );
+
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  },
+                ),
+              ),
               0.3.ph,
               CommonText(
                 "If this doesn't apply to your business you can press skip",

@@ -22,7 +22,10 @@ void showMessage({
       // text: description!,
     ),
     messageText: CommonText(
-      style: appTextStyles.h3MediumStyle().copyWith(textAlign: TextAlign.start),
+      style: appTextStyles.h3MediumStyle().copyWith(
+            textAlign: TextAlign.start,
+          ),
+      fontColor: textColor,
       description!,
     ),
     backgroundColor: withBackground ? Colors.white60 : null,

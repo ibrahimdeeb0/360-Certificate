@@ -63,7 +63,8 @@ class ContentPart3 extends StatelessWidget {
                     ),
                   ],
                 ),
-              0.025.ph,
+              if (!controller.showAddressFiled) 0.49.ph,
+              if (controller.showAddressFiled) 0.025.ph,
               CommonText(
                 'This will be displayed on all quotes and invoices',
                 textAlign: TextAlign.start,

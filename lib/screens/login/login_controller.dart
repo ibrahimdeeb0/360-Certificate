@@ -98,16 +98,11 @@ class LoginController extends GetxController {
         },
       ).request(
         onSuccess: (dynamic data, dynamic response) {
-          // consoleLog(data['isProfileComplete'], key: 'response_Login');
+          consoleLog(data['isProfileComplete'], key: 'response_Login');
           // myAppController.onUserAuthenticated(response[keyData]);
-          // Get.offAndToNamed(routeHomeBottomBar);
 
           if (data['user']['email_verified_at'] == null) {
             // email not verified
-
-            // myAppController.isVerified = false;
-            // myAppController.userEmail = data['user']['email'];
-
             Get.off(
               () => const VerifyAccount(),
               arguments: <String, dynamic>{
@@ -129,6 +124,8 @@ class LoginController extends GetxController {
           }
           // Complete profile not verified
           else {
+            myAppController.onUserAuthenticated(response[keyData]);
+
             Get.offAllNamed(routeCompleteProfile);
           }
         },

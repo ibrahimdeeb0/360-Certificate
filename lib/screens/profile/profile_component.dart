@@ -60,14 +60,15 @@ class ProfileComponent extends StatelessWidget {
                               clipBehavior: Clip.hardEdge,
                             ),
                             child: controller.fileImage == null
-                                ? CachedImage(
-                                    image:
-                                        '${controller.userDataProfile['image_profile_url']}',
-                                    width: DEVICE_WIDTH * 1,
-                                    height: DEVICE_WIDTH * 1,
-                                    withPlaceHolder: true,
-                                    fit: BoxFit.cover,
-                                  )
+                                ? const CircleContainer()
+                                // CachedImage(
+                                //     image:
+                                //         '${controller.userDataProfile['image_profile_url']}',
+                                //     width: DEVICE_WIDTH * 1,
+                                //     height: DEVICE_WIDTH * 1,
+                                //     withPlaceHolder: true,
+                                //     fit: BoxFit.cover,
+                                //   )
                                 : Image.file(
                                     File(controller.fileImage!.path),
                                     fit: BoxFit.cover,

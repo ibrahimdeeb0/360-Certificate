@@ -7,13 +7,20 @@ class SplashController extends GetxController {
   Future<void> onReady() async {
     super.onReady();
     // if (myAppController.)
-    Timer(const Duration(seconds: 2), () {
-      consoleLog(myAppController.userData, key: 'inSplash');
+    Timer(
+      const Duration(seconds: 2),
+      () {
+        consoleLog(myAppController.userData, key: 'inSplash');
 
-      Get.offAndToNamed(
-        // && myAppController.userData?['profile_complete']
-        myAppController.userData != null ? routeHomeBottomBar : routeLogin,
-      );
-    });
+        Get.offAndToNamed(
+          // && myAppController.userData?['profile_complete']
+          myAppController.userData != null
+              ? myAppController.userData['isProfileComplete']
+                  ? routeHomeBottomBar
+                  : routeCompleteProfile
+              : routeLogin,
+        );
+      },
+    );
   }
 }

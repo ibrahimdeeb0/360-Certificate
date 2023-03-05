@@ -1,7 +1,7 @@
 import '../constants/index.dart';
 
 String baseUrl = currentMode == AppMode.dev
-    ? 'https://360connect.app/solo/api/engineers'
+    ? 'https://360connect.app/cert_app/api'
     : 'https://go.360connect.app/api/engineers';
 
 // *************** Api body keys ****************
@@ -51,7 +51,7 @@ const String formKey = 'form_key';
 const String keyRequestFunction = 'requestFunction';
 const String keySendOtp = '/send-otp';
 const String keyVerifyOtp = '/verify';
-const String keyCompleteProfile = '/customer/complete-profile';
+const String keyCompleteProfile = '/complete-register';
 const String keyAddNewCar = '/customer/new-car';
 const String keyGetCara = '/customer/cars';
 

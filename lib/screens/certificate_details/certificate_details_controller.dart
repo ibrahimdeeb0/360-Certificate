@@ -82,7 +82,7 @@ class CertificateDetailsController extends GetxController
         value: data,
       );
       certDetails = data;
-      certStatus = data['form_data']['status']['status'];
+      certStatus = data['form_data']['status']['name'];
       certId = data['form_data'][keyId];
       formBody = data['form_data'];
 

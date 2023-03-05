@@ -43,9 +43,7 @@ class CompleteProfileDone extends StatelessWidget {
             children: <Widget>[
               CommonButton(
                 onPress: () {
-                  controller.setupStatus = SetupStatus.fill;
-                  controller.update();
-                  consoleLog(controller.setupStatus);
+                  controller.onCompleteProfile();
                 },
                 marginBottom: 0.015,
                 text: 'Get Started !',

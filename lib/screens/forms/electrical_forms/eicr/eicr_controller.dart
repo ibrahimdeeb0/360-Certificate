@@ -1010,7 +1010,7 @@ class EicrController extends GetxController {
     final Map<String, dynamic> certData = <String, dynamic>{
       ...formBody,
       'customer_id': customerId,
-      'status_id': 13,
+      'status_id': idPending,
     };
 
     // consoleLogPretty(certData, key: 'all data create');
@@ -1045,14 +1045,14 @@ class EicrController extends GetxController {
     final Map<String, dynamic> certData = <String, dynamic>{
       ...formBody,
       'customer_id': customerId,
-      'status_id': 3,
+      'status_id': idInProgress,
     };
     // consoleLogPretty(certData, key: 'all data update');
 
     startLoading();
     ApiRequest(
       method: ApiMethods.post,
-      path: '/certificate-form/$certId/update',
+      path: '/certificates/$certId/update',
       className: 'EicrController/onUpdateCertificate',
       requestFunction: onUpdateCertificate,
       // withLoading: true,
@@ -1080,7 +1080,7 @@ class EicrController extends GetxController {
     final Map<String, dynamic> certData = <String, dynamic>{
       ...formBody,
       'customer_id': customerId,
-      'status_id': 4,
+      'status_id': idCompleted,
     };
     // consoleLogPretty(certData, key: 'all data complete');
 
@@ -1088,7 +1088,7 @@ class EicrController extends GetxController {
       startLoading();
       ApiRequest(
         method: ApiMethods.post,
-        path: '/certificate-form/$certId/update',
+        path: '/certificates/$certId/update',
         className: 'EicrController/onUpdateCertificate',
         requestFunction: onUpdateCertificate,
         // withLoading: true,

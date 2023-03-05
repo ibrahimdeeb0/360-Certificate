@@ -19,6 +19,11 @@ class CompleteProfileController extends GetxController {
   SetupStatus setupStatus = SetupStatus.start;
   CurrentPage currentPage = CurrentPage.page0;
 
+  TextEditingController registeredCompanyController = TextEditingController();
+  TextEditingController tradingNameController = TextEditingController();
+  TextEditingController registrationNumberController = TextEditingController();
+  TextEditingController vATNumberController = TextEditingController();
+
   TextEditingController searchAddressController = TextEditingController();
   TextEditingController addressController = TextEditingController();
   TextEditingController streetController = TextEditingController();
@@ -50,6 +55,29 @@ class CompleteProfileController extends GetxController {
   };
 
   List<Map<String, dynamic>> listAllForms = <Map<String, dynamic>>[
+    // <String, dynamic>{
+    //   keyId: 1,
+    //   keyName: 'Portable Appliance Testing',
+    // },
+    // <String, dynamic>{
+    //   keyId: 3,
+    //   keyName: 'Domestic Electrical Installation Certificate'
+    // },
+    // <String, dynamic>{
+    //   keyId: 4,
+    //   keyName: 'Electrical Danger Notification',
+    // },
+    <String, dynamic>{
+      keyId: 5,
+      keyName: 'Domestic Electrical installation Condition report'
+    },
+    // <String, dynamic>{
+    //   keyId: 9,
+    //   keyName: 'Landlord/Homeowner Gas Safety Record',
+    // },
+  ];
+
+  List<Map<String, dynamic>> unActiveForms = <Map<String, dynamic>>[
     <String, dynamic>{
       keyId: 1,
       keyName: 'Portable Appliance Testing',
@@ -62,16 +90,18 @@ class CompleteProfileController extends GetxController {
       keyId: 4,
       keyName: 'Electrical Danger Notification',
     },
-    <String, dynamic>{
-      keyId: 5,
-      keyName: 'Domestic Electrical installation Condition report'
-    },
+    // <String, dynamic>{
+    //   keyId: 5,
+    //   keyName: 'Domestic Electrical installation Condition report'
+    // },
     <String, dynamic>{
       keyId: 9,
       keyName: 'Landlord/Homeowner Gas Safety Record',
     },
   ];
   List<Map<String, dynamic>> selectedForms = <Map<String, dynamic>>[];
+
+  List<dynamic> allCountries = <dynamic>[];
 
   bool isVatRegistered = false;
 
@@ -86,9 +116,28 @@ class CompleteProfileController extends GetxController {
   Map<String, dynamic>? addressData;
   Map<String, dynamic>? addressDetails = <String, dynamic>{};
 
+  Map<String, dynamic>? selectedCountry;
+
+  @override
+  void onReady() {
+    super.onReady();
+    getCountries();
+  }
+
   void toggleVat() {
     isVatRegistered = !isVatRegistered;
     update();
+  }
+
+  void searchForCountryId() {
+    if (allCountries
+        .where((dynamic e) => e['name'] == countryController.text)
+        .isNotEmpty) {
+      selectedCountry = allCountries
+          .firstWhereOrNull((dynamic e) => e['name'] == countryController.text);
+    }
+
+    consoleLog(selectedCountry, key: 'selected_Country');
   }
 
   // Map<String, dynamic> nextActionMap = <String, dynamic>{
@@ -107,15 +156,33 @@ class CompleteProfileController extends GetxController {
       pagesContentsMap[currentPage.name] ?? const SizedBox();
 
   void onNext() {
+    inputsValidation();
     switch (currentPage) {
       case CurrentPage.page0:
         currentPage = CurrentPage.page1;
         break;
       case CurrentPage.page1:
-        currentPage = CurrentPage.page2;
+        {
+          if (isValidP1) {
+            currentPage = CurrentPage.page2;
+          } else {
+            showMessage(
+              description: 'Please fill all required fields',
+              textColor: AppColors.red2,
+            );
+          }
+        }
         break;
       case CurrentPage.page2:
-        setupStatus = SetupStatus.end;
+        if (isValidP2) {
+          setupStatus = SetupStatus.end;
+        } else {
+          showMessage(
+            description: 'Please fill all required fields',
+            textColor: AppColors.red2,
+          );
+        }
+
         break;
     }
 
@@ -336,6 +403,9 @@ class CompleteProfileController extends GetxController {
     } else if (streetName.isEmpty && streetNum.isNotEmpty) {
       streetController.text = '$streetNum, ';
     }
+
+    searchForCountryId();
+
     if (Get.isBottomSheetOpen!) {
       Get.back();
     }
@@ -344,5 +414,71 @@ class CompleteProfileController extends GetxController {
     // customerAddressLng = lng;
     // consoleLog('$customerAddressLat , $customerAddressLng');
     update();
+  }
+
+  bool isValidP1 = false;
+  bool isValidP2 = false;
+  void inputsValidation() {
+    if (currentPage == CurrentPage.page1) {
+      if (isVatRegistered) {
+        isValidP1 = registeredCompanyController.text.isNotEmpty &&
+            tradingNameController.text.isNotEmpty &&
+            vATNumberController.text.isNotEmpty;
+      } else {
+        isValidP1 = registeredCompanyController.text.isNotEmpty &&
+            tradingNameController.text.isNotEmpty;
+      }
+    } else if (currentPage == CurrentPage.page2) {
+      isValidP2 = streetController.text.isNotEmpty &&
+          cityController.text.isNotEmpty &&
+          postcodeController.text.isNotEmpty;
+    }
+  }
+
+  void onCompleteProfile() {
+    ApiRequest(
+      method: ApiMethods.post,
+      path: keyCompleteProfile,
+      className: 'CompleteProfileController/onCompleteProfile',
+      requestFunction: onCompleteProfile,
+      withLoading: true,
+      body: <String, dynamic>{
+        'company_name': registeredCompanyController.text.trim(),
+        'trading_name': tradingNameController.text.trim(),
+        'registration_number': registrationNumberController.text.trim(),
+        'has_vat': isVatRegistered ? 'yes' : 'no',
+        'vat_number': vATNumberController.text.trim(),
+        'registered_address': addressController.text.trim(),
+        'postal_code': postcodeController.text.trim(),
+        'number_street_name': streetController.text.trim(),
+        'city': cityController.text.trim(),
+        'country_id': selectedCountry?[keyId],
+        'forms_id': selectedForms.map((dynamic item) => item[keyId]).toList(),
+      },
+    ).request(
+      onSuccess: (dynamic data, dynamic response) {
+        final dynamic tempUserData = myAppController.userData;
+        tempUserData['isProfileComplete'] = true;
+        myAppController.onUserUpdated(tempUserData);
+        Get.offAllNamed(routeHomeBottomBar);
+      },
+    );
+  }
+
+  Future<void> getCountries() async {
+    hideKeyboard();
+    if (allCountries.isEmpty) {
+      ApiRequest(
+        path: keyGetCountries,
+        className: 'NewJobController/getCountries',
+        requestFunction: getCountries,
+      ).request(
+        onSuccess: (dynamic data, dynamic response) {
+          allCountries = data;
+
+          update();
+        },
+      );
+    }
   }
 }

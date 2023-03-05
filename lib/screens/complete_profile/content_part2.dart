@@ -14,23 +14,27 @@ class ContentPart2 extends StatelessWidget {
             return Column(
               children: <Widget>[
                 0.01.ph,
-                const CommonInput(
-                  topLabel: TopLabelText(
+                CommonInput(
+                  topLabel: const TopLabelText(
                     text: 'Registered Company Name',
                   ),
                   hint: 'Enter Your Registered Company Name',
+                  controller: controller.registeredCompanyController,
                   marginBottom: 0.015,
                 ),
-                const CommonInput(
-                  topLabel: TopLabelText(
+                CommonInput(
+                  topLabel: const TopLabelText(
                     text: 'Trading Name',
                   ),
                   hint: 'Enter Your Trading Name',
+                  controller: controller.tradingNameController,
                   marginBottom: 0.015,
                 ),
-                const CommonInput(
+                CommonInput(
                   topLabelText: 'Registration Number (No Required)',
                   hint: 'Enter Your Registration Number',
+                  controller: controller.registrationNumberController,
+                  textInputAction: TextInputAction.go,
                   marginBottom: 0.015,
                 ),
                 CommonText(
@@ -49,12 +53,15 @@ class ContentPart2 extends StatelessWidget {
                   ),
                 ),
                 if (controller.isVatRegistered)
-                  const CommonInput(
-                    topLabel: TopLabelText(
+                  CommonInput(
+                    topLabel: const TopLabelText(
                       text: 'What Is Your VAT Number',
                     ),
                     hint: 'Enter Your VAT Number',
                     marginBottom: 0.015,
+                    keyboardType: TextInputType.number,
+                    textInputAction: TextInputAction.go,
+                    controller: controller.vATNumberController,
                   ),
                 if (controller.isVatRegistered) 0.01.ph else 0.13.ph,
                 CommonText(

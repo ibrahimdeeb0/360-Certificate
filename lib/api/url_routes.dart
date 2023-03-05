@@ -26,7 +26,7 @@ const String createCustomer = '/customers/create';
 const String createSite = '/create-sites';
 const String getCustomers = '/customers/get';
 const String getSite = '/sites';
-const String keyGetCountriesPat = '/countreis';
+
 const String keyGetJobCategoriesPat = '/setting/job-category';
 const String keyGetTaxPath = '/setting/tax-setting';
 const String keyGetServicesPath = '/services';
@@ -46,7 +46,7 @@ const String keyClosingDates = '/setting/closing-dates';
 const String keySchedule = '/schedule';
 const String keyOperationHours = '/setting/operation-hours';
 const String keyBreakTime = '/break-time';
-const String keyProfile = '/profile';
+
 const String keyForms = '/forms';
 const String keyUpdatePassword = '/profile/update-password';
 const String keyProfileUpdate = '/profile/update';
@@ -59,12 +59,16 @@ const String keyGetCertificatesCount = '/certificates/count';
 const String keyCreateBreakTime = '/break-time/create';
 const String keyDeleteAccount = '/user/delete';
 const String keyStoreFormTemplate = '/forms/templates/store';
-const String keyGetAllFormTemplate = '/forms/templates';
 const String keyGetAllCustomers = '/customers/get';
-const String formGetCertificate = '/certificate-form/customer-certificate?';
-const String keyCreateForm = '/certificate-form/create';
+const String formGetCertificate = '/certificates/customer-certificate?';
 //
-const String formGetAllCertificates = '/certificate-form';
-const String keyCompletedCert = '/certificate-form/complete';
-const String keyUnCompletedCert = '/certificate-form/uncompleted';
-const String formGetCerCount = '/certificate-form/count';
+const String keyProfile = '/profile';
+const String keyGetAllFormTemplate = '/forms/templates';
+const String keyCreateForm = '/certificates/create';
+const String keyGetCountries = '/countries?search=';
+// const String keyCompleteProfile = '/complete-register';
+//
+const String formGetAllCertificates = '/certificates';
+const String keyCompletedCert = '/certificates/complete';
+const String keyUnCompletedCert = '/certificates/uncompleted';
+const String formGetCerCount = '/certificates/count';
