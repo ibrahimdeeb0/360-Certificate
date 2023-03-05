@@ -60,7 +60,7 @@ const String keyCreateBreakTime = '/break-time/create';
 const String keyDeleteAccount = '/user/delete';
 const String keyStoreFormTemplate = '/forms/templates/store';
 const String keyGetAllCustomers = '/customers/get';
-const String formGetCertificate = '/certificates/customer-certificate?';
+const String formGetCertificate = '/certificates';
 //
 const String keyProfile = '/profile';
 const String keyGetAllFormTemplate = '/forms/templates';

@@ -38,6 +38,7 @@ class CertificateDetailsController extends GetxController
 
   Map<dynamic, dynamic> certDetails = <dynamic, dynamic>{};
   String certStatus = 'Pending';
+  int statusId = 1;
   int certId = 0;
   dynamic formBody;
 
@@ -70,8 +71,7 @@ class CertificateDetailsController extends GetxController
     startLoading();
 
     ApiRequest(
-      path:
-          '${formGetCertificate}customer_id=${Get.arguments['customer_id']}&id=${Get.arguments[keyId]}',
+      path: '$formGetCertificate/${Get.arguments[keyId]}/view',
       className: 'CertificateDetailsController/getCompetedCert',
       requestFunction: getCompetedCert,
       // withLoading: true,
@@ -82,9 +82,10 @@ class CertificateDetailsController extends GetxController
         value: data,
       );
       certDetails = data;
-      certStatus = data['form_data']['status']['name'];
-      certId = data['form_data'][keyId];
-      formBody = data['form_data'];
+      certStatus = data[keyFormData]['status']['name'];
+      statusId = data[keyFormData]['status_id'];
+      certId = data[keyFormData][keyId];
+      // formBody = data[formData];
 
       // consoleLog(data['form_data']['form_id'], key: 'form_id');
       // consoleLog(data['form_data']['id'], key: 'cert_id');

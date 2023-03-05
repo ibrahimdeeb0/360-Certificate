@@ -36,7 +36,7 @@ class CustomerDetailsTab extends StatelessWidget {
                       CertTitleItem(
                         title: 'Country',
                         subTitle:
-                            '${controller.certDetails['form_data']['customer']['country']['name']['en']}',
+                            '${controller.certDetails['form_data']['customer']['country']['name']}',
                       ),
                       const SizedBox(),
                     ],
@@ -97,7 +97,7 @@ class CustomerDetailsTab extends StatelessWidget {
                 ],
               ),
             ),
-            if (controller.certStatus == 'Completed')
+            if (controller.statusId == idCompleted)
               CommonButton(
                 text: 'Send PDF',
                 onPress: () {},

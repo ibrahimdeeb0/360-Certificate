@@ -21,18 +21,24 @@ class CertificateDetails extends StatelessWidget {
                   child: Column(
                     children: <Widget>[
                       CertificateTitleCard(
-                        certCode:
-                            '#${controller.certDetails['form_data'][keyId]}',
-                        certStatus: controller.certDetails['form_data']
-                            ['status']['status'],
-                        statusColor: controller.certStatus == 'Completed'
-                            ? AppColors.completedClr
-                            : controller.certStatus == 'Canceled'
-                                ? AppColors.canceledClr
-                                : controller.certStatus == 'In Progress'
-                                    ? AppColors.inProgressClr
-                                    : AppColors.pendingClr,
-                      ),
+                          certCode: '#${controller.certId}',
+                          certStatus: controller.certStatus,
+                          statusColor: controller.statusId == idCompleted
+                              ? AppColors.completedClr
+                              : controller.statusId == idCanceled
+                                  ? AppColors.canceledClr
+                                  : controller.statusId == idInProgress
+                                      ? AppColors.inProgressClr
+                                      : AppColors.pendingClr
+
+                          // controller.certStatus == 'Completed'
+                          //     ? AppColors.completedClr
+                          //     : controller.certStatus == 'Canceled'
+                          //         ? AppColors.canceledClr
+                          //         : controller.certStatus == 'In Progress'
+                          //             ? AppColors.inProgressClr
+                          //             : AppColors.pendingClr,
+                          ),
                       CommonContainer(
                         paddingHorizontal: 0.04,
                         height: 0.8297,

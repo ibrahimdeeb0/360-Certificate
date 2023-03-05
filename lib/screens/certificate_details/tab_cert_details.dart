@@ -24,9 +24,9 @@ class CertTab extends StatelessWidget {
                     subTitle:
                         '${controller.certDetails['form_data']['form']['name']}',
                   ),
-                  const CertTitleItem(
+                  CertTitleItem(
                     title: 'Certificate Status',
-                    subTitle: 'Completed',
+                    subTitle: controller.certStatus,
                   ),
                   CertTitleItem(
                     title: 'Site Name',
@@ -67,7 +67,7 @@ class CertTab extends StatelessWidget {
                       CertTitleItem(
                         title: 'Country',
                         subTitle:
-                            '${controller.certDetails['form_data']['customer']['country']['name']['en']}',
+                            '${controller.certDetails['form_data']['customer']['country']['name']}',
                       ),
                       const SizedBox(),
                     ],
@@ -82,7 +82,7 @@ class CertTab extends StatelessWidget {
             ),
             if (!controller.isPDFLoading)
               Visibility(
-                visible: controller.certStatus == 'Completed',
+                visible: controller.statusId == idCompleted,
                 child: CommonContainer(
                   onPress: () async {
                     // consoleLog(controller.pdfFilePath);
@@ -121,8 +121,8 @@ class CertTab extends StatelessWidget {
                   ),
                 ),
               ),
-            if (controller.certStatus != 'Completed' &&
-                controller.certStatus != 'Canceled')
+            if (controller.statusId != idCompleted &&
+                controller.statusId != idCanceled)
               CommonButton(
                 onPress: controller.onEditCert,
                 text: 'Edit Certificate',
@@ -133,8 +133,8 @@ class CertTab extends StatelessWidget {
                 fontColor: AppColors.primary,
                 overlayColor: Colors.black12,
               ),
-            if (controller.certStatus != 'Completed' &&
-                controller.certStatus != 'Canceled')
+            if (controller.statusId != idCompleted &&
+                controller.statusId != idCanceled)
               CommonButton(
                 onPress: controller.onCancelCertificate,
                 // onPress: controller.onCancelCertificate,
