@@ -33,8 +33,10 @@ class Search extends StatelessWidget {
                     CommonInput(
                       hint: 'Search for certificate, customer',
                       width: 0.85,
-                      marginHorizontal: 0.04,
+                      marginLeft: 0.04,
                       marginTop: 0.02,
+                      controller: controller.searchController,
+                      onChanged: controller.onSearching,
                       prefix: SvgPicture.asset(
                         iconSearch,
                         color: Colors.black,
@@ -52,10 +54,107 @@ class Search extends StatelessWidget {
                     ),
                   ],
                 ),
+                // CommonButton(
+                //   marginVertical: 0.02,
+                //   onPress: () {
+                //     consoleLog(controller.searchResult);
+                //   },
+                // ),
+                if ((controller.listCerts != null) &&
+                    (controller.listCustomers != null))
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: <Widget>[
+                          0.04.ph,
+                          ...controller.listCerts
+                              .map(
+                                (dynamic item) => SearchResultCard(
+                                  title: '# ${item[keyId]}',
+                                  onPress: () => Get.toNamed(
+                                    routeCertificateDetails,
+                                    arguments: <String, dynamic>{
+                                      keyId: item[keyId],
+                                    },
+                                  ),
+                                  iconPath: iconCertificates,
+                                ),
+                              )
+                              .toList(),
+                          ...controller.listCustomers
+                              .map(
+                                (dynamic item) => SearchResultCard(
+                                  onPress: () => Get.toNamed(
+                                    routeCustomerProfile,
+                                    arguments: <String, dynamic>{
+                                      keyId: item[keyId],
+                                    },
+                                  ),
+                                  title: item[keyName],
+                                ),
+                              )
+                              .toList(),
+                          if ((controller.listCerts.isEmpty) &&
+                              controller.listCustomers.isEmpty)
+                            CommonText(
+                              'There is no result found',
+                              fontColor: AppColors.primary,
+                              marginVertical: 0.04,
+                            ),
+                        ],
+                      ),
+                    ),
+                  ),
               ],
             ),
           );
         },
+      ),
+    );
+  }
+}
+
+class SearchResultCard extends StatelessWidget {
+  const SearchResultCard({
+    super.key,
+    this.title,
+    this.iconPath,
+    this.onPress,
+  });
+
+  final String? title;
+  final String? iconPath;
+  final Function? onPress;
+
+  @override
+  Widget build(BuildContext context) {
+    return CommonContainer(
+      onPress: onPress,
+      marginBottom: 0.04,
+      paddingHorizontal: 0.01,
+      touchEffect: TouchableEffect(type: TouchTypes.opacity),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          CommonText(
+            title ?? '',
+            marginHorizontal: 0.02,
+            fontSize: fontTitle,
+            fontColor: AppColors.primary,
+            // fontWeight: FontWeight.bold,
+            leftChild: SvgPicture.asset(
+              iconPath ?? iconPerson,
+              color: Color(AppColors.primary),
+              height: 0.025.flexHeight,
+              width: 0.025.flexWidth,
+            ),
+          ),
+          Icon(
+            Icons.arrow_forward,
+            color: Colors.grey,
+            size: (0.02.flexHeight + 0.02.flexWidth),
+          ),
+        ],
       ),
     );
   }

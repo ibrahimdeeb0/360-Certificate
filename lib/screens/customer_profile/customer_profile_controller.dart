@@ -7,6 +7,8 @@ class CustomerProfileController extends GetxController
   int tabIndex = 0;
   bool billingSame = false;
 
+  int? customerId;
+
   Map<dynamic, dynamic> customerData = <dynamic, dynamic>{};
   List<dynamic> certData = <dynamic>[];
   List<dynamic> siteData = <dynamic>[];
@@ -41,7 +43,8 @@ class CustomerProfileController extends GetxController
   void onInit() {
     super.onInit();
     tabController = TabController(length: tabItems.length, vsync: this);
-    consoleLog(Get.arguments, key: 'customer_arguments');
+    customerId = Get.arguments[keyId];
+    consoleLogPretty(customerId, key: 'customerId');
   }
 
   @override
@@ -113,7 +116,7 @@ class CustomerProfileController extends GetxController
   Future<void> onGeCustomerDetails() async {
     hideKeyboard();
     ApiRequest(
-      path: '/customers/1001/customer',
+      path: '/customers/$customerId/customer',
       className: 'CustomerProfileController/onGeCustomerDetails',
       requestFunction: onGeCustomerDetails,
       withLoading: true,

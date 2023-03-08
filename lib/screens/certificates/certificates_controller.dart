@@ -57,12 +57,12 @@ class CertificatesController extends GetxController {
       filteredCert = listCert;
     } else if (listCert
         .where(
-          (dynamic item) => (item['status']['status'] == certItem[keyTitle]),
+          (dynamic item) => (item['status']['name'] == certItem[keyTitle]),
         )
         .isNotEmpty) {
       filteredCert = <dynamic>[
         ...listCert.where(
-          (dynamic item) => (item['status']['status'] == certItem[keyTitle]),
+          (dynamic item) => (item['status']['name'] == certItem[keyTitle]),
         ),
       ];
     } else {

@@ -10,12 +10,10 @@ extension on DateTime {
   }
 }
 
-extension on double {
-  double flexHeight() => (this * DEVICE_HEIGHT);
-  //
-  // double get flexWidth {
-  //   return this * DEVICE_WIDTH;
-  // }
+extension ScreenSize on num {
+  double get flexHeight => (DEVICE_HEIGHT * this);
+
+  double get flexWidth => (DEVICE_WIDTH * this);
 }
 
 // extension on double {
