@@ -74,6 +74,7 @@ class CertificateDetailsController extends GetxController
       path: '$formGetCertificate/${Get.arguments[keyId]}/view',
       className: 'CertificateDetailsController/getCompetedCert',
       requestFunction: getCompetedCert,
+
       // withLoading: true,
       formatResponse: true,
     ).request(onSuccess: (dynamic data, dynamic response) async {
@@ -132,13 +133,12 @@ class CertificateDetailsController extends GetxController
     startLoading();
     ApiRequest(
       method: ApiMethods.post,
-      path:
-          '/certificate-form/${certDetails['form_data'][keyId]}/update-status',
+      path: '/certificates/${certDetails['form_data'][keyId]}/update-status',
       className: 'CertificateDetailsController/onCancelCertificate',
       requestFunction: onCancelCertificate,
       // withLoading: true,
       body: <dynamic, dynamic>{
-        'status_id': 6,
+        'status_id': 5,
       },
     ).request(
       onSuccess: (dynamic data, dynamic response) async {

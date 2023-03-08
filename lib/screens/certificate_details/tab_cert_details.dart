@@ -160,10 +160,14 @@ class CertTitleItem extends StatelessWidget {
     super.key,
     this.title,
     this.subTitle,
+    this.onEdit,
+    this.isEditable = false,
   });
 
   final String? title;
   final String? subTitle;
+  final bool isEditable;
+  final Function? onEdit;
 
   @override
   Widget build(BuildContext context) {
@@ -175,10 +179,22 @@ class CertTitleItem extends StatelessWidget {
       rowMainAxisSize: MainAxisSize.max,
       textAlign: TextAlign.start,
       columnCrossAxisAlignment: CrossAxisAlignment.start,
+      rowMainAxisAlignment: MainAxisAlignment.spaceBetween,
+      rightChild: isEditable
+          ? CommonContainer(
+              onPress: onEdit,
+              touchEffect: TouchableEffect(type: TouchTypes.scaleAndFade),
+              child: Icon(
+                Icons.edit,
+                color: Colors.grey[700],
+              ),
+            )
+          : const SizedBox(),
       bottomChild: CommonText(
         subTitle ?? '',
         rowMainAxisSize: MainAxisSize.max,
         textAlign: TextAlign.start,
+        marginTop: 0.006,
       ),
       containerStyle: const CommonContainerModel(marginBottom: 0.016),
     );

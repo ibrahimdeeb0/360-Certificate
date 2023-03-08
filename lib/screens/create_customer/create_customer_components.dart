@@ -62,10 +62,12 @@ class TopLabelText extends StatelessWidget {
     Key? key,
     this.text,
     this.isRequired = true,
+    this.enabled = true,
   }) : super(key: key);
 
   final String? text;
   final bool isRequired;
+  final bool enabled;
 
   @override
   Widget build(BuildContext context) {
@@ -73,6 +75,7 @@ class TopLabelText extends StatelessWidget {
       text ?? '',
       rowCrossAxisAlignment: CrossAxisAlignment.start,
       marginRight: 0.01,
+      fontColor: enabled ? Colors.black : COMMON_GREY_COLOR,
       containerStyle: const CommonContainerModel(
         marginVertical: 0.01,
       ),

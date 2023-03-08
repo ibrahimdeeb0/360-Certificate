@@ -14,6 +14,7 @@ class Header extends StatelessWidget with PreferredSizeWidget {
     this.withShadow = false,
     this.actionItem,
     this.onPressSearch,
+    this.backgroundColor,
     Key? key,
   }) : super(key: key);
 
@@ -27,6 +28,7 @@ class Header extends StatelessWidget with PreferredSizeWidget {
   final bool withOverLay;
   final bool withShadow;
   final ActionItem? actionItem;
+  final dynamic backgroundColor;
 
   @override
   Size get preferredSize =>
@@ -42,7 +44,7 @@ class Header extends StatelessWidget with PreferredSizeWidget {
             shadowOffsetDY: 2,
             shadowBlurRadius: 4,
             paddingTop: 0.02,
-            backgroundColor: Colors.white,
+            backgroundColor: backgroundColor ?? Colors.white,
           ),
       child: AppBar(
         elevation: withShadow ? 1 : 0,
@@ -111,7 +113,15 @@ class Header extends StatelessWidget with PreferredSizeWidget {
                         )
                       : actionItem?.type == ActionType.filter
                           ? SvgPicture.asset(iconFilter, color: Colors.black)
-                          : const Center(),
+                          : actionItem?.type == ActionType.search
+                              ? Padding(
+                                  padding: EdgeInsets.only(
+                                    right: DEVICE_WIDTH * 0.015,
+                                  ),
+                                  child: SvgPicture.asset(iconSearch,
+                                      color: Colors.black),
+                                )
+                              : const Center(),
             ),
           if (withSearch)
             CommonContainer(

@@ -42,7 +42,7 @@ class UncompletedCert extends StatelessWidget {
                         price: '£ 0.0',
                         date: DateFormat('dd-MM-yyyy').format(
                             DateTime.parse(item['created_at'].toString())),
-                        certStatus: item['status']['status'],
+                        certStatus: item['status']['name'],
                         customerName: item['customer']['name'],
                         customerAddress: item['customer']['address'],
                         statusClr: certStatus == 'Completed'

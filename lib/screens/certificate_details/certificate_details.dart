@@ -21,30 +21,23 @@ class CertificateDetails extends StatelessWidget {
                   child: Column(
                     children: <Widget>[
                       CertificateTitleCard(
-                          certCode: '#${controller.certId}',
-                          certStatus: controller.certStatus,
-                          statusColor: controller.statusId == idCompleted
-                              ? AppColors.completedClr
-                              : controller.statusId == idCanceled
-                                  ? AppColors.canceledClr
-                                  : controller.statusId == idInProgress
-                                      ? AppColors.inProgressClr
-                                      : AppColors.pendingClr
-
-                          // controller.certStatus == 'Completed'
-                          //     ? AppColors.completedClr
-                          //     : controller.certStatus == 'Canceled'
-                          //         ? AppColors.canceledClr
-                          //         : controller.certStatus == 'In Progress'
-                          //             ? AppColors.inProgressClr
-                          //             : AppColors.pendingClr,
-                          ),
+                        certCode: '#${controller.certId}',
+                        certStatus: controller.certStatus,
+                        statusColor: controller.statusId == idCompleted
+                            ? AppColors.completedClr
+                            : controller.statusId == idCanceled
+                                ? AppColors.canceledClr
+                                : controller.statusId == idInProgress
+                                    ? AppColors.inProgressClr
+                                    : AppColors.pendingClr,
+                      ),
                       CommonContainer(
                         paddingHorizontal: 0.04,
                         height: 0.8297,
                         child: Column(
                           children: <Widget>[
                             SizedBox(height: DEVICE_HEIGHT * 0.02),
+                            // Tabs
                             CommonContainer(
                               borderRadius: 0.015,
                               width: 1,
@@ -80,6 +73,7 @@ class CertificateDetails extends StatelessWidget {
                                 onTap: controller.onSelectTab,
                               ),
                             ),
+                            // Body
                             Expanded(
                               child: SingleChildScrollView(
                                 controller: controller.scrollController,

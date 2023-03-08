@@ -33,6 +33,7 @@ class ApiRequest {
 
   Dio _dio() {
     // Put your authorization token here
+
     return Dio(
       BaseOptions(
         headers: <String, dynamic>{

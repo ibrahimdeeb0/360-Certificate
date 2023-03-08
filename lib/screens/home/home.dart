@@ -61,6 +61,7 @@ class Home extends StatelessWidget {
                           ),
                         ),
                         const CommonText(
+                          //
                           'All Certificates',
                           marginTop: 0.01,
                           fontSize: fontH2,
@@ -149,6 +150,7 @@ class HomeCards extends StatelessWidget {
     this.width,
     this.bgColor,
     this.onPress,
+    this.paddingHorizontal,
   });
 
   final String? title;
@@ -157,6 +159,7 @@ class HomeCards extends StatelessWidget {
   final double? width;
   final dynamic bgColor;
   final Function? onPress;
+  final double? paddingHorizontal;
 
   @override
   Widget build(BuildContext context) {
@@ -166,7 +169,7 @@ class HomeCards extends StatelessWidget {
       width: width ?? 0.45,
       // height: 0.12,
       borderRadius: 0.06,
-      paddingHorizontal: 0.02,
+      paddingHorizontal: paddingHorizontal ?? 0.02,
       paddingVertical: 0.015,
       marginBottom: 0.015,
       touchEffect: TouchableEffect(
@@ -185,6 +188,7 @@ class HomeCards extends StatelessWidget {
               iconPath ?? iconOutCerts,
               width: DEVICE_WIDTH * 0.03,
               height: DEVICE_HEIGHT * 0.03,
+              color: Color(AppColors.primary),
             ),
             containerStyle: const CommonContainerModel(
               width: 1,

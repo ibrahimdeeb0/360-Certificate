@@ -72,3 +72,5 @@ const String formGetAllCertificates = '/certificates';
 const String keyCompletedCert = '/certificates/complete';
 const String keyUnCompletedCert = '/certificates/uncompleted';
 const String formGetCerCount = '/certificates/count';
+const String formGetAllCustomers = '/customers/get';
+// String keyGetCreateNote(int certId) => '/certificates/$certId/notes/create';

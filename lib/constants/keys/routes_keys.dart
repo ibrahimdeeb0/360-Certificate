@@ -26,3 +26,4 @@ const String routeUncompleted = '/uncompleted';
 const String routeUncompletedCert = '/uncompleted_cert';
 const String routeRegister = '/register';
 const String routeAddNewNote = '/add_new_note';
+const String routeCustomerProfile = '/customer_profile';

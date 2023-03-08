@@ -97,7 +97,7 @@ class CertificatesController extends GetxController {
     );
     if (!myAppController.isInternetConnect) {
       final dynamic apiData = await myAppController.localStorage.getFromStorage(
-        key: 'getCompetedCerts',
+        key: 'getAllCert',
       );
       allCerts = apiData;
       update();

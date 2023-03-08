@@ -105,4 +105,8 @@ List<GetPage<dynamic>> appRoutes = <GetPage<dynamic>>[
     name: routeAddNewNote,
     page: () => const AddNewNote(),
   ),
+GetPage<CustomerProfile>(
+  name: routeCustomerProfile,
+   page: () => const CustomerProfile(),
+ ), 
 ];

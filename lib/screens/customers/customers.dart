@@ -19,6 +19,13 @@ class Customers extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   SizedBox(height: DEVICE_HEIGHT * 0.03),
+                  CommonButton(
+                    // onPress: () {
+                    //   consoleLogPretty(controller.allCustomers);
+                    // },
+                    onPress: () => Get.toNamed(routeCustomerProfile),
+                    text: 'Customer Profile',
+                  ),
                 ],
               ),
             ),
