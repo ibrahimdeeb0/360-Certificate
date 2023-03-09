@@ -2,7 +2,7 @@ const String languages = '/languages';
 const String translations = '/translations';
 const String sendOtp = '/send-otp';
 const String verificationOtp = '/verify-account';
-const String register = '/certificates/register';
+const String register = '/register';
 const String login = '/login';
 const String pressure = '/pressure';
 const String urlHome = '/home-screen';
@@ -63,6 +63,7 @@ const String keyGetAllCustomers = '/customers/get';
 const String formGetCertificate = '/certificates';
 //
 const String keyProfile = '/profile';
+const String keyUserData = '/profile/other-data';
 const String keyGetAllFormTemplate = '/forms/templates';
 const String keyCreateForm = '/certificates/create';
 const String keyGetCountries = '/countries?search=';

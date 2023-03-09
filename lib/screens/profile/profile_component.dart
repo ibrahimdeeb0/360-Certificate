@@ -60,15 +60,18 @@ class ProfileComponent extends StatelessWidget {
                               clipBehavior: Clip.hardEdge,
                             ),
                             child: controller.fileImage == null
-                                ? const CircleContainer()
-                                // CachedImage(
-                                //     image:
-                                //         '${controller.userDataProfile['image_profile_url']}',
-                                //     width: DEVICE_WIDTH * 1,
-                                //     height: DEVICE_WIDTH * 1,
-                                //     withPlaceHolder: true,
-                                //     fit: BoxFit.cover,
-                                //   )
+                                ? controller.userDataProfile[
+                                            'image_profile_url'] ==
+                                        null
+                                    ? const CircleContainer()
+                                    : CachedImage(
+                                        image:
+                                            '${controller.userDataProfile['image_profile_url']}',
+                                        width: DEVICE_WIDTH * 1,
+                                        height: DEVICE_WIDTH * 1,
+                                        withPlaceHolder: true,
+                                        fit: BoxFit.cover,
+                                      )
                                 : Image.file(
                                     File(controller.fileImage!.path),
                                     fit: BoxFit.cover,
@@ -179,34 +182,24 @@ class ProfileComponent extends StatelessWidget {
                         ],
                       ),
                       SizedBox(height: DEVICE_HEIGHT * 0.02),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          CommonText(
-                            'Disk Space',
-                            style: appTextStyles.h3Style().copyWith(
-                                  fontColor: AppColors.textGrey,
-                                  textAlign: TextAlign.start,
-                                  columnCrossAxisAlignment:
-                                      CrossAxisAlignment.start,
-                                ),
-                            containerStyle: const CommonContainerModel(
-                              paddingLeft: 0.06,
-                              width: 0.43,
+                      CommonText(
+                        'Disk Space',
+                        style: appTextStyles.h3Style().copyWith(
+                              fontColor: AppColors.textGrey,
+                              textAlign: TextAlign.start,
+                              columnCrossAxisAlignment:
+                                  CrossAxisAlignment.start,
                             ),
-                            bottomChild: Column(
-                              children: <Widget>[
-                                SizedBox(height: DEVICE_HEIGHT * 0.008),
-                                CommonText(
-                                  diskSpace ?? '67/100',
-                                  style: appTextStyles
-                                      .h2StyleBlack()
-                                      .copyWith(textAlign: TextAlign.start),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
+                        containerStyle: const CommonContainerModel(
+                          paddingLeft: 0.06,
+                          width: 1,
+                          alignment: AlignmentDirectional.center,
+                        ),
+                        bottomChild: CommonText(
+                          diskSpace ?? '67/100',
+                          marginTop: 0.01,
+                          fontSize: fontH2,
+                        ),
                       ),
                     ],
                   ),
@@ -221,17 +214,11 @@ class ProfileComponent extends StatelessWidget {
                     children: <Widget>[
                       CommonInput(
                         topLabelText: 'First Name',
-                        hint: controller.userDataProfile.isEmpty
-                            ? ' '
-                            : controller.userDataProfile['first_name'],
                         controller: controller.firstNameController,
                         marginBottom: 0.01,
                       ),
                       CommonInput(
                         topLabelText: 'Last Name',
-                        hint: controller.userDataProfile.isEmpty
-                            ? ' '
-                            : controller.userDataProfile['last_name'],
                         controller: controller.lastNameController,
                         marginBottom: 0.01,
                       ),
@@ -245,9 +232,6 @@ class ProfileComponent extends StatelessWidget {
                       ),
                       CommonInput(
                         topLabelText: 'Phone Number',
-                        hint: controller.userDataProfile.isEmpty
-                            ? ' '
-                            : '${controller.userDataProfile['phone'] ?? ''}',
                         controller: controller.phoneNumberController,
                         marginBottom: 0.01,
                       ),

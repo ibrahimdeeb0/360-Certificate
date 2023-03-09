@@ -19,9 +19,13 @@ class Certificates extends StatelessWidget {
                 (dynamic item) {
                   final String certStatus = item['status']['name'];
                   return SortCertificateCard(
-                    onPress: () {
-                      consoleLogPretty(item);
-                    },
+                    onPress: () => Get.toNamed(
+                      routeCertificateDetails,
+                      arguments: <String, dynamic>{
+                        keyId: item[keyId],
+                        'customer_id': item['customer_id'],
+                      },
+                    ),
                     code: '#${item[keyId]}',
                     formType: item['form']['type'],
                     price: '£ 0.0',

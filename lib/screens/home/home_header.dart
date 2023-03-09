@@ -65,15 +65,17 @@ class HomeHeader extends StatelessWidget with PreferredSizeWidget {
                         fit: BoxFit.cover,
                       )
                     : controller.userDataProfile.isNotEmpty
-                        ? const CircleContainer()
-                        // CachedImage(
-                        //     image:
-                        //         '${controller.userDataProfile['image_profile_url']}',
-                        //     width: DEVICE_WIDTH * 1,
-                        //     height: DEVICE_HEIGHT * 1,
-                        //     withPlaceHolder: true,
-                        //     fit: BoxFit.cover,
-                        //   )
+                        ? controller.userDataProfile['image_profile_url'] ==
+                                null
+                            ? const CircleContainer()
+                            : CachedImage(
+                                image:
+                                    '${controller.userDataProfile['image_profile_url']}',
+                                width: DEVICE_WIDTH * 1,
+                                height: DEVICE_HEIGHT * 1,
+                                withPlaceHolder: true,
+                                fit: BoxFit.cover,
+                              )
                         : const SizedBox(),
               );
             },

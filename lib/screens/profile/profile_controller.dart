@@ -35,11 +35,11 @@ class ProfileController extends GetxController {
 
   Future<void> getProfileData() async {
     hideKeyboard();
-    // startLoading();
     ApiRequest(
       path: keyProfile,
       className: 'MyProfileController/getProfileData',
       requestFunction: getProfileData,
+      withLoading: true,
     ).request(
       onSuccess: (dynamic data, dynamic response) {
         myAppController.localStorage.saveToStorage(
@@ -47,8 +47,8 @@ class ProfileController extends GetxController {
           value: data,
         );
         userDataProfile = data;
+        setData();
         update();
-        // dismissLoading();
       },
     );
     if (!myAppController.isInternetConnect) {
@@ -56,9 +56,16 @@ class ProfileController extends GetxController {
         key: 'getProfileData',
       );
       userDataProfile = apiData;
+      setData();
       update();
-      dismissLoading();
     }
+  }
+
+  void setData() {
+    firstNameController.text = userDataProfile['first_name'];
+    lastNameController.text = userDataProfile['last_name'];
+    phoneNumberController.text = userDataProfile['phone'];
+    update();
   }
 
   bool isEnablePass = false;
@@ -115,10 +122,14 @@ class ProfileController extends GetxController {
         },
       ).request(
         onSuccess: (dynamic data, dynamic response) {
-          getProfileData();
           showMessage(
             description: 'Success Edit Changes',
           );
+          getProfileData();
+          if (Get.isRegistered<MySettingsController>()) {
+            Get.find<MySettingsController>().getUserData();
+          }
+
           update();
         },
       );
@@ -147,10 +158,14 @@ class ProfileController extends GetxController {
         ),
       ).request(
         onSuccess: (dynamic data, dynamic response) {
-          getProfileData();
           showMessage(
             description: 'Success Edit Changes',
           );
+          getProfileData();
+          if (Get.isRegistered<MySettingsController>()) {
+            Get.find<MySettingsController>().getUserData();
+          }
+
           update();
         },
       );

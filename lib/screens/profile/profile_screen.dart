@@ -12,14 +12,14 @@ class Profile extends StatelessWidget {
           appBar: Header(
             title: 'My Profile',
           ),
-          body: const ProfileComponent(
+          body: ProfileComponent(
             emailAllowance: '0/100',
             diskSpace: '5 GB',
-            keepCertUsage: '0/100',
+            // keepCertUsage: '0/100',
             deleteJobUsage: '0/100',
-            // deleteJobUsage: controller.userDataProfile.isNotEmpty
-            //     ? '${controller.userDataProfile['jobs_count']}/100'
-            //     : '',
+            keepCertUsage: controller.userDataProfile.isNotEmpty
+                ? '${controller.userDataProfile['certificate_count']}/100'
+                : '',
           ),
         );
       },
