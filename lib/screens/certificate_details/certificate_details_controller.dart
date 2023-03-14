@@ -9,13 +9,6 @@ class CertificateDetailsController extends GetxController
   late TabController tabController;
   int tabIndex = 0;
 
-  TextEditingController testInput = TextEditingController();
-  String valueInput = 'value';
-  void onChange(String? value) {
-    valueInput = value ?? '';
-    update();
-  }
-
   List<dynamic> tabItems = <dynamic>[
     <String, dynamic>{
       keyId: 0,
@@ -54,7 +47,6 @@ class CertificateDetailsController extends GetxController
     super.onInit();
     tabController = TabController(length: tabItems.length, vsync: this);
     consoleLog(Get.arguments, key: 'arguments');
-    valueInput = 'test 22';
   }
 
   void onSelectTab(int index) {

@@ -39,21 +39,20 @@ class NotesTab extends StatelessWidget {
               (dynamic note) => NotesCard(
                 title: note[keyTitle],
                 details: note['body'],
-                onEdit: () => Get.toNamed(
-                  routeAddNewNote,
-                  arguments: <String, dynamic>{
-                    keyId: controller.certId,
-                    keyStatus: NoteType.noteUpdate,
-                    'id_note': note[keyId],
-                  },
-                ),
+                onEdit: () {
+                  consoleLogPretty(note);
+                  Get.toNamed(
+                    routeAddNewNote,
+                    arguments: <String, dynamic>{
+                      keyId: controller.certId,
+                      keyStatus: NoteType.noteUpdate,
+                      'id_note': note[keyId],
+                      keyTitle: note[keyTitle],
+                      keyDetails: note['body'],
+                    },
+                  );
+                },
               ),
-            ),
-            CommonInput(
-              // hint: 'test',
-              marginVertical: 0.025,
-              value: controller.valueInput,
-              // onChanged: controller.onChange,
             ),
             // NotesCard(),
             0.03.ph,

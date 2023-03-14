@@ -22,8 +22,10 @@ class AddNewNotesController extends GetxController {
       certId = Get.arguments[keyId];
     } else if (status == NoteType.noteUpdate) {
       noteId = Get.arguments['id_note'];
+      titleNote.text = Get.arguments[keyTitle];
+      detailsNote.text = Get.arguments[keyDetails];
     }
-
+    consoleLog('certId: $certId || noteId: $noteId ', key: 'arguments');
     update();
   }
 
@@ -56,26 +58,20 @@ class AddNewNotesController extends GetxController {
     };
     if (status == NoteType.noteNew) {
       ApiRequest(
-              shouldShowMessage: false,
-              method: ApiMethods.post,
-              path: '/certificates/$certId/notes/create',
-              className: 'RegisterController/onCreateNote',
-              requestFunction: onSave,
-              // withLoading: true,
-              body: selectedImages.isEmpty
-                  ? bodyObject
-                  : await customerServiceFormData(
-                      jsonObject: bodyObject,
-                      files: selectedImages,
-                      fileKey: 'note_files',
-                    )
-              // await addFormDataToJson(
-              //     file: selectedImages,
-              //     jsonObject: bodyObject,
-              //     fileKey: 'note_files',
-              //   ),
-              )
-          .request(
+        shouldShowMessage: false,
+        method: ApiMethods.post,
+        path: '/certificates/$certId/notes/create',
+        className: 'RegisterController/onCreateNote',
+        requestFunction: onSave,
+        // withLoading: true,
+        body: selectedImages.isEmpty
+            ? bodyObject
+            : await customerServiceFormData(
+                jsonObject: bodyObject,
+                files: selectedImages,
+                fileKey: 'note_files',
+              ),
+      ).request(
         onSuccess: (dynamic data, dynamic response) {
           if (Get.isRegistered<CertificateDetailsController>()) {
             Get.find<CertificateDetailsController>().getCompetedCert();
@@ -87,11 +83,11 @@ class AddNewNotesController extends GetxController {
           dismissLoading();
         },
       );
-    } else if (status == NoteType.noteNew) {
+    } else if (status == NoteType.noteUpdate) {
       ApiRequest(
         shouldShowMessage: false,
         method: ApiMethods.post,
-        path: '/certificates/$certId/notes/create',
+        path: '/certificates/$noteId/notes/update',
         className: 'RegisterController/onCreateNote',
         requestFunction: onSave,
         // withLoading: true,
@@ -106,7 +102,6 @@ class AddNewNotesController extends GetxController {
             Get.find<CertificateDetailsController>().getCompetedCert();
           }
           Get.back();
-          // update();
         },
         onError: (dynamic error) {
           dismissLoading();

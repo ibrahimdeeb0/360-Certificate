@@ -78,7 +78,9 @@ class Instruction extends StatelessWidget {
                   text: 'Close my account',
                   fontColor: AppColors.primary,
                   fontWeight: FontWeight.bold,
-                  onPress: () {},
+                  onPress: () {
+                    Get.offAllNamed(routeLogin);
+                  },
                   overlayColor: Colors.grey,
                   elevation: 0.0,
                   backgroundColor: Colors.white,

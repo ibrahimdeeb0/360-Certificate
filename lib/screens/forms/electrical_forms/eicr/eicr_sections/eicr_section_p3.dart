@@ -25,6 +25,7 @@ class EICRSectionC extends StatelessWidget {
             ),
             hint: 'Select or Typing',
             maxLines: 6,
+            // textInputAction: TextInputAction.newline,
             value: controller.gazSafetyData[formKeyExtentElectricalC],
             onChanged: (dynamic value) => controller.onChangeFormDataValue(
                 formKeyExtentElectricalC, value),
@@ -51,6 +52,7 @@ class EICRSectionC extends StatelessWidget {
             ),
             hint: 'N/A',
             maxLines: 6,
+            // textInputAction: TextInputAction.newline,
             value: controller.gazSafetyData[formKeyAgreedLimitationsC],
             onChanged: (dynamic value) => controller.onChangeFormDataValue(
                 formKeyAgreedLimitationsC, value),
@@ -91,6 +93,7 @@ class EICRSectionC extends StatelessWidget {
           ),
           CommonInput(
             maxLines: 6,
+            // textInputAction: TextInputAction.newline,
             topLabel: const CommonText(
               'Operational limitations including the reason (page 1 of report)',
               textAlign: TextAlign.start,

@@ -673,6 +673,12 @@ class EicrController extends GetxController {
 
   @override
   Future<void> onReady() async {
+    gazSafetyData[formKeyRecommendationsE] =
+        currentTime.toString().split(' ').first;
+    gazSafetyData[formKeyEICRdeclaration][formKeyInspectedDate] =
+        currentTime.toString().split(' ').first;
+    gazSafetyData[formKeyEICRdeclaration][formKeyReportDate] =
+        currentTime.toString().split(' ').first;
     super.onReady();
   }
 
@@ -690,9 +696,33 @@ class EicrController extends GetxController {
   }
 
   //*----------Section E Part 5---------*//
-  void onConfirmDate(DateTime dateTime) {
-    gazSafetyData[formKeyRecommendationsE] =
-        dateTime.toString().split(' ').first;
+  void onConfirmDate({
+    required DateTime dateTime,
+    required FormDateType type,
+  }) {
+    switch (type) {
+      case FormDateType.recommendation:
+        {
+          gazSafetyData[formKeyRecommendationsE] =
+              dateTime.toString().split(' ').first;
+        }
+        break;
+
+      case FormDateType.inspectedBy:
+        {
+          gazSafetyData[formKeyEICRdeclaration][formKeyInspectedDate] =
+              dateTime.toString().split(' ').first;
+        }
+        break;
+
+      case FormDateType.reportBy:
+        {
+          gazSafetyData[formKeyEICRdeclaration][formKeyReportDate] =
+              dateTime.toString().split(' ').first;
+        }
+        break;
+    }
+
     update();
   }
 

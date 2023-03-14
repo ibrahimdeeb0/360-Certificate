@@ -143,14 +143,40 @@ class EICRFinalPage extends StatelessWidget {
                 ),
               SizedBox(height: DEVICE_HEIGHT * 0.03),
               //*  Date and Position  *//
+              // CommonInput(
+              //   topLabelText: 'Date',
+              //   value: controller.gazSafetyData[formKeyEICRdeclaration]
+              //       [formKeyInspectedDate],
+              //   onChanged: (dynamic value) => controller
+              //       .onChangeDeclarationValue(formKeyInspectedDate, value),
+              //   keyboardType: TextInputType.datetime,
+              //   textInputAction: TextInputAction.next,
+              // ),
               CommonInput(
-                topLabelText: 'Date',
-                value: controller.gazSafetyData[formKeyEICRdeclaration]
-                    [formKeyInspectedDate],
-                onChanged: (dynamic value) => controller
-                    .onChangeDeclarationValue(formKeyInspectedDate, value),
-                keyboardType: TextInputType.datetime,
-                textInputAction: TextInputAction.next,
+                topLabel: const CommonText(
+                  'Date',
+                  textAlign: TextAlign.start,
+                  marginBottom: 0.01,
+                  fontSize: fontH3,
+                ),
+                onTap: () {
+                  CommonDatePicker.showDatePicker(
+                    context,
+                    onConfirm: (DateTime value) {
+                      controller.onConfirmDate(
+                        dateTime: value,
+                        type: FormDateType.inspectedBy,
+                      );
+                    },
+                    currentTime: controller.currentTime,
+                  );
+                },
+                enabled: false,
+                hint: 'select',
+                value:
+                    '${controller.gazSafetyData[formKeyEICRdeclaration][formKeyInspectedDate]}',
+                marginBottom: 0.03,
+                suffix: const Icon(Icons.keyboard_arrow_down),
               ),
               CommonInput(
                 topLabelText: 'Position',
@@ -287,15 +313,41 @@ class EICRFinalPage extends StatelessWidget {
                 keyboardType: TextInputType.name,
                 textInputAction: TextInputAction.next,
               ),
+              // CommonInput(
+              //   topLabelText: 'Date',
+              //   marginTop: 0.025,
+              //   value: controller.gazSafetyData[formKeyEICRdeclaration]
+              //       [formKeyReportDate],
+              //   onChanged: (dynamic value) => controller
+              //       .onChangeDeclarationValue(formKeyReportDate, value),
+              //   keyboardType: TextInputType.datetime,
+              //   textInputAction: TextInputAction.done,
+              // ),
               CommonInput(
-                topLabelText: 'Date',
-                marginTop: 0.025,
-                value: controller.gazSafetyData[formKeyEICRdeclaration]
-                    [formKeyReportDate],
-                onChanged: (dynamic value) => controller
-                    .onChangeDeclarationValue(formKeyReportDate, value),
-                keyboardType: TextInputType.datetime,
-                textInputAction: TextInputAction.done,
+                topLabel: const CommonText(
+                  'Date',
+                  textAlign: TextAlign.start,
+                  marginBottom: 0.01,
+                  fontSize: fontH3,
+                ),
+                onTap: () {
+                  CommonDatePicker.showDatePicker(
+                    context,
+                    onConfirm: (DateTime value) {
+                      controller.onConfirmDate(
+                        dateTime: value,
+                        type: FormDateType.reportBy,
+                      );
+                    },
+                    currentTime: controller.currentTime,
+                  );
+                },
+                enabled: false,
+                hint: 'select',
+                value:
+                    '${controller.gazSafetyData[formKeyEICRdeclaration][formKeyReportDate]}',
+                marginBottom: 0.03,
+                suffix: const Icon(Icons.keyboard_arrow_down),
               ),
             ],
           ),

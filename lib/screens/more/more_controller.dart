@@ -8,11 +8,11 @@ class MoreController extends GetxController {
   String? appVersion;
 
   List<Map<String, dynamic>> moreItems = <Map<String, dynamic>>[
-    <String, dynamic>{
-      keyTitle: 'Customers',
-      keyIcon: iconCustomers,
-      keyOnPress: () => Get.toNamed(routeCustomers),
-    },
+    // <String, dynamic>{
+    //   keyTitle: 'Customers',
+    //   keyIcon: iconCustomers,
+    //   keyOnPress: () => Get.toNamed(routeCustomers),
+    // },
     <String, dynamic>{
       keyTitle: 'Form Templates',
       keyIcon: iconFormTemplate,
