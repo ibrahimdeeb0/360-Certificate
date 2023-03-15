@@ -1069,6 +1069,7 @@ class EicrController extends GetxController {
   }
 
   Future<void> onUpdateCertificate() async {
+    hideKeyboard();
     saveDbCircuitsDataOnFormBody();
     saveObservationsDataBaseBody();
     onPressSave();
@@ -1104,6 +1105,7 @@ class EicrController extends GetxController {
   }
 
   Future<void> onCompleteCertificate() async {
+    hideKeyboard();
     saveDbCircuitsDataOnFormBody();
     saveObservationsDataBaseBody();
     onPressSave();

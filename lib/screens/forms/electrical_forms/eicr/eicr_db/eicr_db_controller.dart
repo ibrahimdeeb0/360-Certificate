@@ -500,6 +500,11 @@ class DistributionBoardController extends GetxController
     'mark_as_completed': false,
   };
 
+  void onToggleCompleted(dynamic value) {
+    childCircuitData['mark_as_completed'] = value;
+    update();
+  }
+
   @override
   void onInit() {
     super.onInit();

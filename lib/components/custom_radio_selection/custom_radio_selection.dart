@@ -4,7 +4,6 @@ class CustomRadioSelection extends StatelessWidget {
   const CustomRadioSelection({
     Key? key,
     this.title,
-    this.leftWidget,
     this.onPress,
     this.isSelected = false,
     this.showRightText = false,
@@ -12,7 +11,6 @@ class CustomRadioSelection extends StatelessWidget {
   }) : super(key: key);
 
   final String? title;
-  final Widget? leftWidget;
   final Function? onPress;
   final bool isSelected;
   final bool showRightText;
@@ -29,7 +27,13 @@ class CustomRadioSelection extends StatelessWidget {
           CommonText(
             title ?? '',
             fontColor: isSelected ? AppColors.primary : AppColors.greyDark,
-            leftChild: leftWidget ?? const SizedBox(),
+            textAlign: TextAlign.start,
+            rowMainAxisSize: MainAxisSize.max,
+            containerStyle: const CommonContainerModel(
+              width: 0.8,
+              alignment: AlignmentDirectional.topStart,
+            ),
+            bottomChild: const SizedBox(),
           ),
           Visibility(
             visible: !showRightText,
