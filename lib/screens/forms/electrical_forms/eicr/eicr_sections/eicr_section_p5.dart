@@ -34,7 +34,12 @@ class EICRSectionE extends StatelessWidget {
                 onTap: () {
                   CommonDatePicker.showDatePicker(
                     context,
-                    onConfirm: controller.onConfirmDate,
+                    onConfirm: (DateTime value) {
+                      controller.onConfirmDate(
+                        dateTime: value,
+                        type: FormDateType.recommendation,
+                      );
+                    },
                     currentTime: controller.currentTime,
                   );
                 },

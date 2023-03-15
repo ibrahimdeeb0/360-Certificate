@@ -40,8 +40,8 @@ class AddFormTemplate extends StatelessWidget {
                       CommonInput(
                         enabled: false,
                         onTap: () {
-                          controller.serviceListForms = controller.listAllForms;
-                          controller.update();
+                          // controller.serviceListForms = controller.listAllForms;
+                          // controller.update();
                           Get.bottomSheet(
                             elevation: 0.0,
                             const SelectFormBT(),

@@ -39,6 +39,7 @@ class EICRSectionD extends StatelessWidget {
               ),
             ),
             maxLines: 6,
+            // textInputAction: TextInputAction.newline,
             marginBottom: 0.025,
           ),
           CommonInput(
@@ -54,7 +55,7 @@ class EICRSectionD extends StatelessWidget {
             marginBottom: 0.03,
           ),
           CommonText(
-            'An unsatisfactory rating indicates that serious and/or potentially dangerous conditions have been identified',
+            'An unsatisfactory rating indicates that serious and/or potentially dangerous conditions have been identified',
             fontColor: AppColors.redBold,
             textAlign: TextAlign.start,
             bottomChild: const SizedBox(),
@@ -72,7 +73,7 @@ class EICRSectionD extends StatelessWidget {
                 formKeyAlternativeSourceD, value),
           ),
           CommonText(
-            '(as indicated in the attached table, if applicable)',
+            '(as indicated in the attached table, if applicable)',
             style: appTextStyles.h4GreyMediumStyle().copyWith(
                   textAlign: TextAlign.start,
                   rowMainAxisSize: MainAxisSize.max,

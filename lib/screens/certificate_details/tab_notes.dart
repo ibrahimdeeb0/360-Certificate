@@ -39,6 +39,19 @@ class NotesTab extends StatelessWidget {
               (dynamic note) => NotesCard(
                 title: note[keyTitle],
                 details: note['body'],
+                onEdit: () {
+                  consoleLogPretty(note);
+                  Get.toNamed(
+                    routeAddNewNote,
+                    arguments: <String, dynamic>{
+                      keyId: controller.certId,
+                      keyStatus: NoteType.noteUpdate,
+                      'id_note': note[keyId],
+                      keyTitle: note[keyTitle],
+                      keyDetails: note['body'],
+                    },
+                  );
+                },
               ),
             ),
             // NotesCard(),
@@ -55,10 +68,12 @@ class NotesCard extends StatelessWidget {
     super.key,
     this.title,
     this.details,
+    this.onEdit,
   });
 
   final String? title;
   final String? details;
+  final Function? onEdit;
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +91,7 @@ class NotesCard extends StatelessWidget {
             rowMainAxisAlignment: MainAxisAlignment.spaceBetween,
             rowMainAxisSize: MainAxisSize.max,
             rightChild: CommonContainer(
-              onPress: () {},
+              onPress: onEdit,
               touchEffect: TouchableEffect(type: TouchTypes.scaleAndFade),
               child: Icon(
                 Icons.edit,

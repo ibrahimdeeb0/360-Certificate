@@ -36,7 +36,7 @@ class ContentPart1 extends StatelessWidget {
                   title: item[keyName],
                   wihBottomBorder: false,
                   onPress: () {
-                    consoleLog('test unActive ');
+                    // consoleLog('test unActive ');
                     const SnackBar snackBar = SnackBar(
                       content: CommonText(
                         'This Form Not Active',

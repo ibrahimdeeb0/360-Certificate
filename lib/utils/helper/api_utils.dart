@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dio/dio.dart' as dio_form_data;
 import 'package:image_picker/image_picker.dart';
 import 'package:url_launcher/url_launcher.dart';
+
 import '../../general_exports.dart';
 
 dynamic addFormDataToJson({
@@ -30,13 +31,16 @@ dynamic imageAsFormData(XFile file) async {
 dynamic customerServiceFormData({
   required List<XFile> files,
   Map<String, dynamic>? jsonObject,
+  String fileKey = 'attachments',
 }) async {
   for (int i = 0; i < files.length; i++) {
-    jsonObject!['attachments[$i]'] = await dio_form_data.MultipartFile.fromFile(
+    //'attachments[$i]'
+    jsonObject![fileKey[i]] = await dio_form_data.MultipartFile.fromFile(
       files[i].path,
       filename: files[i].path.split('/').last,
     );
   }
+  consoleLog(jsonObject);
   return dio_form_data.FormData.fromMap(jsonObject!);
 }
 

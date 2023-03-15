@@ -53,6 +53,7 @@ class CircuitDetailsP2 extends StatelessWidget {
                     ),
                     SmallInputField(
                       title: 'R2',
+                      value: controller.childCircuitData[formKeyR2E],
                       suffix: const CommonText('Ω'),
                       onChanged: (dynamic value) =>
                           controller.onChangeChildeDbValues(formKeyR2E, value),
@@ -112,6 +113,7 @@ class CircuitDetailsP2 extends StatelessWidget {
                     ),
                     SmallInputField(
                       title: 'IR Test Voltage',
+                      value: controller.childCircuitData[formKeyIrTestVoltageF],
                       suffix: const CommonText('v'),
                       onChanged: (dynamic value) => controller
                           .onChangeChildeDbValues(formKeyIrTestVoltageF, value),
@@ -119,6 +121,7 @@ class CircuitDetailsP2 extends StatelessWidget {
                     ),
                     SmallInputField(
                       title: 'Live/Live',
+                      value: controller.childCircuitData[formKeyLiveLiveF],
                       suffix: const CommonText('M Ω'),
                       onChanged: (dynamic value) => controller
                           .onChangeChildeDbValues(formKeyLiveLiveF, value),
@@ -126,6 +129,7 @@ class CircuitDetailsP2 extends StatelessWidget {
                     ),
                     SmallInputField(
                       title: 'Live/Neutral',
+                      value: controller.childCircuitData[formKeyLiveNeutralF],
                       suffix: const CommonText('M Ω'),
                       onChanged: (dynamic value) => controller
                           .onChangeChildeDbValues(formKeyLiveNeutralF, value),
@@ -133,6 +137,7 @@ class CircuitDetailsP2 extends StatelessWidget {
                     ),
                     SmallInputField(
                       title: 'Live/Earth',
+                      value: controller.childCircuitData[formKeyLiveEarthF],
                       suffix: const CommonText('M Ω'),
                       onChanged: (dynamic value) => controller
                           .onChangeChildeDbValues(formKeyLiveEarthF, value),
@@ -140,6 +145,7 @@ class CircuitDetailsP2 extends StatelessWidget {
                     ),
                     SmallInputField(
                       title: 'Neutral/Earth',
+                      value: controller.childCircuitData[formKeyNeutralEarthF],
                       suffix: const CommonText('M Ω'),
                       onChanged: (dynamic value) => controller
                           .onChangeChildeDbValues(formKeyNeutralEarthF, value),
@@ -172,6 +178,7 @@ class CircuitDetailsP2 extends StatelessWidget {
                   children: <Widget>[
                     SmallInputField(
                       title: 'Maximum Measured (Ω)',
+                      value: controller.childCircuitData[formKeyNeutralEarthF],
                       suffix: const CommonText('Ω'),
                       onChanged: (dynamic value) => controller
                           .onChangeChildeDbValues(formKeyNeutralEarthF, value),
@@ -195,6 +202,8 @@ class CircuitDetailsP2 extends StatelessWidget {
                     ),
                     SmallInputField(
                       title: '*Disconnection Time',
+                      value: controller
+                          .childCircuitData[formKeyDisconnectionTimeI],
                       suffix: const CommonText('Ω'),
                       onChanged: (dynamic value) =>
                           controller.onChangeChildeDbValues(
@@ -278,19 +287,21 @@ class CircuitDetailsP2 extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(left: DEVICE_WIDTH * 0.07),
                       child: Switch(
-                        activeColor: Color(AppColors.primary),
-                        activeTrackColor:
-                            Color(AppColors.primary).withOpacity(0.5),
-                        inactiveThumbColor: Colors.blueGrey.shade600,
-                        inactiveTrackColor: Colors.grey.shade400,
-                        splashRadius: 50.0,
-                        value: controller.childCircuitData['mark_as_completed'],
-                        onChanged: (bool value) {
-                          controller.childCircuitData['mark_as_completed'] =
-                              value;
-                          controller.update();
-                        },
-                      ),
+                          activeColor: Color(AppColors.primary),
+                          activeTrackColor:
+                              Color(AppColors.primary).withOpacity(0.5),
+                          inactiveThumbColor: Colors.blueGrey.shade600,
+                          inactiveTrackColor: Colors.grey.shade400,
+                          splashRadius: 50.0,
+                          value:
+                              controller.childCircuitData['mark_as_completed'],
+                          onChanged: controller.onToggleCompleted
+                          // (bool value) {
+                          //   controller.childCircuitData['mark_as_completed'] =
+                          //       value;
+                          //   controller.update();
+                          // },
+                          ),
                     ),
                   ],
                 ),

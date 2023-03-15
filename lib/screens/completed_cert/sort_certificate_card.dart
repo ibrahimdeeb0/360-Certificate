@@ -36,7 +36,7 @@ class SortCertificateCard extends StatelessWidget {
       borderRadius: 0.03,
       paddingHorizontal: 0.03,
       paddingVertical: 0.015,
-      backgroundColor: AppColors.greyBackground,
+      backgroundColor: Colors.grey[100],
       marginBottom: 0.02,
       child: Column(
         children: <Widget>[
@@ -53,7 +53,7 @@ class SortCertificateCard extends StatelessWidget {
               ),
               CommonText(
                 formType ?? 'Gas',
-                fontWeight: FontWeight.bold,
+                // fontWeight: FontWeight.w600,
                 fontSize: fontH3,
                 // marginHorizontal: 0.04,
                 // rightChild: CommonText(

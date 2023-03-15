@@ -3,7 +3,30 @@ import '../../../general_exports.dart';
 class AddFormTemplateController extends GetxController {
   TextEditingController templateController = TextEditingController();
 
-  List<dynamic> listAllForms = <dynamic>[
+  List<Map<String, dynamic>> listAllForms = <Map<String, dynamic>>[
+    // <String, dynamic>{
+    //   keyId: 1,
+    //   keyName: 'Portable Appliance Testing',
+    // },
+    // <String, dynamic>{
+    //   keyId: 3,
+    //   keyName: 'Domestic Electrical Installation Certificate'
+    // },
+    // <String, dynamic>{
+    //   keyId: 4,
+    //   keyName: 'Electrical Danger Notification',
+    // },
+    <String, dynamic>{
+      keyId: 5,
+      keyName: 'Domestic Electrical installation Condition report'
+    },
+    // <String, dynamic>{
+    //   keyId: 9,
+    //   keyName: 'Landlord/Homeowner Gas Safety Record',
+    // },
+  ];
+
+  List<Map<String, dynamic>> unActiveForms = <Map<String, dynamic>>[
     <String, dynamic>{
       keyId: 1,
       keyName: 'Portable Appliance Testing',
@@ -16,10 +39,10 @@ class AddFormTemplateController extends GetxController {
       keyId: 4,
       keyName: 'Electrical Danger Notification',
     },
-    <String, dynamic>{
-      keyId: 5,
-      keyName: 'Domestic Electrical installation Condition report',
-    },
+    // <String, dynamic>{
+    //   keyId: 5,
+    //   keyName: 'Domestic Electrical installation Condition report'
+    // },
     <String, dynamic>{
       keyId: 9,
       keyName: 'Landlord/Homeowner Gas Safety Record',
@@ -30,7 +53,7 @@ class AddFormTemplateController extends GetxController {
 
   Map<String, dynamic>? selectedService;
   Map<String, dynamic>? selectedForm;
-  List<dynamic>? serviceListForms;
+  // List<Map<String, dynamic>>? serviceListForms;
 
   List<int> listIndexService = <int>[];
   List<int> listIndexForm = <int>[];
@@ -66,7 +89,7 @@ class AddFormTemplateController extends GetxController {
         textColor: COMMON_RED_COLOR,
       );
     } else if (listIndexForm.isNotEmpty) {
-      selectedForm = serviceListForms?.elementAt(listIndexForm[0]);
+      selectedForm = listAllForms.elementAt(listIndexForm[0]);
       checkIsPressNext();
       consoleLogPretty(selectedForm);
       Get.back();

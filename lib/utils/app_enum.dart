@@ -12,3 +12,9 @@ enum FormDataStatus {
   editCert,
   editTemp,
 }
+
+enum FormDateType {
+  recommendation,
+  reportBy,
+  inspectedBy,
+}

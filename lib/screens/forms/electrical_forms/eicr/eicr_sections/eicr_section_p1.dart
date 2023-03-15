@@ -26,6 +26,7 @@ class EICRSectionA extends StatelessWidget {
           CommonInput(
             topLabelText: '',
             maxLines: 6,
+            // textInputAction: TextInputAction.newline,
             hint: 'Select or Typing',
             value: controller.gazSafetyData[formKeyReasonProducingA],
             onChanged: (dynamic value) => controller.onChangeFormDataValue(

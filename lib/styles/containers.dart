@@ -258,9 +258,9 @@ class DefaultContainerStyles {
     marginBottom: 0.02,
   );
 
-  CommonContainerModel cardStyle = const CommonContainerModel(
+  CommonContainerModel cardStyle = CommonContainerModel(
     width: 1,
-    backgroundColor: Color(0xffEBE9E9),
+    backgroundColor: Colors.grey[200],
     paddingHorizontal: 0.04,
     paddingVertical: 0.015,
     borderRadius: 0.02,

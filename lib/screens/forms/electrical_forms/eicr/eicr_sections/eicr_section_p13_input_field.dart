@@ -151,7 +151,7 @@ class InputNAButton extends StatelessWidget {
             topLabelText: title,
             width: 0.65,
             maxLines: 2,
-            textInputAction: TextInputAction.newline,
+            // textInputAction: TextInputAction.newline,
             hint: hint,
             value: value,
             onChanged: onChanged,

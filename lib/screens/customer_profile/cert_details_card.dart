@@ -1,5 +1,6 @@
 import '../../general_exports.dart';
 
+//ignore: must_be_immutable
 class CertDetailsCard extends StatefulWidget {
   CertDetailsCard({
     super.key,
