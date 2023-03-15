@@ -1,4 +1,4 @@
-package com.example.certificate360
+package com.app.certificate360
 
 import io.flutter.embedding.android.FlutterActivity
 
