@@ -43,6 +43,8 @@ class MyAppController extends GetxController {
       keyFormRoute: null,
       keyNameTemp: null,
     };
+    consoleLog('cleared general form data successfully',
+        key: 'clear_Cert_Form_Info');
     update();
   }
 

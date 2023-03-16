@@ -19,13 +19,13 @@ class LoginController extends GetxController {
 
   final Dio _dio = Dio();
 
-  @override
-  Future<void> onInit() async {
-    super.onInit();
-    // _fcmToken = await FirebaseMessaging.instance.getToken();
-    consoleLog(_fcmToken, key: 'fcm_token');
-    update();
-  }
+  // @override
+  // Future<void> onInit() async {
+  //   super.onInit();
+  //   // _fcmToken = await FirebaseMessaging.instance.getToken();
+  //   // consoleLog(_fcmToken, key: 'fcm_token');
+  //   update();
+  // }
 
   void visibility() {
     isVisibility = !isVisibility;
@@ -129,9 +129,10 @@ class LoginController extends GetxController {
             Get.offAllNamed(routeCompleteProfile);
           }
         },
-        // onError: (dynamic error) {
-        //   dismissLoading();
-        // },
+        onError: (dynamic error) {
+          consoleLog('value', key: 'testLogin2');
+          // dismissLoading();
+        },
       );
     }
     update();

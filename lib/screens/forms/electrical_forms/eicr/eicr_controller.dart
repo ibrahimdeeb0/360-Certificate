@@ -1153,4 +1153,10 @@ class EicrController extends GetxController {
       }
     }
   }
+
+  @override
+  void onClose() {
+    super.onClose();
+    myAppController.clearCertFormInfo();
+  }
 }
