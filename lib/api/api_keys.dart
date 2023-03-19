@@ -9,6 +9,7 @@ String baseUrl = currentMode == AppMode.dev
 const String apiUserData = 'user_data';
 const String fcmToken = 'fcm_token';
 const String keyName = 'name';
+const String keyEmail = 'email';
 const String keyIsRequired = 'is_required';
 const String keyDetails = 'description';
 const String keyImage = 'image';

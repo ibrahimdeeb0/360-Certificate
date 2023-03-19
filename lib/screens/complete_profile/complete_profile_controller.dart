@@ -19,6 +19,10 @@ class CompleteProfileController extends GetxController {
   SetupStatus setupStatus = SetupStatus.start;
   CurrentPage currentPage = CurrentPage.page0;
 
+  String? fName;
+  String? lName;
+  String? email;
+
   TextEditingController registeredCompanyController = TextEditingController();
   TextEditingController tradingNameController = TextEditingController();
   TextEditingController registrationNumberController = TextEditingController();
@@ -117,6 +121,14 @@ class CompleteProfileController extends GetxController {
   Map<String, dynamic>? addressDetails = <String, dynamic>{};
 
   Map<String, dynamic>? selectedCountry;
+
+  @override
+  void onInit() {
+    super.onInit();
+    fName = Get.arguments['f_name'];
+    lName = Get.arguments['l_name'];
+    email = Get.arguments[keyEmail];
+  }
 
   @override
   void onReady() {
@@ -460,6 +472,13 @@ class CompleteProfileController extends GetxController {
         final dynamic tempUserData = myAppController.userData;
         tempUserData['isProfileComplete'] = true;
         myAppController.onUserUpdated(tempUserData);
+        //
+        homeBottomBarController = Get.put(HomeBottomBarController());
+        homeController = Get.put(HomeController());
+        profileController = Get.put(ProfileController());
+        myAppController = Get.put(MyAppController());
+        certificatesController = Get.put(CertificatesController());
+        //
         Get.offAllNamed(routeHomeBottomBar);
       },
     );

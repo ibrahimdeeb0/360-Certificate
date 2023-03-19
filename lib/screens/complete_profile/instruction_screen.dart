@@ -21,8 +21,8 @@ class Instruction extends StatelessWidget {
               children: <Widget>[
                 0.08.ph,
                 SvgPicture.asset(iconSetup),
-                const CommonText(
-                  'Hello, Nick',
+                CommonText(
+                  'Hello, ${controller.fName}',
                   marginVertical: 0.03,
                   fontWeight: FontWeight.bold,
                   fontSize: fontBigTitle,

@@ -98,7 +98,7 @@ class LoginController extends GetxController {
         },
       ).request(
         onSuccess: (dynamic data, dynamic response) {
-          consoleLog(data['isProfileComplete'], key: 'response_Login');
+          consoleLog(data, key: 'response_Login');
           // myAppController.onUserAuthenticated(response[keyData]);
 
           if (data['user']['email_verified_at'] == null) {
@@ -122,15 +122,22 @@ class LoginController extends GetxController {
 
             Get.offAllNamed(routeHomeBottomBar);
           }
-          // Complete profile not verified
+          // Complete profile not ready
           else {
             myAppController.onUserAuthenticated(response[keyData]);
 
-            Get.offAllNamed(routeCompleteProfile);
+            Get.offAllNamed(
+              routeCompleteProfile,
+              arguments: <String, dynamic>{
+                keyEmail: data['user']['email'],
+                'f_name': data['user']['first_name'],
+                'l_name': data['user']['last_name'],
+              },
+            );
           }
         },
         onError: (dynamic error) {
-          consoleLog('value', key: 'testLogin2');
+          consoleLog('Error : $error', key: 'login_error');
           // dismissLoading();
         },
       );
@@ -146,8 +153,8 @@ class LoginController extends GetxController {
         Get.back();
         Get.back();
         hideKeyboard();
-        consoleLog(value);
-        consoleLog('Success Restore');
+        // consoleLog(value);
+        // consoleLog('Success Restore');
         showMessage(description: 'Your account has been successfully restored');
         update();
         dismissLoading();

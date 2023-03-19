@@ -23,6 +23,19 @@ class MySettings extends StatelessWidget {
                       image: controller.userData['image_profile_url'] == null
                           ? const CircleContainer()
                           : CommonContainer(
+                              // onPress: () {
+                              //   Get.dialog(
+                              //     DialogContainer(
+                              //       child: CachedImage(
+                              //         image:
+                              //             '${controller.userData['image_profile_url']}',
+                              //         width: DEVICE_WIDTH * 1,
+                              //         height: DEVICE_WIDTH * 1,
+                              //         withPlaceHolder: true,
+                              //       ),
+                              //     ),
+                              //   );
+                              // },
                               backgroundColor: AppColors.grey,
                               size: 0.18,
                               borderRadius: 1,
