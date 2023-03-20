@@ -31,8 +31,9 @@ dynamic imageAsFormData(XFile file) async {
 dynamic customerServiceFormData({
   required List<XFile> files,
   Map<String, dynamic>? jsonObject,
-  String fileKey = 'attachments',
+  String fileKey = 'note_files', //attachments
 }) async {
+  consoleLog(files);
   for (int i = 0; i < files.length; i++) {
     //'attachments[$i]'
     jsonObject![fileKey[i]] = await dio_form_data.MultipartFile.fromFile(
@@ -40,8 +41,8 @@ dynamic customerServiceFormData({
       filename: files[i].path.split('/').last,
     );
   }
-  consoleLog(jsonObject);
-  return dio_form_data.FormData.fromMap(jsonObject!);
+  consoleLog(jsonObject!.entries);
+  return dio_form_data.FormData.fromMap(jsonObject);
 }
 
 Future<void> launchMailto(String to) async {
@@ -83,6 +84,34 @@ dynamic addArrayToFormData({
   jsonObject!['customer_signature'] = custSignature;
 
   consoleLog(jsonObject, key: 'Images form data');
+
+  return dio_form_data.FormData.fromMap(jsonObject);
+}
+
+dynamic uploadArrayToFormData({
+  List<XFile>? imagesArray,
+  Map<String, dynamic>? jsonObject,
+}) async {
+  final List<dynamic> images = <dynamic>[];
+  consoleLogPretty(
+    jsonObject,
+  );
+  for (final XFile element in imagesArray!) {
+    consoleLog(element.path);
+    final dynamic value = await dio_form_data.MultipartFile.fromFile(
+      element.path,
+      filename: element.path.split('/').last,
+    );
+    // Read the MultipartFile as a string
+
+    // Do something with the string
+    images.add(value);
+    if (element == imagesArray.last) {
+      jsonObject!['note_files'] = images;
+    }
+  }
+
+  consoleLog(jsonObject!['note_files'], key: 'Images form data');
 
   return dio_form_data.FormData.fromMap(jsonObject);
 }

@@ -55,6 +55,7 @@ class AddNewNotesController extends GetxController {
     final Map<String, dynamic> bodyObject = <String, dynamic>{
       keyTitle: titleNote.text.trim(),
       'body': detailsNote.text.trim(),
+      // 'note_files': [],
     };
     if (status == NoteType.noteNew) {
       ApiRequest(
@@ -66,10 +67,9 @@ class AddNewNotesController extends GetxController {
         // withLoading: true,
         body: selectedImages.isEmpty
             ? bodyObject
-            : await customerServiceFormData(
+            : await uploadArrayToFormData(
                 jsonObject: bodyObject,
-                files: selectedImages,
-                fileKey: 'note_files',
+                imagesArray: selectedImages,
               ),
       ).request(
         onSuccess: (dynamic data, dynamic response) {
@@ -90,14 +90,21 @@ class AddNewNotesController extends GetxController {
         path: '/certificates/$noteId/notes/update',
         className: 'RegisterController/onCreateNote',
         requestFunction: onSave,
+        formatResponse: true,
+        // header: {
+        //   'Content-Type': 'multipart/form-data',
+        //   'Accept': '*/*',
+        // },
         // withLoading: true,
-        body: <String, dynamic>{
-          keyTitle: titleNote.text.trim(),
-          'body': detailsNote.text.trim(),
-          'note_files': '',
-        },
+        body: selectedImages.isEmpty
+            ? bodyObject
+            : await uploadArrayToFormData(
+                jsonObject: bodyObject,
+                imagesArray: selectedImages,
+              ),
       ).request(
         onSuccess: (dynamic data, dynamic response) {
+          dismissLoading();
           if (Get.isRegistered<CertificateDetailsController>()) {
             Get.find<CertificateDetailsController>().getCompetedCert();
           }

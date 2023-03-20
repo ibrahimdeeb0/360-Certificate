@@ -39,7 +39,7 @@ class ProfileController extends GetxController {
       path: keyProfile,
       className: 'MyProfileController/getProfileData',
       requestFunction: getProfileData,
-      // withLoading: true,
+      withLoading: true,
     ).request(
       onSuccess: (dynamic data, dynamic response) {
         myAppController.localStorage.saveToStorage(
