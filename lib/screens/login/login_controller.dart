@@ -19,13 +19,13 @@ class LoginController extends GetxController {
 
   final Dio _dio = Dio();
 
-  @override
-  Future<void> onInit() async {
-    super.onInit();
-    // _fcmToken = await FirebaseMessaging.instance.getToken();
-    consoleLog(_fcmToken, key: 'fcm_token');
-    update();
-  }
+  // @override
+  // Future<void> onInit() async {
+  //   super.onInit();
+  //   // _fcmToken = await FirebaseMessaging.instance.getToken();
+  //   // consoleLog(_fcmToken, key: 'fcm_token');
+  //   update();
+  // }
 
   void visibility() {
     isVisibility = !isVisibility;
@@ -98,7 +98,7 @@ class LoginController extends GetxController {
         },
       ).request(
         onSuccess: (dynamic data, dynamic response) {
-          consoleLog(data['isProfileComplete'], key: 'response_Login');
+          consoleLog(data, key: 'response_Login');
           // myAppController.onUserAuthenticated(response[keyData]);
 
           if (data['user']['email_verified_at'] == null) {
@@ -122,16 +122,24 @@ class LoginController extends GetxController {
 
             Get.offAllNamed(routeHomeBottomBar);
           }
-          // Complete profile not verified
+          // Complete profile not ready
           else {
             myAppController.onUserAuthenticated(response[keyData]);
 
-            Get.offAllNamed(routeCompleteProfile);
+            Get.offAllNamed(
+              routeCompleteProfile,
+              arguments: <String, dynamic>{
+                keyEmail: data['user']['email'],
+                'f_name': data['user']['first_name'],
+                'l_name': data['user']['last_name'],
+              },
+            );
           }
         },
-        // onError: (dynamic error) {
-        //   dismissLoading();
-        // },
+        onError: (dynamic error) {
+          consoleLog('Error : $error', key: 'login_error');
+          // dismissLoading();
+        },
       );
     }
     update();
@@ -145,8 +153,8 @@ class LoginController extends GetxController {
         Get.back();
         Get.back();
         hideKeyboard();
-        consoleLog(value);
-        consoleLog('Success Restore');
+        // consoleLog(value);
+        // consoleLog('Success Restore');
         showMessage(description: 'Your account has been successfully restored');
         update();
         dismissLoading();

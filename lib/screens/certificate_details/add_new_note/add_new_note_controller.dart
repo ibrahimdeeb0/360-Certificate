@@ -7,6 +7,7 @@ class AddNewNotesController extends GetxController {
   TextEditingController detailsNote = TextEditingController();
   int? certId;
   int? noteId;
+  List<dynamic> images = <dynamic>[];
 
   NoteType? status;
 
@@ -24,8 +25,11 @@ class AddNewNotesController extends GetxController {
       noteId = Get.arguments['id_note'];
       titleNote.text = Get.arguments[keyTitle];
       detailsNote.text = Get.arguments[keyDetails];
+      images = Get.arguments['images'];
+      consoleLogPretty(images, key: 'images');
     }
-    consoleLog('certId: $certId || noteId: $noteId ', key: 'arguments');
+    consoleLog('certId: $certId || noteId: $noteId || ${Get.arguments}',
+        key: 'arguments');
     update();
   }
 
@@ -55,7 +59,9 @@ class AddNewNotesController extends GetxController {
     final Map<String, dynamic> bodyObject = <String, dynamic>{
       keyTitle: titleNote.text.trim(),
       'body': detailsNote.text.trim(),
+      'files_id': deletedImages,
     };
+    consoleLog(deletedImages, key: 'deletedImages');
     if (status == NoteType.noteNew) {
       ApiRequest(
         shouldShowMessage: false,
@@ -63,13 +69,11 @@ class AddNewNotesController extends GetxController {
         path: '/certificates/$certId/notes/create',
         className: 'RegisterController/onCreateNote',
         requestFunction: onSave,
-        // withLoading: true,
         body: selectedImages.isEmpty
             ? bodyObject
-            : await customerServiceFormData(
+            : await uploadArrayToFormData(
                 jsonObject: bodyObject,
-                files: selectedImages,
-                fileKey: 'note_files',
+                imagesArray: selectedImages,
               ),
       ).request(
         onSuccess: (dynamic data, dynamic response) {
@@ -77,27 +81,35 @@ class AddNewNotesController extends GetxController {
             Get.find<CertificateDetailsController>().getCompetedCert();
           }
           Get.back();
-          // update();
+          update();
         },
         onError: (dynamic error) {
           dismissLoading();
         },
       );
     } else if (status == NoteType.noteUpdate) {
+      consoleLogPretty(bodyObject);
       ApiRequest(
         shouldShowMessage: false,
         method: ApiMethods.post,
         path: '/certificates/$noteId/notes/update',
         className: 'RegisterController/onCreateNote',
         requestFunction: onSave,
-        // withLoading: true,
-        body: <String, dynamic>{
-          keyTitle: titleNote.text.trim(),
-          'body': detailsNote.text.trim(),
-          'note_files': '',
-        },
+        withLoading: true,
+        body: selectedImages.isEmpty
+            ? bodyObject
+            : await uploadArrayToFormData(
+                jsonObject: <String, dynamic>{
+                  keyTitle: titleNote.text.trim(),
+                  'body': detailsNote.text.trim(),
+                  // 'note_files': <dynamic>[],
+                  'files_id[]': deletedImages,
+                },
+                imagesArray: selectedImages,
+              ),
       ).request(
         onSuccess: (dynamic data, dynamic response) {
+          dismissLoading();
           if (Get.isRegistered<CertificateDetailsController>()) {
             Get.find<CertificateDetailsController>().getCompetedCert();
           }
@@ -160,5 +172,17 @@ class AddNewNotesController extends GetxController {
       update();
       consoleLog(selectedImages, key: 'selectedImages');
     }
+  }
+
+  List<int> deletedImages = <int>[];
+  void onDeleteImage(Map<String, dynamic> image) {
+    hideKeyboard();
+    // consoleLog(deletedImages.contains(image['id']));
+    if (!deletedImages.contains(image['id'])) {
+      deletedImages.add(image['id']);
+    }
+    consoleLog(deletedImages);
+    images.removeWhere((dynamic item) => item[keyId] == image[keyId]);
+    update();
   }
 }

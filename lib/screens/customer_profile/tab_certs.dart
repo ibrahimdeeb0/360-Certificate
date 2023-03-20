@@ -15,6 +15,13 @@ class CertsTab extends StatelessWidget {
             0.02.ph,
             ...controller.certData.map(
               (dynamic item) => CertDetailsCard(
+                onDetails: () => Get.toNamed(
+                  routeCertificateDetails,
+                  arguments: <String, dynamic>{
+                    keyId: item[keyId],
+                    'customer_id': item['customer_id'],
+                  },
+                ),
                 certId: '#${item[keyId]}',
                 certDate: DateFormat('dd/MM/yyyy')
                     .format(DateTime.parse(item['created_at'])),

@@ -21,8 +21,8 @@ class CompleteProfileDone extends StatelessWidget {
               children: <Widget>[
                 0.08.ph,
                 SvgPicture.asset(iconSetupDone),
-                const CommonText(
-                  'Great Nick, You are now ready to start using 360 connect!',
+                CommonText(
+                  'Great ${controller.fName}, You are now ready to start using 360 connect!',
                   marginVertical: 0.03,
                   textAlign: TextAlign.start,
                   fontWeight: FontWeight.bold,

@@ -89,7 +89,7 @@ class CertTab extends StatelessWidget {
                     // await OpenFilex.open(
                     //   controller.pdfFilePath,
                     // );
-                    controller.preparePDF();
+                    controller.getPdfPath();
                   },
                   style: appContainerStyles.cardStyle,
                   paddingVertical: 0.01,

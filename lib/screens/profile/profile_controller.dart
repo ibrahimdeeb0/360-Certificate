@@ -39,7 +39,7 @@ class ProfileController extends GetxController {
       path: keyProfile,
       className: 'MyProfileController/getProfileData',
       requestFunction: getProfileData,
-      withLoading: true,
+      // withLoading: true,
     ).request(
       onSuccess: (dynamic data, dynamic response) {
         myAppController.localStorage.saveToStorage(
@@ -101,13 +101,14 @@ class ProfileController extends GetxController {
 
   Future<void> onUpdateProfileData() async {
     hideKeyboard();
-    startLoading();
+    // startLoading();
     if (fileImage == null) {
       ApiRequest(
         method: ApiMethods.put,
         path: keyProfileUpdate,
         className: 'MyProfileController/onUpdateProfileData',
         requestFunction: onUpdateProfileData,
+        withLoading: true,
         body: <String, dynamic>{
           'first_name': firstNameController.text.isEmpty
               ? '${userDataProfile['first_name']}'
@@ -139,6 +140,7 @@ class ProfileController extends GetxController {
         path: keyProfileUpdate,
         className: 'MyProfileController/onUpdateProfileData',
         requestFunction: onUpdateProfileData,
+        withLoading: true,
         body: await addFormDataToJson(
           file: fileImage,
           jsonObject: <String, dynamic>{

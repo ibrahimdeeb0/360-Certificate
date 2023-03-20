@@ -42,7 +42,7 @@ class More extends StatelessWidget {
                       onPress: item[keyOnPress],
                     ),
                   ),
-                  SizedBox(height: DEVICE_HEIGHT * 0.1),
+                  SizedBox(height: DEVICE_HEIGHT * 0.25),
                   GetBuilder<MoreController>(
                     init: MoreController(),
                     builder: (MoreController controller) {

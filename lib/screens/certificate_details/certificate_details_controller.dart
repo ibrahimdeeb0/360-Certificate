@@ -1,4 +1,7 @@
+import 'package:advance_pdf_viewer/advance_pdf_viewer.dart';
+import 'package:flutter/services.dart';
 import 'package:open_filex/open_filex.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../general_exports.dart';
 
@@ -163,6 +166,59 @@ class CertificateDetailsController extends GetxController
         certDetails['form_data']['data'];
 
     Get.toNamed(routeFormEICR);
+  }
+
+  late PDFDocument pdf;
+  Future<void> onOpenPdf() async {
+    // Load the pdf file from the internet
+    // pdf = await PDFDocument.fromURL(
+    //     'https://www.kindacode.com/wp-content/uploads/2021/07/test.pdf');
+
+    try {
+      await launchUrl(
+        Uri.parse(pdfFilePath!),
+        mode: LaunchMode.inAppWebView,
+      );
+    } on PlatformException catch (error) {
+      // Handle the exception here, for example by showing an error message to the user.
+      consoleLog('Error launching URL: $error', key: 'error');
+    }
+  }
+
+  Future<void> getPdfPath() async {
+    hideKeyboard();
+
+    ApiRequest(
+      path: '/certificates/$certId/pdf',
+      className: 'CertificateDetailsController/getPdfPath',
+      requestFunction: getPdfPath,
+      withLoading: true,
+      // formatResponse: true,
+    ).request(
+      onSuccess: (dynamic data, dynamic response) async {
+        pdfFilePath = data[keyUrl];
+
+        await launchUrl(
+          Uri.parse(pdfFilePath!),
+          mode: LaunchMode.externalNonBrowserApplication,
+        );
+
+        // onOpenPdf();
+        // await OpenFilex.open(
+        //   pdfFilePath,
+        // );
+        // Load the pdf file from the internet
+        // pdf = await PDFDocument.fromURL(pdfFilePath!);
+        // pdf = await PDFDocument.fromURL(
+        //         'https://www.kindacode.com/wp-content/uploads/2021/07/test.pdf')
+        //     .then((PDFDocument value) {
+        //   Get.to(() => const ShowPdf());
+        //   return value;
+        // });
+
+        update();
+      },
+    );
   }
 
   @override

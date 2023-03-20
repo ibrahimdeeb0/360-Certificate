@@ -13,6 +13,7 @@ class CertDetailsCard extends StatefulWidget {
     this.certPayStatus,
     this.certStatus,
     this.siteName,
+    this.onDetails,
   });
 
   bool? toggle;
@@ -24,6 +25,7 @@ class CertDetailsCard extends StatefulWidget {
   final String? certPayStatus;
   final String? certStatus;
   final String? siteName;
+  final Function? onDetails;
 
   @override
   State<CertDetailsCard> createState() => _CertDetailsCardState();
@@ -54,19 +56,41 @@ class _CertDetailsCardState extends State<CertDetailsCard> {
                 subTitle: widget.certDate ?? '',
               ),
               // Arrow Button
-              CommonContainer(
-                onPress: () {
-                  setState(() {
-                    widget.toggle = !widget.toggle!;
-                    widget.flexCard = false;
-                  });
-                },
-                touchEffect: TouchableEffect(type: TouchTypes.scaleAndFade),
-                child: Icon(
-                  widget.toggle!
-                      ? Icons.keyboard_arrow_up
-                      : Icons.keyboard_arrow_down,
-                ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  CommonText(
+                    'More Details',
+                    onPress: widget.onDetails,
+                    fontSize: fontH3,
+                    fontColor: AppColors.orange,
+                    containerStyle: CommonContainerModel(
+                      borderRadius: 0.04,
+                      borderWidth: 1,
+                      borderColor: AppColors.orange,
+                      paddingHorizontal: 0.014,
+                      paddingVertical: 0.005,
+                      marginBottom: 0.01,
+                    ),
+                  ),
+                  CommonContainer(
+                    // backgroundColor: Colors.amber,
+                    onPress: () {
+                      setState(() {
+                        widget.toggle = !widget.toggle!;
+                        widget.flexCard = false;
+                      });
+                    },
+                    touchEffect: TouchableEffect(type: TouchTypes.scaleAndFade),
+                    child: Icon(
+                      widget.toggle!
+                          ? Icons.keyboard_arrow_up
+                          : Icons.keyboard_arrow_down,
+                      size: (0.03.flexWidth + 0.02.flexHeight),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
