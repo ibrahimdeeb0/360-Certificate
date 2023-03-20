@@ -186,16 +186,3 @@ class AddNewNotesController extends GetxController {
     update();
   }
 }
-
- // ApiRequest(
-    //   method: ApiMethods.post,
-    //   path: '/certificates/$noteId/notes/$idImage/delete',
-    //   className: 'AddNewNotesController/onDeleteImage',
-    //   requestFunction: onDeleteImage,
-    //   body: <String, dynamic>{},
-    // ).request(
-    //   onSuccess: (dynamic data, dynamic response) {
-    //     update();
-    //   },
-    //   onError: (dynamic error) {},
-    // );
