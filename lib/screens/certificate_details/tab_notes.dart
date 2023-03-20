@@ -39,6 +39,7 @@ class NotesTab extends StatelessWidget {
               (dynamic note) => NotesCard(
                 title: note[keyTitle],
                 details: note['body'],
+                images: note['files'],
                 onEdit: () {
                   consoleLogPretty(note);
                   Get.toNamed(
@@ -49,6 +50,7 @@ class NotesTab extends StatelessWidget {
                       'id_note': note[keyId],
                       keyTitle: note[keyTitle],
                       keyDetails: note['body'],
+                      'images': note['files'],
                     },
                   );
                 },
@@ -69,11 +71,13 @@ class NotesCard extends StatelessWidget {
     this.title,
     this.details,
     this.onEdit,
+    this.images,
   });
 
   final String? title;
   final String? details;
   final Function? onEdit;
+  final List<dynamic>? images;
 
   @override
   Widget build(BuildContext context) {
@@ -107,6 +111,37 @@ class NotesCard extends StatelessWidget {
             textAlign: TextAlign.start,
             marginVertical: 0.015,
           ),
+          if (images!.isNotEmpty)
+            GridView.builder(
+              // padding: EdgeInsets.only(
+              //   bottom: DEVICE_HEIGHT * 0.02,
+              // ),
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: images?.length,
+              shrinkWrap: true,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 4,
+                // mainAxisExtent: DEVICE_HEIGHT * 0.1,
+                // crossAxisSpacing: DEVICE_HEIGHT * 0.01,
+              ),
+              itemBuilder: (BuildContext context, int index) {
+                return CommonContainer(
+                  borderRadius: 0.02,
+                  backgroundColor: Colors.black12,
+                  size: 0.2,
+                  marginTop: 0.02,
+                  clipBehavior: Clip.hardEdge,
+                  marginRight: 0.04,
+                  child: CachedImage(
+                    image: '${images?[index]['url']}',
+                    withPlaceHolder: true,
+                    fit: BoxFit.cover,
+                    width: 1.flexWidth,
+                    height: 1.flexHeight,
+                  ),
+                );
+              },
+            ),
         ],
       ),
     );

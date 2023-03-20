@@ -93,25 +93,22 @@ dynamic uploadArrayToFormData({
   Map<String, dynamic>? jsonObject,
 }) async {
   final List<dynamic> images = <dynamic>[];
-  consoleLogPretty(
-    jsonObject,
-  );
+
   for (final XFile element in imagesArray!) {
-    consoleLog(element.path);
     final dynamic value = await dio_form_data.MultipartFile.fromFile(
       element.path,
       filename: element.path.split('/').last,
     );
-    // Read the MultipartFile as a string
+    // Read the MultipartFile "The Images" as a string
 
-    // Do something with the string
+    // Move this string of Images values to it's key
     images.add(value);
     if (element == imagesArray.last) {
-      jsonObject!['note_files'] = images;
+      jsonObject!['note_files[]'] = images;
     }
+
+    consoleLog(jsonObject!.entries, key: 'Form_Data');
   }
 
-  consoleLog(jsonObject!['note_files'], key: 'Images form data');
-
-  return dio_form_data.FormData.fromMap(jsonObject);
+  return dio_form_data.FormData.fromMap(jsonObject!);
 }

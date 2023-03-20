@@ -1098,6 +1098,7 @@ class EicrController extends GetxController {
       myAppController.clearCertFormInfo();
       certificatesController.getAllCert();
       homeController.getCertCount();
+      profileController.getProfileData();
       Get.offAllNamed(routeHomeBottomBar);
     }, onError: (dynamic error) {
       dismissLoading();
@@ -1133,6 +1134,7 @@ class EicrController extends GetxController {
         myAppController.clearCertFormInfo();
         certificatesController.getAllCert();
         homeController.getCertCount();
+        profileController.getProfileData();
         Get.offAllNamed(routeHomeBottomBar);
         // Get.toNamed(
         //   routeCertificateDetails,
