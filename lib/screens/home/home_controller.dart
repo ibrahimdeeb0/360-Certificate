@@ -11,7 +11,7 @@ class HomeController extends GetxController {
   void onReady() {
     super.onReady();
     // getFormsData();
-    getCertCount();
+  getCertCount();
   }
 
   Future<void> getFormsData() async {

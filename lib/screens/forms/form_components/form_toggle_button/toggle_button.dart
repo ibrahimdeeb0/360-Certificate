@@ -9,6 +9,8 @@ class FormToggleButton extends StatelessWidget {
     this.onChangeValue,
     this.toggleType,
     this.textWidget,
+    this.textWidth,
+    this.axisAlignment = CrossAxisAlignment.start,
     Key? key,
   }) : super(key: key);
 
@@ -19,6 +21,8 @@ class FormToggleButton extends StatelessWidget {
   final Function(String)? onChangeValue;
   final FormToggleType? toggleType;
   final Widget? textWidget;
+  final double? textWidth;
+  final CrossAxisAlignment axisAlignment;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +31,7 @@ class FormToggleButton extends StatelessWidget {
       marginBottom: 0.02,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: axisAlignment,
         children: <Widget>[
           if (textWidget == null)
             CommonText(
@@ -35,8 +39,8 @@ class FormToggleButton extends StatelessWidget {
               fontSize: titleSize,
               style: appTextStyles.textStartStyle,
               bottomChild: const SizedBox(),
-              containerStyle: const CommonContainerModel(
-                width: 0.65,
+              containerStyle: CommonContainerModel(
+                width: textWidth ?? 0.65,
                 marginRight: 0.02,
               ),
             )
