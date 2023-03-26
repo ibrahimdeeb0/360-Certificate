@@ -93,6 +93,7 @@ class CustomerInfo extends StatelessWidget {
           hint: 'Street Number And Name',
           marginBottom: 0.012,
           controller: controller.customerStreetController,
+          enabled: false,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -105,6 +106,7 @@ class CustomerInfo extends StatelessWidget {
               controller: controller.customerCityController,
               width: 0.43,
               marginBottom: 0.012,
+              enabled: false,
             ),
             CommonInput(
               topLabel: const TopLabelText(
@@ -114,6 +116,7 @@ class CustomerInfo extends StatelessWidget {
               controller: controller.customerPostcodeController,
               width: 0.43,
               marginBottom: 0.012,
+              enabled: false,
             ),
           ],
         ),
@@ -125,14 +128,14 @@ class CustomerInfo extends StatelessWidget {
           marginBottom: 0.012,
           suffix: const Icon(Icons.keyboard_arrow_down),
           enabled: false,
-          onTap: () {
-            controller.getCountries();
-            Get.bottomSheet(
-              const SelectCountry1(),
-              isScrollControlled: true,
-              elevation: 0.0,
-            );
-          },
+          // onTap: () {
+          //   controller.getCountries();
+          //   Get.bottomSheet(
+          //     const SelectCountry1(),
+          //     isScrollControlled: true,
+          //     elevation: 0.0,
+          //   );
+          // },
         ),
         CommonText(
           'Customer Details Are The Same As The Billing Details ?',
