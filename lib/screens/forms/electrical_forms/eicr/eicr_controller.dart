@@ -85,7 +85,10 @@ class EicrController extends GetxController {
     formKeyOverallAssessmentD: '',
     formKeyAlternativeSourceD: 'N/A',
     //
-    formKeyRecommendationsE: '',
+    formKeyMonthYearRecommendationsE: '',
+    formKeyYearsRecommendationsE: '',
+    formKeyMonthRecommendationsE: '',
+    formKeyReasonRecommendationsE: '',
     formKeyScheduleInspectionE: 'N/A',
     formKeyScheduleTestE: 'N/A',
     // Page 3
@@ -673,7 +676,7 @@ class EicrController extends GetxController {
 
   @override
   Future<void> onReady() async {
-    gazSafetyData[formKeyRecommendationsE] =
+    gazSafetyData[formKeyYearsRecommendationsE] =
         currentTime.toString().split(' ').first;
     gazSafetyData[formKeyEICRdeclaration][formKeyInspectedDate] =
         currentTime.toString().split(' ').first;
@@ -703,7 +706,7 @@ class EicrController extends GetxController {
     switch (type) {
       case FormDateType.recommendation:
         {
-          gazSafetyData[formKeyRecommendationsE] =
+          gazSafetyData[formKeyYearsRecommendationsE] =
               dateTime.toString().split(' ').first;
         }
         break;
@@ -724,6 +727,28 @@ class EicrController extends GetxController {
     }
 
     update();
+  }
+
+  void onSelectYear(int value) {
+    gazSafetyData[formKeyYearsRecommendationsE] = '$value';
+    gazSafetyData[formKeyMonthRecommendationsE] = '';
+    gazSafetyData[formKeyMonthYearRecommendationsE] = 'years';
+    consoleLog(gazSafetyData[formKeyMonthYearRecommendationsE], key: 'month');
+    update();
+    if (Get.isBottomSheetOpen!) {
+      Get.back();
+    }
+  }
+
+  void onSelectMonth(String value) {
+    gazSafetyData[formKeyMonthRecommendationsE] = value;
+    gazSafetyData[formKeyYearsRecommendationsE] = '';
+    gazSafetyData[formKeyMonthYearRecommendationsE] = 'months';
+    consoleLog(gazSafetyData[formKeyMonthYearRecommendationsE], key: 'month');
+    update();
+    if (Get.isBottomSheetOpen!) {
+      Get.back();
+    }
   }
 
   //* Circuit - Page Numbers *//

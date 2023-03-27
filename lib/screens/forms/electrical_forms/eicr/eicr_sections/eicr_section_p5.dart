@@ -11,6 +11,7 @@ class EICRSectionE extends StatelessWidget {
       children: <Widget>[
         CommonContainer(
           style: appContainerStyles.formSectionsStyle,
+          marginBottom: 0.0,
           child: Column(
             children: <Widget>[
               const CustomTextFormTitle(
@@ -32,22 +33,36 @@ class EICRSectionE extends StatelessWidget {
                   fontSize: fontH3,
                 ),
                 onTap: () {
-                  CommonDatePicker.showDatePicker(
-                    context,
-                    onConfirm: (DateTime value) {
-                      controller.onConfirmDate(
-                        dateTime: value,
-                        type: FormDateType.recommendation,
-                      );
-                    },
-                    currentTime: controller.currentTime,
-                  );
+                  Get.bottomSheet(const SelectDateSheet());
+                  // CommonDatePicker.showPicker(context);
+                  // CommonDatePicker.showDatePicker(
+                  //   context,
+                  //   onConfirm: (DateTime value) {
+                  //     controller.onConfirmDate(
+                  //       dateTime: value,
+                  //       type: FormDateType.recommendation,
+                  //     );
+                  //   },
+                  //   currentTime: controller.currentTime,
+                  // );
                 },
                 enabled: false,
                 hint: 'select',
-                value: '${controller.gazSafetyData[formKeyRecommendationsE]}',
-                marginBottom: 0.03,
+                value: controller.gazSafetyData[formKeyYearsRecommendationsE] !=
+                        ''
+                    ? controller.gazSafetyData[formKeyYearsRecommendationsE]
+                    : controller.gazSafetyData[formKeyMonthRecommendationsE],
+                marginBottom: 0.02,
                 suffix: const Icon(Icons.keyboard_arrow_down),
+              ),
+              CommonInput(
+                topLabelText: 'Type reason for recommendation: ',
+                hint: 'type...',
+                marginBottom: 0.015,
+                maxLines: 3,
+                value: controller.gazSafetyData[formKeyReasonRecommendationsE],
+                onChanged: (dynamic value) => controller.onChangeFormDataValue(
+                    formKeyReasonRecommendationsE, value),
               ),
             ],
           ),

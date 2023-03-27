@@ -27,9 +27,12 @@ const String formKeyOperationalLimitationC = 'operational_limitation_c';
 const String formKeyGeneralConditionD = 'general_condition_d';
 const String formKeyOverallAssessmentD = 'overall_assessment_d';
 const String formKeyAlternativeSourceD = 'alternative_source_d';
-const String formKeyRecommendationsE = 'recommendations_d';
-const String formKeyScheduleInspectionE = 'schedule_inspection_d';
-const String formKeyScheduleTestE = 'schedule_test_d';
+const String formKeyMonthYearRecommendationsE = 'recommendations_month_year_e';
+const String formKeyMonthRecommendationsE = 'recommendations_month_e';
+const String formKeyYearsRecommendationsE = 'recommendations_year_e';
+const String formKeyReasonRecommendationsE = 'reason_recommendations_e';
+const String formKeyScheduleInspectionE = 'schedule_inspection_e';
+const String formKeyScheduleTestE = 'schedule_test_e';
 
 // Page 4
 const String formKeyConfirmationSupplyF = 'confirmation_of_supply_f';
@@ -305,6 +308,7 @@ const String formKeyTestButtonJ = 'testButton_j';
 //* Observation Details
 const String formKeyObservationDetails = 'observation_details';
 const String formKeyObservationCode = 'observation_code';
+const String formKeyObservationLocationReference = 'observation_location_reference';
 //* Remarks
 const String formKeyRemarks = 'remarks';
 //* Declaration

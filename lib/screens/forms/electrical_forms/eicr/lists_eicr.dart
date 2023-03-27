@@ -879,6 +879,14 @@ class EICRListsForm {
     'F1',
   ];
 
+  List<String> observationLocationRef = <String>[
+    'Kitchen',
+    'Bathroom',
+    'Hallway',
+    'Bedroom',
+    'Other',
+  ];
+
   List<Map<String, dynamic>> observationDetails = <Map<String, dynamic>>[
     <String, dynamic>{
       keyTitle: 'C1',

@@ -20,6 +20,7 @@ class ObservationSelectBT extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: <Widget>[
+            0.015.ph,
             ...listTitles
                 .map(
                   (String title) => ListOfStrings(
