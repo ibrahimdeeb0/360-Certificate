@@ -11,6 +11,7 @@ class FormToggleButton extends StatelessWidget {
     this.textWidget,
     this.textWidth,
     this.axisAlignment = CrossAxisAlignment.start,
+    this.isBtnBox = false,
     Key? key,
   }) : super(key: key);
 
@@ -23,6 +24,7 @@ class FormToggleButton extends StatelessWidget {
   final Widget? textWidget;
   final double? textWidth;
   final CrossAxisAlignment axisAlignment;
+  final bool isBtnBox;
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +63,9 @@ class FormToggleButton extends StatelessWidget {
                   controller.onChangeCurrentValue();
                   onChangeValue?.call(controller.currentValue!);
                 },
-                containerStyle: appContainerStyles.formToggleStyle,
+                containerStyle: appContainerStyles.formToggleStyle.copyWith(
+                  size: isBtnBox ? 0.14 : null,
+                ),
               );
             },
           ),

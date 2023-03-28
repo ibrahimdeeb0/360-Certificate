@@ -1,7 +1,9 @@
 import '../../../../../general_exports.dart';
 
 class LandlordPage2 extends StatelessWidget {
-  const LandlordPage2({super.key});
+  const LandlordPage2({super.key, this.controller});
+
+  final LandlordSafetyController? controller;
 
   @override
   Widget build(BuildContext context) {
@@ -9,6 +11,25 @@ class LandlordPage2 extends StatelessWidget {
       children: <Widget>[
         CommonContainer(
           style: appContainerStyles.formSectionsStyle,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              CustomTextFormTitle(
+                leftText: 'Part 3. ',
+                text: 'Details of work carried out'.capitalize,
+                marginBottom: 0.02,
+              ),
+              const CommonInput(
+                hint: '',
+                maxLines: 4,
+                marginBottom: 0.012,
+              ),
+            ],
+          ),
+        ),
+        CommonContainer(
+          style: appContainerStyles.formSectionsStyle,
+          marginTop: 0.0,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -71,66 +92,25 @@ class LandlordPage2 extends StatelessWidget {
             ],
           ),
         ),
-        CommonContainer(
-          style: appContainerStyles.formSectionsStyle,
-          marginTop: 0.0,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              CustomTextFormTitle(
-                leftText: 'Part 4. ',
-                text: 'Any Defects Identified'.capitalize,
-                marginBottom: 0.02,
-              ),
-              CommonText(
-                'Defects Identified',
-                rowMainAxisSize: MainAxisSize.max,
-                rowMainAxisAlignment: MainAxisAlignment.spaceBetween,
-                fontWeight: FontWeight.w600,
-                fontColor: Colors.grey[700],
-                rightChild: CommonText(
-                  'Warning Notice Issue',
-                  fontWeight: FontWeight.w600,
-                  fontColor: Colors.grey[700],
-                ),
-                containerStyle: const CommonContainerModel(
-                  marginBottom: 0.02,
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(
-                    left: 0.01.flexWidth, top: 0.015.flexHeight),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        CommonText(
-                          '1',
-                          fontColor: Colors.grey[700],
-                          fontWeight: FontWeight.bold,
-                          fontSize: fontH2,
-                          marginRight: 0.01,
-                          marginBottom: 0.04,
-                        ),
-                        const CommonInput(
-                          width: 0.6,
-                          maxLines: 2,
-                        ),
-                        const FormToggleButton(
-                          textWidth: 0.0,
-                          title: '',
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
       ],
+    );
+  }
+}
+
+class PrefixTextNum extends StatelessWidget {
+  const PrefixTextNum({
+    super.key,
+    this.num,
+  });
+  final String? num;
+
+  @override
+  Widget build(BuildContext context) {
+    return CommonText(
+      num ?? '',
+      fontColor: Colors.grey[500],
+      fontWeight: FontWeight.bold,
+      fontSize: fontH2,
     );
   }
 }

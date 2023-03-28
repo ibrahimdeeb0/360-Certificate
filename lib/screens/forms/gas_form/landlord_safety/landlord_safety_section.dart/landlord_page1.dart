@@ -1,7 +1,9 @@
 import '../../../../../general_exports.dart';
 
 class LandlordPage1 extends StatelessWidget {
-  const LandlordPage1({super.key});
+  const LandlordPage1({super.key, this.controller});
+
+  final LandlordSafetyController? controller;
 
   @override
   Widget build(BuildContext context) {
@@ -75,25 +77,7 @@ class LandlordPage1 extends StatelessWidget {
           ),
         ),
 
-        CommonContainer(
-          style: appContainerStyles.formSectionsStyle,
-          marginTop: 0.0,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              CustomTextFormTitle(
-                leftText: 'Part 3. ',
-                text: 'Details of work carried out'.capitalize,
-                marginBottom: 0.02,
-              ),
-              const CommonInput(
-                hint: '',
-                maxLines: 4,
-                marginBottom: 0.012,
-              ),
-            ],
-          ),
-        ),
+        
       ],
     );
   }
