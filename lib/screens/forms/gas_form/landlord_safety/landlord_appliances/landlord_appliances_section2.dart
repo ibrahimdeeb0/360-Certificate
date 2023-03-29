@@ -9,50 +9,46 @@ class LandLordApplianceSection2 extends StatelessWidget {
       init: LandlordAppliancesController(),
       builder: (LandlordAppliancesController controller) {
         return Column(
-          children: <Widget>[
-            CustomTextFormTitle(
-              leftText: '',
-              text: 'Inspection Details'.toUpperCase(),
-              marginBottom: 0.03,
-            ),
-            const SmallInputField(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const <Widget>[
+            SmallInputField(
               title:
                   'Operating pressure in embar and/or heat input kW/h or Btu/h',
               hint: '',
               isInputSelection: true,
               marginBottom: 0.02,
             ),
-            const SmallInputField(
+            SmallInputField(
               title: 'Operating of safety devices(s) Pass/Fail/NA',
               hint: '',
               isInputSelection: true,
               marginBottom: 0.02,
             ),
-            const SmallInputField(
+            SmallInputField(
               title: 'Ventilation satisfactory Yes/No?',
               hint: '',
               isInputSelection: true,
               marginBottom: 0.02,
             ),
-            const SmallInputField(
+            SmallInputField(
               title: 'Visual condition of flue and termination',
               hint: '',
               isInputSelection: true,
               marginBottom: 0.02,
             ),
-            const SmallInputField(
+            SmallInputField(
               title: 'Flue operation checks',
               hint: '',
               isInputSelection: true,
               marginBottom: 0.02,
             ),
-            const SmallInputField(
+            SmallInputField(
               title: 'Combustion analyses reading (if applicable)',
               hint: '',
               isInputSelection: true,
               marginBottom: 0.02,
             ),
-            const SmallInputField(
+            SmallInputField(
               title: 'Serviced Yes/No?',
               hint: '',
               isInputSelection: true,

@@ -9,25 +9,21 @@ class LandLordApplianceSection3 extends StatelessWidget {
       init: LandlordAppliancesController(),
       builder: (LandlordAppliancesController controller) {
         return Column(
-          children: <Widget>[
-            CustomTextFormTitle(
-              leftText: '',
-              text: 'Audible co alarm'.toUpperCase(),
-              marginBottom: 0.03,
-            ),
-            const SmallInputField(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const <Widget>[
+            SmallInputField(
               title: 'Approved Co Alarm Fitted?',
               hint: '',
               isInputSelection: true,
               marginBottom: 0.02,
             ),
-            const SmallInputField(
+            SmallInputField(
               title: 'Is CO alarm In Date',
               hint: '',
               isInputSelection: true,
               marginBottom: 0.02,
             ),
-            const SmallInputField(
+            SmallInputField(
               title: 'CO alarm test satisfactory?',
               hint: '',
               isInputSelection: true,

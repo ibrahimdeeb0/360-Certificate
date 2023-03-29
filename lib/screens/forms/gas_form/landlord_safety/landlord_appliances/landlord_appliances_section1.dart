@@ -9,13 +9,9 @@ class LandLordApplianceSection1 extends StatelessWidget {
       init: LandlordAppliancesController(),
       builder: (LandlordAppliancesController controller) {
         return Column(
-          children: <Widget>[
-            CustomTextFormTitle(
-              leftText: '',
-              text: 'Appliance Details'.toUpperCase(),
-              marginBottom: 0.03,
-            ),
-            const SmallInputField(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const <Widget>[
+            SmallInputField(
               title: 'Appliance number',
               // value: controller.childCircuitData[formKeyTypeOfWiringA],
               hint: '',
@@ -30,36 +26,36 @@ class LandLordApplianceSection1 extends StatelessWidget {
               isInputSelection: true,
               marginBottom: 0.0,
             ),
-            const CustomSelectContainer(
+            CustomSelectContainer(
               title: 'Appliance designation',
               marginBottom: 0,
               marginTop: 0,
             ),
-            const CustomSelectContainer(
+            CustomSelectContainer(
               title: 'Type',
               marginBottom: 0,
             ),
-            const CustomSelectContainer(
+            CustomSelectContainer(
               title: 'Model',
               marginBottom: 0,
             ),
-            const CustomSelectContainer(
+            CustomSelectContainer(
               title: 'Make',
             ),
-            const SmallInputField(
+            SmallInputField(
               title: 'Owned by landlord / homeowner',
               // value: controller.childCircuitData[formKeyTypeOfWiringA],
               hint: '',
               isInputSelection: true,
             ),
-            const SmallInputField(
+            SmallInputField(
               title: 'Inspected yes / no?',
               // value: controller.childCircuitData[formKeyTypeOfWiringA],
               hint: '',
               isInputSelection: true,
               marginBottom: 0.02,
             ),
-            const SmallInputField(
+            SmallInputField(
               title: 'Flue Type',
               hint: '',
               isInputSelection: true,
