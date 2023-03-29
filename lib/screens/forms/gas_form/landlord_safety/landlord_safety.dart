@@ -12,7 +12,7 @@ class LandlordSafety extends StatelessWidget {
           appBar: FormHeader(
             withBack: false,
             title: 'Landlord/Homeowner Gas Safety Record',
-            circleNumbering: '1/3',
+            circleNumbering: controller.pagesNum(),
             onPressSave: () {},
           ),
           body: CommonContainer(

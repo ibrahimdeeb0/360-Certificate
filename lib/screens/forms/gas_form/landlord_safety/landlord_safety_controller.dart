@@ -7,10 +7,35 @@ class LandlordSafetyController extends GetxController {
   ScrollController scrollController = ScrollController();
 
   List<Widget> get listFormSections => <Widget>[
-        LandlordPage1(controller: Get.put(LandlordSafetyController())),
-        LandlordPage2(controller: Get.put(LandlordSafetyController())),
-        LandlordPage3(controller: Get.put(LandlordSafetyController())),
+        // controller: Get.put(LandlordSafetyController())
+        const LandlordPage1(),
+        const LandlordPage2(),
+        const LandlordPage3(),
+        const LandlordPage4(),
+        const LandlordPage5(),
       ];
+
+  //* Circuit - Page Numbers *//
+  String pagesNum() {
+    if (selectedId == listFormSections.length) {
+      return '${listFormSections.length}/${listFormSections.length}';
+    } else {
+      return '${selectedId + 1}/${listFormSections.length}';
+    }
+    // if (isTemplate!) {
+    //   if (selectedId == listFormSections.length - 1) {
+    //     return '${listFormSections.length - 1}/${listFormSections.length - 1}';
+    //   } else {
+    //     return '${selectedId + 1}/${listFormSections.length - 1}';
+    //   }
+    // } else {
+    //   if (selectedId == listFormSections.length) {
+    //     return '${listFormSections.length}/${listFormSections.length}';
+    //   } else {
+    //     return '${selectedId + 1}/${listFormSections.length}';
+    //   }
+    // }
+  }
 
   void onNext() {
     if (listFormSections.length - 1 == selectedId) {

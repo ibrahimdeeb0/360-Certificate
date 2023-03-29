@@ -156,7 +156,7 @@ class CircleNumbering extends StatelessWidget {
             child: CommonText(
               numbers ?? '',
               style: appTextStyles.h4MediumStyleBlack().copyWith(
-                    fontWeight: FontWeight.w500,
+                    fontWeight: FontWeight.w600,
                     textAlign: TextAlign.center,
                     columnMainAxisAlignment: MainAxisAlignment.center,
                     rowMainAxisAlignment: MainAxisAlignment.center,

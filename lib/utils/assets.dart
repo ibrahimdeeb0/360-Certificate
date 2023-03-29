@@ -157,6 +157,8 @@ const String iconPDF = '${iconsPath}icon_pdf.svg';
 const String iconSetup = '${iconsPath}setup.svg';
 const String iconSetupDone = '${iconsPath}setup_done.svg';
 const String iconRevenue = '${iconsPath}icon_revenue.svg';
+const String icoCheckList = '${iconsPath}check_list.svg';
+const String icoBagWork = '${iconsPath}bag_work.svg';
 
 // ----------------------------------------
 

@@ -1,12 +1,17 @@
 import '../../../../../general_exports.dart';
 
 class LandlordPage2 extends StatelessWidget {
-  const LandlordPage2({super.key, this.controller});
+  const LandlordPage2({
+    super.key,
+    // this.controller,
+  });
 
-  final LandlordSafetyController? controller;
+  // final LandlordSafetyController? controller;
 
   @override
   Widget build(BuildContext context) {
+    final LandlordSafetyController controller =
+        Get.put(LandlordSafetyController());
     return Column(
       children: <Widget>[
         CommonContainer(

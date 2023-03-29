@@ -733,7 +733,7 @@ class EicrController extends GetxController {
     gazSafetyData[formKeyYearsRecommendationsE] = '$value';
     gazSafetyData[formKeyMonthRecommendationsE] = '';
     gazSafetyData[formKeyMonthYearRecommendationsE] = 'years';
-    consoleLog(gazSafetyData[formKeyMonthYearRecommendationsE], key: 'month');
+    consoleLog(gazSafetyData[formKeyMonthYearRecommendationsE], key: 'years');
     update();
     if (Get.isBottomSheetOpen!) {
       Get.back();
@@ -1148,6 +1148,7 @@ class EicrController extends GetxController {
         method: ApiMethods.post,
         path: '/certificates/$certId/update',
         className: 'EicrController/onUpdateCertificate',
+        formatResponse: true,
         requestFunction: onUpdateCertificate,
         // withLoading: true,
         body: await addArrayToFormData(
