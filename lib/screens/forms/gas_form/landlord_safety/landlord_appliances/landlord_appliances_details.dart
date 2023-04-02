@@ -29,6 +29,28 @@ class LandlordAppliancesDetails extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 0.04.flexWidth),
                 child: const LandLordApplianceSection2(),
               ),
+              GetBuilder<LandlordAppliancesController>(
+                init: LandlordAppliancesController(),
+                builder: (LandlordAppliancesController controller) {
+                  return CommonText(
+                    'Save To Use',
+                    rowMainAxisSize: MainAxisSize.max,
+                    rowMainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    rightChild: Switch(
+                      value: controller.isSave,
+                      onChanged: (bool value) => controller.toggleSave(value),
+                      activeColor: Color(AppColors.primary),
+                    ),
+                    containerStyle: CommonContainerModel(
+                      backgroundColor: Colors.grey[200],
+                      paddingVertical: 0.01,
+                      marginBottom: 0.02,
+                      paddingHorizontal: 0.04,
+                      marginVertical: 0.015,
+                    ),
+                  );
+                },
+              ),
               const ApplianceSectionTitle(
                 title: 'Audible  Co  Alarm',
               ),

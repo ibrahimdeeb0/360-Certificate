@@ -12,19 +12,18 @@ class LandLordApplianceSection1 extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            const SmallInputField(
+            SmallInputField(
               title: 'Appliance number',
-              // value: controller.childCircuitData[formKeyTypeOfWiringA],
-              hint: '',
-
+              value: controller.applianceDetailsData[formKeyApplianceNumber],
               // onTap: () => Get.bottomSheet(
               //   LandlordSelectBT(
-              //     listTitles: list.listApplianceDesignation,
-              //     keyOfValue: formKeyApplianceDesignation,
+              //     listTitles: list.listNumbers,
+              //     keyOfValue: formKeyApplianceNumber,
               //     controller: controller,
               //   ),
               // ),
               isInputSelection: true,
+              suffix: const SizedBox(),
               marginBottom: 0.0,
             ),
             CustomSelectContainer(

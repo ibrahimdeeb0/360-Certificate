@@ -38,6 +38,7 @@ class LandlordSelectBT extends StatelessWidget {
                               controller.applianceDetailsData[keyOfValue] =
                                   title;
                               controller.update();
+                              controller.updateApplianceData();
                             }
                             hideKeyboard();
                             Get.back();
@@ -83,6 +84,7 @@ class LandlordInputOtherBT extends StatelessWidget {
             ),
             CommonButton(
               onPress: () {
+                controller.updateApplianceData();
                 controller.otherInputController.clear();
                 controller.update();
                 hideKeyboard();

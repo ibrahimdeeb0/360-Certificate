@@ -1076,7 +1076,7 @@ class EicrController extends GetxController {
       className: 'EicrController/onCreateCertificate',
       requestFunction: onCreateCertificate,
       // withLoading: true,
-      // formatResponse: true,
+      formatResponse: true,
 
       body: selectedImages!.isEmpty
           ? certData
@@ -1151,6 +1151,7 @@ class EicrController extends GetxController {
         formatResponse: true,
         requestFunction: onUpdateCertificate,
         // withLoading: true,
+
         body: await addArrayToFormData(
           jsonObject: certData,
           imagesArray: selectedImages,

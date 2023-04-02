@@ -6,6 +6,8 @@ class LandlordSafetyController extends GetxController {
   int selectedId = 0;
   ScrollController scrollController = ScrollController();
 
+  List<dynamic> applianceData = <dynamic>[];
+
   Map<String, dynamic> formData = <String, dynamic>{
     formKeyPart1: <String, dynamic>{
       formKeyNameP1: '',
