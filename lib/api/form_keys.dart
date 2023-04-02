@@ -1,4 +1,12 @@
-//* EICR Form
+const String formKeyPart1 = 'form_part_1';
+const String formKeyPart2 = 'form_part_2';
+const String formKeyPart3 = 'form_part_3';
+const String formKeyPart4 = 'form_part_4';
+const String formKeyPart5 = 'form_part_5';
+const String formKeyPart6 = 'form_part_6';
+const String formKeyPart7 = 'form_part_7';
+
+//* EICR Form *//
 // const String formKey = '';
 // Page 1
 const String formKeyReasonProducingA = 'reason_for_producing_a';
@@ -308,7 +316,8 @@ const String formKeyTestButtonJ = 'testButton_j';
 //* Observation Details
 const String formKeyObservationDetails = 'observation_details';
 const String formKeyObservationCode = 'observation_code';
-const String formKeyObservationLocationReference = 'observation_location_reference';
+const String formKeyObservationLocationReference =
+    'observation_location_reference';
 //* Remarks
 const String formKeyRemarks = 'remarks';
 //* Declaration
@@ -319,3 +328,64 @@ const String formKeyInspectedPosition = 'inspected_position';
 const String formKeyReportContractor = 'report_contractor';
 const String formKeyReportName = 'report_name';
 const String formKeyReportDate = 'report_date';
+
+//*-*------ LandLord Form ------*//
+
+const String formKeyNameP1 = 'name_p1';
+const String formKeyAddress1P1 = 'address1_p1';
+const String formKeyAddress2P1 = 'address2_p1';
+const String formKeyPostcodeP1 = 'postcode_p1';
+//
+const String formKeyAddress1P2 = 'address1_p2';
+const String formKeyAddress2P2 = 'address2_p2';
+const String formKeyPostcodeP2 = 'postcode_p2';
+//
+const String formKeyDetailsOfWorkP3 = 'name_p3';
+//
+const String formKeyPipeworkVisualP4 = 'pipework_visual_p4';
+const String formKeyPipeworkOutcomeSupplyP4 = 'pipework_outcome_supply_p4';
+const String formKeyPipeworkOutcomeTightnessP4 =
+    'pipework_outcome_tightness_p4';
+const String formKeyPipeworkEmergencyP4 = 'pipework_emergency_p4';
+const String formKeyPipeworkProtectiveP4 = 'pipework_protective_p4';
+//
+const String formKeyDefectsIdentified1 = 'defects_identified_1';
+const String formKeyDefectsIdentified2 = 'defects_identified_2';
+const String formKeyDefectsIdentified3 = 'defects_identified_3';
+const String formKeyDefectsIdentified4 = 'defects_identified_4';
+const String formKeyDefectsIdentified5 = 'defects_identified_5';
+
+const String formKeyWarningNotice1 = 'warning_notice_1';
+const String formKeyWarningNotice2 = 'warning_notice_2';
+const String formKeyWarningNotice3 = 'warning_notice_3';
+const String formKeyWarningNotice4 = 'warning_notice_4';
+const String formKeyWarningNotice5 = 'warning_notice_5';
+//
+const String formKeyRecordRemedialAction = 'record_remedial_action';
+//
+const String formKeyNextSafetyCheckBy = 'next_safety_check_by';
+// Appliance Section 1
+const String formKeyApplianceNumber = 'appliance_number';
+const String formKeyApplianceDesignation = 'appliance_designation';
+const String formKeyApplianceType = 'appliance_type';
+const String formKeyApplianceModel = 'appliance_model';
+const String formKeyApplianceMake = 'appliance_make';
+const String formKeyApplianceOwnedBy = 'appliance_owned_by';
+const String formKeyApplianceInspected = 'inspected_make';
+const String formKeyApplianceFlueType = 'appliance_flue_type';
+// Appliance Section 2
+const String formKeyApplianceOperatingPressure = 'appliance_operating_pressure';
+const String formKeyApplianceOperatingOfSafety =
+    'appliance_operating_of_safety';
+const String formKeyApplianceVentilationSatisfactory =
+    'appliance_ventilation_satisfactory';
+const String formKeyApplianceVisualCondition = 'appliance_visual_condition';
+const String formKeyApplianceFlueOperation = 'appliance_flue_operation';
+const String formKeyApplianceCombustionAnalyses =
+    'appliance_combustion_analyses';
+const String formKeyApplianceServiced = 'appliance_serviced';
+const String formKeyApplianceSafeToUse = 'appliance_safe_to_use';
+// Appliance Section 3
+const String formKeyApplianceApprovedCo = 'appliance_approved_co';
+const String formKeyApplianceIsCoAlarm = 'appliance_is_co_alarm';
+const String formKeyApplianceCOAlarmTest = 'appliance_co_alarm_test';

@@ -12,8 +12,6 @@ class LandlordPage5 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final LandlordSafetyController controller =
-        Get.put(LandlordSafetyController());
     return Column(
       children: <Widget>[
         CommonContainer(

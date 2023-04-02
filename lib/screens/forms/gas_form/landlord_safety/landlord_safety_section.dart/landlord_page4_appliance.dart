@@ -12,8 +12,6 @@ class LandlordPage4 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final LandlordSafetyController controller =
-        Get.put(LandlordSafetyController());
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[

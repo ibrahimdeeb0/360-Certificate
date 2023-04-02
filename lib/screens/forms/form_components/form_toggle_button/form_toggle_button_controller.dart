@@ -137,6 +137,6 @@ class FormToggleButtonController extends GetxController {
     }
 
     update();
-    consoleLog(currentValue);
+    // consoleLog(currentValue);
   }
 }

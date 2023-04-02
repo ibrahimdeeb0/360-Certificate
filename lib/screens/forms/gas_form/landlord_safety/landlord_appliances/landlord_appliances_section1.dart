@@ -8,19 +8,20 @@ class LandLordApplianceSection1 extends StatelessWidget {
     return GetBuilder<LandlordAppliancesController>(
       init: LandlordAppliancesController(),
       builder: (LandlordAppliancesController controller) {
+        final LandLordListsForm list = LandLordListsForm();
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const <Widget>[
-            SmallInputField(
+          children: <Widget>[
+            const SmallInputField(
               title: 'Appliance number',
               // value: controller.childCircuitData[formKeyTypeOfWiringA],
               hint: '',
+
               // onTap: () => Get.bottomSheet(
-              //   DBSelectBT(
-              //     listTitles: controller.listTypeOfWiring,
-              //     keyOfValue: formKeyTypeOfWiringA,
+              //   LandlordSelectBT(
+              //     listTitles: list.listApplianceDesignation,
+              //     keyOfValue: formKeyApplianceDesignation,
               //     controller: controller,
-              //     isChilde: true,
               //   ),
               // ),
               isInputSelection: true,
@@ -30,36 +31,86 @@ class LandLordApplianceSection1 extends StatelessWidget {
               title: 'Appliance designation',
               marginBottom: 0,
               marginTop: 0,
+              value:
+                  controller.applianceDetailsData[formKeyApplianceDesignation],
+              onTap: () => Get.bottomSheet(
+                LandlordSelectBT(
+                  listTitles: list.listApplianceDesignation,
+                  keyOfValue: formKeyApplianceDesignation,
+                  controller: controller,
+                ),
+              ),
             ),
             CustomSelectContainer(
               title: 'Type',
               marginBottom: 0,
+              value: controller.applianceDetailsData[formKeyApplianceType],
+              onTap: () => Get.bottomSheet(
+                LandlordSelectBT(
+                  listTitles: list.listType,
+                  keyOfValue: formKeyApplianceType,
+                  controller: controller,
+                ),
+              ),
             ),
-            CustomSelectContainer(
-              title: 'Model',
+            CommonInput(
+              topLabelText: 'Model',
               marginBottom: 0,
+              value: controller.applianceDetailsData[formKeyApplianceModel],
+              onChanged: (dynamic value) => controller.onChangeApplianceValues(
+                  formKeyApplianceModel, value),
             ),
             CustomSelectContainer(
               title: 'Make',
+              value: controller.applianceDetailsData[formKeyApplianceMake],
+              onTap: () => Get.bottomSheet(
+                LandlordSelectBT(
+                  listTitles: list.listMake,
+                  keyOfValue: formKeyApplianceMake,
+                  controller: controller,
+                ),
+              ),
             ),
             SmallInputField(
               title: 'Owned by landlord / homeowner',
-              // value: controller.childCircuitData[formKeyTypeOfWiringA],
               hint: '',
               isInputSelection: true,
+              value: controller.applianceDetailsData[formKeyApplianceOwnedBy],
+              onTap: () => Get.bottomSheet(
+                LandlordSelectBT(
+                  listTitles: list.listYesNo,
+                  keyOfValue: formKeyApplianceOwnedBy,
+                  controller: controller,
+                ),
+              ),
             ),
             SmallInputField(
               title: 'Inspected yes / no?',
-              // value: controller.childCircuitData[formKeyTypeOfWiringA],
               hint: '',
               isInputSelection: true,
               marginBottom: 0.02,
+              value: controller.applianceDetailsData[formKeyApplianceInspected],
+              onTap: () => Get.bottomSheet(
+                LandlordSelectBT(
+                  listTitles: list.listYesNo,
+                  keyOfValue: formKeyApplianceInspected,
+                  controller: controller,
+                ),
+              ),
             ),
             SmallInputField(
               title: 'Flue Type',
               hint: '',
               isInputSelection: true,
               marginBottom: 0.02,
+              value: controller.applianceDetailsData[formKeyApplianceFlueType],
+              onTap: () => Get.bottomSheet(
+                LandlordSelectBT(
+                  listTitles: list.listFlueType,
+                  keyOfValue: formKeyApplianceFlueType,
+                  controller: controller,
+                ),
+              ),
             ),
           ],
         );
