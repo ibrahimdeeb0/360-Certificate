@@ -5,6 +5,7 @@ class LandlordAppliancesController extends GetxController {
 
   Map<String, dynamic>? selectedApplianceData;
   int? index;
+  bool isSave = false;
 
   TextEditingController otherInputController = TextEditingController();
 
@@ -112,7 +113,8 @@ class LandlordAppliancesController extends GetxController {
     update();
   }
 
-  bool isSave = false;
+  
+  // ignore: avoid_positional_boolean_parameters
   void toggleSave(bool value) {
     isSave = !isSave;
     update();

@@ -9,36 +9,12 @@ class FormsController extends GetxController {
       keyTitle: 'Gas',
       keyItems: <Map<String, dynamic>>[
         <String, dynamic>{
-          keyId: 0,
+          keyId: 9,
           keyTitle: 'Landlord/Homeowner Gas Safety Record',
         },
         <String, dynamic>{
-          keyId: 0,
-          keyTitle: 'Caravan Boat Gas Safety Inspection Record',
-        },
-        <String, dynamic>{
-          keyId: 0,
+          keyId: 11,
           keyTitle: 'Warning Notice',
-        },
-        <String, dynamic>{
-          keyId: 0,
-          keyTitle: 'Gas Inspection Record',
-        },
-        <String, dynamic>{
-          keyId: 0,
-          keyTitle: 'Gas Testing And Purging',
-        },
-        <String, dynamic>{
-          keyId: 0,
-          keyTitle: 'Fumes Investigation Report',
-        },
-        <String, dynamic>{
-          keyId: 0,
-          keyTitle: 'Service/Maintenance Record',
-        },
-        <String, dynamic>{
-          keyId: 0,
-          keyTitle: 'Gas Boiler System Commissioning Checklist',
         },
       ],
     },
@@ -46,15 +22,15 @@ class FormsController extends GetxController {
       keyTitle: 'Electrical',
       keyItems: <Map<String, dynamic>>[
         <String, dynamic>{
-          keyId: 0,
+          keyId: 1,
           keyTitle: 'Portable Appliance Testing',
         },
         <String, dynamic>{
-          keyId: 0,
+          keyId: 3,
           keyTitle: 'Domestic Electrical Installation Certificate',
         },
         <String, dynamic>{
-          keyId: 0,
+          keyId: 4,
           keyTitle: 'Electrical Danger Notification',
         },
         <String, dynamic>{

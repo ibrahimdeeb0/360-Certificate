@@ -5,6 +5,7 @@ const String formKeyPart4 = 'form_part_4';
 const String formKeyPart5 = 'form_part_5';
 const String formKeyPart6 = 'form_part_6';
 const String formKeyPart7 = 'form_part_7';
+const String formKeyDeclaration = 'part_declaration';
 
 //* EICR Form *//
 // const String formKey = '';
@@ -389,3 +390,7 @@ const String formKeyApplianceSafeToUse = 'appliance_safe_to_use';
 const String formKeyApplianceApprovedCo = 'appliance_approved_co';
 const String formKeyApplianceIsCoAlarm = 'appliance_is_co_alarm';
 const String formKeyApplianceCOAlarmTest = 'appliance_co_alarm_test';
+// final landlord page
+const String formKeyAppliance = 'appliance_data';
+const String formKeyRecordIssueBy = 'record_issue_by';
+const String formKeyReceivedBy = 'received_by';

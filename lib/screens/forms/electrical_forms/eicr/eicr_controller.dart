@@ -1147,9 +1147,9 @@ class EicrController extends GetxController {
       ApiRequest(
         method: ApiMethods.post,
         path: '/certificates/$certId/update',
-        className: 'EicrController/onUpdateCertificate',
+        className: 'EicrController/onCompleteCertificate',
         formatResponse: true,
-        requestFunction: onUpdateCertificate,
+        requestFunction: onCompleteCertificate,
         // withLoading: true,
 
         body: await addArrayToFormData(

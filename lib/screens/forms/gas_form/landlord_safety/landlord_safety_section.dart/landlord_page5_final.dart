@@ -12,174 +12,245 @@ class LandlordPage5 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        CommonContainer(
-          style: appContainerStyles.formSectionsStyle,
-          child: Column(
-            children: <Widget>[
-              CustomTextFormTitle(
-                leftText: '',
-                text: 'Record Issue By'.toUpperCase(),
-              ),
-              const CommonInput(
-                topLabelText: 'Name (CAPITAL)',
-                marginTop: 0.01,
-                marginBottom: 0.02,
-              ),
-              Align(
-                child: CommonText(
-                  onPress: () => Get.bottomSheet(
-                    elevation: 0.0,
-                    BottomSheetContainer(
-                      style: appContainerStyles.bottomSheetContainer().copyWith(
-                            marginHorizontal: 0.05,
-                            height: 0.55,
-                            marginBottom: 0.2,
-                            borderRadius: 0.06,
-                            paddingBottom: 0.02,
-                            clipBehavior: Clip.hardEdge,
+    return GetBuilder<LandlordSafetyController>(
+      init: LandlordSafetyController(),
+      builder: (LandlordSafetyController controller) {
+        return Column(
+          children: <Widget>[
+            // CommonButton(
+            //   onPress: () {
+            //     consoleLog(controller.applianceData);
+            //   },
+            // ),
+            CommonContainer(
+              style: appContainerStyles.formSectionsStyle,
+              child: Column(
+                children: <Widget>[
+                  CustomTextFormTitle(
+                    leftText: '',
+                    text: 'Record Issue By'.toUpperCase(),
+                  ),
+                  CommonInput(
+                    topLabelText: 'Name (CAPITAL)',
+                    marginTop: 0.01,
+                    marginBottom: 0.02,
+                    value: controller.formData[formKeyDeclaration]
+                        [formKeyRecordIssueBy],
+                    onChanged: (String value) =>
+                        controller.onChangeFormDataValue(
+                            formKeyDeclaration, formKeyRecordIssueBy, value),
+                  ),
+                  Align(
+                    child: CommonText(
+                      onPress: () => Get.bottomSheet(
+                        elevation: 0.0,
+                        BottomSheetContainer(
+                          style: appContainerStyles
+                              .bottomSheetContainer()
+                              .copyWith(
+                                marginHorizontal: 0.05,
+                                height: 0.55,
+                                marginBottom: 0.2,
+                                borderRadius: 0.06,
+                                paddingBottom: 0.02,
+                                clipBehavior: Clip.hardEdge,
+                              ),
+                          child: Column(
+                            children: <Widget>[
+                              const CommonText(
+                                'Signature',
+                                fontSize: fontH2,
+                              ),
+                              const CommonText(
+                                'Draw your signature below',
+                                fontSize: fontH2,
+                              ),
+                              SizedBox(
+                                height: DEVICE_HEIGHT * 0.01,
+                              ),
+                              EasySignaturePad(
+                                onChanged: (String image) {
+                                  controller.setImage(image);
+                                },
+                                height: DEVICE_WIDTH ~/ 1.5,
+                                width: DEVICE_WIDTH ~/ 1.2,
+                                strokeWidth: 4.0,
+                                borderRadius: 10.0,
+                                borderColor: Colors.grey,
+                              ),
+                              SizedBox(
+                                height: DEVICE_HEIGHT * 0.01,
+                              ),
+                              CommonButton(
+                                text: 'Save',
+                                onPress: controller.onSendSignatureReportForm,
+                              ),
+                            ],
                           ),
-                      child: Column(
-                        children: <Widget>[
-                          const CommonText(
-                            'Signature',
-                            fontSize: fontH2,
-                          ),
-                          const CommonText(
-                            'Draw your signature below',
-                            fontSize: fontH2,
-                          ),
-                          SizedBox(
-                            height: DEVICE_HEIGHT * 0.01,
-                          ),
-                          EasySignaturePad(
-                            onChanged: (String image) {
-                              // controller.setImage(image);
-                            },
-                            height: DEVICE_WIDTH ~/ 1.5,
-                            width: DEVICE_WIDTH ~/ 1.2,
-                            strokeWidth: 4.0,
-                            borderRadius: 10.0,
-                            borderColor: Colors.grey,
-                          ),
-                          SizedBox(
-                            height: DEVICE_HEIGHT * 0.01,
-                          ),
-                          const CommonButton(
-                            text: 'Save',
-                            // onPress: controller.onSendSignatureReportForm,
-                          ),
-                        ],
+                        ),
+                        isScrollControlled: true,
+                        enableDrag: false,
+                      ),
+                      'Tap Here To Sign',
+                      fontWeight: FontWeight.w500,
+                      fontColor: Color(AppColors.grey).withOpacity(0.8),
+                      containerStyle: CommonContainerModel(
+                        width: 0.9,
+                        height: 0.08,
+                        backgroundColor: Colors.grey.withOpacity(0.2),
+                        alignment: Alignment.center,
+                        borderWidth: 1,
+                        borderRadius: 0.01,
+                        borderColor: Color(AppColors.grey).withOpacity(0.2),
+                        touchEffect: TouchableEffect(
+                          type: TouchTypes.opacity,
+                        ),
                       ),
                     ),
-                    isScrollControlled: true,
-                    enableDrag: false,
                   ),
-                  'Tap Here To Sign',
-                  fontWeight: FontWeight.w500,
-                  fontColor: Color(AppColors.grey).withOpacity(0.8),
-                  containerStyle: CommonContainerModel(
-                    width: 0.9,
-                    height: 0.08,
-                    backgroundColor: Colors.grey.withOpacity(0.2),
-                    alignment: Alignment.center,
-                    borderWidth: 1,
-                    borderRadius: 0.01,
-                    borderColor: Color(AppColors.grey).withOpacity(0.2),
-                    touchEffect: TouchableEffect(
-                      type: TouchTypes.opacity,
+                  if (controller.signatureBytesImage != null)
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        const SizedBox(height: 10),
+                        IconButton(
+                          onPressed: controller.clearSignature,
+                          icon: Icon(
+                            Icons.highlight_remove_sharp,
+                            color: Colors.red,
+                            size: 0.08.flexWidth,
+                          ),
+                        ),
+                        SizedBox(
+                          height: DEVICE_WIDTH / 2,
+                          width: DEVICE_WIDTH,
+                          child: Image.memory(
+                            controller.signatureBytesImage!,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ],
                     ),
+                ],
+              ),
+            ),
+            CommonContainer(
+              style: appContainerStyles.formSectionsStyle,
+              marginTop: 0.0,
+              child: Column(
+                children: <Widget>[
+                  CustomTextFormTitle(
+                    leftText: '',
+                    text: 'Received By'.toUpperCase(),
                   ),
-                ),
-              ),
-            ],
-          ),
-        ),
-        CommonContainer(
-          style: appContainerStyles.formSectionsStyle,
-          marginTop: 0.0,
-          child: Column(
-            children: <Widget>[
-              CustomTextFormTitle(
-                leftText: '',
-                text: 'Received By'.toUpperCase(),
-              ),
-              const CommonInput(
-                topLabelText: 'Name (CAPITAL)',
-                marginTop: 0.01,
-                marginBottom: 0.02,
-              ),
-              Align(
-                child: CommonText(
-                  onPress: () => Get.bottomSheet(
-                    elevation: 0.0,
-                    BottomSheetContainer(
-                      style: appContainerStyles.bottomSheetContainer().copyWith(
-                            marginHorizontal: 0.05,
-                            height: 0.55,
-                            marginBottom: 0.2,
-                            borderRadius: 0.06,
-                            paddingBottom: 0.02,
-                            clipBehavior: Clip.hardEdge,
+                  CommonInput(
+                    topLabelText: 'Name (CAPITAL)',
+                    marginTop: 0.01,
+                    marginBottom: 0.02,
+                    value: controller.formData[formKeyDeclaration]
+                        [formKeyReceivedBy],
+                    onChanged: (String value) =>
+                        controller.onChangeFormDataValue(
+                            formKeyDeclaration, formKeyReceivedBy, value),
+                  ),
+                  Align(
+                    child: CommonText(
+                      onPress: () => Get.bottomSheet(
+                        elevation: 0.0,
+                        BottomSheetContainer(
+                          style: appContainerStyles
+                              .bottomSheetContainer()
+                              .copyWith(
+                                marginHorizontal: 0.05,
+                                height: 0.55,
+                                marginBottom: 0.2,
+                                borderRadius: 0.06,
+                                paddingBottom: 0.02,
+                                clipBehavior: Clip.hardEdge,
+                              ),
+                          child: Column(
+                            children: <Widget>[
+                              const CommonText(
+                                'Signature',
+                                fontSize: fontH2,
+                              ),
+                              const CommonText(
+                                'Draw your signature below',
+                                fontSize: fontH2,
+                              ),
+                              SizedBox(
+                                height: DEVICE_HEIGHT * 0.01,
+                              ),
+                              EasySignaturePad(
+                                onChanged: (String image) {
+                                  controller.setCustomerImage(image);
+                                },
+                                height: DEVICE_WIDTH ~/ 1.5,
+                                width: DEVICE_WIDTH ~/ 1.2,
+                                strokeWidth: 4.0,
+                                borderRadius: 10.0,
+                                borderColor: Colors.grey,
+                              ),
+                              SizedBox(
+                                height: DEVICE_HEIGHT * 0.01,
+                              ),
+                              CommonButton(
+                                text: 'Save',
+                                onPress: controller.saveCustomerSignature,
+                              ),
+                            ],
                           ),
-                      child: Column(
-                        children: <Widget>[
-                          const CommonText(
-                            'Signature',
-                            fontSize: fontH2,
-                          ),
-                          const CommonText(
-                            'Draw your signature below',
-                            fontSize: fontH2,
-                          ),
-                          SizedBox(
-                            height: DEVICE_HEIGHT * 0.01,
-                          ),
-                          EasySignaturePad(
-                            onChanged: (String image) {
-                              // controller.setImage(image);
-                            },
-                            height: DEVICE_WIDTH ~/ 1.5,
-                            width: DEVICE_WIDTH ~/ 1.2,
-                            strokeWidth: 4.0,
-                            borderRadius: 10.0,
-                            borderColor: Colors.grey,
-                          ),
-                          SizedBox(
-                            height: DEVICE_HEIGHT * 0.01,
-                          ),
-                          const CommonButton(
-                            text: 'Save',
-                            // onPress: controller.onSendSignatureReportForm,
-                          ),
-                        ],
+                        ),
+                        isScrollControlled: true,
+                        enableDrag: false,
+                      ),
+                      'Tap Here To Sign',
+                      fontWeight: FontWeight.w500,
+                      fontColor: Color(AppColors.grey).withOpacity(0.8),
+                      containerStyle: CommonContainerModel(
+                        width: 0.9,
+                        height: 0.08,
+                        backgroundColor: Colors.grey.withOpacity(0.2),
+                        alignment: Alignment.center,
+                        borderWidth: 1,
+                        borderRadius: 0.01,
+                        borderColor: Color(AppColors.grey).withOpacity(0.2),
+                        touchEffect: TouchableEffect(
+                          type: TouchTypes.opacity,
+                        ),
                       ),
                     ),
-                    isScrollControlled: true,
-                    enableDrag: false,
                   ),
-                  'Tap Here To Sign',
-                  fontWeight: FontWeight.w500,
-                  fontColor: Color(AppColors.grey).withOpacity(0.8),
-                  containerStyle: CommonContainerModel(
-                    width: 0.9,
-                    height: 0.08,
-                    backgroundColor: Colors.grey.withOpacity(0.2),
-                    alignment: Alignment.center,
-                    borderWidth: 1,
-                    borderRadius: 0.01,
-                    borderColor: Color(AppColors.grey).withOpacity(0.2),
-                    touchEffect: TouchableEffect(
-                      type: TouchTypes.opacity,
+                  if (controller.signatureBytes2 != null &&
+                      controller.customerSignatureBytes != null)
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        const SizedBox(height: 10),
+                        IconButton(
+                          onPressed: controller.clearCustomerSignature,
+                          icon: Icon(
+                            Icons.highlight_remove_sharp,
+                            color: Colors.red,
+                            size: 0.08.flexWidth,
+                          ),
+                        ),
+                        SizedBox(
+                          height: DEVICE_WIDTH / 2,
+                          width: DEVICE_WIDTH,
+                          child: Image.memory(
+                            controller.customerSignatureBytes!,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                ),
+                ],
               ),
-            ],
-          ),
-        ),
-      ],
+            ),
+          ],
+        );
+      },
     );
   }
 }
