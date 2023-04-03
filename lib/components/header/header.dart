@@ -23,7 +23,7 @@ class Header extends StatelessWidget with PreferredSizeWidget {
   final bool withSearch;
   final bool withBack;
   final bool withoutBackGround;
-  final Function? onPressBack;
+  final Function()? onPressBack;
   final Function? onPressSearch;
   final bool withOverLay;
   final bool withShadow;
@@ -67,13 +67,25 @@ class Header extends StatelessWidget with PreferredSizeWidget {
         leading: Visibility(
           visible: withBack,
           child: CommonContainer(
-            touchEffect: TouchableEffect(type: TouchTypes.opacity),
-            onPress: onPressBack ?? Get.back,
-            child: const Icon(
-              Icons.arrow_back,
-              color: Colors.black,
+            boxShape: BoxShape.circle,
+            clipBehavior: Clip.hardEdge,
+            child: IconButton(
+              onPressed: onPressBack ?? Get.back,
+              tooltip: 'Back',
+              icon: const Icon(
+                Icons.arrow_back,
+                color: Colors.black,
+              ),
             ),
           ),
+          // CommonContainer(
+          //   touchEffect: TouchableEffect(type: TouchTypes.opacity),
+          //   onPress: onPressBack ?? Get.back,
+          //   child: const Icon(
+          //     Icons.arrow_back,
+          //     color: Colors.black,
+          //   ),
+          // ),
         ),
         // Visibility(
         //   visible: withBack,

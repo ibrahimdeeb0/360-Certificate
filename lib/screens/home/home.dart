@@ -119,18 +119,17 @@ class HomeSearchBar extends StatelessWidget {
             builder: (CertificatesController controller) {
               return CommonContainer(
                 backgroundColor: Color(AppColors.primary).withOpacity(0.1),
-                onPress: () => Get.bottomSheet(
-                  const FilterCert(),
-                  isScrollControlled: true,
-                ),
-                size: 0.1,
-                padding: 0.01,
+                size: 0.12,
                 boxShape: BoxShape.circle,
-                touchEffect: TouchableEffect(type: TouchTypes.opacity),
-                marginLeft: 0.01,
-                child: SvgPicture.asset(
-                  iconFilter,
-                  color: Colors.black,
+                child: IconButton(
+                  onPressed: () => Get.bottomSheet(
+                    const FilterCert(),
+                    isScrollControlled: true,
+                  ),
+                  icon: SvgPicture.asset(
+                    iconFilter,
+                    color: Colors.black,
+                  ),
                 ),
               );
             },

@@ -64,35 +64,31 @@ class Login extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    CommonText(
-                      onPress: controller.updateRememberMe,
-                      containerStyle: CommonContainerModel(
-                        touchEffect: TouchableEffect(type: TouchTypes.opacity),
+                    TextButton(
+                      onPressed: controller.updateRememberMe,
+                      child: CommonText(
+                        'Remember me',
+                        fontSize: fontH3,
+                        fontColor: Colors.grey[700],
+                        marginLeft: 0.02,
+                        leftChild: controller.rememberMe
+                            ? Icon(
+                                Icons.check_box_rounded,
+                                color: Color(AppColors.primary),
+                              )
+                            : Icon(
+                                Icons.check_box_outline_blank_rounded,
+                                color: Colors.grey[500],
+                              ),
                       ),
-                      'Remember me',
-                      fontSize: fontH3,
-                      fontColor: Colors.grey[700],
-                      marginLeft: 0.02,
-                      leftChild: controller.rememberMe
-                          ? Icon(
-                              Icons.check_box_rounded,
-                              color: Color(AppColors.primary),
-                            )
-                          : Icon(
-                              Icons.check_box_outline_blank_rounded,
-                              color: Colors.grey[500],
-                            ),
                     ),
-                    CommonText(
-                      onPress: () {
-                        // consoleLog(myAppController.userData);
-                      },
-                      containerStyle: CommonContainerModel(
-                        touchEffect: TouchableEffect(type: TouchTypes.opacity),
+                    TextButton(
+                      onPressed: () => Get.to(() => const ResetPassword()),
+                      child: CommonText(
+                        'forgot password ?',
+                        fontSize: fontH3,
+                        fontColor: Colors.grey[700],
                       ),
-                      'forgot password ?',
-                      fontSize: fontH3,
-                      fontColor: Colors.grey[700],
                     ),
                   ],
                 ),
@@ -109,7 +105,6 @@ class Login extends StatelessWidget {
                     alignment: Alignment.topLeft,
                   ),
                   rightChild: CommonText(
-                    // onPress: () {},
                     onPress: () {
                       Get.to(() => const Register());
                       // Get.to(() => const EmailVerifyScreen());
