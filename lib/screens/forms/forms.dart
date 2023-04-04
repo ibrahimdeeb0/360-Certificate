@@ -33,9 +33,12 @@ class Forms extends StatelessWidget {
                                 onPress: () {
                                   if (childe[keyId] == 5) {
                                     controller.searchTemplate(childe);
+                                  } else if (childe[keyId] == 9) {
+                                    controller.searchTemplate(childe);
                                   }
                                 },
                               ),
+                              
                             )
                             .toList(),
                       ],

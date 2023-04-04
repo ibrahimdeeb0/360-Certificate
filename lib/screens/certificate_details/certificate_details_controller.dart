@@ -155,7 +155,7 @@ class CertificateDetailsController extends GetxController
   }
 
   void onEditCert() {
-    consoleLogPretty(certDetails['form_data']['customer']['id']);
+    // consoleLogPretty(certDetails['form_data']['form_id']);
     myAppController.certFormInfo[keyFormDataStatus] = FormDataStatus.editCert;
     myAppController.certFormInfo[keyCertId] = certDetails['form_data'][keyId];
     myAppController.certFormInfo[keyCustomerId] =
@@ -164,8 +164,13 @@ class CertificateDetailsController extends GetxController
         certDetails['form_data']['form_id'];
     myAppController.certFormInfo[keyTemplateData] =
         certDetails['form_data']['data'];
+    if (certDetails['form_data']['form_id'] == 5) {
+      Get.toNamed(routeFormEICR);
+    } else if (certDetails['form_data']['form_id'] == 9) {
+      Get.toNamed(routeFormLandlord);
+    }
 
-    Get.toNamed(routeFormEICR);
+    // Get.toNamed(routeFormLandlord);
   }
 
   late PDFDocument pdf;

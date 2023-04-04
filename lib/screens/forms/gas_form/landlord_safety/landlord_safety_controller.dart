@@ -32,6 +32,81 @@ class LandlordSafetyController extends GetxController {
   bool isCertificateCreated = false;
 
   DateTime? selectedDate;
+
+  @override
+  void onInit() {
+    super.onInit();
+    customerId = myAppController.certFormInfo[keyCustomerId];
+    formId = myAppController.certFormInfo[keyFormId];
+    formBody[keyFormId] = myAppController.certFormInfo[keyFormId];
+    isTemplate =
+        myAppController.certFormInfo[keyFormStatus] == FormStatus.template;
+    isUpdateCert = myAppController.certFormInfo[keyFormDataStatus] ==
+        FormDataStatus.editCert;
+    isEditTemplate = myAppController.certFormInfo[keyFormDataStatus] ==
+        FormDataStatus.editTemp;
+
+    //? get Template Data
+    if (myAppController.certFormInfo[keyTemplateData] != null &&
+        isTemplate! == false) {
+      tempData = myAppController.certFormInfo[keyTemplateData][keyData];
+    }
+    //! set Template Data to form body
+    if (myAppController.certFormInfo[keyFormDataStatus] ==
+        FormDataStatus.setTemp) {
+      formBody = myAppController.certFormInfo[keyTemplateData][keyData];
+
+      if (formBody[keyData][formKeyGazSafetyData].isNotEmpty) {
+        formData = formBody[keyData][formKeyGazSafetyData][0];
+      }
+      applianceData = formData[formKeyAppliance];
+
+      update();
+    }
+    //? create new template
+    if (myAppController.certFormInfo[keyFormDataStatus] ==
+        FormDataStatus.newTemp) {
+      templateName = myAppController.certFormInfo[keyNameTemp];
+    }
+    //! Update Template
+    // if (myAppController.certFormInfo[keyFormDataStatus] ==
+    //     FormDataStatus.editTemp) {
+    //   tempData = myAppController.certFormInfo[keyTemplateData];
+    //   templateName = myAppController.certFormInfo[keyNameTemp];
+    //   formBody = myAppController.certFormInfo[keyTemplateData][keyData];
+
+    //   if (formBody[keyData][formKeyGazSafetyData].isNotEmpty) {
+    //     gazSafetyData = formBody[keyData][formKeyGazSafetyData][0];
+    //   }
+    //   distrBoardDataBase = gazSafetyData[allDistributionBoardData];
+    //   observationsDataBase = gazSafetyData[allObservationData];
+    //   update();
+    // }
+
+    // Edit Certificate
+    if (myAppController.certFormInfo[keyFormDataStatus] ==
+        FormDataStatus.editCert) {
+      certId = myAppController.certFormInfo[keyCertId];
+      formId = myAppController.certFormInfo[keyFormId];
+      customerId = myAppController.certFormInfo[keyCustomerId];
+      formBody[keyFormId] = myAppController.certFormInfo[keyFormId];
+      formBody[keyData] = myAppController.certFormInfo[keyTemplateData];
+      //
+      if (formBody[keyData].isNotEmpty) {
+        formData = formBody[keyData];
+      }
+      applianceData = formBody[keyData][formKeyAppliance];
+
+      isCertificateCreated = true;
+
+      update();
+    }
+
+    formData[formKeyDeclaration][formKeyRecordIssueBy] =
+        '${profileController.userDataProfile['first_name']} ${profileController.userDataProfile['last_name']}';
+    update();
+  }
+
   void onSelectDate(String? part, String? key, DateTime value) {
     formData[part!][key!] = '$value'.split(' ')[0];
     update();
@@ -90,7 +165,7 @@ class LandlordSafetyController extends GetxController {
 
   Map<String, dynamic> formBody = <String, dynamic>{
     'form_id': '',
-    formKeyFormData: <String, dynamic>{},
+    keyData: <String, dynamic>{},
   };
 
   List<Widget> get listFormSections => <Widget>[
@@ -279,12 +354,11 @@ class LandlordSafetyController extends GetxController {
   }
 
   void onSaveData() {
-    if (formBody[formKeyFormData] == <String, dynamic>{} ||
-        formBody[formKeyFormData] == null) {
-      formBody[formKeyFormData] = formData;
+    if (formBody[keyData] == <String, dynamic>{} || formBody[keyData] == null) {
+      formBody[keyData] = formData;
     } else {
-      formBody[formKeyFormData] = <String, dynamic>{};
-      formBody[formKeyFormData] = formData;
+      formBody[keyData] = <String, dynamic>{};
+      formBody[keyData] = formData;
     }
     update();
   }
@@ -345,7 +419,7 @@ class LandlordSafetyController extends GetxController {
     final Map<String, dynamic> certData = <String, dynamic>{
       ...formBody,
       'customer_id': customerId,
-      'status_id': idPending,
+      'status_id': idInProgress,
     };
 
     startLoading();
@@ -375,7 +449,7 @@ class LandlordSafetyController extends GetxController {
     final Map<String, dynamic> certData = <String, dynamic>{
       ...formBody,
       'customer_id': customerId,
-      'status_id': idPending,
+      'status_id': idCompleted,
     };
 
     if (signatureBytes != null && signatureBytes2 != null) {
@@ -410,79 +484,5 @@ class LandlordSafetyController extends GetxController {
         );
       }
     }
-  }
-
-  @override
-  void onInit() {
-    super.onInit();
-    customerId = myAppController.certFormInfo[keyCustomerId];
-    formId = myAppController.certFormInfo[keyFormId];
-    formBody[keyFormId] = myAppController.certFormInfo[keyFormId];
-    isTemplate =
-        myAppController.certFormInfo[keyFormStatus] == FormStatus.template;
-    isUpdateCert = myAppController.certFormInfo[keyFormDataStatus] ==
-        FormDataStatus.editCert;
-    isEditTemplate = myAppController.certFormInfo[keyFormDataStatus] ==
-        FormDataStatus.editTemp;
-
-    //? get Template Data
-    if (myAppController.certFormInfo[keyTemplateData] != null &&
-        isTemplate! == false) {
-      tempData = myAppController.certFormInfo[keyTemplateData][keyData];
-    }
-    //? set Template Data to form body
-    // if (myAppController.certFormInfo[keyFormDataStatus] ==
-    //     FormDataStatus.setTemp) {
-    //   formBody = myAppController.certFormInfo[keyTemplateData][keyData];
-
-    //   if (formBody[keyData][formKeyGazSafetyData].isNotEmpty) {
-    //     gazSafetyData = formBody[keyData][formKeyGazSafetyData][0];
-    //   }
-    //   distrBoardDataBase = gazSafetyData[allDistributionBoardData];
-    //   observationsDataBase = gazSafetyData[allObservationData];
-    //   update();
-    // }
-    //? create new template
-    if (myAppController.certFormInfo[keyFormDataStatus] ==
-        FormDataStatus.newTemp) {
-      templateName = myAppController.certFormInfo[keyNameTemp];
-    }
-    // Update Template
-    // if (myAppController.certFormInfo[keyFormDataStatus] ==
-    //     FormDataStatus.editTemp) {
-    //   tempData = myAppController.certFormInfo[keyTemplateData];
-    //   templateName = myAppController.certFormInfo[keyNameTemp];
-    //   formBody = myAppController.certFormInfo[keyTemplateData][keyData];
-
-    //   if (formBody[keyData][formKeyGazSafetyData].isNotEmpty) {
-    //     gazSafetyData = formBody[keyData][formKeyGazSafetyData][0];
-    //   }
-    //   distrBoardDataBase = gazSafetyData[allDistributionBoardData];
-    //   observationsDataBase = gazSafetyData[allObservationData];
-    //   update();
-    // }
-
-    // Edit Certificate
-    if (myAppController.certFormInfo[keyFormDataStatus] ==
-        FormDataStatus.editCert) {
-      certId = myAppController.certFormInfo[keyCertId];
-      formId = myAppController.certFormInfo[keyFormId];
-      customerId = myAppController.certFormInfo[keyCustomerId];
-      formBody[keyFormId] = myAppController.certFormInfo[keyFormId];
-      formBody[keyData] = myAppController.certFormInfo[keyTemplateData];
-      //
-      if (formBody[formKeyFormData].isNotEmpty) {
-        formData = formBody[formKeyFormData];
-      }
-      applianceData = formBody[formKeyAppliance];
-
-      isCertificateCreated = false;
-
-      update();
-    }
-
-    formData[formKeyDeclaration][formKeyRecordIssueBy] =
-        '${profileController.userDataProfile['first_name']} ${profileController.userDataProfile['last_name']}';
-    update();
   }
 }

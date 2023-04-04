@@ -49,6 +49,7 @@ const String keyItems = 'items';
 const String formKey = 'form_key';
 const String keyFormData = 'form_data';
 const String keyStatus = 'status';
+const String keyRoute = 'route';
 
 // *************** Api request function keys ***************
 const String keyRequestFunction = 'requestFunction';
