@@ -33,11 +33,11 @@ class MoreController extends GetxController {
           keyIcon: iconLogout,
           keyOnPress: myAppController.onSignOut,
         },
-        // <String, dynamic>{
-        //   keyTitle: 'Develop Forms',
-        //   keyIcon: iconForm,
-        //   keyOnPress: () => Get.to(() => const DevelopmentForms()),
-        // },
+        <String, dynamic>{
+          keyTitle: 'Develop Forms',
+          keyIcon: iconForm,
+          keyOnPress: () => Get.to(() => const DevelopmentForms()),
+        },
       ];
 
   @override

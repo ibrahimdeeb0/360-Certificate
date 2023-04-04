@@ -29,7 +29,7 @@ class LandlordSafetyController extends GetxController {
   String? pdfFilePath;
   Uuid uuid = const Uuid();
 
-  bool isCertificateCreated = true;
+  bool isCertificateCreated = false;
 
   DateTime? selectedDate;
   void onSelectDate(String? part, String? key, DateTime value) {
@@ -115,11 +115,22 @@ class LandlordSafetyController extends GetxController {
     formData[part!][key!] = value;
   }
 
-  void onNext() {
+  void onNext({bool fromSave = false}) {
     if (listFormSections.length - 1 == selectedId) {
       consoleLog('Last Pages');
+      onCompleteCertificate();
     } else {
-      selectedId = selectedId + 1;
+      if (selectedId == 0 && (isCertificateCreated == false)) {
+        onCreateCertificate();
+        isCertificateCreated = true;
+      } else if (fromSave && (isCertificateCreated == false)) {
+        onCreateCertificate();
+      } else if (fromSave && (isCertificateCreated == true)) {
+        onUpdateCertificate();
+      } else {
+        selectedId = selectedId + 1;
+      }
+
       update();
     }
     scrollController.animateTo(
@@ -297,10 +308,12 @@ class LandlordSafetyController extends GetxController {
     onSaveApplianceData();
 
     final Map<String, dynamic> certData = <String, dynamic>{
-      ...formBody,
       'customer_id': customerId,
       'status_id': idPending,
+      ...formBody,
     };
+
+    consoleLogPretty(certData);
 
     ApiRequest(
       method: ApiMethods.post,
@@ -467,5 +480,9 @@ class LandlordSafetyController extends GetxController {
 
       update();
     }
+
+    formData[formKeyDeclaration][formKeyRecordIssueBy] =
+        '${profileController.userDataProfile['first_name']} ${profileController.userDataProfile['last_name']}';
+    update();
   }
 }

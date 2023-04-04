@@ -5,10 +5,7 @@ import '../../../../../general_exports.dart';
 class LandlordPage5 extends StatelessWidget {
   const LandlordPage5({
     super.key,
-    // this.controller,
   });
-
-  // final LandlordSafetyController? controller;
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +36,7 @@ class LandlordPage5 extends StatelessWidget {
                     onChanged: (String value) =>
                         controller.onChangeFormDataValue(
                             formKeyDeclaration, formKeyRecordIssueBy, value),
+                    enabled: false,
                   ),
                   Align(
                     child: CommonText(
