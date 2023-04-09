@@ -332,23 +332,16 @@ const String formKeyReportDate = 'report_date';
 
 //*-*------ LandLord Form ------*//
 
-const String formKeyNameP1 = 'name_p1';
-const String formKeyAddress1P1 = 'address1_p1';
-const String formKeyAddress2P1 = 'address2_p1';
-const String formKeyPostcodeP1 = 'postcode_p1';
+
 //
-const String formKeyAddress1P2 = 'address1_p2';
-const String formKeyAddress2P2 = 'address2_p2';
-const String formKeyPostcodeP2 = 'postcode_p2';
+const String formKeyDetailsOfWorkP1 = 'name_p1';
 //
-const String formKeyDetailsOfWorkP3 = 'name_p3';
-//
-const String formKeyPipeworkVisualP4 = 'pipework_visual_p4';
-const String formKeyPipeworkOutcomeSupplyP4 = 'pipework_outcome_supply_p4';
-const String formKeyPipeworkOutcomeTightnessP4 =
-    'pipework_outcome_tightness_p4';
-const String formKeyPipeworkEmergencyP4 = 'pipework_emergency_p4';
-const String formKeyPipeworkProtectiveP4 = 'pipework_protective_p4';
+const String formKeyPipeworkVisualP2 = 'pipework_visual_p2';
+const String formKeyPipeworkOutcomeSupplyP2 = 'pipework_outcome_supply_p2';
+const String formKeyPipeworkEmergencyP2 = 'pipework_emergency_p2';
+const String formKeyPipeworkOutcomeTightnessP2 =
+    'pipework_outcome_tightness_p2';
+const String formKeyPipeworkProtectiveP2 = 'pipework_protective_p2';
 //
 const String formKeyDefectsIdentified1 = 'defects_identified_1';
 const String formKeyDefectsIdentified2 = 'defects_identified_2';

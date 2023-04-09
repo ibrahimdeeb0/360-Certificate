@@ -17,16 +17,11 @@ class SelectFormBT extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 SizedBox(height: DEVICE_HEIGHT * 0.03),
-                // CustomRadioSelection(),
                 ...controller.listAllForms.map(
                   (Map<String, dynamic> item) => CustomRadioSelection(
                     title: item[keyName],
-                    onPress: () {
-                      controller.toggleRadioForm(
-                        controller.listAllForms.indexOf(item),
-                      );
-                    },
-                    isSelected: controller.selectedForm != null,
+                    onPress: () => controller.onSelectForm(item),
+                    isSelected: controller.selectedForm?[keyId] == item[keyId],
                   ),
                 ),
                 ...controller.unActiveForms.map(

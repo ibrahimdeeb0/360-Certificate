@@ -39,15 +39,11 @@ class AddFormTemplate extends StatelessWidget {
                       ),
                       CommonInput(
                         enabled: false,
-                        onTap: () {
-                          // controller.serviceListForms = controller.listAllForms;
-                          // controller.update();
-                          Get.bottomSheet(
-                            elevation: 0.0,
-                            const SelectFormBT(),
-                            isScrollControlled: true,
-                          );
-                        },
+                        onTap: () => Get.bottomSheet(
+                          elevation: 0.0,
+                          const SelectFormBT(),
+                          isScrollControlled: true,
+                        ),
                         topLabelText: 'Template for this Form',
                         value: controller.selectedForm?['name'],
                         hint: 'Select Form',
@@ -57,7 +53,7 @@ class AddFormTemplate extends StatelessWidget {
                   ),
                 ),
                 CommonButton(
-                  enabled: controller.isSelectedForm,
+                  enabled: controller.isEnable,
                   onPress: controller.onCreate,
                   text: 'Next',
                   marginBottom: 0.02,

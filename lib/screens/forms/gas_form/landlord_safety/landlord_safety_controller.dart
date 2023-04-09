@@ -69,19 +69,20 @@ class LandlordSafetyController extends GetxController {
       templateName = myAppController.certFormInfo[keyNameTemp];
     }
     //! Update Template
-    // if (myAppController.certFormInfo[keyFormDataStatus] ==
-    //     FormDataStatus.editTemp) {
-    //   tempData = myAppController.certFormInfo[keyTemplateData];
-    //   templateName = myAppController.certFormInfo[keyNameTemp];
-    //   formBody = myAppController.certFormInfo[keyTemplateData][keyData];
+    if (myAppController.certFormInfo[keyFormDataStatus] ==
+        FormDataStatus.editTemp) {
+      tempData = myAppController.certFormInfo[keyTemplateData];
+      templateName = myAppController.certFormInfo[keyNameTemp];
+      formBody = myAppController.certFormInfo[keyTemplateData][keyData];
 
-    //   if (formBody[keyData][formKeyGazSafetyData].isNotEmpty) {
-    //     gazSafetyData = formBody[keyData][formKeyGazSafetyData][0];
-    //   }
-    //   distrBoardDataBase = gazSafetyData[allDistributionBoardData];
-    //   observationsDataBase = gazSafetyData[allObservationData];
-    //   update();
-    // }
+      if (formBody[keyData].isNotEmpty) {
+        formData = formBody[keyData];
+      }
+
+      applianceData = formData[formKeyAppliance];
+
+      update();
+    }
 
     // Edit Certificate
     if (myAppController.certFormInfo[keyFormDataStatus] ==
@@ -117,27 +118,16 @@ class LandlordSafetyController extends GetxController {
 
   Map<String, dynamic> formData = <String, dynamic>{
     formKeyPart1: <String, dynamic>{
-      formKeyNameP1: '',
-      formKeyAddress1P1: '',
-      formKeyAddress2P1: '',
-      formKeyPostcodeP1: '',
+      formKeyDetailsOfWorkP1: '',
     },
     formKeyPart2: <String, dynamic>{
-      formKeyAddress1P2: '',
-      formKeyAddress2P2: '',
-      formKeyPostcodeP2: '',
+      formKeyPipeworkVisualP2: 'N/A',
+      formKeyPipeworkOutcomeSupplyP2: 'N/A',
+      formKeyPipeworkEmergencyP2: 'N/A',
+      formKeyPipeworkOutcomeTightnessP2: 'N/A',
+      formKeyPipeworkProtectiveP2: 'N/A',
     },
     formKeyPart3: <String, dynamic>{
-      formKeyDetailsOfWorkP3: '',
-    },
-    formKeyPart4: <String, dynamic>{
-      formKeyPipeworkVisualP4: 'N/A',
-      formKeyPipeworkOutcomeSupplyP4: 'N/A',
-      formKeyPipeworkEmergencyP4: 'N/A',
-      formKeyPipeworkOutcomeTightnessP4: 'N/A',
-      formKeyPipeworkProtectiveP4: 'N/A',
-    },
-    formKeyPart5: <String, dynamic>{
       formKeyDefectsIdentified1: '',
       formKeyDefectsIdentified2: '',
       formKeyDefectsIdentified3: '',
@@ -150,10 +140,10 @@ class LandlordSafetyController extends GetxController {
       formKeyWarningNotice4: 'N/A',
       formKeyWarningNotice5: 'N/A',
     },
-    formKeyPart6: <String, dynamic>{
+    formKeyPart4: <String, dynamic>{
       formKeyRecordRemedialAction: '',
     },
-    formKeyPart7: <String, dynamic>{
+    formKeyPart5: <String, dynamic>{
       formKeyNextSafetyCheckBy: '',
     },
     formKeyDeclaration: <String, dynamic>{
@@ -169,8 +159,6 @@ class LandlordSafetyController extends GetxController {
   };
 
   List<Widget> get listFormSections => <Widget>[
-        // controller: Get.put(LandlordSafetyController())
-        const LandlordPage1(),
         const LandlordPage2(),
         const LandlordPage3(),
         const LandlordPage4(),
@@ -179,10 +167,18 @@ class LandlordSafetyController extends GetxController {
 
   //* Circuit - Page Numbers *//
   String pagesNum() {
-    if (selectedId == listFormSections.length) {
-      return '${listFormSections.length}/${listFormSections.length}';
+    if (isTemplate!) {
+      if (selectedId == listFormSections.length - 2) {
+        return '${listFormSections.length - 1}/${listFormSections.length - 1}';
+      } else {
+        return '${selectedId + 1}/${listFormSections.length - 1}';
+      }
     } else {
-      return '${selectedId + 1}/${listFormSections.length}';
+      if (selectedId == listFormSections.length) {
+        return '${listFormSections.length}/${listFormSections.length}';
+      } else {
+        return '${selectedId + 1}/${listFormSections.length}';
+      }
     }
   }
 
@@ -191,23 +187,34 @@ class LandlordSafetyController extends GetxController {
   }
 
   void onNext({bool fromSave = false}) {
-    if (listFormSections.length - 1 == selectedId) {
-      consoleLog('Last Pages');
-      onCompleteCertificate();
-    } else {
-      if (selectedId == 0 && (isCertificateCreated == false)) {
-        onCreateCertificate();
-        isCertificateCreated = true;
-      } else if (fromSave && (isCertificateCreated == false)) {
-        onCreateCertificate();
-      } else if (fromSave && (isCertificateCreated == true)) {
-        onUpdateCertificate();
+    if (isTemplate!) {
+      if (listFormSections.length - 2 == selectedId) {
+        consoleLog('Last Pages In Template');
+        onSaveTemplate();
       } else {
         selectedId = selectedId + 1;
+        update();
       }
+    } else {
+      if (listFormSections.length - 1 == selectedId) {
+        consoleLog('Last Pages');
+        onCompleteCertificate();
+      } else {
+        if (selectedId == 0 && (isCertificateCreated == false)) {
+          onCreateCertificate();
+          isCertificateCreated = true;
+        } else if (fromSave && (isCertificateCreated == false)) {
+          onCreateCertificate();
+        } else if (fromSave && (isCertificateCreated == true)) {
+          onUpdateCertificate();
+        } else {
+          selectedId = selectedId + 1;
+        }
 
-      update();
+        update();
+      }
     }
+
     scrollController.animateTo(
       0.0,
       duration: const Duration(milliseconds: 400),
@@ -231,24 +238,19 @@ class LandlordSafetyController extends GetxController {
   }
 
   String finalPageButton() {
-    if (selectedId < listFormSections.length - 1) {
-      return 'Next';
+    if (isTemplate!) {
+      if (selectedId < listFormSections.length - 2) {
+        return 'Next';
+      } else {
+        return 'Save';
+      }
     } else {
-      return 'Complete';
+      if (selectedId < listFormSections.length - 1) {
+        return 'Next';
+      } else {
+        return 'Complete';
+      }
     }
-    // if (isTemplate!) {
-    //   if (selectedId == 21) {
-    //     return 'Save';
-    //   } else {
-    //     return 'Next';
-    //   }
-    // } else {
-    //    if (selectedId < listFormSections.length - 1) {
-    //     return 'Next';
-    //   } else {
-    //     return 'Complete';
-    //   }
-    // }
   }
 
   // *****************  signature functions **************** //
@@ -430,15 +432,18 @@ class LandlordSafetyController extends GetxController {
       requestFunction: onUpdateCertificate,
       // withLoading: true,
       body: certData,
-    ).request(onSuccess: (dynamic data, dynamic response) async {
-      myAppController.clearCertFormInfo();
-      certificatesController.getAllCert();
-      homeController.getCertCount();
-      profileController.getProfileData();
-      Get.offAllNamed(routeHomeBottomBar);
-    }, onError: (dynamic error) {
-      dismissLoading();
-    });
+    ).request(
+      onSuccess: (dynamic data, dynamic response) async {
+        myAppController.clearCertFormInfo();
+        certificatesController.getAllCert();
+        homeController.getCertCount();
+        profileController.getProfileData();
+        Get.offAllNamed(routeHomeBottomBar);
+      },
+      onError: (dynamic error) {
+        dismissLoading();
+      },
+    );
   }
 
   Future<void> onCompleteCertificate() async {
@@ -452,7 +457,7 @@ class LandlordSafetyController extends GetxController {
       'status_id': idCompleted,
     };
 
-    if (signatureBytes != null && signatureBytes2 != null) {
+    if (signatureBytes != null) {
       startLoading();
       ApiRequest(
         method: ApiMethods.post,
@@ -462,11 +467,13 @@ class LandlordSafetyController extends GetxController {
         requestFunction: onCompleteCertificate,
         // withLoading: true,
 
-        body: await addFormDataToJson(
-          fileKey: 'customer_signature',
-          file: customerSignature,
-          jsonObject: certData,
-        ),
+        body: signatureBytes2 != null
+            ? await addFormDataToJson(
+                fileKey: 'customer_signature',
+                file: customerSignature,
+                jsonObject: certData,
+              )
+            : certData,
       ).request(onSuccess: (dynamic data, dynamic response) async {
         myAppController.clearCertFormInfo();
         certificatesController.getAllCert();
@@ -483,6 +490,69 @@ class LandlordSafetyController extends GetxController {
           textColor: AppColors.red,
         );
       }
+    }
+  }
+
+  // *****************  Template ****************
+
+  void onSaveTemplate() {
+    consoleLog('Save Template');
+    openDialog(
+      onCancel: Get.back,
+      onConfirm: storeTemplate,
+    );
+  }
+
+  Future<void> storeTemplate() async {
+    hideKeyboard();
+    onSaveData();
+    onSaveApplianceData();
+
+    startLoading();
+    if (isEditTemplate!) {
+      // ignore: missing_required_param
+      ApiRequest(
+        method: ApiMethods.put,
+        path: '/forms/templates/${tempData[keyId]}/update',
+        className: 'LandlordSafetyController/storeTemplate',
+        requestFunction: storeTemplate,
+        body: <String, dynamic>{
+          'name': templateName,
+          'form_id': tempData['form_id'],
+          'data': formBody,
+        },
+      ).request(
+        onSuccess: (dynamic data, dynamic response) {
+          myAppController.clearCertFormInfo();
+          Get.put(FormTemplateController()).getFormsTemplates();
+          Get
+            ..back()
+            ..back();
+        },
+      );
+    } else {
+      // ignore: missing_required_param
+      ApiRequest(
+        method: ApiMethods.post,
+        path: keyStoreFormTemplate,
+        className: 'LandlordSafetyController/storeTemplate',
+        requestFunction: storeTemplate,
+        body: <String, dynamic>{
+          'name': templateName,
+          'form_id': formId,
+          'data': formBody,
+        },
+      ).request(
+        onSuccess: (dynamic data, dynamic response) {
+          myAppController.clearCertFormInfo();
+          Get.put(FormTemplateController()).getFormsTemplates();
+          // dismissLoading();
+          Get
+            ..back()
+            ..back()
+            ..back();
+        },
+      );
     }
   }
 }

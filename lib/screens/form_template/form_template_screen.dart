@@ -66,9 +66,7 @@ class FormTemplateCard extends StatelessWidget {
     final String? formName = itemData['form']['name'];
     final int? formId = itemData['form']['id'];
     final int? tempId = itemData['id'];
-    // final bool isDefault = itemData['default'] == 'no' ? false : true;
     final bool isDefault = itemData['default'].contains('yes');
-    // consoleLog(itemData, key: 'itemData for card');
 
     return CommonContainer(
       style: appContainerStyles.cardContainer(),
@@ -78,104 +76,37 @@ class FormTemplateCard extends StatelessWidget {
         elevation: 0.0,
         GetBuilder<FormTemplateController>(
           init: FormTemplateController(),
-          global: false,
+          // global: false,
           builder: (FormTemplateController? controller) {
             return BottomSheetContainer(
-              height: 0.36,
+              height: 0.35,
               title: 'Template Name: $tempName',
               child: Center(
                 child: Column(
                   children: <Widget>[
-                    SizedBox(height: DEVICE_HEIGHT * 0.03),
-                    CommonText(
-                      'Edit  ',
-                      onPress: () => controller!.onPressEdit(
+                    SizedBox(height: DEVICE_HEIGHT * 0.05),
+                    TemplateButtons(
+                      press: () => controller!.onPressEditTemplate(
                         formId: formId,
                         name: tempName,
                         tempId: tempId,
                       ),
-                      style: appTextStyles.h3StyleWhite(),
-                      containerStyle: CommonContainerModel(
-                        backgroundColor: AppColors.primary,
-                        borderRadius: 0.01,
-                        padding: 0.01,
-                        width: 0.7,
-                        marginVertical: 0.01,
-                      ),
-                      rightChild: Padding(
-                        padding: EdgeInsets.only(left: DEVICE_WIDTH * 0.015),
-                        child: const Icon(
-                          Icons.edit,
-                          color: Colors.white,
-                        ),
-                      ),
                     ),
-                    CommonText(
-                      'Copy  ',
-                      onPress: () => controller!.onPressCopy(
+                    TemplateButtons(
+                      name: 'Delete',
+                      press: () => controller?.onPressDelete(
                         formId: formId,
                         name: tempName,
                         tempId: tempId,
                       ),
-                      style: appTextStyles.h3StyleWhite(),
-                      containerStyle: CommonContainerModel(
-                        backgroundColor: AppColors.green2,
-                        borderRadius: 0.01,
-                        padding: 0.01,
-                        width: 0.7,
-                        marginVertical: 0.01,
-                      ),
-                      rightChild: Padding(
-                        padding: EdgeInsets.only(left: DEVICE_WIDTH * 0.015),
-                        child: const Icon(
-                          Icons.copy,
-                          color: Colors.white,
-                        ),
-                      ),
+                      status: TemplateStatus.deleteTemp,
                     ),
-                    CommonText(
-                      'Delete  ',
-                      onPress: () => controller?.onPressDelete(
-                        formId: formId,
-                        name: tempName,
-                        tempId: tempId,
-                      ),
-                      style: appTextStyles.h3StyleWhite(),
-                      containerStyle: const CommonContainerModel(
-                        backgroundColor: Colors.red,
-                        borderRadius: 0.01,
-                        padding: 0.01,
-                        width: 0.7,
-                        marginVertical: 0.01,
-                      ),
-                      rightChild: Padding(
-                        padding: EdgeInsets.only(left: DEVICE_WIDTH * 0.015),
-                        child: const Icon(
-                          Icons.delete,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                    CommonText(
-                      'Make as Default  ',
-                      onPress: () => controller?.onPressDefault(
+                    TemplateButtons(
+                      name: 'Make as Default',
+                      press: () => controller?.onPressDefault(
                         tempId: tempId!,
                       ),
-                      style: appTextStyles.h3StyleWhite(),
-                      containerStyle: CommonContainerModel(
-                        backgroundColor: AppColors.textGrey,
-                        borderRadius: 0.01,
-                        padding: 0.01,
-                        width: 0.7,
-                        marginVertical: 0.01,
-                      ),
-                      rightChild: Padding(
-                        padding: EdgeInsets.only(left: DEVICE_WIDTH * 0.015),
-                        child: const Icon(
-                          Icons.favorite,
-                          color: Colors.white,
-                        ),
-                      ),
+                      status: TemplateStatus.defaultTemp,
                     ),
                   ],
                 ),
@@ -225,6 +156,49 @@ class FormTemplateCard extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class TemplateButtons extends StatelessWidget {
+  const TemplateButtons({
+    super.key,
+    this.press,
+    this.status,
+    this.name,
+  });
+
+  final Function()? press;
+  final TemplateStatus? status;
+  final String? name;
+
+  @override
+  Widget build(BuildContext context) {
+    return CommonButton(
+      onPress: press,
+      width: 0.7,
+      backgroundColor: status == TemplateStatus.deleteTemp
+          ? Colors.red
+          : status == TemplateStatus.defaultTemp
+              ? AppColors.red
+              : AppColors.primary,
+      marginBottom: 0.02,
+      child: CommonText(
+        name ?? 'Edit',
+        style: appTextStyles.h2StyleWhite(),
+        marginHorizontal: 0.02,
+        leftChild: Padding(
+          padding: EdgeInsets.only(left: DEVICE_WIDTH * 0.015),
+          child: Icon(
+            status == TemplateStatus.defaultTemp
+                ? Icons.favorite
+                : status == TemplateStatus.deleteTemp
+                    ? Icons.delete
+                    : Icons.edit,
+            color: Colors.white,
+          ),
+        ),
       ),
     );
   }

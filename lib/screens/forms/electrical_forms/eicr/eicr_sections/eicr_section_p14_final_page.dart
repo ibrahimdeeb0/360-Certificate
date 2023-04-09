@@ -50,6 +50,7 @@ class EICRFinalPage extends StatelessWidget {
                 keyboardType: TextInputType.name,
                 textInputAction: TextInputAction.done,
                 marginBottom: 0.02,
+                enabled: false,
               ),
               Align(
                 child: CommonText(

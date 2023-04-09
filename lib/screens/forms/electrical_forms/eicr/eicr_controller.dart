@@ -671,6 +671,9 @@ class EicrController extends GetxController {
       update();
     }
 
+    gazSafetyData[formKeyEICRdeclaration][formKeyInspectedName] =
+        '${profileController.userDataProfile['first_name']} ${profileController.userDataProfile['last_name']}';
+
     update();
   }
 

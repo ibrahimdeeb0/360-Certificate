@@ -18,12 +18,14 @@ class AddFormTemplateController extends GetxController {
     // },
     <String, dynamic>{
       keyId: 5,
-      keyName: 'Domestic Electrical installation Condition report'
+      keyName: 'Domestic Electrical installation Condition report',
+      keyRoute: routeFormEICR,
     },
-    // <String, dynamic>{
-    //   keyId: 9,
-    //   keyName: 'Landlord/Homeowner Gas Safety Record',
-    // },
+    <String, dynamic>{
+      keyId: 9,
+      keyName: 'Landlord/Homeowner Gas Safety Record',
+      keyRoute: routeFormLandlord,
+    },
   ];
 
   List<Map<String, dynamic>> unActiveForms = <Map<String, dynamic>>[
@@ -43,72 +45,37 @@ class AddFormTemplateController extends GetxController {
     //   keyId: 5,
     //   keyName: 'Domestic Electrical installation Condition report'
     // },
-    <String, dynamic>{
-      keyId: 9,
-      keyName: 'Landlord/Homeowner Gas Safety Record',
-    },
+    // <String, dynamic>{
+    //   keyId: 9,
+    //   keyName: 'Landlord/Homeowner Gas Safety Record',
+    // },
   ];
 
-  List<dynamic> allServices = <dynamic>[];
-
-  Map<String, dynamic>? selectedService;
   Map<String, dynamic>? selectedForm;
-  // List<Map<String, dynamic>>? serviceListForms;
 
-  List<int> listIndexService = <int>[];
-  List<int> listIndexForm = <int>[];
+  bool isEnable = false;
 
-  bool serviceHaveForm = true;
-  bool isSelectedForm = false;
+  // @override
+  // void onReady() {
+  //   super.onReady();
+  //   // update();
+  // }
 
-  dynamic formController;
+  void inputOnChange(String? value) {
+    enableButton();
+  }
 
-  @override
-  void onReady() {
-    super.onReady();
+  void onSelectForm(Map<String, dynamic> item) {
+    selectedForm = item;
     update();
+    Get.back();
+    enableButton();
   }
 
-  void toggleRadioForm(int indexNum) {
-    if (listIndexForm.isEmpty) {
-      listIndexForm.add(indexNum);
-      update();
-      onSelectForm();
-    } else {
-      listIndexForm.clear();
-      listIndexForm.add(indexNum);
-      update();
-      onSelectForm();
-    }
-  }
-
-  void onSelectForm() {
-    if (listIndexForm.isEmpty) {
-      showMessage(
-        description: 'Please Select Form',
-        textColor: COMMON_RED_COLOR,
-      );
-    } else if (listIndexForm.isNotEmpty) {
-      selectedForm = listAllForms.elementAt(listIndexForm[0]);
-      checkIsPressNext();
-      consoleLogPretty(selectedForm);
-      Get.back();
-    }
-    hideKeyboard();
-  }
-
-  void checkIsPressNext() {
-    if (selectedForm != null && templateController.text.isNotEmpty) {
-      isSelectedForm = true;
-      update();
-    } else {
-      isSelectedForm = false;
-      update();
-    }
-  }
-
-  void inputOnChange(dynamic value) {
-    checkIsPressNext();
+  void enableButton() {
+    isEnable =
+        selectedForm != null && templateController.text.trim().isNotEmpty;
+    update();
   }
 
   void onCreate() {
@@ -117,9 +84,9 @@ class AddFormTemplateController extends GetxController {
     myAppController.certFormInfo[keyFormStatus] = FormStatus.template;
     myAppController.certFormInfo[keyFormDataStatus] = FormDataStatus.newTemp;
 
-    consoleLog(myAppController.certFormInfo[keyFormStatus],
-        key: 'general_form_data');
+    // consoleLog(myAppController.certFormInfo[keyFormStatus],
+    //     key: 'general_form_data');
 
-    Get.toNamed(routeFormEICR);
+    Get.toNamed(selectedForm?[keyRoute]);
   }
 }
