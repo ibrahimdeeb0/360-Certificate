@@ -80,7 +80,7 @@ class FormTemplateCard extends StatelessWidget {
           builder: (FormTemplateController? controller) {
             return BottomSheetContainer(
               height: 0.35,
-              title: 'Template Name: $tempName',
+              title: '$tempName',
               child: Center(
                 child: Column(
                   children: <Widget>[

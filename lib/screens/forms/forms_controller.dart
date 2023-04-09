@@ -83,9 +83,8 @@ class FormsController extends GetxController {
     consoleLog(myAppController.certFormInfo, key: 'form_data_Global');
 
     Get.back();
-    Get.toNamed(
-      routeCreateCustomer,
-    );
+
+    Get.offAndToNamed(routeCreateCustomer);
   }
 
   Future<void> getFormsTemplates() async {
@@ -131,7 +130,6 @@ class FormsController extends GetxController {
       // formatResponse: true,
     ).request(
       onSuccess: (dynamic data, dynamic response) {
-        consoleLogPretty(data, key: 'template_data');
         myAppController.certFormInfo[keyFormId] = formInfo?[keyId];
         myAppController.certFormInfo[keyFormStatus] = FormStatus.create;
         myAppController.certFormInfo[keyFormDataStatus] =
@@ -139,8 +137,8 @@ class FormsController extends GetxController {
         myAppController.certFormInfo[keyFormRoute] = formInfo?[keyRoute];
         myAppController.certFormInfo[keyTemplateData] = data;
 
-        consoleLog(myAppController.certFormInfo, key: 'form_data_Global');
-        Get.toNamed(routeCreateCustomer);
+        Get.back();
+        Get.offAndToNamed(routeCreateCustomer);
         update();
 
         // dismissLoading();
