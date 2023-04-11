@@ -1,25 +1,24 @@
 import '../../../../general_exports.dart';
 
-class LandlordSafety extends StatelessWidget {
-  const LandlordSafety({super.key});
+class DangerNotice extends StatelessWidget {
+  const DangerNotice({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<LandlordSafetyController>(
-      init: LandlordSafetyController(),
-      builder: (LandlordSafetyController controller) {
+    return GetBuilder<DangerNoticeController>(
+      init: DangerNoticeController(),
+      builder: (DangerNoticeController controller) {
         return Scaffold(
           appBar: FormHeader(
             withBack: false,
-            title: 'Landlord/Homeowner Gas Safety Record',
+            title: 'Electrical Danger Notice',
             circleNumbering: controller.pagesNum(),
             showSaveBtn: (controller.selectedId !=
                     controller.listFormSections.length - 1 &&
                 !controller.isTemplate!),
             onPressSave: () => controller.onNext(fromSave: true),
           ),
-          body: 
-          CommonContainer(
+          body: CommonContainer(
             width: 1,
             height: 1,
             backgroundColor: AppColors.greyLightBorder,

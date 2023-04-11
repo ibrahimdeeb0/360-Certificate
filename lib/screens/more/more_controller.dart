@@ -60,12 +60,16 @@ class MoreController extends GetxController {
       keyTitle: 'Gas',
       keyItems: <Map<String, dynamic>>[
         <String, dynamic>{
-          keyId: 0,
+          keyId: 9,
           keyTitle: 'Landlord/Homeowner Gas Safety Record',
           keyOnPress: () {
             Get.toNamed(routeFormLandlord);
           },
         },
+        // <String, dynamic>{
+        //   keyId: 11,
+        //   keyTitle: 'Warning Notice',
+        // },
         // <String, dynamic>{
         //   keyId: 0,
         //   keyTitle: 'Caravan Boat Gas Safety Inspection Record',
@@ -99,20 +103,22 @@ class MoreController extends GetxController {
     <String, dynamic>{
       keyTitle: 'Electrical',
       keyItems: <Map<String, dynamic>>[
+        // <String, dynamic>{
+        //   keyId: 0,
+        //   keyTitle: 'Portable Appliance Testing',
+        //   keyOnPress: () {},
+        // },
+        // <String, dynamic>{
+        //   keyId: 0,
+        //   keyTitle: 'Domestic Electrical Installation Certificate',
+        //   keyOnPress: () {},
+        // },
         <String, dynamic>{
-          keyId: 0,
-          keyTitle: 'Portable Appliance Testing',
-          keyOnPress: () {},
-        },
-        <String, dynamic>{
-          keyId: 0,
-          keyTitle: 'Domestic Electrical Installation Certificate',
-          keyOnPress: () {},
-        },
-        <String, dynamic>{
-          keyId: 0,
-          keyTitle: 'Electrical Danger Notification',
-          keyOnPress: () {},
+          keyId: 4,
+          keyTitle: 'Electrical Danger Notice',
+          keyOnPress: () {
+            Get.toNamed(routeFormEDN);
+          },
         },
         <String, dynamic>{
           keyId: 5,

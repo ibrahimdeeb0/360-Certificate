@@ -1,5 +1,7 @@
 // ignore_for_file: unused_element
 
+import 'package:intl/intl.dart';
+
 import '../../general_exports.dart';
 
 // you have access to the instance in extension methods via 'this' keyword.
@@ -34,7 +36,17 @@ extension EmptyPadding on num {
   SizedBox get pw => SizedBox(width: DEVICE_WIDTH * toDouble());
 }
 
-//
-//DateFormat('dd-MM-yyyy')
-         //               .format(DateTime.parse(item['created_at'].toString()))
-//
+extension FormatTime on String {
+  //DateFormat.jm().format(DateTime.parse(item['created_at'])),
+  String get formatFullDate {
+    return '${DateFormat('dd/MM/yyy').format(DateTime.parse(this))}   ${DateFormat.jm().format(DateTime.parse(this))}';
+  }
+
+  String get formatDate {
+    return DateFormat('dd/MM/yyy').format(DateTime.parse(this));
+  }
+
+  String get formatTime {
+    return DateFormat.jm().format(DateTime.parse(this));
+  }
+}

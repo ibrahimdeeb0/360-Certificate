@@ -2,41 +2,37 @@ import 'package:easy_signature_pad/easy_signature_pad.dart';
 
 import '../../../../../general_exports.dart';
 
-class LandlordPage5 extends StatelessWidget {
-  const LandlordPage5({
-    super.key,
-  });
+class DangerNoticePage3 extends StatelessWidget {
+  const DangerNoticePage3({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<LandlordSafetyController>(
-      init: LandlordSafetyController(),
-      builder: (LandlordSafetyController controller) {
+    return GetBuilder<DangerNoticeController>(
+      init: DangerNoticeController(),
+      builder: (DangerNoticeController controller) {
         return Column(
           children: <Widget>[
-            // CommonButton(
-            //   onPress: () {
-            //     consoleLog(controller.applianceData);
-            //   },
-            // ),
             CommonContainer(
               style: appContainerStyles.formSectionsStyle,
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  CustomTextFormTitle(
+                  // const ApplianceSectionTitle(
+                  //   title: 'CONTRACTOR NOTIFYING THE DANGEROUS CONDITION',
+                  // ),
+                  const CustomTextFormTitle(
                     leftText: '',
-                    text: 'Record Issue By'.toUpperCase(),
+                    text: 'CONTRACTOR NOTIFYING THE DANGEROUS CONDITION',
                   ),
-
                   CommonInput(
                     topLabelText: 'Name (CAPITAL)',
                     marginTop: 0.01,
                     marginBottom: 0.02,
                     value: controller.formData[formKeyDeclaration]
-                        [formKeyRecordIssueBy],
+                        [formKeyEngineerName],
                     onChanged: (String value) =>
                         controller.onChangeFormDataValue(
-                            formKeyDeclaration, formKeyRecordIssueBy, value),
+                            formKeyDeclaration, formKeyEngineerName, value),
                     enabled: false,
                   ),
                   Align(
@@ -130,30 +126,38 @@ class LandlordPage5 extends StatelessWidget {
                         ),
                       ],
                     ),
-             
-                ],
-              ),
-            ),
-            CommonContainer(
-              style: appContainerStyles.formSectionsStyle,
-              marginTop: 0.0,
-              child: Column(
-                children: <Widget>[
+                  CommonInput(
+                    topLabelText: 'Position',
+                    marginBottom: 0.015,
+                    onChanged: (String? value) =>
+                        controller.onChangeFormDataValue(
+                            formKeyDeclaration, formKeyEngineerPosition, value),
+                    value: controller.formData[formKeyDeclaration]
+                        [formKeyEngineerPosition],
+                  ),
+                  CommonInput(
+                    topLabelText: 'Enrollment Number (if applicable)',
+                    onChanged: (String? value) =>
+                        controller.onChangeFormDataValue(
+                            formKeyDeclaration, formKeyEnrollmentNumber, value),
+                    value: controller.formData[formKeyDeclaration]
+                        [formKeyEnrollmentNumber],
+                  ),
 
-                  
                   CustomTextFormTitle(
                     leftText: '',
                     text: 'Received By'.toUpperCase(),
+                    marginTop: 0.03,
                   ),
                   CommonInput(
                     topLabelText: 'Name (CAPITAL)',
                     marginTop: 0.01,
                     marginBottom: 0.02,
                     value: controller.formData[formKeyDeclaration]
-                        [formKeyReceivedBy],
+                        [formKeyClientName],
                     onChanged: (String value) =>
                         controller.onChangeFormDataValue(
-                            formKeyDeclaration, formKeyReceivedBy, value),
+                            formKeyDeclaration, formKeyClientName, value),
                   ),
                   Align(
                     child: CommonText(
@@ -247,8 +251,45 @@ class LandlordPage5 extends StatelessWidget {
                         ),
                       ],
                     ),
-               
-               
+                  CommonInput(
+                    topLabelText: 'Position',
+                    marginBottom: 0.015,
+                    onChanged: (String? value) =>
+                        controller.onChangeFormDataValue(
+                            formKeyDeclaration, formKeyClientPosition, value),
+                    value: controller.formData[formKeyDeclaration]
+                        [formKeyClientPosition],
+                  ),
+                  // CommonInput(
+                  //   topLabelText: 'Date',
+                  //   onChanged: (String? value) =>
+                  //       controller.onChangeFormDataValue(
+                  //           formKeyDeclaration, formKeyReceivedDate, value),
+                  //   value: controller.formData[formKeyDeclaration]
+                  //       [formKeyReceivedDate],
+                  // ),
+                  CommonInput(
+                    topLabelText: 'Date',
+                    onTap: () {
+                      CommonDatePicker.showDatePicker(
+                        context,
+                        currentTime: controller.selectedDate ?? DateTime.now(),
+                        onConfirm: (DateTime value) {
+                          controller.onSelectDate(
+                            formKeyDeclaration,
+                            formKeyReceivedDate,
+                            value,
+                          );
+                        },
+                      );
+                    },
+                    enabled: false,
+                    hint: 'select',
+                    marginBottom: 0.02,
+                    suffix: const Icon(Icons.keyboard_arrow_down),
+                    value: controller.formData[formKeyDeclaration]
+                        [formKeyReceivedDate],
+                  ),
                 ],
               ),
             ),

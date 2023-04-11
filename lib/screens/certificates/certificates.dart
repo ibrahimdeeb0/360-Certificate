@@ -17,7 +17,7 @@ class Certificates extends StatelessWidget {
               SizedBox(height: DEVICE_HEIGHT * 0.02),
               ...controller.filteredCert.map(
                 (dynamic item) {
-                  final String certStatus = item['status']['name'];
+                  final String certStatus = item['status'][keyName];
                   return SortCertificateCard(
                     onPress: () => Get.toNamed(
                       routeCertificateDetails,

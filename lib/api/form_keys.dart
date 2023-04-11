@@ -332,7 +332,6 @@ const String formKeyReportDate = 'report_date';
 
 //*-*------ LandLord Form ------*//
 
-
 //
 const String formKeyDetailsOfWorkP1 = 'name_p1';
 //
@@ -387,3 +386,18 @@ const String formKeyApplianceCOAlarmTest = 'appliance_co_alarm_test';
 const String formKeyAppliance = 'appliance_data';
 const String formKeyRecordIssueBy = 'record_issue_by';
 const String formKeyReceivedBy = 'received_by';
+
+//*-*------ Electrical Danger Notification Form ------*//
+
+const String formKeyDateElectricalDanger = 'date_electrical_danger';
+const String formKeyTimeElectricalDanger = 'time_electrical_danger';
+const String formKeyDangerousCondition = 'dangerous_condition';
+const String formKeyDangerousDetails = 'dangerous_details';
+const String formKeyActionRaked = 'action_taken';
+const String formKeyFurtherAction = 'further_action';
+const String formKeyEngineerName = 'engineer_name';
+const String formKeyClientName = 'client_name';
+const String formKeyEngineerPosition = 'engineer_position';
+const String formKeyClientPosition = 'client_position';
+const String formKeyEnrollmentNumber = 'enrollment_number';
+const String formKeyReceivedDate = 'received_date';

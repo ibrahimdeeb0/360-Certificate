@@ -21,7 +21,7 @@ class CertificatesController extends GetxController {
     <String, dynamic>{
       keyTitle: 'Pending',
       keyType: FilterType.pending,
-    },
+    },  
     <String, dynamic>{
       keyTitle: 'In Progress',
       keyType: FilterType.inProgress,

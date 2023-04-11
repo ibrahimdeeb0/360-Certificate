@@ -35,10 +35,11 @@ class Forms extends StatelessWidget {
                                     controller.searchTemplate(childe);
                                   } else if (childe[keyId] == 9) {
                                     controller.searchTemplate(childe);
+                                  } else if (childe[keyId] == 4) {
+                                    controller.searchTemplate(childe);
                                   }
                                 },
                               ),
-                              
                             )
                             .toList(),
                       ],

@@ -28,3 +28,5 @@ const String routeAddNewNote = '/add_new_note';
 const String routeCustomerProfile = '/customer_profile';
 const String routeFormEICR = '/form_eicr';
 const String routeFormLandlord = '/form_landlord';
+// Electrical Danger Notice
+const String routeFormEDN = '/form_edn';

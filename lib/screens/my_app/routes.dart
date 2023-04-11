@@ -113,4 +113,8 @@ List<GetPage<dynamic>> appRoutes = <GetPage<dynamic>>[
     name: routeFormLandlord,
     page: () => const LandlordSafety(),
   ),
+  GetPage<DangerNotice>(
+    name: routeFormEDN,
+    page: () => const DangerNotice(),
+  ),
 ];
