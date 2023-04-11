@@ -72,6 +72,10 @@ class FormTemplateController extends GetxController {
           Get.toNamed(
             routeFormLandlord,
           );
+        } else if (formId == 4) {
+          Get.toNamed(
+            routeFormEDN,
+          );
         }
 
         update();

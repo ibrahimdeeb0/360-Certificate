@@ -12,10 +12,11 @@ class AddFormTemplateController extends GetxController {
     //   keyId: 3,
     //   keyName: 'Domestic Electrical Installation Certificate'
     // },
-    // <String, dynamic>{
-    //   keyId: 4,
-    //   keyName: 'Electrical Danger Notification',
-    // },
+    <String, dynamic>{
+      keyId: 4,
+      keyName: 'Electrical Danger Notice',
+      keyRoute: routeFormEDN,
+    },
     <String, dynamic>{
       keyId: 5,
       keyName: 'Domestic Electrical installation Condition report',
@@ -37,10 +38,10 @@ class AddFormTemplateController extends GetxController {
       keyId: 3,
       keyName: 'Domestic Electrical Installation Certificate'
     },
-    <String, dynamic>{
-      keyId: 4,
-      keyName: 'Electrical Danger Notification',
-    },
+    // <String, dynamic>{
+    //   keyId: 4,
+    //   keyName: 'Electrical Danger Notification',
+    // },
     // <String, dynamic>{
     //   keyId: 5,
     //   keyName: 'Domestic Electrical installation Condition report'
