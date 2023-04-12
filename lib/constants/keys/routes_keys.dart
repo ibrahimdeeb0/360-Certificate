@@ -29,4 +29,6 @@ const String routeCustomerProfile = '/customer_profile';
 const String routeFormEICR = '/form_eicr';
 const String routeFormLandlord = '/form_landlord';
 // Electrical Danger Notice
-const String routeFormEDN = '/form_edn';
+const String routeFormDangerNotice = '/form_danger_notice';
+const String routeFormWarningNotice = '/form_warning_notice';
+const String routeFormDomesticEic = '/form_domestic_eic';

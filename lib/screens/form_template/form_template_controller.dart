@@ -74,7 +74,7 @@ class FormTemplateController extends GetxController {
           );
         } else if (formId == 4) {
           Get.toNamed(
-            routeFormEDN,
+            routeFormDangerNotice,
           );
         }
 

@@ -36,7 +36,7 @@ class FormsController extends GetxController {
         <String, dynamic>{
           keyId: 4,
           keyTitle: 'Electrical Danger Notice',
-          keyRoute: routeFormEDN,
+          keyRoute: routeFormDangerNotice,
         },
         <String, dynamic>{
           keyId: 5,

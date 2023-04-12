@@ -66,10 +66,13 @@ class MoreController extends GetxController {
             Get.toNamed(routeFormLandlord);
           },
         },
-        // <String, dynamic>{
-        //   keyId: 11,
-        //   keyTitle: 'Warning Notice',
-        // },
+        <String, dynamic>{
+          keyId: 11,
+          keyTitle: 'Warning Notice',
+          keyOnPress: () {
+            Get.toNamed(routeFormWarningNotice);
+          },
+        },
         // <String, dynamic>{
         //   keyId: 0,
         //   keyTitle: 'Caravan Boat Gas Safety Inspection Record',
@@ -108,16 +111,18 @@ class MoreController extends GetxController {
         //   keyTitle: 'Portable Appliance Testing',
         //   keyOnPress: () {},
         // },
-        // <String, dynamic>{
-        //   keyId: 0,
-        //   keyTitle: 'Domestic Electrical Installation Certificate',
-        //   keyOnPress: () {},
-        // },
+        <String, dynamic>{
+          keyId: 0,
+          keyTitle: 'Domestic Electrical Installation Certificate',
+          keyOnPress: () {
+            Get.toNamed(routeFormDomesticEic);
+          },
+        },
         <String, dynamic>{
           keyId: 4,
           keyTitle: 'Electrical Danger Notice',
           keyOnPress: () {
-            Get.toNamed(routeFormEDN);
+            Get.toNamed(routeFormDangerNotice);
           },
         },
         <String, dynamic>{

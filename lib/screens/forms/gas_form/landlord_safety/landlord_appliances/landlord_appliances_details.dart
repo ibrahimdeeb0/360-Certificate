@@ -70,22 +70,26 @@ class ApplianceSectionTitle extends StatelessWidget {
   const ApplianceSectionTitle({
     super.key,
     this.title,
+    this.color,
   });
 
   final String? title;
+  final dynamic color;
 
   @override
   Widget build(BuildContext context) {
     return CommonText(
       title?.toUpperCase() ?? '',
       style: appTextStyles.textTitleBoldStyle
-          .copyWith(fontColor: Colors.grey[700]),
+          .copyWith(fontColor: color ?? Colors.grey[700]),
       containerStyle: CommonContainerModel(
         backgroundColor: Colors.grey[200],
         paddingVertical: 0.01,
         marginBottom: 0.02,
         paddingHorizontal: 0.04,
+        width: 1,
       ),
+      bottomChild: const SizedBox(),
     );
   }
 }

@@ -15,7 +15,7 @@ class AddFormTemplateController extends GetxController {
     <String, dynamic>{
       keyId: 4,
       keyName: 'Electrical Danger Notice',
-      keyRoute: routeFormEDN,
+      keyRoute: routeFormDangerNotice,
     },
     <String, dynamic>{
       keyId: 5,
