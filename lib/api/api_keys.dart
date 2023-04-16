@@ -46,6 +46,7 @@ const String keyOnPress = 'on_press';
 const String keyIsSelected = 'is_selected';
 const String keyValue = 'value';
 const String keyItems = 'items';
+const String keyForm = 'form';
 const String formKey = 'form_key';
 const String keyFormData = 'form_data';
 const String keyStatus = 'status';

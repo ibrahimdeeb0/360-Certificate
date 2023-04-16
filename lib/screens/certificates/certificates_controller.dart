@@ -9,9 +9,17 @@ enum FilterType {
 }
 
 class CertificatesController extends GetxController {
+  ScrollController scrollController = ScrollController();
+
   List<dynamic> allCerts = <dynamic>[];
-  List<dynamic> listCert = <dynamic>[];
+  // List<dynamic> listCert = <dynamic>[];
   List<dynamic> filteredCert = <dynamic>[];
+
+  int page = 1;
+  int? lastPage;
+  bool isLoading = false;
+
+  FilterType selectedType = FilterType.all;
 
   List<Map<String, dynamic>> filterItems = <Map<String, dynamic>>[
     <String, dynamic>{
@@ -21,7 +29,7 @@ class CertificatesController extends GetxController {
     <String, dynamic>{
       keyTitle: 'Pending',
       keyType: FilterType.pending,
-    },  
+    },
     <String, dynamic>{
       keyTitle: 'In Progress',
       keyType: FilterType.inProgress,
@@ -37,32 +45,57 @@ class CertificatesController extends GetxController {
   ];
 
   @override
+  void onInit() {
+    super.onInit();
+    scrollController.addListener(
+      () {
+        if (scrollController.position.pixels ==
+            (scrollController.position.maxScrollExtent)) {
+          isLoading = true;
+          homeController.update();
+          if (page <= lastPage!) {
+            page = page + 1;
+            getAllCert(withLoading: false);
+          } else {
+            isLoading = false;
+            homeController.update();
+          }
+        }
+      },
+    );
+  }
+
+  @override
   void onReady() {
     super.onReady();
     getAllCert();
   }
 
-  void sortedCerts() {
-    listCert = <dynamic>[
-      ...allCerts.where((dynamic item) =>
-          (item['customer_id'] != null) && (item['status_id'] != null)),
-    ];
-    filteredCert = listCert;
-    update();
-  }
+  // void sortedCerts() {
+  //   listCert = <dynamic>[
+  //     ...allCerts.where((dynamic item) =>
+  //         (item['customer_id'] != null) && (item['status_id'] != null)),
+  //   ];
+  //   filteredCert = listCert;
+  //   update();
+  // }
 
-  FilterType selectedType = FilterType.all;
+  Map<String, dynamic> filterItem = <String, dynamic>{
+    keyTitle: 'All',
+    keyType: FilterType.all,
+  };
   void onFilterCert(Map<String, dynamic> certItem) {
+    filterItem = certItem;
     if (certItem[keyType] == FilterType.all) {
-      filteredCert = listCert;
-    } else if (listCert
+      filteredCert = allCerts;
+    } else if (allCerts
         .where(
-          (dynamic item) => (item['status']['name'] == certItem[keyTitle]),
+          (dynamic item) => (item[keyStatus][keyName] == certItem[keyTitle]),
         )
         .isNotEmpty) {
       filteredCert = <dynamic>[
-        ...listCert.where(
-          (dynamic item) => (item['status']['name'] == certItem[keyTitle]),
+        ...allCerts.where(
+          (dynamic item) => (item[keyStatus][keyName] == certItem[keyTitle]),
         ),
       ];
     } else {
@@ -72,35 +105,48 @@ class CertificatesController extends GetxController {
     selectedType = certItem[keyType];
 
     update();
+    homeController.update();
+
     Get.back();
   }
 
-  Future<void> getAllCert() async {
+  Future<void> getAllCert({bool? withLoading}) async {
     hideKeyboard();
 
     ApiRequest(
-      path: formGetAllCertificates,
+      path: '$formGetAllCertificates?page=$page',
       className: 'CertificatesController/getAllCert',
       requestFunction: getAllCert,
-      withLoading: true,
-      // formatResponse: true,
+      withLoading: withLoading ?? true,
     ).request(
       onSuccess: (dynamic data, dynamic response) {
         myAppController.localStorage.saveToStorage(
           key: 'getAllCert',
           value: data,
         );
-        allCerts = data;
-        sortedCerts();
+        allCerts.addAll(data[keyData]);
+        filteredCert.addAll(data[keyData]);
+        onFilterCert(filterItem);
+        lastPage = data['last_page'];
+        isLoading = false;
+        // filteredCert =
+        // sortedCerts();
         update();
+        homeController.update();
       },
     );
     if (!myAppController.isInternetConnect) {
       final dynamic apiData = await myAppController.localStorage.getFromStorage(
         key: 'getAllCert',
       );
-      allCerts = apiData;
+      // allCerts = apiData[keyData];
+      allCerts.addAll(apiData[keyData]);
+      filteredCert.addAll(apiData[keyData]);
+      onFilterCert(filterItem);
+      lastPage = apiData['last_page'];
+      isLoading = false;
       update();
+      homeController.update();
     }
   }
 }

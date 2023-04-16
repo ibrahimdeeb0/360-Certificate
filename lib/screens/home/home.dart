@@ -24,6 +24,8 @@ class Home extends StatelessWidget {
                 const HomeSearchBar(),
                 Expanded(
                   child: SingleChildScrollView(
+                    controller: certificatesController.scrollController,
+                    physics: const BouncingScrollPhysics(),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
@@ -61,13 +63,27 @@ class Home extends StatelessWidget {
                           ),
                         ),
                         const CommonText(
-                          //
                           'All Certificates',
                           marginTop: 0.01,
                           fontSize: fontH2,
                           marginHorizontal: 0.04,
                         ),
                         const Certificates(),
+                        if (certificatesController.isLoading)
+                          Center(
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 0.01.flexHeight),
+                              child: CircularProgressIndicator(
+                                strokeWidth: 5,
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  Color(
+                                    AppColors.primary,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
                       ],
                     ),
                   ),
