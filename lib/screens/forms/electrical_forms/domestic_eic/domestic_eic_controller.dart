@@ -82,6 +82,10 @@ class DomesticEicController extends GetxController {
         const DomesticEicPage2(),
         const DomesticEicPage3(),
         const DomesticEicPage4(),
+        const DomesticEicPage5(),
+        const DomesticEicPage6(),
+        const DomesticEicPage7(),
+        const DomesticEicPage8(),
       ];
 
   //* Circuit - Page Numbers *//

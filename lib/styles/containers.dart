@@ -154,6 +154,14 @@ class DefaultContainerStyles {
       opacity: 0.7,
     ),
   );
+  CommonContainerModel bottomBorder = CommonContainerModel(
+    width: 1,
+    paddingHorizontal: 0.04,
+    borderBottomWidth: 3,
+    borderBottomColor: AppColors.greyLight,
+    marginBottom: 0.02,
+    paddingBottom: 0.01,
+  );
 //** */
   CommonContainerModel loginContainer = CommonContainerModel(
     backgroundColor: AppColors.white,

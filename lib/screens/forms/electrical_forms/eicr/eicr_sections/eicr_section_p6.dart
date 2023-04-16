@@ -505,6 +505,7 @@ class SmallInputField extends StatelessWidget {
     this.textInputAction,
     this.paddingHorizontal = 0.0,
     this.marginBottom = 0.03,
+    this.width = 0.55,
   }) : super(key: key);
 
   final String? title;
@@ -518,6 +519,7 @@ class SmallInputField extends StatelessWidget {
   final TextInputAction? textInputAction;
   final double paddingHorizontal;
   final double marginBottom;
+  final double width;
 
   @override
   Widget build(BuildContext context) {
@@ -535,8 +537,8 @@ class SmallInputField extends StatelessWidget {
             textAlign: TextAlign.start,
             marginRight: 0.015,
             bottomChild: const SizedBox(),
-            containerStyle: const CommonContainerModel(
-              width: 0.55,
+            containerStyle: CommonContainerModel(
+              width: width,
             ),
           ),
           CommonInput(
