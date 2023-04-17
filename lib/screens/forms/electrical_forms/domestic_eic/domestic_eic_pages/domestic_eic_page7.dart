@@ -14,11 +14,46 @@ class DomesticEicPage7 extends StatelessWidget {
               style: appContainerStyles.formSectionsStyle,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
+                children: const <Widget>[
                   CustomTextFormTitle(
-                    leftText: 'Part 1. ',
-                    text: 'Details of work carried out'.capitalize,
+                    leftText: 'Part 10. ',
+                    text: 'TEST INSTRUMENTS USED',
                     marginBottom: 0.02,
+                  ),
+                  CommonText(
+                    'Instrument Serial No(s)',
+                    fontWeight: FontWeight.bold,
+                    marginBottom: 0.01,
+                  ),
+                  CommonInput(
+                    topLabelText: 'MFT',
+                    hint: 'N/A',
+                    marginBottom: 0.015,
+                  ),
+                  CommonInput(
+                    topLabelText: 'Earth fault loop impedance',
+                    hint: 'N/A',
+                    marginBottom: 0.015,
+                  ),
+                  CommonInput(
+                    topLabelText: 'Insulation resistance',
+                    hint: 'N/A',
+                    marginBottom: 0.015,
+                  ),
+                  CommonInput(
+                    topLabelText: 'Continuity',
+                    hint: 'N/A',
+                    marginBottom: 0.015,
+                  ),
+                  CommonInput(
+                    topLabelText: 'RCD',
+                    hint: 'N/A',
+                    marginBottom: 0.015,
+                  ),
+                  CommonInput(
+                    topLabelText: 'Other',
+                    hint: 'N/A',
+                    marginBottom: 0.015,
                   ),
                 ],
               ),

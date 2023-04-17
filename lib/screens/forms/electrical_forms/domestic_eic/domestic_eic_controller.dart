@@ -33,7 +33,7 @@ class DomesticEicController extends GetxController {
 
   DateTime? selectedDate;
 
-  List<dynamic> applianceData = <dynamic>[];
+  List<dynamic> distrBoardDataBase = <dynamic>[];
 
   Map<String, dynamic> formData = <String, dynamic>{
     formKeyPart1: <String, dynamic>{
@@ -69,7 +69,7 @@ class DomesticEicController extends GetxController {
       formKeyRecordIssueBy: '',
       formKeyReceivedBy: '',
     },
-    formKeyAppliance: <dynamic>[],
+    formKeyDBData: <dynamic>[],
   };
 
   Map<String, dynamic> formBody = <String, dynamic>{
@@ -86,6 +86,9 @@ class DomesticEicController extends GetxController {
         const DomesticEicPage6(),
         const DomesticEicPage7(),
         const DomesticEicPage8(),
+        const DomesticEicPage9(),
+        const DomesticEicPage10(),
+        const DomesticEicPage11(),
       ];
 
   //* Circuit - Page Numbers *//
@@ -134,7 +137,7 @@ class DomesticEicController extends GetxController {
       if (formBody[keyData].isNotEmpty) {
         formData = formBody[keyData];
       }
-      applianceData = formBody[keyData][formKeyAppliance];
+      // applianceData = formBody[keyData][formKeyAppliance];
 
       update();
     }
@@ -156,7 +159,7 @@ class DomesticEicController extends GetxController {
         formData = formBody[keyData];
       }
 
-      applianceData = formData[formKeyAppliance];
+      // applianceData = formData[formKeyAppliance];
 
       update();
     }
@@ -174,7 +177,7 @@ class DomesticEicController extends GetxController {
       if (formBody[keyData].isNotEmpty) {
         formData = formBody[keyData];
       }
-      applianceData = formBody[keyData][formKeyAppliance];
+      // applianceData = formBody[keyData][formKeyAppliance];
 
       isCertificateCreated = true;
 
@@ -376,7 +379,7 @@ class DomesticEicController extends GetxController {
   }
 
   void onSaveApplianceData() {
-    formData[formKeyAppliance] = applianceData;
+    // formData[formKeyAppliance] = applianceData;
   }
 
   // *****************  Press Finish ****************

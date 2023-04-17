@@ -14,11 +14,22 @@ class DomesticEicPage9 extends StatelessWidget {
               style: appContainerStyles.formSectionsStyle,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
+                children: const <Widget>[
                   CustomTextFormTitle(
-                    leftText: 'Part 1. ',
-                    text: 'Details of work carried out'.capitalize,
+                    leftText: 'Part 12. ',
+                    text: '',
                     marginBottom: 0.02,
+                  ),
+                  CommonText(
+                    'Details of circuits and/or installed equipment vulnerable to damage when testing and/or remarks :',
+                    rowMainAxisSize: MainAxisSize.max,
+                    rowMainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    textAlign: TextAlign.start,
+                    marginBottom: 0.02,
+                  ),
+                  CommonInput(
+                    hint: 'N/A',
+                    maxLines: 8,
                   ),
                 ],
               ),

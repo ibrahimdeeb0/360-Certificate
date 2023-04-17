@@ -2,18 +2,15 @@ import 'package:easy_signature_pad/easy_signature_pad.dart';
 
 import '../../../../../general_exports.dart';
 
-class LandlordPage5 extends StatelessWidget {
-  const LandlordPage5({
-    super.key,
-  });
+class DomesticEicPage11 extends StatelessWidget {
+  const DomesticEicPage11({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<LandlordSafetyController>(
-      init: LandlordSafetyController(),
-      builder: (LandlordSafetyController controller) {
-        return 
-        Column(
+    return GetBuilder<DomesticEicController>(
+      init: DomesticEicController(),
+      builder: (DomesticEicController controller) {
+        return Column(
           children: <Widget>[
             // CommonButton(
             //   onPress: () {
@@ -24,21 +21,25 @@ class LandlordPage5 extends StatelessWidget {
               style: appContainerStyles.formSectionsStyle,
               child: Column(
                 children: <Widget>[
-                  CustomTextFormTitle(
+                  const CustomTextFormTitle(
                     leftText: '',
-                    text: 'Record Issue By'.toUpperCase(),
+                    text:
+                        'For the DESIGN, CONSTRUCTION, INSPECTION & TESTING of the installation',
                   ),
-
                   CommonInput(
                     topLabelText: 'Name (CAPITAL)',
                     marginTop: 0.01,
-                    marginBottom: 0.02,
+                    marginBottom: 0.01,
                     value: controller.formData[formKeyDeclaration]
                         [formKeyRecordIssueBy],
                     onChanged: (String value) =>
                         controller.onChangeFormDataValue(
                             formKeyDeclaration, formKeyRecordIssueBy, value),
                     enabled: false,
+                  ),
+                  const CommonInput(
+                    topLabelText: 'Date :',
+                    marginBottom: 0.02,
                   ),
                   Align(
                     child: CommonText(
@@ -131,7 +132,6 @@ class LandlordPage5 extends StatelessWidget {
                         ),
                       ],
                     ),
-             
                 ],
               ),
             ),
@@ -140,21 +140,24 @@ class LandlordPage5 extends StatelessWidget {
               marginTop: 0.0,
               child: Column(
                 children: <Widget>[
-
-                  
-                  CustomTextFormTitle(
+                  const CustomTextFormTitle(
                     leftText: '',
-                    text: 'Received By'.toUpperCase(),
+                    text:
+                        'The results of the inspection and testing reviewed by :',
                   ),
                   CommonInput(
                     topLabelText: 'Name (CAPITAL)',
                     marginTop: 0.01,
-                    marginBottom: 0.02,
+                    marginBottom: 0.01,
                     value: controller.formData[formKeyDeclaration]
                         [formKeyReceivedBy],
                     onChanged: (String value) =>
                         controller.onChangeFormDataValue(
                             formKeyDeclaration, formKeyReceivedBy, value),
+                  ),
+                  const CommonInput(
+                    topLabelText: 'Date :',
+                    marginBottom: 0.02,
                   ),
                   Align(
                     child: CommonText(
@@ -248,8 +251,6 @@ class LandlordPage5 extends StatelessWidget {
                         ),
                       ],
                     ),
-               
-               
                 ],
               ),
             ),

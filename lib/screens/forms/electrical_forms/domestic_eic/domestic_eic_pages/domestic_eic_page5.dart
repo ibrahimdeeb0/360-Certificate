@@ -22,6 +22,7 @@ class DomesticEicPage5 extends StatelessWidget {
                     text: 'Main Switch/Switch-Fuse/Circuit Breaker/RCD'
                         .toUpperCase(),
                     marginBottom: 0.02,
+                    marginLeft: 0.03,
                   ),
                   CommonContainer(
                     style: appContainerStyles.bottomBorder,

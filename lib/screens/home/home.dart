@@ -25,7 +25,7 @@ class Home extends StatelessWidget {
                 Expanded(
                   child: SingleChildScrollView(
                     controller: certificatesController.scrollController,
-                    physics: const BouncingScrollPhysics(),
+                    // physics: const BouncingScrollPhysics(),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
@@ -72,8 +72,10 @@ class Home extends StatelessWidget {
                         if (certificatesController.isLoading)
                           Center(
                             child: Padding(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 0.01.flexHeight),
+                              padding: EdgeInsets.only(
+                                top: 0.01.flexHeight,
+                                bottom: 0.025.flexHeight,
+                              ),
                               child: CircularProgressIndicator(
                                 strokeWidth: 5,
                                 valueColor: AlwaysStoppedAnimation<Color>(

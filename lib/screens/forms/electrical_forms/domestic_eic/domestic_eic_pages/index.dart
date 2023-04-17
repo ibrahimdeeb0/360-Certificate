@@ -1,5 +1,7 @@
 export 'domestic_eic_lists.dart';
 export 'domestic_eic_page1.dart';
+export 'domestic_eic_page10.dart';
+export 'domestic_eic_page11.dart';
 export 'domestic_eic_page2.dart';
 export 'domestic_eic_page3.dart';
 export 'domestic_eic_page4.dart';

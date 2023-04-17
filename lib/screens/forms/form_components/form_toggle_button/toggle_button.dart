@@ -12,6 +12,7 @@ class FormToggleButton extends StatelessWidget {
     this.textWidth,
     this.axisAlignment = CrossAxisAlignment.start,
     this.isBtnBox = false,
+    this.marginBottom = 0.02,
     Key? key,
   }) : super(key: key);
 
@@ -25,12 +26,13 @@ class FormToggleButton extends StatelessWidget {
   final double? textWidth;
   final CrossAxisAlignment axisAlignment;
   final bool isBtnBox;
+  final double marginBottom;
 
   @override
   Widget build(BuildContext context) {
     return CommonContainer(
       paddingHorizontal: paddingHorizontal,
-      marginBottom: 0.02,
+      marginBottom: marginBottom,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: axisAlignment,

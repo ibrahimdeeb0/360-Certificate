@@ -401,3 +401,7 @@ const String formKeyEngineerPosition = 'engineer_position';
 const String formKeyClientPosition = 'client_position';
 const String formKeyEnrollmentNumber = 'enrollment_number';
 const String formKeyReceivedDate = 'received_date';
+
+//*-*------ Electrical Danger Notification Form ------*//
+
+const String formKeyDBData = 'db_data';
