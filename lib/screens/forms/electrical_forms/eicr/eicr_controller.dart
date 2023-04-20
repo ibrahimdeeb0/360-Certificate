@@ -1132,15 +1132,13 @@ class EicrController extends GetxController {
         Get.back();
         Get.find<CertificateDetailsController>().getCompetedCert();
       } else {
-        Get
-          ..offNamed(routeHomeBottomBar)
-          ..toNamed(
-            routeCertificateDetails,
-            arguments: <String, dynamic>{
-              keyId: certId,
-              'customer_id': customerId,
-            },
-          );
+        Get.offNamed(
+          routeCertificateDetails,
+          arguments: <String, dynamic>{
+            keyId: certId,
+            'customer_id': customerId,
+          },
+        );
       }
     }, onError: (dynamic error) {
       dismissLoading();
@@ -1186,15 +1184,13 @@ class EicrController extends GetxController {
           Get.back();
           Get.find<CertificateDetailsController>().getCompetedCert();
         } else {
-          Get
-            ..offNamed(routeHomeBottomBar)
-            ..toNamed(
-              routeCertificateDetails,
-              arguments: <String, dynamic>{
-                keyId: certId,
-                'customer_id': customerId,
-              },
-            );
+          Get.offNamed(
+            routeCertificateDetails,
+            arguments: <String, dynamic>{
+              keyId: certId,
+              'customer_id': customerId,
+            },
+          );
         }
       }, onError: (dynamic error) {
         dismissLoading();
