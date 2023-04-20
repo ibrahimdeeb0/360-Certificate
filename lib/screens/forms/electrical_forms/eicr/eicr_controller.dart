@@ -19,7 +19,7 @@ class EicrController extends GetxController {
   dynamic tempData;
   String? templateName;
 
-  // bool isCertificateCreated = true;
+  bool isFromCertificate = false;
 
   int selectedId = 0;
   bool renderItem = false;
@@ -610,6 +610,7 @@ class EicrController extends GetxController {
   void onInit() {
     super.onInit();
 
+    isFromCertificate = Get.arguments?[formKeyFromCertificate] ?? false;
     customerId = myAppController.certFormInfo[keyCustomerId];
     formId = myAppController.certFormInfo[keyFormId];
     formBody[keyFormId] = myAppController.certFormInfo[keyFormId];
@@ -1010,8 +1011,7 @@ class EicrController extends GetxController {
       ApiRequest(
         method: ApiMethods.post,
         path: addSignature,
-        className:
-            'EICRController/onSendSignatureReportForm',
+        className: 'EICRController/onSendSignatureReportForm',
         requestFunction: onSendSignatureReportForm,
         body: await addFormDataToJson(
           file: pathOfImage,
@@ -1127,7 +1127,21 @@ class EicrController extends GetxController {
       certificatesController.getAllCert();
       homeController.getCertCount();
       profileController.getProfileData();
-      Get.offAllNamed(routeHomeBottomBar);
+
+      if (isFromCertificate) {
+        Get.back();
+        Get.find<CertificateDetailsController>().getCompetedCert();
+      } else {
+        Get
+          ..offNamed(routeHomeBottomBar)
+          ..toNamed(
+            routeCertificateDetails,
+            arguments: <String, dynamic>{
+              keyId: certId,
+              'customer_id': customerId,
+            },
+          );
+      }
     }, onError: (dynamic error) {
       dismissLoading();
     });
@@ -1155,24 +1169,33 @@ class EicrController extends GetxController {
         requestFunction: onCompleteCertificate,
         // withLoading: true,
 
-        body: await addArrayToFormData(
-          jsonObject: certData,
-          imagesArray: selectedImages,
-          customerSignature: customerSignature,
-        ),
+        body: signatureBytes2 != null
+            ? await addArrayToFormData(
+                jsonObject: certData,
+                imagesArray: selectedImages,
+                customerSignature: customerSignature,
+              )
+            : certData,
       ).request(onSuccess: (dynamic data, dynamic response) async {
         myAppController.clearCertFormInfo();
         certificatesController.getAllCert();
         homeController.getCertCount();
         profileController.getProfileData();
-        Get.offAllNamed(routeHomeBottomBar);
-        // Get.toNamed(
-        //   routeCertificateDetails,
-        //   arguments: <String, dynamic>{
-        //     keyId: certId,
-        //     'customer_id': myAppController.selectedCustomer?[keyId],
-        //   },
-        // );
+
+        if (isFromCertificate) {
+          Get.back();
+          Get.find<CertificateDetailsController>().getCompetedCert();
+        } else {
+          Get
+            ..offNamed(routeHomeBottomBar)
+            ..toNamed(
+              routeCertificateDetails,
+              arguments: <String, dynamic>{
+                keyId: certId,
+                'customer_id': customerId,
+              },
+            );
+        }
       }, onError: (dynamic error) {
         dismissLoading();
       });

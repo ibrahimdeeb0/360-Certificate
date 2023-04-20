@@ -18,6 +18,8 @@ class DangerNoticeController extends GetxController {
   dynamic tempData;
   String? templateName;
 
+  bool isFromCertificate = false;
+
   int selectedId = 0;
   ScrollController scrollController = ScrollController();
   Uint8List? signatureBytes;
@@ -89,6 +91,7 @@ class DangerNoticeController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    isFromCertificate = Get.arguments?[formKeyFromCertificate] ?? false;
     customerId = myAppController.certFormInfo[keyCustomerId];
     formId = myAppController.certFormInfo[keyFormId];
     formBody[keyFormId] = myAppController.certFormInfo[keyFormId];
@@ -418,7 +421,21 @@ class DangerNoticeController extends GetxController {
         certificatesController.getAllCert();
         homeController.getCertCount();
         profileController.getProfileData();
-        Get.offAllNamed(routeHomeBottomBar);
+
+        if (isFromCertificate) {
+          Get.back();
+          Get.find<CertificateDetailsController>().getCompetedCert();
+        } else {
+          Get
+            ..offNamed(routeHomeBottomBar)
+            ..toNamed(
+              routeCertificateDetails,
+              arguments: <String, dynamic>{
+                keyId: certId,
+                'customer_id': customerId,
+              },
+            );
+        }
       },
       onError: (dynamic error) {
         dismissLoading();
@@ -458,7 +475,21 @@ class DangerNoticeController extends GetxController {
         certificatesController.getAllCert();
         homeController.getCertCount();
         profileController.getProfileData();
-        Get.offAllNamed(routeHomeBottomBar);
+
+        if (isFromCertificate) {
+          Get.back();
+          Get.find<CertificateDetailsController>().getCompetedCert();
+        } else {
+          Get
+            ..offNamed(routeHomeBottomBar)
+            ..toNamed(
+              routeCertificateDetails,
+              arguments: <String, dynamic>{
+                keyId: certId,
+                'customer_id': customerId,
+              },
+            );
+        }
       }, onError: (dynamic error) {
         dismissLoading();
       });
@@ -532,5 +563,11 @@ class DangerNoticeController extends GetxController {
         },
       );
     }
+  }
+
+  @override
+  void onClose() {
+    super.onClose();
+    myAppController.clearCertFormInfo();
   }
 }

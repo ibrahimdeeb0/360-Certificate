@@ -156,6 +156,9 @@ class CreateCustomerController extends GetxController {
 
           Get.offNamed(
             myAppController.certFormInfo[keyFormRoute],
+            arguments: <String, dynamic>{
+              formKeyFromCertificate: false,
+            },
           );
         } else {
           onAddCustomer();
@@ -747,6 +750,9 @@ class CreateCustomerController extends GetxController {
 
         Get.offNamed(
           myAppController.certFormInfo[keyFormRoute],
+          arguments: <String, dynamic>{
+            formKeyFromCertificate: false,
+          },
         );
       },
     );

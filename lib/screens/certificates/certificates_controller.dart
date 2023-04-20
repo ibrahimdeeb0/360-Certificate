@@ -84,8 +84,9 @@ class CertificatesController extends GetxController {
     keyTitle: 'All',
     keyType: FilterType.all,
   };
-  void onFilterCert(Map<String, dynamic> certItem) {
-    filterItem = certItem;
+  void onFilterCert(
+      {Map<String, dynamic>? certItem, bool disableBack = false}) {
+    filterItem = certItem!;
     if (certItem[keyType] == FilterType.all) {
       filteredCert = allCerts;
     } else if (allCerts
@@ -107,7 +108,9 @@ class CertificatesController extends GetxController {
     update();
     homeController.update();
 
-    Get.back();
+    if (!disableBack) {
+      Get.back();
+    }
   }
 
   Future<void> getAllCert() async {
@@ -127,7 +130,7 @@ class CertificatesController extends GetxController {
         );
         allCerts = data[keyData];
         filteredCert = data[keyData];
-        onFilterCert(filterItem);
+        onFilterCert(certItem: filterItem, disableBack: true);
         lastPage = data['last_page'];
         isLoading = false;
         update();
@@ -141,7 +144,7 @@ class CertificatesController extends GetxController {
       // allCerts = apiData[keyData];
       allCerts = apiData[keyData];
       filteredCert = apiData[keyData];
-      onFilterCert(filterItem);
+      onFilterCert(certItem: filterItem, disableBack: true);
       lastPage = apiData['last_page'];
       isLoading = false;
       update();
@@ -165,7 +168,7 @@ class CertificatesController extends GetxController {
         );
         allCerts.addAll(data[keyData]);
         filteredCert.addAll(data[keyData]);
-        onFilterCert(filterItem);
+        onFilterCert(certItem: filterItem);
         lastPage = data['last_page'];
         isLoading = false;
         // filteredCert =
@@ -181,7 +184,7 @@ class CertificatesController extends GetxController {
       // allCerts = apiData[keyData];
       allCerts.addAll(apiData[keyData]);
       filteredCert.addAll(apiData[keyData]);
-      onFilterCert(filterItem);
+      onFilterCert(certItem: filterItem);
       lastPage = apiData['last_page'];
       isLoading = false;
       update();

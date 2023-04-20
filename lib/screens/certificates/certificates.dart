@@ -70,7 +70,7 @@ class FilterCert extends StatelessWidget {
                 ...controller.filterItems.map(
                   (Map<String, dynamic> item) => CustomRadioSelection(
                     title: item[keyTitle],
-                    onPress: () => controller.onFilterCert(item),
+                    onPress: () => controller.onFilterCert(certItem: item),
                     isSelected: controller.selectedType == item[keyType],
                   ),
                 ),

@@ -121,3 +121,4 @@ const String formNameDomesticElectricalInstallationConditionReport =
 
 const String formKeyGazSafetyData = 'gaz_safety_data';
 const String formKeyFormData = 'form_data';
+const String formKeyFromCertificate = 'from_certificate';

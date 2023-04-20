@@ -165,16 +165,34 @@ class CertificateDetailsController extends GetxController
     myAppController.certFormInfo[keyTemplateData] =
         certDetails['form_data']['data'];
     if (certDetails['form_data']['form_id'] == 5) {
-      Get.toNamed(routeFormEICR);
+      Get.toNamed(
+        routeFormEICR,
+        arguments: <String, dynamic>{
+          formKeyFromCertificate: true,
+        },
+      );
     } else if (certDetails['form_data']['form_id'] == 9) {
-      Get.toNamed(routeFormLandlord);
+      Get.toNamed(
+        routeFormLandlord,
+        arguments: <String, dynamic>{
+          formKeyFromCertificate: true,
+        },
+      );
     } else if (certDetails['form_data']['form_id'] == 4) {
-      Get.toNamed(routeFormDangerNotice);
+      Get.toNamed(
+        routeFormDangerNotice,
+        arguments: <String, dynamic>{
+          formKeyFromCertificate: true,
+        },
+      );
     } else if (certDetails['form_data']['form_id'] == 11) {
-      Get.toNamed(routeFormWarningNotice);
+      Get.toNamed(
+        routeFormWarningNotice,
+        arguments: <String, dynamic>{
+          formKeyFromCertificate: true,
+        },
+      );
     }
-
-    // Get.toNamed(routeFormLandlord);
   }
 
   late PDFDocument pdf;
