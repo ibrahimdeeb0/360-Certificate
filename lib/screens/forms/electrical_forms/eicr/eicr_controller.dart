@@ -1011,7 +1011,7 @@ class EicrController extends GetxController {
         method: ApiMethods.post,
         path: addSignature,
         className:
-            'ElectricalInstallationConditionReportController/onSendSignatureReportForm',
+            'EICRController/onSendSignatureReportForm',
         requestFunction: onSendSignatureReportForm,
         body: await addFormDataToJson(
           file: pathOfImage,
@@ -1145,7 +1145,7 @@ class EicrController extends GetxController {
     };
     // consoleLogPretty(certData, key: 'all data complete');
 
-    if (signatureBytes != null && signatureBytes2 != null) {
+    if (signatureBytes != null) {
       startLoading();
       ApiRequest(
         method: ApiMethods.post,

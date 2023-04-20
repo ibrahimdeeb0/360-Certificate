@@ -116,14 +116,14 @@ class DomesticEicPage6 extends StatelessWidget {
                           titleSize: fontTitle,
                         ),
                         FormToggleButton(
-                          title: '•Other services',
+                          title: 'Other services',
                           toggleType: FormToggleType.trueFalse,
                           textWidth: 0.5,
                           titleSize: fontTitle,
                         ),
                         CommonText(
                           '*List in remarks section',
-                          fontSize: fontH4,
+                          fontSize: fontBody,
                         ),
                       ],
                     ),

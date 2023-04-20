@@ -5,6 +5,11 @@ const String formKeyPart4 = 'form_part_4';
 const String formKeyPart5 = 'form_part_5';
 const String formKeyPart6 = 'form_part_6';
 const String formKeyPart7 = 'form_part_7';
+const String formKeyPart8 = 'form_part_8';
+const String formKeyPart9 = 'form_part_9';
+const String formKeyPart10 = 'form_part_10';
+const String formKeyPart11 = 'form_part_11';
+const String formKeyPart12 = 'form_part_12';
 const String formKeyDeclaration = 'part_declaration';
 
 //* EICR Form *//
@@ -387,6 +392,27 @@ const String formKeyAppliance = 'appliance_data';
 const String formKeyRecordIssueBy = 'record_issue_by';
 const String formKeyReceivedBy = 'received_by';
 
+//*-*------ Gas Warning Form ------*//
+
+const String formKeyImportantSafetyMakeModel = 'important_safety_make_model';
+const String formKeyImportantSafetyType = 'important_safety_type';
+const String formKeyImportantSafetySerialNumber =
+    'important_safety_serial_number';
+const String formKeyImportantSafetyLocation = 'important_safety_location';
+const String formKeyImmediatelyLocation = 'immediately_location';
+const String formKeyImmediatelyA = 'immediately_a';
+const String formKeyImmediatelyB = 'immediately_b';
+const String formKeyRiskBecause = 'risk_because';
+const String formKeyWarningLabelAttached = 'warning_label_attached';
+const String formKeyGasEscape = 'gas_escape';
+const String formKeyAtRiskMakeModel = 'at_risk_make_model';
+const String formKeyAtRiskType = 'at_risk_type';
+const String formKeyAtRiskSerialNumber = 'at_risk_serial_number';
+const String formKeyAtRiskLocation = 'at_risk_location';
+const String formKeyAtRiskReason = 'at_risk_reason';
+const String formKeyAtRiskNotCurrentStandards = 'at_risk_not_current_standards';
+const String formKeyCustomersAcknowledgment = 'customers_acknowledgment';
+
 //*-*------ Electrical Danger Notification Form ------*//
 
 const String formKeyDateElectricalDanger = 'date_electrical_danger';
@@ -402,6 +428,105 @@ const String formKeyClientPosition = 'client_position';
 const String formKeyEnrollmentNumber = 'enrollment_number';
 const String formKeyReceivedDate = 'received_date';
 
-//*-*------ Electrical Danger Notification Form ------*//
+//*-*------ Domestic Electrical Installation Certificate ------*//
 
-const String formKeyDBData = 'db_data';
+const String formKeyExtendsOfTheInstallation = 'extends_of_the_installation';
+const String formKeyInstallationNew = 'installation_new';
+const String formKeyInstallationAddition = 'installation_addition';
+const String formKeyInstallationAlternation = 'installation_alternation';
+const String formKeyAmendedTo = 'amended_to';
+const String formKeyAsAmended = 'as_amended';
+const String formKeyNextInspection = 'next_inspection';
+const String formKeyCommentsOnInstallation = 'comments_on_installation';
+const String formKeyScheduleOfAdditionalRecords =
+    'schedule_of_additional_records';
+const String formKeyRiskAssessmentAttached = 'risk_assessment_attached';
+const String formKeyRiskAssessment = 'risk_assessment';
+const String formKeyTypesTNCS = 'types_tncs';
+const String formKeyTypesTNS = 'types_tns';
+const String formKeyTypesTT = 'types_tt';
+const String formKeyTypesOther = 'types_other';
+const String formKey1Phase2wire = '1phase_2wire';
+const String formKey1Phase3wire = '1phase_3wire';
+const String formKey2Phase3wire = '2phase_3wire';
+const String formKey3Phase4wire = '3phase_4wire';
+const String formKeyNumberConductorsOther = 'number_conductors_other';
+const String formKeyAcOrDc = 'ac_or_dc';
+const String formKeyNominalVoltage = 'nominal_voltage';
+const String formKeyUo = 'uo';
+const String formKeyNominalFrequency = 'nominal_frequency';
+const String formKeyExternalEarthFault = 'external_earth_fault';
+const String formKeySinglePhaseFault = 'Single-phase_fault';
+const String formKey3PhaseFault = '3phase_fault';
+const String formKeyPrimarySupplyBS = 'primary_supply_bs';
+const String formKeyPrimarySupplyType = 'primary_supply_type';
+const String formKeyPrimarySupplyRatedCurrent = 'primary_supply_rated_current';
+const String formKeyPrimarySupplyShortCircuit = 'primary_supply_short_circuit';
+const String formKeyDistributorFacility = 'distributor_facility';
+const String formKeyInstallationEarth = 'installation_earth';
+const String formKeyEarthElectrodeType = 'earth_electrode_type';
+const String formKeyEarthElectrodeLocation = 'earth_electrode_location';
+const String formKeyEarthElectrodeResistance = 'earth_electrode_resistance';
+const String formKeyMethodMeasurement = 'method_fo_measurement';
+const String formKeyMeasuredZe = 'measured_ze';
+const String formKeyMaximumDemand = 'maximum_demand';
+const String formKeyNumberOfSmokeAlarms = 'number_of_smoke_alarms';
+const String formKeyProtectiveMeasures = 'protective_measures';
+const String formKeyMainSwitchTypeBS = 'main_switch_type_bs';
+const String formKeyMainSwitchNumberPoles = 'main_switch_number_poles';
+const String formKeyMainSwitchVoltageRating = 'main_switch_voltage_rating';
+const String formKeyMainSwitchRatedCurrent = 'main_switch_rated_current';
+const String formKeyMainSwitch = '';
+const String formKeyRCDMainSwitchOperationCurrent =
+    'rcd_main_switch_operation_current';
+const String formKeyRCDMainSwitchRatedTime = 'rcd_main_switch_rated_time';
+const String formKeyRCDMainSwitchOperationTime =
+    'rcd_main_switch_operation_time';
+const String formKeySupplyConductorMaterial = 'supply_conductor_material';
+const String formKeySupplyConductorCSA = 'supply_conductor_csa';
+//
+const String formKeyEarthingConductorConductorMaterial =
+    'earthing_conductor_conductor_material';
+const String formKeyEarthingConductorConductorCSA =
+    'earthing_conductor_conductor_csa';
+const String formKeyEarthingConductorConductorCheck =
+    'earthing_conductor_conductor_check';
+//
+const String formKeyMainProtectiveConductorMaterial =
+    'main_protective_conductor_material';
+const String formKeyMainProtectiveConductorCSA =
+    'main_protective_conductor_csa';
+const String formKeyMainProtectiveLocation = 'main_protective_location';
+//
+const String formKeyWaterInstallation = 'water_installation';
+const String formKeyGasInstallation = 'gas_installation';
+const String formKeyOilInstallation = 'oil_installation';
+const String formKeyStructuralSteel = 'structural_steel';
+const String formKeyOtherServices = 'other_services';
+//
+const String formKeyMFT = 'mft';
+const String formKeyEarthFaultLoop = 'earth_fault_loop';
+const String formKeyInsulationResistance = 'Insulation_resistance';
+const String formKeyContinuity = 'continuity';
+const String formKeyRCD = 'rcd';
+const String formKeyOther = 'other';
+
+//
+const String formKeySchedule1 = 'schedule_1';
+const String formKeySchedule2 = 'schedule_2';
+const String formKeySchedule3 = 'schedule_3';
+const String formKeySchedule4 = 'schedule_4';
+const String formKeySchedule5 = 'schedule_5';
+const String formKeySchedule6 = 'schedule_6';
+const String formKeySchedule7 = 'schedule_7';
+const String formKeySchedule8 = 'schedule_8';
+const String formKeySchedule9 = 'schedule_9';
+const String formKeySchedule10 = 'schedule_10';
+const String formKeySchedule11 = 'schedule_11';
+const String formKeySchedule12 = 'schedule_12';
+const String formKeySchedule13 = 'schedule_13';
+const String formKeySchedule14 = 'schedule_14';
+//
+const String formKeyDetailsOfCircuits = 'details_of_circuits';
+//
+const String formKeyDistributionBoardsData = 'distribution_boards_data';

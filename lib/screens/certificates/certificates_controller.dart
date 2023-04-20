@@ -55,7 +55,7 @@ class CertificatesController extends GetxController {
           homeController.update();
           if (page <= lastPage!) {
             page = page + 1;
-            getAllCert(withLoading: false);
+            getPaginationCerts(withLoading: false);
           } else {
             isLoading = false;
             homeController.update();
@@ -110,18 +110,57 @@ class CertificatesController extends GetxController {
     Get.back();
   }
 
-  Future<void> getAllCert({bool? withLoading}) async {
+  Future<void> getAllCert() async {
     hideKeyboard();
+    page = 1;
 
     ApiRequest(
       path: '$formGetAllCertificates?page=$page',
       className: 'CertificatesController/getAllCert',
       requestFunction: getAllCert,
-      withLoading: withLoading ?? true,
+      withLoading: true,
     ).request(
       onSuccess: (dynamic data, dynamic response) {
         myAppController.localStorage.saveToStorage(
           key: 'getAllCert',
+          value: data,
+        );
+        allCerts = data[keyData];
+        filteredCert = data[keyData];
+        onFilterCert(filterItem);
+        lastPage = data['last_page'];
+        isLoading = false;
+        update();
+        homeController.update();
+      },
+    );
+    if (!myAppController.isInternetConnect) {
+      final dynamic apiData = await myAppController.localStorage.getFromStorage(
+        key: 'getAllCert',
+      );
+      // allCerts = apiData[keyData];
+      allCerts = apiData[keyData];
+      filteredCert = apiData[keyData];
+      onFilterCert(filterItem);
+      lastPage = apiData['last_page'];
+      isLoading = false;
+      update();
+      homeController.update();
+    }
+  }
+
+  Future<void> getPaginationCerts({bool? withLoading}) async {
+    hideKeyboard();
+
+    ApiRequest(
+      path: '$formGetAllCertificates?page=$page',
+      className: 'CertificatesController/getPaginationCerts',
+      requestFunction: getPaginationCerts,
+      withLoading: withLoading ?? true,
+    ).request(
+      onSuccess: (dynamic data, dynamic response) {
+        myAppController.localStorage.saveToStorage(
+          key: 'getPaginationCerts',
           value: data,
         );
         allCerts.addAll(data[keyData]);
@@ -137,7 +176,7 @@ class CertificatesController extends GetxController {
     );
     if (!myAppController.isInternetConnect) {
       final dynamic apiData = await myAppController.localStorage.getFromStorage(
-        key: 'getAllCert',
+        key: 'getPaginationCerts',
       );
       // allCerts = apiData[keyData];
       allCerts.addAll(apiData[keyData]);

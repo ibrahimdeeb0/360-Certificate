@@ -10,7 +10,7 @@ class FormToggleButton extends StatelessWidget {
     this.toggleType,
     this.textWidget,
     this.textWidth,
-    this.axisAlignment = CrossAxisAlignment.start,
+    this.axisAlignment,
     this.isBtnBox = false,
     this.marginBottom = 0.02,
     Key? key,
@@ -24,7 +24,7 @@ class FormToggleButton extends StatelessWidget {
   final FormToggleType? toggleType;
   final Widget? textWidget;
   final double? textWidth;
-  final CrossAxisAlignment axisAlignment;
+  final CrossAxisAlignment? axisAlignment;
   final bool isBtnBox;
   final double marginBottom;
 
@@ -35,7 +35,7 @@ class FormToggleButton extends StatelessWidget {
       marginBottom: marginBottom,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: axisAlignment,
+        crossAxisAlignment: axisAlignment ?? CrossAxisAlignment.center,
         children: <Widget>[
           if (textWidget == null)
             CommonText(
@@ -57,17 +57,16 @@ class FormToggleButton extends StatelessWidget {
               toggleType: toggleType ?? FormToggleType.yesNo,
             ),
             builder: (FormToggleButtonController controller) {
-              return CommonText(
-                controller.currentValue,
-                fontColor: AppColors.black,
-                fontWeight: FontWeight.w500,
+              return CommonButton(
                 onPress: () {
                   controller.onChangeCurrentValue();
                   onChangeValue?.call(controller.currentValue!);
                 },
-                containerStyle: appContainerStyles.formToggleStyle.copyWith(
-                  size: isBtnBox ? 0.14 : null,
-                ),
+                text: controller.currentValue,
+                width: isBtnBox ? 0.14 : 0.2,
+                height: isBtnBox ? 0.06 : 0.045,
+                backgroundColor: Colors.blueGrey,
+                alignment: Alignment.center,
               );
             },
           ),

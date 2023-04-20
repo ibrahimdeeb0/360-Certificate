@@ -137,8 +137,8 @@ class ApplianceCard extends StatelessWidget {
                   textAlign: TextAlign.start,
                   bottomChild: const SizedBox(),
                   containerStyle: const CommonContainerModel(
-                    width: 0.62,
-                    marginLeft: 0.02,
+                    width: 0.6,
+                    paddingLeft: 0.02,
                     alignment: AlignmentDirectional.topStart,
                   ),
                   rightChild: CommonText(
@@ -146,7 +146,7 @@ class ApplianceCard extends StatelessWidget {
                     textAlign: TextAlign.start,
                     rowMainAxisSize: MainAxisSize.max,
                     containerStyle: const CommonContainerModel(
-                      width: 0.36,
+                      width: 0.3,
                       marginLeft: 0.01,
                       alignment: AlignmentDirectional.topStart,
                     ),

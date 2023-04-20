@@ -31,13 +31,24 @@ class Forms extends StatelessWidget {
                               (dynamic childe) => ChildeItems(
                                 text: childe[keyTitle],
                                 onPress: () {
-                                  if (childe[keyId] == 5) {
-                                    controller.searchTemplate(childe);
-                                  } else if (childe[keyId] == 9) {
-                                    controller.searchTemplate(childe);
-                                  } else if (childe[keyId] == 4) {
+                                  final List<int> formsId = <int>[
+                                    5,
+                                    9,
+                                    4,
+                                    11,
+                                  ];
+                                  if (formsId.contains(childe[keyId])) {
                                     controller.searchTemplate(childe);
                                   }
+                                  // if (childe[keyId] == 5) {
+                                  //   controller.searchTemplate(childe);
+                                  // } else if (childe[keyId] == 9) {
+                                  //   controller.searchTemplate(childe);
+                                  // } else if (childe[keyId] == 4) {
+                                  //   controller.searchTemplate(childe);
+                                  // } else if (childe[keyId] == 11) {
+                                  //   controller.searchTemplate(childe);
+                                  // }
                                 },
                               ),
                             )

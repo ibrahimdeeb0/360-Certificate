@@ -13,6 +13,16 @@ class AddFormTemplateController extends GetxController {
     //   keyName: 'Domestic Electrical Installation Certificate'
     // },
     <String, dynamic>{
+      keyId: 9,
+      keyName: 'Landlord/Homeowner Gas Safety Record',
+      keyRoute: routeFormLandlord,
+    },
+    <String, dynamic>{
+      keyId: 11,
+      keyName: 'Warning Notice',
+      keyRoute: routeFormWarningNotice,
+    },
+    <String, dynamic>{
       keyId: 4,
       keyName: 'Electrical Danger Notice',
       keyRoute: routeFormDangerNotice,
@@ -21,11 +31,6 @@ class AddFormTemplateController extends GetxController {
       keyId: 5,
       keyName: 'Domestic Electrical installation Condition report',
       keyRoute: routeFormEICR,
-    },
-    <String, dynamic>{
-      keyId: 9,
-      keyName: 'Landlord/Homeowner Gas Safety Record',
-      keyRoute: routeFormLandlord,
     },
   ];
 

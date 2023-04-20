@@ -27,7 +27,6 @@ class WarningNoticePage3 extends StatelessWidget {
                     leftText: '',
                     text: 'Record Issue By'.toUpperCase(),
                   ),
-
                   CommonInput(
                     topLabelText: 'Name (CAPITAL)',
                     marginTop: 0.01,
@@ -130,7 +129,6 @@ class WarningNoticePage3 extends StatelessWidget {
                         ),
                       ],
                     ),
-             
                 ],
               ),
             ),
@@ -139,8 +137,6 @@ class WarningNoticePage3 extends StatelessWidget {
               marginTop: 0.0,
               child: Column(
                 children: <Widget>[
-
-                  
                   CustomTextFormTitle(
                     leftText: '',
                     text: 'Received By'.toUpperCase(),
@@ -247,8 +243,6 @@ class WarningNoticePage3 extends StatelessWidget {
                         ),
                       ],
                     ),
-               
-               
                 ],
               ),
             ),

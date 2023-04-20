@@ -34,12 +34,15 @@ class CircuitP2 extends StatelessWidget {
                     title: 'Circuit Reference',
                     value:
                         controller.childCircuitData[formKeyCircuitReferenceA],
-                    hint: 'Answer',
                     onTap: () {
                       controller.circuitNumIndex = 0;
                       controller.circuitTypeIndex = 0;
                       controller.update();
-                      Get.bottomSheet(const CustomItemPicker());
+                      Get.bottomSheet(
+                        CustomItemPicker(
+                          controller: Get.find<DBController>(),
+                        ),
+                      );
                     },
                     marginBottom: 0.02,
                   ),
@@ -66,7 +69,6 @@ class CircuitP2 extends StatelessWidget {
               SmallInputField(
                 title: 'Type of Wiring',
                 value: controller.childCircuitData[formKeyTypeOfWiringA],
-                hint: 'Answer',
                 onTap: () => Get.bottomSheet(
                   DBSelectSheet(
                     listTitles: list.listTypeOfWiring,
@@ -106,7 +108,6 @@ class CircuitP2 extends StatelessWidget {
                     SmallInputField(
                       title: 'Live',
                       value: controller.childCircuitData[formKeyLiveB],
-                      hint: 'Answer',
                       onTap: () => Get.bottomSheet(
                         DBSelectSheet(
                           listTitles: list.listConductorLive,
@@ -125,7 +126,6 @@ class CircuitP2 extends StatelessWidget {
                     SmallInputField(
                       title: 'CPC',
                       value: controller.childCircuitData[formKeyCpcB],
-                      hint: 'Answer',
                       onTap: () => Get.bottomSheet(
                         DBSelectSheet(
                           listTitles: list.listConductorCSA,
@@ -145,7 +145,6 @@ class CircuitP2 extends StatelessWidget {
                       title: 'Max Disconnection Time Permitted',
                       value: controller
                           .childCircuitData[formKeyMaxDisconnectionTimeB],
-                      hint: 'Answer',
                       keyboardType: TextInputType.number,
                       onTap: () => Get.bottomSheet(
                         DBSelectSheet(
@@ -175,7 +174,6 @@ class CircuitP2 extends StatelessWidget {
                     CustomSelectContainer(
                       title: 'Type BS EN',
                       value: controller.childCircuitData[formKeyTypeBsC],
-                      hint: 'Answer',
                       marginBottom: 0.02,
                       onTap: () => Get.bottomSheet(
                         DBSelectSheet(
@@ -202,7 +200,6 @@ class CircuitP2 extends StatelessWidget {
                     SmallInputField(
                       title: 'Rating A',
                       value: controller.childCircuitData[formKeyRatingC],
-                      hint: 'Answer',
                       onTap: () => Get.bottomSheet(
                         DBSelectSheet(
                           listTitles: list.listRatingBSEN,
@@ -216,7 +213,6 @@ class CircuitP2 extends StatelessWidget {
                     SmallInputField(
                       title: 'Short Circuit Capacity ',
                       value: controller.childCircuitData[formKeyShortCircuitC],
-                      hint: 'Answer',
                       onTap: () => Get.bottomSheet(
                         DBSelectSheet(
                           listTitles: list.listShortCircuitCapacity,
@@ -252,7 +248,6 @@ class CircuitP2 extends StatelessWidget {
                     CustomSelectContainer(
                       title: 'Type BS EN',
                       value: controller.childCircuitData[formKeyTypeBsD],
-                      hint: 'Answer',
                       marginBottom: 0.02,
                       onTap: () => Get.bottomSheet(
                         DBSelectSheet(
@@ -266,7 +261,6 @@ class CircuitP2 extends StatelessWidget {
                     SmallInputField(
                       title: 'Type',
                       value: controller.childCircuitData[formKeyTypeD],
-                      hint: 'Answer',
                       onTap: () => Get.bottomSheet(
                         DBSelectSheet(
                           listTitles: list.listTypeRCD,
@@ -280,7 +274,6 @@ class CircuitP2 extends StatelessWidget {
                     SmallInputField(
                       title: 'RCD at IΔn ',
                       value: controller.childCircuitData[formKeyRcdD],
-                      hint: 'Answer',
                       onTap: () => Get.bottomSheet(
                         DBSelectSheet(
                           listTitles: list.listRCDAtDelta,
@@ -294,7 +287,6 @@ class CircuitP2 extends StatelessWidget {
                     SmallInputField(
                       title: 'Rating A',
                       value: controller.childCircuitData[formKeyRatingD],
-                      hint: 'Answer',
                       onTap: () => Get.bottomSheet(
                         DBSelectSheet(
                           listTitles: list.listRatingBSEN,

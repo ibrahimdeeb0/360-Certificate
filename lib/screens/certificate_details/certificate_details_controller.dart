@@ -170,6 +170,8 @@ class CertificateDetailsController extends GetxController
       Get.toNamed(routeFormLandlord);
     } else if (certDetails['form_data']['form_id'] == 4) {
       Get.toNamed(routeFormDangerNotice);
+    } else if (certDetails['form_data']['form_id'] == 11) {
+      Get.toNamed(routeFormWarningNotice);
     }
 
     // Get.toNamed(routeFormLandlord);

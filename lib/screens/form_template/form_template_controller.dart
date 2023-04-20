@@ -76,6 +76,10 @@ class FormTemplateController extends GetxController {
           Get.toNamed(
             routeFormDangerNotice,
           );
+        } else if (formId == 11) {
+          Get.toNamed(
+            routeFormWarningNotice,
+          );
         }
 
         update();

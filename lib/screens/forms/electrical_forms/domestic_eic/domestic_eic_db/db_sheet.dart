@@ -19,50 +19,56 @@ class DBSelectSheet extends StatelessWidget {
     return BottomSheetContainer(
       title: 'Select',
       responsiveContent: true,
-      child: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            ...listTitles
-                .map(
-                  (String title) => ListOfStrings(
-                    onPress: title == 'Other'
-                        ? () => Get.bottomSheet(
-                              DBInputOtherSheet(
-                                controller: controller,
-                                keyOfValue: keyOfValue,
-                                isChilde: isChilde,
-                              ),
-                              isScrollControlled: true,
-                            )
-                        : () {
-                            if (isChilde) {
-                              if (controller.childCircuitData
-                                  .containsKey(keyOfValue)) {
-                                controller.childCircuitData[keyOfValue] = title;
-                                controller.update();
-                                consoleLog(
-                                    controller.childCircuitData[keyOfValue]);
+      child: Scrollbar(
+        thumbVisibility: true,
+        child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: Column(
+            children: <Widget>[
+              0.01.ph,
+              ...listTitles
+                  .map(
+                    (String title) => ListOfStrings(
+                      onPress: title == 'Other'
+                          ? () => Get.bottomSheet(
+                                DBInputOtherSheet(
+                                  controller: controller,
+                                  keyOfValue: keyOfValue,
+                                  isChilde: isChilde,
+                                ),
+                                isScrollControlled: true,
+                              )
+                          : () {
+                              if (isChilde) {
+                                if (controller.childCircuitData
+                                    .containsKey(keyOfValue)) {
+                                  controller.childCircuitData[keyOfValue] =
+                                      title;
+                                  controller.update();
+                                  consoleLog(
+                                      controller.childCircuitData[keyOfValue]);
+                                }
+                              } else {
+                                if (controller.parentDistrBoardData
+                                    .containsKey(keyOfValue)) {
+                                  controller.parentDistrBoardData[keyOfValue] =
+                                      title;
+                                  controller.update();
+                                  consoleLog(controller
+                                      .parentDistrBoardData[keyOfValue]);
+                                }
                               }
-                            } else {
-                              if (controller.parentDistrBoardData
-                                  .containsKey(keyOfValue)) {
-                                controller.parentDistrBoardData[keyOfValue] =
-                                    title;
-                                controller.update();
-                                consoleLog(controller
-                                    .parentDistrBoardData[keyOfValue]);
-                              }
-                            }
 
-                            hideKeyboard();
-                            Get.back();
-                          },
-                    name: title,
-                  ),
-                )
-                .toList(),
-            SizedBox(height: DEVICE_HEIGHT * 0.02),
-          ],
+                              hideKeyboard();
+                              Get.back();
+                            },
+                      name: title,
+                    ),
+                  )
+                  .toList(),
+              0.03.ph,
+            ],
+          ),
         ),
       ),
     );

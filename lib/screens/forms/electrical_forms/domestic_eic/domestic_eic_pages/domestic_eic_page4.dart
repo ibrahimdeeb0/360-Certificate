@@ -53,7 +53,7 @@ class DomesticEicPage4 extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         CommonText(
-                          'Details of installation Earth\nElectrode (where applicable)',
+                          'Details of installation Earth  \n Electrode (where applicable)',
                           fontWeight: FontWeight.bold,
                           rowMainAxisAlignment: MainAxisAlignment.spaceBetween,
                           rowMainAxisSize: MainAxisSize.max,

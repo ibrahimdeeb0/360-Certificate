@@ -13,11 +13,11 @@ class FormsController extends GetxController {
           keyTitle: 'Landlord/Homeowner Gas Safety Record',
           keyRoute: routeFormLandlord,
         },
-        // <String, dynamic>{
-        //   keyId: 11,
-        //   keyTitle: 'Warning Notice',
-        //   keyRoute: '',
-        // },
+        <String, dynamic>{
+          keyId: 11,
+          keyTitle: 'Warning Notice',
+          keyRoute: routeFormWarningNotice,
+        },
       ],
     },
     <String, dynamic>{
@@ -121,6 +121,7 @@ class FormsController extends GetxController {
     int? tempId,
   }) {
     startLoading();
+    consoleLog(formInfo);
     // get data
     ApiRequest(
       path: '/forms/templates/$tempId/show',

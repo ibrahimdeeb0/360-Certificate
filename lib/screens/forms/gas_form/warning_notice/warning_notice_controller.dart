@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:uuid/uuid.dart';
 
@@ -33,51 +34,55 @@ class WarningNoticeController extends GetxController {
 
   DateTime? selectedDate;
 
-  List<dynamic> applianceData = <dynamic>[];
+  XFile? selectedImage;
+  final ImagePicker _picker = ImagePicker();
 
   Map<String, dynamic> formData = <String, dynamic>{
     formKeyPart1: <String, dynamic>{
-      formKeyDetailsOfWorkP1: '',
+      formKeyImportantSafetyMakeModel: '',
+      formKeyImportantSafetyType: '',
+      formKeyImportantSafetySerialNumber: '',
+      formKeyImportantSafetyLocation: '',
     },
     formKeyPart2: <String, dynamic>{
-      formKeyPipeworkVisualP2: 'N/A',
-      formKeyPipeworkOutcomeSupplyP2: 'N/A',
-      formKeyPipeworkEmergencyP2: 'N/A',
-      formKeyPipeworkOutcomeTightnessP2: 'N/A',
-      formKeyPipeworkProtectiveP2: 'N/A',
+      formKeyImmediatelyLocation: '',
+      // formKey: '',
     },
     formKeyPart3: <String, dynamic>{
-      formKeyDefectsIdentified1: '',
-      formKeyDefectsIdentified2: '',
-      formKeyDefectsIdentified3: '',
-      formKeyDefectsIdentified4: '',
-      formKeyDefectsIdentified5: '',
-      //
-      formKeyWarningNotice1: 'N/A',
-      formKeyWarningNotice2: 'N/A',
-      formKeyWarningNotice3: 'N/A',
-      formKeyWarningNotice4: 'N/A',
-      formKeyWarningNotice5: 'N/A',
+      formKeyImmediatelyA: 'N/A',
+      formKeyImmediatelyB: 'N/A',
     },
     formKeyPart4: <String, dynamic>{
-      formKeyRecordRemedialAction: '',
+      formKeyRiskBecause: '',
+      formKeyWarningLabelAttached: 'N/A',
     },
     formKeyPart5: <String, dynamic>{
-      formKeyNextSafetyCheckBy: '',
+      formKeyGasEscape: 'N/A',
+    },
+    formKeyPart6: <String, dynamic>{
+      formKeyAtRiskMakeModel: '',
+      formKeyAtRiskType: '',
+      formKeyAtRiskSerialNumber: '',
+      formKeyAtRiskLocation: '',
+      formKeyAtRiskReason: '',
+      formKeyAtRiskNotCurrentStandards: 'N/A',
+    },
+    formKeyPart7: <String, dynamic>{
+      formKeyCustomersAcknowledgment: 'N/A',
     },
     formKeyDeclaration: <String, dynamic>{
+      formKey: '',
       formKeyRecordIssueBy: '',
-      formKeyReceivedBy: '',
     },
-    formKeyAppliance: <dynamic>[],
   };
 
   Map<String, dynamic> formBody = <String, dynamic>{
-    'form_id': '',
+    keyFormId: '',
     keyData: <String, dynamic>{},
   };
 
   List<Widget> get listFormSections => <Widget>[
+        const WarningNoticePage0(),
         const WarningNoticePage1(),
         const WarningNoticePage2(),
         const WarningNoticePage3(),
@@ -129,7 +134,6 @@ class WarningNoticeController extends GetxController {
       if (formBody[keyData].isNotEmpty) {
         formData = formBody[keyData];
       }
-      applianceData = formBody[keyData][formKeyAppliance];
 
       update();
     }
@@ -151,25 +155,21 @@ class WarningNoticeController extends GetxController {
         formData = formBody[keyData];
       }
 
-      applianceData = formData[formKeyAppliance];
-
       update();
     }
 
     //? Edit Certificate
     if (myAppController.certFormInfo[keyFormDataStatus] ==
         FormDataStatus.editCert) {
-      consoleLog('Edit Certificate', key: 'Edit_Certificate');
       certId = myAppController.certFormInfo[keyCertId];
       formId = myAppController.certFormInfo[keyFormId];
       customerId = myAppController.certFormInfo[keyCustomerId];
       formBody[keyFormId] = myAppController.certFormInfo[keyFormId];
       formBody[keyData] = myAppController.certFormInfo[keyTemplateData];
-      //
+
       if (formBody[keyData].isNotEmpty) {
         formData = formBody[keyData];
       }
-      applianceData = formBody[keyData][formKeyAppliance];
 
       isCertificateCreated = true;
 
@@ -256,6 +256,23 @@ class WarningNoticeController extends GetxController {
         return 'Complete';
       }
     }
+  }
+
+  Future<void> pickImage(dynamic source) async {
+    final XFile? file = await _picker.pickImage(
+      source: source,
+      imageQuality: 30,
+    );
+    consoleLog(file!.path);
+    selectedImage = file;
+
+    consoleLog(selectedImage, key: 'selectedImage');
+    update();
+  }
+
+  void removeImage() {
+    selectedImage = null;
+    update();
   }
 
   // *****************  signature functions **************** //
@@ -370,23 +387,17 @@ class WarningNoticeController extends GetxController {
     update();
   }
 
-  void onSaveApplianceData() {
-    formData[formKeyAppliance] = applianceData;
-  }
-
   // *****************  Press Finish ****************
 
   void testData() {
     hideKeyboard();
     onSaveData();
-    onSaveApplianceData();
     consoleLogPretty(formBody);
   }
 
   Future<void> onCreateCertificate() async {
     hideKeyboard();
     onSaveData();
-    onSaveApplianceData();
 
     final Map<String, dynamic> certData = <String, dynamic>{
       'customer_id': customerId,
@@ -421,7 +432,6 @@ class WarningNoticeController extends GetxController {
   Future<void> onUpdateCertificate() async {
     hideKeyboard();
     onSaveData();
-    onSaveApplianceData();
 
     final Map<String, dynamic> certData = <String, dynamic>{
       ...formBody,
@@ -454,7 +464,6 @@ class WarningNoticeController extends GetxController {
   Future<void> onCompleteCertificate() async {
     hideKeyboard();
     onSaveData();
-    onSaveApplianceData();
 
     final Map<String, dynamic> certData = <String, dynamic>{
       ...formBody,
@@ -511,7 +520,6 @@ class WarningNoticeController extends GetxController {
   Future<void> storeTemplate() async {
     hideKeyboard();
     onSaveData();
-    onSaveApplianceData();
 
     startLoading();
     if (isEditTemplate!) {
@@ -559,5 +567,11 @@ class WarningNoticeController extends GetxController {
         },
       );
     }
+  }
+
+  @override
+  void onClose() {
+    super.onClose();
+    myAppController.clearCertFormInfo();
   }
 }

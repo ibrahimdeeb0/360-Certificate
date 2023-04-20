@@ -38,7 +38,11 @@ class CircuitDetailsP1 extends StatelessWidget {
                       controller.circuitNumIndex = 0;
                       controller.circuitTypeIndex = 0;
                       controller.update();
-                      Get.bottomSheet(const CustomItemPicker());
+                      Get.bottomSheet(
+                        CustomItemPicker(
+                          controller: Get.find<DistributionBoardController>(),
+                        ),
+                      );
                     },
                     marginBottom: 0.02,
                   ),
