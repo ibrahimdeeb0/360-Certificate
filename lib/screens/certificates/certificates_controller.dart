@@ -119,7 +119,7 @@ class CertificatesController extends GetxController {
     page = 1;
 
     ApiRequest(
-      path: '$formGetAllCertificates?page=$page',
+      path: '$formGetAllCertificates?page=$page&perPage=8',
       className: 'CertificatesController/getAllCert',
       requestFunction: getAllCert,
       withLoading: true,
@@ -157,7 +157,7 @@ class CertificatesController extends GetxController {
     hideKeyboard();
 
     ApiRequest(
-      path: '$formGetAllCertificates?page=$page',
+      path: '$formGetAllCertificates?page=$page&perPage=8',
       className: 'CertificatesController/getPaginationCerts',
       requestFunction: getPaginationCerts,
       withLoading: withLoading ?? true,
