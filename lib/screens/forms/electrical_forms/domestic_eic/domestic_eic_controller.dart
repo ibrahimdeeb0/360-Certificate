@@ -241,7 +241,7 @@ class DomesticEicController extends GetxController {
         formData = formBody[keyData];
       }
 
-      // applianceData = formData[formKeyAppliance];
+      distrBoardDataBase = formData[formKeyDistributionBoardsData];
 
       update();
     }
@@ -469,7 +469,8 @@ class DomesticEicController extends GetxController {
   }
 
   void onSaveApplianceData() {
-    // formData[formKeyAppliance] = applianceData;
+    // formKeyDistributionBoardsData
+    formData[formKeyDistributionBoardsData] = distrBoardDataBase;
   }
 
   // *****************  Press Finish ****************

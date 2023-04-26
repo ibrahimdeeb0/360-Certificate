@@ -29,14 +29,14 @@ class FormsController extends GetxController {
         //   keyRoute: '',
         // },
         <String, dynamic>{
-          keyId: 3,
-          keyTitle: 'Domestic EIC',
-          keyRoute: routeFormDomesticEic,
-        },
-        <String, dynamic>{
           keyId: 4,
           keyTitle: 'Electrical Danger Notice',
           keyRoute: routeFormDangerNotice,
+        },
+        <String, dynamic>{
+          keyId: 3,
+          keyTitle: 'Domestic EIC',
+          keyRoute: routeFormDomesticEic,
         },
         <String, dynamic>{
           keyId: 5,

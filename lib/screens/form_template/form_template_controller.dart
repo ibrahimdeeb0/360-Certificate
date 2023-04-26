@@ -80,6 +80,10 @@ class FormTemplateController extends GetxController {
           Get.toNamed(
             routeFormWarningNotice,
           );
+        } else if (formId == 3) {
+          Get.toNamed(
+            routeFormDomesticEic,
+          );
         }
 
         update();
