@@ -19,7 +19,11 @@ class FormSelectItemSheet extends StatelessWidget {
     return BottomSheetContainer(
       title: 'Select',
       responsiveContent: true,
-      child: Scrollbar(
+      child: RawScrollbar(
+        thumbColor: Colors.grey[400],
+        // crossAxisMargin: 1.0,
+        radius: const Radius.circular(20),
+        thickness: 4,
         thumbVisibility: true,
         child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),

@@ -25,13 +25,21 @@ class DomesticEic extends StatelessWidget {
             child: Stack(
               children: <Widget>[
                 Positioned(
-                  child: SingleChildScrollView(
+                  child: RawScrollbar(
+                    thumbColor: Colors.grey[600],
+                    crossAxisMargin: 2.0,
+                    radius: const Radius.circular(20),
                     controller: controller.scrollController,
-                    child: Column(
-                      children: <Widget>[
-                        controller.listFormSections[controller.selectedId],
-                        SizedBox(height: DEVICE_HEIGHT * 0.09),
-                      ],
+                    thickness: 4,
+                    child: SingleChildScrollView(
+                      controller: controller.scrollController,
+                      // physics: const BouncingScrollPhysics(),
+                      child: Column(
+                        children: <Widget>[
+                          controller.listFormSections[controller.selectedId],
+                          SizedBox(height: DEVICE_HEIGHT * 0.09),
+                        ],
+                      ),
                     ),
                   ),
                 ),
