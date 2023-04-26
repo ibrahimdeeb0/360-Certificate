@@ -10,6 +10,7 @@ class DomesticEicPage6 extends StatelessWidget {
     return GetBuilder<DomesticEicController>(
       init: DomesticEicController(),
       builder: (DomesticEicController controller) {
+        final EICRListsForm formList = EICRListsForm();
         return Column(
           children: <Widget>[
             CommonContainer(
@@ -35,8 +36,21 @@ class DomesticEicPage6 extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                           rowMainAxisSize: MainAxisSize.max,
                         ),
-                        const CustomSelectContainer(
+                        CustomSelectContainer(
                           title: 'Conductor material',
+                          value: controller.formData[formKeyPart9]
+                              [formKeyEarthingConductorConductorMaterial],
+                          onTap: () => Get.bottomSheet(
+                            isScrollControlled: true,
+                            FormSelectItemSheet(
+                              controller: controller,
+                              partOfValue: formKeyPart9,
+                              keyOfValue:
+                                  formKeyEarthingConductorConductorMaterial,
+                              listTitles: formList.listConductorMaterial,
+                            ),
+                            elevation: 0.0,
+                          ),
                         ),
                         SmallInputField(
                           title: 'Conductor csa',
@@ -47,11 +61,30 @@ class DomesticEicPage6 extends StatelessWidget {
                             width: DEVICE_WIDTH * 0.016,
                             height: DEVICE_HEIGHT * 0.016,
                           ),
+                          value: controller.formData[formKeyPart9]
+                              [formKeyEarthingConductorConductorCSA],
+                          onTap: () => Get.bottomSheet(
+                            isScrollControlled: true,
+                            FormSelectItemSheet(
+                              controller: controller,
+                              partOfValue: formKeyPart9,
+                              keyOfValue: formKeyEarthingConductorConductorCSA,
+                              listTitles: formList.listConductorCSA,
+                            ),
+                            elevation: 0.0,
+                          ),
                         ),
-                        const FormToggleButton(
+                        FormToggleButton(
                           title: 'Continuity check',
                           toggleType: FormToggleType.trueFalse,
                           textWidth: 0.5,
+                          value: controller.formData[formKeyPart9]
+                              [formKeyEarthingConductorConductorCheck],
+                          onChangeValue: (dynamic value) =>
+                              controller.onChangeFormDataValue(
+                                  formKeyPart9,
+                                  formKeyEarthingConductorConductorCheck,
+                                  value),
                         ),
                       ],
                     ),
@@ -67,8 +100,21 @@ class DomesticEicPage6 extends StatelessWidget {
                           rowMainAxisSize: MainAxisSize.max,
                           textAlign: TextAlign.start,
                         ),
-                        const CustomSelectContainer(
+                        CustomSelectContainer(
                           title: 'Conductor material',
+                          value: controller.formData[formKeyPart9]
+                              [formKeyMainProtectiveConductorMaterial],
+                          onTap: () => Get.bottomSheet(
+                            isScrollControlled: true,
+                            FormSelectItemSheet(
+                              controller: controller,
+                              partOfValue: formKeyPart9,
+                              keyOfValue:
+                                  formKeyMainProtectiveConductorMaterial,
+                              listTitles: formList.listConductorMaterial,
+                            ),
+                            elevation: 0.0,
+                          ),
                         ),
                         SmallInputField(
                           title: 'Conductor csa',
@@ -79,9 +125,33 @@ class DomesticEicPage6 extends StatelessWidget {
                             width: DEVICE_WIDTH * 0.016,
                             height: DEVICE_HEIGHT * 0.016,
                           ),
+                          value: controller.formData[formKeyPart9]
+                              [formKeyMainProtectiveConductorCSA],
+                          onTap: () => Get.bottomSheet(
+                            isScrollControlled: true,
+                            FormSelectItemSheet(
+                              controller: controller,
+                              partOfValue: formKeyPart9,
+                              keyOfValue: formKeyMainProtectiveConductorCSA,
+                              listTitles: formList.listConductorCSA,
+                            ),
+                            elevation: 0.0,
+                          ),
                         ),
-                        const CustomSelectContainer(
+                        CustomSelectContainer(
                           title: 'Location (where not obvious)',
+                          value: controller.formData[formKeyPart9]
+                              [formKeyMainProtectiveLocation],
+                          onTap: () => Get.bottomSheet(
+                            isScrollControlled: true,
+                            FormSelectItemSheet(
+                              controller: controller,
+                              partOfValue: formKeyPart9,
+                              keyOfValue: formKeyMainProtectiveLocation,
+                              listTitles: formList.locationEIC,
+                            ),
+                            elevation: 0.0,
+                          ),
                         ),
                       ],
                     ),
@@ -90,38 +160,63 @@ class DomesticEicPage6 extends StatelessWidget {
                     style: appContainerStyles.bottomBorder,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const <Widget>[
+                      children: <Widget>[
                         FormToggleButton(
                           title: 'Water installation pipes',
                           toggleType: FormToggleType.trueFalse,
                           textWidth: 0.5,
                           titleSize: fontTitle,
+                          value: controller.formData[formKeyPart9]
+                              [formKeyWaterInstallation],
+                          onChangeValue: (dynamic value) =>
+                              controller.onChangeFormDataValue(formKeyPart9,
+                                  formKeyWaterInstallation, value),
                         ),
                         FormToggleButton(
                           title: 'Gas installation pipes',
                           toggleType: FormToggleType.trueFalse,
                           textWidth: 0.5,
                           titleSize: fontTitle,
+                          value: controller.formData[formKeyPart9]
+                              [formKeyGasInstallation],
+                          onChangeValue: (dynamic value) =>
+                              controller.onChangeFormDataValue(
+                                  formKeyPart9, formKeyGasInstallation, value),
                         ),
                         FormToggleButton(
                           title: 'Oil installation pipes',
                           toggleType: FormToggleType.trueFalse,
                           textWidth: 0.5,
                           titleSize: fontTitle,
+                          value: controller.formData[formKeyPart9]
+                              [formKeyOilInstallation],
+                          onChangeValue: (dynamic value) =>
+                              controller.onChangeFormDataValue(
+                                  formKeyPart9, formKeyOilInstallation, value),
                         ),
                         FormToggleButton(
                           title: 'Structural steel',
                           toggleType: FormToggleType.trueFalse,
                           textWidth: 0.5,
                           titleSize: fontTitle,
+                          value: controller.formData[formKeyPart9]
+                              [formKeyStructuralSteel],
+                          onChangeValue: (dynamic value) =>
+                              controller.onChangeFormDataValue(
+                                  formKeyPart9, formKeyStructuralSteel, value),
                         ),
                         FormToggleButton(
                           title: 'Other services',
                           toggleType: FormToggleType.trueFalse,
                           textWidth: 0.5,
                           titleSize: fontTitle,
+                          value: controller.formData[formKeyPart9]
+                              [formKeyOtherServices],
+                          onChangeValue: (dynamic value) =>
+                              controller.onChangeFormDataValue(
+                                  formKeyPart9, formKeyOtherServices, value),
                         ),
-                        CommonText(
+                        const CommonText(
                           '*List in remarks section',
                           fontSize: fontBody,
                         ),

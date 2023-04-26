@@ -15,14 +15,14 @@ class DomesticEicPage2 extends StatelessWidget {
               style: appContainerStyles.formSectionsStyle,
               // marginTop: 0.0,
               child: Column(
-                children: const <Widget>[
-                  CustomTextFormTitle(
+                children: <Widget>[
+                  const CustomTextFormTitle(
                     leftText: 'Part 3. ',
                     text: 'NEXT INSPECTION',
                     marginBottom: 0.02,
                   ),
                   CommonInput(
-                    topLabel: CommonText(
+                    topLabel: const CommonText(
                       'I RECOMMEND that this installation is further inspected and tested after an interval of not more than',
                       fontSize: fontH3,
                       rowMainAxisSize: MainAxisSize.max,
@@ -30,6 +30,11 @@ class DomesticEicPage2 extends StatelessWidget {
                       marginBottom: 0.01,
                     ),
                     hint: 'N/A',
+                    value: controller.formData[formKeyPart3]
+                        [formKeyNextInspection],
+                    onChanged: (dynamic value) =>
+                        controller.onChangeFormDataValue(
+                            formKeyPart3, formKeyNextInspection, value),
                   ),
                 ],
               ),
@@ -38,8 +43,8 @@ class DomesticEicPage2 extends StatelessWidget {
               style: appContainerStyles.formSectionsStyle,
               marginTop: 0.0,
               child: Column(
-                children: const <Widget>[
-                  CustomTextFormTitle(
+                children: <Widget>[
+                  const CustomTextFormTitle(
                     leftText: 'Part 4. ',
                     text: 'COMMENTS ON EXISTING INSTALLATION',
                     marginBottom: 0.01,
@@ -47,7 +52,13 @@ class DomesticEicPage2 extends StatelessWidget {
                   CommonInput(
                     hint: 'N/A',
                     topLabelText: 'Additional information and report notes',
+                    textInputAction: TextInputAction.newline,
                     maxLines: 6,
+                    value: controller.formData[formKeyPart4]
+                        [formKeyCommentsOnInstallation],
+                    onChanged: (dynamic value) =>
+                        controller.onChangeFormDataValue(
+                            formKeyPart4, formKeyCommentsOnInstallation, value),
                   ),
                 ],
               ),
@@ -62,15 +73,26 @@ class DomesticEicPage2 extends StatelessWidget {
                     text: 'SCHEDULE OF ADDITIONAL RECORDS',
                     marginBottom: 0.01,
                   ),
-                  const CommonInput(
+                  CommonInput(
                     hint: 'N/A',
                     maxLines: 6,
                     marginBottom: 0.02,
+                    textInputAction: TextInputAction.newline,
+                    value: controller.formData[formKeyPart5]
+                        [formKeyScheduleOfAdditionalRecords],
+                    onChanged: (dynamic value) =>
+                        controller.onChangeFormDataValue(formKeyPart5,
+                            formKeyScheduleOfAdditionalRecords, value),
                   ),
-                  const FormToggleButton(
+                  FormToggleButton(
                     title: 'Risk assessment attached?',
                     titleSize: fontTitle,
                     toggleType: FormToggleType.trueFalse,
+                    value: controller.formData[formKeyPart5]
+                        [formKeyRiskAssessmentAttached],
+                    onChangeValue: (dynamic value) =>
+                        controller.onChangeFormDataValue(
+                            formKeyPart5, formKeyRiskAssessmentAttached, value),
                   ),
                   CommonText(
                     'Risk Assessment',
@@ -86,13 +108,20 @@ class DomesticEicPage2 extends StatelessWidget {
                       borderRadius: 0.01,
                     ),
                   ),
-                  const CommonInput(
+                  CommonInput(
                     hint: 'N/A',
                     maxLines: 8,
                     marginBottom: 0.015,
+                    textInputAction: TextInputAction.newline,
+                    value: controller.formData[formKeyPart5]
+                        [formKeyRiskAssessment],
+                    onChanged: (dynamic value) =>
+                        controller.onChangeFormDataValue(
+                            formKeyPart5, formKeyRiskAssessment, value),
+                    // scroll
                   ),
                   CommonButton(
-                    onPress: () {},
+                    onPress: controller.setRiskText,
                     text: 'Editable Sample RCD Omission Risk Assessment',
                     fontSize: fontBody,
                     height: 0.04,

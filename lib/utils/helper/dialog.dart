@@ -64,5 +64,6 @@ Future<dynamic> formsDialog({
       height: 0.045,
       width: 0.5,
     ),
+    backgroundColor: Colors.white,
   );
 }

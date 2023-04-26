@@ -14,13 +14,13 @@ class DomesticEicPage9 extends StatelessWidget {
               style: appContainerStyles.formSectionsStyle,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const <Widget>[
-                  CustomTextFormTitle(
+                children: <Widget>[
+                  const CustomTextFormTitle(
                     leftText: 'Part 12. ',
                     text: '',
                     marginBottom: 0.02,
                   ),
-                  CommonText(
+                  const CommonText(
                     'Details of circuits and/or installed equipment vulnerable to damage when testing and/or remarks :',
                     rowMainAxisSize: MainAxisSize.max,
                     rowMainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -30,6 +30,12 @@ class DomesticEicPage9 extends StatelessWidget {
                   CommonInput(
                     hint: 'N/A',
                     maxLines: 8,
+                    textInputAction: TextInputAction.newline,
+                    value: controller.formData[formKeyPart12]
+                        [formKeyDetailsOfCircuits],
+                    onChanged: (dynamic value) =>
+                        controller.onChangeFormDataValue(
+                            formKeyPart12, formKeyDetailsOfCircuits, value),
                   ),
                 ],
               ),

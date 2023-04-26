@@ -10,6 +10,7 @@ class DomesticEicPage3 extends StatelessWidget {
     return GetBuilder<DomesticEicController>(
       init: DomesticEicController(),
       builder: (DomesticEicController controller) {
+        final EICRListsForm formList = EICRListsForm();
         return Column(
           children: <Widget>[
             CommonContainer(
@@ -52,25 +53,45 @@ class DomesticEicPage3 extends StatelessWidget {
                     child: Column(
                       children: <Widget>[
                         SizedBox(height: DEVICE_HEIGHT * 0.02),
-                        const FormToggleButton(
+                        FormToggleButton(
                           title: 'TN-C-S',
                           toggleType: FormToggleType.trueFalse,
                           titleSize: fontTitle,
+                          value: controller.formData[formKeyPart6]
+                              [formKeyTypesTNCS],
+                          onChangeValue: (dynamic value) =>
+                              controller.onChangeFormDataValue(
+                                  formKeyPart6, formKeyTypesTNCS, value),
                         ),
-                        const FormToggleButton(
+                        FormToggleButton(
                           title: 'TN-S',
                           toggleType: FormToggleType.trueFalse,
                           titleSize: fontTitle,
+                          value: controller.formData[formKeyPart6]
+                              [formKeyTypesTNS],
+                          onChangeValue: (dynamic value) =>
+                              controller.onChangeFormDataValue(
+                                  formKeyPart6, formKeyTypesTNS, value),
                         ),
-                        const FormToggleButton(
+                        FormToggleButton(
                           title: 'TT',
                           toggleType: FormToggleType.trueFalse,
                           titleSize: fontTitle,
+                          value: controller.formData[formKeyPart6]
+                              [formKeyTypesTT],
+                          onChangeValue: (dynamic value) =>
+                              controller.onChangeFormDataValue(
+                                  formKeyPart6, formKeyTypesTT, value),
                         ),
-                        const FormToggleButton(
+                        FormToggleButton(
                           title: 'Other',
                           toggleType: FormToggleType.trueFalse,
                           titleSize: fontTitle,
+                          value: controller.formData[formKeyPart6]
+                              [formKeyTypesOther],
+                          onChangeValue: (dynamic value) =>
+                              controller.onChangeFormDataValue(
+                                  formKeyPart6, formKeyTypesOther, value),
                         ),
                       ],
                     ),
@@ -80,16 +101,15 @@ class DomesticEicPage3 extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     rowMainAxisAlignment: MainAxisAlignment.spaceBetween,
                     rowMainAxisSize: MainAxisSize.max,
-                    rightChild: Listener(
-                      behavior: HitTestBehavior.opaque,
-                      onPointerDown: (PointerDownEvent details) {
+                    rightChild: IconButton(
+                      onPressed: () {
                         formsDialog(
                           title: 'Live Conductor',
                           description:
                               'A conductor or conductive part intended to be energized in normal use, including a neutral conductor but,by convention, not a PEN conductor',
                         );
                       },
-                      child: SvgPicture.asset(
+                      icon: SvgPicture.asset(
                         iconAttention,
                         width: DEVICE_WIDTH * 0.012,
                         height: DEVICE_HEIGHT * 0.02,
@@ -105,30 +125,55 @@ class DomesticEicPage3 extends StatelessWidget {
                     child: Column(
                       children: <Widget>[
                         SizedBox(height: DEVICE_HEIGHT * 0.02),
-                        const FormToggleButton(
+                        FormToggleButton(
                           title: '1- Phase  2 wire',
                           toggleType: FormToggleType.trueFalse,
                           titleSize: fontTitle,
+                          value: controller.formData[formKeyPart6]
+                              [formKey1Phase2wire],
+                          onChangeValue: (dynamic value) =>
+                              controller.onChangeFormDataValue(
+                                  formKeyPart6, formKey1Phase2wire, value),
                         ),
-                        const FormToggleButton(
+                        FormToggleButton(
                           title: '1- Phase  3 wire',
                           toggleType: FormToggleType.trueFalse,
                           titleSize: fontTitle,
+                          value: controller.formData[formKeyPart6]
+                              [formKey1Phase3wire],
+                          onChangeValue: (dynamic value) =>
+                              controller.onChangeFormDataValue(
+                                  formKeyPart6, formKey1Phase3wire, value),
                         ),
-                        const FormToggleButton(
+                        FormToggleButton(
                           title: '2- Phase  3 wire',
                           toggleType: FormToggleType.trueFalse,
                           titleSize: fontTitle,
+                          value: controller.formData[formKeyPart6]
+                              [formKey2Phase3wire],
+                          onChangeValue: (dynamic value) =>
+                              controller.onChangeFormDataValue(
+                                  formKeyPart6, formKey2Phase3wire, value),
                         ),
-                        const FormToggleButton(
+                        FormToggleButton(
                           title: '3- Phase  4 wire',
                           toggleType: FormToggleType.trueFalse,
                           titleSize: fontTitle,
+                          value: controller.formData[formKeyPart6]
+                              [formKey3Phase4wire],
+                          onChangeValue: (dynamic value) =>
+                              controller.onChangeFormDataValue(
+                                  formKeyPart6, formKey3Phase4wire, value),
                         ),
-                        const FormToggleButton(
+                        FormToggleButton(
                           title: 'Other',
                           toggleType: FormToggleType.trueFalse,
                           titleSize: fontTitle,
+                          value: controller.formData[formKeyPart6]
+                              [formKeyNumberConductorsOther],
+                          onChangeValue: (dynamic value) =>
+                              controller.onChangeFormDataValue(formKeyPart6,
+                                  formKeyNumberConductorsOther, value),
                         ),
                       ],
                     ),
@@ -166,22 +211,46 @@ class DomesticEicPage3 extends StatelessWidget {
                           fontSize: fontBody,
                           marginBottom: 0.02,
                         ),
-                        const SmallInputField(
+                        SmallInputField(
                           title: 'AC or DC',
                           isInputSelection: true,
                           keyboardType: TextInputType.number,
                           textInputAction: TextInputAction.go,
+                          value: controller.formData[formKeyPart6]
+                              [formKeyAcOrDc],
+                          onTap: () => Get.bottomSheet(
+                            isScrollControlled: true,
+                            FormSelectItemSheet(
+                              controller: controller,
+                              partOfValue: formKeyPart6,
+                              keyOfValue: formKeyAcOrDc,
+                              listTitles: formList.acOrDc,
+                            ),
+                            elevation: 0.0,
+                          ),
                         ),
-                        const SmallInputField(
+                        SmallInputField(
                           title: 'Nominal voltage U (1)',
                           isInputSelection: true,
                           keyboardType: TextInputType.number,
                           textInputAction: TextInputAction.go,
+                          value: controller.formData[formKeyPart6]
+                              [formKeyNominalVoltage],
+                          onTap: () => Get.bottomSheet(
+                            isScrollControlled: true,
+                            FormSelectItemSheet(
+                              controller: controller,
+                              partOfValue: formKeyPart6,
+                              keyOfValue: formKeyNominalVoltage,
+                              listTitles: formList.nominalVoltageEIC,
+                            ),
+                            elevation: 0.0,
+                          ),
                         ),
                         SmallInputField(
                           title: 'Uo (1)',
-                          keyboardType: TextInputType.number,
-                          textInputAction: TextInputAction.go,
+                          keyboardType: TextInputType.phone,
+                          textInputAction: TextInputAction.next,
                           suffix: CommonText(
                             'Volts',
                             style: appTextStyles.h3GreyStyle(),
@@ -193,8 +262,12 @@ class DomesticEicPage3 extends StatelessWidget {
                             'Ω',
                             style: appTextStyles.h3GreyStyle(),
                           ),
-                          keyboardType: TextInputType.number,
+                          keyboardType: TextInputType.phone,
                           textInputAction: TextInputAction.next,
+                          value: controller.formData[formKeyPart6][formKeyUo],
+                          onChanged: (dynamic value) =>
+                              controller.onChangeFormDataValue(
+                                  formKeyPart6, formKeyUo, value),
                         ),
                         SmallInputField(
                           title: 'External earth fault loop impedance Ze (2/3)',
@@ -202,8 +275,13 @@ class DomesticEicPage3 extends StatelessWidget {
                             'kA',
                             style: appTextStyles.h3GreyStyle(),
                           ),
-                          keyboardType: TextInputType.number,
+                          keyboardType: TextInputType.phone,
                           textInputAction: TextInputAction.next,
+                          value: controller.formData[formKeyPart6]
+                              [formKeyExternalEarthFault],
+                          onChanged: (dynamic value) =>
+                              controller.onChangeFormDataValue(formKeyPart6,
+                                  formKeyExternalEarthFault, value),
                         ),
                         SmallInputField(
                           title:
@@ -212,8 +290,13 @@ class DomesticEicPage3 extends StatelessWidget {
                             'kA',
                             style: appTextStyles.h3GreyStyle(),
                           ),
-                          keyboardType: TextInputType.number,
+                          keyboardType: TextInputType.phone,
                           textInputAction: TextInputAction.next,
+                          value: controller.formData[formKeyPart6]
+                              [formKeySinglePhaseFault],
+                          onChanged: (dynamic value) =>
+                              controller.onChangeFormDataValue(
+                                  formKeyPart6, formKeySinglePhaseFault, value),
                         ),
                         SmallInputField(
                           title: '3-phase \nProspective fault current (2/3)',
@@ -221,8 +304,13 @@ class DomesticEicPage3 extends StatelessWidget {
                             'HZ',
                             style: appTextStyles.h3GreyStyle(),
                           ),
-                          keyboardType: TextInputType.number,
+                          keyboardType: TextInputType.phone,
                           textInputAction: TextInputAction.next,
+                          value: controller.formData[formKeyPart6]
+                              [formKey3PhaseFault],
+                          onChanged: (dynamic value) =>
+                              controller.onChangeFormDataValue(
+                                  formKeyPart6, formKey3PhaseFault, value),
                         ),
                       ],
                     ),
@@ -243,42 +331,51 @@ class DomesticEicPage3 extends StatelessWidget {
                         EdgeInsets.symmetric(horizontal: DEVICE_WIDTH * 0.03),
                     child: Column(
                       children: <Widget>[
-                        const CustomSelectContainer(
+                        CustomSelectContainer(
                           title: 'BS (EN)',
-
-                          // onTap: () => Get.bottomSheet(
-                          //   EICRSelectBT(
-                          //     listTitles: formList.listBS,
-                          //     keyOfValue: formKeyBSF,
-                          //     controller: controller,
-                          //   ),
-                          //   elevation: 0.0,
-                          // ),
+                          value: controller.formData[formKeyPart6]
+                              [formKeyPrimarySupplyBS],
+                          onTap: () => Get.bottomSheet(
+                            isScrollControlled: true,
+                            FormSelectItemSheet(
+                              controller: controller,
+                              partOfValue: formKeyPart6,
+                              keyOfValue: formKeyPrimarySupplyBS,
+                              listTitles: formList.bsEIC,
+                            ),
+                            elevation: 0.0,
+                          ),
                         ),
-                        const SmallInputField(
+                        SmallInputField(
                           title: 'Type',
-
-                          // onTap: () => Get.bottomSheet(
-                          //   EICRSelectBT(
-                          //     listTitles: formList.listTypeH,
-                          //     keyOfValue: formKeyTypeF,
-                          //     controller: controller,
-                          //   ),
-                          //   elevation: 0.0,
-                          // ),
+                          value: controller.formData[formKeyPart6]
+                              [formKeyPrimarySupplyType],
+                          onTap: () => Get.bottomSheet(
+                            isScrollControlled: true,
+                            FormSelectItemSheet(
+                              controller: controller,
+                              partOfValue: formKeyPart6,
+                              keyOfValue: formKeyPrimarySupplyType,
+                              listTitles: formList.typeBsEIC,
+                            ),
+                            elevation: 0.0,
+                          ),
                           isInputSelection: true,
                         ),
-                        const SmallInputField(
+                        SmallInputField(
                           title: 'Rated current',
-
-                          // onTap: () => Get.bottomSheet(
-                          //   EICRSelectBT(
-                          //     listTitles: formList.listRatedCurrentI,
-                          //     keyOfValue: formKeyRatedCurrentF,
-                          //     controller: controller,
-                          //   ),
-                          //   elevation: 0.0,
-                          // ),
+                          value: controller.formData[formKeyPart6]
+                              [formKeyPrimarySupplyRatedCurrent],
+                          onTap: () => Get.bottomSheet(
+                            isScrollControlled: true,
+                            FormSelectItemSheet(
+                              controller: controller,
+                              partOfValue: formKeyPart6,
+                              keyOfValue: formKeyPrimarySupplyRatedCurrent,
+                              listTitles: formList.listRatedCurrentI,
+                            ),
+                            elevation: 0.0,
+                          ),
                           isInputSelection: true,
                         ),
                         SmallInputField(
@@ -287,8 +384,13 @@ class DomesticEicPage3 extends StatelessWidget {
                             'KA',
                             style: appTextStyles.h3GreyStyle(),
                           ),
-                          keyboardType: TextInputType.number,
+                          keyboardType: TextInputType.phone,
                           textInputAction: TextInputAction.go,
+                          value: controller.formData[formKeyPart6]
+                              [formKeyPrimarySupplyShortCircuit],
+                          onChanged: (dynamic value) =>
+                              controller.onChangeFormDataValue(formKeyPart6,
+                                  formKeyPrimarySupplyShortCircuit, value),
                         ),
                       ],
                     ),

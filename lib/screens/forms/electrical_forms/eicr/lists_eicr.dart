@@ -796,82 +796,6 @@ class EICRListsForm {
     'Other'
   ];
 
-  List<Map<String, dynamic>> listFilterSections = <Map<String, dynamic>>[
-    <String, dynamic>{
-      'id': 0,
-      'name': 'a',
-      keyTitle: 'Part 1.  Reason for producing this report',
-    },
-    <String, dynamic>{
-      'id': 1,
-      'name': 'b',
-      keyTitle:
-          'Part 2.  Details of the installation which is the subject of this report',
-    },
-    <String, dynamic>{
-      'id': 2,
-      'name': 'c',
-      keyTitle: 'Part 3.  Extent and limitations of inspection and testing',
-    },
-    <String, dynamic>{
-      'id': 3,
-      'name': 'd',
-      keyTitle: 'Part 4.  Summary of the installation of the installation',
-    },
-    <String, dynamic>{
-      'id': 4,
-      'name': 'e',
-      keyTitle: 'Part 5.  Recommendations',
-    },
-    <String, dynamic>{
-      'id': 5,
-      'name': 'f',
-      keyTitle: 'Part 6.  Supply characteristics & earthing arrangements',
-    },
-    <String, dynamic>{
-      'id': 6,
-      'name': 'g',
-      keyTitle:
-          'Part 7.  Particulars of installation referred to in this report',
-    },
-    <String, dynamic>{
-      'id': 7,
-      'name': 'h',
-      keyTitle: 'Part 8.  Main protective conductors',
-    },
-    <String, dynamic>{
-      'id': 8,
-      'name': 'i',
-      keyTitle: 'Part 9.  Main Switch/Switch-Fuse/Circuit Breaker/RCD',
-    },
-    <String, dynamic>{
-      'id': 9,
-      'name': 'db',
-      keyTitle: 'Part 10.  Distribution Boards',
-    },
-    <String, dynamic>{
-      'id': 10,
-      'name': 'j',
-      keyTitle: 'Part 11.  Test Instruments used',
-    },
-    <String, dynamic>{
-      'id': 11,
-      'name': 'k',
-      keyTitle: 'Part 12.  Inspection Schedule',
-    },
-    <String, dynamic>{
-      'id': 18,
-      'name': 'input_field',
-      keyTitle:
-          'Part 13.  Prosumers Low Voltage Installation/Other Special Installations Or Locations',
-    },
-    <String, dynamic>{
-      'id': 19,
-      'name': 'final_page',
-      keyTitle: 'Part 14.  Declaration',
-    },
-  ];
-
   List<String> observationCode = <String>[
     'C1',
     'C2',
@@ -904,6 +828,138 @@ class EICRListsForm {
           'Installation is not necessarily dangerous but it may not comply with the current version of the regulations or for example, may have damaged fittings that do not have exposed live parts. A codeC3, in itself, should not warrant an overall unsatisfactory report.',
     },
   ];
+  // Domestic EICR
+
+  List<String> acOrDc = <String>[
+    'A/C',
+    'D/C',
+  ];
+
+  List<String> nominalVoltageEIC = <String>[
+    '400/230',
+    '230/230',
+    '230',
+    '240',
+    '110',
+    '415',
+    'Other',
+  ];
+  List<String> bsEIC = <String>[
+    'BS88 Fuse HRC',
+    'BS3036 Fuse (Semi-enclosed)',
+    'BS 1361 Fuse HBC',
+    'Fuse Obsolete Type',
+    'BS EN 60898 MCB',
+    'BS3871 MCB',
+    'MCB Obsolete Type',
+    'BS EN 60947-2 MCCB',
+    'MCCB Obsolete Type',
+    'BS EB 60947-2 ACB',
+    'ACB Obsolete Type',
+    'BS EN 60947-2 MCB',
+    'BS EN 61009 RCD/RCBO',
+    'BS EN 60947-3 Isolator',
+    'BS 5419 Isolator',
+    'BS 1361',
+    'BS 1362 Domestic',
+    'N/A',
+    'LIM',
+    'Other',
+  ];
+  List<String> typeBsEIC = <String>[
+    'Type gG',
+    'Type mG',
+    'Type aM',
+    '(S-E)',
+    'Type B',
+    'Type C',
+    'Type D',
+    'Type 1',
+    'Type 2',
+    'Type 3',
+    'Type 4',
+    'MCCB',
+    'ACB',
+    'RCD',
+    'Isolator',
+    'N/A',
+    'LIM',
+    'Other',
+  ];
+  List<String> locationEIC = <String>[
+    'Hall',
+    'Stairway',
+    'Front Room',
+    'Rear Room',
+    'Shop Front',
+    'Shop Rear',
+    'Office',
+    'Front Office',
+    'Back Office',
+    'Outside',
+    'Side of House',
+    'Front of House',
+    'Rear of House',
+    'Other',
+  ];
+  List<String> typeBSMainSwitch = <String>[
+    'BS88 Fuse HRC - Type gG',
+    'BS88 Fuse HRC - Type mG',
+    'BS88 Fuse HRC - Type aM',
+    'BS3036 Fuse (Semi-enclosed)',
+    'BS 1361 Fuse HBC - Type 1',
+    'BS 1361 Fuse HBC - Type 2',
+    'Fuse Obsolete Type',
+    'BS EN 60898 MCB Type B',
+    'BS EN 60898 MCB Type C',
+    'BS EN 60898 MCB Type D',
+    'BS3871 MCB - Type 1',
+    'BS3871 MCB - Type 2',
+    'BS3871 MCB - Type 3',
+    'BS3871 MCB - Type 4',
+    'BS3871 MCB - Type B',
+    'BS3871 MCB - Type C',
+    'BS3871 MCB - Type D',
+    'MCB Obsolete Type',
+    'BS EN 60947-2 MCCB',
+    'MCCB Obsolete Type',
+    'BS EB 60947-2 ACB',
+    'ACB Obsolete Type',
+    'BS EN 60947-2 MCB Type B',
+    'BS EN 60947-2 MCB Type C',
+    'BS EN 60947-2 MCB Type D',
+    'BS EN 60947-2 MCB Type B',
+   
+    'BS EN 61009 RCD/RCBO - Type B',
+    'BS EN 61009 RCD/RCBO - Type C',
+    'BS EN 61009 RCD/RCBO - Type D',
+    'BS EN 60947-3 Isolator',
+    'BS 5419 Isolator',
+    'BS 1361 Fuse HBC - Type 1',
+    'BS 1361 Fuse HBC - Type 2',
+    'BS 1361 Fuse HBC',
+    'BS 1361',
+    'BS 1362 Domestic',
+    'N/A',
+    'LIM',
+    'Other',
+  ];
+  // List<String> test = <String>[
+  //   '',
+  //   '',
+  // ];
+  // List<String> test = <String>[
+  //   '',
+  //   '',
+  // ];
+  // List<String> test = <String>[
+  //   '',
+  //   '',
+  // ];
+  // List<String> test = <String>[
+  //   '',
+  //   '',
+  // ];
 }
 
 /*

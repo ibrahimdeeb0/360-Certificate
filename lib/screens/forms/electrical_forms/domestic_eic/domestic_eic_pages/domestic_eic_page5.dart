@@ -8,6 +8,7 @@ class DomesticEicPage5 extends StatelessWidget {
     return GetBuilder<DomesticEicController>(
       init: DomesticEicController(),
       builder: (DomesticEicController controller) {
+        final EICRListsForm formList = EICRListsForm();
         return Column(
           children: <Widget>[
             CommonContainer(
@@ -29,15 +30,39 @@ class DomesticEicPage5 extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        const CustomSelectContainer(
+                        CustomSelectContainer(
                           title: 'Type BS (EN)',
                           width: 0.9,
+                          value: controller.formData[formKeyPart8]
+                              [formKeyMainSwitchTypeBS],
+                          onTap: () => Get.bottomSheet(
+                            isScrollControlled: true,
+                            FormSelectItemSheet(
+                              controller: controller,
+                              partOfValue: formKeyPart8,
+                              keyOfValue: formKeyMainSwitchTypeBS,
+                              listTitles: formList.typeBSMainSwitch,
+                            ),
+                            elevation: 0.0,
+                          ),
                         ),
-                        const SmallInputField(
+                        SmallInputField(
                           title: 'No. of Poles',
                           isInputSelection: true,
                           marginBottom: 0.02,
                           width: 0.5,
+                          value: controller.formData[formKeyPart8]
+                              [formKeyMainSwitchNumberPoles],
+                          onTap: () => Get.bottomSheet(
+                            isScrollControlled: true,
+                            FormSelectItemSheet(
+                              controller: controller,
+                              partOfValue: formKeyPart8,
+                              keyOfValue: formKeyMainSwitchNumberPoles,
+                              listTitles: formList.listNumOfPoles,
+                            ),
+                            elevation: 0.0,
+                          ),
                         ),
                         SmallInputField(
                           title: 'Voltage Rating',
@@ -48,11 +73,35 @@ class DomesticEicPage5 extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                           ),
                           width: 0.5,
+                          value: controller.formData[formKeyPart8]
+                              [formKeyMainSwitchVoltageRating],
+                          onTap: () => Get.bottomSheet(
+                            isScrollControlled: true,
+                            FormSelectItemSheet(
+                              controller: controller,
+                              partOfValue: formKeyPart8,
+                              keyOfValue: formKeyMainSwitchVoltageRating,
+                              listTitles: formList.listNominalVoltage,
+                            ),
+                            elevation: 0.0,
+                          ),
                         ),
-                        const SmallInputField(
+                        SmallInputField(
                           title: 'Rated Current',
                           isInputSelection: true,
                           width: 0.5,
+                          value: controller.formData[formKeyPart8]
+                              [formKeyMainSwitchRatedCurrent],
+                          onTap: () => Get.bottomSheet(
+                            isScrollControlled: true,
+                            FormSelectItemSheet(
+                              controller: controller,
+                              partOfValue: formKeyPart8,
+                              keyOfValue: formKeyMainSwitchRatedCurrent,
+                              listTitles: formList.listRatedCurrentI,
+                            ),
+                            elevation: 0.0,
+                          ),
                         ),
                         CommonText(
                           'If RCD Main Switch',
@@ -80,6 +129,18 @@ class DomesticEicPage5 extends StatelessWidget {
                             'mA',
                             style: appTextStyles.h3GreyStyle(),
                           ),
+                          value: controller.formData[formKeyPart8]
+                              [formKeyRCDMainSwitchOperationCurrent],
+                          onTap: () => Get.bottomSheet(
+                            isScrollControlled: true,
+                            FormSelectItemSheet(
+                              controller: controller,
+                              partOfValue: formKeyPart8,
+                              keyOfValue: formKeyRCDMainSwitchOperationCurrent,
+                              listTitles: formList.listRCDOperationCurrent,
+                            ),
+                            elevation: 0.0,
+                          ),
                         ),
                         SmallInputField(
                           title: 'Rated Time Delay',
@@ -89,17 +150,33 @@ class DomesticEicPage5 extends StatelessWidget {
                             'mS',
                             style: appTextStyles.h3GreyStyle(),
                           ),
+                          value: controller.formData[formKeyPart8]
+                              [formKeyRCDMainSwitchRatedTime],
+                          onTap: () => Get.bottomSheet(
+                            isScrollControlled: true,
+                            FormSelectItemSheet(
+                              controller: controller,
+                              partOfValue: formKeyPart8,
+                              keyOfValue: formKeyRCDMainSwitchRatedTime,
+                              listTitles: formList.listRatedTimeDelay,
+                            ),
+                            elevation: 0.0,
+                          ),
                         ),
                         SmallInputField(
                           title: 'RCD Operation Time',
                           width: 0.5,
-                          keyboardType: TextInputType.number,
+                          keyboardType: TextInputType.phone,
                           textInputAction: TextInputAction.go,
                           suffix: CommonText(
                             'mS',
                             style: appTextStyles.h3GreyStyle(),
                           ),
-                          isInputSelection: true,
+                          value: controller.formData[formKeyPart8]
+                              [formKeyRCDMainSwitchOperationTime],
+                          onChanged: (dynamic value) =>
+                              controller.onChangeFormDataValue(formKeyPart8,
+                                  formKeyRCDMainSwitchOperationTime, value),
                         ),
                       ],
                     ),
@@ -107,14 +184,38 @@ class DomesticEicPage5 extends StatelessWidget {
                   CommonContainer(
                     style: appContainerStyles.bottomBorder,
                     child: Column(
-                      children: const <Widget>[
+                      children: <Widget>[
                         CustomSelectContainer(
                           title: 'Supply conductor material',
+                          value: controller.formData[formKeyPart8]
+                              [formKeySupplyConductorMaterial],
+                          onTap: () => Get.bottomSheet(
+                            isScrollControlled: true,
+                            FormSelectItemSheet(
+                              controller: controller,
+                              partOfValue: formKeyPart8,
+                              keyOfValue: formKeySupplyConductorMaterial,
+                              listTitles: formList.listConductorMaterial,
+                            ),
+                            elevation: 0.0,
+                          ),
                         ),
                         SmallInputField(
                           title: 'Supply conductor csa',
                           isInputSelection: true,
                           width: 0.5,
+                          value: controller.formData[formKeyPart8]
+                              [formKeySupplyConductorCSA],
+                          onTap: () => Get.bottomSheet(
+                            isScrollControlled: true,
+                            FormSelectItemSheet(
+                              controller: controller,
+                              partOfValue: formKeyPart8,
+                              keyOfValue: formKeySupplyConductorCSA,
+                              listTitles: formList.listConductorCSA,
+                            ),
+                            elevation: 0.0,
+                          ),
                         ),
                       ],
                     ),

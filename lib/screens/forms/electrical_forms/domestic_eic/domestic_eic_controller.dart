@@ -38,9 +38,9 @@ class DomesticEicController extends GetxController {
   Map<String, dynamic> formData = <String, dynamic>{
     formKeyPart1: <String, dynamic>{
       formKeyExtendsOfTheInstallation: '',
-      formKeyInstallationNew: '',
-      formKeyInstallationAddition: '',
-      formKeyInstallationAlternation: '',
+      formKeyInstallationNew: 'N/A',
+      formKeyInstallationAddition: 'N/A',
+      formKeyInstallationAlternation: 'N/A',
     },
     formKeyPart2: <String, dynamic>{
       formKeyAmendedTo: '',
@@ -54,18 +54,19 @@ class DomesticEicController extends GetxController {
     },
     formKeyPart5: <String, dynamic>{
       formKeyScheduleOfAdditionalRecords: '',
-      formKeyRiskAssessmentAttached: '',
+      formKeyRiskAssessmentAttached: 'N/A',
+      formKeyRiskAssessment: '',
     },
     formKeyPart6: <String, dynamic>{
-      formKeyTypesTNCS: '',
-      formKeyTypesTNS: '',
-      formKeyTypesTT: '',
-      formKeyTypesOther: '',
-      formKey1Phase2wire: '',
-      formKey1Phase3wire: '',
-      formKey2Phase3wire: '',
-      formKey3Phase4wire: '',
-      formKeyNumberConductorsOther: '',
+      formKeyTypesTNCS: 'N/A',
+      formKeyTypesTNS: 'N/A',
+      formKeyTypesTT: 'N/A',
+      formKeyTypesOther: 'N/A',
+      formKey1Phase2wire: 'N/A',
+      formKey1Phase3wire: 'N/A',
+      formKey2Phase3wire: 'N/A',
+      formKey3Phase4wire: 'N/A',
+      formKeyNumberConductorsOther: 'N/A',
       formKeyAcOrDc: '',
       formKeyNominalVoltage: '',
       formKeyUo: '',
@@ -79,16 +80,16 @@ class DomesticEicController extends GetxController {
       formKeyPrimarySupplyShortCircuit: '',
     },
     formKeyPart7: <String, dynamic>{
-      formKeyDistributorFacility: '',
-      formKeyInstallationEarth: '',
-      formKeyEarthElectrodeType: '',
-      formKeyEarthElectrodeLocation: '',
-      formKeyEarthElectrodeResistance: '',
-      formKeyMethodMeasurement: '',
+      formKeyDistributorFacility: 'N/A',
+      formKeyInstallationEarth: 'N/A',
+      formKeyEarthElectrodeType: 'N/A',
+      formKeyEarthElectrodeLocation: 'N/A',
+      formKeyEarthElectrodeResistance: 'N/A',
+      formKeyMethodMeasurement: 'N/A',
       formKeyMeasuredZe: '',
       formKeyMaximumDemand: '',
       formKeyNumberOfSmokeAlarms: '',
-      formKeyProtectiveMeasures: '',
+      formKeyProtectiveMeasures: 'ADS',
     },
     formKeyPart8: <String, dynamic>{
       formKeyMainSwitchTypeBS: '',
@@ -104,15 +105,15 @@ class DomesticEicController extends GetxController {
     formKeyPart9: <String, dynamic>{
       formKeyEarthingConductorConductorMaterial: '',
       formKeyEarthingConductorConductorCSA: '',
-      formKeyEarthingConductorConductorCheck: '',
+      formKeyEarthingConductorConductorCheck: 'N/A',
       formKeyMainProtectiveConductorMaterial: '',
       formKeyMainProtectiveConductorCSA: '',
       formKeyMainProtectiveLocation: '',
-      formKeyWaterInstallation: '',
-      formKeyGasInstallation: '',
-      formKeyOilInstallation: '',
-      formKeyStructuralSteel: '',
-      formKeyOtherServices: '',
+      formKeyWaterInstallation: 'N/A',
+      formKeyGasInstallation: 'N/A',
+      formKeyOilInstallation: 'N/A',
+      formKeyStructuralSteel: 'N/A',
+      formKeyOtherServices: 'N/A',
     },
     formKeyPart10: <String, dynamic>{
       formKeyMFT: '',
@@ -123,26 +124,29 @@ class DomesticEicController extends GetxController {
       formKeyOther: '',
     },
     formKeyPart11: <String, dynamic>{
-      formKeySchedule1: '',
-      formKeySchedule2: '',
-      formKeySchedule3: '',
-      formKeySchedule4: '',
-      formKeySchedule5: '',
-      formKeySchedule6: '',
-      formKeySchedule7: '',
-      formKeySchedule8: '',
-      formKeySchedule9: '',
-      formKeySchedule10: '',
-      formKeySchedule11: '',
-      formKeySchedule12: '',
-      formKeySchedule13: '',
-      formKeySchedule14: '',
+      formKeySchedule1: 'N/A',
+      formKeySchedule2: 'N/A',
+      formKeySchedule3: 'N/A',
+      formKeySchedule4: 'N/A',
+      formKeySchedule5: 'N/A',
+      formKeySchedule6: 'N/A',
+      formKeySchedule7: 'N/A',
+      formKeySchedule8: 'N/A',
+      formKeySchedule9: 'N/A',
+      formKeySchedule10: 'N/A',
+      formKeySchedule11: 'N/A',
+      formKeySchedule12: 'N/A',
+      formKeySchedule13: 'N/A',
+      formKeySchedule14: 'N/A',
     },
     formKeyPart12: <String, dynamic>{
       formKeyDetailsOfCircuits: '',
     },
     formKeyDeclaration: <String, dynamic>{
-      formKey: '',
+      formKeyNameInspectionBy: '',
+      formKeyDateInspectionBy: '',
+      formKeyNameReviewedBy: '',
+      formKeyDateReviewedBy: '',
     },
     formKeyDistributionBoardsData: <dynamic>[],
   };
@@ -262,7 +266,7 @@ class DomesticEicController extends GetxController {
       update();
     }
 
-    formData[formKeyDeclaration][formKeyRecordIssueBy] =
+    formData[formKeyDeclaration][formKeyNameInspectionBy] =
         '${profileController.userDataProfile['first_name']} ${profileController.userDataProfile['last_name']}';
     update();
   }
@@ -344,6 +348,15 @@ class DomesticEicController extends GetxController {
     }
   }
 
+  String textRiskAssessment =
+      'OMISSION OF RCD FOR SOCKET \nOUTLET(S) NOT EXCEEDING 20A \n\nDate of Risk Assessment: 26-04-2023 \n\nPerson(s) Who Could Be Harmed?: \n\nWhat is Being Done To Control The Risk?: \n\nAction to be Taken By Who?: \n\nWhen Should Action Be Taken?: \n\nRisk Assessment Completed By: Test2 Position: Testing';
+
+  void setRiskText() {
+    formData[formKeyPart5][formKeyRiskAssessment] = textRiskAssessment;
+    update();
+  }
+
+  
   // *****************  signature functions **************** //
 
   // ***************** add  **************** //

@@ -31,15 +31,31 @@ class DomesticEicPage11 extends StatelessWidget {
                     marginTop: 0.01,
                     marginBottom: 0.01,
                     value: controller.formData[formKeyDeclaration]
-                        [formKeyRecordIssueBy],
+                        [formKeyNameInspectionBy],
                     onChanged: (String value) =>
                         controller.onChangeFormDataValue(
-                            formKeyDeclaration, formKeyRecordIssueBy, value),
+                            formKeyDeclaration, formKeyNameInspectionBy, value),
                     enabled: false,
                   ),
-                  const CommonInput(
+                  CommonInput(
                     topLabelText: 'Date :',
                     marginBottom: 0.02,
+                    enabled: false,
+                    value: controller.formData[formKeyDeclaration]
+                        [formKeyDateInspectionBy],
+                    onTap: () {
+                      CommonDatePicker.showDatePicker(
+                        context,
+                        currentTime: DateTime.now(),
+                        onConfirm: (DateTime date) {
+                          controller.onSelectDate(
+                            formKeyDeclaration,
+                            formKeyDateInspectionBy,
+                            date,
+                          );
+                        },
+                      );
+                    },
                   ),
                   Align(
                     child: CommonText(
@@ -150,14 +166,30 @@ class DomesticEicPage11 extends StatelessWidget {
                     marginTop: 0.01,
                     marginBottom: 0.01,
                     value: controller.formData[formKeyDeclaration]
-                        [formKeyReceivedBy],
+                        [formKeyNameReviewedBy],
                     onChanged: (String value) =>
                         controller.onChangeFormDataValue(
-                            formKeyDeclaration, formKeyReceivedBy, value),
+                            formKeyDeclaration, formKeyNameReviewedBy, value),
                   ),
-                  const CommonInput(
+                  CommonInput(
                     topLabelText: 'Date :',
                     marginBottom: 0.02,
+                    enabled: false,
+                    value: controller.formData[formKeyDeclaration]
+                        [formKeyDateReviewedBy],
+                    onTap: () {
+                      CommonDatePicker.showDatePicker(
+                        context,
+                        currentTime: DateTime.now(),
+                        onConfirm: (DateTime date) {
+                          controller.onSelectDate(
+                            formKeyDeclaration,
+                            formKeyDateReviewedBy,
+                            date,
+                          );
+                        },
+                      );
+                    },
                   ),
                   Align(
                     child: CommonText(

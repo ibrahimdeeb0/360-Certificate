@@ -8,6 +8,7 @@ class DomesticEicPage4 extends StatelessWidget {
     return GetBuilder<DomesticEicController>(
       init: DomesticEicController(),
       builder: (DomesticEicController controller) {
+        final EICRListsForm formList = EICRListsForm();
         return Column(
           children: <Widget>[
             CommonContainer(
@@ -27,8 +28,8 @@ class DomesticEicPage4 extends StatelessWidget {
                     style: appContainerStyles.bottomBorder,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const <Widget>[
-                        CommonText(
+                      children: <Widget>[
+                        const CommonText(
                           'Means of earthing',
                           fontWeight: FontWeight.bold,
                           rowMainAxisSize: MainAxisSize.max,
@@ -38,11 +39,21 @@ class DomesticEicPage4 extends StatelessWidget {
                           title: "Distributor's facility",
                           toggleType: FormToggleType.trueFalse,
                           textWidth: 0.5,
+                          value: controller.formData[formKeyPart7]
+                              [formKeyDistributorFacility],
+                          onChangeValue: (dynamic value) =>
+                              controller.onChangeFormDataValue(formKeyPart7,
+                                  formKeyDistributorFacility, value),
                         ),
                         FormToggleButton(
                           title: 'Installation earth electrode',
                           toggleType: FormToggleType.trueFalse,
                           textWidth: 0.5,
+                          value: controller.formData[formKeyPart7]
+                              [formKeyInstallationEarth],
+                          onChangeValue: (dynamic value) =>
+                              controller.onChangeFormDataValue(formKeyPart7,
+                                  formKeyInstallationEarth, value),
                         ),
                       ],
                     ),
@@ -73,29 +84,61 @@ class DomesticEicPage4 extends StatelessWidget {
                           containerStyle:
                               const CommonContainerModel(marginBottom: 0.02),
                         ),
-                        const CommonInput(
-                          topLabelText: 'Type (e.g. rods, tape etc...)',
-                          hint: 'N/A',
-                          marginBottom: 0.015,
+                        CustomSelectContainer(
+                          title: 'Type (e.g. rods, tape etc...)',
+                          value: controller.formData[formKeyPart7]
+                              [formKeyEarthElectrodeType],
+                          onTap: () => Get.bottomSheet(
+                            isScrollControlled: true,
+                            FormSelectItemSheet(
+                              controller: controller,
+                              partOfValue: formKeyPart7,
+                              keyOfValue: formKeyEarthElectrodeType,
+                              listTitles: formList.listTypeI,
+                            ),
+                            elevation: 0.0,
+                          ),
+                          marginBottom: 0.0,
                         ),
-                        const CommonInput(
-                          topLabelText: 'Location',
-                          hint: 'N/A',
-                          marginBottom: 0.015,
+                        CustomSelectContainer(
+                          title: 'Location',
+                          value: controller.formData[formKeyPart7]
+                              [formKeyEarthElectrodeLocation],
+                          onTap: () => Get.bottomSheet(
+                            isScrollControlled: true,
+                            FormSelectItemSheet(
+                              controller: controller,
+                              partOfValue: formKeyPart7,
+                              keyOfValue: formKeyEarthElectrodeLocation,
+                              listTitles: formList.locationEIC,
+                            ),
+                            elevation: 0.0,
+                          ),
+                          // marginBottom: 0.02,
                         ),
                         SmallInputField(
                           title: 'Electrode resistance, RA',
-                          hint: 'N/A',
                           width: 0.5,
+                          keyboardType: TextInputType.phone,
                           suffix: CommonText(
                             'Ω',
                             style: appTextStyles.h3GreyStyle(),
                           ),
+                          value: controller.formData[formKeyPart7]
+                              [formKeyEarthElectrodeResistance],
+                          onChanged: (dynamic value) =>
+                              controller.onChangeFormDataValue(formKeyPart7,
+                                  formKeyEarthElectrodeResistance, value),
+                          marginBottom: 0.01,
                         ),
-                        const CommonInput(
+                        CommonInput(
                           topLabelText: 'Method of measurement',
-                          hint: 'N/A',
                           marginBottom: 0.015,
+                          value: controller.formData[formKeyPart7]
+                              [formKeyMethodMeasurement],
+                          onChanged: (dynamic value) =>
+                              controller.onChangeFormDataValue(formKeyPart7,
+                                  formKeyMethodMeasurement, value),
                         ),
                       ],
                     ),
@@ -103,27 +146,56 @@ class DomesticEicPage4 extends StatelessWidget {
                   CommonContainer(
                     style: appContainerStyles.bottomBorder,
                     child: Column(
-                      children: const <Widget>[
+                      children: <Widget>[
                         SmallInputField(
                           title: 'Measured Ze Ω',
                           hint: 'N/A',
+                          keyboardType: TextInputType.phone,
                           width: 0.5,
+                          value: controller.formData[formKeyPart7]
+                              [formKeyMeasuredZe],
+                          onChanged: (dynamic value) =>
+                              controller.onChangeFormDataValue(
+                                  formKeyPart7, formKeyMeasuredZe, value),
                         ),
                         SmallInputField(
                           title: 'Maximum Demand (Load)',
                           hint: 'N/A',
+                          keyboardType: TextInputType.phone,
                           width: 0.5,
+                          value: controller.formData[formKeyPart7]
+                              [formKeyMaximumDemand],
+                          onChanged: (dynamic value) =>
+                              controller.onChangeFormDataValue(
+                                  formKeyPart7, formKeyMaximumDemand, value),
                         ),
                         SmallInputField(
                           title: 'Number of smoke alarms',
                           hint: 'N/A',
                           width: 0.5,
                           isInputSelection: true,
+                          value: controller.formData[formKeyPart7]
+                              [formKeyNumberOfSmokeAlarms],
+                          onTap: () => Get.bottomSheet(
+                            isScrollControlled: true,
+                            FormSelectItemSheet(
+                              controller: controller,
+                              partOfValue: formKeyPart7,
+                              keyOfValue: formKeyNumberOfSmokeAlarms,
+                              listTitles: formList.listNumOfPoles,
+                            ),
+                            elevation: 0.0,
+                          ),
                         ),
                         CommonInput(
                           topLabelText:
                               'Protective measures for fault protection',
                           marginBottom: 0.02,
+                          value: controller.formData[formKeyPart7]
+                              [formKeyProtectiveMeasures],
+                          onChanged: (dynamic value) =>
+                              controller.onChangeFormDataValue(formKeyPart7,
+                                  formKeyProtectiveMeasures, value),
                         ),
                       ],
                     ),

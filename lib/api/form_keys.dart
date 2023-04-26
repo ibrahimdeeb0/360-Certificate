@@ -530,3 +530,8 @@ const String formKeySchedule14 = 'schedule_14';
 const String formKeyDetailsOfCircuits = 'details_of_circuits';
 //
 const String formKeyDistributionBoardsData = 'distribution_boards_data';
+//
+const String formKeyNameInspectionBy = 'name_inspection_by';
+const String formKeyDateInspectionBy = 'date_inspection_by';
+const String formKeyNameReviewedBy = 'name_reviewed_by ';
+const String formKeyDateReviewedBy = 'date_reviewed_by ';
