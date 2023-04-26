@@ -28,11 +28,11 @@ class FormsController extends GetxController {
         //   keyTitle: 'Portable Appliance Testing',
         //   keyRoute: '',
         // },
-        // <String, dynamic>{
-        //   keyId: 3,
-        //   keyTitle: 'Domestic Electrical Installation Certificate',
-        //   keyRoute: '',
-        // },
+        <String, dynamic>{
+          keyId: 3,
+          keyTitle: 'Domestic EIC',
+          keyRoute: routeFormDomesticEic,
+        },
         <String, dynamic>{
           keyId: 4,
           keyTitle: 'Electrical Danger Notice',

@@ -356,7 +356,6 @@ class DomesticEicController extends GetxController {
     update();
   }
 
-  
   // *****************  signature functions **************** //
 
   // ***************** add  **************** //
@@ -688,5 +687,6 @@ class DomesticEicController extends GetxController {
   void onClose() {
     super.onClose();
     myAppController.clearCertFormInfo();
+    scrollController.dispose();
   }
 }
