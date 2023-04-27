@@ -219,7 +219,7 @@ class DomesticEicController extends GetxController {
       if (formBody[keyData].isNotEmpty) {
         formData = formBody[keyData];
       }
-      // applianceData = formBody[keyData][formKeyAppliance];
+      distrBoardDataBase = formData[formKeyDistributionBoardsData];
 
       update();
     }
@@ -259,7 +259,7 @@ class DomesticEicController extends GetxController {
       if (formBody[keyData].isNotEmpty) {
         formData = formBody[keyData];
       }
-      // applianceData = formBody[keyData][formKeyAppliance];
+      distrBoardDataBase = formData[formKeyDistributionBoardsData];
 
       isCertificateCreated = true;
 
