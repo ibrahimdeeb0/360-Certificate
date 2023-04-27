@@ -134,5 +134,17 @@ class MoreController extends GetxController {
         },
       ],
     },
+    <String, dynamic>{
+      keyTitle: 'Portable',
+      keyItems: <Map<String, dynamic>>[
+        <String, dynamic>{
+          keyId: 0,
+          keyTitle: 'Portable Appliance Testing (PAT)',
+          keyOnPress: () {
+            Get.toNamed(routeFormPortableTest);
+          },
+        },
+      ],
+    },
   ];
 }

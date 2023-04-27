@@ -153,6 +153,8 @@ const String icoCheckList = '${iconsPath}check_list.svg';
 const String icoBagWork = '${iconsPath}bag_work.svg';
 const String iconAddAttach = '${iconsPath}icon_add_attach.svg';
 const String iconAddImageAttach = '${iconsPath}icon_add_image_attach.svg';
+const String iconPlug = '${iconsPath}icon_plug.svg';
+const String iconPlugFill = '${iconsPath}icon_plug_fill.svg';
 
 // ----------------------------------------
 

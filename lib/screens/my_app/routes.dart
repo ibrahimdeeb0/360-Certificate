@@ -125,4 +125,8 @@ List<GetPage<dynamic>> appRoutes = <GetPage<dynamic>>[
     name: routeFormDomesticEic,
     page: () => const DomesticEic(),
   ),
+  GetPage<PortableTest>(
+    name: routeFormPortableTest,
+    page: () => const PortableTest(),
+  ),
 ];

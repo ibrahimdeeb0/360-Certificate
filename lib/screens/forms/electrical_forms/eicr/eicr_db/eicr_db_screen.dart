@@ -231,6 +231,7 @@ class ViewCircuitsDetails extends StatelessWidget {
     this.onPressDelete,
     this.showDeleteIcon = true,
     this.isComplete = false,
+    this.iconPath,
   }) : super(key: key);
 
   final String? circuitName;
@@ -240,6 +241,7 @@ class ViewCircuitsDetails extends StatelessWidget {
   final Function? onPressDelete;
   final bool showDeleteIcon;
   final bool isComplete;
+  final String? iconPath;
 
   @override
   Widget build(BuildContext context) {
@@ -259,11 +261,18 @@ class ViewCircuitsDetails extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Image.asset(
-            imageCircuitElectrical,
-            width: DEVICE_WIDTH * 0.08,
-            height: DEVICE_HEIGHT * 0.06,
-          ),
+          if (iconPath == null)
+            Image.asset(
+              imageCircuitElectrical,
+              width: DEVICE_WIDTH * 0.08,
+              height: DEVICE_HEIGHT * 0.06,
+            )
+          else
+            SvgPicture.asset(
+              iconPath ?? iconPlug,
+              width: DEVICE_WIDTH * 0.15,
+              height: DEVICE_HEIGHT * 0.06,
+            ),
           CommonContainer(
             style: const CommonContainerModel(
               width: 0.62,
