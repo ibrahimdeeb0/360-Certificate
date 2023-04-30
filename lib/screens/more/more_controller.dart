@@ -106,11 +106,13 @@ class MoreController extends GetxController {
     <String, dynamic>{
       keyTitle: 'Electrical',
       keyItems: <Map<String, dynamic>>[
-        // <String, dynamic>{
-        //   keyId: 0,
-        //   keyTitle: 'Portable Appliance Testing',
-        //   keyOnPress: () {},
-        // },
+        <String, dynamic>{
+          keyId: 0,
+          keyTitle: 'Portable Appliance Testing (PAT)',
+          keyOnPress: () {
+            Get.toNamed(routeFormPortableTest);
+          },
+        },
         <String, dynamic>{
           keyId: 0,
           keyTitle: 'Domestic Electrical Installation Certificate',
@@ -130,18 +132,6 @@ class MoreController extends GetxController {
           keyTitle: 'EICR',
           keyOnPress: () {
             Get.toNamed(routeFormEICR);
-          },
-        },
-      ],
-    },
-    <String, dynamic>{
-      keyTitle: 'Portable',
-      keyItems: <Map<String, dynamic>>[
-        <String, dynamic>{
-          keyId: 0,
-          keyTitle: 'Portable Appliance Testing (PAT)',
-          keyOnPress: () {
-            Get.toNamed(routeFormPortableTest);
           },
         },
       ],

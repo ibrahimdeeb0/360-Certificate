@@ -1,17 +1,18 @@
 import '../../../../../general_exports.dart';
 
-class CircuitDetailsP0 extends StatelessWidget {
-  const CircuitDetailsP0({super.key});
+class ApplianceDetails extends StatelessWidget {
+  const ApplianceDetails({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<DistributionBoardController>(
-      init: DistributionBoardController(),
-      builder: (DistributionBoardController controller) {
+    return GetBuilder<PortableAppliancesController>(
+      init: PortableAppliancesController(),
+      builder: (PortableAppliancesController controller) {
         return Scaffold(
           backgroundColor: Colors.white,
           appBar: Header(
-            title: controller.tabIndex == 0 ? 'Circuit Details' : 'Test Result',
+            title:
+                controller.tabIndex == 0 ? 'Appliance Details' : 'Test Result',
             actionItem: ActionItem(
               type: ActionType.save,
               onPress: Get.back,
@@ -24,7 +25,7 @@ class CircuitDetailsP0 extends StatelessWidget {
                   borderRadius: 0.02,
                   width: 1,
                   height: 0.05,
-                  marginTop: 0.02,
+                  marginTop: 0.01,
                   marginHorizontal: 0.04,
                   backgroundColor: Color(AppColors.grey).withOpacity(0.2),
                   clipBehavior: Clip.hardEdge,
@@ -55,17 +56,29 @@ class CircuitDetailsP0 extends StatelessWidget {
                 ),
               ),
               Expanded(
-                child: SingleChildScrollView(
+                child: RawScrollbar(
                   controller: controller.scrollController,
-                  child: Column(
-                    children: <Widget>[
-                      ...controller.tabViewItems.map(
-                        (dynamic tabView) => controller.tabIndex ==
-                                controller.tabViewItems.indexOf(tabView)
-                            ? tabView
-                            : const SizedBox(),
+                  thumbColor: Colors.grey[500],
+                  radius: const Radius.circular(50.0),
+                  thumbVisibility: true,
+                  thickness: 4.0,
+                  padding: EdgeInsets.only(right: 0.005.flexWidth),
+                  child: SingleChildScrollView(
+                    controller: controller.scrollController,
+                    child: CommonContainer(
+                      backgroundColor: Colors.white,
+                      paddingHorizontal: 0.01,
+                      child: Column(
+                        children: <Widget>[
+                          ...controller.tabViewItems.map(
+                            (dynamic tabView) => controller.tabIndex ==
+                                    controller.tabViewItems.indexOf(tabView)
+                                ? tabView
+                                : const SizedBox(),
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
                 ),
               ),

@@ -35,6 +35,8 @@ class PortableAppliances extends StatelessWidget {
                   //   ),
                   // ),
                   CommonContainer(
+                    onPress: () =>
+                        Get.to(() => const SummaryApplianceDetails()),
                     backgroundColor: Color(AppColors.grey).withOpacity(0.1),
                     width: 1,
                     borderRadius: 0.02,
@@ -98,7 +100,10 @@ class PortableAppliances extends StatelessWidget {
                       marginTop: 0.03,
                     ),
                   ),
-                  const ViewCircuitsDetails(
+                  ViewCircuitsDetails(
+                    onPressDBContainer: () {
+                      Get.to(() => const ApplianceDetails());
+                    },
                     iconPath: iconPlug,
                     circuitName: 'Appliance # 1',
                     locationName: 'Pass',
