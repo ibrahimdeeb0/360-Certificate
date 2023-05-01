@@ -533,5 +533,25 @@ const String formKeyDistributionBoardsData = 'distribution_boards_data';
 //
 const String formKeyNameInspectionBy = 'name_inspection_by';
 const String formKeyDateInspectionBy = 'date_inspection_by';
-const String formKeyNameReviewedBy = 'name_reviewed_by ';
-const String formKeyDateReviewedBy = 'date_reviewed_by ';
+const String formKeyNameReviewedBy = 'name_reviewed_by';
+const String formKeyDateReviewedBy = 'date_reviewed_by';
+// Portable Test Form
+const String formKeyTotalApplianceNumber = 'total_appliance_number';
+const String formKeyAppliancePassed = 'appliance_passed';
+const String formKeyApplianceFailed = 'appliance_failed';
+const String formKeyLimitationsOnTesting = 'limitations_on_testing';
+const String formKeyResponsibleForThePAT = 'responsible_for_the_pat';
+const String formKeyApplianceDescription = 'appliance_description';
+const String formKeyApplianceClass = 'appliance_class';
+const String formKeyFormalInspection = 'formal_visual_inspection';
+const String formKeyCombinedInspectionTest = 'combined_inspection_and_test';
+const String formKeyPolarity = 'polarity';
+const String formKeyMeasuredResults = 'measured_results';
+const String formKeyEarthContinuity = 'earth_continuity_test';
+const String formKeyInsulationTest = 'insulation_test';
+const String formKeyLoadTest = 'LoadTest';
+const String formKeyEarthLeakageTest = 'earth_leakage_test';
+const String formKeyElectricalSafetyTest = 'electrical_safety_test';
+const String formKeyVisualCheck = 'visual_check';
+const String formKeyAmps = 'amps';
+const String formKeyRepairCode = 'repair_code';

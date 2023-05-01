@@ -20,6 +20,35 @@ class PortableAppliancesController extends GetxController
     const ApplianceDetailsPage2(),
   ];
 
+  Map<String, dynamic> applianceSummary = <String, dynamic>{
+    formKeyTotalApplianceNumber: '',
+    formKeyAppliancePassed: '',
+    formKeyApplianceFailed: '',
+  };
+
+  Map<String, dynamic> applianceData = <String, dynamic>{
+    formKeyApplianceNumber: '',
+    formKeyApplianceDescription: '',
+    formKeyApplianceClass: '',
+    formKeyFormalInspection: '',
+    formKeyCombinedInspectionTest: '',
+    formKeyPolarity: '',
+    formKeyMeasuredResults: '',
+    formKeyEarthContinuity: '',
+    formKeyInsulationTest: '',
+    formKeyLoadTest: '',
+    formKeyEarthLeakageTest: '',
+    formKeyElectricalSafetyTest: '',
+    formKeyVisualCheck: '',
+    formKeyAmps: '',
+    formKeyRepairCode: '',
+  };
+
+  List<dynamic> appliancesArray = <dynamic>[];
+
+  Map<String, dynamic>? selectedApplianceSummary;
+  Map<String, dynamic>? selectedApplianceData;
+
   @override
   void onInit() {
     super.onInit();
@@ -36,6 +65,34 @@ class PortableAppliancesController extends GetxController
       duration: const Duration(milliseconds: 500),
       curve: Curves.linear,
     );
+  }
+
+  //**----- (Reset Data) Parent and Childe data ----**/
+  void resetApplianceData() {
+    applianceData = <String, dynamic>{
+      formKeyApplianceNumber: '',
+      formKeyApplianceDescription: '',
+      formKeyApplianceClass: '',
+      formKeyFormalInspection: '',
+      formKeyCombinedInspectionTest: '',
+      formKeyPolarity: '',
+      formKeyMeasuredResults: '',
+      formKeyEarthContinuity: '',
+      formKeyInsulationTest: '',
+      formKeyLoadTest: '',
+      formKeyEarthLeakageTest: '',
+      formKeyElectricalSafetyTest: '',
+      formKeyVisualCheck: '',
+      formKeyAmps: '',
+      formKeyRepairCode: '',
+    };
+    update();
+  }
+
+  void setChildeValues() {
+    applianceData = selectedApplianceData!;
+    update();
+    consoleLogPretty(applianceData, key: 'applianceData');
   }
 
   @override

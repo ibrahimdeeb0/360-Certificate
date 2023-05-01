@@ -263,7 +263,7 @@ class DBController extends GetxController
   }
 
   // **------ Parent Db Functions -----------** //
-  void onCrateParentDbData() {
+  void onCrateParentDbData() { 
     selectedParentDistrBoardData = null;
     distrBoardDataBase.add(
       <String, dynamic>{
