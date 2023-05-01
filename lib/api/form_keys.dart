@@ -11,6 +11,12 @@ const String formKeyPart10 = 'form_part_10';
 const String formKeyPart11 = 'form_part_11';
 const String formKeyPart12 = 'form_part_12';
 const String formKeyDeclaration = 'part_declaration';
+//
+const String formKeyEngineerName = 'engineer_name';
+const String formKeyEngineerDate = 'engineer_date';
+const String formKeyClientName = 'client_name';
+const String formKeyCustomerName = 'customer_name';
+const String formKeyCustomerDate = 'customer_date';
 
 //* EICR Form *//
 // const String formKey = '';
@@ -412,6 +418,26 @@ const String formKeyAtRiskLocation = 'at_risk_location';
 const String formKeyAtRiskReason = 'at_risk_reason';
 const String formKeyAtRiskNotCurrentStandards = 'at_risk_not_current_standards';
 const String formKeyCustomersAcknowledgment = 'customers_acknowledgment';
+// new Keys
+const String formKeyMeterIssue = 'meter_issue';
+const String formKeyPipeworkIssue = 'pipework_issue';
+const String formKeyChimneyFlue = 'chimney_flue';
+const String formKeyVentilation = 'ventilation';
+// p3
+const String formKeyRiddorReporting1 = 'riddor_reporting_1';
+const String formKeyRiddorReporting2 = 'riddor_reporting_2';
+const String formKeyRiddorReporting3 = 'riddor_reporting_3';
+const String formKeyRiddorReporting4 = 'riddor_reporting_4';
+const String formKeyRiddorReporting5 = 'riddor_reporting_5';
+// p4
+const String formKeyDescribeFault1 = 'describe_fault_1';
+const String formKeyDescribeFault2 = 'describe_fault_2';
+const String formKeyDescribeFault3 = 'describe_fault_3';
+const String formKeyDescribeFault4 = 'describe_fault_4';
+const String formKeyDescribeWatt1 = 'describe_watt_1';
+const String formKeyDescribeWatt2 = 'describe_watt_2';
+const String formKeyDescribeWatt3 = 'describe_watt_3';
+const String formKeyDescribeWatt4 = 'describe_watt_4';
 
 //*-*------ Electrical Danger Notification Form ------*//
 
@@ -421,8 +447,6 @@ const String formKeyDangerousCondition = 'dangerous_condition';
 const String formKeyDangerousDetails = 'dangerous_details';
 const String formKeyActionRaked = 'action_taken';
 const String formKeyFurtherAction = 'further_action';
-const String formKeyEngineerName = 'engineer_name';
-const String formKeyClientName = 'client_name';
 const String formKeyEngineerPosition = 'engineer_position';
 const String formKeyClientPosition = 'client_position';
 const String formKeyEnrollmentNumber = 'enrollment_number';
@@ -555,3 +579,4 @@ const String formKeyElectricalSafetyTest = 'electrical_safety_test';
 const String formKeyVisualCheck = 'visual_check';
 const String formKeyAmps = 'amps';
 const String formKeyRepairCode = 'repair_code';
+//

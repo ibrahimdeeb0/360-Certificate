@@ -110,7 +110,7 @@ class LandlordPage3 extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         topChild: FormToggleButton(
                           isBtnBox: true,
-                          toggleType: FormToggleType.yesNo,
+                          toggleType: FormToggleType.yesNoNA,
                           textWidget: const SizedBox(),
                           value: controller.formData[formKeyPart3]
                               [formKeyWarningNotice1],
@@ -124,7 +124,7 @@ class LandlordPage3 extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         topChild: FormToggleButton(
                           isBtnBox: true,
-                          toggleType: FormToggleType.yesNo,
+                          toggleType: FormToggleType.yesNoNA,
                           textWidget: const SizedBox(),
                           value: controller.formData[formKeyPart3]
                               [formKeyWarningNotice2],
@@ -138,7 +138,7 @@ class LandlordPage3 extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         topChild: FormToggleButton(
                           isBtnBox: true,
-                          toggleType: FormToggleType.yesNo,
+                          toggleType: FormToggleType.yesNoNA,
                           textWidget: const SizedBox(),
                           value: controller.formData[formKeyPart3]
                               [formKeyWarningNotice3],
@@ -152,7 +152,7 @@ class LandlordPage3 extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         topChild: FormToggleButton(
                           isBtnBox: true,
-                          toggleType: FormToggleType.yesNo,
+                          toggleType: FormToggleType.yesNoNA,
                           textWidget: const SizedBox(),
                           value: controller.formData[formKeyPart3]
                               [formKeyWarningNotice4],
@@ -166,7 +166,7 @@ class LandlordPage3 extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         topChild: FormToggleButton(
                           isBtnBox: true,
-                          toggleType: FormToggleType.yesNo,
+                          toggleType: FormToggleType.yesNoNA,
                           textWidget: const SizedBox(),
                           value: controller.formData[formKeyPart3]
                               [formKeyWarningNotice5],

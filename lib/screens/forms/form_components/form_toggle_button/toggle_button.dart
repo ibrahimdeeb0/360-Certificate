@@ -54,7 +54,7 @@ class FormToggleButton extends StatelessWidget {
             global: false,
             init: FormToggleButtonController(
               currentValue: value ?? 'N/A',
-              toggleType: toggleType ?? FormToggleType.yesNo,
+              toggleType: toggleType ?? FormToggleType.yesNoNA,
             ),
             builder: (FormToggleButtonController controller) {
               return CommonButton(

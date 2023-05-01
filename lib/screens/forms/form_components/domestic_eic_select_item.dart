@@ -1,4 +1,4 @@
-import '../../../../general_exports.dart';
+import '../../../general_exports.dart';
 
 class FormSelectItemSheet extends StatelessWidget {
   const FormSelectItemSheet({
@@ -44,14 +44,14 @@ class FormSelectItemSheet extends StatelessWidget {
                                 elevation: 0.0,
                               )
                           : () {
-                              if (controller.formData[formKeyPart1].containsKey(
-                                  formKeyExtendsOfTheInstallation)) {
+                              if (controller.formData[partOfValue]
+                                  .containsKey(keyOfValue)) {
                                 controller.formData[partOfValue][keyOfValue] =
                                     title;
                                 controller.update();
-                                consoleLog(controller.formData[partOfValue]
-                                    [keyOfValue]);
                               }
+                              // consoleLog(
+                              //     controller.formData[partOfValue][keyOfValue]);
                               hideKeyboard();
                               Get.back();
                             },

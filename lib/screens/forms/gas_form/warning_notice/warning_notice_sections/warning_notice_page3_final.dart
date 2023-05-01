@@ -23,19 +23,16 @@ class WarningNoticePage3 extends StatelessWidget {
               style: appContainerStyles.formSectionsStyle,
               child: Column(
                 children: <Widget>[
-                  CustomTextFormTitle(
+                  const CustomTextFormTitle(
                     leftText: '',
-                    text: 'Record Issue By'.toUpperCase(),
+                    text: 'Engineer’s Signature',
                   ),
                   CommonInput(
                     topLabelText: 'Name (CAPITAL)',
                     marginTop: 0.01,
                     marginBottom: 0.02,
                     value: controller.formData[formKeyDeclaration]
-                        [formKeyRecordIssueBy],
-                    onChanged: (String value) =>
-                        controller.onChangeFormDataValue(
-                            formKeyDeclaration, formKeyRecordIssueBy, value),
+                        [formKeyEngineerName],
                     enabled: false,
                   ),
                   Align(
@@ -137,19 +134,39 @@ class WarningNoticePage3 extends StatelessWidget {
               marginTop: 0.0,
               child: Column(
                 children: <Widget>[
-                  CustomTextFormTitle(
+                  const CustomTextFormTitle(
                     leftText: '',
-                    text: 'Received By'.toUpperCase(),
+                    text: 'Customer Signature',
                   ),
                   CommonInput(
                     topLabelText: 'Name (CAPITAL)',
                     marginTop: 0.01,
-                    marginBottom: 0.02,
+                    // marginBottom: 0.01,
                     value: controller.formData[formKeyDeclaration]
-                        [formKeyReceivedBy],
+                        [formKeyCustomerName],
                     onChanged: (String value) =>
                         controller.onChangeFormDataValue(
-                            formKeyDeclaration, formKeyReceivedBy, value),
+                            formKeyDeclaration, formKeyCustomerName, value),
+                  ),
+                  CommonInput(
+                    topLabelText: 'Date :',
+                    marginBottom: 0.02,
+                    enabled: false,
+                    value: controller.formData[formKeyDeclaration]
+                        [formKeyCustomerDate],
+                    onTap: () {
+                      CommonDatePicker.showDatePicker(
+                        context,
+                        currentTime: DateTime.now(),
+                        onConfirm: (DateTime date) {
+                          controller.onSelectDate(
+                            formKeyDeclaration,
+                            formKeyCustomerDate,
+                            date,
+                          );
+                        },
+                      );
+                    },
                   ),
                   Align(
                     child: CommonText(

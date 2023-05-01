@@ -39,42 +39,44 @@ class WarningNoticeController extends GetxController {
   XFile? selectedImage;
   final ImagePicker _picker = ImagePicker();
 
+  DateTime currentTime = DateTime.now();
+
   Map<String, dynamic> formData = <String, dynamic>{
     formKeyPart1: <String, dynamic>{
-      formKeyImportantSafetyMakeModel: '',
       formKeyImportantSafetyType: '',
-      formKeyImportantSafetySerialNumber: '',
       formKeyImportantSafetyLocation: '',
     },
     formKeyPart2: <String, dynamic>{
-      formKeyImmediatelyLocation: '',
-      // formKey: '',
+      formKeyGasEscape: 'N/A',
+      formKeyMeterIssue: 'N/A',
+      formKeyPipeworkIssue: 'N/A',
+      formKeyChimneyFlue: 'N/A',
+      formKeyVentilation: 'N/A',
+      formKeyOther: 'N/A',
     },
     formKeyPart3: <String, dynamic>{
-      formKeyImmediatelyA: 'N/A',
-      formKeyImmediatelyB: 'N/A',
+      formKeyRiddorReporting1: 'N/A',
+      formKeyRiddorReporting2: 'N/A',
+      formKeyRiddorReporting3: 'YES',
+      formKeyRiddorReporting4: 'YES',
+      formKeyRiddorReporting5: 'YES',
     },
     formKeyPart4: <String, dynamic>{
-      formKeyRiskBecause: '',
-      formKeyWarningLabelAttached: 'N/A',
+      formKeyDescribeFault1: '',
+      formKeyDescribeFault2: '',
+      formKeyDescribeFault3: '',
+      formKeyDescribeFault4: '',
     },
     formKeyPart5: <String, dynamic>{
-      formKeyGasEscape: 'N/A',
-    },
-    formKeyPart6: <String, dynamic>{
-      formKeyAtRiskMakeModel: '',
-      formKeyAtRiskType: '',
-      formKeyAtRiskSerialNumber: '',
-      formKeyAtRiskLocation: '',
-      formKeyAtRiskReason: '',
-      formKeyAtRiskNotCurrentStandards: 'N/A',
-    },
-    formKeyPart7: <String, dynamic>{
-      formKeyCustomersAcknowledgment: 'N/A',
+      formKeyDescribeWatt1: '',
+      formKeyDescribeWatt2: '',
+      formKeyDescribeWatt3: '',
+      formKeyDescribeWatt4: '',
     },
     formKeyDeclaration: <String, dynamic>{
-      formKey: '',
-      formKeyRecordIssueBy: '',
+      formKeyEngineerName: '',
+      formKeyCustomerName: '',
+      formKeyCustomerDate: '',
     },
   };
 
@@ -82,6 +84,20 @@ class WarningNoticeController extends GetxController {
     keyFormId: '',
     keyData: <String, dynamic>{},
   };
+
+  List<String> location = <String>[
+    'Hall',
+    'Stairway',
+    'Landing',
+    'Front Room',
+    'Rear Room',
+    'Shop Front',
+    'Shop Rear',
+    'Office',
+    'Front Office',
+    'Back Office',
+    'Other',
+  ];
 
   List<Widget> get listFormSections => <Widget>[
         const WarningNoticePage0(),
@@ -179,13 +195,21 @@ class WarningNoticeController extends GetxController {
       update();
     }
 
-    formData[formKeyDeclaration][formKeyRecordIssueBy] =
+    formData[formKeyDeclaration][formKeyEngineerName] =
         '${profileController.userDataProfile['first_name']} ${profileController.userDataProfile['last_name']}';
     update();
   }
 
+  @override
+  Future<void> onReady() async {
+    formData[formKeyDeclaration][formKeyCustomerDate] =
+        '$currentTime'.formatDate;
+
+    super.onReady();
+  }
+
   void onSelectDate(String? part, String? key, DateTime value) {
-    formData[part!][key!] = '$value'.split(' ')[0];
+    formData[part!][key!] = '$value'.formatDate;
     update();
     selectedDate = value;
   }
@@ -485,6 +509,7 @@ class WarningNoticeController extends GetxController {
       'customer_id': customerId,
       'status_id': idCompleted,
     };
+    consoleLogPretty(formBody);
 
     if (signatureBytes != null) {
       startLoading();

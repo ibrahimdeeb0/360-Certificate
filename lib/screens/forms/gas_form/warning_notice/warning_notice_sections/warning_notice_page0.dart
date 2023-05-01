@@ -1,5 +1,3 @@
-import 'package:image_picker/image_picker.dart';
-
 import '../../../../../general_exports.dart';
 
 class WarningNoticePage0 extends StatelessWidget {
@@ -20,7 +18,7 @@ class WarningNoticePage0 extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   ApplianceSectionTitle(
-                    title: 'PART 1: IMPORTANT SAFETY INFORMATION',
+                    title: 'Part 1: Gas Installation Pipework/Gas Appliance',
                     color: Colors.grey[800],
                   ),
                   Padding(
@@ -29,47 +27,34 @@ class WarningNoticePage0 extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         CommonInput(
-                          topLabelText: 'Make Model',
-                          marginBottom: 0.012,
-                          value: controller.formData[formKeyPart1]
-                              [formKeyImportantSafetyMakeModel],
-                          onChanged: (dynamic value) =>
-                              controller.onChangeFormDataValue(formKeyPart1,
-                                  formKeyImportantSafetyMakeModel, value),
-                        ),
-                        CommonInput(
-                          topLabelText: 'Type',
-                          marginBottom: 0.012,
+                          topLabelText: 'APPLIANCE TYPE',
                           value: controller.formData[formKeyPart1]
                               [formKeyImportantSafetyType],
                           onChanged: (dynamic value) =>
                               controller.onChangeFormDataValue(formKeyPart1,
                                   formKeyImportantSafetyType, value),
                         ),
-                        CommonInput(
-                          topLabelText: 'Serial Number',
-                          marginBottom: 0.012,
-                          value: controller.formData[formKeyPart1]
-                              [formKeyImportantSafetySerialNumber],
-                          onChanged: (dynamic value) =>
-                              controller.onChangeFormDataValue(formKeyPart1,
-                                  formKeyImportantSafetySerialNumber, value),
-                        ),
-                        CommonInput(
-                          topLabelText: 'Location',
-                          marginBottom: 0.012,
+                        CustomSelectContainer(
+                          title: 'LOCATION',
                           value: controller.formData[formKeyPart1]
                               [formKeyImportantSafetyLocation],
-                          onChanged: (dynamic value) =>
-                              controller.onChangeFormDataValue(formKeyPart1,
-                                  formKeyImportantSafetyLocation, value),
+                          onTap: () => Get.bottomSheet(
+                            isScrollControlled: true,
+                            FormSelectItemSheet(
+                              controller: controller,
+                              partOfValue: formKeyPart1,
+                              keyOfValue: formKeyImportantSafetyLocation,
+                              listTitles: controller.location,
+                            ),
+                            elevation: 0.0,
+                          ),
                         ),
                         0.025.ph,
                       ],
                     ),
                   ),
                   ApplianceSectionTitle(
-                    title: 'PART 2: IMMEDIATELY DANGEROUS BECAUSE',
+                    title: 'Part 2: DEFECTS IDENTIFIED ON GAS EQUIPMENT',
                     color: Colors.grey[800],
                   ),
                   Padding(
@@ -77,36 +62,67 @@ class WarningNoticePage0 extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        CommonInput(
-                          topLabelText: 'Location',
-                          textInputAction: TextInputAction.done,
+                        FormToggleButton(
+                          title: 'Gas Escape',
+                          toggleType: FormToggleType.passFailed,
+                          textWidth: 0.6,
                           value: controller.formData[formKeyPart2]
-                              [formKeyImmediatelyLocation],
-                          onChanged: (dynamic value) =>
-                              controller.onChangeFormDataValue(formKeyPart2,
-                                  formKeyImmediatelyLocation, value),
+                              [formKeyGasEscape],
+                          onChangeValue: (dynamic value) =>
+                              controller.onChangeFormDataValue(
+                                  formKeyPart2, formKeyGasEscape, value),
                         ),
-                        const CommonText(
-                          'Add a photo of (ID) or (AR) situation to Certificate',
-                          fontSize: fontH3,
-                          fontWeight: FontWeight.bold,
-                          marginTop: 0.02,
-                          marginBottom: 0.01,
-                          textAlign: TextAlign.start,
+                        FormToggleButton(
+                          title: 'Meter Issue',
+                          toggleType: FormToggleType.passFailed,
+                          textWidth: 0.6,
+                          value: controller.formData[formKeyPart2]
+                              [formKeyMeterIssue],
+                          onChangeValue: (dynamic value) =>
+                              controller.onChangeFormDataValue(
+                                  formKeyPart2, formKeyMeterIssue, value),
                         ),
-                        Center(
-                          child: AttachContainer(
-                            isCamera: true,
-                            width: 0.4,
-                            height: 0.2,
-                            onAddImage: () {
-                              controller.pickImage(ImageSource.camera);
-                            },
-                            onRemoveImage: controller.removeImage,
-                            isAddedImage: controller.selectedImage != null,
-                            imagePath: controller.selectedImage?.path,
-                          ),
+                        FormToggleButton(
+                          title: 'Pipework Issue',
+                          toggleType: FormToggleType.passFailed,
+                          textWidth: 0.6,
+                          value: controller.formData[formKeyPart2]
+                              [formKeyPipeworkIssue],
+                          onChangeValue: (dynamic value) =>
+                              controller.onChangeFormDataValue(
+                                  formKeyPart2, formKeyPipeworkIssue, value),
                         ),
+                        FormToggleButton(
+                          title: 'Chimney/ Flue',
+                          toggleType: FormToggleType.passFailed,
+                          textWidth: 0.6,
+                          value: controller.formData[formKeyPart2]
+                              [formKeyChimneyFlue],
+                          onChangeValue: (dynamic value) =>
+                              controller.onChangeFormDataValue(
+                                  formKeyPart2, formKeyChimneyFlue, value),
+                        ),
+                        FormToggleButton(
+                          title: 'Ventilation',
+                          toggleType: FormToggleType.passFailed,
+                          textWidth: 0.6,
+                          value: controller.formData[formKeyPart2]
+                              [formKeyVentilation],
+                          onChangeValue: (dynamic value) =>
+                              controller.onChangeFormDataValue(
+                                  formKeyPart2, formKeyVentilation, value),
+                        ),
+                        FormToggleButton(
+                          title: 'Other (Specify Below)',
+                          toggleType: FormToggleType.passFailed,
+                          textWidth: 0.6,
+                          value: controller.formData[formKeyPart2]
+                              [formKeyOther],
+                          onChangeValue: (dynamic value) =>
+                              controller.onChangeFormDataValue(
+                                  formKeyPart2, formKeyOther, value),
+                        ),
+                        0.025.ph,
                       ],
                     ),
                   ),
