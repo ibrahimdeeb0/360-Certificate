@@ -1,8 +1,7 @@
 import '../../../../../general_exports.dart';
 
 class EICRSectionDB extends StatelessWidget {
-  const EICRSectionDB({required this.controller, super.key});
-  final EicrController controller;
+  const EICRSectionDB({super.key});
   @override
   Widget build(BuildContext context) {
     return GetBuilder<DistributionBoardController>(

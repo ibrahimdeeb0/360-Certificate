@@ -34,15 +34,16 @@ class EICR extends StatelessWidget {
                     controller: controller.scrollController,
                     child: Column(
                       children: <Widget>[
-                        ...controller.listFormSections.map(
-                          (dynamic element) =>
-                              element[keyId] == controller.selectedId
-                                  ? controller.returnedSection(
-                                      controller: controller,
-                                      sectionName: element[keyName],
-                                    )
-                                  : const SizedBox(),
-                        ),
+                        // ...controller.listFormSections.map(
+                        //   (dynamic element) =>
+                        //       element[keyId] == controller.selectedId
+                        //           ? controller.returnedSection(
+                        //               controller: controller,
+                        //               sectionName: element[keyName],
+                        //             )
+                        //           : const SizedBox(),
+                        // ),
+                        controller.listFormSections[controller.selectedId],
                         SizedBox(height: DEVICE_HEIGHT * 0.09),
                       ],
                     ),

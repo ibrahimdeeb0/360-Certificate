@@ -164,11 +164,12 @@ packages:
   common_ui_toolkit:
     dependency: "direct main"
     description:
-      name: common_ui_toolkit
-      sha256: "0589d2157e01293738378aad59999c2affb3b17a95893017c993265039c86ece"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.3.10+1"
+      path: "."
+      ref: main
+      resolved-ref: "47f3bdc18a62ca6c210df5bf77d3df29ec5df0b4"
+      url: "https://github.com/ibrahimdeeb0/common_ui_toolkit.git"
+    source: git
+    version: "0.3.11"
   connectivity_plus:
     dependency: "direct main"
     description:

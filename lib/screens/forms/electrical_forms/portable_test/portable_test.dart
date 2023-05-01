@@ -6,7 +6,7 @@ class PortableTest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<PortableTestController>(
-      init: PortableTestController(),
+      init: PortableTestController(), 
       builder: (PortableTestController controller) {
         return Scaffold(
           appBar: FormHeader(

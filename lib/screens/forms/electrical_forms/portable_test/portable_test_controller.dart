@@ -148,7 +148,7 @@ class PortableTestController extends GetxController {
   }
 
   void onSelectDate(String? part, String? key, DateTime value) {
-    formData[part!][key!] = '$value'.split(' ')[0];
+    formData[part!][key!] = '$value'.formatDate;
     update();
     selectedDate = value;
   }

@@ -308,301 +308,24 @@ class EicrController extends GetxController {
   };
 
   //*---- Widgets ---- */
-  List<dynamic> listFormSections = <dynamic>[
-    <String, dynamic>{
-      'id': 0,
-      'name': 'a',
-      'title': 'Part 1.  Reason for producing this report',
-    },
-    <String, dynamic>{
-      'id': 1,
-      'name': 'b',
-      'title':
-          'Part 2.  Details of the installation which is the subject of this report',
-    },
-    <String, dynamic>{
-      'id': 2,
-      'name': 'c',
-      'title': 'Part 3.  Extent and limitations of inspection and testing',
-    },
-    <String, dynamic>{
-      'id': 3,
-      'name': 'd',
-      'title': 'Part 4.  Summary of the installation of the installation',
-    },
-    <String, dynamic>{
-      'id': 4,
-      'name': 'e',
-      'title': 'Part 5.  Recommendations',
-    },
-    <String, dynamic>{
-      'id': 5,
-      'name': 'f',
-      'title': 'Part 6.  Supply characteristics & earthing arrangements',
-    },
-    <String, dynamic>{
-      'id': 6,
-      'name': 'g',
-      'title':
-          'Part 7.  Particulars of installation referred to in this report',
-    },
-    <String, dynamic>{
-      'id': 7,
-      'name': 'h',
-      'title': 'Part 8.  Main protective conductors',
-    },
-    <String, dynamic>{
-      'id': 8,
-      'name': 'i',
-      'title': 'Part 9.  Main Switch/Switch-Fuse/Circuit Breaker/RCD',
-    },
-    <String, dynamic>{
-      'id': 9,
-      'name': 'db',
-      'title': 'Part 10.  Distribution Boards',
-    },
-    <String, dynamic>{
-      'id': 10,
-      'name': 'j',
-      'title': 'Part 11.  Test Instruments used',
-    },
-    //
-    <String, dynamic>{
-      'id': 11,
-      'name': 'k1',
-      'title': '',
-    },
-    <String, dynamic>{
-      'id': 12,
-      'name': 'k2',
-      'title': '',
-    },
-    <String, dynamic>{
-      'id': 13,
-      'name': 'k3',
-      'title': '',
-    },
-    <String, dynamic>{
-      'id': 14,
-      'name': 'k4',
-      'title': '',
-    },
-    <String, dynamic>{
-      'id': 15,
-      'name': 'k5',
-      'title': '',
-    },
-    <String, dynamic>{
-      'id': 16,
-      'name': 'k6',
-      'title': '',
-    },
-    <String, dynamic>{
-      'id': 17,
-      'name': 'k7',
-      'title': '',
-    },
-    <String, dynamic>{
-      'id': 18,
-      'name': 'input_field',
-      'title': '',
-    },
-    <String, dynamic>{
-      'id': 19,
-      'name': 'observations',
-      'title': 'Part 11.  Observations',
-    },
-    <String, dynamic>{
-      'id': 20,
-      'name': 'remark',
-      'title': 'Part 12.  Remark',
-    },
-    <String, dynamic>{
-      'id': 21,
-      'name': 'final_page',
-      'title': '',
-    },
-  ];
 
-  Widget returnedSection({
-    required EicrController controller,
-    required String sectionName,
-  }) //
-  {
-    switch (sectionName) {
-      case 'a':
-        {
-          return EICRSectionA(
-            controller: controller,
-          );
-        }
-
-      case 'b':
-        {
-          return EICRSectionB(
-            controller: controller,
-          );
-        }
-      case 'c':
-        {
-          return EICRSectionC(
-            controller: controller,
-          );
-        }
-
-      case 'd':
-        {
-          return EICRSectionD(
-            controller: controller,
-          );
-        }
-      case 'e':
-        {
-          return EICRSectionE(
-            controller: controller,
-          );
-        }
-
-      case 'f':
-        {
-          return EICRSectionF(
-            controller: controller,
-          );
-        }
-
-      case 'g':
-        {
-          return EICRSectionG(
-            controller: controller,
-          );
-        }
-
-      case 'h':
-        {
-          return EICRSectionH(
-            controller: controller,
-          );
-        }
-
-      case 'i':
-        {
-          return EICRSectionI(
-            controller: controller,
-          );
-        }
-
-      case 'db':
-        {
-          return EICRSectionDB(
-            controller: controller,
-          );
-        }
-
-      case 'j':
-        {
-          return EICRSectionJ(
-            controller: controller,
-          );
-        }
-
-      case 'k1':
-        {
-          return EICRSectionKPart1(
-            controller: controller,
-          );
-        }
-
-      case 'k2':
-        {
-          return EICRSectionKPart2(
-            controller: controller,
-          );
-        }
-
-      case 'k3':
-        {
-          return EICRSectionKPart3(
-            controller: controller,
-          );
-        }
-
-      case 'k4':
-        {
-          return EICRSectionKPart4(
-            controller: controller,
-          );
-        }
-
-      case 'k5':
-        {
-          return EICRSectionKPart5(
-            controller: controller,
-          );
-        }
-
-      case 'k6':
-        {
-          return EICRSectionKPart6(
-            controller: controller,
-          );
-        }
-
-      case 'k7':
-        {
-          return EICRSectionKPart7(
-            controller: controller,
-          );
-        }
-      case 'input_field':
-        {
-          return EICRSectionInputField(
-            controller: controller,
-          );
-        }
-      case 'observations':
-        {
-          return SectionObservation(
-            controller: controller,
-          );
-        }
-      case 'remark':
-        {
-          return EICRRemarkSection(
-            controller: controller,
-          );
-        }
-      case 'final_page':
-        {
-          return EICRFinalPage(
-            controller: controller,
-          );
-        }
-
-      default:
-        {
-          return const SizedBox();
-        }
-    }
-  }
-
-  void removeSection(
-    int id,
-    Map<String, dynamic> item,
-  ) //
-  {
-    if (listFormSections
-        .where((dynamic element) => element['id'] == id)
-        .isNotEmpty) {
-      listFormSections.removeWhere((dynamic element) => element['id'] == id);
-      update();
-    } else if (listFormSections
-        .where((dynamic element) => element['id'] == id)
-        .isEmpty) {
-      listFormSections.insert(item['id'], item);
-      update();
-    }
-    update();
-  }
+  List<Widget> get listFormSections => <Widget>[
+        const EICRSectionA(),
+        const EICRSectionB(),
+        const EICRSectionC(),
+        const EICRSectionD(),
+        const EICRSectionE(),
+        const EICRSectionF(),
+        const EICRSectionG(),
+        const EICRSectionH(),
+        const EICRSectionI(),
+        const EICRSectionDB(),
+        const EICRSectionJ(),
+        const EICRSectionKPart1(),
+        const EICRSectionInputField(),
+        const EICRSectionInputField(),
+        const EICRFinalPage(),
+      ];
 
   //*---- Functions Body ------------------------------------------- */
 
@@ -680,12 +403,11 @@ class EicrController extends GetxController {
 
   @override
   Future<void> onReady() async {
-    gazSafetyData[formKeyYearsRecommendationsE] =
-        currentTime.toString().split(' ').first;
+    gazSafetyData[formKeyYearsRecommendationsE] = currentTime.year;
     gazSafetyData[formKeyEICRdeclaration][formKeyInspectedDate] =
-        currentTime.toString().split(' ').first;
+        '$currentTime'.formatDate;
     gazSafetyData[formKeyEICRdeclaration][formKeyReportDate] =
-        currentTime.toString().split(' ').first;
+        '$currentTime'.formatDate;
     super.onReady();
   }
 

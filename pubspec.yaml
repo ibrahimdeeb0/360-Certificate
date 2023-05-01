@@ -38,7 +38,10 @@ dependencies:
   cupertino_icons: ^1.0.5
   get: ^4.6.5
   dio: ^4.0.6
-  common_ui_toolkit: ^0.3.10+1
+  common_ui_toolkit:    
+    git:
+      url: https://github.com/ibrahimdeeb0/common_ui_toolkit.git
+      ref: main
   get_storage: ^2.0.3
   flutter_smart_dialog: ^4.8.2+3
   flutter_launcher_icons: ^0.11.0
