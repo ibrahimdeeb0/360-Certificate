@@ -2,6 +2,7 @@ import '../../../../general_exports.dart';
 
 enum FormToggleType {
   yesNoNA,
+  passFailedNA,
   passFailed,
   trueFalse,
   multi,
@@ -60,6 +61,24 @@ class FormToggleButtonController extends GetxController {
           break;
       }
     } else if (toggleType == FormToggleType.passFailed) {
+      // typing here code
+      switch (currentValue) {
+        case 'PASSED':
+          currentValue = 'FAILED';
+
+          break;
+
+        case 'FAILED':
+          currentValue = 'PASSED';
+
+          break;
+
+        default:
+          currentValue = 'PASSED';
+
+          break;
+      }
+    } else if (toggleType == FormToggleType.passFailedNA) {
       // typing here code
       switch (currentValue) {
         case 'N/A':

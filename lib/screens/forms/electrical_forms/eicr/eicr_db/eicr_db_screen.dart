@@ -257,6 +257,7 @@ class ViewCircuitsDetails extends StatelessWidget {
         paddingRight: 0.03,
         paddingLeft: 0.02,
         borderColor: AppColors.grey,
+        touchEffect: TouchableEffect(type: TouchTypes.opacity),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

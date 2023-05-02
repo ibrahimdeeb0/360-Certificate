@@ -161,7 +161,7 @@ class CircuitDetailsP2 extends StatelessWidget {
                   children: <Widget>[
                     FormToggleButton(
                       title: 'Polarity',
-                      toggleType: FormToggleType.passFailed,
+                      toggleType: FormToggleType.passFailedNA,
                       value: controller.childCircuitData[formKeyPolarityG],
                       onChangeValue: (dynamic value) {
                         controller.onChangeChildeDbValues(
@@ -212,7 +212,7 @@ class CircuitDetailsP2 extends StatelessWidget {
                     ),
                     FormToggleButton(
                       title: 'Test Button / Functionality',
-                      toggleType: FormToggleType.passFailed,
+                      toggleType: FormToggleType.passFailedNA,
                       value: controller.childCircuitData[formKeyTestButtonI],
                       onChangeValue: (dynamic value) {
                         controller.onChangeChildeDbValues(
@@ -245,7 +245,7 @@ class CircuitDetailsP2 extends StatelessWidget {
                     ),
                     FormToggleButton(
                       title: 'Test Button / Functionality',
-                      toggleType: FormToggleType.passFailed,
+                      toggleType: FormToggleType.passFailedNA,
                       value: controller.childCircuitData[formKeyTestButtonJ],
                       onChangeValue: (dynamic value) {
                         controller.onChangeChildeDbValues(

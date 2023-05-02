@@ -64,7 +64,7 @@ class WarningNoticePage0 extends StatelessWidget {
                       children: <Widget>[
                         FormToggleButton(
                           title: 'Gas Escape',
-                          toggleType: FormToggleType.passFailed,
+                          toggleType: FormToggleType.passFailedNA,
                           textWidth: 0.6,
                           value: controller.formData[formKeyPart2]
                               [formKeyGasEscape],
@@ -74,7 +74,7 @@ class WarningNoticePage0 extends StatelessWidget {
                         ),
                         FormToggleButton(
                           title: 'Meter Issue',
-                          toggleType: FormToggleType.passFailed,
+                          toggleType: FormToggleType.passFailedNA,
                           textWidth: 0.6,
                           value: controller.formData[formKeyPart2]
                               [formKeyMeterIssue],
@@ -84,7 +84,7 @@ class WarningNoticePage0 extends StatelessWidget {
                         ),
                         FormToggleButton(
                           title: 'Pipework Issue',
-                          toggleType: FormToggleType.passFailed,
+                          toggleType: FormToggleType.passFailedNA,
                           textWidth: 0.6,
                           value: controller.formData[formKeyPart2]
                               [formKeyPipeworkIssue],
@@ -94,7 +94,7 @@ class WarningNoticePage0 extends StatelessWidget {
                         ),
                         FormToggleButton(
                           title: 'Chimney/ Flue',
-                          toggleType: FormToggleType.passFailed,
+                          toggleType: FormToggleType.passFailedNA,
                           textWidth: 0.6,
                           value: controller.formData[formKeyPart2]
                               [formKeyChimneyFlue],
@@ -104,7 +104,7 @@ class WarningNoticePage0 extends StatelessWidget {
                         ),
                         FormToggleButton(
                           title: 'Ventilation',
-                          toggleType: FormToggleType.passFailed,
+                          toggleType: FormToggleType.passFailedNA,
                           textWidth: 0.6,
                           value: controller.formData[formKeyPart2]
                               [formKeyVentilation],
@@ -114,7 +114,7 @@ class WarningNoticePage0 extends StatelessWidget {
                         ),
                         FormToggleButton(
                           title: 'Other (Specify Below)',
-                          toggleType: FormToggleType.passFailed,
+                          toggleType: FormToggleType.passFailedNA,
                           textWidth: 0.6,
                           value: controller.formData[formKeyPart2]
                               [formKeyOther],

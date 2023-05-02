@@ -29,7 +29,7 @@ class FormSelectItemSheet extends StatelessWidget {
           physics: const BouncingScrollPhysics(),
           child: Column(
             children: <Widget>[
-              SizedBox(height: DEVICE_HEIGHT * 0.02),
+              SizedBox(height: DEVICE_HEIGHT * 0.03),
               ...listTitles
                   .map(
                     (String title) => ListOfStrings(

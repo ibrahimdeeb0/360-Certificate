@@ -3,6 +3,7 @@ import '../../../../../general_exports.dart';
 class PortableAppliancesController extends GetxController
     with GetSingleTickerProviderStateMixin {
   ScrollController scrollController = ScrollController();
+  TextEditingController otherInputController = TextEditingController();
   late TabController tabController;
   int tabIndex = 0;
 
@@ -26,21 +27,27 @@ class PortableAppliancesController extends GetxController
     formKeyApplianceFailed: '',
   };
 
-  Map<String, dynamic> applianceData = <String, dynamic>{
+  Map<String, dynamic> applianceDetails = <String, dynamic>{
+    formKeyTotalApplianceNumber: '',
+    formKeyAppliancePassed: '',
+    formKeyApplianceFailed: '',
+    //
     formKeyApplianceNumber: '',
     formKeyApplianceDescription: '',
+    formKeyApplianceLocation: '',
     formKeyApplianceClass: '',
     formKeyFormalInspection: '',
     formKeyCombinedInspectionTest: '',
-    formKeyPolarity: '',
-    formKeyMeasuredResults: '',
+    formKeyPolarity: 'N/A',
+    formKeyMeasuredResults: '', //
     formKeyEarthContinuity: '',
     formKeyInsulationTest: '',
     formKeyLoadTest: '',
     formKeyEarthLeakageTest: '',
-    formKeyElectricalSafetyTest: '',
+    formKeyApplianceID: '',
     formKeyVisualCheck: '',
-    formKeyAmps: '',
+    formKeyFuseRatingAmps: '',
+    formKeyTestResult: 'PASS',
     formKeyRepairCode: '',
   };
 
@@ -53,8 +60,16 @@ class PortableAppliancesController extends GetxController
   void onInit() {
     super.onInit();
     tabController = TabController(length: tabItems.length, vsync: this);
-    // distrBoardDataBase = Get.find<EicrController>().distrBoardDataBase;
+    appliancesArray = Get.find<PortableTestController>().applianceData;
     update();
+  }
+
+  @override
+  void onReady() {
+    super.onReady();
+    if (appliancesArray.isEmpty) {
+      // onCrateParentData();
+    }
   }
 
   void onSelectTab(int index) {
@@ -67,39 +82,66 @@ class PortableAppliancesController extends GetxController
     );
   }
 
+  void onChangeParentValues(String? key, dynamic value) {
+    applianceSummary[key!] = value;
+  }
+
+  void onChangeChildeValues(String? key, dynamic value) {
+    applianceDetails[key!] = value;
+  }
+
+  void onChangeResultValues(String? key, dynamic value) {
+    applianceDetails[key!] = value;
+    update();
+    consoleLog(applianceDetails[key]);
+  }
+
   //**----- (Reset Data) Parent and Childe data ----**/
   void resetApplianceData() {
-    applianceData = <String, dynamic>{
+    applianceDetails = <String, dynamic>{
+      formKeyTotalApplianceNumber: '',
+      formKeyAppliancePassed: '',
+      formKeyApplianceFailed: '',
+      //
       formKeyApplianceNumber: '',
       formKeyApplianceDescription: '',
+      formKeyApplianceLocation: '',
       formKeyApplianceClass: '',
       formKeyFormalInspection: '',
       formKeyCombinedInspectionTest: '',
-      formKeyPolarity: '',
-      formKeyMeasuredResults: '',
+      formKeyPolarity: 'N/A',
+      formKeyMeasuredResults: '', //
       formKeyEarthContinuity: '',
       formKeyInsulationTest: '',
       formKeyLoadTest: '',
       formKeyEarthLeakageTest: '',
-      formKeyElectricalSafetyTest: '',
+      formKeyApplianceID: '',
       formKeyVisualCheck: '',
-      formKeyAmps: '',
+      formKeyFuseRatingAmps: '',
+      formKeyTestResult: 'PASS',
       formKeyRepairCode: '',
     };
     update();
   }
 
-  void setChildeValues() {
-    applianceData = selectedApplianceData!;
-    update();
-    consoleLogPretty(applianceData, key: 'applianceData');
-  }
+  // **------  -----------** //
+  // void onCreateAppliance() {
+  //   resetApplianceData();
+  //   applianceData.add(
+  //     <String, dynamic>{
+  //       ...applianceDetailsData,
+  //       keyId: applianceData.length + 1,
+  //     },
+  //   );
+  //   update();
+  // }
 
   @override
   void onClose() {
     tabController.dispose();
-    // Get.find<EicrController>().distrBoardDataBase = distrBoardDataBase;
-    // consoleLog(Get.find<EicrController>().distrBoardDataBase);
+    Get.find<PortableTestController>().applianceData = appliancesArray;
+    consoleLog(
+        Get.find<PortableTestController>().applianceData = appliancesArray);
     // consoleLog('Save DB Data Done', key: 'Saved_DB_Data');
     super.onClose();
   }

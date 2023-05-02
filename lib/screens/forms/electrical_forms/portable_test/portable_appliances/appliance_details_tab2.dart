@@ -5,151 +5,195 @@ class ApplianceDetailsPage2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        CommonContainer(
-          style: appContainerStyles.formSectionsStyle,
-          paddingBottom: 0.0,
-          backgroundColor: Colors.grey[200],
-          child: Column(
-            children: <Widget>[
-              CommonText(
-                'MEASURED RESULTS \n(if applicable)',
-                rowMainAxisSize: MainAxisSize.max,
-                rowMainAxisAlignment: MainAxisAlignment.spaceBetween,
-                rightChild: CommonText(
-                  'N/A',
-                  rightChild: Switch(
-                    // hoverColor: Color(AppColors.primary),
-                    activeTrackColor: Colors.green[700],
-                    value: true,
-                    onChanged: (bool value) {},
+    final ApplianceListValues list = ApplianceListValues();
+    return GetBuilder<PortableAppliancesController>(
+      builder: (PortableAppliancesController controller) {
+        return Column(
+          children: <Widget>[
+            CommonContainer(
+              style: appContainerStyles.formSectionsStyle,
+              paddingBottom: 0.0,
+              backgroundColor: Colors.grey[200],
+              child: Column(
+                children: <Widget>[
+                  CommonText(
+                    'MEASURED RESULTS \n(if applicable)',
+                    rowMainAxisSize: MainAxisSize.max,
+                    rowMainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    rightChild: CommonText(
+                      'N/A',
+                      rightChild: Switch(
+                        activeTrackColor: Colors.green[700],
+                        value: true,
+                        onChanged: (bool value) {},
+                      ),
+                    ),
                   ),
-                ),
+                  0.02.ph,
+                  SmallInputField(
+                    title: 'Earth continuity test',
+                    hint: 'N/A',
+                    keyboardType: TextInputType.phone,
+                    suffix: const CommonText(
+                      'Ω',
+                      fontSize: fontH4,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    width: 0.5,
+                    value: controller.applianceDetails[formKeyEarthContinuity],
+                    onChanged: (dynamic value) => controller
+                        .onChangeChildeValues(formKeyEarthContinuity, value),
+                  ),
+                  SmallInputField(
+                    title: 'Insulation test',
+                    hint: 'N/A',
+                    keyboardType: TextInputType.phone,
+                    suffix: const CommonText(
+                      'MΩ',
+                      fontSize: fontH4,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    width: 0.5,
+                    value: controller.applianceDetails[formKeyInsulationTest],
+                    onChanged: (dynamic value) => controller
+                        .onChangeChildeValues(formKeyInsulationTest, value),
+                  ),
+                  SmallInputField(
+                    title: 'Load test',
+                    hint: 'N/A',
+                    keyboardType: TextInputType.phone,
+                    suffix: const CommonText(
+                      'kvA',
+                      fontSize: fontH4,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    width: 0.5,
+                    value: controller.applianceDetails[formKeyLoadTest],
+                    onChanged: (dynamic value) =>
+                        controller.onChangeChildeValues(formKeyLoadTest, value),
+                  ),
+                  SmallInputField(
+                    title: 'Earth leakage test',
+                    hint: 'N/A',
+                    keyboardType: TextInputType.phone,
+                    suffix: const CommonText(
+                      'mA',
+                      fontSize: fontH4,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    width: 0.5,
+                    value: controller.applianceDetails[formKeyEarthLeakageTest],
+                    onChanged: (dynamic value) => controller
+                        .onChangeChildeValues(formKeyEarthLeakageTest, value),
+                  ),
+                ],
               ),
-              0.02.ph,
-              const SmallInputField(
-                title: 'Earth continuity test',
-                hint: 'N/A',
-                keyboardType: TextInputType.phone,
-                suffix: CommonText(
-                  'Ω',
-                  fontSize: fontH4,
-                  fontWeight: FontWeight.bold,
-                ),
-                width: 0.5,
+            ),
+            CommonContainer(
+              borderColor: Colors.black87,
+              borderRadius: 0.02,
+              borderWidth: 1,
+              marginVertical: 0.01,
+              marginHorizontal: 0.04,
+              paddingHorizontal: 0.03,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  CommonText(
+                    controller.applianceDetails[formKeyTestResult],
+                    fontSize: 30.0,
+                    fontWeight: FontWeight.bold,
+                    fontColor: controller.applianceDetails[formKeyTestResult] ==
+                            'PASSED'
+                        ? Colors.green
+                        : Colors.red,
+                  ),
+                  const CommonText(
+                    'Electrical Safety Test',
+                    fontSize: fontH2,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  SmallInputField(
+                    title: 'Appliance ID',
+                    keyboardType: TextInputType.number,
+                    value: controller.applianceDetails[formKeyApplianceNumber],
+                    marginBottom: 0.015,
+                    width: 0.4,
+                    isInputSelection: true,
+                    suffix: const SizedBox(),
+                  ),
+                  SmallInputField(
+                    title: 'Visual Check',
+                    value: controller.applianceDetails[formKeyVisualCheck],
+                    onTap: () => Get.bottomSheet(
+                      ApplianceSelectSheet(
+                        listTitles: list.listTestVisualCheck,
+                        keyOfValue: formKeyVisualCheck,
+                        controller: controller,
+                        isChilde: true,
+                      ),
+                    ),
+                    isInputSelection: true,
+                    marginBottom: 0.015,
+                    width: 0.4,
+                  ),
+                  SmallInputField(
+                    title: 'Fuse Rating (Amps)',
+                    keyboardType: TextInputType.phone,
+                    marginBottom: 0.015,
+                    width: 0.4,
+                    value: controller.applianceDetails[formKeyFuseRatingAmps],
+                    onChanged: (dynamic value) => controller
+                        .onChangeChildeValues(formKeyFuseRatingAmps, value),
+                  ),
+                  FormToggleButton(
+                    textWidth: 0.0,
+                    textWidget: const CommonText(
+                      'Result',
+                      fontWeight: FontWeight.bold,
+                    ),
+                    toggleType: FormToggleType.passFailed,
+                    value: controller.applianceDetails[formKeyTestResult],
+                    onChangeValue: (dynamic value) => controller
+                        .onChangeResultValues(formKeyTestResult, value),
+                  ),
+                ],
               ),
-              const SmallInputField(
-                title: 'Insulation test',
-                hint: 'N/A',
-                keyboardType: TextInputType.phone,
-                suffix: CommonText(
-                  'MΩ',
-                  fontSize: fontH4,
-                  fontWeight: FontWeight.bold,
-                ),
-                width: 0.5,
+            ),
+            CommonContainer(
+              style: appContainerStyles.formSectionsStyle,
+              paddingBottom: 0.0,
+              backgroundColor: Colors.grey[200],
+              child: CommonInput(
+                onTap: () {
+                  Get.bottomSheet(
+                    CustomDangerousCondition(
+                      buttonLabel: 'Select',
+                      items: list.listTestRepairCode,
+                      initialValue:
+                          controller.applianceDetails[formKeyRepairCode],
+                      onSelectedItemChanged: (String value) {
+                        controller.onChangeChildeValues(
+                            formKeyRepairCode, value);
+                        controller.update();
+                        Get.back();
+                      },
+                    ),
+                    isScrollControlled: true,
+                  );
+                },
+                enabled: false,
+                topLabelText: 'Repair Code (if applicable)',
+                hint: 'select',
+                marginBottom: 0.02,
+                suffix: const Icon(Icons.keyboard_arrow_down),
+                value: controller.applianceDetails[formKeyRepairCode],
               ),
-              const SmallInputField(
-                title: 'Load test',
-                hint: 'N/A',
-                keyboardType: TextInputType.phone,
-                suffix: CommonText(
-                  'kvΩ',
-                  fontSize: fontH4,
-                  fontWeight: FontWeight.bold,
-                ),
-                width: 0.5,
-              ),
-              const SmallInputField(
-                title: 'Earth leakage test',
-                hint: 'N/A',
-                keyboardType: TextInputType.phone,
-                suffix: CommonText(
-                  'mΩ',
-                  fontSize: fontH4,
-                  fontWeight: FontWeight.bold,
-                ),
-                width: 0.5,
-              ),
-            ],
-          ),
-        ),
-        CommonContainer(
-          borderColor: Colors.black87,
-          borderRadius: 0.02,
-          borderWidth: 1,
-          marginVertical: 0.01,
-          marginHorizontal: 0.04,
-          paddingHorizontal: 0.03,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: const <Widget>[
-              CommonText(
-                'Passed',
-                fontSize: 30.0,
-                fontWeight: FontWeight.bold,
-              ),
-              CommonInput(
-                topLabelText: 'Electrical Safety Test',
-                keyboardType: TextInputType.number,
-                marginBottom: 0.016,
-              ),
-              SmallInputField(
-                title: 'Visual Check',
-                // value: controller.childCircuitData[formKeyTypeOfWiringA],
-                // onTap: () => Get.bottomSheet(
-                //   DBSelectSheet(
-                //     listTitles: list.listTypeOfWiring,
-                //     keyOfValue: formKeyTypeOfWiringA,
-                //     controller: controller,
-                //     isChilde: true,
-                //   ),
-                // ),
-                isInputSelection: true,
-                marginBottom: 0.015,
-                width: 0.4,
-              ),
-              SmallInputField(
-                title: 'Amps',
-                // value: controller.childCircuitData[formKeyTypeOfWiringA],
-                // onTap: () => Get.bottomSheet(
-                //   DBSelectSheet(
-                //     listTitles: list.listTypeOfWiring,
-                //     keyOfValue: formKeyTypeOfWiringA,
-                //     controller: controller,
-                //     isChilde: true,
-                //   ),
-                // ),
-                isInputSelection: true,
-                marginBottom: 0.015,
-                width: 0.4,
-              ),
-            ],
-          ),
-        ),
-        CommonContainer(
-          style: appContainerStyles.formSectionsStyle,
-          paddingBottom: 0.0,
-          backgroundColor: Colors.grey[200],
-          child: const CustomSelectContainer(
-            title: 'Repair Code (if applicable)',
-            // value:
-            //     controller.childCircuitData[formKeyCircuitDesignationA],
-            // onTap: () => Get.bottomSheet(
-            //   DBSelectSheet(
-            //     listTitles: list.listCircuitDesignation,
-            //     keyOfValue: formKeyCircuitDesignationA,
-            //     controller: controller,
-            //     isChilde: true,Polarity
-            //   ),
-            // ),
-            marginTop: 0.0,
-            marginBottom: 0.016,
-          ),
-        ),
-        0.02.ph,
-      ],
+            ),
+            0.02.ph,
+          ],
+        );
+      },
     );
   }
 }

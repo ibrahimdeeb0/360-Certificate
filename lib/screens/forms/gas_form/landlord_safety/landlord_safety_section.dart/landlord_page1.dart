@@ -58,7 +58,7 @@ class LandlordPage2 extends StatelessWidget {
                       children: <Widget>[
                         FormToggleButton(
                           title: 'Gas pipework visual inspection',
-                          toggleType: FormToggleType.passFailed,
+                          toggleType: FormToggleType.passFailedNA,
                           textWidth: 0.6,
                           value: controller.formData[formKeyPart2]
                               [formKeyPipeworkVisualP2],
@@ -69,7 +69,7 @@ class LandlordPage2 extends StatelessWidget {
                         FormToggleButton(
                           title:
                               'Outcome of gas supply pipework visual inspection',
-                          toggleType: FormToggleType.passFailed,
+                          toggleType: FormToggleType.passFailedNA,
                           textWidth: 0.6,
                           value: controller.formData[formKeyPart2]
                               [formKeyPipeworkOutcomeSupplyP2],
@@ -80,7 +80,7 @@ class LandlordPage2 extends StatelessWidget {
                         FormToggleButton(
                           title:
                               'Is the Emergency Control Valve access satisfactory?',
-                          toggleType: FormToggleType.passFailed,
+                          toggleType: FormToggleType.passFailedNA,
                           textWidth: 0.6,
                           value: controller.formData[formKeyPart2]
                               [formKeyPipeworkEmergencyP2],
@@ -90,7 +90,7 @@ class LandlordPage2 extends StatelessWidget {
                         ),
                         FormToggleButton(
                           title: 'Outcome of gas tightness test?',
-                          toggleType: FormToggleType.passFailed,
+                          toggleType: FormToggleType.passFailedNA,
                           textWidth: 0.6,
                           value: controller.formData[formKeyPart2]
                               [formKeyPipeworkOutcomeTightnessP2],
@@ -101,7 +101,7 @@ class LandlordPage2 extends StatelessWidget {
                         FormToggleButton(
                           title:
                               'Is protective equipotential bonding satisfactory?',
-                          toggleType: FormToggleType.passFailed,
+                          toggleType: FormToggleType.passFailedNA,
                           textWidth: 0.6,
                           value: controller.formData[formKeyPart2]
                               [formKeyPipeworkProtectiveP2],

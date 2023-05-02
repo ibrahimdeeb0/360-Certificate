@@ -45,6 +45,7 @@ class PortableAppliances extends StatelessWidget {
                     paddingHorizontal: 0.03,
                     borderWidth: 1,
                     borderColor: AppColors.grey,
+                    touchEffect: TouchableEffect(type: TouchTypes.opacity),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
@@ -108,9 +109,28 @@ class PortableAppliances extends StatelessWidget {
                     circuitName: 'Appliance # 1',
                     locationName: 'Pass',
                   ),
+                  // const [formKeyApplianceChildeData]
+
+                  // ...controller.appliancesArray.map(
+                  //   (dynamic item) => ViewCircuitsDetails(
+                  //     iconPath: iconPlug,
+                  //     onPressDBContainer: () {
+                  //       controller.selectedApplianceData = item;
+
+                  //       controller.resetApplianceData();
+                  //       controller.setChildeValues();
+                  //       Get.to(
+                  //         () => const ApplianceDetails(),
+                  //         transition: Transition.leftToRight,
+                  //         duration: const Duration(milliseconds: 300),
+                  //       );
+                  //     },
+                  //   ),
+                  // ),
+
                   CommonButton(
                     onPress: () {
-                      // controller.resetChildValues();
+                      controller.resetApplianceData();
                       // controller.onCreateChildeCircuit();
                     },
                     height: 0.05,
