@@ -6,6 +6,7 @@ class PortableAppliancesController extends GetxController
   TextEditingController otherInputController = TextEditingController();
   late TabController tabController;
   int tabIndex = 0;
+  int? applianceIndex;
 
   List<dynamic> tabItems = <dynamic>[
     <String, dynamic>{
@@ -28,9 +29,9 @@ class PortableAppliancesController extends GetxController
   };
 
   Map<String, dynamic> applianceDetails = <String, dynamic>{
-    formKeyTotalApplianceNumber: '',
-    formKeyAppliancePassed: '',
-    formKeyApplianceFailed: '',
+    // formKeyTotalApplianceNumber: '',
+    // formKeyAppliancePassed: '',
+    // formKeyApplianceFailed: '',
     //
     formKeyApplianceNumber: '',
     formKeyApplianceDescription: '',
@@ -51,7 +52,7 @@ class PortableAppliancesController extends GetxController
     formKeyRepairCode: '',
   };
 
-  List<dynamic> appliancesArray = <dynamic>[];
+  List<dynamic> appliancesData = <dynamic>[];
 
   Map<String, dynamic>? selectedApplianceSummary;
   Map<String, dynamic>? selectedApplianceData;
@@ -60,15 +61,15 @@ class PortableAppliancesController extends GetxController
   void onInit() {
     super.onInit();
     tabController = TabController(length: tabItems.length, vsync: this);
-    appliancesArray = Get.find<PortableTestController>().applianceData;
+    appliancesData = Get.find<PortableTestController>().applianceData;
     update();
   }
 
   @override
   void onReady() {
     super.onReady();
-    if (appliancesArray.isEmpty) {
-      // onCrateParentData();
+    if (appliancesData.isEmpty) {
+      onCreateAppliance();
     }
   }
 
@@ -99,10 +100,6 @@ class PortableAppliancesController extends GetxController
   //**----- (Reset Data) Parent and Childe data ----**/
   void resetApplianceData() {
     applianceDetails = <String, dynamic>{
-      formKeyTotalApplianceNumber: '',
-      formKeyAppliancePassed: '',
-      formKeyApplianceFailed: '',
-      //
       formKeyApplianceNumber: '',
       formKeyApplianceDescription: '',
       formKeyApplianceLocation: '',
@@ -118,31 +115,77 @@ class PortableAppliancesController extends GetxController
       formKeyApplianceID: '',
       formKeyVisualCheck: '',
       formKeyFuseRatingAmps: '',
-      formKeyTestResult: 'PASS',
+      formKeyTestResult: 'PASSED',
       formKeyRepairCode: '',
     };
     update();
   }
 
   // **------  -----------** //
-  // void onCreateAppliance() {
-  //   resetApplianceData();
-  //   applianceData.add(
-  //     <String, dynamic>{
-  //       ...applianceDetailsData,
-  //       keyId: applianceData.length + 1,
-  //     },
-  //   );
-  //   update();
-  // }
+  void onCreateAppliance() {
+    resetApplianceData();
+    appliancesData.add(
+      <String, dynamic>{
+        ...applianceDetails,
+        // keyId: appliancesData.length + 1,
+      },
+    );
+    update();
+    consoleLogPretty(appliancesData, key: 'appliances_data');
+  }
+
+  void onDeleteAppliance(dynamic data) {
+    appliancesData.remove(data);
+    update();
+  }
+
+  void onSaveApplianceValues() {
+    appliancesData.add(applianceDetails);
+  }
+
+  void updateApplianceData() {
+    appliancesData[applianceIndex!] = <String, dynamic>{
+      ...appliancesData[applianceIndex!],
+      ...applianceDetails
+    };
+  }
+
+  void setValues() {
+    applianceDetails = selectedApplianceData!;
+    update();
+  }
+
+  void setAppliancesNumberID() {
+    for (dynamic data in appliancesData) {
+      data['appliance_number'] = appliancesData.indexOf(data) + 1;
+    }
+  }
+
+  void setPassFailData() {
+    applianceSummary[formKeyAppliancePassed] = appliancesData
+        .where((dynamic element) => element['test_result'] == 'PASSED')
+        .toList()
+        .length;
+
+    applianceSummary[formKeyApplianceFailed] = appliancesData
+        .where((dynamic element) => element['test_result'] != 'PASSED')
+        .toList()
+        .length;
+
+    applianceSummary[formKeyTotalApplianceNumber] = appliancesData.length;
+
+    consoleLogPretty(applianceSummary, key: 'appliance_summary');
+  }
 
   @override
   void onClose() {
     tabController.dispose();
-    Get.find<PortableTestController>().applianceData = appliancesArray;
+    setAppliancesNumberID();
+    setPassFailData();
+    Get.find<PortableTestController>().applianceData = appliancesData;
     consoleLog(
-        Get.find<PortableTestController>().applianceData = appliancesArray);
-    // consoleLog('Save DB Data Done', key: 'Saved_DB_Data');
+        Get.find<PortableTestController>().applianceData = appliancesData,
+        key: 'appliances_data');
     super.onClose();
   }
 }

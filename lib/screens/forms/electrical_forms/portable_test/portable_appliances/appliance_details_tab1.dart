@@ -6,6 +6,7 @@ class ApplianceDetailsPage1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<PortableAppliancesController>(
+      init: PortableAppliancesController(),
       builder: (PortableAppliancesController controller) {
         final ApplianceListValues list = ApplianceListValues();
         return Column(
@@ -20,12 +21,15 @@ class ApplianceDetailsPage1 extends StatelessWidget {
                   0.02.ph,
                   SmallInputField(
                     title: 'Appliance Number',
-                    value: controller.applianceDetails[formKeyApplianceNumber],
+                    value:
+                        '${controller.applianceDetails[formKeyApplianceNumber]}',
                     onChanged: (dynamic value) => controller
                         .onChangeChildeValues(formKeyApplianceNumber, value),
                     width: 0.5,
                     marginBottom: 0.016,
                     keyboardType: TextInputType.number,
+                    isInputSelection: true,
+                    suffix: const SizedBox(),
                   ),
                   CustomSelectContainer(
                     title: 'Appliance Description',

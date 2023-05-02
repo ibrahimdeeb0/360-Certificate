@@ -238,7 +238,7 @@ class ViewCircuitsDetails extends StatelessWidget {
   final String? locationName;
 
   final Function? onPressDBContainer;
-  final Function? onPressDelete;
+  final Function()? onPressDelete;
   final bool showDeleteIcon;
   final bool isComplete;
   final String? iconPath;
@@ -276,7 +276,7 @@ class ViewCircuitsDetails extends StatelessWidget {
             ),
           CommonContainer(
             style: const CommonContainerModel(
-              width: 0.62,
+              width: 0.6,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -305,26 +305,21 @@ class ViewCircuitsDetails extends StatelessWidget {
             children: <Widget>[
               Visibility(
                 visible: showDeleteIcon,
-                child: CommonContainer(
-                  onPress: onPressDelete?.call,
-                  style: CommonContainerModel(
-                    padding: 0.01,
-                    marginBottom: 0.02,
-                    borderColor: AppColors.red,
-                    borderWidth: 1,
+                child: IconButton(
+                  onPressed: onPressDelete?.call,
+                  icon: CommonContainer(
                     boxShape: BoxShape.circle,
-                    touchEffect: TouchableEffect(
-                      type: TouchTypes.scaleAndFade,
-                      lowerBound: 0.8,
+                    borderWidth: 1,
+                    borderColor: Colors.red,
+                    child: Icon(
+                      Icons.close_rounded,
+                      color: Color(AppColors.red),
+                      size: ((DEVICE_HEIGHT * 0.018) + (DEVICE_WIDTH * 0.018)),
                     ),
-                  ),
-                  child: Icon(
-                    Icons.close_rounded,
-                    color: Color(AppColors.red),
-                    size: ((DEVICE_HEIGHT * 0.015) + (DEVICE_WIDTH * 0.015)),
                   ),
                 ),
               ),
+              if (showDeleteIcon) 0.016.ph,
               Visibility(
                 visible: isComplete,
                 child: Icon(

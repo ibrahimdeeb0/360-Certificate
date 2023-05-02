@@ -14,11 +14,6 @@ class PortableAppliances extends StatelessWidget {
           backgroundColor: Colors.white,
           appBar: Header(
             title: 'Test Appliances',
-            // title: controller.selectedParentDistrBoardData?[
-            //     parentDistributionBoardValues][formKeyDBRef],
-            // rightText: 'Done',
-            // withActionText: true,
-            // onPressActionText: Get.back,
           ),
           body: CommonContainer(
             width: 1,
@@ -27,16 +22,12 @@ class PortableAppliances extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: <Widget>[
-                  SizedBox(height: DEVICE_HEIGHT * 0.02),
-                  // ViewDBDetails(
-                  //   onPressDBContainer: () => Get.to(
-                  //     () => const DBrdDetails(),
-                  //     transition: Transition.leftToRightWithFade,
-                  //   ),
-                  // ),
+                  0.02.ph,
                   CommonContainer(
-                    onPress: () =>
-                        Get.to(() => const SummaryApplianceDetails()),
+                    onPress: () {
+                      Get.to(() => const SummaryApplianceDetails());
+                      controller.setPassFailData();
+                    },
                     backgroundColor: Color(AppColors.grey).withOpacity(0.1),
                     width: 1,
                     borderRadius: 0.02,
@@ -71,7 +62,7 @@ class PortableAppliances extends StatelessWidget {
                                     ),
                               ),
                               CommonText(
-                                'Total Appliance: ',
+                                'Total Appliance: ${controller.appliancesData.length}',
                                 style: appTextStyles.h3GreyStyle().copyWith(
                                       fontSize: fontBody,
                                       textAlign: TextAlign.start,
@@ -101,37 +92,36 @@ class PortableAppliances extends StatelessWidget {
                       marginTop: 0.03,
                     ),
                   ),
-                  ViewCircuitsDetails(
-                    onPressDBContainer: () {
-                      Get.to(() => const ApplianceDetails());
-                    },
-                    iconPath: iconPlug,
-                    circuitName: 'Appliance # 1',
-                    locationName: 'Pass',
+                  ...controller.appliancesData.map(
+                    (dynamic item) => ViewCircuitsDetails(
+                      iconPath: iconPlug,
+                      onPressDBContainer: () {
+                        controller.tabController.index = 0;
+                        controller.tabIndex = 0;
+                        controller.selectedApplianceData = item;
+                        controller.setValues();
+                        controller.applianceDetails[formKeyApplianceNumber] =
+                            controller.appliancesData.indexOf(item) + 1;
+                        controller.applianceIndex =
+                            controller.appliancesData.indexOf(item);
+                        Get.to(
+                          () => const ApplianceDetails(),
+                          transition: Transition.leftToRight,
+                          duration: const Duration(milliseconds: 300),
+                        );
+                      },
+
+                      showDeleteIcon: controller.appliancesData.length != 1,
+                      onPressDelete: () => controller.onDeleteAppliance(item),
+                      //
+                      circuitName:
+                          'Appliance # ${controller.appliancesData.indexOf(item) + 1}',
+                      locationName: item['test_result'],
+                    ),
                   ),
-                  // const [formKeyApplianceChildeData]
-
-                  // ...controller.appliancesArray.map(
-                  //   (dynamic item) => ViewCircuitsDetails(
-                  //     iconPath: iconPlug,
-                  //     onPressDBContainer: () {
-                  //       controller.selectedApplianceData = item;
-
-                  //       controller.resetApplianceData();
-                  //       controller.setChildeValues();
-                  //       Get.to(
-                  //         () => const ApplianceDetails(),
-                  //         transition: Transition.leftToRight,
-                  //         duration: const Duration(milliseconds: 300),
-                  //       );
-                  //     },
-                  //   ),
-                  // ),
-
                   CommonButton(
                     onPress: () {
-                      controller.resetApplianceData();
-                      // controller.onCreateChildeCircuit();
+                      controller.onCreateAppliance();
                     },
                     height: 0.05,
                     marginVertical: 0.02,

@@ -13,10 +13,10 @@ class ApplianceDetails extends StatelessWidget {
           appBar: Header(
             title:
                 controller.tabIndex == 0 ? 'Appliance Details' : 'Test Result',
-            actionItem: ActionItem(
-              type: ActionType.save,
-              onPress: Get.back,
-            ),
+            // actionItem: ActionItem(
+            //   type: ActionType.save,
+            //   onPress: Get.back,
+            // ),
           ),
           body: Column(
             children: <Widget>[

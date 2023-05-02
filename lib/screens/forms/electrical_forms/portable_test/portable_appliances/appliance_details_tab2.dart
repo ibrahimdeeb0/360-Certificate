@@ -7,6 +7,7 @@ class ApplianceDetailsPage2 extends StatelessWidget {
   Widget build(BuildContext context) {
     final ApplianceListValues list = ApplianceListValues();
     return GetBuilder<PortableAppliancesController>(
+      init: PortableAppliancesController(),
       builder: (PortableAppliancesController controller) {
         return Column(
           children: <Widget>[
@@ -116,7 +117,8 @@ class ApplianceDetailsPage2 extends StatelessWidget {
                   SmallInputField(
                     title: 'Appliance ID',
                     keyboardType: TextInputType.number,
-                    value: controller.applianceDetails[formKeyApplianceNumber],
+                    value: controller.applianceDetails[formKeyApplianceNumber]
+                        .toString(),
                     marginBottom: 0.015,
                     width: 0.4,
                     isInputSelection: true,
@@ -181,6 +183,7 @@ class ApplianceDetailsPage2 extends StatelessWidget {
                     ),
                     isScrollControlled: true,
                   );
+                  hideKeyboard();
                 },
                 enabled: false,
                 topLabelText: 'Repair Code (if applicable)',
