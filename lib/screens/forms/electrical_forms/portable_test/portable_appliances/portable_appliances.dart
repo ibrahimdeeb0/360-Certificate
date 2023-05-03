@@ -110,13 +110,13 @@ class PortableAppliances extends StatelessWidget {
                           duration: const Duration(milliseconds: 300),
                         );
                       },
-
                       showDeleteIcon: controller.appliancesData.length != 1,
                       onPressDelete: () => controller.onDeleteAppliance(item),
                       //
                       circuitName:
                           'Appliance # ${controller.appliancesData.indexOf(item) + 1}',
-                      locationName: item['test_result'],
+                      locationName:
+                          '${item[formKeyApplianceDescription] ?? ''}  \n${item['test_result']}',
                     ),
                   ),
                   CommonButton(

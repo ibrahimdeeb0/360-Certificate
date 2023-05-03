@@ -16,30 +16,6 @@ class PortableTestPage2 extends StatelessWidget {
           children: <Widget>[
             CommonContainer(
               style: appContainerStyles.formSectionsStyle,
-              child: Column(
-                children: <Widget>[
-                  const CustomTextFormTitle(
-                    leftText: '',
-                    text: 'LIMITATIONS ON TESTING (IF ANY)',
-                    marginBottom: 0.02,
-                  ),
-                  CommonInput(
-                    maxLines: 4,
-                    textInputAction: TextInputAction.newline,
-                    value: controller.formData[formKeyLimitationsTesting]
-                        [formKeyLimitationsOfTesting],
-                    onChanged: (String value) =>
-                        controller.onChangeFormDataValue(
-                      formKeyLimitationsTesting,
-                      formKeyLimitationsOfTesting,
-                      value,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            CommonContainer(
-              style: appContainerStyles.formSectionsStyle,
               marginTop: 0.0,
               child: Column(
                 children: <Widget>[
@@ -57,6 +33,7 @@ class PortableTestPage2 extends StatelessWidget {
                   CommonInput(
                     maxLines: 4,
                     textInputAction: TextInputAction.newline,
+                    hint: 'type...',
                     value: controller.formData[formKeyDeclaration]
                         [formKeyLimitationsAgreedTesting],
                     onChanged: (String value) =>
@@ -96,6 +73,10 @@ class PortableTestPage2 extends StatelessWidget {
                         },
                       );
                     },
+                    suffix: const Icon(
+                      Icons.keyboard_arrow_down_rounded,
+                      color: Colors.grey,
+                    ),
                   ),
                   Align(
                     child: CommonText(

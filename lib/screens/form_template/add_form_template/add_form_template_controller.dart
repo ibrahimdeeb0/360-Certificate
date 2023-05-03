@@ -23,6 +23,11 @@ class AddFormTemplateController extends GetxController {
       keyRoute: routeFormWarningNotice,
     },
     <String, dynamic>{
+      keyId: 1,
+      keyName: 'Portable Appliance Testing',
+      keyRoute: routeFormPortableTest,
+    },
+    <String, dynamic>{
       keyId: 4,
       keyName: 'Electrical Danger Notice',
       keyRoute: routeFormDangerNotice,
@@ -40,10 +45,10 @@ class AddFormTemplateController extends GetxController {
   ];
 
   List<Map<String, dynamic>> unActiveForms = <Map<String, dynamic>>[
-    <String, dynamic>{
-      keyId: 1,
-      keyName: 'Portable Appliance Testing',
-    },
+    // <String, dynamic>{
+    //   keyId: 1,
+    //   keyName: 'Portable Appliance Testing',
+    // },
 
     // <String, dynamic>{
     //   keyId: 4,

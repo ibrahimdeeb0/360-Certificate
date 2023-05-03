@@ -59,6 +59,32 @@ class PortableTestPage1 extends StatelessWidget {
                 ],
               ),
             ),
+            CommonContainer(
+              style: appContainerStyles.formSectionsStyle,
+              marginTop: 0.04,
+              child: Column(
+                children: <Widget>[
+                  const CustomTextFormTitle(
+                    leftText: '',
+                    text: 'LIMITATIONS ON TESTING (IF ANY)',
+                    marginBottom: 0.02,
+                  ),
+                  CommonInput(
+                    maxLines: 4,
+                    textInputAction: TextInputAction.newline,
+                    hint: 'type...',
+                    value: controller.formData[formKeyLimitationsTesting]
+                        [formKeyLimitationsOfTesting],
+                    onChanged: (String value) =>
+                        controller.onChangeFormDataValue(
+                      formKeyLimitationsTesting,
+                      formKeyLimitationsOfTesting,
+                      value,
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
         );
       },

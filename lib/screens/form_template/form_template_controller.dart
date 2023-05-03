@@ -84,6 +84,10 @@ class FormTemplateController extends GetxController {
           Get.toNamed(
             routeFormDomesticEic,
           );
+        } else if (formId == 1) {
+          Get.toNamed(
+            routeFormPortableTest,
+          );
         }
 
         update();

@@ -23,11 +23,11 @@ class FormsController extends GetxController {
     <String, dynamic>{
       keyTitle: 'Electrical',
       keyItems: <Map<String, dynamic>>[
-        // <String, dynamic>{
-        //   keyId: 1,
-        //   keyTitle: 'Portable Appliance Testing',
-        //   keyRoute: '',
-        // },
+        <String, dynamic>{
+          keyId: 1,
+          keyTitle: 'Portable Appliance Testing (PAT)',
+          keyRoute: routeFormPortableTest,
+        },
         <String, dynamic>{
           keyId: 4,
           keyTitle: 'Electrical Danger Notice',
