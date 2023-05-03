@@ -515,6 +515,7 @@ class SmallInputField extends StatelessWidget {
     this.paddingHorizontal = 0.0,
     this.marginBottom = 0.03,
     this.width = 0.55,
+    this.fillColor,
   }) : super(key: key);
 
   final String? title;
@@ -529,6 +530,7 @@ class SmallInputField extends StatelessWidget {
   final double paddingHorizontal;
   final double marginBottom;
   final double width;
+  final dynamic fillColor;
 
   @override
   Widget build(BuildContext context) {
@@ -557,6 +559,7 @@ class SmallInputField extends StatelessWidget {
             value: value,
             onChanged: onChanged,
             width: 0.33,
+            fillColor: fillColor,
             suffix: suffix ??
                 (isInputSelection == true
                     ? const Icon(Icons.keyboard_arrow_down)

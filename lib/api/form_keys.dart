@@ -395,6 +395,7 @@ const String formKeyApplianceIsCoAlarm = 'appliance_is_co_alarm';
 const String formKeyApplianceCOAlarmTest = 'appliance_co_alarm_test';
 // final landlord page
 const String formKeyAppliance = 'appliance_data';
+const String formKeyApplianceSummaryData = 'appliance_summary_data';
 const String formKeyRecordIssueBy = 'record_issue_by';
 const String formKeyReceivedBy = 'received_by';
 
@@ -560,6 +561,10 @@ const String formKeyDateInspectionBy = 'date_inspection_by';
 const String formKeyNameReviewedBy = 'name_reviewed_by';
 const String formKeyDateReviewedBy = 'date_reviewed_by';
 // Portable Test Form
+const String formKeyLimitationsTesting = 'limitations_testing';
+const String formKeyLimitationsOfTesting = 'limitations_of_testing';
+const String formKeyLimitationsAgreedTesting = 'any_limitations_agreed_testing';
+
 const String formKeyTotalApplianceNumber = 'total_appliance_number';
 const String formKeyAppliancePassed = 'appliance_passed';
 const String formKeyApplianceFailed = 'appliance_failed';

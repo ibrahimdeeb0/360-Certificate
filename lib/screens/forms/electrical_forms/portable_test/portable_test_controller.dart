@@ -30,12 +30,18 @@ class PortableTestController extends GetxController {
   DateTime? selectedDate;
 
   List<dynamic> applianceData = <dynamic>[];
+  Map<String, dynamic> applianceSummaryData = <String, dynamic>{};
 
   Map<String, dynamic> formData = <String, dynamic>{
+    formKeyLimitationsTesting: <String, dynamic>{
+      formKeyLimitationsOfTesting: '',
+    },
     formKeyDeclaration: <String, dynamic>{
+      formKeyLimitationsAgreedTesting: '',
       formKeyNameInspectionBy: '',
       formKeyDateInspectionBy: '',
     },
+    formKeyApplianceSummaryData: <dynamic, dynamic>{},
     formKeyAppliance: <dynamic>[],
   };
 
@@ -295,6 +301,7 @@ class PortableTestController extends GetxController {
 
   void onSaveApplianceData() {
     formData[formKeyAppliance] = applianceData;
+    formData[formKeyApplianceSummaryData] = applianceSummaryData;
   }
 
   // *****************  Press Finish ****************
@@ -379,6 +386,8 @@ class PortableTestController extends GetxController {
       'customer_id': customerId,
       'status_id': idCompleted,
     };
+
+    consoleLogPretty(certData);
 
     if (signatureBytes != null) {
       startLoading();

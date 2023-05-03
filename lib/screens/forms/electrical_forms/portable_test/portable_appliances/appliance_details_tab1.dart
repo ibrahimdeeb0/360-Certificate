@@ -111,7 +111,7 @@ class ApplianceDetailsPage1 extends StatelessWidget {
                   ),
                   FormToggleButton(
                     title: 'Polarity',
-                    toggleType: FormToggleType.passFailedNA,
+                    toggleType: FormToggleType.yesNoNA,
                     titleSize: fontTitle,
                     value: controller.applianceDetails[formKeyPolarity],
                     onChangeValue: (dynamic value) {

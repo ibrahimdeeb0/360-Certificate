@@ -25,65 +25,88 @@ class ApplianceDetailsPage2 extends StatelessWidget {
                       'N/A',
                       rightChild: Switch(
                         activeTrackColor: Colors.green[700],
-                        value: true,
-                        onChanged: (bool value) {},
+                        value: controller.applyNAMeasuredResult,
+                        onChanged: (bool value) {
+                          controller.onChangeMeasuredResult(value: value);
+                        },
                       ),
                     ),
                   ),
                   0.02.ph,
                   SmallInputField(
                     title: 'Earth continuity test',
-                    hint: 'N/A',
+                    hint: controller.applianceDetails[formKeyEarthContinuity],
                     keyboardType: TextInputType.phone,
+                    width: 0.5,
                     suffix: const CommonText(
                       'Ω',
                       fontSize: fontH4,
                       fontWeight: FontWeight.bold,
                     ),
-                    width: 0.5,
-                    value: controller.applianceDetails[formKeyEarthContinuity],
+                    isInputSelection: controller.isEnableNA,
+                    fillColor: controller.isEnableNA ? Colors.grey[300] : null,
+                    value: controller
+                                .applianceDetails[formKeyEarthContinuity] ==
+                            'N/A'
+                        ? ''
+                        : controller.applianceDetails[formKeyEarthContinuity],
                     onChanged: (dynamic value) => controller
                         .onChangeChildeValues(formKeyEarthContinuity, value),
                   ),
                   SmallInputField(
                     title: 'Insulation test',
-                    hint: 'N/A',
+                    hint: controller.applianceDetails[formKeyInsulationTest],
                     keyboardType: TextInputType.phone,
+                    width: 0.5,
                     suffix: const CommonText(
                       'MΩ',
                       fontSize: fontH4,
                       fontWeight: FontWeight.bold,
                     ),
-                    width: 0.5,
-                    value: controller.applianceDetails[formKeyInsulationTest],
+                    isInputSelection: controller.isEnableNA,
+                    fillColor: controller.isEnableNA ? Colors.grey[300] : null,
+                    value: controller.applianceDetails[formKeyInsulationTest] ==
+                            'N/A'
+                        ? ''
+                        : controller.applianceDetails[formKeyInsulationTest],
                     onChanged: (dynamic value) => controller
                         .onChangeChildeValues(formKeyInsulationTest, value),
                   ),
                   SmallInputField(
                     title: 'Load test',
-                    hint: 'N/A',
+                    hint: controller.applianceDetails[formKeyEarthLeakageTest],
                     keyboardType: TextInputType.phone,
+                    width: 0.5,
                     suffix: const CommonText(
                       'kvA',
                       fontSize: fontH4,
                       fontWeight: FontWeight.bold,
                     ),
-                    width: 0.5,
-                    value: controller.applianceDetails[formKeyLoadTest],
+                    isInputSelection: controller.isEnableNA,
+                    fillColor: controller.isEnableNA ? Colors.grey[300] : null,
+                    value: controller.applianceDetails[formKeyLoadTest] == 'N/A'
+                        ? ''
+                        : controller.applianceDetails[formKeyLoadTest],
                     onChanged: (dynamic value) =>
                         controller.onChangeChildeValues(formKeyLoadTest, value),
                   ),
                   SmallInputField(
                     title: 'Earth leakage test',
-                    hint: 'N/A',
+                    hint: controller.applianceDetails[formKeyEarthLeakageTest],
                     keyboardType: TextInputType.phone,
+                    width: 0.5,
                     suffix: const CommonText(
                       'mA',
                       fontSize: fontH4,
                       fontWeight: FontWeight.bold,
                     ),
-                    width: 0.5,
-                    value: controller.applianceDetails[formKeyEarthLeakageTest],
+                    isInputSelection: controller.isEnableNA,
+                    fillColor: controller.isEnableNA ? Colors.grey[300] : null,
+                    value: controller
+                                .applianceDetails[formKeyEarthLeakageTest] ==
+                            'N/A'
+                        ? ''
+                        : controller.applianceDetails[formKeyEarthLeakageTest],
                     onChanged: (dynamic value) => controller
                         .onChangeChildeValues(formKeyEarthLeakageTest, value),
                   ),

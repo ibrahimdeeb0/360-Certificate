@@ -17,8 +17,8 @@ class PortableTestPage2 extends StatelessWidget {
             CommonContainer(
               style: appContainerStyles.formSectionsStyle,
               child: Column(
-                children: const <Widget>[
-                  CustomTextFormTitle(
+                children: <Widget>[
+                  const CustomTextFormTitle(
                     leftText: '',
                     text: 'LIMITATIONS ON TESTING (IF ANY)',
                     marginBottom: 0.02,
@@ -26,6 +26,14 @@ class PortableTestPage2 extends StatelessWidget {
                   CommonInput(
                     maxLines: 4,
                     textInputAction: TextInputAction.newline,
+                    value: controller.formData[formKeyLimitationsTesting]
+                        [formKeyLimitationsOfTesting],
+                    onChanged: (String value) =>
+                        controller.onChangeFormDataValue(
+                      formKeyLimitationsTesting,
+                      formKeyLimitationsOfTesting,
+                      value,
+                    ),
                   ),
                 ],
               ),
@@ -46,9 +54,17 @@ class PortableTestPage2 extends StatelessWidget {
                     textAlign: TextAlign.start,
                     marginBottom: 0.02,
                   ),
-                  const CommonInput(
+                  CommonInput(
                     maxLines: 4,
                     textInputAction: TextInputAction.newline,
+                    value: controller.formData[formKeyDeclaration]
+                        [formKeyLimitationsAgreedTesting],
+                    onChanged: (String value) =>
+                        controller.onChangeFormDataValue(
+                      formKeyDeclaration,
+                      formKeyLimitationsAgreedTesting,
+                      value,
+                    ),
                   ),
                   CommonInput(
                     topLabelText: 'Name (CAPITAL)',

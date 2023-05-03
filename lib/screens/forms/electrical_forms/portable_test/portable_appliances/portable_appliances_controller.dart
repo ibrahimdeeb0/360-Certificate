@@ -8,6 +8,28 @@ class PortableAppliancesController extends GetxController
   int tabIndex = 0;
   int? applianceIndex;
 
+  bool isEnableNA = false;
+
+  bool applyNAMeasuredResult = true;
+  void onChangeMeasuredResult({bool? value}) {
+    applyNAMeasuredResult = !applyNAMeasuredResult;
+    isEnableNA = !isEnableNA;
+    applianceDetails[formKeyEarthContinuity] = 'N/A';
+    applianceDetails[formKeyInsulationTest] = 'N/A';
+    applianceDetails[formKeyLoadTest] = 'N/A';
+    applianceDetails[formKeyEarthLeakageTest] = 'N/A';
+
+    if (isEnableNA == true) {
+      scrollController.animateTo(
+        200.0,
+        duration: const Duration(milliseconds: 700),
+        curve: Curves.linear,
+      );
+    }
+
+    update();
+  }
+
   List<dynamic> tabItems = <dynamic>[
     <String, dynamic>{
       'text': 'Appliance Details',
@@ -41,10 +63,10 @@ class PortableAppliancesController extends GetxController
     formKeyCombinedInspectionTest: '',
     formKeyPolarity: 'N/A',
     formKeyMeasuredResults: '', //
-    formKeyEarthContinuity: '',
-    formKeyInsulationTest: '',
-    formKeyLoadTest: '',
-    formKeyEarthLeakageTest: '',
+    formKeyEarthContinuity: 'N/A',
+    formKeyInsulationTest: 'N/A',
+    formKeyLoadTest: 'N/A',
+    formKeyEarthLeakageTest: 'N/A',
     formKeyApplianceID: '',
     formKeyVisualCheck: '',
     formKeyFuseRatingAmps: '',
@@ -53,6 +75,7 @@ class PortableAppliancesController extends GetxController
   };
 
   List<dynamic> appliancesData = <dynamic>[];
+  Map<String, dynamic> applianceSummaryData = <String, dynamic>{};
 
   Map<String, dynamic>? selectedApplianceSummary;
   Map<String, dynamic>? selectedApplianceData;
@@ -60,8 +83,11 @@ class PortableAppliancesController extends GetxController
   @override
   void onInit() {
     super.onInit();
+    // consoleLog(scrollController.offset);
     tabController = TabController(length: tabItems.length, vsync: this);
     appliancesData = Get.find<PortableTestController>().applianceData;
+    applianceSummaryData =
+        Get.find<PortableTestController>().applianceSummaryData;
     update();
   }
 
@@ -108,10 +134,10 @@ class PortableAppliancesController extends GetxController
       formKeyCombinedInspectionTest: '',
       formKeyPolarity: 'N/A',
       formKeyMeasuredResults: '', //
-      formKeyEarthContinuity: '',
-      formKeyInsulationTest: '',
-      formKeyLoadTest: '',
-      formKeyEarthLeakageTest: '',
+      formKeyEarthContinuity: 'N/A',
+      formKeyInsulationTest: 'N/A',
+      formKeyLoadTest: 'N/A',
+      formKeyEarthLeakageTest: 'N/A',
       formKeyApplianceID: '',
       formKeyVisualCheck: '',
       formKeyFuseRatingAmps: '',
@@ -183,8 +209,9 @@ class PortableAppliancesController extends GetxController
     setAppliancesNumberID();
     setPassFailData();
     Get.find<PortableTestController>().applianceData = appliancesData;
-    consoleLog(
-        Get.find<PortableTestController>().applianceData = appliancesData,
+    Get.find<PortableTestController>().applianceSummaryData = applianceSummary;
+
+    consoleLog(Get.find<PortableTestController>().applianceSummaryData,
         key: 'appliances_data');
     super.onClose();
   }
