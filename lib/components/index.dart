@@ -4,6 +4,7 @@ export 'bottom_sheet_container/index.dart';
 export 'cached_image/index.dart';
 export 'check_box/index.dart';
 export 'circle_container/index.dart';
+export 'custom_date_picker/index.dart';
 export 'custom_radio_selection/index.dart';
 export 'custom_text_title/index.dart';
 export 'dialog_container/index.dart';

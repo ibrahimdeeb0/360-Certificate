@@ -34,18 +34,20 @@ class FormTemplateController extends GetxController {
     }
   }
 
-  void onPressEdit({
+  void onPressEditTemplate({
     int? formId,
     int? tempId,
     String? name,
   }) {
-    consoleLog('formId:$formId');
+    // consoleLog('formId:$formId');
+    // consoleLog('tempId:$tempId');
+    // consoleLog('name:$name');
     // get data
     ApiRequest(
       path: '/forms/templates/$tempId/show',
       className: 'AddFormTemplateController/onPressEdit',
       withLoading: true,
-      requestFunction: onPressEdit,
+      requestFunction: onPressEditTemplate,
       formatResponse: true,
     ).request(
       onSuccess: (dynamic data, dynamic response) {
@@ -61,72 +63,90 @@ class FormTemplateController extends GetxController {
         if (Get.isBottomSheetOpen!) {
           Get.back();
         }
-        // consoleLog(name, key: 'name_temp_update');
-        Get.toNamed(
-          routeFormEICR,
-        );
-        // Get.to(
-        //   () => const EICR(),
 
-        // );
+        if (formId == 5) {
+          Get.toNamed(
+            routeFormEICR,
+          );
+        } else if (formId == 9) {
+          Get.toNamed(
+            routeFormLandlord,
+          );
+        } else if (formId == 4) {
+          Get.toNamed(
+            routeFormDangerNotice,
+          );
+        } else if (formId == 11) {
+          Get.toNamed(
+            routeFormWarningNotice,
+          );
+        } else if (formId == 3) {
+          Get.toNamed(
+            routeFormDomesticEic,
+          );
+        } else if (formId == 1) {
+          Get.toNamed(
+            routeFormPortableTest,
+          );
+        }
 
         update();
       },
     );
   }
 
-  void onPressCopy({
-    int? formId,
-    int? tempId,
-    String? name,
-    AddFormTemplateController? controller,
-  }) {
-    if (Get.isBottomSheetOpen!) {
-      Get.back();
-    }
-    copyNameController.text = '$name copy';
-    update();
-    void createACopy() {
-      ApiRequest(
-        path: '/forms/templates/$tempId/show',
-        className: 'AddFormTemplateController/onPressEdit',
-        withLoading: true,
-        requestFunction: createACopy,
-      ).request(
-        onSuccess: (dynamic data, dynamic response) {
-          Get.to(
-            () => const EICR(),
-            arguments: <String, dynamic>{
-              'isTemplate': true,
-              'templateName': copyNameController.text == ''
-                  ? '$name copy'
-                  : copyNameController.text,
-              'tempData': data,
-              'updateTemp': false,
-              'formId': formId,
-            },
-          );
-          // renderFormScreen(
-          //   formId: formId,
-          //   name: copyNameController.text == ''
-          //       ? '$name copy'
-          //       : copyNameController.text,
-          //   tempData: data,
-          // );
-        },
-      );
-    }
+  // void onPressCopy({
+  //   int? formId,
+  //   int? tempId,
+  //   String? name,
+  //   AddFormTemplateController? controller,
+  // }) {
+  //   if (Get.isBottomSheetOpen!) {
+  //     Get.back();
+  //   }
+  //   copyNameController.text = '$name copy';
+  //   update();
+  //   void createACopy() {
+  //     ApiRequest(
+  //       path: '/forms/templates/$tempId/show',
+  //       className: 'AddFormTemplateController/onPressEdit',
+  //       withLoading: true,
+  //       requestFunction: createACopy,
+  //     ).request(
+  //       onSuccess: (dynamic data, dynamic response) {
+  //         Get.to(
+  //           () => const EICR(),
+  //           arguments: <String, dynamic>{
+  //             'isTemplate': true,
+  //             'templateName': copyNameController.text == ''
+  //                 ? '$name copy'
+  //                 : copyNameController.text,
+  //             'tempData': data,
+  //             'updateTemp': false,
+  //             'formId': formId,
+  //           },
+  //         );
+  //         // renderFormScreen(
+  //         //   formId: formId,
+  //         //   name: copyNameController.text == ''
+  //         //       ? '$name copy'
+  //         //       : copyNameController.text,
+  //         //   tempData: data,
+  //         // );
+  //       },
+  //     );
+  //   }
 
-    openDialog(
-      title: 'Enter Copy Template Name',
-      onCancel: Get.back,
-      onConfirm: createACopy,
-      child: CommonInput(
-        topLabelText: '',
-        controller: copyNameController,
-      ),
-    );
-  }
+  //   openDialog(
+  //     title: 'Enter Copy Template Name',
+  //     onCancel: Get.back,
+  //     onConfirm: createACopy,
+  //     child: CommonInput(
+  //       topLabelText: '',
+  //       controller: copyNameController,
+  //     ),
+  //   );
+  // }
 
   void onPressDelete({
     int? formId,

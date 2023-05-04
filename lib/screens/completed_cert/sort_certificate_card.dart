@@ -38,6 +38,7 @@ class SortCertificateCard extends StatelessWidget {
       paddingVertical: 0.015,
       backgroundColor: Colors.grey[100],
       marginBottom: 0.02,
+      touchEffect: TouchableEffect(type: TouchTypes.opacity),
       child: Column(
         children: <Widget>[
           Row(

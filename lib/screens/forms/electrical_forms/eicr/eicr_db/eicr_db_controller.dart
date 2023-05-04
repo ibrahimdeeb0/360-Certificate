@@ -536,7 +536,8 @@ class DistributionBoardController extends GetxController
   void onSelectCircuitReference() {
     onChangeChildeDbValues(
       formKeyCircuitReferenceA,
-      '${listNumbers[circuitNumIndex]} ${listCircuitReference[circuitTypeIndex]}',
+      // ${listCircuitReference[circuitTypeIndex]}
+      '${listNumbers[circuitNumIndex]}',
     );
     consoleLog(childCircuitData[formKeyCircuitReferenceA]);
     update();

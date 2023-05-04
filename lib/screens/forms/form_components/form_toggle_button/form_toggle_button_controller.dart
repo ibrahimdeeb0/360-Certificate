@@ -1,10 +1,12 @@
 import '../../../../general_exports.dart';
 
 enum FormToggleType {
-  yesNo,
+  yesNoNA,
+  passFailedNA,
   passFailed,
   trueFalse,
   multi,
+  yesNo,
 }
 
 class FormToggleButtonController extends GetxController {
@@ -19,6 +21,24 @@ class FormToggleButtonController extends GetxController {
 
   void onChangeCurrentValue() {
     if (toggleType == FormToggleType.yesNo) {
+      // typing here code
+      switch (currentValue) {
+        case 'YES':
+          currentValue = 'NO';
+
+          break;
+
+        case 'NO':
+          currentValue = 'YES';
+
+          break;
+
+        default:
+          currentValue = 'YES';
+
+          break;
+      }
+    } else if (toggleType == FormToggleType.yesNoNA) {
       // typing here code
       switch (currentValue) {
         case 'N/A':
@@ -41,6 +61,24 @@ class FormToggleButtonController extends GetxController {
           break;
       }
     } else if (toggleType == FormToggleType.passFailed) {
+      // typing here code
+      switch (currentValue) {
+        case 'PASSED':
+          currentValue = 'FAILED';
+
+          break;
+
+        case 'FAILED':
+          currentValue = 'PASSED';
+
+          break;
+
+        default:
+          currentValue = 'PASSED';
+
+          break;
+      }
+    } else if (toggleType == FormToggleType.passFailedNA) {
       // typing here code
       switch (currentValue) {
         case 'N/A':
@@ -137,6 +175,6 @@ class FormToggleButtonController extends GetxController {
     }
 
     update();
-    consoleLog(currentValue);
+    // consoleLog(currentValue);
   }
 }

@@ -24,6 +24,8 @@ class Home extends StatelessWidget {
                 const HomeSearchBar(),
                 Expanded(
                   child: SingleChildScrollView(
+                    controller: certificatesController.scrollController,
+                    // physics: const BouncingScrollPhysics(),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
@@ -61,13 +63,29 @@ class Home extends StatelessWidget {
                           ),
                         ),
                         const CommonText(
-                          //
                           'All Certificates',
                           marginTop: 0.01,
                           fontSize: fontH2,
                           marginHorizontal: 0.04,
                         ),
                         const Certificates(),
+                        if (certificatesController.isLoading)
+                          Center(
+                            child: Padding(
+                              padding: EdgeInsets.only(
+                                top: 0.01.flexHeight,
+                                bottom: 0.025.flexHeight,
+                              ),
+                              child: CircularProgressIndicator(
+                                strokeWidth: 5,
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  Color(
+                                    AppColors.primary,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
                       ],
                     ),
                   ),
@@ -119,18 +137,17 @@ class HomeSearchBar extends StatelessWidget {
             builder: (CertificatesController controller) {
               return CommonContainer(
                 backgroundColor: Color(AppColors.primary).withOpacity(0.1),
-                onPress: () => Get.bottomSheet(
-                  const FilterCert(),
-                  isScrollControlled: true,
-                ),
-                size: 0.1,
-                padding: 0.01,
+                size: 0.12,
                 boxShape: BoxShape.circle,
-                touchEffect: TouchableEffect(type: TouchTypes.opacity),
-                marginLeft: 0.01,
-                child: SvgPicture.asset(
-                  iconFilter,
-                  color: Colors.black,
+                child: IconButton(
+                  onPressed: () => Get.bottomSheet(
+                    const FilterCert(),
+                    isScrollControlled: true,
+                  ),
+                  icon: SvgPicture.asset(
+                    iconFilter,
+                    color: Colors.black,
+                  ),
                 ),
               );
             },

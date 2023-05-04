@@ -14,23 +14,26 @@ class More extends StatelessWidget {
         builder: (MoreController controller) {
           return CommonContainer(
             style: const CommonContainerModel(
-              paddingHorizontal: 0.04,
-            ),
+                // paddingHorizontal: 0.04,
+                ),
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   SizedBox(height: DEVICE_HEIGHT * 0.06),
-                  CommonText(
-                    'Hello, ${profileController.userDataProfile['first_name']}'
-                        .capitalize,
-                    fontSize: fontH1,
-                    fontWeight: FontWeight.bold,
-                    marginRight: 0.02,
-                    rightChild: Image.asset(
-                      imageHello,
-                      width: DEVICE_WIDTH * 0.08,
-                      height: DEVICE_HEIGHT * 0.08,
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 0.04.flexWidth),
+                    child: CommonText(
+                      'Hello, ${profileController.userDataProfile['first_name']}'
+                          .capitalize,
+                      fontSize: fontH1,
+                      fontWeight: FontWeight.bold,
+                      marginRight: 0.02,
+                      rightChild: Image.asset(
+                        imageHello,
+                        width: DEVICE_WIDTH * 0.08,
+                        height: DEVICE_HEIGHT * 0.08,
+                      ),
                     ),
                   ),
                   0.015.ph,
@@ -82,7 +85,8 @@ class MoreComponents extends StatelessWidget {
   Widget build(BuildContext context) {
     return CommonButton(
       onPress: onPress,
-      marginBottom: 0.01,
+      // paddingBottom: 0.01,
+      paddingHorizontal: 0.04,
       height: 0.07,
       overlayColor: Colors.black12,
       backgroundColor: Colors.white,
@@ -92,7 +96,7 @@ class MoreComponents extends StatelessWidget {
       child: CommonContainer(
         borderBottomWidth: 2.5,
         borderBottomColor: AppColors.greyLight,
-        paddingVertical: 0.015,
+        paddingVertical: 0.02,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[

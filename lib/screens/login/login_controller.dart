@@ -173,6 +173,27 @@ class LoginController extends GetxController {
     return true;
   }
 
+  void onResetPassword() {
+    hideKeyboard();
+    ApiRequest(
+      method: ApiMethods.post,
+      path: '/rest-password',
+      className: 'LoginController',
+      requestFunction: onResetPassword,
+      withLoading: true,
+      body: <String, dynamic>{
+        'email': emailController.text.trim(),
+      },
+    ).request(
+      onSuccess: (dynamic data, dynamic response) {
+        Get.back();
+        showMessage(
+          description: response['status'],
+        );
+      },
+    );
+  }
+
   @override
   void onClose() {
     focusNode.dispose();

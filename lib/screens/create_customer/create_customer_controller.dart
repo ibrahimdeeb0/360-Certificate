@@ -148,15 +148,19 @@ class CreateCustomerController extends GetxController {
 
   void onPressNext() {
     screensValidation();
-
     if (validValue) {
       if (currentIndex == 3) {
         if (isAutoFillCust == true) {
           myAppController.certFormInfo[keyCustomerId] = customerData[keyId];
-
-          Get.offNamed(
-            myAppController.certFormInfo[keyFormRoute],
-          );
+          Get
+            ..back()
+            ..back()
+            ..toNamed(
+              myAppController.certFormInfo[keyFormRoute],
+              arguments: <String, dynamic>{
+                formKeyFromCertificate: false,
+              },
+            );
         } else {
           onAddCustomer();
         }
@@ -745,9 +749,15 @@ class CreateCustomerController extends GetxController {
 
         myAppController.certFormInfo[keyCustomerId] = addedCustomerData[keyId];
 
-        Get.offNamed(
-          myAppController.certFormInfo[keyFormRoute],
-        );
+        Get
+          ..back()
+          ..back()
+          ..toNamed(
+            myAppController.certFormInfo[keyFormRoute],
+            arguments: <String, dynamic>{
+              formKeyFromCertificate: false,
+            },
+          );
       },
     );
     update();

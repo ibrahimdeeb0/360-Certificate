@@ -11,10 +11,12 @@ class FormHeader extends StatelessWidget with PreferredSizeWidget {
     this.circleNumbering,
     this.showSaveBtn = true,
     this.onPressSave,
+    this.titleSize,
     Key? key,
   }) : super(key: key);
 
   final String? title;
+  final double? titleSize;
   final bool withBack;
   final bool withoutBackGround;
   final Function? onPressBack;
@@ -56,6 +58,7 @@ class FormHeader extends StatelessWidget with PreferredSizeWidget {
         title: CommonText(
           title ?? 'title',
           style: appTextStyles.h2StyleBlack(),
+          fontSize: titleSize ?? fontH2,
         ),
 
         leadingWidth: DEVICE_WIDTH * 0.25,
@@ -153,7 +156,7 @@ class CircleNumbering extends StatelessWidget {
             child: CommonText(
               numbers ?? '',
               style: appTextStyles.h4MediumStyleBlack().copyWith(
-                    fontWeight: FontWeight.w500,
+                    fontWeight: FontWeight.w600,
                     textAlign: TextAlign.center,
                     columnMainAxisAlignment: MainAxisAlignment.center,
                     rowMainAxisAlignment: MainAxisAlignment.center,

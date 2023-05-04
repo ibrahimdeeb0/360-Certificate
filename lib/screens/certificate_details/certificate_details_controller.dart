@@ -155,7 +155,7 @@ class CertificateDetailsController extends GetxController
   }
 
   void onEditCert() {
-    consoleLogPretty(certDetails['form_data']['customer']['id']);
+    // consoleLogPretty(certDetails['form_data']['form_id']);
     myAppController.certFormInfo[keyFormDataStatus] = FormDataStatus.editCert;
     myAppController.certFormInfo[keyCertId] = certDetails['form_data'][keyId];
     myAppController.certFormInfo[keyCustomerId] =
@@ -164,8 +164,49 @@ class CertificateDetailsController extends GetxController
         certDetails['form_data']['form_id'];
     myAppController.certFormInfo[keyTemplateData] =
         certDetails['form_data']['data'];
-
-    Get.toNamed(routeFormEICR);
+    if (certDetails['form_data']['form_id'] == 5) {
+      Get.toNamed(
+        routeFormEICR,
+        arguments: <String, dynamic>{
+          formKeyFromCertificate: true,
+        },
+      );
+    } else if (certDetails['form_data']['form_id'] == 9) {
+      Get.toNamed(
+        routeFormLandlord,
+        arguments: <String, dynamic>{
+          formKeyFromCertificate: true,
+        },
+      );
+    } else if (certDetails['form_data']['form_id'] == 4) {
+      Get.toNamed(
+        routeFormDangerNotice,
+        arguments: <String, dynamic>{
+          formKeyFromCertificate: true,
+        },
+      );
+    } else if (certDetails['form_data']['form_id'] == 11) {
+      Get.toNamed(
+        routeFormWarningNotice,
+        arguments: <String, dynamic>{
+          formKeyFromCertificate: true,
+        },
+      );
+    } else if (certDetails['form_data']['form_id'] == 3) {
+      Get.toNamed(
+        routeFormDomesticEic,
+        arguments: <String, dynamic>{
+          formKeyFromCertificate: true,
+        },
+      );
+    } else if (certDetails['form_data']['form_id'] == 1) {
+      Get.toNamed(
+        routeFormPortableTest,
+        arguments: <String, dynamic>{
+          formKeyFromCertificate: true,
+        },
+      );
+    }
   }
 
   late PDFDocument pdf;

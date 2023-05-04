@@ -75,18 +75,11 @@ const String iconFromToLine = '${iconsPath}from_to_line.svg';
 const String iconFullTripLine = '${iconsPath}full_trip_line.svg';
 
 //** */
-// const String iconAttention = '${iconsPath}icon_attention.svg';
-// const String iconProfilePic = '${iconsPath}icon_profile_pic.svg';
-// // const String iconInvoices = '${iconsPath}icon_invoices.svg';
-// const String iconArrowGo = '${iconsPath}arrow_go.svg';
-// const String iconDeleteAccount = '${iconsPath}icon_delete_account.svg';
-// const String iconChangePassword = '${iconsPath}icon_change_password.svg';
+
 //
 const String iconAppLogo = '${iconsPath}app_logo.svg';
-// const String iconHome = '${iconsPath}home.svg';
 const String iconJobDiary = '${iconsPath}job_diary.svg';
 const String iconCustomers = '${iconsPath}customers.svg';
-// const String iconMore = '${iconsPath}more.svg';
 const String iconQrCode = '${iconsPath}qr_code.svg';
 const String iconLogo = '${iconsPath}logo.svg';
 const String iconTodyJob = '${iconsPath}jobs.svg';
@@ -112,8 +105,7 @@ const String iconBooked = '${iconsPath}icon_booked.svg';
 const String iconInProgress = '${iconsPath}icon_in_progress.svg';
 const String iconEnterprise = '${iconsPath}icon_enterprise.svg';
 const String iconPhoneCall = '${iconsPath}icon_phone_call.svg';
-// const String iconPhone = '${iconsPath}icon_phone.svg';
-// const String iconEmail = '${iconsPath}icon_mail.svg';
+
 const String iconFilter = '${iconsPath}icon_filter.svg';
 const String iconCalendar = '${iconsPath}icon_calendar.svg';
 const String iconAddPerson = '${iconsPath}add_person.svg';
@@ -157,6 +149,13 @@ const String iconPDF = '${iconsPath}icon_pdf.svg';
 const String iconSetup = '${iconsPath}setup.svg';
 const String iconSetupDone = '${iconsPath}setup_done.svg';
 const String iconRevenue = '${iconsPath}icon_revenue.svg';
+const String icoCheckList = '${iconsPath}check_list.svg';
+const String icoBagWork = '${iconsPath}bag_work.svg';
+const String iconAddAttach = '${iconsPath}icon_add_attach.svg';
+const String iconAddImageAttach = '${iconsPath}icon_add_image_attach.svg';
+const String iconPlug = '${iconsPath}icon_plug.svg';
+const String iconPlugFill = '${iconsPath}icon_plug_fill.svg';
+const String iconImageAddLine = '${iconsPath}image-add-line.svg';
 
 // ----------------------------------------
 

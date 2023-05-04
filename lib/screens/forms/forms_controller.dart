@@ -9,36 +9,14 @@ class FormsController extends GetxController {
       keyTitle: 'Gas',
       keyItems: <Map<String, dynamic>>[
         <String, dynamic>{
-          keyId: 0,
+          keyId: 9,
           keyTitle: 'Landlord/Homeowner Gas Safety Record',
+          keyRoute: routeFormLandlord,
         },
         <String, dynamic>{
-          keyId: 0,
-          keyTitle: 'Caravan Boat Gas Safety Inspection Record',
-        },
-        <String, dynamic>{
-          keyId: 0,
+          keyId: 11,
           keyTitle: 'Warning Notice',
-        },
-        <String, dynamic>{
-          keyId: 0,
-          keyTitle: 'Gas Inspection Record',
-        },
-        <String, dynamic>{
-          keyId: 0,
-          keyTitle: 'Gas Testing And Purging',
-        },
-        <String, dynamic>{
-          keyId: 0,
-          keyTitle: 'Fumes Investigation Report',
-        },
-        <String, dynamic>{
-          keyId: 0,
-          keyTitle: 'Service/Maintenance Record',
-        },
-        <String, dynamic>{
-          keyId: 0,
-          keyTitle: 'Gas Boiler System Commissioning Checklist',
+          keyRoute: routeFormWarningNotice,
         },
       ],
     },
@@ -46,20 +24,24 @@ class FormsController extends GetxController {
       keyTitle: 'Electrical',
       keyItems: <Map<String, dynamic>>[
         <String, dynamic>{
-          keyId: 0,
-          keyTitle: 'Portable Appliance Testing',
+          keyId: 1,
+          keyTitle: 'Portable Appliance Testing (PAT)',
+          keyRoute: routeFormPortableTest,
         },
         <String, dynamic>{
-          keyId: 0,
-          keyTitle: 'Domestic Electrical Installation Certificate',
+          keyId: 4,
+          keyTitle: 'Electrical Danger Notice',
+          keyRoute: routeFormDangerNotice,
         },
         <String, dynamic>{
-          keyId: 0,
-          keyTitle: 'Electrical Danger Notification',
+          keyId: 3,
+          keyTitle: 'Domestic EIC',
+          keyRoute: routeFormDomesticEic,
         },
         <String, dynamic>{
           keyId: 5,
           keyTitle: 'EICR',
+          keyRoute: routeFormEICR,
         },
       ],
     },
@@ -73,6 +55,7 @@ class FormsController extends GetxController {
 
   // bool isNoTemp = false;
   void searchTemplate(Map<String, dynamic> formInfo) {
+    consoleLog(formInfo);
     // Get Templates related to selected Form
     listTemp = <dynamic>[
       ...allFormsTemplates
@@ -95,19 +78,13 @@ class FormsController extends GetxController {
     myAppController.certFormInfo[keyFormId] = formInfo[keyId];
     myAppController.certFormInfo[keyFormStatus] = FormStatus.create;
     myAppController.certFormInfo[keyFormDataStatus] = FormDataStatus.newForm;
-    myAppController.certFormInfo[keyFormRoute] = routeFormEICR;
+    myAppController.certFormInfo[keyFormRoute] = formInfo[keyRoute];
 
     consoleLog(myAppController.certFormInfo, key: 'form_data_Global');
-    // myAppController.selectedForm = <String, dynamic>{
-    //   ...formInfo,
-    //   'form_route': routeFormEICR,
-    //   'is_form_update': false,
-    // };
-    // consoleLog(myAppController.selectedForm, key: 'form_data_Global');
+
     Get.back();
-    Get.toNamed(
-      routeCreateCustomer,
-    );
+
+    Get.offAndToNamed(routeCreateCustomer);
   }
 
   Future<void> getFormsTemplates() async {
@@ -144,6 +121,7 @@ class FormsController extends GetxController {
     int? tempId,
   }) {
     startLoading();
+    consoleLog(formInfo);
     // get data
     ApiRequest(
       path: '/forms/templates/$tempId/show',
@@ -153,16 +131,15 @@ class FormsController extends GetxController {
       // formatResponse: true,
     ).request(
       onSuccess: (dynamic data, dynamic response) {
-        consoleLogPretty(data, key: 'template_data');
         myAppController.certFormInfo[keyFormId] = formInfo?[keyId];
         myAppController.certFormInfo[keyFormStatus] = FormStatus.create;
         myAppController.certFormInfo[keyFormDataStatus] =
             FormDataStatus.setTemp;
-        myAppController.certFormInfo[keyFormRoute] = routeFormEICR;
+        myAppController.certFormInfo[keyFormRoute] = formInfo?[keyRoute];
         myAppController.certFormInfo[keyTemplateData] = data;
 
-        consoleLog(myAppController.certFormInfo, key: 'form_data_Global');
-        Get.toNamed(routeCreateCustomer);
+        Get.back();
+        Get.offAndToNamed(routeCreateCustomer);
         update();
 
         // dismissLoading();

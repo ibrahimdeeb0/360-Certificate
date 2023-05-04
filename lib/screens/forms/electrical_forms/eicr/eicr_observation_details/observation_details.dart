@@ -48,6 +48,19 @@ class ObservationDetails extends StatelessWidget {
                     ),
                     isInputSelection: true,
                   ),
+                  SmallInputField(
+                    title: 'Location Reference',
+                    value: controller
+                        .observationData[formKeyObservationLocationReference],
+                    onTap: () => Get.bottomSheet(
+                      ObservationSelectBT(
+                        listTitles: formList.observationLocationRef,
+                        keyOfValue: formKeyObservationLocationReference,
+                        controller: controller,
+                      ),
+                    ),
+                    isInputSelection: true,
+                  ),
                   CommonContainer(
                     onPress: () => formsDialog(
                       title: 'THE VAULT',

@@ -6,6 +6,9 @@ class HomeBottomBarController extends GetxController {
   void onChangeIndex(int index) {
     selectedIndex = index;
     update();
+    if (selectedIndex == 0) {
+      certificatesController.scrollController.jumpTo(0.0);
+    }
   }
 
   // @override

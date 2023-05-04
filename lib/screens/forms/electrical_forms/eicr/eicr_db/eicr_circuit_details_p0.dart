@@ -11,7 +11,7 @@ class CircuitDetailsP0 extends StatelessWidget {
         return Scaffold(
           backgroundColor: Colors.white,
           appBar: Header(
-            title: controller.tabIndex == 0 ? 'Circuit Details' : 'TestResult',
+            title: controller.tabIndex == 0 ? 'Circuit Details' : 'Test Result',
             actionItem: ActionItem(
               type: ActionType.save,
               onPress: Get.back,

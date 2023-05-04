@@ -216,7 +216,7 @@ class SearchFullAddressBottomSheet extends StatelessWidget {
       init: CreateCustomerController(),
       builder: (CreateCustomerController controller) {
         return BottomSheetContainer(
-          title: 'Address related Postcode',
+          title: 'Select Address',
           child: Column(
             children: <Widget>[
               SizedBox(height: DEVICE_HEIGHT * 0.02),
@@ -279,7 +279,7 @@ class SearchAddressBottomSheet extends StatelessWidget {
       builder: (CreateCustomerController controller) {
         return BottomSheetContainer(
           // responsiveContent: true,
-          title: 'Search address',
+          title: 'Search address using Postal Code',
           child: Column(
             children: <Widget>[
               SizedBox(
@@ -287,7 +287,7 @@ class SearchAddressBottomSheet extends StatelessWidget {
               ),
               CommonInput(
                 onChanged: controller.onSearchingAddress,
-                hint: 'Enter address or city or postal code',
+                hint: 'Enter Postal Code',
                 controller: controller.searchAddressController,
               ),
               SizedBox(

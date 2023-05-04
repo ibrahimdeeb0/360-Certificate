@@ -9,6 +9,10 @@ class FormToggleButton extends StatelessWidget {
     this.onChangeValue,
     this.toggleType,
     this.textWidget,
+    this.textWidth,
+    this.axisAlignment,
+    this.isBtnBox = false,
+    this.marginBottom = 0.02,
     Key? key,
   }) : super(key: key);
 
@@ -19,15 +23,19 @@ class FormToggleButton extends StatelessWidget {
   final Function(String)? onChangeValue;
   final FormToggleType? toggleType;
   final Widget? textWidget;
+  final double? textWidth;
+  final CrossAxisAlignment? axisAlignment;
+  final bool isBtnBox;
+  final double marginBottom;
 
   @override
   Widget build(BuildContext context) {
     return CommonContainer(
       paddingHorizontal: paddingHorizontal,
-      marginBottom: 0.02,
+      marginBottom: marginBottom,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: axisAlignment ?? CrossAxisAlignment.center,
         children: <Widget>[
           if (textWidget == null)
             CommonText(
@@ -35,8 +43,8 @@ class FormToggleButton extends StatelessWidget {
               fontSize: titleSize,
               style: appTextStyles.textStartStyle,
               bottomChild: const SizedBox(),
-              containerStyle: const CommonContainerModel(
-                width: 0.65,
+              containerStyle: CommonContainerModel(
+                width: textWidth ?? 0.65,
                 marginRight: 0.02,
               ),
             )
@@ -46,18 +54,19 @@ class FormToggleButton extends StatelessWidget {
             global: false,
             init: FormToggleButtonController(
               currentValue: value ?? 'N/A',
-              toggleType: toggleType ?? FormToggleType.yesNo,
+              toggleType: toggleType ?? FormToggleType.yesNoNA,
             ),
             builder: (FormToggleButtonController controller) {
-              return CommonText(
-                controller.currentValue,
-                fontColor: AppColors.black,
-                fontWeight: FontWeight.w500,
+              return CommonButton(
                 onPress: () {
                   controller.onChangeCurrentValue();
                   onChangeValue?.call(controller.currentValue!);
                 },
-                containerStyle: appContainerStyles.formToggleStyle,
+                text: controller.currentValue,
+                width: isBtnBox ? 0.14 : 0.2,
+                height: isBtnBox ? 0.06 : 0.045,
+                backgroundColor: Colors.blueGrey,
+                alignment: Alignment.center,
               );
             },
           ),

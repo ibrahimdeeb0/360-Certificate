@@ -13,6 +13,7 @@ class ObservationDetailsController extends GetxController {
   Map<String, dynamic> observationData = <String, dynamic>{
     formKeyObservationDetails: 'Details',
     formKeyObservationCode: 'C1',
+    formKeyObservationLocationReference: 'N/A',
   };
 
   @override
@@ -102,6 +103,7 @@ class ObservationDetailsController extends GetxController {
     observationData = <String, dynamic>{
       formKeyObservationDetails: 'Details',
       formKeyObservationCode: 'C1',
+      formKeyObservationLocationReference: 'N/A',
     };
     update();
   }

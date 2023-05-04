@@ -46,9 +46,11 @@ const String keyOnPress = 'on_press';
 const String keyIsSelected = 'is_selected';
 const String keyValue = 'value';
 const String keyItems = 'items';
+const String keyForm = 'form';
 const String formKey = 'form_key';
 const String keyFormData = 'form_data';
 const String keyStatus = 'status';
+const String keyRoute = 'route';
 
 // *************** Api request function keys ***************
 const String keyRequestFunction = 'requestFunction';
@@ -118,3 +120,5 @@ const String formNameDomesticElectricalInstallationConditionReport =
     'Domestic Electrical installation Condition report';
 
 const String formKeyGazSafetyData = 'gaz_safety_data';
+const String formKeyFormData = 'form_data';
+const String formKeyFromCertificate = 'from_certificate';

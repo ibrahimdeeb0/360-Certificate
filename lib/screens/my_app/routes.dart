@@ -81,10 +81,6 @@ List<GetPage<dynamic>> appRoutes = <GetPage<dynamic>>[
     name: routeSearch,
     page: () => const Search(),
   ),
-  GetPage<EICR>(
-    name: routeFormEICR,
-    page: () => const EICR(),
-  ),
   GetPage<CompletedCert>(
     name: routeCompletedCert,
     page: () => const CompletedCert(),
@@ -105,8 +101,32 @@ List<GetPage<dynamic>> appRoutes = <GetPage<dynamic>>[
     name: routeAddNewNote,
     page: () => const AddNewNote(),
   ),
-GetPage<CustomerProfile>(
-  name: routeCustomerProfile,
-   page: () => const CustomerProfile(),
- ), 
+  GetPage<CustomerProfile>(
+    name: routeCustomerProfile,
+    page: () => const CustomerProfile(),
+  ),
+  GetPage<EICR>(
+    name: routeFormEICR,
+    page: () => const EICR(),
+  ),
+  GetPage<LandlordSafety>(
+    name: routeFormLandlord,
+    page: () => const LandlordSafety(),
+  ),
+  GetPage<DangerNotice>(
+    name: routeFormDangerNotice,
+    page: () => const DangerNotice(),
+  ),
+  GetPage<WarningNotice>(
+    name: routeFormWarningNotice,
+    page: () => const WarningNotice(),
+  ),
+  GetPage<DomesticEic>(
+    name: routeFormDomesticEic,
+    page: () => const DomesticEic(),
+  ),
+  GetPage<PortableTest>(
+    name: routeFormPortableTest,
+    page: () => const PortableTest(),
+  ),
 ];

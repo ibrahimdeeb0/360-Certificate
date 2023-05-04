@@ -18,3 +18,10 @@ enum FormDateType {
   reportBy,
   inspectedBy,
 }
+
+enum TemplateStatus {
+  newTemp,
+  updateTemp,
+  deleteTemp,
+  defaultTemp,
+}

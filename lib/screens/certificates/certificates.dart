@@ -17,7 +17,7 @@ class Certificates extends StatelessWidget {
               SizedBox(height: DEVICE_HEIGHT * 0.02),
               ...controller.filteredCert.map(
                 (dynamic item) {
-                  final String certStatus = item['status']['name'];
+                  final String certStatus = item[keyStatus][keyName];
                   return SortCertificateCard(
                     onPress: () => Get.toNamed(
                       routeCertificateDetails,
@@ -27,12 +27,12 @@ class Certificates extends StatelessWidget {
                       },
                     ),
                     code: '#${item[keyId]}',
-                    formType: item['form']['type'],
+                    formType: item[keyForm][keyType],
                     price: '£ 0.0',
                     date: DateFormat('dd-MM-yyyy')
                         .format(DateTime.parse(item['created_at'].toString())),
-                    certStatus: item['status']['name'],
-                    customerName: '${item['customer']['name']}'.capitalize,
+                    certStatus: certStatus,
+                    customerName: '${item['customer'][keyName]}'.capitalize,
                     customerAddress: item['customer']['address'],
                     statusClr: certStatus == 'Completed'
                         ? AppColors.completedClr
@@ -70,7 +70,7 @@ class FilterCert extends StatelessWidget {
                 ...controller.filterItems.map(
                   (Map<String, dynamic> item) => CustomRadioSelection(
                     title: item[keyTitle],
-                    onPress: () => controller.onFilterCert(item),
+                    onPress: () => controller.onFilterCert(certItem: item),
                     isSelected: controller.selectedType == item[keyType],
                   ),
                 ),
