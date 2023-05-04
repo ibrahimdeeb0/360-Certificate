@@ -199,6 +199,13 @@ class CertificateDetailsController extends GetxController
           formKeyFromCertificate: true,
         },
       );
+    } else if (certDetails['form_data']['form_id'] == 1) {
+      Get.toNamed(
+        routeFormPortableTest,
+        arguments: <String, dynamic>{
+          formKeyFromCertificate: true,
+        },
+      );
     }
   }
 
