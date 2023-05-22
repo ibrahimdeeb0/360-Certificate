@@ -322,7 +322,12 @@ class EicrController extends GetxController {
         const EICRSectionDB(),
         const EICRSectionJ(),
         const EICRSectionKPart1(),
-        const EICRSectionInputField(),
+        const EICRSectionKPart2(),
+        const EICRSectionKPart3(),
+        const EICRSectionKPart4(),
+        const EICRSectionKPart5(),
+        const EICRSectionKPart6(),
+        const EICRSectionKPart7(),
         const EICRSectionInputField(),
         const EICRFinalPage(),
       ];
@@ -507,7 +512,7 @@ class EicrController extends GetxController {
   bool isCertificateCreated = true;
   void onPressNext({bool fromSave = false}) {
     if (isTemplate!) {
-      if (selectedId == 20) {
+      if (listFormSections.length - 2 == selectedId) {
         onSaveTemplate();
       } else {
         selectedId = selectedId + 1;
@@ -556,7 +561,7 @@ class EicrController extends GetxController {
 
   String finalPageButton() {
     if (isTemplate!) {
-      if (selectedId == 21) {
+      if (selectedId == listFormSections.length - 2) {
         return 'Save';
       } else {
         return 'Next';

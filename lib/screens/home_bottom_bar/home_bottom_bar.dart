@@ -63,6 +63,7 @@ class HomeBottomBar extends StatelessWidget {
             shadowOpacity: 0.2,
             backgroundColor: COMMON_WHITE_COLOR,
             shadowColor: COMMON_GREY_COLOR,
+            height: 0.077,
             child: BottomNavigationBar(
               items: <BottomNavigationBarItem>[
                 BottomNavigationBarItem(

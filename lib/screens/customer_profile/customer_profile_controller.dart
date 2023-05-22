@@ -120,6 +120,7 @@ class CustomerProfileController extends GetxController
       className: 'CustomerProfileController/onGeCustomerDetails',
       requestFunction: onGeCustomerDetails,
       withLoading: true,
+      formatResponse: true,
     ).request(
       onSuccess: (dynamic data, dynamic response) {
         myAppController.localStorage.saveToStorage(

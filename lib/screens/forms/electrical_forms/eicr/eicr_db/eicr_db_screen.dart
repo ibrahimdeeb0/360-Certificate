@@ -49,21 +49,21 @@ class DistributionBoardScreen extends StatelessWidget {
                                 [formKeyBoardLocation] ==
                             ''
                         ? ''
-                        : 'Location: ${controller.selectedParentDistrBoardData?[parentDistributionBoardValues][formKeyBoardLocation]}',
+                        : 'Location: ${controller.selectedParentDistrBoardData?[parentDistributionBoardValues][formKeyBoardLocation] ?? ''}',
                     //
                     zsName: controller.selectedParentDistrBoardData?[
                                     parentDistributionBoardValues]
                                 [formKeyZsAtThisBoard] ==
                             ''
                         ? ''
-                        : 'Zs: ${controller.selectedParentDistrBoardData?[parentDistributionBoardValues][formKeyZsAtThisBoard]}',
+                        : 'Zs: ${controller.selectedParentDistrBoardData?[parentDistributionBoardValues][formKeyZsAtThisBoard] ?? ''}',
                     //
                     ipfName: controller.selectedParentDistrBoardData?[
                                     parentDistributionBoardValues]
                                 [formKeyBoardIpfBoard] ==
                             ''
                         ? ''
-                        : 'Ipf: ${controller.selectedParentDistrBoardData?[parentDistributionBoardValues][formKeyBoardIpfBoard]}',
+                        : 'Ipf: ${controller.selectedParentDistrBoardData?[parentDistributionBoardValues][formKeyBoardIpfBoard] ?? ''}',
                   ),
                   CommonText(
                     'Circuits and Test Result',
