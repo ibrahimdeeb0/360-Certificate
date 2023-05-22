@@ -22,3 +22,4 @@ export 'text_container/index.dart';
 export 'toggle/index.dart';
 export 'turn_on_location_pop_up/index.dart';
 export 'turn_on_notification_pop_up/index.dart';
+export 'view_image_container/index.dart';
