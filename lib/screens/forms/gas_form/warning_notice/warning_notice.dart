@@ -13,8 +13,9 @@ class WarningNotice extends StatelessWidget {
             withBack: false,
             title: 'Gas Warning Notice',
             circleNumbering: controller.pagesNum(),
-            showSaveBtn: (controller.selectedId !=
-                    controller.listFormSections.length - 1 &&
+            showSaveBtn: ((controller.selectedId !=
+                        controller.listFormSections.length - 1 &&
+                    controller.selectedId != 0) &&
                 !controller.isTemplate!),
             onPressSave: () => controller.onNext(fromSave: true),
           ),

@@ -25,6 +25,8 @@ class PortableTestController extends GetxController {
   File? customerSignature;
   Uuid uuid = const Uuid();
 
+  bool isFromCertificate = false;
+
   bool isCertificateCreated = false;
 
   DateTime? selectedDate;
@@ -75,6 +77,7 @@ class PortableTestController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    isFromCertificate = Get.arguments?[formKeyFromCertificate] ?? false;
     customerId = myAppController.certFormInfo[keyCustomerId];
     formId = myAppController.certFormInfo[keyFormId];
     formBody[keyFormId] = myAppController.certFormInfo[keyFormId];
@@ -368,7 +371,19 @@ class PortableTestController extends GetxController {
         certificatesController.getAllCert();
         homeController.getCertCount();
         profileController.getProfileData();
-        Get.offAllNamed(routeHomeBottomBar);
+
+        if (isFromCertificate) {
+          Get.back();
+          Get.find<CertificateDetailsController>().getCompetedCert();
+        } else {
+          Get.offNamed(
+            routeCertificateDetails,
+            arguments: <String, dynamic>{
+              keyId: certId,
+              'customer_id': customerId,
+            },
+          );
+        }
       },
       onError: (dynamic error) {
         dismissLoading();
@@ -402,10 +417,23 @@ class PortableTestController extends GetxController {
         body: certData,
       ).request(onSuccess: (dynamic data, dynamic response) async {
         myAppController.clearCertFormInfo();
+        myAppController.clearCertFormInfo();
         certificatesController.getAllCert();
         homeController.getCertCount();
         profileController.getProfileData();
-        Get.offAllNamed(routeHomeBottomBar);
+
+        if (isFromCertificate) {
+          Get.back();
+          Get.find<CertificateDetailsController>().getCompetedCert();
+        } else {
+          Get.offNamed(
+            routeCertificateDetails,
+            arguments: <String, dynamic>{
+              keyId: certId,
+              'customer_id': customerId,
+            },
+          );
+        }
       }, onError: (dynamic error) {
         dismissLoading();
       });

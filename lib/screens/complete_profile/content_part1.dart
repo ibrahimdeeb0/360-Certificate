@@ -22,7 +22,7 @@ class ContentPart1 extends StatelessWidget {
               0.03.ph,
               ...controller.listAllForms.map(
                 (Map<String, dynamic> item) => CustomSelectCheckbox(
-                  title: item[keyName],
+                  title: item[keyTitle],
                   wihBottomBorder: false,
                   onPress: () => controller.onSelectForm(item),
                   isSelected: controller.selectedForms
@@ -31,25 +31,7 @@ class ContentPart1 extends StatelessWidget {
                       .isNotEmpty,
                 ),
               ),
-              ...controller.unActiveForms.map(
-                (Map<String, dynamic> item) => CustomSelectCheckbox(
-                  title: item[keyName],
-                  wihBottomBorder: false,
-                  onPress: () {
-                    // consoleLog('test unActive ');
-                    const SnackBar snackBar = SnackBar(
-                      content: CommonText(
-                        'This Form Not Active',
-                        fontColor: Colors.white,
-                      ),
-                      duration: Duration(seconds: 1),
-                    );
-
-                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                  },
-                ),
-              ),
-              0.3.ph,
+              0.25.ph,
               CommonText(
                 "If this doesn't apply to your business you can press skip",
                 textAlign: TextAlign.start,

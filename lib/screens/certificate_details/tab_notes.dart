@@ -132,12 +132,21 @@ class NotesCard extends StatelessWidget {
                   marginTop: 0.02,
                   clipBehavior: Clip.hardEdge,
                   marginRight: 0.04,
-                  child: CachedImage(
-                    image: '${images?[index]['url']}',
-                    withPlaceHolder: true,
-                    fit: BoxFit.cover,
-                    width: 1.flexWidth,
-                    height: 1.flexHeight,
+                  onPress: () => Get.dialog(
+                    ViewImageContainer(imagePath: '${images?[index]['url']}'),
+                  ),
+                  child: AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 500),
+                    child: Hero(
+                      tag: '${images?[index]['url']}',
+                      child: CachedImage(
+                        image: '${images?[index]['url']}',
+                        withPlaceHolder: true,
+                        fit: BoxFit.cover,
+                        width: 1.flexWidth,
+                        height: 1.flexHeight,
+                      ),
+                    ),
                   ),
                 );
               },

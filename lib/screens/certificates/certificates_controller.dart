@@ -44,7 +44,6 @@ class CertificatesController extends GetxController {
     },
   ];
 
-
   @override
   void onInit() {
     super.onInit();
@@ -123,6 +122,7 @@ class CertificatesController extends GetxController {
       className: 'CertificatesController/getAllCert',
       requestFunction: getAllCert,
       withLoading: true,
+      formatResponse: true,
     ).request(
       onSuccess: (dynamic data, dynamic response) {
         myAppController.localStorage.saveToStorage(

@@ -23,11 +23,11 @@ class MoreController extends GetxController {
           keyIcon: iconSettings,
           keyOnPress: () => Get.toNamed(routeMySettings),
         },
-        <String, dynamic>{
-          keyTitle: 'My Subscription',
-          keyIcon: iconSubscription,
-          keyOnPress: () => Get.toNamed(routeMySubscription),
-        },
+        // <String, dynamic>{
+        //   keyTitle: 'My Subscription',
+        //   keyIcon: iconSubscription,
+        //   keyOnPress: () => Get.toNamed(routeMySubscription),
+        // },
         <String, dynamic>{
           keyTitle: 'Logout',
           keyIcon: iconLogout,

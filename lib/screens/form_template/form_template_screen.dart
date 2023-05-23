@@ -181,7 +181,7 @@ class TemplateButtons extends StatelessWidget {
       backgroundColor: status == TemplateStatus.deleteTemp
           ? Colors.red
           : status == TemplateStatus.defaultTemp
-              ? AppColors.red
+              ? AppColors.green
               : AppColors.primary,
       marginBottom: 0.02,
       child: CommonText(

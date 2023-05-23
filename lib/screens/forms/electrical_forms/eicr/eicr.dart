@@ -16,12 +16,15 @@ class EICR extends StatelessWidget {
             withBack: false,
             title: 'EICR',
             circleNumbering: controller.pagesNum(),
-            showSaveBtn:
-                (controller.selectedId != 21 && !controller.isTemplate!),
+            showSaveBtn: ((controller.selectedId !=
+                        controller.listFormSections.length - 1 &&
+                    controller.selectedId != 0) &&
+                !controller.isTemplate!),
             onPressSave: () => controller.onPressNext(fromSave: true),
           ),
           // floatingActionButton: FloatingActionButton(onPressed: () {
-          //   consoleLog(myAppController.selectedForm);
+          //   consoleLog(controller.selectedId);
+          //   consoleLog(controller.listFormSections.length - 2);
           // }),
           body: CommonContainer(
             width: 1,

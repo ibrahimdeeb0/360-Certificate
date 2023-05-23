@@ -59,50 +59,32 @@ class CompleteProfileController extends GetxController {
   };
 
   List<Map<String, dynamic>> listAllForms = <Map<String, dynamic>>[
-    // <String, dynamic>{
-    //   keyId: 1,
-    //   keyName: 'Portable Appliance Testing',
-    // },
-    // <String, dynamic>{
-    //   keyId: 3,
-    //   keyName: 'Domestic Electrical Installation Certificate'
-    // },
-    // <String, dynamic>{
-    //   keyId: 4,
-    //   keyName: 'Electrical Danger Notification',
-    // },
     <String, dynamic>{
-      keyId: 5,
-      keyName: 'Domestic Electrical installation Condition report'
+      keyId: 9,
+      keyTitle: 'Landlord/Homeowner Gas Safety Record',
     },
-    // <String, dynamic>{
-    //   keyId: 9,
-    //   keyName: 'Landlord/Homeowner Gas Safety Record',
-    // },
-  ];
-
-  List<Map<String, dynamic>> unActiveForms = <Map<String, dynamic>>[
+    <String, dynamic>{
+      keyId: 11,
+      keyTitle: 'Warning Notice',
+    },
     <String, dynamic>{
       keyId: 1,
-      keyName: 'Portable Appliance Testing',
-    },
-    <String, dynamic>{
-      keyId: 3,
-      keyName: 'Domestic Electrical Installation Certificate'
+      keyTitle: 'Portable Appliance Testing (PAT)',
     },
     <String, dynamic>{
       keyId: 4,
-      keyName: 'Electrical Danger Notification',
+      keyTitle: 'Electrical Danger Notice',
     },
-    // <String, dynamic>{
-    //   keyId: 5,
-    //   keyName: 'Domestic Electrical installation Condition report'
-    // },
     <String, dynamic>{
-      keyId: 9,
-      keyName: 'Landlord/Homeowner Gas Safety Record',
+      keyId: 3,
+      keyTitle: 'Domestic EIC',
+    },
+    <String, dynamic>{
+      keyId: 5,
+      keyTitle: 'EICR',
     },
   ];
+
   List<Map<String, dynamic>> selectedForms = <Map<String, dynamic>>[];
 
   List<dynamic> allCountries = <dynamic>[];

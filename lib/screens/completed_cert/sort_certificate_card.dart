@@ -45,33 +45,33 @@ class SortCertificateCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               CommonText(
-                code ?? '#148905',
+                code ?? '',
                 marginHorizontal: 0.025,
                 leftChild: SvgPicture.asset(
                   iconCertificates,
                   color: Colors.black,
                 ),
               ),
-              CommonText(
-                formType ?? 'Gas',
-                // fontWeight: FontWeight.w600,
-                fontSize: fontH3,
-                // marginHorizontal: 0.04,
-                // rightChild: CommonText(
-                //   price ?? '£ 125',
-                //   fontWeight: FontWeight.bold,
-                // ),
-              )
+              CommonContainer(
+                // backgroundColor: Colors.blueGrey,
+                width: 0.5,
+                alignment: AlignmentDirectional.topEnd,
+                child: CommonText(
+                  formType ?? '',
+                  fontSize: fontH3,
+                  textAlign: TextAlign.center,
+                ),
+              ),
             ],
           ),
           CommonText(
-            date ?? '14-06-2022',
+            date ?? '',
             fontSize: fontH3,
             fontColor: AppColors.greyDark,
             rowMainAxisSize: MainAxisSize.max,
             rowMainAxisAlignment: MainAxisAlignment.spaceBetween,
             rightChild: CommonText(
-              certStatus ?? 'Completed',
+              certStatus ?? '',
               fontSize: fontH3,
               fontColor: Colors.black,
               fontWeight: FontWeight.w500,
@@ -94,7 +94,7 @@ class SortCertificateCard extends StatelessWidget {
             color: Color(AppColors.greyLightBorder),
           ),
           CommonText(
-            customerName ?? 'Harry mied',
+            customerName ?? '',
             marginHorizontal: 0.02,
             leftChild: SvgPicture.asset(
               iconPerson,
@@ -107,7 +107,7 @@ class SortCertificateCard extends StatelessWidget {
             ),
           ),
           CommonText(
-            customerAddress ?? '1234,Rgent Street, International TribuTribu',
+            customerAddress ?? '',
             inlineSpans: const <InlineSpan>[],
             textAlign: TextAlign.start,
             rowMainAxisSize: MainAxisSize.max,

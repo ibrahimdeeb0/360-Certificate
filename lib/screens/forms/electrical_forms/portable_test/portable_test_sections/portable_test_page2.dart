@@ -16,10 +16,8 @@ class PortableTestPage2 extends StatelessWidget {
           children: <Widget>[
             CommonContainer(
               style: appContainerStyles.formSectionsStyle,
-              marginTop: 0.0,
               child: Column(
                 children: <Widget>[
-                  0.02.ph,
                   const CustomTextFormTitle(
                     leftText: '',
                     text: 'SIGNATURE OF ENGINEER',

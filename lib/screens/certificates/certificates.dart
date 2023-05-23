@@ -27,7 +27,7 @@ class Certificates extends StatelessWidget {
                       },
                     ),
                     code: '#${item[keyId]}',
-                    formType: item[keyForm][keyType],
+                    formType: item[keyForm][keyName],
                     price: '£ 0.0',
                     date: DateFormat('dd-MM-yyyy')
                         .format(DateTime.parse(item['created_at'].toString())),
