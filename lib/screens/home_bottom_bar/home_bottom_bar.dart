@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../general_exports.dart';
@@ -63,7 +65,7 @@ class HomeBottomBar extends StatelessWidget {
             shadowOpacity: 0.2,
             backgroundColor: COMMON_WHITE_COLOR,
             shadowColor: COMMON_GREY_COLOR,
-            height: 0.077,
+            height: Platform.isAndroid ? 0.077 : 0.09,
             child: BottomNavigationBar(
               items: <BottomNavigationBarItem>[
                 BottomNavigationBarItem(

@@ -33,7 +33,7 @@ class CertificateDetails extends StatelessWidget {
                       ),
                       CommonContainer(
                         paddingHorizontal: 0.04,
-                        height: 0.8297,
+                        height: 0.81,
                         child: Column(
                           children: <Widget>[
                             SizedBox(height: DEVICE_HEIGHT * 0.02),

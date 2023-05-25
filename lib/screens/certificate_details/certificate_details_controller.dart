@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:advance_pdf_viewer/advance_pdf_viewer.dart';
 import 'package:flutter/services.dart';
 import 'package:open_filex/open_filex.dart';
@@ -241,7 +243,9 @@ class CertificateDetailsController extends GetxController
 
         await launchUrl(
           Uri.parse(pdfFilePath!),
-          mode: LaunchMode.externalNonBrowserApplication,
+          mode: Platform.isAndroid
+              ? LaunchMode.externalNonBrowserApplication
+              : LaunchMode.inAppWebView,
         );
 
         // onOpenPdf();
