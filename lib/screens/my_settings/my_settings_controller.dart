@@ -1,7 +1,16 @@
+import 'package:image_picker/image_picker.dart';
+
 import '../../general_exports.dart';
 
 class MySettingsController extends GetxController {
   Map<String, dynamic> userData = <String, dynamic>{};
+  XFile? compLogoFile;
+
+  @override
+  void onReady() {
+    super.onReady();
+    getUserData();
+  }
 
   Future<void> getUserData() async {
     hideKeyboard();
@@ -30,15 +39,52 @@ class MySettingsController extends GetxController {
     }
   }
 
+  Future<dynamic> pickerImage(ImageSource source) async {
+    hideKeyboard();
+    await ImagePicker()
+        .pickImage(
+      source: source,
+      imageQuality: 30,
+    )
+        .then(
+      (XFile? value) {
+        compLogoFile = value;
+        update();
+        if (Get.isBottomSheetOpen!) {
+          Get.back();
+        }
+        updateCompanyLogo();
+        return null;
+      },
+    );
+    update();
+  }
+
+  Future<void> updateCompanyLogo() async {
+    hideKeyboard();
+    startLoading();
+    ApiRequest(
+      method: ApiMethods.post,
+      path: apiUpdateCompanyLogo,
+      className: 'MySettingsController/updateCompanyLogo',
+      requestFunction: updateCompanyLogo,
+      body: await imageAsFormData(file: compLogoFile),
+    ).request(
+      onSuccess: (dynamic data, dynamic response) {
+        getUserData();
+      },
+      onError: (dynamic error) {
+        dismissLoading();
+      },
+    );
+    update();
+  }
+
   // @override
   // void onInit() {
   //   super.onInit();
   // }
-  @override
-  void onReady() {
-    super.onReady();
-    getUserData();
-  }
+
   // @override
   // void onClose() {
   //   super.onClose();

@@ -27,6 +27,14 @@ class RegisterController extends GetxController {
     update();
   }
 
+  bool isHaveInviteCode = false;
+
+  // ignore: avoid_positional_boolean_parameters
+  void haveInviteCode(bool value) {
+    isHaveInviteCode = !isHaveInviteCode;
+    update();
+  }
+
   // bool passwordValidator(String? value) {
   //   if (passwordController.text.length <= 6) {
   //     showMessage(

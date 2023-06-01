@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../general_exports.dart';
 
@@ -90,6 +91,8 @@ class CompleteProfileController extends GetxController {
   List<dynamic> allCountries = <dynamic>[];
 
   bool isVatRegistered = false;
+
+  XFile? compLogoFile;
 
   //* ----- Map
 
@@ -429,26 +432,34 @@ class CompleteProfileController extends GetxController {
     }
   }
 
-  void onCompleteProfile() {
+  Future<void> onCompleteProfile() async {
+    final Map<String, dynamic> bodyJson = <String, dynamic>{
+      'company_name': registeredCompanyController.text.trim(),
+      'trading_name': tradingNameController.text.trim(),
+      'registration_number': registrationNumberController.text.trim(),
+      'has_vat': isVatRegistered ? 'yes' : 'no',
+      'vat_number': vATNumberController.text.trim(),
+      'registered_address': addressController.text.trim(),
+      'postal_code': postcodeController.text.trim(),
+      'number_street_name': streetController.text.trim(),
+      'city': cityController.text.trim(),
+      'country_id': selectedCountry?[keyId],
+      'forms_id': selectedForms.map((dynamic item) => item[keyId]).toList(),
+      // 'logo' : ,
+    };
     ApiRequest(
       method: ApiMethods.post,
       path: keyCompleteProfile,
       className: 'CompleteProfileController/onCompleteProfile',
       requestFunction: onCompleteProfile,
       withLoading: true,
-      body: <String, dynamic>{
-        'company_name': registeredCompanyController.text.trim(),
-        'trading_name': tradingNameController.text.trim(),
-        'registration_number': registrationNumberController.text.trim(),
-        'has_vat': isVatRegistered ? 'yes' : 'no',
-        'vat_number': vATNumberController.text.trim(),
-        'registered_address': addressController.text.trim(),
-        'postal_code': postcodeController.text.trim(),
-        'number_street_name': streetController.text.trim(),
-        'city': cityController.text.trim(),
-        'country_id': selectedCountry?[keyId],
-        'forms_id': selectedForms.map((dynamic item) => item[keyId]).toList(),
-      },
+      body: compLogoFile == null
+          ? bodyJson
+          : await addFormDataToJson(
+              jsonObject: bodyJson,
+              fileKey: 'logo',
+              file: compLogoFile,
+            ),
     ).request(
       onSuccess: (dynamic data, dynamic response) {
         final dynamic tempUserData = myAppController.userData;
@@ -481,5 +492,23 @@ class CompleteProfileController extends GetxController {
         },
       );
     }
+  }
+
+  Future<dynamic> pickerImage(ImageSource source) async {
+    hideKeyboard();
+    await ImagePicker()
+        .pickImage(
+      source: source,
+      imageQuality: 30,
+    )
+        .then(
+      (XFile? value) {
+        compLogoFile = value;
+        update();
+        Get.back();
+        return null;
+      },
+    );
+    update();
   }
 }

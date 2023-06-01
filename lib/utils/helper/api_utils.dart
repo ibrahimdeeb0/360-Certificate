@@ -18,14 +18,19 @@ dynamic addFormDataToJson({
   return dio_form_data.FormData.fromMap(jsonObject);
 }
 
-dynamic imageAsFormData(XFile file) async {
-  final String fileName = file.path.split('/').last;
-  return dio_form_data.FormData.fromMap(<String, dynamic>{
-    'file': await dio_form_data.MultipartFile.fromFile(
-      file.path,
-      filename: fileName,
-    ),
-  });
+dynamic imageAsFormData({
+  XFile? file,
+  String fileKey = 'logo',
+}) async {
+  final String fileName = file!.path.split('/').last;
+  return dio_form_data.FormData.fromMap(
+    <String, dynamic>{
+      fileKey: await dio_form_data.MultipartFile.fromFile(
+        file.path,
+        filename: fileName,
+      ),
+    },
+  );
 }
 
 dynamic customerServiceFormData({

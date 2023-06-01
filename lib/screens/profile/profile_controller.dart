@@ -179,8 +179,7 @@ class ProfileController extends GetxController {
     await ImagePicker()
         .pickImage(
       source: source,
-      maxWidth: DEVICE_WIDTH * 0.285,
-      maxHeight: DEVICE_HEIGHT * 0.13,
+      imageQuality: 30,
     )
         .then(
       (XFile? value) {

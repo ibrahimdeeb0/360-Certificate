@@ -101,6 +101,24 @@ class Register extends StatelessWidget {
                       ],
                     ),
                   ),
+                  CommonText(
+                    'Did You Get An Invitation Code?',
+                    rowMainAxisSize: MainAxisSize.max,
+                    rowMainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    rightChild: Switch(
+                      activeColor: Colors.green,
+                      value: controller.isHaveInviteCode,
+                      onChanged: controller.haveInviteCode,
+                    ),
+                    containerStyle: const CommonContainerModel(
+                      marginVertical: 0.01,
+                    ),
+                  ),
+                  if (controller.isHaveInviteCode)
+                    const CommonInput(
+                      hint: 'Enter Your Code',
+                      marginBottom: 0.02,
+                    ),
                   if (controller.selectedBusinessType.isNotEmpty)
                     SizedBox(height: DEVICE_HEIGHT * 0.01),
                   CommonInput(

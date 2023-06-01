@@ -1,3 +1,8 @@
+import 'dart:io';
+
+import 'package:flutter_svg/svg.dart';
+import 'package:image_picker/image_picker.dart';
+
 import '../../general_exports.dart';
 
 class MySettings extends StatelessWidget {
@@ -58,6 +63,7 @@ class MySettings extends StatelessWidget {
                         // paddingTop: 0.02,
                         child: SingleChildScrollView(
                           child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               CommonText(
                                 'Turn Invoice Feature',
@@ -99,6 +105,70 @@ class MySettings extends StatelessWidget {
                                 title: 'Type In The Postcode',
                                 subTitle:
                                     controller.userData['registered_address'],
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  CommonText(
+                                    'Company Logo',
+                                    onPress: () {
+                                      Get.bottomSheet(
+                                        const ImportImageSheet(),
+                                      );
+                                    },
+                                    fontSize: fontH2,
+                                    marginHorizontal: 0.04,
+                                    containerStyle: CommonContainerModel(
+                                      touchEffect: TouchableEffect(
+                                          type: TouchTypes.opacity),
+                                    ),
+                                    leftChild: CommonContainer(
+                                      marginVertical: 0.01,
+                                      size: 0.21,
+                                      borderRadius: 0.02,
+                                      borderWidth:
+                                          controller.compLogoFile == null
+                                              ? 0
+                                              : 1.5,
+                                      borderColor: Colors.blueGrey[200],
+                                      clipBehavior: Clip.hardEdge,
+                                      child: controller.compLogoFile == null
+                                          ? controller.userData['logo'] == null
+                                              ? SvgPicture.asset(
+                                                  iconAttachCompLogo,
+                                                  width: 1.flexWidth,
+                                                  height: 1.flexHeight,
+                                                )
+                                              : CachedImage(
+                                                  image:
+                                                      '${controller.userData['logo']['url']}',
+                                                  width: 1.flexWidth,
+                                                  height: 1.flexHeight,
+                                                  withPlaceHolder: true,
+                                                  fit: BoxFit.cover,
+                                                )
+                                          : Image.file(
+                                              File(controller
+                                                  .compLogoFile!.path),
+                                              fit: BoxFit.cover,
+                                              width: 1.flexWidth,
+                                              height: 1.flexHeight,
+                                            ),
+                                    ),
+                                  ),
+                                  IconButton(
+                                    onPressed: () {
+                                      Get.bottomSheet(
+                                        const PickImageSheet(),
+                                      );
+                                    },
+                                    icon: Icon(
+                                      Icons.edit,
+                                      color: Colors.grey[800],
+                                    ),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
@@ -149,6 +219,48 @@ class SettingHeader extends StatelessWidget {
             child: const Icon(Icons.edit),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class PickImageSheet extends StatelessWidget {
+  const PickImageSheet({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BottomSheetContainer(
+      title: 'Select',
+      height: 0.25,
+      child: GetBuilder<MySettingsController>(
+        init: MySettingsController(),
+        builder: (MySettingsController controller) {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              CommonButton(
+                onPress: () => controller.pickerImage(
+                  ImageSource.gallery,
+                ),
+                text: 'Import from Gallery',
+                marginBottom: 0.015,
+                height: 0.06,
+                borderRadius: 0.02,
+              ),
+              CommonButton(
+                onPress: () {
+                  controller.pickerImage(
+                    ImageSource.camera,
+                  );
+                },
+                text: 'Import from Camera',
+                borderRadius: 0.02,
+                marginBottom: 0.015,
+                height: 0.06,
+              ),
+            ],
+          );
+        },
       ),
     );
   }

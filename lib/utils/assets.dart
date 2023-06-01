@@ -156,6 +156,7 @@ const String iconAddImageAttach = '${iconsPath}icon_add_image_attach.svg';
 const String iconPlug = '${iconsPath}icon_plug.svg';
 const String iconPlugFill = '${iconsPath}icon_plug_fill.svg';
 const String iconImageAddLine = '${iconsPath}image-add-line.svg';
+const String iconAttachCompLogo = '${iconsPath}icon_attach_camp_logo.svg';
 
 // ----------------------------------------
 

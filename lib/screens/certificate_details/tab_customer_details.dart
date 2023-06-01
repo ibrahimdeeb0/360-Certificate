@@ -100,7 +100,9 @@ class CustomerDetailsTab extends StatelessWidget {
             if (controller.statusId == idCompleted)
               CommonButton(
                 text: 'Send PDF',
-                onPress: () {},
+                onPress: () {
+                  controller.onSendViaEmail();
+                },
                 marginTop: 0.01,
                 marginBottom: 0.02,
               ),

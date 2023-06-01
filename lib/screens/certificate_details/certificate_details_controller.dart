@@ -262,6 +262,24 @@ class CertificateDetailsController extends GetxController
     );
   }
 
+  Future<void> onSendViaEmail() async {
+    ApiRequest(
+      method: ApiMethods.post,
+      path: '/certificates/send-email/${certDetails['form_data']['id']}',
+      className: 'CertificateDetailsController/onSendViaEmail',
+      requestFunction: onCancelCertificate,
+      withLoading: true,
+      body: <dynamic, dynamic>{},
+    ).request(
+      onSuccess: (dynamic data, dynamic response) async {
+        showMessage(
+          description: '${response['message']}',
+          // textColor: AppColors.deepGreen,
+        );
+      },
+    );
+  }
+
   @override
   void onClose() {
     super.onClose();
