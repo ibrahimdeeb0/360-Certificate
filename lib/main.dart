@@ -9,7 +9,9 @@ import 'general_exports.dart';
 Future<void> _ensureScreenSize(dynamic window) async {
   return window.viewConfiguration.geometry.isEmpty
       ? Future<void>.delayed(
-          const Duration(milliseconds: 10), () => _ensureScreenSize(window))
+          const Duration(milliseconds: 10),
+          () => _ensureScreenSize(window),
+        )
       : Future<void>.value();
 }
 

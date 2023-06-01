@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.certificate360">
+    package="com.app.certificate360">
    <application
         android:label="360 Certificate"
         android:name="${applicationName}"
