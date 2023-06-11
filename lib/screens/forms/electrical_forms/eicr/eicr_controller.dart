@@ -519,10 +519,12 @@ class EicrController extends GetxController {
         update();
       }
     } else {
-      if (selectedId == 21) {
-        consoleLog('this is last Page');
+      if (listFormSections.length - 1 == selectedId) {
+        // consoleLog('this is last Page');
         onCompleteCertificate();
-      } else if (selectedId < 21) {
+      } else {
+        // if (listFormSections.length - 1 < selectedId)
+        // consoleLog('this is Pre last Page');
         if ((selectedId == 0 || fromSave) && isCertificateCreated) {
           onCreateCertificate();
           isCertificateCreated = false;

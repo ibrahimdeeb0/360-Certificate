@@ -23,8 +23,8 @@ class EICR extends StatelessWidget {
             onPressSave: () => controller.onPressNext(fromSave: true),
           ),
           // floatingActionButton: FloatingActionButton(onPressed: () {
-          //   consoleLog(controller.selectedId);
-          //   consoleLog(controller.listFormSections.length - 2);
+          //   consoleLog(controller.selectedId, key: 'selectedId');
+          //   consoleLog(controller.listFormSections.length, key: 'length');
           // }),
           body: CommonContainer(
             width: 1,

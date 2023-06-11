@@ -21,7 +21,7 @@ class EICRSectionA extends StatelessWidget {
               ),
               // CommonButton(
               //   onPress: () {
-              //     consoleLog(myAppController.certFormInfo[keyFormId]);
+              //     consoleLog(controller.selectedId);
               //   },
               // ),
               CommonInput(
