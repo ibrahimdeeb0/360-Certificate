@@ -51,7 +51,7 @@ class DomesticEicPage8 extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  0.02.ph,
+                  0.02.boxHeight,
                   FormToggleButton(
                     title:
                         "1.0 Condition of consumer's intake equipment (Visual inspection only)",

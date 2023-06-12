@@ -11,7 +11,7 @@ class DetailsTab extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            0.02.ph,
+            0.02.boxHeight,
             CommonContainer(
               style: appContainerStyles.cardStyle,
               marginHorizontal: 0.04,

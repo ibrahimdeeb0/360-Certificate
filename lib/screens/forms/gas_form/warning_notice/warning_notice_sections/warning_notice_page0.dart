@@ -49,7 +49,7 @@ class WarningNoticePage0 extends StatelessWidget {
                             elevation: 0.0,
                           ),
                         ),
-                        0.025.ph,
+                        0.025.boxHeight,
                       ],
                     ),
                   ),
@@ -122,7 +122,7 @@ class WarningNoticePage0 extends StatelessWidget {
                               controller.onChangeFormDataValue(
                                   formKeyPart2, formKeyOther, value),
                         ),
-                        0.025.ph,
+                        0.025.boxHeight,
                       ],
                     ),
                   ),

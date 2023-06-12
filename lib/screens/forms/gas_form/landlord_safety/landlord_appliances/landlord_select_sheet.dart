@@ -20,7 +20,7 @@ class LandlordSelectBT extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            0.015.ph,
+            0.015.boxHeight,
             ...listTitles
                 .map(
                   (String title) => ListOfStrings(
@@ -47,7 +47,7 @@ class LandlordSelectBT extends StatelessWidget {
                   ),
                 )
                 .toList(),
-            0.03.ph,
+            0.03.boxHeight,
           ],
         ),
       ),

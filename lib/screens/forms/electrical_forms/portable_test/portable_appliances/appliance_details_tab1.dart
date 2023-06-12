@@ -18,7 +18,7 @@ class ApplianceDetailsPage1 extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  0.02.ph,
+                  0.02.boxHeight,
                   SmallInputField(
                     title: 'Appliance Number',
                     value:
@@ -65,7 +65,7 @@ class ApplianceDetailsPage1 extends StatelessWidget {
                     color: Colors.white,
                     thickness: 3,
                   ),
-                  0.014.ph,
+                  0.014.boxHeight,
                   SmallInputField(
                     title: 'Appliance Class',
                     value: controller.applianceDetails[formKeyApplianceClass],

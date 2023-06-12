@@ -22,7 +22,7 @@ class EditSite extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  0.02.ph,
+                  0.02.boxHeight,
                   CommonInput(
                     topLabel: const TopLabelText(
                       text: 'Site Name',
@@ -108,7 +108,7 @@ class EditSite extends StatelessWidget {
                         ['email'],
                     marginBottom: 0.015,
                   ),
-                  0.02.ph,
+                  0.02.boxHeight,
                 ],
               ),
             ),

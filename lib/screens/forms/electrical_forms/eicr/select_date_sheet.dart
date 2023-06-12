@@ -14,7 +14,7 @@ class SelectDateSheet extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
-                0.05.ph,
+                0.05.boxHeight,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
@@ -47,7 +47,7 @@ class SelectDateSheet extends StatelessWidget {
                     ),
                   ],
                 ),
-                0.04.ph,
+                0.04.boxHeight,
               ],
             ),
           ),

@@ -32,7 +32,7 @@ class ApplianceDetailsPage2 extends StatelessWidget {
                       ),
                     ),
                   ),
-                  0.02.ph,
+                  0.02.boxHeight,
                   SmallInputField(
                     title: 'Earth continuity test',
                     hint: controller.applianceDetails[formKeyEarthContinuity],
@@ -216,7 +216,7 @@ class ApplianceDetailsPage2 extends StatelessWidget {
                 value: controller.applianceDetails[formKeyRepairCode],
               ),
             ),
-            0.02.ph,
+            0.02.boxHeight,
           ],
         );
       },

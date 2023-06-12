@@ -25,7 +25,7 @@ class DBSelectSheet extends StatelessWidget {
           physics: const BouncingScrollPhysics(),
           child: Column(
             children: <Widget>[
-              0.01.ph,
+              0.01.boxHeight,
               ...listTitles
                   .map(
                     (String title) => ListOfStrings(
@@ -66,7 +66,7 @@ class DBSelectSheet extends StatelessWidget {
                     ),
                   )
                   .toList(),
-              0.03.ph,
+              0.03.boxHeight,
             ],
           ),
         ),

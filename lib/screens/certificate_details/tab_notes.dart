@@ -57,7 +57,7 @@ class NotesTab extends StatelessWidget {
               ),
             ),
             // NotesCard(),
-            0.03.ph,
+            0.03.boxHeight,
           ],
         );
       },

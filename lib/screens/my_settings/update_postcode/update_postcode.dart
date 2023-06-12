@@ -21,7 +21,7 @@ class UpdatePostcode extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    0.03.ph,
+                    0.03.boxHeight,
                     CommonInput(
                       hint: 'Enter Your Postcode',
                       marginBottom: 0.012,

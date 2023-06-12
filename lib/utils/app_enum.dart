@@ -25,3 +25,8 @@ enum TemplateStatus {
   deleteTemp,
   defaultTemp,
 }
+
+enum CustomerType {
+  individual,
+  company,
+}

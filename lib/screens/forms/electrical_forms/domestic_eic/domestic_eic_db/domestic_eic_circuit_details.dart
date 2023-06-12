@@ -19,7 +19,7 @@ class CircuitDetails extends StatelessWidget {
           ),
           body: Column(
             children: <Widget>[
-              0.02.ph,
+              0.02.boxHeight,
             ],
           ),
         );

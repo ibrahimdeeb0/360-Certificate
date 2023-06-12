@@ -19,7 +19,7 @@ class ContentPart1 extends StatelessWidget {
           return Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              0.03.ph,
+              0.03.boxHeight,
               ...controller.listAllForms.map(
                 (Map<String, dynamic> item) => CustomSelectCheckbox(
                   title: item[keyTitle],
@@ -31,7 +31,7 @@ class ContentPart1 extends StatelessWidget {
                       .isNotEmpty,
                 ),
               ),
-              0.25.ph,
+              0.25.boxHeight,
               CommonText(
                 "If this doesn't apply to your business you can press skip",
                 textAlign: TextAlign.start,

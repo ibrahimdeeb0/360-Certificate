@@ -9,6 +9,11 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: HomeHeader(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Get.toNamed(routeCreateCustomerV2);
+        },
+      ),
       backgroundColor: Colors.white,
       resizeToAvoidBottomInset: true,
       body: GetBuilder<HomeController>(

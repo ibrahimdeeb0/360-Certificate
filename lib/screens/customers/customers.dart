@@ -39,7 +39,7 @@ class Customers extends StatelessWidget {
                         ),
                       ),
                     ),
-                    0.01.ph,
+                    0.01.boxHeight,
                   ],
                 ),
               ),
@@ -93,7 +93,7 @@ class CustomerCard extends StatelessWidget {
               ),
             ],
           ),
-          0.015.ph,
+          0.015.boxHeight,
           CommonText(
             '',
             inlineSpans: <InlineSpan>[

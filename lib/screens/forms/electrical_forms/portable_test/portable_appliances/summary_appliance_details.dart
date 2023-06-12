@@ -36,7 +36,7 @@ class SummaryApplianceDetails extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                0.03.ph,
+                0.03.boxHeight,
                 CommonText(
                   'Appliance Passed',
                   rowMainAxisSize: MainAxisSize.max,
@@ -49,7 +49,7 @@ class SummaryApplianceDetails extends StatelessWidget {
                     fillColor: Colors.grey[200],
                   ),
                 ),
-                0.02.ph,
+                0.02.boxHeight,
                 CommonText(
                   'Appliance Failed',
                   rowMainAxisSize: MainAxisSize.max,
