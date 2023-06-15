@@ -30,3 +30,8 @@ enum CustomerType {
   individual,
   company,
 }
+
+enum ContactType {
+  landlord,
+  agent,
+}

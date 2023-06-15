@@ -211,6 +211,10 @@ class DefaultTextStyles {
   CommonTextModel h3GreyStyle() => h3Style().copyWith(
         fontColor: AppColors.grey,
       );
+  CommonTextModel h3DarkGreyStyle() => h3Style().copyWith(
+        fontColor: Colors.grey[700],
+        textAlign: TextAlign.start,
+      );
 
   CommonTextModel h4MediumBlackStyle() => h4MediumStyle().copyWith(
         fontColor: AppColors.black,

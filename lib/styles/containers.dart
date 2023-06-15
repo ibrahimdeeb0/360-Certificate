@@ -268,7 +268,7 @@ class DefaultContainerStyles {
 
   CommonContainerModel cardStyle = CommonContainerModel(
     width: 1,
-    backgroundColor: Colors.grey[200],
+    backgroundColor: Colors.grey.withOpacity(0.25),
     paddingHorizontal: 0.04,
     paddingVertical: 0.015,
     borderRadius: 0.02,

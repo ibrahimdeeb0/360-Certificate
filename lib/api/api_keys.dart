@@ -105,6 +105,14 @@ const String language = 'gb';
 const String types = 'postal_code|address|locality';
 const String components = '';
 
+const String keyAddress = 'address';
+const String keyStreet = 'street';
+const String keyCity = 'city';
+const String keyState = 'state';
+const String keyPostcode = 'postcode';
+const String keyCountry = 'country';
+const String keyCountryId = 'country_id';
+
 // *************** Forms Names ***************
 
 const String formNamePortableApplianceTesting = 'Portable Appliance Testing';

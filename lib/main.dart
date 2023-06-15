@@ -83,6 +83,7 @@ Future<void> main() async {
       maxLines: 1,
       textInputAction: TextInputAction.next,
       contentPaddingHorizontal: 0.03,
+      marginBottom: 0.012,
     ),
   );
 

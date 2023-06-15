@@ -15,6 +15,7 @@ export 'list_of_strings/index.dart';
 export 'main_container/main_container.dart';
 export 'on_boarding_item/index.dart';
 export 'pick_photo_bottom_sheet/index.dart';
+export 'search_with_wooz/index.dart';
 export 'slider/index.dart';
 export 'success_add_new/index.dart';
 export 'tab_pager/index.dart';

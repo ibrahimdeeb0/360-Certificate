@@ -12,6 +12,7 @@ class Home extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Get.toNamed(routeCreateCustomerV2);
+          // Get.to(() => const Invoices());
         },
       ),
       backgroundColor: Colors.white,
