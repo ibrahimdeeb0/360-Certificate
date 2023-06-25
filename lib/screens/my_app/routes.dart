@@ -129,4 +129,8 @@ List<GetPage<dynamic>> appRoutes = <GetPage<dynamic>>[
     name: routeFormPortableTest,
     page: () => const PortableTest(),
   ),
+GetPage<CompleteRegister>(
+  name: routeCompleteRegister,
+   page: () => const CompleteRegister(),
+ ), 
 ];

@@ -184,16 +184,21 @@ class CustomSelectCheckbox extends StatelessWidget {
     this.isSelected = false,
     this.onPress,
     this.wihBottomBorder = true,
+    this.fontSized,
+    this.marginBottom = 0.015,
   });
   final String? title;
   final bool isSelected;
   final Function? onPress;
   final bool wihBottomBorder;
+  final double? marginBottom;
+  final double? fontSized;
 
   @override
   Widget build(BuildContext context) {
     return CommonText(
       title ?? 'test',
+      fontSize: fontSized,
       fontColor: isSelected ? AppColors.primary : Colors.grey[700],
       onPress: onPress,
       rowMainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -211,7 +216,7 @@ class CustomSelectCheckbox extends StatelessWidget {
       containerStyle: CommonContainerModel(
         width: 1,
         paddingBottom: 0.015,
-        marginBottom: 0.015,
+        marginBottom: marginBottom,
         borderBottomWidth: wihBottomBorder ? 2 : 0,
         borderBottomColor: isSelected
             ? Color(AppColors.primary).withOpacity(0.2)

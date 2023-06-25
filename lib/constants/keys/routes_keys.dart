@@ -33,3 +33,4 @@ const String routeFormDangerNotice = '/form_danger_notice';
 const String routeFormWarningNotice = '/form_warning_notice';
 const String routeFormDomesticEic = '/form_domestic_eic';
 const String routeFormPortableTest = '/form_portable_test';
+const String routeCompleteRegister = '/complete_register';
