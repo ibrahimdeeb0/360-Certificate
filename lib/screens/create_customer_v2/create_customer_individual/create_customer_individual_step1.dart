@@ -10,106 +10,99 @@ class CreateCustomerIndividualStep1 extends StatelessWidget {
       builder: (CreateCustomerV2Controller controller) {
         return Padding(
           padding: EdgeInsets.symmetric(horizontal: 0.04.flexWidth),
-          child: Column(
-            children: <Widget>[
-              CommonContainer(
-                style: appContainerStyles.cardStyle,
-                child: Column(
-                  children: <Widget>[
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Icon(
-                          Icons.info_outline,
-                          color: Colors.orange[600],
-                        ),
-                        SizedBox(
-                          width: 0.775.flexWidth,
-                          child: CommonText(
-                            'As you selected Individual please enter the inspection property address',
-                            marginLeft: 0.015,
-                            style: appTextStyles.h3DarkGreyStyle(),
-                          ),
-                        ),
-                      ],
-                    ),
-                    SearchWithWooz(
-                      searchWithWoozController:
-                          controller.searchWithWoozController1,
-                    ),
-                  ],
-                ),
-              ),
-              CommonContainer(
-                style: appContainerStyles.cardStyle,
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Icon(
-                      Icons.info_outline,
-                      color: Colors.orange[600],
-                    ),
-                    SizedBox(
-                      width: 0.775.flexWidth,
-                      child: CommonText(
-                        'Please enter the details of the landlord/agent',
-                        marginLeft: 0.015,
-                        style: appTextStyles.h3DarkGreyStyle(),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const CommonInput(
-                topLabelText: 'Phone Number',
-                hint: '000 000 0000',
-              ),
-              const CommonInput(
-                topLabelText: 'Email Address',
-                hint: 'Enter Your Email Address',
-                marginBottom: 0.02,
-              ),
-              CommonText(
-                'Contact Type',
-                marginBottom: 0.012,
-                columnCrossAxisAlignment: CrossAxisAlignment.start,
-                bottomChild: InkWell(
-                  onTap: () {
-                    Get.bottomSheet(
-                      RadioSelectionSheet(
-                        items: const <ContactType>[
-                          ContactType.landlord,
-                          ContactType.agent,
-                        ],
-                        onSelectItem: (dynamic value) {
-                          consoleLog(value);
-                          controller.selectedContactType = value;
-                          controller.update();
-                        },
-                        initialValue: controller.selectedContactType,
-                      ),
-                    );
-                  },
-                  child: CommonInput(
-                    marginBottom: 0,
-                    hint: 'Select Contact Type',
-                    value: controller.selectedContactType != null
-                        ? (controller.selectedContactType as Enum)
-                            .name
-                            .capitalizeFirst
-                        : '',
-                    enabled: false,
-                    suffix: const Icon(
-                      Icons.keyboard_arrow_down,
-                      color: Colors.black,
-                    ),
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                AttentionMessage(
+                  message:
+                      'As you selected Individual please enter the inspection property address',
+                  child: SearchWithWooz(
+                    searchWithWoozController: controller.customerIfoAddress,
+                    showJustOneSite: true,
                   ),
                 ),
-              ),
-            ],
+                const AttentionMessage(
+                  message: 'Please enter the details of the landlord/agent',
+                ),
+                CommonInput(
+                  topLabelText: 'Phone Number',
+                  hint: '000 000 0000',
+                  controller: controller.customerInfoPhoneController,
+                  keyboardType: TextInputType.phone,
+                ),
+                CommonInput(
+                  topLabelText: 'Email Address',
+                  hint: 'Enter Your Email Address',
+                  controller: controller.customerInfoEmailController,
+                  keyboardType: TextInputType.emailAddress,
+                  marginBottom: 0.02,
+                ),
+                SelectTypeSheet(
+                  isRequired: false,
+                  label: 'Contact Type',
+                  hint: 'Select Contact Type',
+                  value: controller.customerContactType != null
+                      ? (controller.customerContactType as Enum)
+                          .name
+                          .capitalizeFirst
+                      : '',
+                  onTap: controller.selectCustomerContactType,
+                ),
+              ],
+            ),
           ),
         );
       },
+    );
+  }
+}
+
+class SelectTypeSheet extends StatelessWidget {
+  const SelectTypeSheet({
+    super.key,
+    this.label,
+    this.hint,
+    this.value,
+    this.onTap,
+    this.isRequired = true,
+  });
+  final String? label;
+  final String? hint;
+  final String? value;
+  final Function()? onTap;
+  final bool isRequired;
+
+  @override
+  Widget build(BuildContext context) {
+    return CommonText(
+      label ?? '',
+      marginBottom: 0.012,
+      columnCrossAxisAlignment: CrossAxisAlignment.start,
+      rowCrossAxisAlignment: CrossAxisAlignment.start,
+      marginRight: 0.01,
+      containerStyle: const CommonContainerModel(
+        marginVertical: 0.01,
+      ),
+      rightChild: isRequired
+          ? const Icon(
+              Icons.star,
+              color: Colors.red,
+              size: 12,
+            )
+          : const SizedBox(),
+      bottomChild: InkWell(
+        onTap: onTap,
+        child: CommonInput(
+          marginBottom: 0,
+          hint: hint ?? '',
+          value: value ?? '',
+          enabled: false,
+          suffix: const Icon(
+            Icons.keyboard_arrow_down,
+            color: Colors.black,
+          ),
+        ),
+      ),
     );
   }
 }

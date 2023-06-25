@@ -10,6 +10,7 @@ class SelectCustomerTypeContainer extends StatelessWidget {
     this.iconPath = iconPerson,
     this.label,
     this.isSelected,
+    this.onEnd,
   });
 
   final CustomerType? selectedType;
@@ -17,6 +18,7 @@ class SelectCustomerTypeContainer extends StatelessWidget {
   final String iconPath;
   final String? label;
   final bool? isSelected;
+  final Function()? onEnd;
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +44,7 @@ class SelectCustomerTypeContainer extends StatelessWidget {
                 children: <Widget>[
                   AnimatedContainer(
                     duration: const Duration(milliseconds: 300),
+                    //                    null or  true
                     width: (isSelected == null || isSelected!)
                         ? 0.18.flexWidth
                         : 0.11.flexWidth,
@@ -65,6 +68,7 @@ class SelectCustomerTypeContainer extends StatelessWidget {
                             ? 0.017.flexAll
                             : 0.008.flexAll
                         : 0.017.flexAll),
+                    onEnd: onEnd,
                     child: SvgPicture.asset(
                       iconPath,
                       color: isSelected != null
@@ -199,6 +203,99 @@ class CancelAddCustomerSheet extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class AttentionMessage extends StatelessWidget {
+  const AttentionMessage({
+    super.key,
+    this.message,
+    this.child,
+    this.marginBottom,
+  });
+  final String? message;
+  final Widget? child;
+  final double? marginBottom;
+
+  @override
+  Widget build(BuildContext context) {
+    return CommonContainer(
+      style: appContainerStyles.cardStyle,
+      marginBottom: marginBottom,
+      child: Column(
+        children: <Widget>[
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Icon(
+                Icons.info_outline,
+                color: Colors.orange[600],
+              ),
+              SizedBox(
+                width: 0.775.flexWidth,
+                child: CommonText(
+                  message ?? '',
+                  marginLeft: 0.015,
+                  style: appTextStyles.h3DarkGreyStyle(),
+                ),
+              ),
+            ],
+          ),
+          if (child != null) 0.015.boxHeight,
+          child ?? const SizedBox(),
+        ],
+      ),
+    );
+  }
+}
+
+// ignore: must_be_immutable
+class ToggleYesNo extends StatefulWidget {
+  ToggleYesNo({
+    required this.onChange,
+    this.toggleValue = false,
+    this.text,
+    super.key,
+  });
+
+  bool toggleValue;
+  final String? text;
+  final ValueChanged<bool> onChange;
+
+  @override
+  State<ToggleYesNo> createState() => _ToggleYesNoState();
+}
+
+class _ToggleYesNoState extends State<ToggleYesNo> {
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        CommonText(
+          widget.text ?? '',
+          textAlign: TextAlign.start,
+          fontColor: Colors.grey[700],
+          containerStyle: const CommonContainerModel(width: 0.7),
+          bottomChild: const SizedBox(),
+        ),
+        CommonButton(
+          onPress: () {
+            setState(() {
+              widget.toggleValue = !widget.toggleValue;
+            });
+            widget.onChange.call(widget.toggleValue);
+          },
+          text: widget.toggleValue ? 'Yes' : 'No',
+          backgroundColor: widget.toggleValue
+              ? AppColors.primary
+              : Colors.grey.withOpacity(0.2),
+          fontColor: widget.toggleValue ? AppColors.white : Colors.grey[700],
+          width: 0.2,
+          height: 0.043,
+        ),
+      ],
     );
   }
 }

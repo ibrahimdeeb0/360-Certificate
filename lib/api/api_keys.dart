@@ -105,6 +105,7 @@ const String language = 'gb';
 const String types = 'postal_code|address|locality';
 const String components = '';
 
+const String keySiteName = 'site_name';
 const String keyAddress = 'address';
 const String keyStreet = 'street';
 const String keyCity = 'city';

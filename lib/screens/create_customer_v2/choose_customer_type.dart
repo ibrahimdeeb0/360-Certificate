@@ -18,16 +18,7 @@ class ChooseCustomerType extends StatelessWidget {
               borderBottomColor: Colors.grey[200],
               marginHorizontal: 0.04,
             ),
-            SelectCustomerTypeContainer(
-              label: 'Company',
-              iconPath: iconCompany,
-              isSelected: controller.customerType != null
-                  ? controller.customerType == CustomerType.company
-                  : null,
-              onTap: () {
-                controller.onSelectType(CustomerType.company);
-              },
-            ),
+            const CreateCustomerCompanyStep(),
           ],
         );
       },

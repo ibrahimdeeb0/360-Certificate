@@ -31,7 +31,7 @@ class CreateCustomerV2 extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        0.03.boxHeight,
+                        0.02.boxHeight,
                         controller.stepsWidgets[controller.index],
                         0.03.boxHeight,
                       ],
@@ -44,14 +44,16 @@ class CreateCustomerV2 extends StatelessWidget {
                   marginHorizontal: 0.04,
                   marginBottom: 0.02,
                   marginTop: 0.01,
-                  child: const CommonText(
-                    'Next',
+                  child: CommonText(
+                    controller.index == 2 ? 'Start Inspection' : 'Next',
                     marginHorizontal: 0.02,
                     fontColor: Colors.white,
-                    rightChild: Icon(
-                      Icons.arrow_forward,
-                      color: Colors.white,
-                    ),
+                    rightChild: controller.index == 2
+                        ? const SizedBox()
+                        : const Icon(
+                            Icons.arrow_forward,
+                            color: Colors.white,
+                          ),
                   ),
                 ),
               ],

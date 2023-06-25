@@ -7,6 +7,8 @@ void showMessage({
   int? textColor,
   bool withBackground = true,
   int duration = 3,
+  Color? backgroundColor,
+  double? fontSize,
 }) {
   Get.snackbar(
     '',
@@ -24,11 +26,12 @@ void showMessage({
     messageText: CommonText(
       style: appTextStyles.h3MediumStyle().copyWith(
             textAlign: TextAlign.start,
+            fontSize: fontSize,
           ),
       fontColor: textColor,
       description!,
     ),
-    backgroundColor: withBackground ? Colors.white60 : null,
+    backgroundColor: withBackground ? backgroundColor ?? Colors.white60 : null,
     barBlur: 2,
     duration: Duration(seconds: duration),
   );

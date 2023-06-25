@@ -10,8 +10,11 @@ class CreateCustomerHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double tweenValue = double.parse(currentIndex.toString());
     return CommonContainer(
       style: appContainerStyles.bottomShadowStyle,
+      paddingBottom: 0.015,
+      paddingTop: 0.01,
       paddingHorizontal: 0.04,
       child: currentIndex == 0
           ? const CommonText(
@@ -31,7 +34,7 @@ class CreateCustomerHeader extends StatelessWidget {
                   ),
                 ),
                 CreateCustomerTween(
-                  end: 0.5,
+                  end: tweenValue == 1 ? 0.5 : 1,
                   numbers: '$currentIndex/2',
                 ),
               ],

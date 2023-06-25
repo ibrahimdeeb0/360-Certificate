@@ -2,24 +2,68 @@ import 'package:dio/dio.dart';
 
 import '../../general_exports.dart';
 
+class AddressData {
+  AddressData.fromMap(Map<String, dynamic> data) {
+    siteName = data[keySiteName];
+    address = data[keyAddress];
+    street = data[keyStreet];
+    city = data[keyCity];
+    state = data[keyState];
+    postcode = data[keyPostcode];
+    country = data[keyCountry];
+    countryId = data[keyCountryId];
+  }
+  AddressData(
+    this.siteName,
+    this.address,
+    this.street,
+    this.city,
+    this.state,
+    this.postcode,
+    this.country,
+    this.countryId,
+  );
+  String? siteName;
+  String? address;
+  String? street;
+  String? city;
+  String? state;
+  String? postcode;
+  String? country;
+  int? countryId;
+
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      keySiteName: siteName ?? '',
+      keyAddress: address ?? '',
+      keyStreet: street ?? '',
+      keyCity: city ?? '',
+      keyState: state ?? '',
+      keyPostcode: postcode ?? '',
+      keyCountry: country ?? '',
+      keyCountryId: countryId ?? '',
+    };
+  }
+}
+
 class SearchWithWoozController extends GetxController {
   TextEditingController addressController = TextEditingController();
   TextEditingController addressMoreController = TextEditingController();
-
-  // FocusNode focusNode1 = FocusNode();
-  // FocusNode focusNode2 = FocusNode();
+  TextEditingController siteNameController = TextEditingController();
 
   bool isExpandedDetails = false;
 
-  Map<String, dynamic> bodyData = <String, dynamic>{
-    keyAddress: '',
-    keyStreet: '',
-    keyCity: '',
-    keyState: '',
-    keyPostcode: '',
-    keyCountry: '',
-    keyCountryId: '',
-  };
+  List<AddressData> listAddressData = <AddressData>[];
+
+  // Map<String, dynamic> bodyData = <String, dynamic>{
+  //   keyAddress: '',
+  //   keyStreet: '',
+  //   keyCity: '',
+  //   keyState: '',
+  //   keyPostcode: '',
+  //   keyCountry: '',
+  //   keyCountryId: '',
+  // };
 
   //* ----- Map
 
@@ -221,6 +265,7 @@ class SearchWithWoozController extends GetxController {
     update();
   }
 
+  bool? isIndividualSite;
   void saveAddressData({
     required String addressName,
     required String stateName,
@@ -232,21 +277,45 @@ class SearchWithWoozController extends GetxController {
     required String lat,
     required String lng,
   }) {
-    bodyData[keyAddress] = addressName;
-    bodyData[keyCity] = cityName;
-    bodyData[keyState] = stateName;
-    bodyData[keyPostcode] = postCode;
-    bodyData[keyCountry] = countryName;
+    final Map<String, dynamic> addressData = <String, dynamic>{};
+
+    addressData[keySiteName] = siteNameController.text.trim();
+    addressData[keyAddress] = addressName;
+    addressData[keyCity] = cityName;
+    addressData[keyState] = stateName;
+    addressData[keyPostcode] = postCode;
+    addressData[keyCountry] = countryName;
 
     if (streetName.isNotEmpty && streetNumber.isNotEmpty) {
-      bodyData[keyStreet] = '$streetNumber, $streetName';
+      addressData[keyStreet] = '$streetNumber, $streetName';
     } else if (streetName.isNotEmpty && streetNumber.isEmpty) {
-      bodyData[keyStreet] = ' , $streetName';
+      addressData[keyStreet] = ' $streetName';
     } else if (streetName.isEmpty && streetNumber.isNotEmpty) {
-      bodyData[keyStreet] = '$streetNumber, ';
+      addressData[keyStreet] = '$streetNumber ';
     }
 
-    searchForCountryId();
+    consoleLog(addressData, key: 'addressData');
+
+    siteNameController.clear();
+
+    if (allCountries
+        .where((dynamic e) => e['name'] == addressData[keyCountry])
+        .isNotEmpty) {
+      selectedCountry = allCountries.firstWhereOrNull(
+          (dynamic e) => e['name'] == addressData[keyCountry]);
+      if (selectedCountry != null) {
+        addressData[keyCountryId] = selectedCountry?[keyId];
+      }
+    }
+
+    final AddressData address = AddressData.fromMap(addressData);
+
+    if (isIndividualSite != null && isIndividualSite!) {
+      listAddressData.clear();
+      listAddressData.add(address);
+    } else {
+      listAddressData.add(address);
+    }
 
     if (Get.isBottomSheetOpen!) {
       Get.back();
@@ -255,7 +324,7 @@ class SearchWithWoozController extends GetxController {
       Get.back();
     }
 
-    consoleLogPretty(bodyData, key: 'saved_bodyData');
+    // consoleLogPretty(addressData, key: 'saved_addressData');
 
     // addressController.clear();
     // addressMoreController.clear();
@@ -263,20 +332,6 @@ class SearchWithWoozController extends GetxController {
     isExpandedDetails = true;
 
     update();
-  }
-
-  void searchForCountryId() {
-    if (allCountries
-        .where((dynamic e) => e['name'] == bodyData[keyCountry])
-        .isNotEmpty) {
-      selectedCountry = allCountries
-          .firstWhereOrNull((dynamic e) => e['name'] == bodyData[keyCountry]);
-      if (selectedCountry != null) {
-        bodyData[keyCountryId] = selectedCountry?[keyId];
-      }
-    }
-
-    // consoleLog(selectedCountry, key: 'selected_Country');
   }
 
   Future<void> getCountries() async {

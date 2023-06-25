@@ -31,24 +31,14 @@ class CreateCustomerIndividualStep extends StatelessWidget {
               onEnd: controller.onEndExpanded,
               child: controller.customerType == CustomerType.individual
                   ? controller.showIndividualInputs
-                      ? Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            CommonInput(
-                              topLabelText: 'First Name',
-                              hint: 'First Name',
-                              width: 0.44,
-                              controller: controller.iFName,
-                              onChanged: controller.onChangeIInputs,
-                            ),
-                            CommonInput(
-                              topLabelText: 'Last Name',
-                              hint: 'First Name',
-                              width: 0.44,
-                              controller: controller.iLName,
-                              onChanged: controller.onChangeIInputs,
-                            ),
-                          ],
+                      ? CommonInput(
+                          // topLabelText: 'Name',
+                          topLabel: const TopLabelText(
+                            text: 'Name',
+                          ),
+                          hint: 'Type Full Name',
+                          controller: controller.customerInfoNameController,
+                          keyboardType: TextInputType.name,
                         )
                       : const SizedBox()
                   : const SizedBox(),
