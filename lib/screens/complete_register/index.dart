@@ -1,9 +1,11 @@
 export 'button_components.dart';
 export 'complete_register.dart';
 export 'complete_register_controller.dart';
+export 'complete_register_message.dart';
 export 'complete_register_step1.dart';
 export 'complete_register_step2.dart';
 export 'complete_register_step3.dart';
+export 'complete_register_step4.dart';
 export 'complete_register_steps.dart';
 export 'setup_account.dart';
 export 'text_components.dart';

@@ -42,6 +42,7 @@ class CompleteRegisterSteps2 extends StatelessWidget {
                   onTap: () => controller.onSelect(item),
                 ),
               ),
+
               CommonContainer(
                 borderRadius: 0.01,
                 backgroundColor: Colors.grey[200],
@@ -111,6 +112,7 @@ class CompleteRegisterSteps2 extends StatelessWidget {
                   ],
                 ),
               ),
+        
             ],
           ),
         );

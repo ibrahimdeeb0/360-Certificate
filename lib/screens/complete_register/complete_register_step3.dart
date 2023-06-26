@@ -60,10 +60,15 @@ class CompleteRegisterSteps3 extends StatelessWidget {
                 marginBottom: 0.01,
                 fontColor: Colors.grey[400],
               ),
-              SvgPicture.asset(
-                iconAttachCompLogo,
-                width: DEVICE_WIDTH * 0.25,
-                height: DEVICE_WIDTH * 0.25,
+              InkWell(
+                onTap: () {
+                  // consoleLog('value');
+                },
+                child: SvgPicture.asset(
+                  iconAttachCompLogo,
+                  width: DEVICE_WIDTH * 0.25,
+                  height: DEVICE_WIDTH * 0.25,
+                ),
               ),
             ],
           ),

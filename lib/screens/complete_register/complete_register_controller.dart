@@ -4,6 +4,8 @@ class CompleteRegisterController extends GetxController {
   int currentIndex = 0;
   List<bool> isCheckedList = <bool>[false, false, false, false, false];
 
+  bool isSwitch = false;
+
   List<Map<String, dynamic>> activationSelectionS1 = <Map<String, dynamic>>[
     <String, dynamic>{
       keyId: 0,
@@ -70,9 +72,19 @@ class CompleteRegisterController extends GetxController {
   }
 
   void onPress() {
-    if (currentIndex == 4) {
+    if (currentIndex == 3) {
+      Get.to(const CompleteRegisterMessage());
     } else {
       currentIndex++;
+      update();
+    }
+  }
+
+  void onPressBack() {
+    if (currentIndex == 0) {
+      Get.back();
+    } else {
+      currentIndex--;
       update();
     }
   }
@@ -94,12 +106,13 @@ class CompleteRegisterController extends GetxController {
       return const Expanded(
         child: TextComponent(text: 'For Both Electric And Gas '),
       );
-    } else if (currentIndex == 4) {
-      return const Expanded(
-        child: TextComponent(text: 'Your Company Details'),
-      );
     } else {
       return const SizedBox();
     }
+  }
+
+  void updateSwitch(bool value) {
+    isSwitch = value;
+    update();
   }
 }
