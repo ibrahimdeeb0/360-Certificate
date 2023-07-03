@@ -15,12 +15,12 @@ class CreateCustomerV2 extends StatelessWidget {
           },
           child: Scaffold(
             backgroundColor: Colors.white,
-            appBar: Header(
-              title: '',
-              onPressBack: () {
-                controller.onPressBack();
-              },
-            ),
+            // appBar: Header(
+            //   title: '',
+            //   onPressBack: () {
+            //     controller.onPressBack();
+            //   },
+            // ),
             body: Column(
               children: <Widget>[
                 CreateCustomerHeader(

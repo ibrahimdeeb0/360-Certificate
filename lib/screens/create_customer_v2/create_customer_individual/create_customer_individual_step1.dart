@@ -64,7 +64,7 @@ class SelectTypeSheet extends StatelessWidget {
     this.hint,
     this.value,
     this.onTap,
-    this.isRequired = true,
+    this.isRequired = false,
   });
   final String? label;
   final String? hint;

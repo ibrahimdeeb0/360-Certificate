@@ -62,15 +62,14 @@ class CreateCustomerIndividualStep2 extends StatelessWidget {
                     SelectTypeSheet(
                       label: 'What Is The Property Type',
                       hint: 'Select Property Type',
-                      value: controller.customerPropertyType != null
-                          ? (controller.customerPropertyType as Enum)
+                      value: controller.sitePropertyType != null
+                          ? (controller.sitePropertyType as Enum)
                               .name
                               .capitalizeFirst
                           : '',
                       onTap: controller.selectCustomerPropertyType,
                     ),
-                    if (controller.customerPropertyType ==
-                        SitePropertyType.other)
+                    if (controller.sitePropertyType == SitePropertyType.other)
                       CommonInput(
                         hint: 'Typing...',
                         controller: controller.propertyTypeOtherController,
@@ -103,7 +102,7 @@ class CreateCustomerIndividualStep2 extends StatelessWidget {
                     0.02.boxHeight,
                     CommonInput(
                       topLabel: const TopLabelText(
-                        text: 'Name',
+                        text: 'Full Name',
                       ),
                       hint: 'Type Full Name',
                       controller: controller.siteDetailsNameController,

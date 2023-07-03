@@ -14,23 +14,36 @@ class HomeBottomBar extends StatelessWidget {
       builder: (HomeBottomBarController controller) {
         return Scaffold(
           backgroundColor: Colors.white,
-          // floatingActionButton: FloatingActionButton.extended(
-          //   backgroundColor: Color(AppColors.primary),
-          //   onPressed: () {
-          //     // Get.toNamed(routeCreateCustomer);
-          //     Get.toNamed(routeForms);
-          //     // Get.toNamed(routeCompleteProfile);
-          //   },
-          //   tooltip: 'Create',
-          //   icon: const Icon(
-          //     Icons.add,
-          //     color: Colors.white,
-          //   ),
-          //   label: const CommonText(
-          //     'Create',
-          //     fontColor: Colors.white,
-          //   ),
-          // ),
+          floatingActionButton: FloatingActionButton.extended(
+            backgroundColor: Color(AppColors.primary),
+            onPressed: () {
+              final Uri url = Uri(
+                // https://360connect.app/cert_app/plans
+                scheme: 'https',
+                host: '360connect.app',
+                path: '/cert_app/plans',
+              );
+              // Get.toNamed(routeCreateCustomer);
+              // Get.toNamed(routeForms);
+              // Get.toNamed(routeCompleteProfile);
+              Get.toNamed(routeSearchForCustomer);
+
+              // Get.to(() => const WebViewLoader());
+              // launchUrl(
+              //   url,
+              //   mode: LaunchMode.inAppWebView,
+              // );
+            },
+            tooltip: 'Create',
+            icon: const Icon(
+              Icons.add,
+              color: Colors.white,
+            ),
+            label: const CommonText(
+              'Create',
+              fontColor: Colors.white,
+            ),
+          ),
           body: Stack(
             children: <Widget>[
               Visibility(

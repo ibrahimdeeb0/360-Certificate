@@ -14,19 +14,46 @@ class CreateCustomerHeader extends StatelessWidget {
     return CommonContainer(
       style: appContainerStyles.bottomShadowStyle,
       paddingBottom: 0.015,
-      paddingTop: 0.01,
-      paddingHorizontal: 0.04,
+      paddingTop: 0.07,
+      paddingHorizontal: 0.0,
+      paddingRight: 0.04,
+      paddingLeft: 0.02,
       child: currentIndex == 0
-          ? const CommonText(
-              'Is this customer an Individual or a company?',
-              fontSize: fontH2,
-              textAlign: TextAlign.start,
+          ? Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                IconButton(
+                  onPressed: Get.back,
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStatePropertyAll<Color?>(
+                          Colors.grey.shade300)),
+                  icon: const Icon(Icons.arrow_back),
+                ),
+                SizedBox(
+                  width: 0.02.flexWidth,
+                ),
+                SizedBox(
+                  width: 0.7.flexWidth,
+                  child: const CommonText(
+                    'Is this customer an Individual or a company?',
+                    fontSize: fontH2,
+                    textAlign: TextAlign.start,
+                  ),
+                ),
+              ],
             )
           : Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
+                IconButton(
+                  onPressed: Get.back,
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStatePropertyAll<Color?>(
+                          Colors.grey.shade300)),
+                  icon: const Icon(Icons.arrow_back),
+                ),
                 SizedBox(
-                  width: 0.8.flexWidth,
+                  width: 0.7.flexWidth,
                   child: CommonText(
                     currentIndex == 1 ? 'Customer Information' : 'Site Details',
                     fontSize: fontH2,

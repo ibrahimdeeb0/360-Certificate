@@ -41,6 +41,7 @@ class Login extends StatelessWidget {
                   hint: 'Enter Your Email',
                   controller: controller.emailController,
                   marginBottom: 0.02,
+                  keyboardType: TextInputType.emailAddress,
                 ),
                 CommonInput(
                   topLabelText: 'Password',

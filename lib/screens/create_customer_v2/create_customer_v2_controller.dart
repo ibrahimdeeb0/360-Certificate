@@ -23,7 +23,7 @@ class CreateCustomerV2Controller extends GetxController {
   bool isAnotherSiteInfo = false;
   CustomerContactType? customerContactType;
   CompanyContactType? companyContactType;
-  SitePropertyType? customerPropertyType;
+  SitePropertyType? sitePropertyType;
   SiteContactType? siteContactType;
   void onWriteSiteName(String? value) {
     customerSiteAddress.siteNameController.text = value ?? '';
@@ -197,8 +197,8 @@ class CreateCustomerV2Controller extends GetxController {
             // if Site Address --Not Same as Customer/Company Address
             if (!isSiteAddSameInfo) {
               if (customerSiteAddress.listAddressData.isNotEmpty) {
-                if (customerPropertyType != null) {
-                  if (customerPropertyType == SitePropertyType.other) {
+                if (sitePropertyType != null) {
+                  if (sitePropertyType == SitePropertyType.other) {
                     if (propertyTypeOtherController.text.trim().isNotEmpty) {
                       if (tempValid) {
                         isValidP2 = true;
@@ -207,7 +207,7 @@ class CreateCustomerV2Controller extends GetxController {
                         isValidP2 = false;
                       }
                     } else {
-                      errorMessage = 'Please Type Property  Type]';
+                      errorMessage = 'Please Type Property  Type';
                       isValidP2 = false;
                     }
                   } else {
@@ -227,8 +227,8 @@ class CreateCustomerV2Controller extends GetxController {
                 isValidP2 = false;
               }
             } else {
-              if (customerPropertyType != null) {
-                if (customerPropertyType == SitePropertyType.other) {
+              if (sitePropertyType != null) {
+                if (sitePropertyType == SitePropertyType.other) {
                   if (propertyTypeOtherController.text.trim().isNotEmpty) {
                     if (tempValid) {
                       isValidP2 = true;
@@ -311,10 +311,10 @@ class CreateCustomerV2Controller extends GetxController {
       RadioSelectionSheet(
         items: listPropertyType,
         onSelectItem: (dynamic value) {
-          customerPropertyType = value;
+          sitePropertyType = value;
           update();
         },
-        initialValue: customerPropertyType,
+        initialValue: sitePropertyType,
       ),
     );
   }
@@ -419,7 +419,10 @@ class CreateCustomerV2Controller extends GetxController {
       case 2:
         {
           if (isValidP2) {
-            consoleLog('this is last step');
+            // consoleLog('this is last step');
+            // consoleLog(siteContactType!.name);
+            onAddCustomer();
+            // consoleLog(companyIfoAddress.listAddressData);
           } else {
             flushbarMessage();
           }
@@ -458,53 +461,105 @@ class CreateCustomerV2Controller extends GetxController {
   Future<void> onAddCustomer() async {
     hideKeyboard();
     // startLoading();
+
+    final Map<String, dynamic> individualAddress = <String, dynamic>{
+      'address': customerIfoAddress.listAddressData.isNotEmpty
+          ? customerIfoAddress.listAddressData.first.address
+          : '',
+      'street_num': customerIfoAddress.listAddressData.isNotEmpty
+          ? customerIfoAddress.listAddressData.first.street
+          : '',
+      'city': customerIfoAddress.listAddressData.isNotEmpty
+          ? customerIfoAddress.listAddressData.first.city
+          : '',
+      'state': customerIfoAddress.listAddressData.isNotEmpty
+          ? customerIfoAddress.listAddressData.first.state
+          : '',
+      'postal_code': customerIfoAddress.listAddressData.isNotEmpty
+          ? customerIfoAddress.listAddressData.first.postcode
+          : '',
+      'country_id': customerIfoAddress.listAddressData.isNotEmpty
+          ? customerIfoAddress.listAddressData.first.countryId
+          : '',
+    };
+
+    final Map<String, dynamic> companyAddress = <String, dynamic>{
+      'address': companyIfoAddress.listAddressData.isNotEmpty
+          ? companyIfoAddress.listAddressData.first.address
+          : '',
+      'street_num': companyIfoAddress.listAddressData.isNotEmpty
+          ? companyIfoAddress.listAddressData.first.street
+          : '',
+      'city': companyIfoAddress.listAddressData.isNotEmpty
+          ? companyIfoAddress.listAddressData.first.city
+          : '',
+      'state': companyIfoAddress.listAddressData.isNotEmpty
+          ? companyIfoAddress.listAddressData.first.state
+          : '',
+      'postal_code': companyIfoAddress.listAddressData.isNotEmpty
+          ? companyIfoAddress.listAddressData.first.postcode
+          : '',
+      'country_id': companyIfoAddress.listAddressData.isNotEmpty
+          ? companyIfoAddress.listAddressData.first.countryId
+          : '',
+    };
+
+    final Map<String, dynamic> siteAddress = <String, dynamic>{
+      'site_address': customerSiteAddress.listAddressData.isNotEmpty
+          ? customerSiteAddress.listAddressData.first.address
+          : '',
+      'site_street_num': customerSiteAddress.listAddressData.isNotEmpty
+          ? customerSiteAddress.listAddressData.first.street
+          : '',
+      'site_city': customerSiteAddress.listAddressData.isNotEmpty
+          ? customerSiteAddress.listAddressData.first.city
+          : '',
+      'site_state': customerSiteAddress.listAddressData.isNotEmpty
+          ? customerSiteAddress.listAddressData.first.state
+          : '',
+      'site_postal_code': customerSiteAddress.listAddressData.isNotEmpty
+          ? customerSiteAddress.listAddressData.first.postcode
+          : '',
+      'site_country_id': customerSiteAddress.listAddressData.isNotEmpty
+          ? customerSiteAddress.listAddressData.first.countryId
+          : '',
+    };
+
+    final Map<String, dynamic> bodyData = <String, dynamic>{
+      'type_id': customerType == CustomerType.individual ? '1' : '2',
+      'name': customerInfoNameController.text.trim(),
+      'last_name': 'test',
+      'first_name': customerInfoNameController.text.trim(),
+      if (customerType == CustomerType.individual) ...individualAddress,
+      if (customerType == CustomerType.company) ...companyAddress,
+      'client_l_name': 'test',
+      'client_f_name':customerInfoNameController.text.trim(),
+      'client_phone': customerInfoPhoneController.text.trim(),
+      'client_email': customerInfoEmailController.text.trim(),
+      'client_type': customerContactType!.name,
+      'copy_site_address': isSiteAddSameInfo ? 'yes' : 'no',
+      'site_name': siteNameController.text.trim(),
+      if (!isSiteAddSameInfo) ...siteAddress,
+      'property_type': sitePropertyType!.name,
+      'copy_contact': !isAnotherSiteInfo ? 'yes' : 'no',
+      'site_contact_type': siteContactType!.name,
+      'site_contact_f_name': siteDetailsNameController.text.trim(),
+      'site_contact_l_name': '',
+      'site_contact_phone': siteDetailsPhoneController.text.trim(),
+      'site_contact_email': siteDetailsEmailController.text.trim(),
+      //
+      'other_value': propertyTypeOtherController.text.trim(),
+      // 'site_other_value' : '',
+    };
+
+    consoleLogPretty(bodyData);
     ApiRequest(
       method: ApiMethods.post,
       path: createCustomer,
       className: 'NewJobController/onAddCustomer',
       requestFunction: onAddCustomer,
       withLoading: true,
-      body: <String, dynamic>{
-        'type_id': customerType == CustomerType.individual ? '1' : '2',
-        'last_name': 'doo',
-        'first_name': 'amy',
-        'address': 'test',
-        'street_num': 'alazhar',
-        'city': 'Blida',
-        'state': 'wahran',
-        'postal_code': '8963',
-        'country_id': '7',
-        'billing_details': 'yes',
-        'billing_address': '',
-        'billing_street_num': '',
-        'billing_city': '',
-        'billing_postal_code': '',
-        'billing_state': '',
-        'billing_country_id': '',
-        'credit_limit': '',
-        'payment_term_id': '1',
-        'send_statement': 'no',
-        'client_f_name': 'dolly',
-        'client_l_name': 'dolly',
-        'client_phone': '597830711',
-        'client_email': 'amy3@gmail.com',
-        'client_type': 'agent',
-        'copy_site_address': 'yes',
-        'site_name': 'site3',
-        'site_address': '',
-        'site_street_num': '',
-        'site_city': '',
-        'site_state': '',
-        'site_postal_code': '',
-        'site_country_id': '',
-        'copy_contact': 'yes',
-        'site_contact_type': 'house',
-        'site_contact_f_name': '',
-        'site_contact_l_name': '',
-        'site_contact_phone': '',
-        'site_contact_email': '',
-        'country_id': '7'
-      },
+      body: bodyData,
     ).request(
       onSuccess: (dynamic data, dynamic response) {
         // myAppController.certFormInfo[keyCustomerId] = addedCustomerData[keyId];

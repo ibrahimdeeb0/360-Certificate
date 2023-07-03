@@ -133,4 +133,12 @@ GetPage<CreateCustomerV2>(
   name: routeCreateCustomerV2,
    page: () => const CreateCustomerV2(),
  ), 
+GetPage<SearchForCustomer>(
+  name: routeSearchForCustomer,
+   page: () => const SearchForCustomer(),
+ ), 
+GetPage<OpenWebView>(
+  name: routeOpenWebView,
+   page: () => const OpenWebView(),
+ ), 
 ];

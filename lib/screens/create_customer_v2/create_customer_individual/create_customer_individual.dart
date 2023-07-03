@@ -34,7 +34,7 @@ class CreateCustomerIndividualStep extends StatelessWidget {
                       ? CommonInput(
                           // topLabelText: 'Name',
                           topLabel: const TopLabelText(
-                            text: 'Name',
+                            text: 'Full Name',
                           ),
                           hint: 'Type Full Name',
                           controller: controller.customerInfoNameController,

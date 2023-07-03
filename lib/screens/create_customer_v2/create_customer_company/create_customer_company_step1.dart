@@ -17,21 +17,21 @@ class CreateCustomerCompanyStep1 extends StatelessWidget {
                   message:
                       'Please enter the details of the landlord/agent/director',
                 ),
-                CommonInput(
-                  topLabelText: 'Full Name',
-                  hint: '000 000 0000',
-                  controller: controller.customerInfoNameController,
-                  keyboardType: TextInputType.name,
-                ),
+                // CommonInput(
+                //   topLabelText: 'Full Name',
+                //   hint: 'Enter full name',
+                //   controller: controller.customerInfoNameController,
+                //   keyboardType: TextInputType.name,
+                // ),
                 CommonInput(
                   topLabelText: 'Phone Number',
-                  hint: '000 000 0000',
+                  hint: 'Enter phone number',
                   controller: controller.customerInfoPhoneController,
                   keyboardType: TextInputType.phone,
                 ),
                 CommonInput(
                   topLabelText: 'Email Address',
-                  hint: 'Enter Your Email Address',
+                  hint: 'Enter your email address',
                   controller: controller.customerInfoEmailController,
                   keyboardType: TextInputType.emailAddress,
                   marginBottom: 0.02,
