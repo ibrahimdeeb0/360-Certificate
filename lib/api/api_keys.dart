@@ -90,6 +90,7 @@ const String firebaseKeyIsUserCancelSearch = 'is_user_cancel_search';
 const String keyFormId = 'form_id';
 const String keyCertId = 'cert_id';
 const String keyCustomerId = 'customer_id';
+const String keySiteId = 'site_id';
 const String keyTemplateData = 'template_data';
 const String keyFormStatus = 'form_status';
 const String keyFormDataStatus = 'form_data_status';

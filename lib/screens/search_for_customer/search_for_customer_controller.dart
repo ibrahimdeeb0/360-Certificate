@@ -7,11 +7,13 @@ class SearchForCustomerController extends GetxController {
 
   TextEditingController searchController = TextEditingController();
   List<dynamic> searchResult = <dynamic>[];
-  bool showMessage = false;
+  bool showMessageNoResult = false;
+  bool showMessageSearch = true;
 
   void onSearching(String value) {
     if (value == '') {
       searchResult = <dynamic>[];
+      showMessageSearch = true;
       update();
     } else {
       _dio
@@ -34,8 +36,11 @@ class SearchForCustomerController extends GetxController {
         // consoleLog(response.data['data'], key: 'searchingResult');
         searchResult = response.data['data'];
         if (searchResult.isEmpty) {
-          showMessage = true;
+          showMessageNoResult = true;
+        } else {
+          showMessageNoResult = false;
         }
+        showMessageSearch = false;
         consoleLogPretty(searchResult, key: 'searchingResult');
         update();
       });

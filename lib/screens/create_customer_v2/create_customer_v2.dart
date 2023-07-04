@@ -15,19 +15,17 @@ class CreateCustomerV2 extends StatelessWidget {
           },
           child: Scaffold(
             backgroundColor: Colors.white,
-            // appBar: Header(
-            //   title: '',
-            //   onPressBack: () {
-            //     controller.onPressBack();
-            //   },
-            // ),
             body: Column(
               children: <Widget>[
                 CreateCustomerHeader(
                   currentIndex: controller.index,
+                  pressBack: () {
+                    controller.onPressBack();
+                  },
                 ),
                 Expanded(
                   child: SingleChildScrollView(
+                    controller: controller.scrollController,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[

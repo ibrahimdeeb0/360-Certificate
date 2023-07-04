@@ -84,7 +84,7 @@ class FormsController extends GetxController {
 
     Get.back();
 
-    Get.offAndToNamed(routeCreateCustomer);
+    Get.offAndToNamed(routeSearchForCustomer);
   }
 
   Future<void> getFormsTemplates() async {
@@ -139,7 +139,7 @@ class FormsController extends GetxController {
         myAppController.certFormInfo[keyTemplateData] = data;
 
         Get.back();
-        Get.offAndToNamed(routeCreateCustomer);
+        Get.offAndToNamed(routeSearchForCustomer);
         update();
 
         // dismissLoading();

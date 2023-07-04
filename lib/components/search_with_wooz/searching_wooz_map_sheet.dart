@@ -36,7 +36,10 @@ class SearchSelectedAddress extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: controller.listAddress == null
                       ? const Center(
-                          child: CommonText('...'),
+                          child: CommonText(
+                            'Please Type in box for searching...',
+                            marginTop: 0.1,
+                          ),
                         )
                       : controller.listAddress!.isNotEmpty
                           ? Column(
@@ -94,39 +97,47 @@ class SearchingFullAddress extends StatelessWidget {
             children: <Widget>[
               SizedBox(height: DEVICE_HEIGHT * 0.02),
               Expanded(
-                child: SingleChildScrollView(
-                  child: controller.searchAllAddress == null
-                      ? Center(
-                          child: CircularProgressIndicator(
-                            color: Color(AppColors.primary),
-                          ),
-                        )
-                      : controller.searchAllAddress!.isNotEmpty
-                          ? Column(
-                              children: <Widget>[
-                                ...controller.searchAllAddress!
-                                    .map(
-                                      (dynamic element) => ListOfStrings(
-                                          name: element['description'],
-                                          onPress: () {
-                                            controller.onGetAddressDetails(
-                                              publicId: element['public_id'],
-                                              addressType: 'postal_code',
-                                              controller:
-                                                  searchWithWoozController,
-                                            );
-                                            Get.back();
-                                          }),
-                                    )
-                                    .toList(),
-                              ],
-                            )
-                          : CommonText(
-                              'No Address Existing',
-                              style: appTextStyles.h3GreyStyle(),
-                              containerStyle:
-                                  const CommonContainerModel(marginTop: 0.1),
+                child: RawScrollbar(
+                  thumbColor: Colors.grey[400],
+                  // crossAxisMargin: 1.0,
+                  radius: const Radius.circular(20),
+                  thickness: 4,
+                  thumbVisibility: true,
+                  child: SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
+                    child: controller.searchAllAddress == null
+                        ? Center(
+                            child: CircularProgressIndicator(
+                              color: Color(AppColors.primary),
                             ),
+                          )
+                        : controller.searchAllAddress!.isNotEmpty
+                            ? Column(
+                                children: <Widget>[
+                                  ...controller.searchAllAddress!
+                                      .map(
+                                        (dynamic element) => ListOfStrings(
+                                            name: element['description'],
+                                            onPress: () {
+                                              controller.onGetAddressDetails(
+                                                publicId: element['public_id'],
+                                                addressType: 'postal_code',
+                                                controller:
+                                                    searchWithWoozController,
+                                              );
+                                              Get.back();
+                                            }),
+                                      )
+                                      .toList(),
+                                ],
+                              )
+                            : CommonText(
+                                'No Address Existing',
+                                style: appTextStyles.h3GreyStyle(),
+                                containerStyle:
+                                    const CommonContainerModel(marginTop: 0.1),
+                              ),
+                  ),
                 ),
               ),
             ],

@@ -26,7 +26,7 @@ class EditSite extends StatelessWidget {
                   CommonInput(
                     topLabel: const TopLabelText(
                       text: 'Site Name',
-                      isRequired: false,
+                     
                     ),
                     controller: controller.siteName,
                     value: Get.arguments['site_data'][0]['name'],
@@ -35,7 +35,7 @@ class EditSite extends StatelessWidget {
                   CommonInput(
                     topLabel: const TopLabelText(
                       text: 'Street No & Name',
-                      isRequired: false,
+                      
                       enabled: false,
                     ),
                     hint: Get.arguments['site_data'][0]['street_num'],
@@ -45,7 +45,7 @@ class EditSite extends StatelessWidget {
                   CommonInput(
                     topLabel: const TopLabelText(
                       text: 'City',
-                      isRequired: false,
+                      
                       enabled: false,
                     ),
                     hint: Get.arguments['site_data'][0]['city'],
@@ -55,7 +55,7 @@ class EditSite extends StatelessWidget {
                   CommonInput(
                     topLabel: const TopLabelText(
                       text: 'Postal Code',
-                      isRequired: false,
+                     
                       enabled: false,
                     ),
                     hint: Get.arguments['site_data'][0]['postal_code'],
@@ -65,8 +65,7 @@ class EditSite extends StatelessWidget {
                   CommonInput(
                     topLabel: const TopLabelText(
                       text: 'First Name',
-                      isRequired: false,
-                    ),
+                     ),
                     controller: controller.fName,
                     value: Get.arguments['site_data'][0]['site_contact']
                         ['f_name'],
@@ -75,7 +74,7 @@ class EditSite extends StatelessWidget {
                   CommonInput(
                     topLabel: const TopLabelText(
                       text: 'Last Name',
-                      isRequired: false,
+                      
                     ),
                     hint: Get.arguments['site_data'][0]['site_contact']
                         ['l_name'],
@@ -87,7 +86,7 @@ class EditSite extends StatelessWidget {
                   CommonInput(
                     topLabel: const TopLabelText(
                       text: 'Phone',
-                      isRequired: false,
+                      
                     ),
                     hint: Get.arguments['site_data'][0]['site_contact']
                         ['phone'],
@@ -99,7 +98,7 @@ class EditSite extends StatelessWidget {
                   CommonInput(
                     topLabel: const TopLabelText(
                       text: 'Email',
-                      isRequired: false,
+                     
                     ),
                     hint: Get.arguments['site_data'][0]['site_contact']
                         ['email'],

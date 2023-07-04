@@ -5,6 +5,8 @@ class CreateCustomerV2Controller extends GetxController {
   bool enableButton = true;
   CustomerType? customerType;
 
+  ScrollController scrollController = ScrollController();
+
   SearchWithWoozController customerIfoAddress = SearchWithWoozController();
   SearchWithWoozController customerSiteAddress = SearchWithWoozController();
   SearchWithWoozController companyIfoAddress = SearchWithWoozController();
@@ -118,7 +120,7 @@ class CreateCustomerV2Controller extends GetxController {
 
               case CustomerType.company:
                 {
-                  if (companyNameController.text.trim().isNotEmpty) {
+                  if (customerInfoNameController.text.trim().isNotEmpty) {
                     if (companyIfoAddress.listAddressData.isNotEmpty) {
                       isValidP0 = true;
                     } else {
@@ -146,11 +148,13 @@ class CreateCustomerV2Controller extends GetxController {
           switch (customerType) {
             case CustomerType.individual:
               {
+                //!------------------------
                 if (customerIfoAddress.listAddressData.isNotEmpty) {
-                  final bool tempValid =
-                      customerInfoPhoneController.text.trim().isNotEmpty &&
-                          customerInfoEmailController.text.trim().isNotEmpty &&
-                          customerContactType != null;
+                  final bool tempValid = customerInfoPhoneController.text
+                          .trim()
+                          .isNotEmpty &&
+                      // customerInfoEmailController.text.trim().isNotEmpty &&
+                      customerContactType != null;
                   if (tempValid) {
                     isValidP1 = true;
                   } else {
@@ -168,9 +172,8 @@ class CreateCustomerV2Controller extends GetxController {
             case CustomerType.company:
               {
                 final bool tempValid =
-                    customerInfoNameController.text.trim().isNotEmpty &&
-                        customerInfoPhoneController.text.trim().isNotEmpty &&
-                        customerInfoEmailController.text.trim().isNotEmpty &&
+                    customerInfoPhoneController.text.trim().isNotEmpty &&
+                        // customerInfoEmailController.text.trim().isNotEmpty &&
                         companyContactType != null;
                 if (tempValid) {
                   isValidP1 = true;
@@ -190,7 +193,7 @@ class CreateCustomerV2Controller extends GetxController {
           final bool tempValid =
               siteDetailsNameController.text.trim().isNotEmpty &&
                   siteDetailsPhoneController.text.trim().isNotEmpty &&
-                  siteDetailsEmailController.text.trim().isNotEmpty &&
+                  // siteDetailsEmailController.text.trim().isNotEmpty &&
                   siteContactType != null;
 
           if (siteNameController.text.trim().isNotEmpty) {
@@ -321,6 +324,7 @@ class CreateCustomerV2Controller extends GetxController {
 
   void toggleSameSiteDetails({bool? value}) {
     isAnotherSiteInfo = value!;
+    // if true == yes
     if (isAnotherSiteInfo) {
       siteDetailsNameController.clear();
       siteDetailsPhoneController.clear();
@@ -373,22 +377,10 @@ class CreateCustomerV2Controller extends GetxController {
         backgroundColor: Colors.grey.withOpacity(0.3),
       );
     }
-
-    // Flushbar<dynamic>(
-    //   message: errorMessage,
-    //   icon: Icon(
-    //     Icons.info_outline,
-    //     size: 30.0,
-    //     color: Colors.orange[900],
-    //   ),
-    //   duration: const Duration(seconds: 3),
-    //   // leftBarIndicatorColor: Colors.red[700],
-    //   messageSize: fontTitle,
-    //   flushbarPosition: FlushbarPosition.TOP,
-    //   flushbarStyle: FlushbarStyle.GROUNDED,
-    // ).show(Get.context!);
   }
 
+  FocusNode email1FocusNode = FocusNode();
+  FocusNode email2FocusNode = FocusNode();
   void onPressNext() {
     hideKeyboard();
     validationFillData();
@@ -406,9 +398,33 @@ class CreateCustomerV2Controller extends GetxController {
       case 1:
         {
           if (isValidP1) {
-            index = index + 1;
-            if (index == 2) {
-              toggleSameSiteDetails(value: isAnotherSiteInfo);
+            if (customerInfoEmailController.text.trim().isEmpty) {
+              //
+              Get.bottomSheet(
+                ShowEmailMessageSheet(
+                  pressNo: () {
+                    if (Get.isBottomSheetOpen!) {
+                      Get.back();
+                    }
+                    FocusScope.of(Get.context!).requestFocus(email1FocusNode);
+                  },
+                  pressYes: () {
+                    index = index + 1;
+                    if (index == 2) {
+                      toggleSameSiteDetails(value: isAnotherSiteInfo);
+                    }
+                    if (Get.isBottomSheetOpen!) {
+                      Get.back();
+                    }
+                    update();
+                  },
+                ),
+              );
+            } else {
+              index = index + 1;
+              if (index == 2) {
+                toggleSameSiteDetails(value: isAnotherSiteInfo);
+              }
             }
           } else {
             flushbarMessage();
@@ -419,10 +435,27 @@ class CreateCustomerV2Controller extends GetxController {
       case 2:
         {
           if (isValidP2) {
-            // consoleLog('this is last step');
-            // consoleLog(siteContactType!.name);
-            onAddCustomer();
-            // consoleLog(companyIfoAddress.listAddressData);
+            if (siteDetailsEmailController.text.trim().isEmpty) {
+              //
+              Get.bottomSheet(
+                ShowEmailMessageSheet(
+                  pressNo: () {
+                    if (Get.isBottomSheetOpen!) {
+                      Get.back();
+                    }
+                    FocusScope.of(Get.context!).requestFocus(email2FocusNode);
+                  },
+                  pressYes: () {
+                    if (Get.isBottomSheetOpen!) {
+                      Get.back();
+                    }
+                    onAddCustomer();
+                  },
+                ),
+              );
+            } else {
+              onAddCustomer();
+            }
           } else {
             flushbarMessage();
           }
@@ -430,6 +463,13 @@ class CreateCustomerV2Controller extends GetxController {
         break;
 
       // default:
+    }
+    if (scrollController.positions.isNotEmpty) {
+      scrollController.animateTo(
+        0.0,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.linear,
+      );
     }
 
     update();
@@ -453,6 +493,14 @@ class CreateCustomerV2Controller extends GetxController {
     } else {
       index = index - 1;
       update();
+    }
+
+    if (scrollController.positions.isNotEmpty) {
+      scrollController.animateTo(
+        0.0,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.linear,
+      );
     }
   }
 
@@ -533,15 +581,19 @@ class CreateCustomerV2Controller extends GetxController {
       if (customerType == CustomerType.individual) ...individualAddress,
       if (customerType == CustomerType.company) ...companyAddress,
       'client_l_name': 'test',
-      'client_f_name':customerInfoNameController.text.trim(),
+      'client_f_name': customerInfoNameController.text.trim(),
       'client_phone': customerInfoPhoneController.text.trim(),
       'client_email': customerInfoEmailController.text.trim(),
-      'client_type': customerContactType!.name,
+      //companyContactType
+      'client_type': customerType == CustomerType.individual
+          ? customerContactType!.name
+          : companyContactType!.name,
       'copy_site_address': isSiteAddSameInfo ? 'yes' : 'no',
       'site_name': siteNameController.text.trim(),
       if (!isSiteAddSameInfo) ...siteAddress,
       'property_type': sitePropertyType!.name,
-      'copy_contact': !isAnotherSiteInfo ? 'yes' : 'no',
+      // true ?
+      'copy_contact': isAnotherSiteInfo ? 'no' : 'yes',
       'site_contact_type': siteContactType!.name,
       'site_contact_f_name': siteDetailsNameController.text.trim(),
       'site_contact_l_name': '',
@@ -559,22 +611,38 @@ class CreateCustomerV2Controller extends GetxController {
       className: 'NewJobController/onAddCustomer',
       requestFunction: onAddCustomer,
       withLoading: true,
+      formatResponse: true,
       body: bodyData,
     ).request(
       onSuccess: (dynamic data, dynamic response) {
-        // myAppController.certFormInfo[keyCustomerId] = addedCustomerData[keyId];
+        myAppController.certFormInfo[keyCustomerId] = data[keyId];
+        myAppController.certFormInfo[keySiteId] = data['sites'][0][keyId];
 
-        // Get
-        //   ..back()
-        //   ..back()
-        //   ..toNamed(
-        //     myAppController.certFormInfo[keyFormRoute],
-        //     arguments: <String, dynamic>{
-        //       formKeyFromCertificate: false,
-        //     },
-        //   );
+        consoleLog(myAppController.certFormInfo);
+
+        //* fist back for close create customer screen
+        //* second  back for close search screen
+        //* fist back for close select form screen
+
+        Get
+          ..back()
+          ..back()
+          ..back()
+          ..toNamed(
+            myAppController.certFormInfo[keyFormRoute],
+            arguments: <String, dynamic>{
+              formKeyFromCertificate: false,
+            },
+          );
       },
     );
     update();
+  }
+
+  @override
+  void onClose() {
+    email1FocusNode.dispose();
+    email2FocusNode.dispose();
+    super.onClose();
   }
 }

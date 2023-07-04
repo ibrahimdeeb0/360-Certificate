@@ -31,14 +31,18 @@ class CreateCustomerIndividualStep1 extends StatelessWidget {
                   keyboardType: TextInputType.phone,
                 ),
                 CommonInput(
+
                   topLabelText: 'Email Address',
                   hint: 'Enter Your Email Address',
                   controller: controller.customerInfoEmailController,
                   keyboardType: TextInputType.emailAddress,
                   marginBottom: 0.02,
+                  focusNode: controller.email1FocusNode,
+                  // enabledBorder: const OutlineInputBorder(
+                  //   borderSide: BorderSide(width: 2, color: Colors.red),
+                  // ),
                 ),
                 SelectTypeSheet(
-                  isRequired: false,
                   label: 'Contact Type',
                   hint: 'Select Contact Type',
                   value: controller.customerContactType != null
@@ -101,6 +105,51 @@ class SelectTypeSheet extends StatelessWidget {
             Icons.keyboard_arrow_down,
             color: Colors.black,
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class ShowEmailMessageSheet extends StatelessWidget {
+  const ShowEmailMessageSheet({super.key, this.pressYes, this.pressNo});
+  final Function()? pressYes;
+  final Function()? pressNo;
+
+  @override
+  Widget build(BuildContext context) {
+    return BottomSheetContainer(
+      responsiveContent: true,
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            0.03.boxHeight,
+            const CommonText(
+              'Are you want to complete without email?',
+              marginBottom: 0.03,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                CommonButton(
+                  onPress: pressYes,
+                  width: 0.44,
+                  text: 'Yes',
+                ),
+                CommonButton(
+                  onPress: pressNo,
+                  width: 0.44,
+                  text: 'No',
+                  backgroundColor: Colors.blueGrey[100],
+                  borderWidth: 2,
+                  borderColor: AppColors.primary,
+                  fontColor: AppColors.primary,
+                ),
+              ],
+            ),
+            0.03.boxHeight,
+          ],
         ),
       ),
     );

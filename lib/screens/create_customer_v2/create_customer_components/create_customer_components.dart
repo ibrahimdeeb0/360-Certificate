@@ -288,10 +288,13 @@ class _ToggleYesNoState extends State<ToggleYesNo> {
             widget.onChange.call(widget.toggleValue);
           },
           text: widget.toggleValue ? 'Yes' : 'No',
-          backgroundColor: widget.toggleValue
-              ? AppColors.primary
-              : Colors.grey.withOpacity(0.2),
-          fontColor: widget.toggleValue ? AppColors.white : AppColors.primary,
+          backgroundColor:
+              widget.toggleValue ? AppColors.primary : Colors.orange[700],
+          // : Color(AppColors.primary).withOpacity(0.3),
+          // borderWidth: 2,
+          // borderColor: AppColors.primary,
+          fontColor: widget.toggleValue ? AppColors.white : AppColors.white,
+          // fontColor: AppColors.white,
           fontWeight: FontWeight.bold,
           width: 0.2,
           height: 0.043,

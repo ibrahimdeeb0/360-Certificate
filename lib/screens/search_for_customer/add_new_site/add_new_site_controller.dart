@@ -129,11 +129,11 @@ class AddNewSiteController extends GetxController {
     final bool nameNotEmpty = siteDetailsNameController.text.trim().isNotEmpty;
     final bool phoneNotEmpty =
         siteDetailsPhoneController.text.trim().isNotEmpty;
-    final bool emailNotEmpty =
-        siteDetailsEmailController.text.trim().isNotEmpty;
+    // final bool emailNotEmpty =
+    //     siteDetailsEmailController.text.trim().isNotEmpty;
     final bool contactTypeNotNull = siteContactType != null;
 
-    return nameNotEmpty && phoneNotEmpty && emailNotEmpty && contactTypeNotNull;
+    return nameNotEmpty && phoneNotEmpty && contactTypeNotNull;
   }
 
   Future<void> flushbarMessage() async {

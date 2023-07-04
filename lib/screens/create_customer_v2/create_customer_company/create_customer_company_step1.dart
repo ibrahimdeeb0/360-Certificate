@@ -37,8 +37,7 @@ class CreateCustomerCompanyStep1 extends StatelessWidget {
                   marginBottom: 0.02,
                 ),
                 SelectTypeSheet(
-                  isRequired: false,
-                  label: 'Contact Type',
+                   label: 'Contact Type',
                   hint: 'Select Contact Type',
                   value: controller.companyContactType != null
                       ? (controller.companyContactType as Enum)

@@ -11,6 +11,7 @@ class PortableTestController extends GetxController {
   int? formId;
   int? certId;
   int? customerId;
+  int? siteId;
   bool? isEditForm;
   bool? isTemplate;
   bool? isEditTemplate;
@@ -79,6 +80,7 @@ class PortableTestController extends GetxController {
     super.onInit();
     isFromCertificate = Get.arguments?[formKeyFromCertificate] ?? false;
     customerId = myAppController.certFormInfo[keyCustomerId];
+    siteId = myAppController.certFormInfo[keySiteId];
     formId = myAppController.certFormInfo[keyFormId];
     formBody[keyFormId] = myAppController.certFormInfo[keyFormId];
     isTemplate =
@@ -138,6 +140,7 @@ class PortableTestController extends GetxController {
       certId = myAppController.certFormInfo[keyCertId];
       formId = myAppController.certFormInfo[keyFormId];
       customerId = myAppController.certFormInfo[keyCustomerId];
+      siteId = myAppController.certFormInfo[keySiteId];
       formBody[keyFormId] = myAppController.certFormInfo[keyFormId];
       formBody[keyData] = myAppController.certFormInfo[keyTemplateData];
       //
@@ -324,6 +327,7 @@ class PortableTestController extends GetxController {
     final Map<String, dynamic> certData = <String, dynamic>{
       'customer_id': customerId,
       'status_id': idPending,
+      'site_id': siteId,
       ...formBody,
     };
 
@@ -355,6 +359,7 @@ class PortableTestController extends GetxController {
       ...formBody,
       'customer_id': customerId,
       'status_id': idInProgress,
+      'site_id': siteId,
     };
 
     startLoading();
@@ -381,6 +386,7 @@ class PortableTestController extends GetxController {
             arguments: <String, dynamic>{
               keyId: certId,
               'customer_id': customerId,
+              'site_id': siteId,
             },
           );
         }
@@ -400,6 +406,7 @@ class PortableTestController extends GetxController {
       ...formBody,
       'customer_id': customerId,
       'status_id': idCompleted,
+      'site_id': siteId,
     };
 
     consoleLogPretty(certData);
@@ -431,6 +438,7 @@ class PortableTestController extends GetxController {
             arguments: <String, dynamic>{
               keyId: certId,
               'customer_id': customerId,
+              'site_id': siteId,
             },
           );
         }

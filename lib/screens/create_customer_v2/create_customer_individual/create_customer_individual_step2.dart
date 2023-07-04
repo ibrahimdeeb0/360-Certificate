@@ -126,6 +126,7 @@ class CreateCustomerIndividualStep2 extends StatelessWidget {
                       hint: 'Email Address',
                       controller: controller.siteDetailsEmailController,
                       keyboardType: TextInputType.emailAddress,
+                      focusNode: controller.email2FocusNode,
                     ),
                     SelectTypeSheet(
                       label: 'Contact Type',

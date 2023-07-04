@@ -3,10 +3,12 @@ import '../../../general_exports.dart';
 class CreateCustomerHeader extends StatelessWidget {
   const CreateCustomerHeader({
     required this.currentIndex,
+    this.pressBack,
     super.key,
   });
 
   final int currentIndex;
+  final Function()? pressBack;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,7 @@ class CreateCustomerHeader extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 IconButton(
-                  onPressed: Get.back,
+                  onPressed: pressBack,
                   style: ButtonStyle(
                       backgroundColor: MaterialStatePropertyAll<Color?>(
                           Colors.grey.shade300)),
@@ -46,7 +48,7 @@ class CreateCustomerHeader extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 IconButton(
-                  onPressed: Get.back,
+                  onPressed: pressBack,
                   style: ButtonStyle(
                       backgroundColor: MaterialStatePropertyAll<Color?>(
                           Colors.grey.shade300)),
