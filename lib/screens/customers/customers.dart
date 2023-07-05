@@ -28,18 +28,20 @@ class Customers extends StatelessWidget {
                     SizedBox(height: DEVICE_HEIGHT * 0.02),
                     ...controller.allCustomers.map(
                       (dynamic item) => CustomerCard(
-                        name: '${item[keyName]}'.capitalize,
+                        name: '${item['first_name']}'.capitalize,
                         type: '${item['customer_type']['name']}'.capitalize,
                         address: item['address'],
-                        onPress: () => Get.toNamed(
-                          routeCustomerProfile,
-                          arguments: <String, dynamic>{
-                            keyId: item[keyId],
-                          },
-                        ),
+                        onPress: () {
+                          Get.toNamed(
+                            routeCustomerProfile,
+                            arguments: <String, dynamic>{
+                              keyId: item[keyId],
+                            },
+                          );
+                        },
                       ),
                     ),
-                    0.01.ph,
+                    0.01.boxHeight,
                   ],
                 ),
               ),
@@ -93,7 +95,7 @@ class CustomerCard extends StatelessWidget {
               ),
             ],
           ),
-          0.015.ph,
+          0.015.boxHeight,
           CommonText(
             '',
             inlineSpans: <InlineSpan>[

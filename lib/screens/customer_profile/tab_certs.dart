@@ -12,7 +12,7 @@ class CertsTab extends StatelessWidget {
       builder: (CustomerProfileController controller) {
         return Column(
           children: <Widget>[
-            0.02.ph,
+            0.02.boxHeight,
             ...controller.certData.map(
               (dynamic item) => CertDetailsCard(
                 onDetails: () => Get.toNamed(

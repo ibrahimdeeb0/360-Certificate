@@ -25,3 +25,52 @@ enum TemplateStatus {
   deleteTemp,
   defaultTemp,
 }
+
+enum CustomerType {
+  individual,
+  company,
+}
+
+enum CustomerContactType {
+  landlord,
+  agent,
+}
+
+enum CompanyContactType {
+  director,
+  agent,
+  siteManager,
+}
+
+enum SiteContactType {
+  landlord,
+  director,
+  agent,
+  siteManager,
+  financeManager,
+}
+
+// enum CompanySiteContactType {
+//   landlord,
+//   director,
+//   agent,
+//   siteManager,
+//   financeManager,
+// }
+
+enum SitePropertyType {
+  flat,
+  studio,
+  house,
+  office,
+  warehouse,
+  other,
+}
+
+enum FilterType {
+  pending,
+  inProgress,
+  completed,
+  canceled,
+  all,
+}

@@ -1,13 +1,5 @@
 import '../../general_exports.dart';
 
-enum FilterType {
-  pending,
-  inProgress,
-  completed,
-  canceled,
-  all,
-}
-
 class CertificatesController extends GetxController {
   ScrollController scrollController = ScrollController();
 
@@ -49,16 +41,18 @@ class CertificatesController extends GetxController {
     super.onInit();
     scrollController.addListener(
       () {
-        if (scrollController.position.pixels ==
-            (scrollController.position.maxScrollExtent)) {
-          isLoading = true;
-          homeController.update();
-          if (page <= lastPage!) {
-            page = page + 1;
-            getPaginationCerts(withLoading: false);
-          } else {
-            isLoading = false;
+        if (scrollController.positions.isNotEmpty) {
+          if (scrollController.position.pixels ==
+              (scrollController.position.maxScrollExtent)) {
+            isLoading = true;
             homeController.update();
+            if (page <= lastPage!) {
+              page = page + 1;
+              getPaginationCerts(withLoading: false);
+            } else {
+              isLoading = false;
+              homeController.update();
+            }
           }
         }
       },
@@ -70,15 +64,6 @@ class CertificatesController extends GetxController {
     super.onReady();
     getAllCert();
   }
-
-  // void sortedCerts() {
-  //   listCert = <dynamic>[
-  //     ...allCerts.where((dynamic item) =>
-  //         (item['customer_id'] != null) && (item['status_id'] != null)),
-  //   ];
-  //   filteredCert = listCert;
-  //   update();
-  // }
 
   Map<String, dynamic> filterItem = <String, dynamic>{
     keyTitle: 'All',

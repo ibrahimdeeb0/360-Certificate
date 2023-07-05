@@ -36,7 +36,7 @@ class More extends StatelessWidget {
                       ),
                     ),
                   ),
-                  0.015.ph,
+                  0.015.boxHeight,
                   ...controller.moreItems.map(
                     (dynamic item) => MoreComponents(
                       title: item[keyTitle],

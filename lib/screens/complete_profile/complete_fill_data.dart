@@ -24,7 +24,7 @@ class CompleteFillData extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                0.06.ph,
+                0.06.boxHeight,
                 CommonContainer(
                   onPress: controller.onBack,
                   touchEffect: TouchableEffect(

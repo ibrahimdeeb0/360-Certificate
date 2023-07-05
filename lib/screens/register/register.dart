@@ -177,6 +177,7 @@ class Register extends StatelessWidget {
   }
 }
 
+
 class CustomSelectCheckbox extends StatelessWidget {
   const CustomSelectCheckbox({
     super.key,
@@ -225,6 +226,7 @@ class CustomSelectCheckbox extends StatelessWidget {
     );
   }
 }
+
 
 class SelectBusinessType extends StatelessWidget {
   const SelectBusinessType({super.key});

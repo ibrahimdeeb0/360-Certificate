@@ -83,6 +83,7 @@ dependencies:
   dropdown_button2: ^1.9.2
   # flutter_webview_plugin: ^0.4.0
   advance_pdf_viewer: ^2.0.1
+  another_flushbar: ^1.12.30
 
 dev_dependencies:
   flutter_test:

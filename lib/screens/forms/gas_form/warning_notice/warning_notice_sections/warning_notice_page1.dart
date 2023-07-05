@@ -91,7 +91,7 @@ class WarningNoticePage1 extends StatelessWidget {
                       ],
                     ),
                   ),
-                  0.015.ph,
+                  0.015.boxHeight,
                 ],
               ),
             ),

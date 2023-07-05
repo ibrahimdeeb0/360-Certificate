@@ -17,9 +17,22 @@ class HomeBottomBar extends StatelessWidget {
           floatingActionButton: FloatingActionButton.extended(
             backgroundColor: Color(AppColors.primary),
             onPressed: () {
+              // final Uri url = Uri(
+              //   // https://360connect.app/cert_app/plans
+              //   scheme: 'https',
+              //   host: '360connect.app',
+              //   path: '/cert_app/plans',
+              // );
               // Get.toNamed(routeCreateCustomer);
               Get.toNamed(routeForms);
               // Get.toNamed(routeCompleteProfile);
+              // Get.toNamed(routeSearchForCustomer);
+
+              // Get.to(() => const WebViewLoader());
+              // launchUrl(
+              //   url,
+              //   mode: LaunchMode.inAppWebView,
+              // );
             },
             tooltip: 'Create',
             icon: const Icon(

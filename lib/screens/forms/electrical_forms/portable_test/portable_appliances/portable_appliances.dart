@@ -22,7 +22,7 @@ class PortableAppliances extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: <Widget>[
-                  0.02.ph,
+                  0.02.boxHeight,
                   CommonContainer(
                     onPress: () {
                       Get.to(() => const SummaryApplianceDetails());

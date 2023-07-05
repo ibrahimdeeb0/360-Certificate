@@ -11,8 +11,23 @@ class Invoices extends StatelessWidget {
         title: 'Invoices',
         withBack: false,
       ),
-      body: const Center(
-        child: CommonText('Invoices Screen'),
+      body: GetBuilder<InvoicesController>(
+        init: InvoicesController(),
+        builder: (InvoicesController controller) {
+          return CommonContainer(
+            style: appContainerStyles.containerStyles,
+            child: SingleChildScrollView(
+              child: Column(
+                children: <Widget>[
+                  0.03.boxHeight,
+                  SearchWithWooz(
+                    searchWithWoozController: controller.woozController,
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
       ),
     );
   }

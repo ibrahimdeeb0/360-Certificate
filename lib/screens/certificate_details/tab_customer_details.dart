@@ -18,7 +18,7 @@ class CustomerDetailsTab extends StatelessWidget {
                   CertTitleItem(
                     title: 'Company/Customer Name',
                     subTitle:
-                        '${controller.certDetails['form_data']['customer']['name']}',
+                        '${controller.certDetails['form_data']['customer']['contacts'][0]['f_name']}',
                   ),
                   CertTitleItem(
                     title: 'Street No & Name',

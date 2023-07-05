@@ -72,7 +72,7 @@ class PickPhotoBottomSheet extends StatelessWidget {
                 ),
               ],
             ),
-            0.03.ph,
+            0.03.boxHeight,
           ],
         ),
       ),

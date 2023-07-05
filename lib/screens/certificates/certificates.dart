@@ -19,20 +19,23 @@ class Certificates extends StatelessWidget {
                 (dynamic item) {
                   final String certStatus = item[keyStatus][keyName];
                   return SortCertificateCard(
-                    onPress: () => Get.toNamed(
-                      routeCertificateDetails,
-                      arguments: <String, dynamic>{
-                        keyId: item[keyId],
-                        'customer_id': item['customer_id'],
-                      },
-                    ),
+                    onPress: () {
+                      Get.toNamed(
+                        routeCertificateDetails,
+                        arguments: <String, dynamic>{
+                          keyId: item[keyId],
+                          'customer_id': item['customer_id'],
+                        },
+                      );
+                    },
                     code: '#${item[keyId]}',
                     formType: item[keyForm][keyName],
                     price: '£ 0.0',
                     date: DateFormat('dd-MM-yyyy')
                         .format(DateTime.parse(item['created_at'].toString())),
                     certStatus: certStatus,
-                    customerName: '${item['customer'][keyName]}'.capitalize,
+                    customerName:
+                        '${item['customer']['first_name']}'.capitalize,
                     customerAddress: item['customer']['address'],
                     statusClr: certStatus == 'Completed'
                         ? AppColors.completedClr

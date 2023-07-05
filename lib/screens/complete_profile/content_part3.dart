@@ -13,7 +13,7 @@ class ContentPart3 extends StatelessWidget {
         builder: (CompleteProfileController controller) {
           return Column(
             children: <Widget>[
-              0.02.ph,
+              0.02.boxHeight,
               CommonInput(
                 hint: 'Enter Your Postcode',
                 marginBottom: 0.012,
@@ -63,8 +63,8 @@ class ContentPart3 extends StatelessWidget {
                     ),
                   ],
                 ),
-              if (!controller.showAddressFiled) 0.49.ph,
-              if (controller.showAddressFiled) 0.025.ph,
+              if (!controller.showAddressFiled) 0.49.boxHeight,
+              if (controller.showAddressFiled) 0.025.boxHeight,
               CommonText(
                 'This will be displayed on all quotes and invoices',
                 textAlign: TextAlign.start,

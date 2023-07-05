@@ -66,7 +66,7 @@ class Search extends StatelessWidget {
                     child: SingleChildScrollView(
                       child: Column(
                         children: <Widget>[
-                          0.04.ph,
+                          0.04.boxHeight,
                           ...controller.listCerts
                               .map(
                                 (dynamic item) => SearchResultCard(

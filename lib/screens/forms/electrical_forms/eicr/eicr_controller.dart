@@ -12,6 +12,7 @@ class EicrController extends GetxController {
   int? formId;
   int? certId;
   int? customerId;
+  int? siteId;
   bool? isEditForm;
   bool? isTemplate;
   bool? isEditTemplate;
@@ -340,6 +341,7 @@ class EicrController extends GetxController {
 
     isFromCertificate = Get.arguments?[formKeyFromCertificate] ?? false;
     customerId = myAppController.certFormInfo[keyCustomerId];
+    siteId = myAppController.certFormInfo[keySiteId];
     formId = myAppController.certFormInfo[keyFormId];
     formBody[keyFormId] = myAppController.certFormInfo[keyFormId];
     isTemplate =
@@ -388,6 +390,7 @@ class EicrController extends GetxController {
       certId = myAppController.certFormInfo[keyCertId];
       formId = myAppController.certFormInfo[keyFormId];
       customerId = myAppController.certFormInfo[keyCustomerId];
+      siteId = myAppController.certFormInfo[keySiteId];
       formBody['form_id'] = myAppController.certFormInfo[keyFormId];
       formBody[keyData] = myAppController.certFormInfo[keyTemplateData];
       if (formBody[keyData][formKeyGazSafetyData].isNotEmpty) {
@@ -519,10 +522,12 @@ class EicrController extends GetxController {
         update();
       }
     } else {
-      if (selectedId == 21) {
-        consoleLog('this is last Page');
+      if (listFormSections.length - 1 == selectedId) {
+        // consoleLog('this is last Page');
         onCompleteCertificate();
-      } else if (selectedId < 21) {
+      } else {
+        // if (listFormSections.length - 1 < selectedId)
+        // consoleLog('this is Pre last Page');
         if ((selectedId == 0 || fromSave) && isCertificateCreated) {
           onCreateCertificate();
           isCertificateCreated = false;
@@ -796,6 +801,7 @@ class EicrController extends GetxController {
       ...formBody,
       'customer_id': customerId,
       'status_id': idPending,
+      'site_id': siteId,
     };
 
     // consoleLogPretty(certData, key: 'all data create');
@@ -832,6 +838,7 @@ class EicrController extends GetxController {
       ...formBody,
       'customer_id': customerId,
       'status_id': idInProgress,
+      'site_id': siteId,
     };
     // consoleLogPretty(certData, key: 'all data update');
 
@@ -864,6 +871,7 @@ class EicrController extends GetxController {
           arguments: <String, dynamic>{
             keyId: certId,
             'customer_id': customerId,
+            'site_id': siteId,
           },
         );
       }
@@ -881,6 +889,7 @@ class EicrController extends GetxController {
       ...formBody,
       'customer_id': customerId,
       'status_id': idCompleted,
+      'site_id': siteId,
     };
     // consoleLogPretty(certData, key: 'all data complete');
 
@@ -916,6 +925,7 @@ class EicrController extends GetxController {
             arguments: <String, dynamic>{
               keyId: certId,
               'customer_id': customerId,
+              'site_id': siteId,
             },
           );
         }

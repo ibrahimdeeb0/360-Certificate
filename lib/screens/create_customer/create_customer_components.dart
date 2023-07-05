@@ -61,7 +61,7 @@ class TopLabelText extends StatelessWidget {
   const TopLabelText({
     Key? key,
     this.text,
-    this.isRequired = true,
+    this.isRequired = false,
     this.enabled = true,
   }) : super(key: key);
 

@@ -17,7 +17,7 @@ class ContentPart2 extends StatelessWidget {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              0.01.ph,
+              0.01.boxHeight,
               CommonInput(
                 topLabel: const TopLabelText(
                   text: 'Registered Company Name',
@@ -100,7 +100,10 @@ class ContentPart2 extends StatelessWidget {
                         ),
                 ),
               ),
-              if (controller.isVatRegistered) 0.01.ph else 0.13.ph,
+              if (controller.isVatRegistered)
+                0.01.boxHeight
+              else
+                0.13.boxHeight,
               CommonText(
                 'Why do we need this information?',
                 textAlign: TextAlign.start,

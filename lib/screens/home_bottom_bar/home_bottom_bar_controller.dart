@@ -7,7 +7,9 @@ class HomeBottomBarController extends GetxController {
     selectedIndex = index;
     update();
     if (selectedIndex == 0) {
-      certificatesController.scrollController.jumpTo(0.0);
+      if (certificatesController.scrollController.positions.isNotEmpty) {
+        certificatesController.scrollController.jumpTo(0.0);
+      }
     }
   }
 

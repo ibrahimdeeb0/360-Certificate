@@ -19,7 +19,7 @@ class CompleteProfileDone extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                0.08.ph,
+                0.08.boxHeight,
                 SvgPicture.asset(iconSetupDone),
                 CommonText(
                   'Great ${controller.fName}, You are now ready to start using 360 connect!',

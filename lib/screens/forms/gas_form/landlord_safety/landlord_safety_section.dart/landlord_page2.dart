@@ -93,7 +93,7 @@ class LandlordPage3 extends StatelessWidget {
                       ],
                     ),
                   ),
-                  0.02.ph,
+                  0.02.boxHeight,
                   CommonText(
                     'Warning Notice Issue',
                     fontWeight: FontWeight.w600,
@@ -177,7 +177,7 @@ class LandlordPage3 extends StatelessWidget {
                       ),
                     ],
                   ),
-                  0.01.ph,
+                  0.01.boxHeight,
                 ],
               ),
             ),

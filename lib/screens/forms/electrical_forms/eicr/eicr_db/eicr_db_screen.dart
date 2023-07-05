@@ -319,7 +319,7 @@ class ViewCircuitsDetails extends StatelessWidget {
                   ),
                 ),
               ),
-              if (showDeleteIcon) 0.016.ph,
+              if (showDeleteIcon) 0.016.boxHeight,
               Visibility(
                 visible: isComplete,
                 child: Icon(

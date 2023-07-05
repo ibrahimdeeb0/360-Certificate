@@ -12,6 +12,7 @@ class WarningNoticeController extends GetxController {
   int? formId;
   int? certId;
   int? customerId;
+  int? siteId;
   bool? isEditForm;
   bool? isTemplate;
   bool? isEditTemplate;
@@ -128,6 +129,7 @@ class WarningNoticeController extends GetxController {
     super.onInit();
     isFromCertificate = Get.arguments?[formKeyFromCertificate] ?? false;
     customerId = myAppController.certFormInfo[keyCustomerId];
+    siteId = myAppController.certFormInfo[keySiteId];
     formId = myAppController.certFormInfo[keyFormId];
     formBody[keyFormId] = myAppController.certFormInfo[keyFormId];
     isTemplate =
@@ -183,6 +185,7 @@ class WarningNoticeController extends GetxController {
       certId = myAppController.certFormInfo[keyCertId];
       formId = myAppController.certFormInfo[keyFormId];
       customerId = myAppController.certFormInfo[keyCustomerId];
+      siteId = myAppController.certFormInfo[keySiteId];
       formBody[keyFormId] = myAppController.certFormInfo[keyFormId];
       formBody[keyData] = myAppController.certFormInfo[keyTemplateData];
 
@@ -429,6 +432,7 @@ class WarningNoticeController extends GetxController {
     final Map<String, dynamic> certData = <String, dynamic>{
       'customer_id': customerId,
       'status_id': idPending,
+      'site_id': siteId,
       ...formBody,
     };
 
@@ -464,6 +468,7 @@ class WarningNoticeController extends GetxController {
       ...formBody,
       'customer_id': customerId,
       'status_id': idInProgress,
+      'site_id': siteId,
     };
 
     startLoading();
@@ -508,6 +513,7 @@ class WarningNoticeController extends GetxController {
       ...formBody,
       'customer_id': customerId,
       'status_id': idCompleted,
+      'site_id': siteId,
     };
     consoleLogPretty(formBody);
 

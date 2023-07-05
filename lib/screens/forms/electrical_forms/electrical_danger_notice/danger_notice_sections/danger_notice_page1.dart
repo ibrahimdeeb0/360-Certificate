@@ -114,7 +114,9 @@ class DangerNoticePage1 extends StatelessWidget {
                             controller.onChangeFormDataValue(
                                 formKeyPart2, formKeyDangerousDetails, value);
                             controller.update();
-                            Get.back();
+                            if (Get.isBottomSheetOpen!) {
+                              Get.back();
+                            }
                           },
                         ),
                         isScrollControlled: true,

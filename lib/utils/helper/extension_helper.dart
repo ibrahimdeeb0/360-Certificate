@@ -16,6 +16,8 @@ extension ScreenSize on num {
   double get flexHeight => (DEVICE_HEIGHT * this);
 
   double get flexWidth => (DEVICE_WIDTH * this);
+
+  double get flexAll => ((DEVICE_WIDTH * this) + (DEVICE_HEIGHT * this));
 }
 
 // extension on double {
@@ -31,9 +33,9 @@ extension on String {
 }
 
 extension EmptyPadding on num {
-  SizedBox get ph => SizedBox(height: DEVICE_HEIGHT * toDouble());
+  SizedBox get boxHeight => SizedBox(height: DEVICE_HEIGHT * toDouble());
 
-  SizedBox get pw => SizedBox(width: DEVICE_WIDTH * toDouble());
+  SizedBox get boxWidth => SizedBox(width: DEVICE_WIDTH * toDouble());
 }
 
 extension FormatTime on String {

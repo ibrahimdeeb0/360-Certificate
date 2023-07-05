@@ -90,6 +90,7 @@ const String firebaseKeyIsUserCancelSearch = 'is_user_cancel_search';
 const String keyFormId = 'form_id';
 const String keyCertId = 'cert_id';
 const String keyCustomerId = 'customer_id';
+const String keySiteId = 'site_id';
 const String keyTemplateData = 'template_data';
 const String keyFormStatus = 'form_status';
 const String keyFormDataStatus = 'form_data_status';
@@ -104,6 +105,15 @@ const String urlDetails = 'https://api.woosmap.com/localities/details';
 const String language = 'gb';
 const String types = 'postal_code|address|locality';
 const String components = '';
+
+const String keySiteName = 'site_name';
+const String keyAddress = 'address';
+const String keyStreet = 'street';
+const String keyCity = 'city';
+const String keyState = 'state';
+const String keyPostcode = 'postcode';
+const String keyCountry = 'country';
+const String keyCountryId = 'country_id';
 
 // *************** Forms Names ***************
 
