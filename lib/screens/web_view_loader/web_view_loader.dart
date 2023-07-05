@@ -6,10 +6,10 @@ class WebViewLoader extends StatefulWidget {
   const WebViewLoader({super.key});
 
   @override
-  _WebViewExampleState createState() => _WebViewExampleState();
+  WebViewExampleState createState() => WebViewExampleState();
 }
 
-class _WebViewExampleState extends State<WebViewLoader> {
+class WebViewExampleState extends State<WebViewLoader> {
   bool _isLoading = true;
 
   @override
@@ -19,7 +19,7 @@ class _WebViewExampleState extends State<WebViewLoader> {
         title: const Text('Plans'),
       ),
       body: Stack(
-        children: [
+        children: <Widget>[
           WebView(
             initialUrl: 'https://360connect.app/cert_app/plans',
             javascriptMode: JavascriptMode.unrestricted,

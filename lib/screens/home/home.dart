@@ -28,18 +28,18 @@ class Home extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                // CommonButton(
-                //   onPress: () {
-                //     Get.toNamed(
-                //       routeCompleteProfile,
-                //       arguments: <String, dynamic>{
-                //         keyEmail: 'test@emaio.com',
-                //         'f_name': 'first name',
-                //         'l_name': 'last Name',
-                //       },
-                //     );
-                //   },
-                // ),
+                CommonButton(
+                  onPress: () {
+                    Get.toNamed(
+                      routeCompleteProfile,
+                      arguments: <String, dynamic>{
+                        keyEmail: 'test@emaio.com',
+                        'f_name': 'first name',
+                        'l_name': 'last Name',
+                      },
+                    );
+                  },
+                ),
                 const HomeSearchBar(),
                 Expanded(
                   child: SingleChildScrollView(
