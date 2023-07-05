@@ -81,6 +81,11 @@ class Home extends StatelessWidget {
                             ],
                           ),
                         ),
+                        CommonButton(
+                          text: 'Complete Register',
+                          onPress: () => Get.to(const CompleteRegister()),
+                          marginHorizontal: 0.04,
+                        ),
                         const CommonText(
                           'All Certificates',
                           marginTop: 0.01,

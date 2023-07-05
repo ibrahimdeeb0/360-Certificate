@@ -35,17 +35,17 @@ class RegisterController extends GetxController {
     update();
   }
 
-  // bool passwordValidator(String? value) {
-  //   if (passwordController.text.length <= 6) {
-  //     showMessage(
-  //       description: 'Password should be longer or equal to 6 characters',
-  //       textColor: COMMON_RED_COLOR,
-  //     );
-  //     return false;
-  //   } else {
-  //     return true;
-  //   }
-  // }
+  bool passwordValidator(String? value) {
+    if (passwordController.text.length <= 6) {
+      showMessage(
+        description: 'Password should be longer or equal to 6 characters',
+        textColor: COMMON_RED_COLOR,
+      );
+      return false;
+    } else {
+      return true;
+    }
+  }
 
   void registerValidator(String? value) {
     isBtnEnable = firstNameController.text.trim().isNotEmpty &&
