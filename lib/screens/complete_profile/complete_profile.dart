@@ -12,11 +12,13 @@ class CompleteProfile extends StatelessWidget {
         builder: (CompleteProfileController controller) {
           return controller.setupStatus == SetupStatus.start
               ? Instruction(controller: controller)
-              : controller.setupStatus == SetupStatus.fill
-                  ? CompleteFillData(controller: controller)
-                  : controller.setupStatus == SetupStatus.end
-                      ? CompleteProfileDone(controller: controller)
-                      : const SizedBox();
+              : controller.setupStatus == SetupStatus.start2
+                  ? Instruction2(controller: controller)
+                  : controller.setupStatus == SetupStatus.fill
+                      ? CompleteFillData(controller: controller)
+                      : controller.setupStatus == SetupStatus.end
+                          ? CompleteProfileDone(controller: controller)
+                          : const SizedBox();
         },
       ),
     );

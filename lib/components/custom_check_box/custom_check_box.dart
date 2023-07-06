@@ -7,6 +7,7 @@ class CustomCheck extends StatefulWidget {
     this.title = '',
     this.onChanged,
     this.onPress,
+    this.fontSize,
     Key? key,
   }) : super(key: key);
 
@@ -14,6 +15,7 @@ class CustomCheck extends StatefulWidget {
   final Function? onChanged;
   final Function? onPress;
   final String title;
+  final double? fontSize;
 
   @override
   State<CustomCheck> createState() => _CustomCheckState();
@@ -37,6 +39,7 @@ class _CustomCheckState extends State<CustomCheck> {
             textAlign: TextAlign.start,
             rowMainAxisSize: MainAxisSize.min,
           ),
+      fontSize: widget.fontSize,
       containerStyle: const CommonContainerModel(
         marginBottom: 0.01,
       ),

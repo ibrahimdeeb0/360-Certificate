@@ -44,3 +44,5 @@ const double paddingFormsCard = 0.026;
 
 String validationEmail =
     r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
+
+String fontFamilyType = 'Careem';

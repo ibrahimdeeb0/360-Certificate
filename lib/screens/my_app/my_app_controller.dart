@@ -69,7 +69,7 @@ class MyAppController extends GetxController {
         update();
       },
     );
-    consoleLog(userData, key: 'userData');
+    consoleLogPretty(userData, key: 'userData');
   }
 
   Future<void> updateData() async {

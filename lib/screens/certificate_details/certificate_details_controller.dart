@@ -162,6 +162,10 @@ class CertificateDetailsController extends GetxController
     myAppController.certFormInfo[keyCertId] = certDetails['form_data'][keyId];
     myAppController.certFormInfo[keyCustomerId] =
         certDetails['form_data']['customer']['id'];
+    //
+    myAppController.certFormInfo[keySiteId] =
+        certDetails['form_data']['site_id'];
+    //
     myAppController.certFormInfo[keyFormId] =
         certDetails['form_data']['form_id'];
     myAppController.certFormInfo[keyTemplateData] =

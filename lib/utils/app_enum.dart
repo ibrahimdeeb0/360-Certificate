@@ -74,3 +74,9 @@ enum FilterType {
   canceled,
   all,
 }
+
+enum FormCertType {
+  electrical,
+  gas,
+  electricalAndGas
+}

@@ -28,18 +28,19 @@ class Home extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                CommonButton(
-                  onPress: () {
-                    Get.toNamed(
-                      routeCompleteProfile,
-                      arguments: <String, dynamic>{
-                        keyEmail: 'test@emaio.com',
-                        'f_name': 'first name',
-                        'l_name': 'last Name',
-                      },
-                    );
-                  },
-                ),
+                // CommonButton(
+                //   onPress: () {
+                //     // Get.toNamed(
+                //     //   routeCompleteProfile,
+                //     //   arguments: <String, dynamic>{
+                //     //     keyEmail: 'test@emaio.com',
+                //     //     'f_name': 'first name',
+                //     //     'l_name': 'last Name',
+                //     //   },
+                //     // );
+                //     consoleLog(controller.trialDetails);
+                //   },
+                // ),
                 const HomeSearchBar(),
                 Expanded(
                   child: SingleChildScrollView(
@@ -48,6 +49,38 @@ class Home extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
+                        CommonContainer(
+                          backgroundColor:
+                              Color(AppColors.orange).withOpacity(0.2),
+                          width: 1,
+                          // paddingHorizontal: 0.04,
+                          paddingLeft: 0.04,
+                          paddingRight: 0.02,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              CommonText(
+                                // ${controller.trialDetails['']}
+                                '${controller.trialDetails['remaining_days'] ?? 0} Days left until your free expires',
+                                marginHorizontal: 0.015,
+                                leftChild: Icon(
+                                  Icons.timer_outlined,
+                                  color: Colors.orange[700],
+                                ),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  // ${controller.trialDetails['remaining_days']}
+                                },
+                                child: CommonText(
+                                  'Upgrade',
+                                  fontColor: AppColors.primary,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                         SizedBox(height: DEVICE_HEIGHT * 0.02),
                         Padding(
                           padding: EdgeInsets.symmetric(
@@ -80,11 +113,6 @@ class Home extends StatelessWidget {
                               ),
                             ],
                           ),
-                        ),
-                        CommonButton(
-                          text: 'Complete Register',
-                          onPress: () => Get.to(const CompleteRegister()),
-                          marginHorizontal: 0.04,
                         ),
                         const CommonText(
                           'All Certificates',

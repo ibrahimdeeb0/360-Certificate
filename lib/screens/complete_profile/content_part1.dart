@@ -1,14 +1,9 @@
-import 'package:flutter_svg/svg.dart';
-
 import '../../general_exports.dart';
 
 class ContentPart1 extends StatelessWidget {
   const ContentPart1({
-    // required this.controller,
     super.key,
   });
-
-  // final dynamic controller;
 
   @override
   Widget build(BuildContext context) {
@@ -20,30 +15,16 @@ class ContentPart1 extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               0.03.boxHeight,
-              ...controller.listAllForms.map(
-                (Map<String, dynamic> item) => CustomSelectCheckbox(
+              ...controller.formSelectionGroup.map(
+                (Map<String, dynamic> item) => CompleteRegisterSelectionSheet(
                   title: item[keyTitle],
-                  wihBottomBorder: false,
-                  onPress: () => controller.onSelectForm(item),
-                  isSelected: controller.selectedForms
-                      .where(
-                          (Map<String, dynamic> e) => e[keyId] == item[keyId])
+                  children: item['children'],
+                  isSelected: controller.selectedFormGroup
+                      .where((Map<String, dynamic> element) =>
+                          element[keyId] == item[keyId])
                       .isNotEmpty,
+                  onTap: () => controller.onSelectFormGroup(item),
                 ),
-              ),
-              0.25.boxHeight,
-              CommonText(
-                "If this doesn't apply to your business you can press skip",
-                textAlign: TextAlign.start,
-                inlineSpans: const <InlineSpan>[],
-                rowCrossAxisAlignment: CrossAxisAlignment.start,
-                marginHorizontal: 0.02,
-                fontColor: Colors.grey[700],
-                leftChild: Padding(
-                  padding: EdgeInsets.only(right: DEVICE_WIDTH * 0.015),
-                  child: SvgPicture.asset(iconAlert),
-                ),
-                containerStyle: appContainerStyles.cardStyle,
               ),
             ],
           );
@@ -52,5 +33,61 @@ class ContentPart1 extends StatelessWidget {
     } else {
       return const SizedBox();
     }
+  }
+}
+
+class CompleteRegisterSelectionSheet extends StatelessWidget {
+  const CompleteRegisterSelectionSheet({
+    Key? key,
+    this.title,
+    this.children,
+    this.isSelected = false,
+    this.onTap,
+  }) : super(key: key);
+
+  final String? title;
+  final List<String>? children;
+  final bool isSelected;
+  final void Function()? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Padding(
+        padding: EdgeInsets.only(bottom: 0.03.flexHeight),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            CommonText(
+              title ?? '',
+              fontSize: fontH2,
+              fontColor: isSelected ? AppColors.primary : Colors.black,
+              rowMainAxisAlignment: MainAxisAlignment.spaceBetween,
+              rowMainAxisSize: MainAxisSize.max,
+              rightChild: isSelected
+                  ? Icon(
+                      Icons.check_box,
+                      color: Color(AppColors.primary),
+                    )
+                  : Icon(
+                      Icons.check_box_outline_blank,
+                      color: Colors.grey[600],
+                    ),
+            ),
+            0.015.boxHeight,
+            if (children != null && isSelected)
+              ...children!.map(
+                (String item) => CommonText(
+                  item,
+                  fontColor: Colors.grey[500],
+                  fontSize: fontTitle,
+                  marginBottom: 0.012,
+                ),
+              ),
+          ],
+        ),
+      ),
+    );
   }
 }

@@ -2,10 +2,17 @@ import '../../general_exports.dart';
 
 class HomeController extends GetxController {
   List<dynamic> formsData = <dynamic>[];
+  Map<String,dynamic> trialDetails = <String,dynamic>{};
 
   dynamic certCountData;
   int countCompleteCert = 0;
   int countUnCompleteCert = 0;
+
+  @override
+  void onInit() {
+    getTrialDetails();
+    super.onInit();
+  }
 
   @override
   void onReady() {
@@ -36,6 +43,20 @@ class HomeController extends GetxController {
       update();
       dismissLoading();
     }
+  }
+
+  void getTrialDetails() {
+    ApiRequest(
+      path: '/getTrialDetails',
+      className: 'HomeController/getTrialDetails',
+      requestFunction: getTrialDetails,
+    ).request(
+      onSuccess: (dynamic data, dynamic response) {
+        trialDetails = data;
+        
+        update();
+      },
+    );
   }
 
   Future<void> getCertCount() async {

@@ -1,8 +1,3 @@
-import 'dart:io';
-
-import 'package:flutter_svg/svg.dart';
-import 'package:image_picker/image_picker.dart';
-
 import '../../general_exports.dart';
 
 class ContentPart2 extends StatelessWidget {
@@ -15,116 +10,47 @@ class ContentPart2 extends StatelessWidget {
         init: CompleteProfileController(),
         builder: (CompleteProfileController controller) {
           return Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              0.01.boxHeight,
-              CommonInput(
-                topLabel: const TopLabelText(
-                  text: 'Registered Company Name',
+              0.02.boxHeight,
+              if (controller.formCertType == FormCertType.electrical)
+                const ElectricalCompliance(),
+              if (controller.formCertType == FormCertType.gas)
+                const GasCompliance(),
+              //
+              if (controller.formCertType == FormCertType.electricalAndGas)
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    CommonText(
+                      'Electrical Certificates',
+                      fontColor: Colors.orange[800],
+                      marginBottom: 0.02,
+                      fontSize: fontH2,
+                    ),
+                    const ElectricalCompliance(
+                      message:
+                          "Great, you've chosen to create both electrical and gas certificates. We'll need your relevant board selection and the license number for the electrical certificates and your Gas Safe Register number for the gas certificates.",
+                      boardMessage:
+                          'First, please select your board for the electrical certificates from the list below:',
+                      licenseMessage:
+                          "Now, please enter your license number for the chosen board. If you don't have it on hand, you can add it later from your account settings, Please note that you won't be able to create certificates without valid license numbers.",
+                    ),
+                    CommonText(
+                      'Gas Certificates',
+                      fontColor: Colors.orange[800],
+                      marginBottom: 0.02,
+                      marginTop: 0.01,
+                      fontSize: fontH2,
+                    ),
+                    const GasCompliance(
+                      hideBoxMessage: true,
+                      licenseMessage:
+                          "Next, for your Gas certificates, please enter your Gas Safe Register number. Again, if you don't have this on hand, you can add it later from your account settings.",
+                    ),
+                  ],
                 ),
-                hint: 'Enter Your Registered Company Name',
-                controller: controller.registeredCompanyController,
-                marginBottom: 0.015,
-              ),
-              CommonInput(
-                topLabel: const TopLabelText(
-                  text: 'Trading Name',
-                ),
-                hint: 'Enter Your Trading Name',
-                controller: controller.tradingNameController,
-                marginBottom: 0.015,
-              ),
-              CommonInput(
-                topLabelText: 'Registration Number (No Required)',
-                hint: 'Enter Your Registration Number',
-                controller: controller.registrationNumberController,
-                textInputAction: TextInputAction.go,
-                marginBottom: 0.015,
-              ),
-              CommonText(
-                'Is your business VAT Registered?',
-                fontColor: Colors.grey[700],
-                rowMainAxisSize: MainAxisSize.max,
-                rowMainAxisAlignment: MainAxisAlignment.spaceBetween,
-                rightChild: CommonButton(
-                  onPress: controller.toggleVat,
-                  text: controller.isVatRegistered ? 'Yes' : 'No',
-                  width: 0.15,
-                  height: 0.045,
-                  backgroundColor: controller.isVatRegistered
-                      ? AppColors.primary
-                      : Colors.grey,
-                ),
-              ),
-              if (controller.isVatRegistered)
-                CommonInput(
-                  topLabel: const TopLabelText(
-                    text: 'What Is Your VAT Number',
-                  ),
-                  hint: 'Enter Your VAT Number',
-                  marginBottom: 0.015,
-                  keyboardType: TextInputType.number,
-                  textInputAction: TextInputAction.go,
-                  controller: controller.vATNumberController,
-                ),
-              CommonText(
-                'Company Logo',
-                onPress: () {
-                  Get.bottomSheet(
-                    const ImportImageSheet(),
-                  );
-                },
-                fontSize: fontH2,
-                marginHorizontal: 0.04,
-                containerStyle: CommonContainerModel(
-                  touchEffect: TouchableEffect(type: TouchTypes.opacity),
-                ),
-                leftChild: CommonContainer(
-                  marginVertical: 0.01,
-                  size: 0.21,
-                  borderRadius: 0.02,
-                  borderWidth: controller.compLogoFile == null ? 0 : 1.5,
-                  borderColor: Colors.blueGrey[200],
-                  clipBehavior: Clip.hardEdge,
-                  child: controller.compLogoFile == null
-                      ? SvgPicture.asset(
-                          iconAttachCompLogo,
-                          width: 1.flexWidth,
-                          height: 1.flexHeight,
-                        )
-                      : Image.file(
-                          File(controller.compLogoFile!.path),
-                          fit: BoxFit.cover,
-                          width: 1.flexWidth,
-                          height: 1.flexHeight,
-                        ),
-                ),
-              ),
-              if (controller.isVatRegistered)
-                0.01.boxHeight
-              else
-                0.13.boxHeight,
-              CommonText(
-                'Why do we need this information?',
-                textAlign: TextAlign.start,
-                inlineSpans: const <InlineSpan>[],
-                rowCrossAxisAlignment: CrossAxisAlignment.start,
-                columnCrossAxisAlignment: CrossAxisAlignment.start,
-                marginHorizontal: 0.02,
-                leftChild: Padding(
-                  padding: EdgeInsets.only(right: DEVICE_WIDTH * 0.015),
-                  child: SvgPicture.asset(iconAlert),
-                ),
-                bottomChild: CommonText(
-                  'This information will displayed on all your quotes and invoices and for the invoices to be valid all your company details should be displayed',
-                  textAlign: TextAlign.start,
-                  marginLeft: 0.06,
-                  marginTop: 0.01,
-                  fontColor: Colors.grey[700],
-                  fontSize: fontH3,
-                ),
-                containerStyle: appContainerStyles.cardStyle,
-              ),
             ],
           );
         },
@@ -135,43 +61,209 @@ class ContentPart2 extends StatelessWidget {
   }
 }
 
-class ImportImageSheet extends StatelessWidget {
-  const ImportImageSheet({Key? key}) : super(key: key);
+class GasCompliance extends StatelessWidget {
+  const GasCompliance({
+    super.key,
+    this.licenseMessage,
+    this.hideBoxMessage = false,
+  });
+  final String? licenseMessage;
+  final bool hideBoxMessage;
 
   @override
   Widget build(BuildContext context) {
-    return BottomSheetContainer(
-      title: 'Select',
-      height: 0.25,
-      child: GetBuilder<CompleteProfileController>(
-        init: CompleteProfileController(),
-        builder: (CompleteProfileController controller) {
-          return Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              CommonButton(
-                onPress: () => controller.pickerImage(
-                  ImageSource.gallery,
+    return GetBuilder<CompleteProfileController>(
+      init: CompleteProfileController(),
+      builder: (CompleteProfileController controller) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            if (!hideBoxMessage)
+              CommonContainer(
+                style: appContainerStyles.cardStyle,
+                marginBottom: 0.03,
+                child: CommonText(
+                  "Great, you've chosen to create gas certificates. For this, we'll need your Gas Safe Register number.",
+                  textAlign: TextAlign.start,
+                  fontSize: fontH3,
+                  fontColor: Colors.grey[700],
                 ),
-                text: 'Import from Gallery',
-                marginBottom: 0.015,
-                height: 0.06,
-                borderRadius: 0.02,
               ),
-              CommonButton(
-                onPress: () {
-                  controller.pickerImage(
-                    ImageSource.camera,
-                  );
-                },
-                text: 'Import from Camera',
-                borderRadius: 0.02,
-                marginBottom: 0.015,
-                height: 0.06,
+            AttentionMessage(
+              message: licenseMessage ??
+                  "Please enter your Gas Safe Register number below. If you don't have it on hand, you can add it later from your account settings. Please note that you won't be able to create certificates without a valid Gas Safe Register number.",
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  if (controller.toggleElectricalHaveLicense)
+                    CommonInput(
+                      topLabelText: 'Gas Safe Register Number',
+                      hint: '0800 408 5500',
+                      marginBottom: 0.015,
+                      controller: controller.gasNumberController,
+                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      SizedBox(
+                        width: 0.65.flexWidth,
+                        child: const CommonText(
+                          "You don't have Gas Safe Register Number",
+                          textAlign: TextAlign.start,
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          controller.toggleElectricalHaveLicense =
+                              !(controller.toggleElectricalHaveLicense);
+                          controller.update();
+                        },
+                        child: CommonText(
+                          controller.toggleElectricalHaveLicense
+                              ? 'Skip'
+                              : 'Open',
+                          fontColor: AppColors.primary,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
-            ],
-          );
-        },
+            ),
+          ],
+        );
+      },
+    );
+  }
+}
+
+class ElectricalCompliance extends StatelessWidget {
+  const ElectricalCompliance({
+    super.key,
+    this.message,
+    this.boardMessage,
+    this.licenseMessage,
+  });
+  final String? message;
+  final String? boardMessage;
+  final String? licenseMessage;
+
+  @override
+  Widget build(BuildContext context) {
+    return GetBuilder<CompleteProfileController>(
+      init: CompleteProfileController(),
+      builder: (CompleteProfileController controller) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            CommonContainer(
+              style: appContainerStyles.cardStyle,
+              marginBottom: 0.03,
+              child: CommonText(
+                message ??
+                    "Great, you've chosen to create electrical certificates. To ensure your compliance, we'll need you to select your board and enter your license number.",
+                textAlign: TextAlign.start,
+                fontSize: fontH3,
+                fontColor: Colors.grey[700],
+              ),
+            ),
+            CommonText(
+              boardMessage ?? 'Please select your board from the list below:',
+              marginBottom: 0.02,
+              textAlign: TextAlign.start,
+              rowMainAxisSize: MainAxisSize.max,
+            ),
+            ...controller.listElectricBoard.map(
+              (Map<String, dynamic> item) => CustomCheckBox(
+                title: item[keyName],
+                onPress: () => controller.onSelectElectricBoard(item),
+                isSelected: controller.selectedElectricBoard
+                    .where((Map<String, dynamic> element) =>
+                        element[keyId] == item[keyId])
+                    .isNotEmpty,
+              ),
+            ),
+            AttentionMessage(
+              message: licenseMessage ??
+                  "After you've made your selection, please enter your license number. If you don't have it on hand, you can add it later from your account settings. Please note that you won't be able to create certificates without a valid license number.",
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  if (controller.toggleElectricalHaveLicense)
+                    CommonInput(
+                      topLabelText: 'License Number',
+                      hint: 'DN8735',
+                      controller: controller.electricalLicenseController,
+                    ),
+                  CommonText(
+                    "You don't have license number",
+                    rowMainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    rowMainAxisSize: MainAxisSize.max,
+                    rightChild: TextButton(
+                      onPressed: () {
+                        controller.toggleElectricalHaveLicense =
+                            !(controller.toggleElectricalHaveLicense);
+                        controller.update();
+                      },
+                      child: CommonText(
+                        controller.toggleElectricalHaveLicense
+                            ? 'Skip'
+                            : 'Open',
+                        fontColor: AppColors.primary,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+}
+
+class CustomCheckBox extends StatelessWidget {
+  const CustomCheckBox({
+    super.key,
+    this.isSelected = false,
+    this.title = '',
+    this.onPress,
+  });
+  final bool isSelected;
+  final String? title;
+  final Function? onPress;
+
+  @override
+  Widget build(BuildContext context) {
+    return CommonContainer(
+      onPress: onPress,
+      marginBottom: 0.02,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          SizedBox(
+            width: 0.8.flexWidth,
+            child: CommonText(
+              title ?? '',
+              fontSize: fontTitle,
+              fontColor: isSelected ? AppColors.primary : Colors.grey[700],
+              rowMainAxisAlignment: MainAxisAlignment.start,
+              rowMainAxisSize: MainAxisSize.max,
+              textAlign: TextAlign.start,
+            ),
+          ),
+          if (isSelected)
+            Icon(
+              Icons.check_box,
+              color: Color(AppColors.primary),
+            )
+          else
+            Icon(
+              Icons.check_box_outline_blank,
+              color: Colors.grey[600],
+            ),
+        ],
       ),
     );
   }

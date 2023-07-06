@@ -5,24 +5,27 @@ import '../../general_exports.dart';
 
 enum SetupStatus {
   start,
+  start2,
   fill,
   end,
 }
 
 enum CurrentPage {
-  page0,
   page1,
   page2,
-  // page3,
+  page3,
+  page4,
 }
 
 class CompleteProfileController extends GetxController {
   SetupStatus setupStatus = SetupStatus.start;
-  CurrentPage currentPage = CurrentPage.page0;
+  CurrentPage currentPage = CurrentPage.page1;
 
   String? fName;
   String? lName;
   String? email;
+
+  FormCertType? formCertType;
 
   TextEditingController registeredCompanyController = TextEditingController();
   TextEditingController tradingNameController = TextEditingController();
@@ -35,64 +38,121 @@ class CompleteProfileController extends GetxController {
   TextEditingController cityController = TextEditingController();
   TextEditingController postcodeController = TextEditingController();
   TextEditingController countryController = TextEditingController();
+  TextEditingController stateController = TextEditingController();
+  //
+  TextEditingController entrySearchAddressController = TextEditingController();
+  TextEditingController entryAddressController = TextEditingController();
+  TextEditingController entryStreetController = TextEditingController();
+  TextEditingController entryCityController = TextEditingController();
+  TextEditingController entryPostcodeController = TextEditingController();
+  TextEditingController entryCountryController = TextEditingController();
+  TextEditingController entryStateController = TextEditingController();
 
-  Map<String, String> titleMap = <String, String>{
-    CurrentPage.page0.name: 'What the forms you would like to activate',
-    CurrentPage.page1.name:
-        'Now We Need Your Business Details To Finish Off The Account',
-    CurrentPage.page2.name:
-        'Now Just Need To Know Your Registered Address For The Business And This Will Be Displayed On All Quotes And Invoices',
-  };
+//formCertType
+  String page2Title = '';
+  Map<String, String> get titleMap => <String, String>{
+        CurrentPage.page1.name: 'Certificate Activation Selection',
+        CurrentPage.page2.name: page2Title,
+        CurrentPage.page3.name: 'Your Company Details',
+        CurrentPage.page4.name: 'Your Company Address',
+      };
   Map<String, double> pagesCircleMap = <String, double>{
-    CurrentPage.page0.name: 0.34,
-    CurrentPage.page1.name: 0.65,
-    CurrentPage.page2.name: 1.0,
+    CurrentPage.page1.name: 0.25,
+    CurrentPage.page2.name: 0.5,
+    CurrentPage.page3.name: 0.75,
+    CurrentPage.page4.name: 1.0,
   };
   Map<String, String> pagesNumMap = <String, String>{
-    CurrentPage.page0.name: '1/3',
-    CurrentPage.page1.name: '2/3',
-    CurrentPage.page2.name: '3/3',
+    CurrentPage.page1.name: '1/4',
+    CurrentPage.page2.name: '2/4',
+    CurrentPage.page3.name: '3/4',
+    CurrentPage.page4.name: '4/4',
   };
   Map<String, Widget> pagesContentsMap = <String, Widget>{
-    CurrentPage.page0.name: const ContentPart1(),
-    CurrentPage.page1.name: const ContentPart2(),
-    CurrentPage.page2.name: const ContentPart3(),
+    CurrentPage.page1.name: const ContentPart1(),
+    CurrentPage.page2.name: const ContentPart2(),
+    CurrentPage.page3.name: const ContentPart3(),
+    CurrentPage.page4.name: const ContentPart4(),
   };
 
-  List<Map<String, dynamic>> listAllForms = <Map<String, dynamic>>[
-    <String, dynamic>{
-      keyId: 9,
-      keyTitle: 'Landlord/Homeowner Gas Safety Record',
-    },
-    <String, dynamic>{
-      keyId: 11,
-      keyTitle: 'Warning Notice',
-    },
+  List<Map<String, dynamic>> formSelectionGroup = <Map<String, dynamic>>[
     <String, dynamic>{
       keyId: 1,
-      keyTitle: 'Portable Appliance Testing (PAT)',
+      keyType: FormCertType.electrical,
+      keyTitle: 'Electrical Certificate',
+      'children': <String>[
+        'Portable Appliance Testing (PAT)',
+        'Electrical Danger Notice',
+        'Domestic EIC',
+        'EICR'
+      ],
     },
     <String, dynamic>{
-      keyId: 4,
-      keyTitle: 'Electrical Danger Notice',
-    },
-    <String, dynamic>{
-      keyId: 3,
-      keyTitle: 'Domestic EIC',
-    },
-    <String, dynamic>{
-      keyId: 5,
-      keyTitle: 'EICR',
+      keyId: 2,
+      keyType: FormCertType.gas,
+      keyTitle: 'Gas Certificates',
+      'children': <String>[
+        'Landlord/Homeowner Gas Safety Record',
+        'Warning Notice',
+      ],
     },
   ];
 
-  List<Map<String, dynamic>> selectedForms = <Map<String, dynamic>>[];
+  List<Map<String, dynamic>> selectedFormGroup = <Map<String, dynamic>>[];
+
+  //
+  TextEditingController electricalLicenseController = TextEditingController();
+  TextEditingController gasNumberController = TextEditingController();
+
+  bool toggleElectricalHaveLicense = true;
+  bool gasRegisterNumber = true;
+
+  List<Map<String, dynamic>> selectedElectricBoard = <Map<String, dynamic>>[];
+  List<int> electricBoardId = <int>[];
+
+  List<Map<String, dynamic>> listElectricBoard = <Map<String, dynamic>>[
+    <String, dynamic>{
+      keyId: 1,
+      keyName: 'ELECSA',
+    },
+    <String, dynamic>{
+      keyId: 2,
+      keyName: 'STROMA',
+    },
+    <String, dynamic>{
+      keyId: 3,
+      keyName: 'IET (Institution of Engineering and Technology)',
+    },
+    <String, dynamic>{
+      keyId: 4,
+      keyName: 'JIB (Joint Industry Board)',
+    },
+    <String, dynamic>{
+      keyId: 5,
+      keyName: 'SELECT (Scotland)',
+    },
+    <String, dynamic>{
+      keyId: 6,
+      keyName: 'NAPIT',
+    },
+    <String, dynamic>{
+      keyId: 7,
+      keyName: 'NICEIC',
+    },
+  ];
 
   List<dynamic> allCountries = <dynamic>[];
 
   bool isVatRegistered = false;
 
   XFile? compLogoFile;
+
+//* ----- Switch  Manual Address Entry
+  bool isManualAddressEntry = false;
+  void toggleManualAddressEntry({bool? value}) {
+    isManualAddressEntry = value!;
+    update();
+  }
 
   //* ----- Map
 
@@ -137,12 +197,6 @@ class CompleteProfileController extends GetxController {
     consoleLog(selectedCountry, key: 'selected_Country');
   }
 
-  // Map<String, dynamic> nextActionMap = <String, dynamic>{
-  //   CurrentPage.page0.name: () => currentPage = CurrentPage.page1,
-  //   CurrentPage.page1.name: const ContentPart2(),
-  //   CurrentPage.page2.name: const ContentPart3(),
-  // };
-
   String headerTitle() => titleMap[currentPage.name] ?? '';
 
   double pagesCircleTween() => pagesCircleMap[currentPage.name] ?? 0;
@@ -152,34 +206,153 @@ class CompleteProfileController extends GetxController {
   Widget pagesContents() =>
       pagesContentsMap[currentPage.name] ?? const SizedBox();
 
+  bool isValidP1 = false;
+  bool isValidP2 = false;
+  bool? isValidP3;
+  bool isValidP4 = false;
+  String validationMessage = '';
+  void inputsValidation() {
+    switch (currentPage) {
+      case CurrentPage.page1:
+        {
+          if (selectedFormGroup.isEmpty) {
+            isValidP1 = false;
+            validationMessage = 'Please Select at least one Certificate';
+          } else {
+            isValidP1 = true;
+            validationMessage = '';
+          }
+        }
+        break;
+      case CurrentPage.page2:
+        {
+          if (formCertType == FormCertType.electrical) {
+            if (selectedElectricBoard.isEmpty) {
+              isValidP2 = false;
+              validationMessage =
+                  'Please select your board for the electrical certificates';
+            } else {
+              isValidP2 = true;
+              validationMessage = '';
+              if (electricalLicenseController.text.trim().isEmpty) {
+                toggleElectricalHaveLicense = false;
+              } else {
+                toggleElectricalHaveLicense = true;
+              }
+            }
+          } else if (formCertType == FormCertType.gas) {
+            isValidP2 = true;
+            validationMessage = '';
+            if (gasNumberController.text.trim().isEmpty) {
+              toggleElectricalHaveLicense = false;
+            } else {
+              toggleElectricalHaveLicense = true;
+            }
+          } else if (formCertType == FormCertType.electricalAndGas) {
+            if (selectedElectricBoard.isEmpty) {
+              isValidP2 = false;
+              validationMessage =
+                  'Please select your board for the electrical certificates';
+            } else {
+              isValidP2 = true;
+              validationMessage = '';
+              if (gasNumberController.text.trim().isEmpty) {
+                toggleElectricalHaveLicense = false;
+              } else {
+                toggleElectricalHaveLicense = true;
+              }
+              if (gasNumberController.text.trim().isEmpty) {
+                toggleElectricalHaveLicense = false;
+              } else {
+                toggleElectricalHaveLicense = true;
+              }
+            }
+          }
+        }
+        break;
+      case CurrentPage.page3:
+        {
+          if (registeredCompanyController.text.trim().isEmpty) {
+            isValidP3 = false;
+          } else {
+            isValidP3 = true;
+          }
+        }
+        break;
+      case CurrentPage.page4:
+        {
+          if (addressController.text.trim().isEmpty &&
+              !(isManualAddressEntry)) {
+            isValidP4 = false;
+            validationMessage = 'Please enters your company address';
+            flushBarMessage();
+          } else if (isManualAddressEntry) {
+            final bool isSuccess = entryCityController.text.isNotEmpty &&
+                entryPostcodeController.text.isNotEmpty &&
+                entryCountryController.text.isNotEmpty &&
+                entryStateController.text.isNotEmpty &&
+                entryStreetController.text.isNotEmpty;
+
+            if (addressController.text.trim().isEmpty) {
+              if (entryStreetController.text.isNotEmpty &&
+                  entryPostcodeController.text.isNotEmpty) {
+                addressController.text =
+                    '${entryStreetController.text}, ${entryStateController.text}, ${entryPostcodeController.text}';
+              }
+            }
+
+            showBottomSheetMessage(
+              isSuccess: isSuccess,
+            );
+
+            isValidP4 = isSuccess;
+          } else {
+            isValidP4 = true;
+            validationMessage = '';
+          }
+        }
+        break;
+    }
+
+    update();
+  }
+
   void onNext() {
     inputsValidation();
     switch (currentPage) {
-      case CurrentPage.page0:
-        currentPage = CurrentPage.page1;
-        break;
       case CurrentPage.page1:
         {
           if (isValidP1) {
             currentPage = CurrentPage.page2;
           } else {
-            showMessage(
-              description: 'Please fill all required fields',
-              textColor: AppColors.red2,
-            );
+            flushBarMessage();
+          }
+        }
+
+        break;
+      case CurrentPage.page2:
+        {
+          if (isValidP2) {
+            currentPage = CurrentPage.page3;
+          } else {
+            flushBarMessage();
           }
         }
         break;
-      case CurrentPage.page2:
-        if (isValidP2) {
-          setupStatus = SetupStatus.end;
-        } else {
-          showMessage(
-            description: 'Please fill all required fields',
-            textColor: AppColors.red2,
-          );
+      case CurrentPage.page3:
+        if (isValidP3!) {
+          currentPage = CurrentPage.page4;
         }
 
+        break;
+
+      case CurrentPage.page4:
+        {
+          if (isValidP4) {
+            //
+            onCompleteProfile();
+          }
+        }
         break;
     }
 
@@ -188,14 +361,17 @@ class CompleteProfileController extends GetxController {
 
   void onBack() {
     switch (currentPage) {
-      case CurrentPage.page0:
-        setupStatus = SetupStatus.start;
-        break;
       case CurrentPage.page1:
-        currentPage = CurrentPage.page0;
+        setupStatus = SetupStatus.start;
         break;
       case CurrentPage.page2:
         currentPage = CurrentPage.page1;
+        break;
+      case CurrentPage.page3:
+        currentPage = CurrentPage.page2;
+        break;
+      case CurrentPage.page4:
+        currentPage = CurrentPage.page3;
         break;
     }
 
@@ -206,15 +382,55 @@ class CompleteProfileController extends GetxController {
     currentPage = value;
   }
 
-  void onSelectForm(Map<String, dynamic> form) {
-    if (selectedForms
-        .where((Map<String, dynamic> item) => item[keyId] == form[keyId])
+  List<int> selectFormGroupId = <int>[];
+  void onSelectFormGroup(Map<String, dynamic> item) {
+    if (selectedFormGroup
+        .where((Map<String, dynamic> element) => element[keyId] == item[keyId])
         .isNotEmpty) {
-      selectedForms.removeWhere(
-          (Map<String, dynamic> item) => item[keyId] == form[keyId]);
+      selectedFormGroup.remove(item);
     } else {
-      selectedForms.add(form);
+      selectedFormGroup.add(item);
     }
+
+    if (selectedFormGroup.length == 2) {
+      formCertType = FormCertType.electricalAndGas;
+      page2Title = 'For Both Electric and Gas';
+    } else if (selectedFormGroup.length == 1) {
+      formCertType = selectedFormGroup.first[keyType];
+      if (selectedFormGroup.first[keyType] == FormCertType.electrical) {
+        page2Title = 'For Electrical Certificates';
+      } else {
+        page2Title = 'For Gas Certificates';
+      }
+    }
+
+    selectFormGroupId = <int>[];
+    for (Map<String, dynamic> prop in selectedFormGroup) {
+      selectFormGroupId.add(prop[keyId]);
+    }
+    consoleLog(selectFormGroupId, key: 'selectFormGroupId');
+
+    update();
+  }
+
+  // electricBoardId
+  void onSelectElectricBoard(Map<String, dynamic> item) {
+    if (selectedElectricBoard
+        .where((Map<String, dynamic> element) => element[keyId] == item[keyId])
+        .isNotEmpty) {
+      selectedElectricBoard.remove(item);
+    } else {
+      selectedElectricBoard.add(item);
+    }
+
+    electricBoardId = <int>[];
+    if (selectedElectricBoard.isNotEmpty) {
+      for (Map<String, dynamic> prop in selectedElectricBoard) {
+        electricBoardId.add(prop[keyId]);
+      }
+    }
+    consoleLog(electricBoardId, key: 'electricBoardId');
+
     update();
   }
 
@@ -350,9 +566,11 @@ class CompleteProfileController extends GetxController {
         addressType == 'address' ||
         (addressType == 'postal_code' &&
             data['result']['addresses']['list'].isEmpty)) {
+      //!------------
       setUserAddressData(
         addressName: data['result']['formatted_address'] ?? '',
         cityName: addressDetails!['locality'] ?? '',
+        stateName: addressDetails!['administrative_area_level_1'] ?? '',
         countryName: addressDetails!['country'] ?? '',
         postCode: addressDetails!['postal_codes'] ?? '',
         streetName: addressDetails!['route'] ?? '',
@@ -381,6 +599,7 @@ class CompleteProfileController extends GetxController {
   void setUserAddressData({
     required String addressName,
     required String cityName,
+    required String stateName,
     required String postCode,
     required String countryName,
     required String streetName,
@@ -392,6 +611,7 @@ class CompleteProfileController extends GetxController {
     cityController.text = cityName;
     postcodeController.text = postCode;
     countryController.text = countryName;
+    stateController.text = stateName;
 
     if (streetName.isNotEmpty && streetNum.isNotEmpty) {
       streetController.text = '$streetNum, $streetName';
@@ -407,45 +627,54 @@ class CompleteProfileController extends GetxController {
       Get.back();
     }
     showAddressFiled = true;
-    // customerAddressLat = lat;
-    // customerAddressLng = lng;
-    // consoleLog('$customerAddressLat , $customerAddressLng');
-    update();
-  }
 
-  bool isValidP1 = false;
-  bool isValidP2 = false;
-  void inputsValidation() {
-    if (currentPage == CurrentPage.page1) {
-      if (isVatRegistered) {
-        isValidP1 = registeredCompanyController.text.isNotEmpty &&
-            tradingNameController.text.isNotEmpty &&
-            vATNumberController.text.isNotEmpty;
-      } else {
-        isValidP1 = registeredCompanyController.text.isNotEmpty &&
-            tradingNameController.text.isNotEmpty;
-      }
-    } else if (currentPage == CurrentPage.page2) {
-      isValidP2 = streetController.text.isNotEmpty &&
-          cityController.text.isNotEmpty &&
-          postcodeController.text.isNotEmpty;
-    }
+    final bool isSuccess = addressController.text.isNotEmpty &&
+        cityController.text.isNotEmpty &&
+        postcodeController.text.isNotEmpty &&
+        countryController.text.isNotEmpty &&
+        stateController.text.isNotEmpty &&
+        streetController.text.isNotEmpty;
+
+    showBottomSheetMessage(
+      isSuccess: isSuccess,
+    );
+
+    update();
   }
 
   Future<void> onCompleteProfile() async {
     final Map<String, dynamic> bodyJson = <String, dynamic>{
+      'categories_id[]': selectFormGroupId,
+      'electric_board_id[]': electricBoardId,
+      'gas_register_number': gasNumberController.text.trim(),
+      'license_number': electricalLicenseController.text.trim(),
       'company_name': registeredCompanyController.text.trim(),
       'trading_name': tradingNameController.text.trim(),
       'registration_number': registrationNumberController.text.trim(),
-      'has_vat': isVatRegistered ? 'yes' : 'no',
+      'has_vat': vATNumberController.text.trim().isEmpty ? 'no' : 'yes',
       'vat_number': vATNumberController.text.trim(),
-      'registered_address': addressController.text.trim(),
-      'postal_code': postcodeController.text.trim(),
-      'number_street_name': streetController.text.trim(),
-      'city': cityController.text.trim(),
-      'country_id': selectedCountry?[keyId],
-      'forms_id': selectedForms.map((dynamic item) => item[keyId]).toList(),
-      // 'logo' : ,
+      //
+      'registered_address': isManualAddressEntry
+          ? entryAddressController.text.trim()
+          : addressController.text.trim(),
+
+      'postal_code': isManualAddressEntry
+          ? entryPostcodeController.text.trim()
+          : postcodeController.text.trim(),
+
+      'number_street_name': isManualAddressEntry
+          ? entryStreetController.text.trim()
+          : streetController.text.trim(),
+
+      'city': isManualAddressEntry
+          ? entryCityController.text.trim()
+          : cityController.text.trim(),
+
+      'country_id': '218',
+
+      'state': isManualAddressEntry
+          ? entryStateController.text.trim()
+          : stateController.text.trim(),
     };
     ApiRequest(
       method: ApiMethods.post,
@@ -466,15 +695,20 @@ class CompleteProfileController extends GetxController {
         tempUserData['isProfileComplete'] = true;
         myAppController.onUserUpdated(tempUserData);
         //
-        homeBottomBarController = Get.put(HomeBottomBarController());
-        homeController = Get.put(HomeController());
-        profileController = Get.put(ProfileController());
-        myAppController = Get.put(MyAppController());
-        certificatesController = Get.put(CertificatesController());
-        //
-        Get.offAllNamed(routeHomeBottomBar);
+        setupStatus = SetupStatus.end;
+        update();
       },
     );
+  }
+
+  void pressDone() {
+    homeBottomBarController = Get.put(HomeBottomBarController());
+    homeController = Get.put(HomeController());
+    profileController = Get.put(ProfileController());
+    myAppController = Get.put(MyAppController());
+    certificatesController = Get.put(CertificatesController());
+    //
+    Get.offAllNamed(routeHomeBottomBar);
   }
 
   Future<void> getCountries() async {
@@ -510,5 +744,47 @@ class CompleteProfileController extends GetxController {
       },
     );
     update();
+  }
+
+  Future<void> flushBarMessage() async {
+    if (Get.isSnackbarOpen) {
+      Get.back();
+    } else {
+      showMessage(
+        description: validationMessage,
+        textColor: AppColors.redBold,
+        fontSize: fontTitle,
+        backgroundColor: Colors.grey.withOpacity(0.3),
+      );
+    }
+  }
+
+  void showBottomSheetMessage({bool isSuccess = true}) {
+    Get.bottomSheet(
+      BottomSheetContainer(
+        responsiveContent: true,
+        child: SingleChildScrollView(
+          child: Center(
+            child: Column(
+              children: <Widget>[
+                0.03.boxHeight,
+                Icon(
+                  isSuccess ? Icons.task_alt : Icons.cancel_outlined,
+                  color: isSuccess ? Colors.green : Colors.red[800],
+                  size: 0.1.flexAll,
+                ),
+                CommonText(
+                  isSuccess
+                      ? 'Address Successfully Added'
+                      : 'The Address Could Not Be Verified',
+                  marginTop: 0.02,
+                ),
+                0.04.boxHeight,
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }

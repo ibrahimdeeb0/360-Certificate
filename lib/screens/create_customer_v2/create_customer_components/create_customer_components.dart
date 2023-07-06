@@ -153,8 +153,10 @@ class CancelAddCustomerSheet extends StatelessWidget {
   const CancelAddCustomerSheet({
     super.key,
     this.onPressFirstBtn,
+    this.message,
   });
   final Function()? onPressFirstBtn;
+  final String? message;
 
   @override
   Widget build(BuildContext context) {
@@ -171,8 +173,8 @@ class CancelAddCustomerSheet extends StatelessWidget {
                 size: 0.07.flexAll,
               ),
             ),
-            const CommonText(
-              'Would you like cancel process of adding Customer',
+            CommonText(
+              message ?? 'Would you like cancel process of adding Customer',
               marginBottom: 0.03,
               fontSize: fontH2,
               textAlign: TextAlign.start,
