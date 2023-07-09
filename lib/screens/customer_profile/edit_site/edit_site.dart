@@ -26,7 +26,6 @@ class EditSite extends StatelessWidget {
                   CommonInput(
                     topLabel: const TopLabelText(
                       text: 'Site Name',
-                     
                     ),
                     controller: controller.siteName,
                     value: Get.arguments['site_data'][0]['name'],
@@ -35,7 +34,6 @@ class EditSite extends StatelessWidget {
                   CommonInput(
                     topLabel: const TopLabelText(
                       text: 'Street No & Name',
-                      
                       enabled: false,
                     ),
                     hint: Get.arguments['site_data'][0]['street_num'],
@@ -45,7 +43,6 @@ class EditSite extends StatelessWidget {
                   CommonInput(
                     topLabel: const TopLabelText(
                       text: 'City',
-                      
                       enabled: false,
                     ),
                     hint: Get.arguments['site_data'][0]['city'],
@@ -55,7 +52,6 @@ class EditSite extends StatelessWidget {
                   CommonInput(
                     topLabel: const TopLabelText(
                       text: 'Postal Code',
-                     
                       enabled: false,
                     ),
                     hint: Get.arguments['site_data'][0]['postal_code'],
@@ -65,28 +61,27 @@ class EditSite extends StatelessWidget {
                   CommonInput(
                     topLabel: const TopLabelText(
                       text: 'First Name',
-                     ),
+                    ),
                     controller: controller.fName,
                     value: Get.arguments['site_data'][0]['site_contact']
                         ['f_name'],
                     marginBottom: 0.015,
                   ),
-                  CommonInput(
-                    topLabel: const TopLabelText(
-                      text: 'Last Name',
-                      
-                    ),
-                    hint: Get.arguments['site_data'][0]['site_contact']
-                        ['l_name'],
-                    controller: controller.lName,
-                    value: Get.arguments['site_data'][0]['site_contact']
-                        ['l_name'],
-                    marginBottom: 0.015,
-                  ),
+                  // CommonInput(
+                  //   topLabel: const TopLabelText(
+                  //     text: 'Last Name',
+
+                  //   ),
+                  //   hint: Get.arguments['site_data'][0]['site_contact']
+                  //       ['l_name'],
+                  //   controller: controller.lName,
+                  //   value: Get.arguments['site_data'][0]['site_contact']
+                  //       ['l_name'],
+                  //   marginBottom: 0.015,
+                  // ),
                   CommonInput(
                     topLabel: const TopLabelText(
                       text: 'Phone',
-                      
                     ),
                     hint: Get.arguments['site_data'][0]['site_contact']
                         ['phone'],
@@ -98,7 +93,6 @@ class EditSite extends StatelessWidget {
                   CommonInput(
                     topLabel: const TopLabelText(
                       text: 'Email',
-                     
                     ),
                     hint: Get.arguments['site_data'][0]['site_contact']
                         ['email'],

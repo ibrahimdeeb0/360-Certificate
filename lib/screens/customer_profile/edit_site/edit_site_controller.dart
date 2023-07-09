@@ -46,7 +46,7 @@ class EditSiteController extends GetxController {
     consoleLogPretty(Get.arguments);
     siteName.text = Get.arguments['site_data'][0]['name'];
     fName.text = Get.arguments['site_data'][0]['site_contact']['f_name'];
-    lName.text = Get.arguments['site_data'][0]['site_contact']['l_name'];
+    // lName.text = Get.arguments['site_data'][0]['site_contact']['l_name'];
     phone.text = Get.arguments['site_data'][0]['site_contact']['phone'];
     email.text = Get.arguments['site_data'][0]['site_contact']['email'];
     update();
