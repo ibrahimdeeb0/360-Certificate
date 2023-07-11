@@ -59,7 +59,7 @@ class Header extends StatelessWidget with PreferredSizeWidget {
 
         // title and icon
         title: CommonText(
-          title ?? 'title',
+          title ?? '',
           // marginTop: 0.02,
           style: appTextStyles.h2StyleBlack(),
         ),

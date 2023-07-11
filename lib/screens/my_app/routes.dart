@@ -129,22 +129,26 @@ List<GetPage<dynamic>> appRoutes = <GetPage<dynamic>>[
     name: routeFormPortableTest,
     page: () => const PortableTest(),
   ),
- //
-GetPage<CompleteRegister>(
-  name: routeCompleteRegister,
-   page: () => const CompleteRegister(),
-  ),
   //
-GetPage<CreateCustomerV2>(
-  name: routeCreateCustomerV2,
-   page: () => const CreateCustomerV2(),
- ), 
-GetPage<SearchForCustomer>(
-  name: routeSearchForCustomer,
-   page: () => const SearchForCustomer(),
- ), 
-GetPage<OpenWebView>(
-  name: routeOpenWebView,
-   page: () => const OpenWebView(),
- ), 
+  // GetPage<CompleteRegister>(
+  //   name: routeCompleteRegister,
+  //   page: () => const CompleteRegister(),
+  // ),
+  //
+  GetPage<CreateCustomerV2>(
+    name: routeCreateCustomerV2,
+    page: () => const CreateCustomerV2(),
+  ),
+  GetPage<SearchForCustomer>(
+    name: routeSearchForCustomer,
+    page: () => const SearchForCustomer(),
+  ),
+  GetPage<OpenWebView>(
+    name: routeOpenWebView,
+    page: () => const OpenWebView(),
+  ),
+  GetPage<Subscription>(
+    name: routeSubscription,
+    page: () => const Subscription(),
+  ),
 ];

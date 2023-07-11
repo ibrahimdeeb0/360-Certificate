@@ -61,8 +61,10 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Careem',
         primaryColor: Color(AppColors.primary),
         useMaterial3: true,
+        // brightness: Brightness.dark,
         bottomSheetTheme: const BottomSheetThemeData(elevation: 0.0),
       ),
+
       translations: Translation(),
       // we use the fallbackLocale to handel any error in language files and use the en as default language
       // fallbackLocale: const Locale('ar'),

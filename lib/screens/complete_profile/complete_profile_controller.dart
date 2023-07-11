@@ -170,9 +170,12 @@ class CompleteProfileController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    fName = Get.arguments['f_name'];
-    lName = Get.arguments['l_name'];
-    email = Get.arguments[keyEmail];
+    // fName = Get.arguments['f_name'];
+    // lName = Get.arguments['l_name'];
+    // email = Get.arguments[keyEmail];
+    fName = myAppController.userData['user']['first_name'];
+    lName = myAppController.userData['user']['last_name'];
+    email = myAppController.userData['user']['email'];
   }
 
   @override
@@ -244,9 +247,9 @@ class CompleteProfileController extends GetxController {
             isValidP2 = true;
             validationMessage = '';
             if (gasNumberController.text.trim().isEmpty) {
-              toggleElectricalHaveLicense = false;
+              gasRegisterNumber = false;
             } else {
-              toggleElectricalHaveLicense = true;
+              gasRegisterNumber = true;
             }
           } else if (formCertType == FormCertType.electricalAndGas) {
             if (selectedElectricBoard.isEmpty) {
@@ -257,11 +260,11 @@ class CompleteProfileController extends GetxController {
               isValidP2 = true;
               validationMessage = '';
               if (gasNumberController.text.trim().isEmpty) {
-                toggleElectricalHaveLicense = false;
+                gasRegisterNumber = false;
               } else {
-                toggleElectricalHaveLicense = true;
+                gasRegisterNumber = true;
               }
-              if (gasNumberController.text.trim().isEmpty) {
+              if (electricalLicenseController.text.trim().isEmpty) {
                 toggleElectricalHaveLicense = false;
               } else {
                 toggleElectricalHaveLicense = true;
@@ -644,8 +647,8 @@ class CompleteProfileController extends GetxController {
 
   Future<void> onCompleteProfile() async {
     final Map<String, dynamic> bodyJson = <String, dynamic>{
-      'categories_id[]': selectFormGroupId,
-      'electric_board_id[]': electricBoardId,
+      'categories_id': selectFormGroupId,
+      'electric_board_id': electricBoardId,
       'gas_register_number': gasNumberController.text.trim(),
       'license_number': electricalLicenseController.text.trim(),
       'company_name': registeredCompanyController.text.trim(),

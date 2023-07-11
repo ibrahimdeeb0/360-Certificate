@@ -32,7 +32,7 @@ class CompleteProfileDone extends StatelessWidget {
                       marginVertical: 0.03,
                       textAlign: TextAlign.start,
                       fontWeight: FontWeight.bold,
-                      fontSize: fontBigTitle,
+                      fontSize: fontH1,
                     ),
                     if (!(controller.toggleElectricalHaveLicense) ||
                         !(controller.gasRegisterNumber))

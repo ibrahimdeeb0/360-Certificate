@@ -95,7 +95,7 @@ class GasCompliance extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  if (controller.toggleElectricalHaveLicense)
+                  if (controller.gasRegisterNumber)
                     CommonInput(
                       topLabelText: 'Gas Safe Register Number',
                       hint: '0800 408 5500',
@@ -114,14 +114,12 @@ class GasCompliance extends StatelessWidget {
                       ),
                       TextButton(
                         onPressed: () {
-                          controller.toggleElectricalHaveLicense =
-                              !(controller.toggleElectricalHaveLicense);
+                          controller.gasRegisterNumber =
+                              !(controller.gasRegisterNumber);
                           controller.update();
                         },
                         child: CommonText(
-                          controller.toggleElectricalHaveLicense
-                              ? 'Skip'
-                              : 'Open',
+                          controller.gasRegisterNumber ? 'Skip' : 'Open',
                           fontColor: AppColors.primary,
                         ),
                       ),

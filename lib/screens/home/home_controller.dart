@@ -2,7 +2,8 @@ import '../../general_exports.dart';
 
 class HomeController extends GetxController {
   List<dynamic> formsData = <dynamic>[];
-  Map<String,dynamic> trialDetails = <String,dynamic>{};
+  Map<String, dynamic> trialDetails = <String, dynamic>{};
+  Map<String, dynamic> plansDetails = <String, dynamic>{};
 
   dynamic certCountData;
   int countCompleteCert = 0;
@@ -17,7 +18,7 @@ class HomeController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    // getFormsData();
+    getPlansDetails();
     getCertCount();
   }
 
@@ -50,10 +51,28 @@ class HomeController extends GetxController {
       path: '/getTrialDetails',
       className: 'HomeController/getTrialDetails',
       requestFunction: getTrialDetails,
+      // formatResponse: true,
     ).request(
       onSuccess: (dynamic data, dynamic response) {
         trialDetails = data;
-        
+
+        update();
+      },
+    );
+  }
+
+  SubscriptionModel? subscriptionModel;
+  void getPlansDetails() {
+    ApiRequest(
+      path: '/show-interval-plans',
+      className: 'HomeController/getPlansDetails',
+      requestFunction: getPlansDetails,
+      formatResponse: true,
+    ).request(
+      onSuccess: (dynamic data, dynamic response) {
+        subscriptionModel = SubscriptionModel.fromJson(data);
+        plansDetails = data;
+        consoleLog(subscriptionModel, key: 'response_data');
         update();
       },
     );

@@ -9,13 +9,6 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: HomeHeader(),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {
-      //     // Get.toNamed(routeCreateCustomerV2);
-      //     Get.toNamed(routeSearchForCustomer);
-      //     // Get.to(() => const Invoices());
-      //   },
-      // ),
       backgroundColor: Colors.white,
       resizeToAvoidBottomInset: true,
       body: GetBuilder<HomeController>(
@@ -70,7 +63,7 @@ class Home extends StatelessWidget {
                               ),
                               TextButton(
                                 onPressed: () {
-                                  // ${controller.trialDetails['remaining_days']}
+                                  Get.toNamed(routeSubscription);
                                 },
                                 child: CommonText(
                                   'Upgrade',

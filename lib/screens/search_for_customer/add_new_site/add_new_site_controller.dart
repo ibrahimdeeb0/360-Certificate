@@ -76,17 +76,10 @@ class AddNewSiteController extends GetxController {
 
   void validation() {
     {
-      // final bool tempValid = !(isAnotherSiteInfo)
-      //     ? siteDetailsNameController.text.trim().isNotEmpty &&
-      //         siteDetailsPhoneController.text.trim().isNotEmpty &&
-      //         siteDetailsEmailController.text.trim().isNotEmpty &&
-      //         siteContactType != null
-      //     : true;
-      final bool tempValid = (isAnotherSiteInfo) ? validateFields() : true;
+      // if AnotherSite true then inputs should filled
+      final bool tempValid = !(isAnotherSiteInfo) || validateFields();
 
       if (siteNameController.text.trim().isNotEmpty) {
-        // if Site Address --Not Same as Customer/Company Address
-
         if (addressControllerMap.listAddressData.isNotEmpty) {
           if (sitePropertyType != null) {
             if (sitePropertyType == SitePropertyType.other) {

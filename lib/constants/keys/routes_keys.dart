@@ -38,3 +38,4 @@ const String routeCompleteRegister = '/complete_register';
 const String routeCreateCustomerV2 = '/create_customer_v2';
 const String routeSearchForCustomer = '/search_for_customer';
 const String routeOpenWebView = '/open_web_view';
+const String routeSubscription = '/subscription';

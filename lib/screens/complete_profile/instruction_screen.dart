@@ -22,7 +22,7 @@ class Instruction extends StatelessWidget {
                   CommonText(
                     'Welcome, ${controller.fName}',
                     fontWeight: FontWeight.bold,
-                    fontSize: fontBigTitle,
+                    fontSize: fontH1,
                     marginRight: 0.03,
                     rowMainAxisAlignment: MainAxisAlignment.center,
                     rightChild: Image.asset(
