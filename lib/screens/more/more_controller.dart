@@ -13,11 +13,12 @@ class MoreController extends GetxController {
         //   keyIcon: iconCustomers,
         //   keyOnPress: () => Get.toNamed(routeCustomers),
         // },
-        <String, dynamic>{
-          keyTitle: 'Form Templates',
-          keyIcon: iconFormTemplate,
-          keyOnPress: () => Get.toNamed(routeFormTemplates),
-        },
+        if (homeController.isUserSubscribe)
+          <String, dynamic>{
+            keyTitle: 'Form Templates',
+            keyIcon: iconFormTemplate,
+            keyOnPress: () => Get.toNamed(routeFormTemplates),
+          },
         <String, dynamic>{
           keyTitle: 'My Settings',
           keyIcon: iconSettings,
@@ -33,11 +34,12 @@ class MoreController extends GetxController {
           keyIcon: iconLogout,
           keyOnPress: myAppController.onSignOut,
         },
-        <String, dynamic>{
-          keyTitle: 'Develop Forms',
-          keyIcon: iconForm,
-          keyOnPress: () => Get.to(() => const DevelopmentForms()),
-        },
+        // if (currentMode == AppMode.dev)
+        //   <String, dynamic>{
+        //     keyTitle: 'Develop Forms',
+        //     keyIcon: iconForm,
+        //     keyOnPress: () => Get.to(() => const DevelopmentForms()),
+        //   },
       ];
 
   @override
@@ -137,4 +139,9 @@ class MoreController extends GetxController {
       ],
     },
   ];
+
+  // @override
+  // void onInit() {
+  //   super.onInit();
+  // }
 }

@@ -64,6 +64,8 @@ class EICRSectionA extends StatelessWidget {
                           .toString(),
                     );
                     controller.update();
+                    consoleLog(controller
+                        .gazSafetyData[formKeyDateTestingA].runtimeType);
                   },
                   fontSize: fontH3,
                   fontColor: AppColors.primary,

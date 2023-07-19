@@ -18,7 +18,7 @@ class Profile extends StatelessWidget {
             // keepCertUsage: '0/100',
             deleteJobUsage: '0/100',
             keepCertUsage: controller.userDataProfile.isNotEmpty
-                ? '${controller.userDataProfile['certificate_count']}/100'
+                ? '${controller.userDataProfile['certificate_count']}/ ${homeController.showFreeAlert ? '20' : '100'} '
                 : '',
           ),
         );

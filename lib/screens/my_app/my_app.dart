@@ -17,8 +17,9 @@ final DefaultContainerStyles defaultContainerStyles = DefaultContainerStyles();
 MyAppController myAppController = Get.find<MyAppController>();
 HomeBottomBarController homeBottomBarController =
     Get.put(HomeBottomBarController());
-HomeController homeController = Get.put(HomeController());
 ProfileController profileController = Get.put(ProfileController());
+
+HomeController homeController = Get.put(HomeController());
 final SplashController splashController = Get.put(SplashController());
 final AppLanguageController languageController =
     Get.put(AppLanguageController());

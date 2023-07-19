@@ -160,6 +160,9 @@ const String iconPlugFill = '${iconsPath}icon_plug_fill.svg';
 const String iconImageAddLine = '${iconsPath}image-add-line.svg';
 const String iconAttachCompLogo = '${iconsPath}icon_attach_camp_logo.svg';
 const String iconCompany = '${iconsPath}icon_company.svg';
+const String iconCongratulations = '${iconsPath}icon_congratulations.svg';
+const String iconFormsOops = '${iconsPath}forms_oops.svg';
+
 
 // ----------------------------------------
 
@@ -191,6 +194,7 @@ const String imageCircuitElectrical =
 const String imageEmailVerify = '${imagesPath}icon_email_verify.png';
 const String imageFormObserv = '${imagesPath}image_form_observ.png';
 const String imageHello = '${imagesPath}image_hello.png';
+const String imageUpgradePlan = '${imagesPath}image_upgrade_plan.png';
 // ----------------------------------------
 
 const String videosPath = 'assets/videos/';

@@ -31,7 +31,8 @@ class Home extends StatelessWidget {
                 //     //     'l_name': 'last Name',
                 //     //   },
                 //     // );
-                //     consoleLog(controller.trialDetails);
+                //     // consoleLog(controller.trialDetails);
+                //     consoleLog(profileController.userDataProfile);
                 //   },
                 // ),
                 const HomeSearchBar(),
@@ -42,38 +43,39 @@ class Home extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        CommonContainer(
-                          backgroundColor:
-                              Color(AppColors.orange).withOpacity(0.2),
-                          width: 1,
-                          // paddingHorizontal: 0.04,
-                          paddingLeft: 0.04,
-                          paddingRight: 0.02,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              CommonText(
-                                // ${controller.trialDetails['']}
-                                '${controller.trialDetails['remaining_days'] ?? 0} Days left until your free expires',
-                                marginHorizontal: 0.015,
-                                leftChild: Icon(
-                                  Icons.timer_outlined,
-                                  color: Colors.orange[700],
+                        if (controller.showFreeAlert)
+                          CommonContainer(
+                            backgroundColor:
+                                Color(AppColors.orange).withOpacity(0.2),
+                            width: 1,
+                            // paddingHorizontal: 0.04,
+                            paddingLeft: 0.04,
+                            paddingRight: 0.02,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                CommonText(
+                                  // ${controller.trialDetails['']}
+                                  '${controller.trialDetails['remaining_days'] ?? 0} Days left until your free expires',
+                                  marginHorizontal: 0.015,
+                                  leftChild: Icon(
+                                    Icons.timer_outlined,
+                                    color: Colors.orange[700],
+                                  ),
                                 ),
-                              ),
-                              TextButton(
-                                onPressed: () {
-                                  Get.toNamed(routeSubscription);
-                                },
-                                child: CommonText(
-                                  'Upgrade',
-                                  fontColor: AppColors.primary,
-                                  fontWeight: FontWeight.w600,
+                                TextButton(
+                                  onPressed: () {
+                                    Get.toNamed(routeSubscription);
+                                  },
+                                  child: CommonText(
+                                    'Upgrade',
+                                    fontColor: AppColors.primary,
+                                    fontWeight: FontWeight.w600,
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-                        ),
                         SizedBox(height: DEVICE_HEIGHT * 0.02),
                         Padding(
                           padding: EdgeInsets.symmetric(
@@ -139,6 +141,66 @@ class Home extends StatelessWidget {
             ),
           );
         },
+      ),
+    );
+  }
+}
+
+class SubscribedMessageSheet extends StatelessWidget {
+  const SubscribedMessageSheet({
+    super.key,
+    this.daysTrailer,
+  });
+  final int? daysTrailer;
+
+  @override
+  Widget build(BuildContext context) {
+    return BottomSheetContainer(
+      responsiveContent: true,
+      child: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            0.04.boxHeight,
+            Center(
+              child: SvgPicture.asset(iconCongratulations),
+            ),
+            const CommonText(
+              'Congratulations!',
+              fontWeight: FontWeight.bold,
+              fontSize: fontH2,
+              marginVertical: 0.015,
+            ),
+            CommonText(
+              '',
+              inlineSpans: <InlineSpan>[
+                TextSpan(
+                  text:
+                      'You have successfully subscribed to the Gas package. You have ',
+                  style: TextStyle(
+                    fontFamily: fontFamilyType,
+                    color: Colors.grey[700],
+                  ),
+                ),
+                TextSpan(
+                  text: '$daysTrailer remaining free days',
+                  style: TextStyle(
+                    fontFamily: fontFamilyType,
+                    color: Colors.orange[700],
+                  ),
+                ),
+                TextSpan(
+                  text:
+                      ', and the subscription will be activated automatically after the free period ends.',
+                  style: TextStyle(
+                    fontFamily: fontFamilyType,
+                    color: Colors.grey[700],
+                  ),
+                ),
+              ],
+            ),
+            0.04.boxHeight,
+          ],
+        ),
       ),
     );
   }

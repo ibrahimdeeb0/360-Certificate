@@ -59,11 +59,11 @@ class CertificatesController extends GetxController {
     );
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-    getAllCert();
-  }
+  // @override
+  // void onReady() {
+  //   super.onReady();
+  //   getAllCert();
+  // }
 
   Map<String, dynamic> filterItem = <String, dynamic>{
     keyTitle: 'All',
@@ -107,7 +107,7 @@ class CertificatesController extends GetxController {
       className: 'CertificatesController/getAllCert',
       requestFunction: getAllCert,
       withLoading: true,
-      formatResponse: true,
+      // formatResponse: true,
     ).request(
       onSuccess: (dynamic data, dynamic response) {
         myAppController.localStorage.saveToStorage(

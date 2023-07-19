@@ -1,12 +1,13 @@
 import '../constants/index.dart';
 
 String baseUrl = currentMode == AppMode.dev
-    ? 'https://360connect.app/cert_app/api'
-    : 'https://go.360connect.app/api/engineers';
-
+    ? 'https://360connect.app/certificate-app/api'
+    // 'https://360connect.app/certificate-app/api'
+    : 'https://certificates.get360connect.com/api';
 // *************** Api body keys ****************
 
 const String apiUserData = 'user_data';
+const String apiUser = 'user';
 const String fcmToken = 'fcm_token';
 const String keyName = 'name';
 const String keyEmail = 'email';

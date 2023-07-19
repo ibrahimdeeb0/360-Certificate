@@ -286,4 +286,12 @@ class DefaultContainerStyles {
     paddingHorizontal: 0.03,
     width: 1,
   );
+
+  CommonContainerModel planContainerStyle = CommonContainerModel(
+    backgroundColor: AppColors.primary,
+    borderRadius: 0.06,
+    paddingHorizontal: 0.03,
+    paddingVertical: 0.006,
+    marginHorizontal: 0.04,
+  );
 }

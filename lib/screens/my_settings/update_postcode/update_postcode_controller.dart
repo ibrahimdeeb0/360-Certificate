@@ -257,7 +257,7 @@ class UpdatePostcodeController extends GetxController {
     if (allCountries.isEmpty) {
       ApiRequest(
         path: keyGetCountries,
-        className: 'NewJobController/getCountries',
+        className: 'CompleteProfileController/getCountries',
         requestFunction: getCountries,
       ).request(
         onSuccess: (dynamic data, dynamic response) {
@@ -288,9 +288,7 @@ class UpdatePostcodeController extends GetxController {
       },
     ).request(
       onSuccess: (dynamic data, dynamic response) {
-        if (Get.isRegistered<MySettingsController>()) {
-          Get.find<MySettingsController>().getUserData();
-        }
+        profileController.getUserProfileData();
         Get.back();
         // update();
       },

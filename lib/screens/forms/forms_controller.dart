@@ -4,70 +4,146 @@ class FormsController extends GetxController {
   List<dynamic> listTemp = <dynamic>[];
   List<dynamic> allFormsTemplates = <dynamic>[];
 
-  List<Map<String, dynamic>> formItems = <Map<String, dynamic>>[
-    <String, dynamic>{
-      keyTitle: 'Gas',
-      keyItems: <Map<String, dynamic>>[
-        <String, dynamic>{
-          keyId: 9,
-          keyTitle: 'Landlord/Homeowner Gas Safety Record',
-          keyRoute: routeFormLandlord,
-        },
-        <String, dynamic>{
-          keyId: 11,
-          keyTitle: 'Warning Notice',
-          keyRoute: routeFormWarningNotice,
-        },
-      ],
-    },
-    <String, dynamic>{
-      keyTitle: 'Electrical',
-      keyItems: <Map<String, dynamic>>[
-        <String, dynamic>{
-          keyId: 1,
-          keyTitle: 'Portable Appliance Testing (PAT)',
-          keyRoute: routeFormPortableTest,
-        },
-        <String, dynamic>{
-          keyId: 4,
-          keyTitle: 'Electrical Danger Notice',
-          keyRoute: routeFormDangerNotice,
-        },
-        <String, dynamic>{
-          keyId: 3,
-          keyTitle: 'Domestic EIC',
-          keyRoute: routeFormDomesticEic,
-        },
-        <String, dynamic>{
-          keyId: 5,
-          keyTitle: 'EICR',
-          keyRoute: routeFormEICR,
-        },
-      ],
-    },
-  ];
+  List<Map<String, dynamic>> get formItems => <Map<String, dynamic>>[
+        if (homeController.isHaveGas)
+          <String, dynamic>{
+            keyTitle: 'Gas',
+            keyItems: <Map<String, dynamic>>[
+              <String, dynamic>{
+                keyId: 9,
+                keyTitle: 'Landlord/Homeowner Gas Safety Record',
+                keyRoute: routeFormLandlord,
+                'form_cert_type': FormCertType.gas,
+              },
+              <String, dynamic>{
+                keyId: 11,
+                keyTitle: 'Warning Notice',
+                keyRoute: routeFormWarningNotice,
+                'form_cert_type': FormCertType.gas,
+              },
+            ],
+          },
+        if (homeController.isHaveElectrical)
+          <String, dynamic>{
+            keyTitle: 'Electrical',
+            keyItems: <Map<String, dynamic>>[
+              <String, dynamic>{
+                keyId: 1,
+                keyTitle: 'Portable Appliance Testing (PAT)',
+                keyRoute: routeFormPortableTest,
+                'form_cert_type': FormCertType.electrical,
+              },
+              <String, dynamic>{
+                keyId: 4,
+                keyTitle: 'Electrical Danger Notice',
+                keyRoute: routeFormDangerNotice,
+                'form_cert_type': FormCertType.electrical,
+              },
+              <String, dynamic>{
+                keyId: 3,
+                keyTitle: 'Domestic EIC',
+                keyRoute: routeFormDomesticEic,
+                'form_cert_type': FormCertType.electrical,
+              },
+              <String, dynamic>{
+                keyId: 5,
+                keyTitle: 'EICR',
+                keyRoute: routeFormEICR,
+                'form_cert_type': FormCertType.electrical,
+              },
+            ],
+          },
+      ];
 
   @override
   void onReady() {
     super.onReady();
-    getFormsTemplates();
+
+    if (homeController.isUserSubscribe) {
+      getFormsTemplates();
+    }
   }
 
   // bool isNoTemp = false;
   void searchTemplate(Map<String, dynamic> formInfo) {
     consoleLog(formInfo);
-    // Get Templates related to selected Form
-    listTemp = <dynamic>[
-      ...allFormsTemplates
-          .where((dynamic item) => item['form_id'] == formInfo[keyId])
-    ];
+    // consoleLog(profileController.electricNumber, key: 'profile_electricNumber');
+    // consoleLog(profileController.gasNumber, key: 'profile_gasNumber');
+    if (formInfo['form_cert_type'] == FormCertType.electrical) {
+      if (homeController.electricNumber != null) {
+        // Get Templates related to selected Form
+        listTemp = <dynamic>[
+          ...allFormsTemplates
+              .where((dynamic item) => item['form_id'] == formInfo[keyId])
+        ];
 
-    // set here form info and form page route
-    Get.bottomSheet(
-      ShowTemplatesBT(
-        formInfo: formInfo,
-      ),
-    );
+        // set here form info and form page route
+        Get.bottomSheet(
+          ShowTemplatesBT(
+            formInfo: formInfo,
+          ),
+        );
+      } else {
+        Get.bottomSheet(
+          ShowNumberMassageSheet(
+            text1:
+                "It looks like you haven't provided your board information yet. To create electrical certificates, we need your electrical board selection and your license number.",
+            text2:
+                'This information is crucial to maintain the validity and compliance of your certificates. You can update this information in your account settings. If you need help finding your license numbers or have any other questions, please refer to our help section or contact our support team.',
+            btnText: 'Go To Enter License Number',
+            onPress: () {
+              if (Get.isBottomSheetOpen!) {
+                Get.back();
+              }
+              Get.toNamed(
+                routeUpdateCertNumber,
+                arguments: <String, dynamic>{
+                  'is_gas': false,
+                },
+              );
+            },
+          ),
+          isScrollControlled: true,
+        );
+      }
+    } else if (formInfo['form_cert_type'] == FormCertType.gas) {
+      if (homeController.gasNumber != null) {
+        // Get Templates related to selected Form
+        listTemp = <dynamic>[
+          ...allFormsTemplates
+              .where((dynamic item) => item['form_id'] == formInfo[keyId])
+        ];
+
+        // set here form info and form page route
+        Get.bottomSheet(
+          ShowTemplatesBT(
+            formInfo: formInfo,
+          ),
+        );
+      } else {
+        Get.bottomSheet(
+          ShowNumberMassageSheet(
+            text1:
+                "It looks like you haven't provided your board information yet. To create gas certificates, we need your Gas Safe Register number.",
+            text2:
+                'This information is crucial to maintain the validity and compliance of your certificates. You can update this information in your account settings. If you need help finding your license numbers or have any other questions, please refer to our help section or contact our support team.',
+            btnText: ' Go To Enter Gas Safe Register Number',
+            onPress: () {
+              if (Get.isBottomSheetOpen!) {
+                Get.back();
+              }
+              Get.toNamed(
+                routeUpdateCertNumber,
+                arguments: <String, dynamic>{
+                  'is_gas': true,
+                },
+              );
+            },
+          ),
+          isScrollControlled: true,
+        );
+      }
+    }
 
     update();
   }
@@ -120,14 +196,14 @@ class FormsController extends GetxController {
     Map<String, dynamic>? formInfo,
     int? tempId,
   }) {
-    startLoading();
+    // startLoading();
     consoleLog(formInfo);
     // get data
     ApiRequest(
       path: '/forms/templates/$tempId/show',
       className: 'AddFormTemplateController/onPressEdit',
       requestFunction: onSelectFormTemplate,
-      // withLoading: true,
+      withLoading: true,
       // formatResponse: true,
     ).request(
       onSuccess: (dynamic data, dynamic response) {

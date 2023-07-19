@@ -14,6 +14,7 @@ class ContentPart2 extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               0.02.boxHeight,
+
               if (controller.formCertType == FormCertType.electrical)
                 const ElectricalCompliance(),
               if (controller.formCertType == FormCertType.gas)

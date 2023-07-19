@@ -11,12 +11,13 @@ class ProfileController extends GetxController {
   TextEditingController confirmNewPassController = TextEditingController();
 
   Map<String, dynamic> userDataProfile = <String, dynamic>{};
+  // Map<String, dynamic> userDataProfile = <String, dynamic>{};
 
-  @override
-  void onInit() {
-    super.onInit();
-    getProfileData();
-  }
+  // @override
+  // void onInit() {
+  //   super.onInit();
+  //   getUserProfileData();
+  // }
 
   void onPressNewPass() {
     final bool validInputsPass = currentPassController.text.isNotEmpty &&
@@ -33,32 +34,22 @@ class ProfileController extends GetxController {
     }
   }
 
-  Future<void> getProfileData() async {
-    hideKeyboard();
+  //!-------------
+
+  void getUserProfileData() {
     ApiRequest(
-      path: keyProfile,
-      className: 'MyProfileController/getProfileData',
-      requestFunction: getProfileData,
-      // withLoading: true,
+      path: '/profile',
+      className: 'ProfileController/getUserProfileData',
+      requestFunction: getUserProfileData,
+      withLoading: true,
+      formatResponse: true,
     ).request(
       onSuccess: (dynamic data, dynamic response) {
-        myAppController.localStorage.saveToStorage(
-          key: 'getProfileData',
-          value: data,
-        );
-        userDataProfile = data;
+        userDataProfile = data['user'];
         setData();
-        update();
       },
+      // onError: (dynamic error) {},
     );
-    if (!myAppController.isInternetConnect) {
-      final dynamic apiData = await myAppController.localStorage.getFromStorage(
-        key: 'getProfileData',
-      );
-      userDataProfile = apiData;
-      setData();
-      update();
-    }
   }
 
   void setData() {
@@ -126,11 +117,8 @@ class ProfileController extends GetxController {
           showMessage(
             description: 'Success Edit Changes',
           );
-          getProfileData();
-          if (Get.isRegistered<MySettingsController>()) {
-            Get.find<MySettingsController>().getUserData();
-          }
 
+          getUserProfileData();
           update();
         },
       );
@@ -163,10 +151,7 @@ class ProfileController extends GetxController {
           showMessage(
             description: 'Success Edit Changes',
           );
-          getProfileData();
-          if (Get.isRegistered<MySettingsController>()) {
-            Get.find<MySettingsController>().getUserData();
-          }
+          getUserProfileData();
 
           update();
         },

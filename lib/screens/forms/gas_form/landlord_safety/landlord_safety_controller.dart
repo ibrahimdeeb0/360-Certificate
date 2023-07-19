@@ -450,8 +450,8 @@ class LandlordSafetyController extends GetxController {
       onSuccess: (dynamic data, dynamic response) async {
         myAppController.clearCertFormInfo();
         certificatesController.getAllCert();
-        homeController.getCertCount();
-        profileController.getProfileData();
+        homeController.getAllUserData();
+        // profileController.getUserProfileData();
 
         if (isFromCertificate) {
           Get.back();
@@ -462,7 +462,7 @@ class LandlordSafetyController extends GetxController {
             arguments: <String, dynamic>{
               keyId: certId,
               'customer_id': customerId,
-               'site_id': siteId,
+              'site_id': siteId,
             },
           );
         }
@@ -504,9 +504,10 @@ class LandlordSafetyController extends GetxController {
             : certData,
       ).request(onSuccess: (dynamic data, dynamic response) async {
         myAppController.clearCertFormInfo();
-        certificatesController.getAllCert();
-        homeController.getCertCount();
-        profileController.getProfileData();
+        // certificatesController.getAllCert();
+        // homeController.getCertCount();
+        profileController.getUserProfileData();
+         homeController.getAllUserData();
 
         if (isFromCertificate) {
           Get.back();

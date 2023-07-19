@@ -65,6 +65,44 @@ class MySettings extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
+                              CommonContainer(
+                                onPress: () {
+                                  if (!homeController.isRequiredNumber) {
+                                    Get.toNamed(routeSubscription);
+                                  }
+                                },
+                                width: 1,
+                                marginTop: 0.02,
+                                borderBottomWidth: 2,
+                                borderBottomColor: AppColors.greyLight,
+                                paddingBottom: 0.015,
+                                touchEffect:
+                                    TouchableEffect(type: TouchTypes.opacity),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    const CommonText(
+                                      'View Your Plan',
+                                    ),
+                                    Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        CommonText(
+                                          homeController.plan,
+                                          fontColor: Colors.white,
+                                          containerStyle: appContainerStyles
+                                              .planContainerStyle
+                                              .copyWith(marginHorizontal: 0.01),
+                                        ),
+                                        const Icon(Icons.arrow_forward),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
                               CommonText(
                                 'Turn Invoice Feature',
                                 rowMainAxisSize: MainAxisSize.max,
@@ -105,6 +143,13 @@ class MySettings extends StatelessWidget {
                                 title: 'Type In The Postcode',
                                 subTitle:
                                     controller.userData['registered_address'],
+                              ),
+                              const ItemCard(
+                                isRequired: true,
+                                title: 'Important Numbers',
+                                subTitle:
+                                    'License Number, Gas Safe Register Number',
+                                // hideArrow: true,
                               ),
                               Row(
                                 mainAxisAlignment:

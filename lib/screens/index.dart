@@ -28,4 +28,5 @@ export 'search_for_customer/index.dart';
 export 'splash_screen/index.dart';
 export 'subscription/index.dart';
 export 'uncompleted_cert/index.dart';
+export 'update_cert_number/index.dart';
 export 'web_view_loader/index.dart';

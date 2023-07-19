@@ -1,3 +1,5 @@
+// ignore_for_file: no_leading_underscores_for_local_identifiers
+
 class SubscriptionModel {
   SubscriptionModel({
     required this.monthlyPlans,
@@ -5,11 +7,11 @@ class SubscriptionModel {
   });
 
   SubscriptionModel.fromJson(Map<String, dynamic> json) {
-    monthlyPlans = List.from(json['monthly_plans'])
-        .map((e) => MonthlyPlans.fromJson(e))
+    monthlyPlans = List<dynamic>.from(json['monthly_plans'])
+        .map((dynamic e) => MonthlyPlans.fromJson(e))
         .toList();
-    yearlyPlans = List.from(json['yearly_plans'])
-        .map((e) => YearlyPlans.fromJson(e))
+    yearlyPlans = List<dynamic>.from(json['yearly_plans'])
+        .map((dynamic e) => YearlyPlans.fromJson(e))
         .toList();
   }
 
@@ -17,9 +19,11 @@ class SubscriptionModel {
   late final List<YearlyPlans> yearlyPlans;
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['monthly_plans'] = monthlyPlans.map((e) => e.toJson()).toList();
-    _data['yearly_plans'] = yearlyPlans.map((e) => e.toJson()).toList();
+    final Map<String, dynamic> _data = <String, dynamic>{};
+    _data['monthly_plans'] =
+        monthlyPlans.map((MonthlyPlans e) => e.toJson()).toList();
+    _data['yearly_plans'] =
+        yearlyPlans.map((YearlyPlans e) => e.toJson()).toList();
     return _data;
   }
 }
@@ -46,8 +50,9 @@ class MonthlyPlans {
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     interval = json['interval'];
-    features =
-        List.from(json['features']).map((e) => Features.fromJson(e)).toList();
+    features = List<dynamic>.from(json['features'])
+        .map((dynamic  e) => Features.fromJson(e))
+        .toList();
   }
 
   late final int id;
@@ -61,7 +66,7 @@ class MonthlyPlans {
   late final List<Features> features;
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
+    final Map<String, dynamic> _data = <String, dynamic>{};
     _data['id'] = id;
     _data['name'] = name;
     _data['stripe_plan'] = stripePlan;
@@ -70,7 +75,7 @@ class MonthlyPlans {
     _data['created_at'] = createdAt;
     _data['updated_at'] = updatedAt;
     _data['interval'] = interval;
-    _data['features'] = features.map((e) => e.toJson()).toList();
+    _data['features'] = features.map((Features e) => e.toJson()).toList();
     return _data;
   }
 }
@@ -98,7 +103,7 @@ class Features {
   late final Pivot pivot;
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
+    final Map<String, dynamic> _data = <String, dynamic>{};
     _data['id'] = id;
     _data['name'] = name;
     _data['created_at'] = createdAt;
@@ -126,7 +131,7 @@ class Pivot {
   late final int? maxAmount;
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
+    final Map<String, dynamic> _data = <String, dynamic>{};
     _data['plan_id'] = planId;
     _data['feature_id'] = featureId;
     _data['max_amount'] = maxAmount;
@@ -146,15 +151,6 @@ class YearlyPlans {
     required this.features,
     this.description,
   });
-  late final int id;
-  late final String name;
-  late final String stripePlan;
-  late final int price;
-  late final Null description;
-  late final String createdAt;
-  late final String updatedAt;
-  late final String interval;
-  late final List<Features> features;
 
   YearlyPlans.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -165,12 +161,23 @@ class YearlyPlans {
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     interval = json['interval'];
-    features =
-        List.from(json['features']).map((e) => Features.fromJson(e)).toList();
+    features = List<dynamic>.from(json['features'])
+        .map((dynamic e) => Features.fromJson(e))
+        .toList();
   }
 
+  late final int id;
+  late final String name;
+  late final String stripePlan;
+  late final int price;
+  late final String? description;
+  late final String createdAt;
+  late final String updatedAt;
+  late final String interval;
+  late final List<Features> features;
+
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
+    final Map<String, dynamic> _data = <String, dynamic>{};
     _data['id'] = id;
     _data['name'] = name;
     _data['stripe_plan'] = stripePlan;
@@ -179,7 +186,7 @@ class YearlyPlans {
     _data['created_at'] = createdAt;
     _data['updated_at'] = updatedAt;
     _data['interval'] = interval;
-    _data['features'] = features.map((e) => e.toJson()).toList();
+    _data['features'] = features.map((Features e) => e.toJson()).toList();
     return _data;
   }
 }

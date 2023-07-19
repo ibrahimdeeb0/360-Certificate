@@ -98,8 +98,6 @@ class CompleteProfileController extends GetxController {
     },
   ];
 
-  List<Map<String, dynamic>> selectedFormGroup = <Map<String, dynamic>>[];
-
   //
   TextEditingController electricalLicenseController = TextEditingController();
   TextEditingController gasNumberController = TextEditingController();
@@ -178,11 +176,11 @@ class CompleteProfileController extends GetxController {
     email = myAppController.userData['user']['email'];
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-    getCountries();
-  }
+  // @override
+  // void onReady() {
+  //   super.onReady();
+  //   getCountries();
+  // }
 
   void toggleVat() {
     isVatRegistered = !isVatRegistered;
@@ -304,9 +302,9 @@ class CompleteProfileController extends GetxController {
               }
             }
 
-            showBottomSheetMessage(
+            /*   showBottomSheetMessage(
               isSuccess: isSuccess,
-            );
+            ); */
 
             isValidP4 = isSuccess;
           } else {
@@ -385,7 +383,9 @@ class CompleteProfileController extends GetxController {
     currentPage = value;
   }
 
+  List<Map<String, dynamic>> selectedFormGroup = <Map<String, dynamic>>[];
   List<int> selectFormGroupId = <int>[];
+
   void onSelectFormGroup(Map<String, dynamic> item) {
     if (selectedFormGroup
         .where((Map<String, dynamic> element) => element[keyId] == item[keyId])
@@ -401,8 +401,10 @@ class CompleteProfileController extends GetxController {
     } else if (selectedFormGroup.length == 1) {
       formCertType = selectedFormGroup.first[keyType];
       if (selectedFormGroup.first[keyType] == FormCertType.electrical) {
+        formCertType = FormCertType.electrical;
         page2Title = 'For Electrical Certificates';
       } else {
+        formCertType = FormCertType.gas;
         page2Title = 'For Gas Certificates';
       }
     }
@@ -570,6 +572,7 @@ class CompleteProfileController extends GetxController {
         (addressType == 'postal_code' &&
             data['result']['addresses']['list'].isEmpty)) {
       //!------------
+      consoleLogPretty(addressDetails, key: 'addressDetails');
       setUserAddressData(
         addressName: data['result']['formatted_address'] ?? '',
         cityName: addressDetails!['locality'] ?? '',
@@ -617,9 +620,9 @@ class CompleteProfileController extends GetxController {
     stateController.text = stateName;
 
     if (streetName.isNotEmpty && streetNum.isNotEmpty) {
-      streetController.text = '$streetNum, $streetName';
+      streetController.text = '$streetNum $streetName';
     } else if (streetName.isNotEmpty && streetNum.isEmpty) {
-      streetController.text = ' , $streetName';
+      streetController.text = '  $streetName';
     } else if (streetName.isEmpty && streetNum.isNotEmpty) {
       streetController.text = '$streetNum, ';
     }
@@ -631,16 +634,16 @@ class CompleteProfileController extends GetxController {
     }
     showAddressFiled = true;
 
-    final bool isSuccess = addressController.text.isNotEmpty &&
-        cityController.text.isNotEmpty &&
-        postcodeController.text.isNotEmpty &&
-        countryController.text.isNotEmpty &&
-        stateController.text.isNotEmpty &&
-        streetController.text.isNotEmpty;
+    // final bool isSuccess = addressController.text.isNotEmpty &&
+    //     cityController.text.isNotEmpty &&
+    //     postcodeController.text.isNotEmpty &&
+    //     countryController.text.isNotEmpty &&
+    //     stateController.text.isNotEmpty &&
+    //     streetController.text.isNotEmpty;
 
-    showBottomSheetMessage(
-      isSuccess: isSuccess,
-    );
+    // showBottomSheetMessage(
+    //   isSuccess: isSuccess,
+    // );
 
     update();
   }
@@ -705,31 +708,31 @@ class CompleteProfileController extends GetxController {
   }
 
   void pressDone() {
-    homeBottomBarController = Get.put(HomeBottomBarController());
-    homeController = Get.put(HomeController());
-    profileController = Get.put(ProfileController());
     myAppController = Get.put(MyAppController());
+    homeBottomBarController = Get.put(HomeBottomBarController());
+    profileController = Get.put(ProfileController());
+    homeController = Get.put(HomeController());
     certificatesController = Get.put(CertificatesController());
     //
     Get.offAllNamed(routeHomeBottomBar);
   }
 
-  Future<void> getCountries() async {
-    hideKeyboard();
-    if (allCountries.isEmpty) {
-      ApiRequest(
-        path: keyGetCountries,
-        className: 'NewJobController/getCountries',
-        requestFunction: getCountries,
-      ).request(
-        onSuccess: (dynamic data, dynamic response) {
-          allCountries = data;
+  // Future<void> getCountries() async {
+  //   hideKeyboard();
+  //   if (allCountries.isEmpty) {
+  //     ApiRequest(
+  //       path: keyGetCountries,
+  //       className: 'CompleteProfileController/getCountries',
+  //       requestFunction: getCountries,
+  //     ).request(
+  //       onSuccess: (dynamic data, dynamic response) {
+  //         allCountries = data;
 
-          update();
-        },
-      );
-    }
-  }
+  //         update();
+  //       },
+  //     );
+  //   }
+  // }
 
   Future<dynamic> pickerImage(ImageSource source) async {
     hideKeyboard();
@@ -762,32 +765,32 @@ class CompleteProfileController extends GetxController {
     }
   }
 
-  void showBottomSheetMessage({bool isSuccess = true}) {
-    Get.bottomSheet(
-      BottomSheetContainer(
-        responsiveContent: true,
-        child: SingleChildScrollView(
-          child: Center(
-            child: Column(
-              children: <Widget>[
-                0.03.boxHeight,
-                Icon(
-                  isSuccess ? Icons.task_alt : Icons.cancel_outlined,
-                  color: isSuccess ? Colors.green : Colors.red[800],
-                  size: 0.1.flexAll,
-                ),
-                CommonText(
-                  isSuccess
-                      ? 'Address Successfully Added'
-                      : 'The Address Could Not Be Verified',
-                  marginTop: 0.02,
-                ),
-                0.04.boxHeight,
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
+  // void showBottomSheetMessage({bool isSuccess = true}) {
+  //   Get.bottomSheet(
+  //     BottomSheetContainer(
+  //       responsiveContent: true,
+  //       child: SingleChildScrollView(
+  //         child: Center(
+  //           child: Column(
+  //             children: <Widget>[
+  //               0.03.boxHeight,
+  //               Icon(
+  //                 isSuccess ? Icons.task_alt : Icons.cancel_outlined,
+  //                 color: isSuccess ? Colors.green : Colors.red[800],
+  //                 size: 0.1.flexAll,
+  //               ),
+  //               CommonText(
+  //                 isSuccess
+  //                     ? 'Address Successfully Added'
+  //                     : 'The Address Could Not Be Verified',
+  //                 marginTop: 0.02,
+  //               ),
+  //               0.04.boxHeight,
+  //             ],
+  //           ),
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
 }

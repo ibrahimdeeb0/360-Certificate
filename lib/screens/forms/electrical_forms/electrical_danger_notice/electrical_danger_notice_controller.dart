@@ -423,9 +423,9 @@ class DangerNoticeController extends GetxController {
     ).request(
       onSuccess: (dynamic data, dynamic response) async {
         myAppController.clearCertFormInfo();
-        certificatesController.getAllCert();
-        homeController.getCertCount();
-        profileController.getProfileData();
+        // certificatesController.getAllCert();
+        profileController.getUserProfileData();
+        homeController.getAllUserData();
 
         if (isFromCertificate) {
           Get.back();
@@ -477,9 +477,9 @@ class DangerNoticeController extends GetxController {
             : certData,
       ).request(onSuccess: (dynamic data, dynamic response) async {
         myAppController.clearCertFormInfo();
-        certificatesController.getAllCert();
-        homeController.getCertCount();
-        profileController.getProfileData();
+        // certificatesController.getAllCert();
+        profileController.getUserProfileData();
+        homeController.getAllUserData();
 
         if (isFromCertificate) {
           Get.back();

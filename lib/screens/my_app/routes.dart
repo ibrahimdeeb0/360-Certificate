@@ -151,4 +151,8 @@ List<GetPage<dynamic>> appRoutes = <GetPage<dynamic>>[
     name: routeSubscription,
     page: () => const Subscription(),
   ),
+GetPage<UpdateCertNumber>(
+  name: routeUpdateCertNumber,
+   page: () => const UpdateCertNumber(),
+ ), 
 ];

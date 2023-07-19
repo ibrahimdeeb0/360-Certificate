@@ -11,6 +11,8 @@ class PayForSubscribeController extends GetxController {
   TextEditingController nameCardController = TextEditingController();
   TextEditingController countryController = TextEditingController();
 
+  List<dynamic> allCountries = <dynamic>[];
+
   int? planId;
   SubscriptionController controller = Get.find<SubscriptionController>();
 
@@ -30,6 +32,8 @@ class PayForSubscribeController extends GetxController {
     consoleLog(planId, key: 'plan_Id');
 
     emailController.text = myAppController.userData['user']['email'];
+
+    // getCountries();
 
     update();
 
@@ -119,16 +123,40 @@ class PayForSubscribeController extends GetxController {
         'card_cvc': cvcController.text.trim().replaceAll(' ', ''),
         'card_name': nameCardController.text.trim(),
         'email': emailController.text.trim(),
-        'country': 'uk'
+        'country': 'GB'
       },
     ).request(
       onSuccess: (dynamic data, dynamic response) {
+        homeController.getAllUserData();
         Get
           ..back()
+          ..back()
           ..back();
+        Get.bottomSheet(
+          SubscribedMessageSheet(
+            daysTrailer: homeController.trialDetails['remaining_days'] ?? 0,
+          ),
+        );
       },
       // onError: (dynamic error) {},
     );
+  }
+
+  Future<void> getCountries() async {
+    hideKeyboard();
+    if (allCountries.isEmpty) {
+      ApiRequest(
+        path: keyGetCountries,
+        className: 'SearchWithWoozController/getCountries',
+        requestFunction: getCountries,
+      ).request(
+        onSuccess: (dynamic data, dynamic response) {
+          allCountries = data;
+
+          update();
+        },
+      );
+    }
   }
 }
 

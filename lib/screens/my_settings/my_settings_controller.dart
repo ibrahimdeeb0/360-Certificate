@@ -9,35 +9,37 @@ class MySettingsController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    getUserData();
+    userData = profileController.userDataProfile;
+    update();
+    // getUserData();
   }
 
-  Future<void> getUserData() async {
-    hideKeyboard();
-    ApiRequest(
-      path: keyUserData,
-      className: 'MySettingsController/getUserData',
-      requestFunction: getUserData,
-      withLoading: true,
-      formatResponse: true,
-    ).request(
-      onSuccess: (dynamic data, dynamic response) {
-        myAppController.localStorage.saveToStorage(
-          key: 'getUserData',
-          value: data,
-        );
-        userData = data;
-        update();
-      },
-    );
-    if (!myAppController.isInternetConnect) {
-      final dynamic apiData = await myAppController.localStorage.getFromStorage(
-        key: 'getUserData',
-      );
-      userData = apiData;
-      update();
-    }
-  }
+  // Future<void> getUserData() async {
+  //   hideKeyboard();
+  //   ApiRequest(
+  //     path: keyUserData,
+  //     className: 'MySettingsController/getUserData',
+  //     requestFunction: getUserData,
+  //     withLoading: true,
+  //     formatResponse: true,
+  //   ).request(
+  //     onSuccess: (dynamic data, dynamic response) {
+  //       myAppController.localStorage.saveToStorage(
+  //         key: 'getUserData',
+  //         value: data,
+  //       );
+  //       userData = data['user'];
+  //       update();
+  //     },
+  //   );
+  //   if (!myAppController.isInternetConnect) {
+  //     final dynamic apiData = await myAppController.localStorage.getFromStorage(
+  //       key: 'getUserData',
+  //     );
+  //     userData = apiData['user'];
+  //     update();
+  //   }
+  // }
 
   Future<dynamic> pickerImage(ImageSource source) async {
     hideKeyboard();
@@ -71,7 +73,7 @@ class MySettingsController extends GetxController {
       body: await imageAsFormData(file: compLogoFile),
     ).request(
       onSuccess: (dynamic data, dynamic response) {
-        getUserData();
+        profileController.getUserProfileData();
       },
       onError: (dynamic error) {
         dismissLoading();

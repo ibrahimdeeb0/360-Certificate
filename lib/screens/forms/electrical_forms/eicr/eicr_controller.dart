@@ -858,9 +858,9 @@ class EicrController extends GetxController {
             ),
     ).request(onSuccess: (dynamic data, dynamic response) async {
       myAppController.clearCertFormInfo();
-      certificatesController.getAllCert();
-      homeController.getCertCount();
-      profileController.getProfileData();
+      // certificatesController.getAllCert();
+      profileController.getUserProfileData();
+      homeController.getAllUserData();
 
       if (isFromCertificate) {
         Get.back();
@@ -911,10 +911,10 @@ class EicrController extends GetxController {
               )
             : certData,
       ).request(onSuccess: (dynamic data, dynamic response) async {
-        myAppController.clearCertFormInfo();
-        certificatesController.getAllCert();
-        homeController.getCertCount();
-        profileController.getProfileData();
+       myAppController.clearCertFormInfo();
+      // certificatesController.getAllCert();
+      profileController.getUserProfileData();
+      homeController.getAllUserData();
 
         if (isFromCertificate) {
           Get.back();

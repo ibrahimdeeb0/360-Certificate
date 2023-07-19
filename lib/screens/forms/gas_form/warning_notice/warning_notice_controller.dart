@@ -482,9 +482,10 @@ class WarningNoticeController extends GetxController {
     ).request(
       onSuccess: (dynamic data, dynamic response) async {
         myAppController.clearCertFormInfo();
-        certificatesController.getAllCert();
-        homeController.getCertCount();
-        profileController.getProfileData();
+        // certificatesController.getAllCert();
+        // homeController.getCertCount();
+        profileController.getUserProfileData();
+        homeController.getAllUserData();
 
         if (isFromCertificate) {
           Get.back();
@@ -537,8 +538,9 @@ class WarningNoticeController extends GetxController {
       ).request(onSuccess: (dynamic data, dynamic response) async {
         myAppController.clearCertFormInfo();
         certificatesController.getAllCert();
-        homeController.getCertCount();
-        profileController.getProfileData();
+        // homeController.getCertCount();
+        // profileController.getUserProfileData();
+        homeController.getAllUserData();
 
         if (isFromCertificate) {
           Get.back();

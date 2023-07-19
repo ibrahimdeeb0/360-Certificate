@@ -1,18 +1,32 @@
 # 360 Certificate
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-
 # flutter build apk --release
+
+# 360 Connect
+
+To build dev version you have to do::
+
+1- change bundle name in all app
+
+    from "com.app.certificate360" to "com.app.certificate360dev"
+
+2- change app icon from pubSpec.yaml to production icon call 'launcher_debug_icon' then run this command `flutter pub run flutter_launcher_icons:main`
+
+3- change `development` to `true` from `general_constants`
+
+4- run this command to build apk dev version `flutter build apk --release`
+
+# -------
+
+To build production version you have to do::
+
+1- change bundle name in all app
+
+    from "com.app.certificate360dev" to "com.app.certificate360"
+
+2- change app icon from pubSpec.yaml to production icon call 'launcher_icon' then run this command `flutter pub run flutter_launcher_icons:main`
+
+3- change `development` to `false` from `general_constants`
+
+4- run this command to build apk production version `flutter build apk --release`
+or run this to build aap `flutter build appbundle`

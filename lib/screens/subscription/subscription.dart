@@ -10,12 +10,12 @@ class Subscription extends StatelessWidget {
       appBar: Header(
         backgroundColor: Colors.grey[100],
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.green,
-        onPressed: () {
-          consoleLogPretty(homeController.subscriptionModel!.monthlyPlans);
-        },
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   backgroundColor: Colors.green,
+      //   onPressed: () {
+      //     consoleLogPretty(homeController.subscriptionModel!.monthlyPlans);
+      //   },
+      // ),
       body: GetBuilder<SubscriptionController>(
         init: SubscriptionController(),
         builder: (SubscriptionController controller) {

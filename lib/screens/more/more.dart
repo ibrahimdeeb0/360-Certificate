@@ -20,8 +20,18 @@ class More extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  SizedBox(height: DEVICE_HEIGHT * 0.06),
-                  Padding(
+                  SizedBox(height: DEVICE_HEIGHT * 0.07),
+                  Align(
+                    alignment: AlignmentDirectional.topEnd,
+                    child: CommonText(
+                      homeController.plan,
+                      fontColor: Colors.white,
+                      containerStyle: appContainerStyles.planContainerStyle
+                          .copyWith(marginBottom: 0.01),
+                    ),
+                  ),
+                  Container(
+                    // color: Colors.green,
                     padding: EdgeInsets.symmetric(horizontal: 0.04.flexWidth),
                     child: CommonText(
                       'Hello, ${profileController.userDataProfile['first_name']}'
@@ -32,7 +42,7 @@ class More extends StatelessWidget {
                       rightChild: Image.asset(
                         imageHello,
                         width: DEVICE_WIDTH * 0.08,
-                        height: DEVICE_HEIGHT * 0.08,
+                        // height: DEVICE_HEIGHT * 0.08,
                       ),
                     ),
                   ),

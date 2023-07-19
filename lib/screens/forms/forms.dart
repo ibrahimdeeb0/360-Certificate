@@ -1,3 +1,5 @@
+import 'package:flutter_svg/svg.dart';
+
 import '../../general_exports.dart';
 
 class Forms extends StatelessWidget {
@@ -42,15 +44,6 @@ class Forms extends StatelessWidget {
                                   if (formsId.contains(childe[keyId])) {
                                     controller.searchTemplate(childe);
                                   }
-                                  // if (childe[keyId] == 5) {
-                                  //   controller.searchTemplate(childe);
-                                  // } else if (childe[keyId] == 9) {
-                                  //   controller.searchTemplate(childe);
-                                  // } else if (childe[keyId] == 4) {
-                                  //   controller.searchTemplate(childe);
-                                  // } else if (childe[keyId] == 11) {
-                                  //   controller.searchTemplate(childe);
-                                  // }
                                 },
                               ),
                             )
@@ -58,6 +51,13 @@ class Forms extends StatelessWidget {
                       ],
                     ),
                   ),
+                  // CommonButton(
+                  //   width: 0.4,
+                  //   marginVertical: 0.04,
+                  //   onPress: () {
+                  //     Get.toNamed(routeUpdateCertNumber);
+                  //   },
+                  // ),
                   SizedBox(height: DEVICE_HEIGHT * 0.02),
                 ],
               ),
@@ -153,6 +153,68 @@ class ShowTemplateCard extends StatelessWidget {
         backgroundColor: Color(AppColors.primary).withOpacity(0.1),
         borderRadius: 0.02,
         marginBottom: 0.02,
+      ),
+    );
+  }
+}
+
+class ShowNumberMassageSheet extends StatelessWidget {
+  const ShowNumberMassageSheet({
+    super.key,
+    this.title,
+    this.text1,
+    this.text2,
+    this.btnText,
+    this.onPress,
+    this.isImage = false,
+  });
+
+  final String? title;
+  final String? text1;
+  final String? text2;
+  final String? btnText;
+  final Function()? onPress;
+  final bool isImage;
+
+  @override
+  Widget build(BuildContext context) {
+    return BottomSheetContainer(
+      responsiveContent: true,
+      child: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            SizedBox(height: DEVICE_HEIGHT * 0.03),
+            if (!isImage) SvgPicture.asset(iconFormsOops),
+            if (isImage) Image.asset(imageUpgradePlan),
+            CommonText(
+              title ?? 'Oops!',
+              fontSize: fontH1,
+              fontWeight: FontWeight.bold,
+              marginBottom: 0.02,
+              marginTop: 0.02,
+            ),
+            CommonText(
+              text1,
+              fontSize: fontH3,
+              fontColor: Colors.grey[700],
+              marginBottom: 0.015,
+            ),
+            if (text2 != null)
+              CommonText(
+                text2,
+                fontSize: fontH3,
+                fontColor: Colors.grey[700],
+                marginBottom: 0.015,
+              ),
+            CommonButton(
+              onPress: onPress,
+              text: btnText ?? '',
+              backgroundColor: Color(AppColors.primary).withOpacity(0.9),
+              marginTop: 0.01,
+              marginBottom: 0.025,
+            ),
+          ],
+        ),
       ),
     );
   }
