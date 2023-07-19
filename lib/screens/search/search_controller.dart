@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 
 import '../../general_exports.dart';
 
-class SearchController extends GetxController {
+class AppSearchingController extends GetxController {
   final Dio _dio = Dio();
 
   TextEditingController searchController = TextEditingController();

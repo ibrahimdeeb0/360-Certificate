@@ -91,7 +91,7 @@ class HomeController extends GetxController {
       formatResponse: true,
     ).request(
       onSuccess: (dynamic data, dynamic response) {
-        consoleLogPretty(data, key: 'show_plans');
+        // consoleLogPretty(data, key: 'show_plans');
         // subscriptionModel = SubscriptionModel.fromJson(data);
         // plansDetails = data;
         // consoleLog(subscriptionModel, key: 'response_data');

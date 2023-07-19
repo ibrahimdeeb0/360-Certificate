@@ -2,16 +2,16 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../general_exports.dart';
 
-class Search extends StatelessWidget {
-  const Search({Key? key}) : super(key: key);
+class AppSearching extends StatelessWidget {
+  const AppSearching({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: GetBuilder<SearchController>(
-        init: SearchController(),
-        builder: (SearchController controller) {
+      body: GetBuilder<AppSearchingController>(
+        init: AppSearchingController(),
+        builder: (AppSearchingController controller) {
           return CommonContainer(
             style: appContainerStyles.containerStyles,
             child: Column(

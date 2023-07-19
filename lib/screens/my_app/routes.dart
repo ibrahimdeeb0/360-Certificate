@@ -77,9 +77,9 @@ List<GetPage<dynamic>> appRoutes = <GetPage<dynamic>>[
     name: routeMySubscription,
     page: () => const MySubscription(),
   ),
-  GetPage<Search>(
+  GetPage<AppSearching>(
     name: routeSearch,
-    page: () => const Search(),
+    page: () => const AppSearching(),
   ),
   GetPage<CompletedCert>(
     name: routeCompletedCert,
@@ -151,8 +151,8 @@ List<GetPage<dynamic>> appRoutes = <GetPage<dynamic>>[
     name: routeSubscription,
     page: () => const Subscription(),
   ),
-GetPage<UpdateCertNumber>(
-  name: routeUpdateCertNumber,
-   page: () => const UpdateCertNumber(),
- ), 
+  GetPage<UpdateCertNumber>(
+    name: routeUpdateCertNumber,
+    page: () => const UpdateCertNumber(),
+  ),
 ];
