@@ -3,20 +3,13 @@ import '../../general_exports.dart';
 class HomeController extends GetxController {
   List<dynamic> formsData = <dynamic>[];
   Map<String, dynamic> trialDetails = <String, dynamic>{};
-  Map<String, dynamic> plansDetails = <String, dynamic>{};
+  // Map<String, dynamic> plansDetails = <String, dynamic>{};
 
   dynamic certCountData;
   int countCompleteCert = 0;
   int countUnCompleteCert = 0;
 
   bool showFreeAlert = false;
-
-  // @override
-  // void onInit() {
-  //   // getTrialDetails();
-
-  //   super.onInit();
-  // }
 
   @override
   void onReady() {
@@ -65,40 +58,40 @@ class HomeController extends GetxController {
     );
   }
 
-  SubscriptionModel? subscriptionModel;
-  void getPlansDetails() {
-    ApiRequest(
-      path: '/show-interval-plans',
-      className: 'HomeController/getPlansDetails',
-      requestFunction: getPlansDetails,
-      // formatResponse: true,
-    ).request(
-      onSuccess: (dynamic data, dynamic response) {
-        consoleLogPretty(data, key: 'show_interval_plans');
-        subscriptionModel = SubscriptionModel.fromJson(data);
-        plansDetails = data;
-        // consoleLog(subscriptionModel, key: 'response_data');
-        update();
-      },
-    );
-  }
+  // SubscriptionModel? subscriptionModel;
+  // void getPlansDetails() {
+  //   ApiRequest(
+  //     path: '/show-interval-plans',
+  //     className: 'HomeController/getPlansDetails',
+  //     requestFunction: getPlansDetails,
+  //     // formatResponse: true,
+  //   ).request(
+  //     onSuccess: (dynamic data, dynamic response) {
+  //       consoleLogPretty(data, key: 'show_interval_plans');
+  //       subscriptionModel = SubscriptionModel.fromJson(data);
+  //       plansDetails = data;
+  //       // consoleLog(subscriptionModel, key: 'response_data');
+  //       update();
+  //     },
+  //   );
+  // }
 
-  void getPlansData() {
-    ApiRequest(
-      path: '/show-plans',
-      className: 'HomeController/getPlansData',
-      requestFunction: getPlansData,
-      formatResponse: true,
-    ).request(
-      onSuccess: (dynamic data, dynamic response) {
-        // consoleLogPretty(data, key: 'show_plans');
-        // subscriptionModel = SubscriptionModel.fromJson(data);
-        // plansDetails = data;
-        // consoleLog(subscriptionModel, key: 'response_data');
-        update();
-      },
-    );
-  }
+  // void getPlansData() {
+  //   ApiRequest(
+  //     path: '/show-plans',
+  //     className: 'HomeController/getPlansData',
+  //     requestFunction: getPlansData,
+  //     formatResponse: true,
+  //   ).request(
+  //     onSuccess: (dynamic data, dynamic response) {
+  //       // consoleLogPretty(data, key: 'show_plans');
+  //       // subscriptionModel = SubscriptionModel.fromJson(data);
+  //       // plansDetails = data;
+  //       // consoleLog(subscriptionModel, key: 'response_data');
+  //       update();
+  //     },
+  //   );
+  // }
 
   Future<void> getCertCount() async {
     ApiRequest(
@@ -289,8 +282,6 @@ class HomeController extends GetxController {
           }
         }
         profileController.getUserProfileData();
-        getPlansDetails();
-        getPlansData();
       },
       onError: (dynamic error) {
         dismissLoading();
