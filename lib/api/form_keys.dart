@@ -592,4 +592,58 @@ const String formKeyApplianceChildeData = 'appliance_childe_data';
 
 // Minor Works
 
-const String formKeyDescriptionMinorWorks = 'description_minor_works:';
+const String formKeyDescriptionMinorWorks = 'description_minor_works';
+const String formKeyDateCompleted = 'date_completed';
+const String formKeySystemType = 'system_type_and_earthing_arrangements';
+const String formKeyZsDistributionBoard = 'zs_distribution_board';
+// const String formKeyEarthingConductor = 'earthing_conductor';
+// const String formKeyWater = 'water';
+// const String formKeyGas = 'gas';
+// const String formKeyOil = 'oil';
+// const String formKeyOther = 'other';
+const String formKeyCommentsExistingInstallation =
+    'comments_on_existing_installation';
+const String formKeyPageNo = 'page_no';
+const String formKeyDetailsDepartures = 'details_departures';
+const String formKeyDateCircuitAlteredExtended =
+    'date_circuit_altered_or_extended';
+// const String formKeyRiskAssessmentAttached = 'risk_assessment_attached';
+const String formKeyDBConsumerUnit = 'db_consumer_unit';
+const String formKeyLocationAndType = 'location_and_type';
+const String formKeyCircuitNumber = 'circuit_number';
+const String formKeyCircuitDescription = 'circuit_description';
+const String formKeyInstallationReferenceMethod =
+    'installation_reference_method';
+const String formKeyNumberSizeOfConductors = 'Number_size_of_conductors';
+// const String formKeyLive = 'live';
+// const String formKeyCpc = 'cpc:';
+const String formKeyOvercurrentBSEN = 'overcurrent_bs_en';
+const String formKeyOvercurrentType = 'overcurrent_type';
+const String formKeyOvercurrentRating = 'overcurrent_rating';
+const String formKeyRCDBSEN = 'rcd_bs_en';
+const String formKeyRCDType = 'rcd_type';
+const String formKeyRCDRating = 'rcd_rating';
+const String formKeyRatedResidualOperatingCurrent =
+    'rated_residual_operating_current';
+const String formKeyAFDDBSEN = 'afdd_bs_en';
+const String formKeyAFDDType = 'afdd_type';
+const String formKeyAFDDRating = 'afdd_rating';
+const String formKeySPDBSEN = 'spd_bs_en';
+const String formKeySPDType = 'spd_type';
+const String formKeyProtectiveConductor = 'protective_conductor ';
+const String formKeyRingLL = 'ring_ll';
+const String formKeyRingNN = 'ring_nn';
+const String formKeyRingCPC = 'ring_cpc';
+const String formKeyInsulationLL = 'insulation_ring_ll';
+const String formKeyInsulationNN = 'insulation_ring_nn';
+const String formKeyInsulationCPC = 'insulation_ring_cpc';
+const String formKeyPolaritySatisfactory = 'polarity_satisfactory:';
+const String formKeyEarthFaultLoopImpedanceZs = 'earth_fault_loop_impedance_zs';
+const String formKeyRCDTest = 'rcd_test';
+const String formKeyRCDDisconnectionTime = 'rcd_disconnection_time';
+const String formKeyAFDDTest = 'afdd_test';
+const String formKeySPDFunctionality = 'spd_functionality';
+const String formKeyMultifunction = 'multifunction';
+// const String formKeyNam = 'name';
+// const String formKeySignature = 'signature';
+// const String formKeyDate = 'date';
