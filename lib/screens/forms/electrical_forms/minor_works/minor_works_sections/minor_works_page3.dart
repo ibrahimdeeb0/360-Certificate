@@ -60,6 +60,9 @@ class MinorWorksPage3 extends StatelessWidget {
                 'Ω',
                 fontColor: Colors.grey[700],
               ),
+              value: controller.formData[formKeyContinuityMinor],
+              onChanged: (dynamic value) => controller.onChangeFormDataValue(
+                  formKeyContinuityMinor, value),
             ),
             Divider(
               color: Colors.grey[200],
@@ -83,6 +86,9 @@ class MinorWorksPage3 extends StatelessWidget {
                       'Ω',
                       fontColor: Colors.grey[700],
                     ),
+                    value: controller.formData[formKeyRingLL],
+                    onChanged: (dynamic value) =>
+                        controller.onChangeFormDataValue(formKeyRingLL, value),
                   ),
                   CommonInput(
                     topLabelText: 'N/N:',
@@ -91,6 +97,9 @@ class MinorWorksPage3 extends StatelessWidget {
                       'Ω',
                       fontColor: Colors.grey[700],
                     ),
+                    value: controller.formData[formKeyRingNN],
+                    onChanged: (dynamic value) =>
+                        controller.onChangeFormDataValue(formKeyRingNN, value),
                   ),
                   CommonInput(
                     topLabelText: 'cpc/cpc:',
@@ -99,6 +108,9 @@ class MinorWorksPage3 extends StatelessWidget {
                       'Ω',
                       fontColor: Colors.grey[700],
                     ),
+                    value: controller.formData[formKeyRingCPC],
+                    onChanged: (dynamic value) =>
+                        controller.onChangeFormDataValue(formKeyRingCPC, value),
                   ),
                   Divider(
                     color: Colors.grey[200],
@@ -126,6 +138,9 @@ class MinorWorksPage3 extends StatelessWidget {
                       'MΩ',
                       fontColor: Colors.grey[700],
                     ),
+                    value: controller.formData[formKeyInsulationLL],
+                    onChanged: (dynamic value) => controller
+                        .onChangeFormDataValue(formKeyInsulationLL, value),
                   ),
                   CommonInput(
                     topLabelText: 'L/E:',
@@ -134,6 +149,9 @@ class MinorWorksPage3 extends StatelessWidget {
                       'MΩ',
                       fontColor: Colors.grey[700],
                     ),
+                    value: controller.formData[formKeyInsulationLE],
+                    onChanged: (dynamic value) => controller
+                        .onChangeFormDataValue(formKeyInsulationLE, value),
                   ),
                   CommonInput(
                     topLabelText: 'Test voltage:',
@@ -142,6 +160,9 @@ class MinorWorksPage3 extends StatelessWidget {
                       'V',
                       fontColor: Colors.grey[700],
                     ),
+                    value: controller.formData[formKeyTestVoltage],
+                    onChanged: (dynamic value) => controller
+                        .onChangeFormDataValue(formKeyTestVoltage, value),
                   ),
                   Divider(
                     color: Colors.grey[200],
@@ -161,14 +182,19 @@ class MinorWorksPage3 extends StatelessWidget {
                     textAlign: TextAlign.start,
                     marginTop: 0.02,
                   ),
-                  const FormToggleButton(
-                    title: 'Satisfactory:',
-                    titleSize: fontTitle,
-                    marginBottom: 0.0,
-                  ),
-                  const CommonInput(
+                  // const FormToggleButton(
+                  //   title: 'Satisfactory:',
+                  //   titleSize: fontTitle,formKeyPolaritySatisfactory
+                  //   marginBottom: 0.0,
+                  // ),
+                  CommonInput(
                     topLabelText: 'Earth fault loop impedance Zs',
                     marginBottom: 0.015,
+                    value:
+                        controller.formData[formKeyEarthFaultLoopImpedanceZs],
+                    onChanged: (dynamic value) =>
+                        controller.onChangeFormDataValue(
+                            formKeyEarthFaultLoopImpedanceZs, value),
                   ),
                   Divider(
                     color: Colors.grey[200],
@@ -190,13 +216,20 @@ class MinorWorksPage3 extends StatelessWidget {
                     marginBottom: 0.02,
                     marginTop: 0.02,
                   ),
-                  const FormToggleButton(
+                  FormToggleButton(
                     title: 'RCD test button operation satisfactory:',
                     titleSize: fontTitle,
+                    value: controller.formData[formKeyRCDTest],
+                    onChangeValue: (dynamic value) =>
+                        controller.onChangeFormDataValue(formKeyRCDTest, value),
                   ),
-                  const CommonInput(
+                  CommonInput(
                     topLabelText: 'RCD disconnection time at I∆n:',
                     marginBottom: 0.015,
+                    value: controller.formData[formKeyRCDDisconnectionTime],
+                    onChanged: (dynamic value) =>
+                        controller.onChangeFormDataValue(
+                            formKeyRCDDisconnectionTime, value),
                   ),
                   Divider(
                     color: Colors.grey[200],
@@ -210,16 +243,21 @@ class MinorWorksPage3 extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   0.02.boxHeight,
-                  const FormToggleButton(
-                    title:
-                        'AFDD test button operation satisfactory (where provided):',
-                    titleSize: fontTitle,
-                  ),
-                  const FormToggleButton(
-                    title:
-                        'SPD functionality confirmed (where indicator is provided):',
-                    titleSize: fontTitle,
-                  ),
+                  FormToggleButton(
+                      title:
+                          'AFDD test button operation satisfactory (where provided):',
+                      titleSize: fontTitle,
+                      value: controller.formData[formKeyAFDDTest],
+                      onChangeValue: (dynamic value) => controller
+                          .onChangeFormDataValue(formKeyAFDDTest, value)),
+                  FormToggleButton(
+                      title:
+                          'SPD functionality confirmed (where indicator is provided):',
+                      titleSize: fontTitle,
+                      value: controller.formData[formKeySPDFunctionality],
+                      onChangeValue: (dynamic value) =>
+                          controller.onChangeFormDataValue(
+                              formKeySPDFunctionality, value)),
                   Divider(
                     color: Colors.grey[200],
                     thickness: 3,
@@ -239,9 +277,12 @@ class MinorWorksPage3 extends StatelessWidget {
                     marginBottom: 0.02,
                     marginTop: 0.02,
                   ),
-                  const CommonInput(
+                  CommonInput(
                     topLabelText: 'Multifunction:',
                     marginBottom: 0.015,
+                    value: controller.formData[formKeyMultifunction],
+                    onChanged: (dynamic value) => controller
+                        .onChangeFormDataValue(formKeyMultifunction, value),
                   ),
                   Divider(
                     color: Colors.grey[200],
@@ -262,17 +303,29 @@ class MinorWorksPage3 extends StatelessWidget {
                     marginBottom: 0.02,
                     marginTop: 0.02,
                   ),
-                  const CommonInput(
+                  CommonInput(
                     // topLabelText: '',
                     marginBottom: 0.02,
+                    value: controller.formData[formKeyTestInstrumentOther],
+                    onChanged: (dynamic value) =>
+                        controller.onChangeFormDataValue(
+                            formKeyTestInstrumentOther, value),
                   ),
-                  const CommonInput(
+                  CommonInput(
                     // topLabelText: ':',
                     marginBottom: 0.02,
+                    value: controller.formData[formKeyTestInstrumentOther],
+                    onChanged: (dynamic value) =>
+                        controller.onChangeFormDataValue(
+                            formKeyTestInstrumentOther, value),
                   ),
-                  const CommonInput(
+                  CommonInput(
                     // topLabelText: ':',
                     marginBottom: 0.02,
+                    value: controller.formData[formKeyTestInstrumentOther],
+                    onChanged: (dynamic value) =>
+                        controller.onChangeFormDataValue(
+                            formKeyTestInstrumentOther, value),
                   ),
                   Divider(
                     color: Colors.grey[200],

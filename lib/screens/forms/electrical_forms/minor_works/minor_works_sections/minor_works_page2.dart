@@ -19,14 +19,20 @@ class MinorWorksPage2 extends StatelessWidget {
             ),
             SizedBox(
               child: Column(
-                children: const <Widget>[
+                children: <Widget>[
                   CommonInput(
                     topLabelText: 'DB/Consumer Unit: Ref No',
                     marginBottom: 0.015,
+                    value: controller.formData[formKeyDBConsumerUnit],
+                    onChanged: (dynamic value) => controller
+                        .onChangeFormDataValue(formKeyDBConsumerUnit, value),
                   ),
                   CommonInput(
                     topLabelText: 'Location and type',
                     marginBottom: 0.015,
+                    value: controller.formData[formKeyLocationAndType],
+                    onChanged: (dynamic value) => controller
+                        .onChangeFormDataValue(formKeyLocationAndType, value),
                   ),
                 ],
               ),
@@ -37,22 +43,38 @@ class MinorWorksPage2 extends StatelessWidget {
             ),
             SizedBox(
               child: Column(
-                children: const <Widget>[
+                children: <Widget>[
                   CommonInput(
                     topLabelText: 'Circuit number',
                     marginBottom: 0.015,
+                    value: controller.formData[formKeyCircuitNumber],
+                    onChanged: (dynamic value) => controller
+                        .onChangeFormDataValue(formKeyCircuitNumber, value),
                   ),
                   CommonInput(
                     topLabelText: 'Circuit description',
                     marginBottom: 0.015,
+                    value: controller.formData[formKeyCircuitDescription],
+                    onChanged: (dynamic value) =>
+                        controller.onChangeFormDataValue(
+                            formKeyCircuitDescription, value),
                   ),
                   CommonInput(
                     topLabelText: 'Installation reference method:',
                     marginBottom: 0.015,
+                    value:
+                        controller.formData[formKeyInstallationReferenceMethod],
+                    onChanged: (dynamic value) =>
+                        controller.onChangeFormDataValue(
+                            formKeyInstallationReferenceMethod, value),
                   ),
                   CommonInput(
                     topLabelText: 'Number & size of conductors:',
                     marginBottom: 0.015,
+                    value: controller.formData[formKeyNumberSizeOfConductors],
+                    onChanged: (dynamic value) =>
+                        controller.onChangeFormDataValue(
+                            formKeyNumberSizeOfConductors, value),
                   ),
                 ],
               ),
@@ -82,6 +104,9 @@ class MinorWorksPage2 extends StatelessWidget {
                           Icons.keyboard_arrow_down,
                           color: Colors.grey[700],
                         ),
+                        value: controller.formData[formKeyLive],
+                        onChanged: (dynamic value) => controller
+                            .onChangeFormDataValue(formKeyLive, value),
                       ),
                       CommonInput(
                         topLabelText: 'Cpc:',
@@ -91,6 +116,9 @@ class MinorWorksPage2 extends StatelessWidget {
                           Icons.keyboard_arrow_down,
                           color: Colors.grey[700],
                         ),
+                        value: controller.formData[formKeyCpc],
+                        onChanged: (dynamic value) =>
+                            controller.onChangeFormDataValue(formKeyCpc, value),
                       ),
                     ],
                   ),
@@ -101,6 +129,7 @@ class MinorWorksPage2 extends StatelessWidget {
               color: Colors.grey[200],
               thickness: 3,
             ),
+
             SizedBox(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -119,14 +148,20 @@ class MinorWorksPage2 extends StatelessWidget {
                       Icons.keyboard_arrow_down,
                       color: Colors.grey[700],
                     ),
+                    value: controller.formData[formKeyOvercurrentBSEN],
+                    onChanged: (dynamic value) => controller
+                        .onChangeFormDataValue(formKeyOvercurrentBSEN, value),
                   ),
-                  const CommonInput(
+                  CommonInput(
                     topLabelText: 'Type',
                     hint: 'Select',
                     // suffix: Icon(
                     //   Icons.keyboard_arrow_down,
                     //   color: Colors.grey[700],
                     // ),
+                    value: controller.formData[formKeyOvercurrentType],
+                    onChanged: (dynamic value) => controller
+                        .onChangeFormDataValue(formKeyOvercurrentType, value),
                   ),
                   CommonInput(
                     topLabelText: 'Rating',
@@ -135,6 +170,9 @@ class MinorWorksPage2 extends StatelessWidget {
                       '(A)',
                       fontColor: Colors.grey[700],
                     ),
+                    value: controller.formData[formKeyOvercurrentRating],
+                    onChanged: (dynamic value) => controller
+                        .onChangeFormDataValue(formKeyOvercurrentRating, value),
                   ),
                 ],
               ),
@@ -144,6 +182,72 @@ class MinorWorksPage2 extends StatelessWidget {
               color: Colors.grey[200],
               thickness: 3,
             ),
+            SizedBox(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  CommonText(
+                    'RCD',
+                    fontColor: AppColors.primary,
+                    marginBottom: 0.01,
+                    marginTop: 0.02,
+                  ),
+                  CommonInput(
+                    topLabelText: 'BS EN',
+                    hint: 'Select',
+                    enabled: false,
+                    suffix: Icon(
+                      Icons.keyboard_arrow_down,
+                      color: Colors.grey[700],
+                    ),
+                    value: controller.formData[formKeyRCDBSEN],
+                    onChanged: (dynamic value) =>
+                        controller.onChangeFormDataValue(formKeyRCDBSEN, value),
+                  ),
+                  CommonInput(
+                    topLabelText: 'Type',
+                    hint: 'Select',
+                    // suffix: Icon(
+                    //   Icons.keyboard_arrow_down,
+                    //   color: Colors.grey[700],
+                    // ),
+                    value: controller.formData[formKeyRCDType],
+                    onChanged: (dynamic value) =>
+                        controller.onChangeFormDataValue(formKeyRCDType, value),
+                  ),
+                  CommonInput(
+                    topLabelText: 'Rating',
+                    hint: 'Select',
+                    suffix: CommonText(
+                      '(A)',
+                      fontColor: Colors.grey[700],
+                    ),
+                    value: controller.formData[formKeyRCDRating],
+                    onChanged: (dynamic value) => controller
+                        .onChangeFormDataValue(formKeyRCDRating, value),
+                  ),
+                  CommonInput(
+                    topLabelText: 'Rated residual operating current (I ∆n):',
+                    hint: 'Select',
+                    suffix: CommonText(
+                      'mA',
+                      fontColor: Colors.grey[700],
+                    ),
+                    value: controller
+                        .formData[formKeyRatedResidualOperatingCurrent],
+                    onChanged: (dynamic value) =>
+                        controller.onChangeFormDataValue(
+                            formKeyRatedResidualOperatingCurrent, value),
+                  ),
+                ],
+              ),
+            ),
+            //
+            Divider(
+              color: Colors.grey[200],
+              thickness: 3,
+            ),
+
             SizedBox(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -162,14 +266,20 @@ class MinorWorksPage2 extends StatelessWidget {
                       Icons.keyboard_arrow_down,
                       color: Colors.grey[700],
                     ),
+                    value: controller.formData[formKeyAFDDBSEN],
+                    onChanged: (dynamic value) => controller
+                        .onChangeFormDataValue(formKeyAFDDBSEN, value),
                   ),
-                  const CommonInput(
+                  CommonInput(
                     topLabelText: 'Type',
                     hint: 'Select',
                     // suffix: Icon(
                     //   Icons.keyboard_arrow_down,
                     //   color: Colors.grey[700],
                     // ),
+                    value: controller.formData[formKeyAFDDType],
+                    onChanged: (dynamic value) => controller
+                        .onChangeFormDataValue(formKeyAFDDType, value),
                   ),
                   CommonInput(
                     topLabelText: 'Rating',
@@ -178,6 +288,9 @@ class MinorWorksPage2 extends StatelessWidget {
                       '(A)',
                       fontColor: Colors.grey[700],
                     ),
+                    value: controller.formData[formKeyAFDDRating],
+                    onChanged: (dynamic value) => controller
+                        .onChangeFormDataValue(formKeyAFDDRating, value),
                   ),
                 ],
               ),
@@ -205,14 +318,20 @@ class MinorWorksPage2 extends StatelessWidget {
                       Icons.keyboard_arrow_down,
                       color: Colors.grey[700],
                     ),
+                    value: controller.formData[formKeySPDBSEN],
+                    onChanged: (dynamic value) =>
+                        controller.onChangeFormDataValue(formKeySPDBSEN, value),
                   ),
-                  const CommonInput(
+                  CommonInput(
                     topLabelText: 'Type',
                     hint: 'Select',
                     // suffix: Icon(
                     //   Icons.keyboard_arrow_down,
                     //   color: Colors.grey[700],
                     // ),
+                    value: controller.formData[formKeySPDType],
+                    onChanged: (dynamic value) =>
+                        controller.onChangeFormDataValue(formKeySPDType, value),
                   ),
                 ],
               ),
