@@ -164,4 +164,6 @@ enum ActionType {
   add,
   filter,
   search,
+  image,
+  note,
 }

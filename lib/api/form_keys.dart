@@ -589,3 +589,7 @@ const String formKeyRepairCode = 'repair_code';
 //
 const String formKeyApplianceSummary = 'appliance_summary';
 const String formKeyApplianceChildeData = 'appliance_childe_data';
+
+// Minor Works
+
+const String formKeyDescriptionMinorWorks = 'description_minor_works:';

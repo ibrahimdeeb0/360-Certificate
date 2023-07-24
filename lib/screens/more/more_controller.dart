@@ -34,12 +34,12 @@ class MoreController extends GetxController {
           keyIcon: iconLogout,
           keyOnPress: myAppController.onSignOut,
         },
-        // if (currentMode == AppMode.dev)
-        //   <String, dynamic>{
-        //     keyTitle: 'Develop Forms',
-        //     keyIcon: iconForm,
-        //     keyOnPress: () => Get.to(() => const DevelopmentForms()),
-        //   },
+        if (currentMode == AppMode.dev)
+          <String, dynamic>{
+            keyTitle: 'Develop Forms',
+            keyIcon: iconForm,
+            keyOnPress: () => Get.to(() => const DevelopmentForms()),
+          },
       ];
 
   @override
@@ -109,14 +109,14 @@ class MoreController extends GetxController {
       keyTitle: 'Electrical',
       keyItems: <Map<String, dynamic>>[
         <String, dynamic>{
-          keyId: 0,
+          keyId: 1,
           keyTitle: 'Portable Appliance Testing (PAT)',
           keyOnPress: () {
             Get.toNamed(routeFormPortableTest);
           },
         },
         <String, dynamic>{
-          keyId: 0,
+          keyId: 3,
           keyTitle: 'Domestic Electrical Installation Certificate',
           keyOnPress: () {
             Get.toNamed(routeFormDomesticEic);
@@ -134,6 +134,13 @@ class MoreController extends GetxController {
           keyTitle: 'EICR',
           keyOnPress: () {
             Get.toNamed(routeFormEICR);
+          },
+        },
+        <String, dynamic>{
+          keyId: 2,
+          keyTitle: 'Minor Works',
+          keyOnPress: () {
+            Get.toNamed(routeFormMinorWorks);
           },
         },
       ],

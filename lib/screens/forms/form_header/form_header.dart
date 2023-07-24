@@ -12,6 +12,9 @@ class FormHeader extends StatelessWidget with PreferredSizeWidget {
     this.showSaveBtn = true,
     this.onPressSave,
     this.titleSize,
+    this.actionItem,
+    this.pressImage,
+    this.pressNote,
     Key? key,
   }) : super(key: key);
 
@@ -25,6 +28,9 @@ class FormHeader extends StatelessWidget with PreferredSizeWidget {
   final bool withShadow;
   final bool showSaveBtn;
   final String? circleNumbering;
+  final ActionItem? actionItem;
+  final Function()? pressImage;
+  final Function()? pressNote;
 
   @override
   Size get preferredSize =>
@@ -77,42 +83,51 @@ class FormHeader extends StatelessWidget with PreferredSizeWidget {
                 ),
               )
             : const SizedBox(),
-        //  CommonButton(
-        //   onPress: () {},
-        //   text: ,
-        //   width: 0.3,
-        //   fontSize: fontH4,
-        //   marginLeft: 0.01,
-        //   marginBottom: 0.004,
-        // ),
-        // CircleContainer(
-        //   onPress: () {},
-        //   // marginHorizontal: 0.02,
-        //   circuitSize: 0.2,
-        //   backgroundColor: Color(AppColors.greyLight),
-        //   iconWidget:
-        //   CommonText(
-        //     'Save and Exit',
-        //     fontSize: fontBody,
-        //     fontColor: AppColors.primary,
-        //   ),
-        // ),
-        // Visibility(
-        //   visible: withBack,
-        //   child:
-        //   CircleContainer(
-        //     onPress: onPressBack ?? Get.back,
-        //     marginHorizontal: 0.02,
-        //     backgroundColor: Color(AppColors.greyLight),
-        //     iconWidget: const Icon(
-        //       Icons.arrow_back,
-        //       color: Colors.black,
-        //     ),
-        //   ),
-        // ),
 
         actions: <Widget>[
-          CircleNumbering(numbers: circleNumbering ?? ''),
+          if (actionItem == null)
+            CircleNumbering(numbers: circleNumbering ?? ''),
+          if (actionItem != null)
+            CommonContainer(
+              marginTop: 0.01,
+              marginBottom: 0.006,
+              marginHorizontal: 0.02,
+              // onPress: actionItem?.onPress?.call,
+              touchEffect: TouchableEffect(
+                type: TouchTypes.scaleAndUp,
+                lowerBound: 0.8,
+              ),
+              child: Row(
+                children: <Widget>[
+                  if (actionItem?.type == ActionType.image)
+                    IconButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStatePropertyAll<Color?>(
+                          Color(AppColors.primary),
+                        ),
+                      ),
+                      onPressed: pressImage,
+                      icon: Icon(
+                        Icons.image,
+                        color: Color(AppColors.white),
+                      ),
+                    ),
+                  0.006.boxWidth,
+                  IconButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStatePropertyAll<Color?>(
+                        Color(AppColors.primary),
+                      ),
+                    ),
+                    onPressed: pressNote,
+                    icon: Icon(
+                      Icons.edit,
+                      color: Color(AppColors.white),
+                    ),
+                  )
+                ],
+              ),
+            ),
         ],
       ),
     );

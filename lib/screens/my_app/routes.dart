@@ -155,4 +155,8 @@ List<GetPage<dynamic>> appRoutes = <GetPage<dynamic>>[
     name: routeUpdateCertNumber,
     page: () => const UpdateCertNumber(),
   ),
+  GetPage<MinorWorks>(
+    name: routeFormMinorWorks,
+    page: () => const MinorWorks(),
+  ),
 ];
