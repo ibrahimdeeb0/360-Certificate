@@ -12,14 +12,274 @@ class MinorWorksPage3 extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             CommonText(
-              'Part 3 Derails of The Minor Works, Supply Characteristics & Earthing Arrangements',
+              'Part 3: Test Results For The Circuit Altered or Extended',
               fontColor: AppColors.primary,
-              marginHorizontal: 0.04,
-              marginTop: 0.08,
+              fontSize: fontH2,
+              marginBottom: 0.02,
+            ),
+            Divider(
+              color: Colors.grey[200],
+              thickness: 3,
+            ),
+            CommonText(
+              'Continuity',
+              fontColor: AppColors.primary,
+              fontSize: fontH2,
+              textAlign: TextAlign.start,
+              marginTop: 0.01,
             ),
             CommonInput(
-              topLabelText: 'Description of Minor Works:',
-              maxLines: 4,
+              topLabel: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  const CommonText(
+                    'Protective conductor ',
+                  ),
+                  Row(
+                    children: <Widget>[
+                      CommonText(
+                        '(R1 + R2)',
+                        leftChild: IconButton(
+                            onPressed: () {},
+                            icon: Icon(
+                              Icons.radio_button_checked,
+                              color: Color(AppColors.primary),
+                            )),
+                      ),
+                      CommonText(
+                        '(R2)',
+                        leftChild: IconButton(
+                            onPressed: () {},
+                            icon: const Icon(Icons.radio_button_off)),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              suffix: CommonText(
+                'Ω',
+                fontColor: Colors.grey[700],
+              ),
+            ),
+            Divider(
+              color: Colors.grey[200],
+              thickness: 3,
+            ),
+            SizedBox(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  CommonText(
+                    'Ring final circuit (loop values)',
+                    fontColor: AppColors.primary,
+                    fontSize: fontH2,
+                    marginBottom: 0.01,
+                    marginTop: 0.02,
+                  ),
+                  CommonInput(
+                    topLabelText: 'L/L:',
+                    marginBottom: 0.015,
+                    suffix: CommonText(
+                      'Ω',
+                      fontColor: Colors.grey[700],
+                    ),
+                  ),
+                  CommonInput(
+                    topLabelText: 'N/N:',
+                    marginBottom: 0.015,
+                    suffix: CommonText(
+                      'Ω',
+                      fontColor: Colors.grey[700],
+                    ),
+                  ),
+                  CommonInput(
+                    topLabelText: 'cpc/cpc:',
+                    marginBottom: 0.015,
+                    suffix: CommonText(
+                      'Ω',
+                      fontColor: Colors.grey[700],
+                    ),
+                  ),
+                  Divider(
+                    color: Colors.grey[200],
+                    thickness: 3,
+                  ),
+                ],
+              ),
+            ),
+            //
+            SizedBox(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  CommonText(
+                    'Insulation Resistance',
+                    fontColor: AppColors.primary,
+                    fontSize: fontH2,
+                    marginBottom: 0.01,
+                    marginTop: 0.02,
+                  ),
+                  CommonInput(
+                    topLabelText: 'L/L:',
+                    marginBottom: 0.015,
+                    suffix: CommonText(
+                      'MΩ',
+                      fontColor: Colors.grey[700],
+                    ),
+                  ),
+                  CommonInput(
+                    topLabelText: 'L/E:',
+                    marginBottom: 0.015,
+                    suffix: CommonText(
+                      'MΩ',
+                      fontColor: Colors.grey[700],
+                    ),
+                  ),
+                  CommonInput(
+                    topLabelText: 'Test voltage:',
+                    marginBottom: 0.015,
+                    suffix: CommonText(
+                      'V',
+                      fontColor: Colors.grey[700],
+                    ),
+                  ),
+                  Divider(
+                    color: Colors.grey[200],
+                    thickness: 3,
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  CommonText(
+                    'Polarity',
+                    fontColor: AppColors.primary,
+                    fontSize: fontH2,
+                    textAlign: TextAlign.start,
+                    marginTop: 0.02,
+                  ),
+                  const FormToggleButton(
+                    title: 'Satisfactory:',
+                    titleSize: fontTitle,
+                    marginBottom: 0.0,
+                  ),
+                  const CommonInput(
+                    topLabelText: 'Earth fault loop impedance Zs',
+                    marginBottom: 0.015,
+                  ),
+                  Divider(
+                    color: Colors.grey[200],
+                    thickness: 3,
+                  ),
+                ],
+              ),
+            ),
+
+            SizedBox(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  CommonText(
+                    'Circuit protective devices functionality checks',
+                    fontColor: AppColors.primary,
+                    fontSize: fontH2,
+                    textAlign: TextAlign.start,
+                    marginBottom: 0.02,
+                    marginTop: 0.02,
+                  ),
+                  const FormToggleButton(
+                    title: 'RCD test button operation satisfactory:',
+                    titleSize: fontTitle,
+                  ),
+                  const CommonInput(
+                    topLabelText: 'RCD disconnection time at I∆n:',
+                    marginBottom: 0.015,
+                  ),
+                  Divider(
+                    color: Colors.grey[200],
+                    thickness: 3,
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  0.02.boxHeight,
+                  const FormToggleButton(
+                    title:
+                        'AFDD test button operation satisfactory (where provided):',
+                    titleSize: fontTitle,
+                  ),
+                  const FormToggleButton(
+                    title:
+                        'SPD functionality confirmed (where indicator is provided):',
+                    titleSize: fontTitle,
+                  ),
+                  Divider(
+                    color: Colors.grey[200],
+                    thickness: 3,
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  CommonText(
+                    'Test Instrument (insert serial numbers)',
+                    fontColor: AppColors.primary,
+                    fontSize: fontH2,
+                    textAlign: TextAlign.start,
+                    marginBottom: 0.02,
+                    marginTop: 0.02,
+                  ),
+                  const CommonInput(
+                    topLabelText: 'Multifunction:',
+                    marginBottom: 0.015,
+                  ),
+                  Divider(
+                    color: Colors.grey[200],
+                    thickness: 3,
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  CommonText(
+                    'Other(s) (state):',
+                    fontColor: AppColors.primary,
+                    fontSize: fontH2,
+                    textAlign: TextAlign.start,
+                    marginBottom: 0.02,
+                    marginTop: 0.02,
+                  ),
+                  const CommonInput(
+                    // topLabelText: '',
+                    marginBottom: 0.02,
+                  ),
+                  const CommonInput(
+                    // topLabelText: ':',
+                    marginBottom: 0.02,
+                  ),
+                  const CommonInput(
+                    // topLabelText: ':',
+                    marginBottom: 0.02,
+                  ),
+                  Divider(
+                    color: Colors.grey[200],
+                    thickness: 3,
+                  ),
+                ],
+              ),
             ),
           ],
         );

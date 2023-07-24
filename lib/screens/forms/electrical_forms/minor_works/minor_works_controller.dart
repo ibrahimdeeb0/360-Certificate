@@ -4,6 +4,14 @@ class MinorWorksController extends GetxController {
   int selectedId = 0;
   ScrollController scrollController = ScrollController();
 
+  Map<String, dynamic> formData = <String, dynamic>{
+    
+  };
+  Map<String, dynamic> formBody = <String, dynamic>{
+    'form_id': '',
+    keyData: <String, dynamic>{},
+  };
+
   List<Widget> get listFormSections => <Widget>[
         const MinorWorksPage1(),
         const MinorWorksPage2(),

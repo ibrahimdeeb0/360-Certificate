@@ -28,11 +28,17 @@ class MinorWorks extends StatelessWidget {
                 Positioned(
                   child: SingleChildScrollView(
                     controller: controller.scrollController,
-                    child: Column(
-                      children: <Widget>[
-                        controller.listFormSections[controller.selectedId],
-                        SizedBox(height: DEVICE_HEIGHT * 0.09),
-                      ],
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 0.04.flexWidth,
+                        vertical: 0.02.flexHeight,
+                      ),
+                      child: Column(
+                        children: <Widget>[
+                          controller.listFormSections[controller.selectedId],
+                          SizedBox(height: DEVICE_HEIGHT * 0.09),
+                        ],
+                      ),
                     ),
                   ),
                 ),
