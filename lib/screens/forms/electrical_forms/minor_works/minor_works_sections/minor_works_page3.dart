@@ -40,17 +40,29 @@ class MinorWorksPage3 extends StatelessWidget {
                       CommonText(
                         '(R1 + R2)',
                         leftChild: IconButton(
-                            onPressed: () {},
-                            icon: Icon(
-                              Icons.radio_button_checked,
-                              color: Color(AppColors.primary),
-                            )),
+                          onPressed: () =>
+                              controller.selectedProtective(pressIsR1: true),
+                          isSelected: controller.r1,
+                          icon: Icon(
+                            controller.r1
+                                ? Icons.radio_button_checked
+                                : Icons.radio_button_unchecked,
+                            color: Color(AppColors.primary),
+                          ),
+                        ),
                       ),
                       CommonText(
                         '(R2)',
                         leftChild: IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.radio_button_off)),
+                          onPressed: () => controller.selectedProtective(),
+                          isSelected: controller.r2,
+                          icon: Icon(
+                            controller.r2
+                                ? Icons.radio_button_checked
+                                : Icons.radio_button_unchecked,
+                            color: Color(AppColors.primary),
+                          ),
+                        ),
                       ),
                     ],
                   ),

@@ -134,12 +134,27 @@ class MinorWorksPage4 extends StatelessWidget {
               topLabelText: 'Position:',
               marginBottom: 0.02,
             ),
-            const CommonInput(
+            CommonInput(
               topLabelText: 'Date:',
               hint: 'Select Date',
-              suffix: Icon(Icons.calendar_today_outlined),
+              suffix: const Icon(Icons.calendar_today_outlined),
               marginBottom: 0.02,
               enabled: false,
+              value: controller.formData[formKeyDeclaration]
+                  [formKeyEngineerDate],
+              onTap: () {
+                CommonDatePicker.showDatePicker(
+                  context,
+                  currentTime: controller.selectedDate ?? DateTime.now(),
+                  onConfirm: (DateTime value) {
+                    controller.onSelectDate(
+                      formKeyDeclaration,
+                      formKeyEngineerDate,
+                      value,
+                    );
+                  },
+                );
+              },
             ),
             Divider(
               color: Colors.grey[200],
@@ -260,11 +275,27 @@ class MinorWorksPage4 extends StatelessWidget {
                       ],
                     ),
                   0.01.boxHeight,
-                  const CommonInput(
+                  CommonInput(
                     topLabelText: 'Date:',
                     hint: 'Select Date',
-                    suffix: Icon(Icons.calendar_today_outlined),
+                    suffix: const Icon(Icons.calendar_today_outlined),
                     marginBottom: 0.02,
+                    enabled: false,
+                    value: controller.formData[formKeyDeclaration]
+                        [formKeyCustomerDate],
+                    onTap: () {
+                      CommonDatePicker.showDatePicker(
+                        context,
+                        currentTime: controller.selectedDate ?? DateTime.now(),
+                        onConfirm: (DateTime value) {
+                          controller.onSelectDate(
+                            formKeyDeclaration,
+                            formKeyCustomerDate,
+                            value,
+                          );
+                        },
+                      );
+                    },
                   ),
                   Divider(
                     color: Colors.grey[200],

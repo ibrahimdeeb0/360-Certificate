@@ -106,8 +106,14 @@ class MinorWorksPage2 extends StatelessWidget {
                           color: Colors.grey[700],
                         ),
                         value: controller.formData[formKeyLive],
-                        onChanged: (dynamic value) => controller
-                            .onChangeFormDataValue(formKeyLive, value),
+                        enabled: false,
+                        onTap: () => Get.bottomSheet(
+                          MinorWorksSelectBT(
+                            listTitles: lists.listLive,
+                            controller: controller,
+                            keyOfValue: formKeyLive,
+                          ),
+                        ),
                       ),
                       CommonInput(
                         topLabelText: 'Cpc:',
@@ -117,9 +123,15 @@ class MinorWorksPage2 extends StatelessWidget {
                           Icons.keyboard_arrow_down,
                           color: Colors.grey[700],
                         ),
+                        enabled: false,
                         value: controller.formData[formKeyCpc],
-                        onChanged: (dynamic value) =>
-                            controller.onChangeFormDataValue(formKeyCpc, value),
+                        onTap: () => Get.bottomSheet(
+                          MinorWorksSelectBT(
+                            listTitles: lists.listCpc,
+                            controller: controller,
+                            keyOfValue: formKeyCpc,
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -179,8 +191,14 @@ class MinorWorksPage2 extends StatelessWidget {
                       fontColor: Colors.grey[700],
                     ),
                     value: controller.formData[formKeyOvercurrentRating],
-                    onChanged: (dynamic value) => controller
-                        .onChangeFormDataValue(formKeyOvercurrentRating, value),
+                    enabled: false,
+                    onTap: () => Get.bottomSheet(
+                      MinorWorksSelectBT(
+                        listTitles: lists.listRating,
+                        controller: controller,
+                        keyOfValue: formKeyOvercurrentRating,
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -203,25 +221,26 @@ class MinorWorksPage2 extends StatelessWidget {
                   CommonInput(
                     topLabelText: 'BS EN',
                     hint: 'Select',
-                    enabled: false,
                     suffix: Icon(
                       Icons.keyboard_arrow_down,
                       color: Colors.grey[700],
                     ),
                     value: controller.formData[formKeyRCDBSEN],
-                    onChanged: (dynamic value) =>
-                        controller.onChangeFormDataValue(formKeyRCDBSEN, value),
+                    enabled: false,
+                    onTap: () => Get.bottomSheet(
+                      MinorWorksSelectBT(
+                        listTitles: lists.listBS,
+                        controller: controller,
+                        keyOfValue: formKeyRCDBSEN,
+                        keyOfBSType: formKeyRCDType,
+                      ),
+                    ),
                   ),
                   CommonInput(
                     topLabelText: 'Type',
                     hint: 'Select',
-                    // suffix: Icon(
-                    //   Icons.keyboard_arrow_down,
-                    //   color: Colors.grey[700],
-                    // ),
                     value: controller.formData[formKeyRCDType],
-                    onChanged: (dynamic value) =>
-                        controller.onChangeFormDataValue(formKeyRCDType, value),
+                    enabled: false,
                   ),
                   CommonInput(
                     topLabelText: 'Rating',
@@ -231,8 +250,14 @@ class MinorWorksPage2 extends StatelessWidget {
                       fontColor: Colors.grey[700],
                     ),
                     value: controller.formData[formKeyRCDRating],
-                    onChanged: (dynamic value) => controller
-                        .onChangeFormDataValue(formKeyRCDRating, value),
+                    enabled: false,
+                    onTap: () => Get.bottomSheet(
+                      MinorWorksSelectBT(
+                        listTitles: lists.listRating,
+                        controller: controller,
+                        keyOfValue: formKeyRCDRating,
+                      ),
+                    ),
                   ),
                   CommonInput(
                     topLabelText: 'Rated residual operating current (I ∆n):',
@@ -241,11 +266,16 @@ class MinorWorksPage2 extends StatelessWidget {
                       'mA',
                       fontColor: Colors.grey[700],
                     ),
+                    enabled: false,
                     value: controller
                         .formData[formKeyRatedResidualOperatingCurrent],
-                    onChanged: (dynamic value) =>
-                        controller.onChangeFormDataValue(
-                            formKeyRatedResidualOperatingCurrent, value),
+                    onTap: () => Get.bottomSheet(
+                      MinorWorksSelectBT(
+                        listTitles: lists.listRatingOperation,
+                        controller: controller,
+                        keyOfValue: formKeyRatedResidualOperatingCurrent,
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -275,8 +305,14 @@ class MinorWorksPage2 extends StatelessWidget {
                       color: Colors.grey[700],
                     ),
                     value: controller.formData[formKeyAFDDBSEN],
-                    onChanged: (dynamic value) => controller
-                        .onChangeFormDataValue(formKeyAFDDBSEN, value),
+                    onTap: () => Get.bottomSheet(
+                      MinorWorksSelectBT(
+                        listTitles: lists.listBS,
+                        controller: controller,
+                        keyOfValue: formKeyAFDDBSEN,
+                        keyOfBSType: formKeyAFDDType,
+                      ),
+                    ),
                   ),
                   CommonInput(
                     topLabelText: 'Type',
@@ -285,9 +321,8 @@ class MinorWorksPage2 extends StatelessWidget {
                     //   Icons.keyboard_arrow_down,
                     //   color: Colors.grey[700],
                     // ),
+                    enabled: false,
                     value: controller.formData[formKeyAFDDType],
-                    onChanged: (dynamic value) => controller
-                        .onChangeFormDataValue(formKeyAFDDType, value),
                   ),
                   CommonInput(
                     topLabelText: 'Rating',
@@ -297,8 +332,14 @@ class MinorWorksPage2 extends StatelessWidget {
                       fontColor: Colors.grey[700],
                     ),
                     value: controller.formData[formKeyAFDDRating],
-                    onChanged: (dynamic value) => controller
-                        .onChangeFormDataValue(formKeyAFDDRating, value),
+                    enabled: false,
+                    onTap: () => Get.bottomSheet(
+                      MinorWorksSelectBT(
+                        listTitles: lists.listRating,
+                        controller: controller,
+                        keyOfValue: formKeyAFDDRating,
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -327,19 +368,19 @@ class MinorWorksPage2 extends StatelessWidget {
                       color: Colors.grey[700],
                     ),
                     value: controller.formData[formKeySPDBSEN],
-                    onChanged: (dynamic value) =>
-                        controller.onChangeFormDataValue(formKeySPDBSEN, value),
+                    onTap: () => Get.bottomSheet(
+                      MinorWorksSelectBT(
+                        listTitles: lists.listBS,
+                        controller: controller,
+                        keyOfValue: formKeySPDBSEN,
+                        keyOfBSType: formKeySPDType,
+                      ),
+                    ),
                   ),
                   CommonInput(
                     topLabelText: 'Type',
                     hint: 'Select',
-                    // suffix: Icon(
-                    //   Icons.keyboard_arrow_down,
-                    //   color: Colors.grey[700],
-                    // ),
                     value: controller.formData[formKeySPDType],
-                    onChanged: (dynamic value) =>
-                        controller.onChangeFormDataValue(formKeySPDType, value),
                   ),
                 ],
               ),
