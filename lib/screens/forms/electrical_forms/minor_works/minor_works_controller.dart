@@ -20,6 +20,9 @@ class MinorWorksController extends GetxController {
   String? pdfFilePath;
   Uuid uuid = const Uuid();
   List<dynamic> applianceData = <dynamic>[];
+  bool r1 = false;
+  bool r2 = false;
+  DateTime? selectedDate;
 
   Map<String, dynamic> formData = <String, dynamic>{
     formKeyDeclaration: <String, dynamic>{
@@ -257,5 +260,22 @@ class MinorWorksController extends GetxController {
       formBody[keyData] = formData;
     }
     update();
+  }
+
+  void selectedProtective({bool pressIsR1 = false}) {
+    if (pressIsR1) {
+      r1 = true;
+      r2 = false;
+    } else {
+      r1 = false;
+      r2 = true;
+    }
+    update();
+  }
+
+  void onSelectDate(String? part, String? key, DateTime value) {
+    formData[part!][key!] = '$value'.split(' ')[0];
+    update();
+    selectedDate = value;
   }
 }

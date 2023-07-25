@@ -392,7 +392,7 @@ class ListMinorWorks {
     '4x960',
     '4x1000',
     '4x1200',
-  ];
+  ]; 
   List<String> listRatingOperation = <String>[
     '10',
     '30',

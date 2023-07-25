@@ -26,11 +26,27 @@ class MinorWorksPage1 extends StatelessWidget {
               onChanged: (dynamic value) => controller.onChangeFormDataValue(
                   formKeyDescriptionMinorWorks, value),
             ),
-            const CommonInput(
+            CommonInput(
               topLabelText: 'Date completed:',
               hint: 'Select Date',
-              suffix: Icon(Icons.calendar_today_outlined),
+              suffix: const Icon(Icons.calendar_today_outlined),
               marginBottom: 0.02,
+              enabled: false,
+              value: controller.formData[formKeyDeclaration]
+                  [formKeyDateCompleted],
+              onTap: () {
+                CommonDatePicker.showDatePicker(
+                  context,
+                  currentTime: controller.selectedDate ?? DateTime.now(),
+                  onConfirm: (DateTime value) {
+                    controller.onSelectDate(
+                      formKeyDeclaration,
+                      formKeyDateCompleted,
+                      value,
+                    );
+                  },
+                );
+              },
             ),
             FormToggleButton(
               title: 'System type and earthing arrangements:',
@@ -170,12 +186,13 @@ class MinorWorksPage1 extends StatelessWidget {
               onChanged: (dynamic value) => controller.onChangeFormDataValue(
                   formKeyDateDetailsPermittedExceptions, value),
             ),
-             FormToggleButton(
+            FormToggleButton(
               title: 'Risk assessment attached:',
               titleSize: fontTitle,
               value: controller.formData[formKeyRiskAssessmentAttachedMinor],
-              onChangeValue: (dynamic value) => controller
-                  .onChangeFormDataValue(formKeyRiskAssessmentAttachedMinor, value),
+              onChangeValue: (dynamic value) =>
+                  controller.onChangeFormDataValue(
+                      formKeyRiskAssessmentAttachedMinor, value),
               toggleType: FormToggleType.passFailedNA,
             ),
           ],
