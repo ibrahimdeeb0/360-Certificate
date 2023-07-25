@@ -8,6 +8,7 @@ import 'package:uuid/uuid.dart';
 import '../../../../general_exports.dart';
 
 class MinorWorksController extends GetxController {
+  TextEditingController otherInputController = TextEditingController();
   int selectedId = 0;
   ScrollController scrollController = ScrollController();
   Uint8List? signatureBytes;
@@ -129,6 +130,7 @@ class MinorWorksController extends GetxController {
   void onBack() {
     if (selectedId == 0) {
       // first screen
+      Get.back();
     } else {
       selectedId = selectedId - 1;
       update();
@@ -140,7 +142,7 @@ class MinorWorksController extends GetxController {
     formData[key!] = value;
   }
 
-  void dataSignature(String? part, String? key, dynamic value) {
+  void onChangDataSignature(String? part, String? key, dynamic value) {
     formData[part!][key!] = value;
   }
 

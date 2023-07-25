@@ -32,7 +32,7 @@ class MinorWorksPage4 extends StatelessWidget {
               marginBottom: 0.02,
               value: controller.formData[formKeyDeclaration]
                   [formKeyEngineerName],
-              onChanged: (String value) => controller.dataSignature(
+              onChanged: (String value) => controller.onChangDataSignature(
                   formKeyDeclaration, formKeyEngineerName, value),
               enabled: false,
             ),
@@ -163,8 +163,9 @@ class MinorWorksPage4 extends StatelessWidget {
                     marginBottom: 0.02,
                     value: controller.formData[formKeyDeclaration]
                         [formKeyClientName],
-                    onChanged: (String value) => controller.dataSignature(
-                        formKeyDeclaration, formKeyClientName, value),
+                    onChanged: (String value) =>
+                        controller.onChangDataSignature(
+                            formKeyDeclaration, formKeyClientName, value),
                   ),
                   Align(
                     child: CommonText(

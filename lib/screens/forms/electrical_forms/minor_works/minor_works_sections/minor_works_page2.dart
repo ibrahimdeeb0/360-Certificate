@@ -8,6 +8,7 @@ class MinorWorksPage2 extends StatelessWidget {
     return GetBuilder<MinorWorksController>(
       init: MinorWorksController(),
       builder: (MinorWorksController controller) {
+        final ListMinorWorks lists = ListMinorWorks();
         return Column(
           // crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -149,19 +150,26 @@ class MinorWorksPage2 extends StatelessWidget {
                       color: Colors.grey[700],
                     ),
                     value: controller.formData[formKeyOvercurrentBSEN],
-                    onChanged: (dynamic value) => controller
-                        .onChangeFormDataValue(formKeyOvercurrentBSEN, value),
+                    onTap: () => Get.bottomSheet(
+                      MinorWorksSelectBT(
+                        listTitles: lists.listBS,
+                        controller: controller,
+                        keyOfValue: formKeyOvercurrentBSEN,
+                        keyOfBSType: formKeyOvercurrentType,
+                      ),
+                    ),
                   ),
                   CommonInput(
                     topLabelText: 'Type',
                     hint: 'Select',
+                    enabled: false,
                     // suffix: Icon(
                     //   Icons.keyboard_arrow_down,
                     //   color: Colors.grey[700],
                     // ),
                     value: controller.formData[formKeyOvercurrentType],
-                    onChanged: (dynamic value) => controller
-                        .onChangeFormDataValue(formKeyOvercurrentType, value),
+                    // onChanged: (dynamic value) => controller
+                    //     .onChangeFormDataValue(formKeyOvercurrentType, value),
                   ),
                   CommonInput(
                     topLabelText: 'Rating',
