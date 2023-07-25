@@ -16,8 +16,12 @@ class MinorWorks extends StatelessWidget {
             actionItem: ActionItem(
               type: ActionType.image,
             ),
-            pressImage: () {},
-            pressNote: () {},
+            pressImage: () {
+              Get.to(() => const MinorAddImage());
+            },
+            pressNote: () {
+              Get.to(() => const MinorAddNote());
+            },
           ),
           body: CommonContainer(
             width: 1,

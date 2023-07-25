@@ -80,3 +80,8 @@ enum FormCertType {
   gas,
   electricalAndGas
 }
+
+enum ImageFormatType{
+  local, 
+  network,
+}

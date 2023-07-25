@@ -258,8 +258,4 @@ class MinorWorksController extends GetxController {
     }
     update();
   }
-
-  void onSaveApplianceData() {
-    formData[formKeyAppliance] = applianceData;
-  }
 }

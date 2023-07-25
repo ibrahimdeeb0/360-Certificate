@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter_svg/svg.dart';
 
 import '../../../general_exports.dart';
@@ -6,11 +8,13 @@ class ViewImageContainer extends StatelessWidget {
   const ViewImageContainer({
     required this.imagePath,
     this.isFullScreen = false,
+    this.imageType = ImageFormatType.network,
     super.key,
   });
 
   final String? imagePath;
   final bool isFullScreen;
+  final ImageFormatType imageType;
 
   @override
   Widget build(BuildContext context) {
@@ -29,13 +33,21 @@ class ViewImageContainer extends StatelessWidget {
       clipBehavior: Clip.hardEdge,
       child: Stack(
         children: <Widget>[
-          CachedImage(
-            image: imagePath,
-            withPlaceHolder: true,
-            fit: BoxFit.cover,
-            width: 1.flexWidth,
-            height: 1.flexHeight,
-          ),
+          if (imageType == ImageFormatType.local)
+            Image.file(
+              File(imagePath!),
+              fit: BoxFit.cover,
+              width: 1.flexWidth,
+              height: 1.flexHeight,
+            ),
+          if (imageType == ImageFormatType.network)
+            CachedImage(
+              image: imagePath,
+              withPlaceHolder: true,
+              fit: BoxFit.cover,
+              width: 1.flexWidth,
+              height: 1.flexHeight,
+            ),
           //  alignment: AlignmentDirectional.topEnd,
           Align(
             alignment: AlignmentDirectional.topStart,

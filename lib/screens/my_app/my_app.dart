@@ -64,6 +64,27 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         // brightness: Brightness.dark,
         bottomSheetTheme: const BottomSheetThemeData(elevation: 0.0),
+        textButtonTheme: TextButtonThemeData(
+          style: ButtonStyle(
+            overlayColor: MaterialStatePropertyAll<Color?>(
+              Colors.grey[300],
+            ),
+          ),
+        ),
+        iconButtonTheme: IconButtonThemeData(
+          style: ButtonStyle(
+            overlayColor: MaterialStatePropertyAll<Color?>(
+              Colors.grey[300],
+            ),
+          ),
+        ),
+        menuButtonTheme: MenuButtonThemeData(
+          style: ButtonStyle(
+            overlayColor: MaterialStatePropertyAll<Color?>(
+              Colors.grey[300],
+            ),
+          ),
+        ),
       ),
 
       translations: Translation(),

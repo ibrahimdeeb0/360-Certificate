@@ -10,6 +10,11 @@ class DefaultTextStyles {
     fontWeight: FontWeight.w500,
   );
 
+  CommonTextModel boldTextStyle = const CommonTextModel(
+    fontFamily: 'Careem',
+    fontWeight: FontWeight.w600,
+  );
+
   CommonTextModel h1Style() => defaultTextStyle.copyWith(
         fontSize: fontH1,
       );
@@ -124,6 +129,11 @@ class DefaultTextStyles {
   CommonTextModel h3MediumStylePrimary() => h3MediumStyle().copyWith(
         fontColor: AppColors.primary,
       );
+
+  CommonTextModel h3BoldStylePrimary() => h3BoldStyle().copyWith(
+        fontColor: AppColors.primary,
+      );
+
   CommonTextModel h5MediumStyleWhite() => h5MediumStyle().copyWith(
         fontColor: AppColors.white,
       );
@@ -161,6 +171,10 @@ class DefaultTextStyles {
   CommonTextModel h3MediumStyle() => mediumTextStyle.copyWith(
         fontSize: fontH3,
         fontColor: AppColors.primary,
+      );
+
+  CommonTextModel h3BoldStyle() => boldTextStyle.copyWith(
+        fontSize: fontH3,
       );
 
   CommonTextModel h4MediumStyle() => mediumTextStyle.copyWith(
