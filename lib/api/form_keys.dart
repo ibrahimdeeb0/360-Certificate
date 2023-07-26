@@ -17,6 +17,8 @@ const String formKeyEngineerDate = 'engineer_date';
 const String formKeyClientName = 'client_name';
 const String formKeyCustomerName = 'customer_name';
 const String formKeyCustomerDate = 'customer_date';
+const String formKeyEngineerPosition = 'engineer_position';
+const String formKeyClientPosition = 'client_position';
 
 //* EICR Form *//
 // const String formKey = '';
@@ -448,8 +450,6 @@ const String formKeyDangerousCondition = 'dangerous_condition';
 const String formKeyDangerousDetails = 'dangerous_details';
 const String formKeyActionRaked = 'action_taken';
 const String formKeyFurtherAction = 'further_action';
-const String formKeyEngineerPosition = 'engineer_position';
-const String formKeyClientPosition = 'client_position';
 const String formKeyEnrollmentNumber = 'enrollment_number';
 const String formKeyReceivedDate = 'received_date';
 
@@ -600,17 +600,17 @@ const String formKeyEarthingConductor = 'earthing_conductor';
 const String formKeyWater = 'water';
 const String formKeyGas = 'gas';
 const String formKeyOil = 'oil';
-const String formKeyProtectiveOther= 'rotective_other';
+const String formKeyProtectiveOther = 'rotective_other';
 const String formKeyCommentsExistingInstallation =
     'comments_on_existing_installation';
 const String formKeyPageNo = 'page_no';
 const String formKeyDetailsDepartures = 'details_departures';
 const String formKeyDateCircuitAlteredExtended =
     'date_circuit_altered_or_extended';
-    const String formKeyDateDetailsPermittedExceptions =
+const String formKeyDateDetailsPermittedExceptions =
     'Details_of_permitted_exceptions';
-const String formKeyRiskAssessmentAttachedMinor = 'risk_assessment_attached_minor';
-
+const String formKeyRiskAssessmentAttachedMinor =
+    'risk_assessment_attached_minor';
 
 const String formKeyDBConsumerUnit = 'db_consumer_unit';
 const String formKeyLocationAndType = 'location_and_type';
@@ -634,8 +634,6 @@ const String formKeyAFDDType = 'afdd_type';
 const String formKeyAFDDRating = 'afdd_rating';
 const String formKeySPDBSEN = 'spd_bs_en';
 const String formKeySPDType = 'spd_type';
-
-
 
 const String formKeyContinuityMinor = 'continuity';
 const String formKeyProtectiveConductorInput = 'protective_conductor_input ';

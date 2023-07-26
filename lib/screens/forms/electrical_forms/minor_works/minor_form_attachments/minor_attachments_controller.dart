@@ -8,15 +8,18 @@ class FormImageClass {
     this.image,
     this.onPress,
     this.isIncluded = false,
+    this.note,
   });
 
   final String? image;
   final XFile file;
   final Function()? onPress;
   bool isIncluded;
+  String? note;
 }
 
 class MinorAttachmentsController extends GetxController {
+  TextEditingController noteController = TextEditingController();
   final ImagePicker _picker = ImagePicker();
   List<XFile> imagesFile = <XFile>[];
   List<FormImageClass> imagesData = <FormImageClass>[];

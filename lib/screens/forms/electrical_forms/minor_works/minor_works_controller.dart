@@ -49,7 +49,7 @@ class MinorWorksController extends GetxController {
     formKeyProtectiveOther: '',
     formKeyCommentsExistingInstallation: '',
     formKeyPageNo: '',
-    formKeyDetailsDepartures: '',
+    formKeyDetailsDepartures: 'N/A',
     formKeyDateCircuitAlteredExtended: '',
     formKeyDateDetailsPermittedExceptions: '',
     formKeyRiskAssessmentAttachedMinor: 'Yes',

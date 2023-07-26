@@ -64,7 +64,7 @@ class AddNewNotesController extends GetxController {
     consoleLog(deletedImages, key: 'deletedImages');
     if (status == NoteType.noteNew) {
       ApiRequest(
-        shouldShowMessage: false,
+        // shouldShowMessage: false,
         method: ApiMethods.post,
         path: '/certificates/$certId/notes/create',
         className: 'RegisterController/onCreateNote',
@@ -90,7 +90,7 @@ class AddNewNotesController extends GetxController {
     } else if (status == NoteType.noteUpdate) {
       consoleLogPretty(bodyObject);
       ApiRequest(
-        shouldShowMessage: false,
+        // shouldShowMessage: false,
         method: ApiMethods.post,
         path: '/certificates/$noteId/notes/update',
         className: 'RegisterController/onCreateNote',

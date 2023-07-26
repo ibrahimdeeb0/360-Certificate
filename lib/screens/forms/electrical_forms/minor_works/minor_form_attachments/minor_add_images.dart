@@ -11,88 +11,124 @@ class MinorAddImage extends StatelessWidget {
         withShadow: true,
       ),
       body: GetBuilder<MinorAttachmentsController>(
-          init: MinorAttachmentsController(),
-          builder: (MinorAttachmentsController controller) {
-            return CommonContainer(
-              style: appContainerStyles.containerStyles,
-              paddingTop: 0.02,
-              child: Stack(
-                children: <Widget>[
-                  SingleChildScrollView(
-                    child: Column(
-                      children: <Widget>[
-                        CommonText(
-                          'Uploaded Images',
-                          fontColor: AppColors.primary,
-                          fontSize: fontH2,
-                          marginBottom: 0.02,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        if (controller.imagesData.isNotEmpty)
-                          ...controller.imagesData.map(
-                            (FormImageClass item) => FormAddImageCard(
-                              fileName: item.file.path
-                                  .split('/')
-                                  .last
-                                  .split('picker')
-                                  .last,
-                              imagePath: item.file.path,
-                              pressToggleInclude: () {
-                                // consoleLog(item.file.path);
-                                final int itemIndex =
-                                    controller.imagesData.indexOf(item);
-                                controller.imagesData[itemIndex].isIncluded =
-                                    !item.isIncluded;
-                                controller.update();
-                              },
-                              isIncluded: item.isIncluded,
-                              pressView: () {
-                                Get.dialog(
-                                  ViewImageContainer(
-                                    imagePath: item.file.path,
-                                    imageType: ImageFormatType.local,
-                                    isFullScreen: true,
-                                  ),
-                                );
-                              },
-                              pressDelete: item.onPress,
+        init: MinorAttachmentsController(),
+        builder: (MinorAttachmentsController controller) {
+          return CommonContainer(
+            style: appContainerStyles.containerStyles,
+            paddingTop: 0.02,
+            child: controller.imagesData.isNotEmpty
+                ? Stack(
+                    children: <Widget>[
+                      SingleChildScrollView(
+                        child: Column(
+                          children: <Widget>[
+                            CommonText(
+                              'Uploaded Images',
+                              fontColor: AppColors.primary,
+                              fontSize: fontH2,
+                              marginBottom: 0.02,
+                              fontWeight: FontWeight.bold,
                             ),
-                          ),
-                      ],
-                    ),
-                  ),
-                  Positioned(
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    child: Padding(
-                      padding: EdgeInsets.only(bottom: 0.02.flexHeight),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          CommonButton(
-                            text: 'Cancel',
-                            width: 0.45,
-                            backgroundColor: Colors.white,
-                            fontColor: AppColors.primary,
-                            borderWidth: 1,
-                            borderColor: AppColors.primary,
-                          ),
-                          CommonButton(
-                            onPress: () {
-                              controller.pickImage();
-                            },
-                            text: 'Upload',
-                            width: 0.45,
-                          ),
-                        ],
+                            if (controller.imagesData.isNotEmpty)
+                              ...controller.imagesData.map(
+                                (FormImageClass item) => FormAddImageCard(
+                                  fileName: item.file.path
+                                      .split('/')
+                                      .last
+                                      .split('picker')
+                                      .last,
+                                  imagePath: item.file.path,
+                                  pressToggleInclude: () {
+                                    // consoleLog(item.file.path);
+                                    final int itemIndex =
+                                        controller.imagesData.indexOf(item);
+                                    controller.imagesData[itemIndex]
+                                        .isIncluded = !item.isIncluded;
+                                    controller.update();
+                                  },
+                                  isIncluded: item.isIncluded,
+                                  pressView: () {
+                                    Get.dialog(
+                                      ViewImageContainer(
+                                        imagePath: item.file.path,
+                                        imageType: ImageFormatType.local,
+                                        isFullScreen: true,
+                                      ),
+                                    );
+                                  },
+                                  pressDelete: item.onPress,
+                                  pressNote: () {
+                                    if (item.note == null) {
+                                      Get.to(() => const MinorImageNote());
+                                    }
+                                  },
+                                ),
+                              ),
+                          ],
+                        ),
                       ),
-                    ),
+                      Positioned(
+                        bottom: 0,
+                        left: 0,
+                        right: 0,
+                        child: Padding(
+                          padding: EdgeInsets.only(bottom: 0.02.flexHeight),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              CommonButton(
+                                text: 'Cancel',
+                                width: 0.45,
+                                backgroundColor: Colors.white,
+                                fontColor: AppColors.primary,
+                                borderWidth: 1,
+                                borderColor: AppColors.primary,
+                              ),
+                              CommonButton(
+                                onPress: () {
+                                  controller.pickImage();
+                                },
+                                text: 'Upload',
+                                width: 0.45,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                : Column(
+                    children: <Widget>[
+                      CommonText(
+                        'Uploaded Images',
+                        fontColor: AppColors.primary,
+                        fontSize: fontH2,
+                        marginBottom: 0.02,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      CommonText(
+                        'No dat available',
+                        fontColor: Colors.grey[700],
+                        marginBottom: 0.1,
+                      ),
+                      CommonButton(
+                        onPress: () {
+                          controller.pickImage();
+                        },
+                        child: const CommonText(
+                          'No dat available',
+                          fontColor: Colors.white,
+                          rightChild: Icon(
+                            Icons.file_upload_outlined,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            );
-          }),
+          );
+        },
+      ),
     );
   }
 }
