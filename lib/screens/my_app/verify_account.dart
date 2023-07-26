@@ -28,9 +28,7 @@ class VerifyAccount extends StatelessWidget {
               "You've entered  ${Get.arguments['email']}  as the email address for your account, please verify this email address",
               fontColor: AppColors.greyDark,
             ),
-            SizedBox(
-              height: DEVICE_HEIGHT * 0.2,
-            ),
+            const Spacer(),
             CommonButton(
               text: 'Go To Login',
               onPress: () {

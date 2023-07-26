@@ -1,9 +1,13 @@
 import '../../../../../general_exports.dart';
 
 class MinorImageNote extends StatelessWidget {
-  const MinorImageNote({super.key});
-
-  
+  const MinorImageNote({
+    this.fromImage = false,
+    this.isUpdateNote = false,
+    super.key,
+  });
+  final bool fromImage;
+  final bool isUpdateNote;
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +25,10 @@ class MinorImageNote extends StatelessWidget {
               children: <Widget>[
                 CommonInput(
                   hint: 'note...',
-                  maxLines: 150,
+                  maxLines: 60,
                   height: 0.7,
                   marginTop: 0.02,
-                  textInputAction: TextInputAction.newline,
+                  // textInputAction: TextInputAction.newline,
                   controller: controller.noteController,
                 ),
                 Positioned(
@@ -40,6 +44,7 @@ class MinorImageNote extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         CommonButton(
+                          onPress: Get.back,
                           text: 'Cancel',
                           width: 0.45,
                           backgroundColor: Colors.white,
@@ -48,7 +53,35 @@ class MinorImageNote extends StatelessWidget {
                           borderColor: AppColors.primary,
                         ),
                         CommonButton(
-                          onPress: () {},
+                          onPress: () {
+                            hideKeyboard();
+                            if (fromImage) {
+                              controller.imagesData[Get.arguments['index']]
+                                  .note = controller.noteController.text.trim();
+                            } else {
+                              if (isUpdateNote) {
+                                controller.notesData[Get.arguments['index']]
+                                        .note =
+                                    controller.noteController.text.trim();
+                              } else {
+                                controller.notesData.insert(
+                                  0,
+                                  FormNoteClass(
+                                    note: controller.noteController.text.trim(),
+                                  ),
+                                );
+                                // controller.notesData.add(
+                                //   FormNoteClass(
+                                //     note: controller.noteController.text.trim(),
+                                //   ),
+                                // );
+                              }
+                            }
+
+                            controller.noteController.clear();
+                            controller.update();
+                            Get.back();
+                          },
                           text: 'Save',
                           width: 0.45,
                         ),

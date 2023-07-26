@@ -18,11 +18,24 @@ class FormImageClass {
   String? note;
 }
 
+class FormNoteClass {
+  FormNoteClass({
+    this.note,
+    this.type,
+    this.onPress,
+  });
+
+  String? note;
+  String? type;
+  final Function()? onPress;
+}
+
 class MinorAttachmentsController extends GetxController {
   TextEditingController noteController = TextEditingController();
   final ImagePicker _picker = ImagePicker();
   List<XFile> imagesFile = <XFile>[];
   List<FormImageClass> imagesData = <FormImageClass>[];
+  List<FormNoteClass> notesData = <FormNoteClass>[];
 
   // List<Map<String, dynamic>> imagesData = <Map<String, dynamic>>[
   //   <String, dynamic>{
@@ -42,7 +55,8 @@ class MinorAttachmentsController extends GetxController {
 
     if (imagesFile.where((XFile img) => img.path == file!.path).isEmpty) {
       consoleLog('inside');
-      imagesData.add(
+      imagesData.insert(
+        0,
         FormImageClass(
           file: file!,
           onPress: () {
@@ -55,7 +69,21 @@ class MinorAttachmentsController extends GetxController {
           },
         ),
       );
-      imagesFile.add(file);
+      // imagesData.add(
+      //   FormImageClass(
+      //     file: file!,
+      //     onPress: () {
+      //       imagesData
+      //           .removeWhere((FormImageClass element) => element.file == file);
+
+      //       imagesFile
+      //           .removeWhere((XFile element) => element.path == file.path);
+      //       update();
+      //     },
+      //   ),
+      // );
+      // imagesFile.add(file);
+      imagesFile.insert(0, file);
     }
 
     consoleLog(imagesFile, key: 'selected_Images');

@@ -31,38 +31,83 @@ class MinorAddImage extends StatelessWidget {
                             ),
                             if (controller.imagesData.isNotEmpty)
                               ...controller.imagesData.map(
-                                (FormImageClass item) => FormAddImageCard(
-                                  fileName: item.file.path
-                                      .split('/')
-                                      .last
-                                      .split('picker')
-                                      .last,
-                                  imagePath: item.file.path,
-                                  pressToggleInclude: () {
-                                    // consoleLog(item.file.path);
-                                    final int itemIndex =
-                                        controller.imagesData.indexOf(item);
-                                    controller.imagesData[itemIndex]
-                                        .isIncluded = !item.isIncluded;
-                                    controller.update();
-                                  },
-                                  isIncluded: item.isIncluded,
-                                  pressView: () {
-                                    Get.dialog(
-                                      ViewImageContainer(
-                                        imagePath: item.file.path,
-                                        imageType: ImageFormatType.local,
-                                        isFullScreen: true,
-                                      ),
-                                    );
-                                  },
-                                  pressDelete: item.onPress,
-                                  pressNote: () {
-                                    if (item.note == null) {
-                                      Get.to(() => const MinorImageNote());
-                                    }
-                                  },
-                                ),
+                                (FormImageClass item) {
+                                  final int itemIndex =
+                                      controller.imagesData.indexOf(item);
+
+                                  return FormAddImageCard(
+                                    fileName: item.file.path
+                                        .split('/')
+                                        .last
+                                        .split('picker')
+                                        .last,
+                                    imagePath: item.file.path,
+                                    pressToggleInclude: () {
+                                      controller.imagesData[itemIndex]
+                                          .isIncluded = !item.isIncluded;
+                                      controller.update();
+                                    },
+                                    isIncluded: item.isIncluded,
+                                    pressView: () {
+                                      Get.dialog(
+                                        ViewImageContainer(
+                                          imagePath: item.file.path,
+                                          imageType: ImageFormatType.local,
+                                          isFullScreen: true,
+                                        ),
+                                      );
+                                    },
+                                    pressDelete: () {
+                                      openDialog(
+                                        child: CommonText(
+                                          'Are You Sure want to Delete?',
+                                          marginTop: 0.02,
+                                          topChild: Icon(
+                                            Icons.delete,
+                                            size: 0.07.flexAll,
+                                            color: Colors.red[900],
+                                          ),
+                                        ),
+                                        onCancel: () {
+                                          if (Get.isDialogOpen!) {
+                                            Get.back();
+                                          }
+                                        },
+                                        onConfirm: () {
+                                          if (Get.isDialogOpen!) {
+                                            Get.back();
+                                          }
+                                          item.onPress?.call();
+                                        },
+                                        title: '',
+                                      );
+                                    },
+                                    pressNote: () {
+                                      if (item.note == null) {
+                                        Get.to(
+                                          () => const MinorImageNote(
+                                            fromImage: true,
+                                          ),
+                                          arguments: <String, dynamic>{
+                                            'index': itemIndex,
+                                          },
+                                        );
+                                      } else {
+                                        controller.noteController.text =
+                                            item.note!;
+                                        Get.to(
+                                          () => const MinorImageNote(
+                                            fromImage: true,
+                                          ),
+                                          arguments: <String, dynamic>{
+                                            'index': itemIndex,
+                                          },
+                                        );
+                                      }
+                                    },
+                                    note: item.note,
+                                  );
+                                },
                               ),
                           ],
                         ),
@@ -77,6 +122,7 @@ class MinorAddImage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
                               CommonButton(
+                                onPress: Get.back,
                                 text: 'Cancel',
                                 width: 0.45,
                                 backgroundColor: Colors.white,
@@ -143,6 +189,7 @@ class FormAddImageCard extends StatelessWidget {
     this.pressToggleInclude,
     this.isIncluded = false,
     this.imagePath,
+    this.note,
   });
 
   final String? fileName;
@@ -152,6 +199,7 @@ class FormAddImageCard extends StatelessWidget {
   final Function()? pressToggleInclude;
   final bool isIncluded;
   final String? imagePath;
+  final String? note;
 
   @override
   Widget build(BuildContext context) {
@@ -164,18 +212,28 @@ class FormAddImageCard extends StatelessWidget {
             fillColor: Colors.grey[200],
             value: fileName ?? '',
           ),
+          if (note != null)
+            CommonInput(
+              value: note ?? '',
+              height: 0.12,
+              maxLines: 60,
+              enabled: false,
+            ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              TextButton.icon(
-                onPressed: pressView,
-                icon: Icon(
-                  Icons.visibility,
-                  color: Color(AppColors.primary),
-                ),
-                label: CommonText(
-                  'View',
-                  style: appTextStyles.h3BoldStyle(),
+              Hero(
+                tag: imagePath ?? '',
+                child: TextButton.icon(
+                  onPressed: pressView,
+                  icon: Icon(
+                    Icons.visibility,
+                    color: Color(AppColors.primary),
+                  ),
+                  label: CommonText(
+                    'View',
+                    style: appTextStyles.h3BoldStyle(),
+                  ),
                 ),
               ),
               CommonContainer(
@@ -183,18 +241,15 @@ class FormAddImageCard extends StatelessWidget {
                 height: 0.03,
                 width: 0.005,
               ),
-              Hero(
-                tag: imagePath ?? '',
-                child: TextButton.icon(
-                  onPressed: pressDelete,
-                  icon: Icon(
-                    Icons.delete,
-                    color: Colors.red[900],
-                  ),
-                  label: CommonText(
-                    'Delete',
-                    style: appTextStyles.h3BoldStyle(),
-                  ),
+              TextButton.icon(
+                onPressed: pressDelete,
+                icon: Icon(
+                  Icons.delete,
+                  color: Colors.red[900],
+                ),
+                label: CommonText(
+                  'Delete',
+                  style: appTextStyles.h3BoldStyle(),
                 ),
               ),
               CommonContainer(

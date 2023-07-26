@@ -10,6 +10,7 @@ void openDialog({
   Widget? child,
 }) {
   Get.defaultDialog(
+    backgroundColor: Colors.white,
     barrierDismissible: false,
     contentPadding: EdgeInsets.symmetric(
       horizontal: DEVICE_WIDTH * 0.03,

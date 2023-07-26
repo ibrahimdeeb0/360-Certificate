@@ -85,6 +85,7 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
+        dialogBackgroundColor: Colors.white,
       ),
 
       translations: Translation(),
