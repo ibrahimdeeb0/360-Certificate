@@ -37,13 +37,7 @@ class MinorAttachmentsController extends GetxController {
   List<FormImageClass> imagesData = <FormImageClass>[];
   List<FormNoteClass> notesData = <FormNoteClass>[];
 
-  // List<Map<String, dynamic>> imagesData = <Map<String, dynamic>>[
-  //   <String, dynamic>{
-  //     'image_file': '',
-  //     'note': '',
-  //     'is_included': '',
-  //   },
-  // ];
+  String selectedNoteType = 'Private Certificate Note';
 
   Future<void> pickImage() async {
     hideKeyboard();
@@ -93,4 +87,9 @@ class MinorAttachmentsController extends GetxController {
     // }
     update();
   }
+
+  List<String> dropdownItemsClass = <String>[
+    'Private Certificate Note',
+    'Certificate Note',
+  ];
 }

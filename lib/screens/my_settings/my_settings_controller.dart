@@ -4,41 +4,31 @@ import '../../general_exports.dart';
 
 class MySettingsController extends GetxController {
   Map<String, dynamic> userData = <String, dynamic>{};
+  Map<String, dynamic> mainUserData = <String, dynamic>{};
   XFile? compLogoFile;
 
   @override
   void onReady() {
     super.onReady();
-    userData = profileController.userDataProfile;
+    userData = homeController.allUserData['user'];
+
     update();
-    // getUserData();
   }
 
-  // Future<void> getUserData() async {
+  // Future<void> getMainUserData() async {
   //   hideKeyboard();
   //   ApiRequest(
-  //     path: keyUserData,
-  //     className: 'MySettingsController/getUserData',
-  //     requestFunction: getUserData,
+  //     path: keyProfile,
+  //     className: 'MySettingsController/getMainUserData',
+  //     requestFunction: getMainUserData,
   //     withLoading: true,
   //     formatResponse: true,
   //   ).request(
   //     onSuccess: (dynamic data, dynamic response) {
-  //       myAppController.localStorage.saveToStorage(
-  //         key: 'getUserData',
-  //         value: data,
-  //       );
-  //       userData = data['user'];
+  //       mainUserData = data['user'];
   //       update();
   //     },
   //   );
-  //   if (!myAppController.isInternetConnect) {
-  //     final dynamic apiData = await myAppController.localStorage.getFromStorage(
-  //       key: 'getUserData',
-  //     );
-  //     userData = apiData['user'];
-  //     update();
-  //   }
   // }
 
   Future<dynamic> pickerImage(ImageSource source) async {
@@ -73,7 +63,8 @@ class MySettingsController extends GetxController {
       body: await imageAsFormData(file: compLogoFile),
     ).request(
       onSuccess: (dynamic data, dynamic response) {
-        profileController.getUserProfileData();
+        // profileController.getUserProfileData(); 
+        homeController.getAllUserData();
       },
       onError: (dynamic error) {
         dismissLoading();
@@ -81,14 +72,4 @@ class MySettingsController extends GetxController {
     );
     update();
   }
-
-  // @override
-  // void onInit() {
-  //   super.onInit();
-  // }
-
-  // @override
-  // void onClose() {
-  //   super.onClose();
-  // }
 }

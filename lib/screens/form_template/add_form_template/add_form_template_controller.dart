@@ -42,6 +42,11 @@ class AddFormTemplateController extends GetxController {
       keyName: 'EICR',
       keyRoute: routeFormEICR,
     },
+    <String, dynamic>{
+      keyId: 2,
+      keyTitle: 'Minor Works',
+      keyRoute: routeFormMinorWorks,
+    },
   ];
 
   List<Map<String, dynamic>> unActiveForms = <Map<String, dynamic>>[

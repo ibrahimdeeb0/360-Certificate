@@ -67,9 +67,10 @@ class MySettings extends StatelessWidget {
                             children: <Widget>[
                               CommonContainer(
                                 onPress: () {
-                                  if (!homeController.isRequiredNumber) {
-                                    Get.toNamed(routeSubscription);
-                                  }
+                                  // if (!homeController.isRequiredNumber) {
+                                  //   Get.toNamed(routeSubscription);
+                                  // }
+                                  // consoleLogPretty(homeController.allUserData);
                                 },
                                 width: 1,
                                 marginTop: 0.02,

@@ -51,6 +51,12 @@ class FormsController extends GetxController {
                 keyRoute: routeFormEICR,
                 'form_cert_type': FormCertType.electrical,
               },
+              <String, dynamic>{
+                keyId: 2,
+                keyTitle: 'Minor Works',
+                keyRoute: routeFormMinorWorks,
+                'form_cert_type': FormCertType.electrical,
+              },
             ],
           },
       ];

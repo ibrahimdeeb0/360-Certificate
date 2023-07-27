@@ -30,7 +30,7 @@ class UpdatePostcodeController extends GetxController {
     super.onInit();
     if (Get.arguments != null) {
       userData = Get.arguments[keyData];
-      consoleLogPretty(userData);
+      // consoleLogPretty(userData);
       addressController.text = userData['registered_address'];
       streetController.text = userData['number_street_name'];
       cityController.text = userData['city'];
@@ -288,7 +288,8 @@ class UpdatePostcodeController extends GetxController {
       },
     ).request(
       onSuccess: (dynamic data, dynamic response) {
-        profileController.getUserProfileData();
+        // profileController.getUserProfileData();
+        homeController.getAllUserData();
         Get.back();
         // update();
       },

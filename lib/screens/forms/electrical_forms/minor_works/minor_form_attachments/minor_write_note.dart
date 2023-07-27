@@ -1,7 +1,7 @@
 import '../../../../../general_exports.dart';
 
-class MinorImageNote extends StatelessWidget {
-  const MinorImageNote({
+class MinorWriteNote extends StatelessWidget {
+  const MinorWriteNote({
     this.fromImage = false,
     this.isUpdateNote = false,
     super.key,
@@ -70,11 +70,6 @@ class MinorImageNote extends StatelessWidget {
                                     note: controller.noteController.text.trim(),
                                   ),
                                 );
-                                // controller.notesData.add(
-                                //   FormNoteClass(
-                                //     note: controller.noteController.text.trim(),
-                                //   ),
-                                // );
                               }
                             }
 

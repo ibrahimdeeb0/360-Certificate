@@ -287,7 +287,7 @@ class SearchWithWoozController extends GetxController {
     addressData[keyCountry] = countryName;
 
     if (streetName.isNotEmpty && streetNumber.isNotEmpty) {
-      addressData[keyStreet] = '$streetNumber, $streetName';
+      addressData[keyStreet] = '$streetNumber $streetName';
     } else if (streetName.isNotEmpty && streetNumber.isEmpty) {
       addressData[keyStreet] = ' $streetName';
     } else if (streetName.isEmpty && streetNumber.isNotEmpty) {

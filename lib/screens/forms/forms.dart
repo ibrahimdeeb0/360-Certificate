@@ -30,20 +30,21 @@ class Forms extends StatelessWidget {
                       children: <Widget>[
                         ...item[keyItems]
                             .map(
-                              (dynamic childe) => ChildeItems(
-                                text: childe[keyTitle],
+                              (dynamic element) => ChildeItems(
+                                text: element[keyTitle],
                                 onPress: () {
-                                  final List<int> formsId = <int>[
-                                    1,
-                                    3,
-                                    5,
-                                    9,
-                                    4,
-                                    11,
-                                  ];
-                                  if (formsId.contains(childe[keyId])) {
-                                    controller.searchTemplate(childe);
-                                  }
+                                  // final List<int> formsId = <int>[
+                                  //   1,
+                                  //   3,
+                                  //   5,
+                                  //   9,
+                                  //   4,
+                                  //   11,
+                                  // ];
+                                  // if (formsId.contains(element[keyId])) {
+                                  //   controller.searchTemplate(element);
+                                  // }
+                                  controller.searchTemplate(element);
                                 },
                               ),
                             )

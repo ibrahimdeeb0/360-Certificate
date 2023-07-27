@@ -2,12 +2,26 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../../../general_exports.dart';
 
 class MinorWorksController extends GetxController {
+  int? formId;
+  int? certId;
+  int? customerId;
+  int? siteId;
+  bool? isEditForm;
+  bool? isTemplate;
+  bool? isEditTemplate;
+  bool? isUpdateCert;
+  dynamic tempData;
+  String? templateName;
+  bool isFromCertificate = false;
+  bool isCertificateCreated = false;
+  //
   TextEditingController otherInputController = TextEditingController();
   int selectedId = 0;
   ScrollController scrollController = ScrollController();
@@ -19,7 +33,7 @@ class MinorWorksController extends GetxController {
   String? htmlContent;
   String? pdfFilePath;
   Uuid uuid = const Uuid();
-  List<dynamic> applianceData = <dynamic>[];
+
   bool r1 = false;
   bool r2 = false;
   DateTime? selectedDate;
@@ -120,6 +134,88 @@ class MinorWorksController extends GetxController {
         const MinorWorksPage4(),
       ];
 
+  //*------------------------------------------------*//
+  @override
+  void onInit() {
+    super.onInit();
+    isFromCertificate = Get.arguments?[formKeyFromCertificate] ?? false;
+    customerId = myAppController.certFormInfo[keyCustomerId];
+    siteId = myAppController.certFormInfo[keySiteId];
+    formId = myAppController.certFormInfo[keyFormId];
+    formBody[keyFormId] = myAppController.certFormInfo[keyFormId];
+    isTemplate =
+        myAppController.certFormInfo[keyFormStatus] == FormStatus.template;
+    isUpdateCert = myAppController.certFormInfo[keyFormDataStatus] ==
+        FormDataStatus.editCert;
+    isEditTemplate = myAppController.certFormInfo[keyFormDataStatus] ==
+        FormDataStatus.editTemp;
+
+    consoleLog(myAppController.certFormInfo, key: 'general_form_data');
+
+    //? get Template Data
+    if (myAppController.certFormInfo[keyTemplateData] != null &&
+        isTemplate! == false) {
+      tempData = myAppController.certFormInfo[keyTemplateData][keyData];
+    }
+    //? set Template Data to form body
+    if (myAppController.certFormInfo[keyFormDataStatus] ==
+        FormDataStatus.setTemp) {
+      consoleLog('Set Template', key: 'Set_Template');
+      formBody = myAppController.certFormInfo[keyTemplateData][keyData];
+
+      if (formBody[keyData].isNotEmpty) {
+        formData = formBody[keyData];
+      }
+
+      update();
+    }
+    //? create new template
+    if (myAppController.certFormInfo[keyFormDataStatus] ==
+        FormDataStatus.newTemp) {
+      consoleLog('New Template', key: 'New_Template');
+      templateName = myAppController.certFormInfo[keyNameTemp];
+    }
+    //? Update Template
+    if (myAppController.certFormInfo[keyFormDataStatus] ==
+        FormDataStatus.editTemp) {
+      consoleLog('Edit Template', key: 'Edit_Template');
+      tempData = myAppController.certFormInfo[keyTemplateData];
+      templateName = myAppController.certFormInfo[keyNameTemp];
+      formBody = myAppController.certFormInfo[keyTemplateData][keyData];
+
+      if (formBody[keyData].isNotEmpty) {
+        formData = formBody[keyData];
+      }
+
+      update();
+    }
+
+    //? Edit Certificate
+    if (myAppController.certFormInfo[keyFormDataStatus] ==
+        FormDataStatus.editCert) {
+      consoleLog('Edit Certificate', key: 'Edit_Certificate');
+      certId = myAppController.certFormInfo[keyCertId];
+      formId = myAppController.certFormInfo[keyFormId];
+      customerId = myAppController.certFormInfo[keyCustomerId];
+      siteId = myAppController.certFormInfo[keySiteId];
+      formBody[keyFormId] = myAppController.certFormInfo[keyFormId];
+      formBody[keyData] = myAppController.certFormInfo[keyTemplateData];
+      //
+      if (formBody[keyData].isNotEmpty) {
+        formData = formBody[keyData];
+      }
+
+      isCertificateCreated = true;
+
+      update();
+    }
+
+    formData[formKeyDeclaration][formKeyRecordIssueBy] =
+        '${profileController.userDataProfile['first_name']} ${profileController.userDataProfile['last_name']}';
+    update();
+  }
+  //*---------------------------------------------*//
+
   void onPress() {
     if (selectedId == listFormSections.length - 1) {
       // last screen
@@ -147,6 +243,36 @@ class MinorWorksController extends GetxController {
 
   void onChangDataSignature(String? part, String? key, dynamic value) {
     formData[part!][key!] = value;
+  }
+
+  void onSaveData() {
+    if (formBody[keyData] == <String, dynamic>{} || formBody[keyData] == null) {
+      formBody[keyData] = formData;
+    } else {
+      formBody[keyData] = <String, dynamic>{};
+      formBody[keyData] = formData;
+    }
+    update();
+  }
+
+  void selectedProtective({bool pressIsR1 = false}) {
+    if (pressIsR1) {
+      r1 = true;
+      r2 = false;
+    } else {
+      r1 = false;
+      r2 = true;
+    }
+    update();
+  }
+
+  void onSelectDate(String? part, String? key, DateTime value) {
+    final DateFormat formatter = DateFormat('dd-MM-yyyy');
+    final String dateValue = formatter.format(value);
+    // '$value'.split(' ')[0];
+    formData[part!][key!] = dateValue;
+    selectedDate = value;
+    update();
   }
 
   // *****************  signature functions **************** //
@@ -252,30 +378,215 @@ class MinorWorksController extends GetxController {
     Get.back();
   }
 
-  void onSaveData() {
-    if (formBody[keyData] == <String, dynamic>{} || formBody[keyData] == null) {
-      formBody[keyData] = formData;
-    } else {
-      formBody[keyData] = <String, dynamic>{};
-      formBody[keyData] = formData;
-    }
-    update();
+  // *****************  Press Finish ****************
+
+  Future<void> onCreateCertificate() async {
+    hideKeyboard();
+    onSaveData();
+
+    final Map<String, dynamic> certData = <String, dynamic>{
+      'customer_id': customerId,
+      'status_id': idPending,
+      'site_id': siteId,
+      ...formBody,
+    };
+
+    consoleLogPretty(certData);
+
+    ApiRequest(
+      method: ApiMethods.post,
+      path: keyCreateForm,
+      className: 'LandlordSafetyController/onCreateCertificate',
+      requestFunction: onCreateCertificate,
+      // withLoading: true,
+      formatResponse: true,
+
+      body: certData,
+      // await addFormDataToJson(
+      //   fileKey: 'customer_signature',
+      //   file: customerSignature,
+      //   jsonObject: certData,
+      // ),
+    ).request(
+      onSuccess: (dynamic data, dynamic response) async {
+        certId = data['form_data']['id'];
+        update();
+      },
+    );
   }
 
-  void selectedProtective({bool pressIsR1 = false}) {
-    if (pressIsR1) {
-      r1 = true;
-      r2 = false;
-    } else {
-      r1 = false;
-      r2 = true;
-    }
-    update();
+  Future<void> onUpdateCertificate() async {
+    hideKeyboard();
+    onSaveData();
+
+    final Map<String, dynamic> certData = <String, dynamic>{
+      ...formBody,
+      'customer_id': customerId,
+      'status_id': idInProgress,
+      'site_id': siteId,
+    };
+
+    startLoading();
+    ApiRequest(
+      method: ApiMethods.post,
+      path: '/certificates/$certId/update',
+      className: 'EicrController/onUpdateCertificate',
+      requestFunction: onUpdateCertificate,
+      // withLoading: true,
+      body: certData,
+    ).request(
+      onSuccess: (dynamic data, dynamic response) async {
+        myAppController.clearCertFormInfo();
+        certificatesController.getAllCert();
+        homeController.getAllUserData();
+        // profileController.getUserProfileData();
+
+        if (isFromCertificate) {
+          Get.back();
+          Get.find<CertificateDetailsController>().getCompetedCert();
+        } else {
+          Get.offNamed(
+            routeCertificateDetails,
+            arguments: <String, dynamic>{
+              keyId: certId,
+              'customer_id': customerId,
+              'site_id': siteId,
+            },
+          );
+        }
+      },
+      onError: (dynamic error) {
+        dismissLoading();
+      },
+    );
   }
 
-  void onSelectDate(String? part, String? key, DateTime value) {
-    formData[part!][key!] = '$value'.split(' ')[0];
-    update();
-    selectedDate = value;
+  Future<void> onCompleteCertificate() async {
+    hideKeyboard();
+    onSaveData();
+
+    final Map<String, dynamic> certData = <String, dynamic>{
+      ...formBody,
+      'customer_id': customerId,
+      'status_id': idCompleted,
+      'site_id': siteId,
+    };
+
+    if (signatureBytes != null) {
+      startLoading();
+      ApiRequest(
+        method: ApiMethods.post,
+        path: '/certificates/$certId/update',
+        className: 'LandlordSafetyController/onCompleteCertificate',
+        formatResponse: true,
+        requestFunction: onCompleteCertificate,
+        // withLoading: true,
+
+        body: signatureBytes2 != null
+            ? await addFormDataToJson(
+                fileKey: 'customer_signature',
+                file: customerSignature,
+                jsonObject: certData,
+              )
+            : certData,
+      ).request(onSuccess: (dynamic data, dynamic response) async {
+        myAppController.clearCertFormInfo();
+        // certificatesController.getAllCert();
+        // homeController.getCertCount();
+        profileController.getUserProfileData();
+        homeController.getAllUserData();
+
+        if (isFromCertificate) {
+          Get.back();
+          Get.find<CertificateDetailsController>().getCompetedCert();
+        } else {
+          Get.offNamed(
+            routeCertificateDetails,
+            arguments: <String, dynamic>{
+              keyId: certId,
+              'customer_id': customerId,
+              'site_id': siteId,
+            },
+          );
+        }
+      }, onError: (dynamic error) {
+        dismissLoading();
+      });
+    } else {
+      if (!Get.isSnackbarOpen) {
+        showMessage(
+          description: 'All signatures required',
+          textColor: AppColors.red,
+        );
+      }
+    }
+  }
+
+  // *****************  Template ****************
+
+  void onSaveTemplate() {
+    consoleLog('Save Template');
+    openDialog(
+      onCancel: Get.back,
+      onConfirm: storeTemplate,
+    );
+  }
+
+  Future<void> storeTemplate() async {
+    hideKeyboard();
+    onSaveData();
+
+    startLoading();
+    if (isEditTemplate!) {
+      // ignore: missing_required_param
+      ApiRequest(
+        method: ApiMethods.put,
+        path: '/forms/templates/${tempData[keyId]}/update',
+        className: 'LandlordSafetyController/storeTemplate',
+        requestFunction: storeTemplate,
+        body: <String, dynamic>{
+          'name': templateName,
+          'form_id': tempData['form_id'],
+          'data': formBody,
+        },
+      ).request(
+        onSuccess: (dynamic data, dynamic response) {
+          myAppController.clearCertFormInfo();
+          Get.put(FormTemplateController()).getFormsTemplates();
+          Get
+            ..back()
+            ..back();
+        },
+      );
+    } else {
+      // ignore: missing_required_param
+      ApiRequest(
+        method: ApiMethods.post,
+        path: keyStoreFormTemplate,
+        className: 'LandlordSafetyController/storeTemplate',
+        requestFunction: storeTemplate,
+        body: <String, dynamic>{
+          'name': templateName,
+          'form_id': formId,
+          'data': formBody,
+        },
+      ).request(
+        onSuccess: (dynamic data, dynamic response) {
+          myAppController.clearCertFormInfo();
+          Get.put(FormTemplateController()).getFormsTemplates();
+          // dismissLoading();
+          Get
+            ..back()
+            ..back()
+            ..back();
+        },
+      );
+    }
+  }
+
+  @override
+  void onClose() {
+    super.onClose();
+    myAppController.clearCertFormInfo();
   }
 }

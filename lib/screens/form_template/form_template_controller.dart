@@ -19,7 +19,7 @@ class FormTemplateController extends GetxController {
           value: data,
         );
         allFormsTemplates = data;
-        consoleLogPretty(allFormsTemplates);
+        // consoleLogPretty(allFormsTemplates);
         update();
         dismissLoading();
       },
@@ -88,65 +88,16 @@ class FormTemplateController extends GetxController {
           Get.toNamed(
             routeFormPortableTest,
           );
+        } else if (formId == 2) {
+          Get.toNamed(
+            routeFormMinorWorks,
+          );
         }
 
         update();
       },
     );
   }
-
-  // void onPressCopy({
-  //   int? formId,
-  //   int? tempId,
-  //   String? name,
-  //   AddFormTemplateController? controller,
-  // }) {
-  //   if (Get.isBottomSheetOpen!) {
-  //     Get.back();
-  //   }
-  //   copyNameController.text = '$name copy';
-  //   update();
-  //   void createACopy() {
-  //     ApiRequest(
-  //       path: '/forms/templates/$tempId/show',
-  //       className: 'AddFormTemplateController/onPressEdit',
-  //       withLoading: true,
-  //       requestFunction: createACopy,
-  //     ).request(
-  //       onSuccess: (dynamic data, dynamic response) {
-  //         Get.to(
-  //           () => const EICR(),
-  //           arguments: <String, dynamic>{
-  //             'isTemplate': true,
-  //             'templateName': copyNameController.text == ''
-  //                 ? '$name copy'
-  //                 : copyNameController.text,
-  //             'tempData': data,
-  //             'updateTemp': false,
-  //             'formId': formId,
-  //           },
-  //         );
-  //         // renderFormScreen(
-  //         //   formId: formId,
-  //         //   name: copyNameController.text == ''
-  //         //       ? '$name copy'
-  //         //       : copyNameController.text,
-  //         //   tempData: data,
-  //         // );
-  //       },
-  //     );
-  //   }
-
-  //   openDialog(
-  //     title: 'Enter Copy Template Name',
-  //     onCancel: Get.back,
-  //     onConfirm: createACopy,
-  //     child: CommonInput(
-  //       topLabelText: '',
-  //       controller: copyNameController,
-  //     ),
-  //   );
-  // }
 
   void onPressDelete({
     int? formId,

@@ -85,7 +85,7 @@ class MinorAddImage extends StatelessWidget {
                                     pressNote: () {
                                       if (item.note == null) {
                                         Get.to(
-                                          () => const MinorImageNote(
+                                          () => const MinorWriteNote(
                                             fromImage: true,
                                           ),
                                           arguments: <String, dynamic>{
@@ -96,7 +96,7 @@ class MinorAddImage extends StatelessWidget {
                                         controller.noteController.text =
                                             item.note!;
                                         Get.to(
-                                          () => const MinorImageNote(
+                                          () => const MinorWriteNote(
                                             fromImage: true,
                                           ),
                                           arguments: <String, dynamic>{
@@ -294,58 +294,6 @@ class FormAddImageCard extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-/*
-
-              CommonText(
-                'Uploaded Images',
-                fontColor: AppColors.primary,
-                fontSize: fontH2,
-                marginBottom: 0.02,
-              ),
-              CommonText(
-                'No dat available',
-                fontColor: Colors.grey[700],
-                marginBottom: 0.1,
-              ),
-              CommonButton(
-                onPress: () {},
-                child: const CommonText(
-                  'No dat available',
-                  fontColor: Colors.white,
-                  rightChild: Icon(
-                    Icons.file_upload_outlined,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-
-*/
-
-class DisplayImage extends StatelessWidget {
-  const DisplayImage({required this.filePath, super.key});
-  final String filePath;
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: SafeArea(
-        child: CommonContainer(
-          paddingHorizontal: 0.08,
-          paddingVertical: 0.05,
-          borderRadius: 0.04,
-          clipBehavior: Clip.hardEdge,
-          backgroundColor: Colors.grey,
-          // child:
-          // Image.file(
-          //   File(filePath),
-          //   fit: BoxFit.contain,
-          // ),
-        ),
       ),
     );
   }

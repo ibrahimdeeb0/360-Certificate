@@ -68,7 +68,7 @@ class MinorAddNote extends StatelessWidget {
                                           item.note!;
                                       controller.update();
                                       Get.to(
-                                        () => const MinorImageNote(
+                                        () => const MinorWriteNote(
                                           isUpdateNote: true,
                                         ),
                                         arguments: <String, dynamic>{
@@ -103,7 +103,7 @@ class MinorAddNote extends StatelessWidget {
                               ),
                               CommonButton(
                                 onPress: () {
-                                  Get.to(() => const MinorImageNote());
+                                  Get.to(() => const MinorWriteNote());
                                 },
                                 text: 'Upload',
                                 width: 0.45,
@@ -130,7 +130,7 @@ class MinorAddNote extends StatelessWidget {
                       ),
                       CommonButton(
                         onPress: () {
-                          Get.to(() => const MinorImageNote());
+                          Get.to(() => const MinorWriteNote());
                         },
                         text: 'Add a Note',
                       ),
@@ -167,12 +167,38 @@ class FormAddNoteCard extends StatelessWidget {
       paddingBottom: 0.02,
       child: Column(
         children: <Widget>[
-          CommonInput(
-            topLabelText: 'Type',
-            value: type ?? '',
-            suffix: const Icon(Icons.keyboard_arrow_down),
-            enabled: false,
-            onTap: pressType,
+          // CommonInput(
+          //   topLabelText: 'Type',
+          //   value: type ?? '',
+          //   suffix: const Icon(Icons.keyboard_arrow_down),
+          //   enabled: false,
+          //   onTap: pressType,
+          // ),
+
+          GetBuilder<MinorAttachmentsController>(
+            init: MinorAttachmentsController(),
+            builder: (MinorAttachmentsController controller) {
+              return DropdownButton<String>(
+                isExpanded: true,
+                value: controller.selectedNoteType,
+                dropdownColor: Colors.white,
+                // hint: CommonText('test 2'),
+                onChanged: (String? newValue) {
+                  controller.selectedNoteType = newValue!;
+                  controller.update();
+                },
+                items: controller.dropdownItemsClass
+                    .map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: CommonText(
+                      value,
+                      fontColor: Colors.grey[800],
+                    ),
+                  );
+                }).toList(),
+              );
+            },
           ),
           CommonInput(
             topLabelText: 'Note:',
@@ -216,28 +242,3 @@ class FormAddNoteCard extends StatelessWidget {
     );
   }
 }
-
-/*
-
-Column(
-            children: <Widget>[
-              0.02.boxHeight,
-              CommonText(
-                'Add a Notes',
-                fontColor: AppColors.primary,
-                fontSize: fontH2,
-                marginBottom: 0.02,
-              ),
-              CommonText(
-                'No Notes are added. Add your first note',
-                fontColor: Colors.grey[700],
-                marginBottom: 0.1,
-              ),
-              CommonButton(
-                onPress: () {},
-                text: 'Add a Note',
-              ),
-            ],
-          ),
-
-*/

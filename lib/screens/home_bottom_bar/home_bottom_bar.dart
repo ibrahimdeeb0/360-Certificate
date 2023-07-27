@@ -78,7 +78,7 @@ class HomeBottomBar extends StatelessWidget {
             shadowOpacity: 0.2,
             backgroundColor: COMMON_WHITE_COLOR,
             shadowColor: COMMON_GREY_COLOR,
-            height: Platform.isAndroid ? 0.077 : 0.09,
+            height: Platform.isAndroid ? 0.08 : 0.09,
             child: BottomNavigationBar(
               items: <BottomNavigationBarItem>[
                 BottomNavigationBarItem(
@@ -108,8 +108,8 @@ class HomeBottomBar extends StatelessWidget {
                   // icon: Icon(Icons.business),
                   icon: SvgPicture.asset(
                     iconCustomers,
-                    width: DEVICE_WIDTH * 0.05,
-                    height: DEVICE_WIDTH * 0.05,
+                    width: DEVICE_WIDTH * 0.055,
+                    height: DEVICE_WIDTH * 0.055,
                     color: controller.selectedIndex == toCustomers
                         ? Color(AppColors.primary)
                         : Colors.grey[600],
@@ -118,20 +118,28 @@ class HomeBottomBar extends StatelessWidget {
                 ),
                 BottomNavigationBarItem(
                   // icon: Icon(Icons.business),
-                  icon: Padding(
-                    padding: EdgeInsets.only(
-                      bottom: DEVICE_HEIGHT * 0.006,
-                      top: DEVICE_HEIGHT * 0.009,
-                    ),
-                    child: SvgPicture.asset(
-                      iconMore,
-                      width: DEVICE_WIDTH * 0.015,
-                      height: DEVICE_WIDTH * 0.015,
-                      color: controller.selectedIndex == toMore
-                          ? Color(AppColors.primary)
-                          : Colors.grey[600],
-                    ),
+                  icon: SvgPicture.asset(
+                    iconMore,
+                    width: DEVICE_WIDTH * 0.05,
+                    height: DEVICE_WIDTH * 0.05,
+                    color: controller.selectedIndex == toMore
+                        ? Color(AppColors.primary)
+                        : Colors.grey[600],
                   ),
+                  // Padding(
+                  //   padding: EdgeInsets.only(
+                  //     bottom: DEVICE_HEIGHT * 0.006,
+                  //     top: DEVICE_HEIGHT * 0.009,
+                  //   ),
+                  //   child: SvgPicture.asset(
+                  //     iconMore,
+                  //     width: DEVICE_WIDTH * 0.015,
+                  //     height: DEVICE_WIDTH * 0.015,
+                  //     color: controller.selectedIndex == toMore
+                  //         ? Color(AppColors.primary)
+                  //         : Colors.grey[600],
+                  //   ),
+                  // ),
                   label: 'More',
                 ),
               ],
