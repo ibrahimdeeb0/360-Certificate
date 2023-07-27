@@ -153,7 +153,7 @@ class MinorAddImage extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                       CommonText(
-                        'No dat available',
+                        'No data available',
                         fontColor: Colors.grey[700],
                         marginBottom: 0.1,
                       ),
@@ -162,9 +162,9 @@ class MinorAddImage extends StatelessWidget {
                           controller.pickImage();
                         },
                         child: const CommonText(
-                          'No dat available',
+                          'Upload Image',
                           fontColor: Colors.white,
-                          rightChild: Icon(
+                          leftChild: Icon(
                             Icons.file_upload_outlined,
                             color: Colors.white,
                           ),
