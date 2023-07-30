@@ -16,6 +16,8 @@ class Header extends StatelessWidget with PreferredSizeWidget {
     this.onPressSearch,
     this.backgroundColor,
     Key? key,
+    this.onPressAddImage,
+    this.onPressSave,
   }) : super(key: key);
 
   final String? title;
@@ -24,6 +26,9 @@ class Header extends StatelessWidget with PreferredSizeWidget {
   final bool withBack;
   final bool withoutBackGround;
   final Function()? onPressBack;
+  final Function()? onPressAddImage;
+  final Function()? onPressSave;
+
   final Function? onPressSearch;
   final bool withOverLay;
   final bool withShadow;
@@ -117,6 +122,7 @@ class Header extends StatelessWidget with PreferredSizeWidget {
                       fontWeight: FontWeight.bold,
                       fontColor: AppColors.primary,
                       marginHorizontal: 0.01,
+                      onPress: onPressSave,
                     )
                   : actionItem?.type == ActionType.add
                       ? Icon(
@@ -133,7 +139,14 @@ class Header extends StatelessWidget with PreferredSizeWidget {
                                   child: SvgPicture.asset(iconSearch,
                                       color: Colors.black),
                                 )
-                              : const Center(),
+                              : actionItem?.type == ActionType.addImage
+                                  ? CommonButton(
+                                      width: 0.25,
+                                      text: 'Add Image',
+                                      fontSize: fontH4,
+                                      onPress: onPressAddImage,
+                                    )
+                                  : const Center(),
             ),
           if (withSearch)
             CommonContainer(
@@ -166,4 +179,6 @@ enum ActionType {
   search,
   image,
   note,
+  addImage,
+  addNote,
 }
