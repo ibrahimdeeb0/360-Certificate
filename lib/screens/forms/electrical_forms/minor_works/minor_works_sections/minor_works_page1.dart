@@ -21,7 +21,9 @@ class MinorWorksPage1 extends StatelessWidget {
             ),
             CommonInput(
               topLabelText: 'Description of Minor Works:',
-              maxLines: 4,
+              maxLines: 200,
+              minLines: 4,
+              textInputAction: TextInputAction.newline,
               value: controller.formData[formKeyDescriptionMinorWorks],
               onChanged: (dynamic value) => controller.onChangeFormDataValue(
                   formKeyDescriptionMinorWorks, value),
@@ -62,7 +64,9 @@ class MinorWorksPage1 extends StatelessWidget {
                 textAlign: TextAlign.start,
                 marginBottom: 0.01,
               ),
-              maxLines: 4,
+              maxLines: 200,
+              minLines: 4,
+              textInputAction: TextInputAction.newline,
               value: controller.formData[formKeyZsDistributionBoard],
               onChanged: (dynamic value) => controller.onChangeFormDataValue(
                   formKeyZsDistributionBoard, value),
