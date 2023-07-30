@@ -10,7 +10,7 @@ class UpdatePostcode extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: Header(
-        title: 'Type In The Postcode',
+        title: 'My Address',
       ),
       body: GetBuilder<UpdatePostcodeController>(
           init: UpdatePostcodeController(),
