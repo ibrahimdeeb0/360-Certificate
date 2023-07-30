@@ -17,15 +17,15 @@ class Subscription extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 0.04.flexWidth),
             child: Column(
               children: const <Widget>[
-                Align(
-                  alignment: AlignmentDirectional.topStart,
-                  child: CommonText(
-                    'Choose Your Plan',
-                    fontSize: fontHeader,
-                    marginTop: 0.02,
-                    marginBottom: 0.04,
-                  ),
-                ),
+                // Align(
+                //   alignment: AlignmentDirectional.topStart,
+                //   child: CommonText(
+                //     'Choose Your Plan',
+                //     fontSize: fontHeader,
+                //     marginTop: 0.02,
+                //     marginBottom: 0.04,
+                //   ),
+                // ),
               ],
             ),
           );

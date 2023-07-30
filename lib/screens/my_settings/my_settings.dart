@@ -158,11 +158,16 @@ class MySettings extends StatelessWidget {
                                 children: <Widget>[
                                   CommonText(
                                     'Company Logo',
-                                    onPress: () {
-                                      Get.bottomSheet(
-                                        const ImportImageSheet(),
-                                      );
-                                    },
+                                    onPress: (controller.userData['logo'] ==
+                                            null)
+                                        ? () {
+                                            consoleLog(
+                                                controller.userData['logo']);
+                                            Get.bottomSheet(
+                                              const PickImageSheet(),
+                                            );
+                                          }
+                                        : null,
                                     fontSize: fontH2,
                                     marginHorizontal: 0.04,
                                     containerStyle: CommonContainerModel(
@@ -203,19 +208,21 @@ class MySettings extends StatelessWidget {
                                             ),
                                     ),
                                   ),
-                                  IconButton(
-                                    onPressed: () {
-                                      Get.bottomSheet(
-                                        const PickImageSheet(),
-                                      );
-                                    },
-                                    icon: Icon(
-                                      Icons.edit,
-                                      color: Colors.grey[800],
+                                  if (controller.userData['logo'] != null)
+                                    IconButton(
+                                      onPressed: () {
+                                        Get.bottomSheet(
+                                          const PickImageSheet(),
+                                        );
+                                      },
+                                      icon: Icon(
+                                        Icons.edit,
+                                        color: Colors.grey[800],
+                                      ),
                                     ),
-                                  ),
                                 ],
                               ),
+                              0.02.boxHeight,
                             ],
                           ),
                         ),

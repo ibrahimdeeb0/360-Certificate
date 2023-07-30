@@ -36,6 +36,7 @@ class UpdatePostcodeController extends GetxController {
       cityController.text = userData['city'] ?? '';
       postcodeController.text = userData['postal_code'] ?? '';
       selectedCountry = userData['country'] ?? '';
+      countryController.text = userData['country']['name'] ?? '';
       update();
     }
   }
@@ -201,6 +202,7 @@ class UpdatePostcodeController extends GetxController {
         elevation: 0.0,
       );
     }
+
     update();
   }
 
@@ -222,9 +224,9 @@ class UpdatePostcodeController extends GetxController {
     countryController.text = countryName;
 
     if (streetName.isNotEmpty && streetNum.isNotEmpty) {
-      streetController.text = '$streetNum, $streetName';
+      streetController.text = '$streetNum $streetName';
     } else if (streetName.isNotEmpty && streetNum.isEmpty) {
-      streetController.text = ' , $streetName';
+      streetController.text = ' $streetName';
     } else if (streetName.isEmpty && streetNum.isNotEmpty) {
       streetController.text = '$streetNum, ';
     }
@@ -235,6 +237,7 @@ class UpdatePostcodeController extends GetxController {
       Get.back();
     }
     showAddressFiled = true;
+    hideKeyboard();
     // customerAddressLat = lat;
     // customerAddressLng = lng;
     // consoleLog('$customerAddressLat , $customerAddressLng');
