@@ -79,6 +79,7 @@ class ApiRequest {
 
           break;
         case ApiMethods.post:
+          consoleLog(baseUrl + path!);
           response = await _dio().post(
             baseUrl + path!,
             data: body,

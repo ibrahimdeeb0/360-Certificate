@@ -89,6 +89,7 @@ class LoginController extends GetxController {
 
   Future<void> onUserLogin() async {
     hideKeyboard();
+    // consoleLog(signInValidation());
     if (signInValidation()) {
       // startLoading();
       ApiRequest(

@@ -162,7 +162,7 @@ const String iconAttachCompLogo = '${iconsPath}icon_attach_camp_logo.svg';
 const String iconCompany = '${iconsPath}icon_company.svg';
 const String iconCongratulations = '${iconsPath}icon_congratulations.svg';
 const String iconFormsOops = '${iconsPath}forms_oops.svg';
-
+const String iconNotFoundCert = '${iconsPath}not_found_cert.svg';
 
 // ----------------------------------------
 
@@ -181,6 +181,8 @@ const String imageNoTransactions = '${imagesPath}no_transactions.png';
 const String imageSelectCar = '${imagesPath}image_car.png';
 const String imageSearchMap = '${imagesPath}search_map.png';
 const String imageServiceProvider = '${imagesPath}service_provider.png';
+const String imageNotFoundCert = '${imagesPath}not_found.png';
+
 //
 const String imageNoDataFound = '${imagesPath}no.png';
 const String imageSplashBackGround = '${imagesPath}splash_back_ground.jpeg';
