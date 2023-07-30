@@ -44,7 +44,7 @@ class AddFormTemplateController extends GetxController {
     },
     <String, dynamic>{
       keyId: 2,
-      keyTitle: 'Minor Works',
+      keyName: 'Minor Works',
       keyRoute: routeFormMinorWorks,
     },
   ];

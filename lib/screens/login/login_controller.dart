@@ -44,7 +44,13 @@ class LoginController extends GetxController {
   }
 
   bool passwordValidator() {
-    if (passwordController.text.length <= 6) {
+    // final RegExp letterRegExp = RegExp(r'[a-zA-Z]');
+    // final RegExp numberRegExp = RegExp(r'[0-9]');
+    // Check if the password contains at least one letter and one number
+    // if (!letterRegExp.hasMatch(passwordController.text.trim()) ||
+    //     !numberRegExp.hasMatch(passwordController.text.trim())) {}
+
+    if (passwordController.text.length <= 5) {
       showMessage(
         description: 'Password should be longer or equal to 6 characters',
         textColor: COMMON_RED_COLOR,
