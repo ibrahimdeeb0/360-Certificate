@@ -97,6 +97,7 @@ class LoginController extends GetxController {
         className: 'LoginController',
         requestFunction: onUserLogin,
         withLoading: true,
+        // shouldShowMessage: ,
         body: <String, dynamic>{
           'email': emailController.text.trim(),
           'password': passwordController.text.trim(),
@@ -142,10 +143,10 @@ class LoginController extends GetxController {
             );
           }
         },
-        onError: (dynamic error) {
-          consoleLog('Error : $error', key: 'login_error');
-          // dismissLoading();
-        },
+        // onError: (dynamic error) {
+        //   consoleLog('Error : $error', key: 'login_error');
+        //   // dismissLoading();
+        // },
       );
     }
     update();
