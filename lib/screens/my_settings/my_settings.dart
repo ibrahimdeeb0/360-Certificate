@@ -141,7 +141,7 @@ class MySettings extends StatelessWidget {
                                     keyData: controller.userData,
                                   },
                                 ),
-                                title: 'Type In The Postcode',
+                                title: 'My Address',
                                 subTitle:
                                     controller.userData['registered_address'],
                               ),

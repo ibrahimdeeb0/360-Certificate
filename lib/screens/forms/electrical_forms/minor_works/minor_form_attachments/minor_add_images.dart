@@ -32,10 +32,10 @@ class MinorAddImage extends StatelessWidget {
                 style: appContainerStyles.containerStyles,
                 paddingTop: 0.02,
                 child: controller.imagesData.isNotEmpty
-                    ? Column(
-                        children: <Widget>[
-                          SingleChildScrollView(
-                            child: Column(
+                    ? SingleChildScrollView(
+                        child: Column(
+                          children: <Widget>[
+                            Column(
                               children: <Widget>[
                                 CommonText(
                                   'Uploaded Images',
@@ -126,8 +126,8 @@ class MinorAddImage extends StatelessWidget {
                                   ),
                               ],
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       )
                     : Column(
                         children: <Widget>[
