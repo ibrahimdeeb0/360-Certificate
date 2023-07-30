@@ -34,10 +34,10 @@ class MinorAddNote extends StatelessWidget {
               style: appContainerStyles.containerStyles,
               paddingTop: 0.02,
               child: controller.notesData.isNotEmpty
-                  ? Column(
-                      children: <Widget>[
-                        SingleChildScrollView(
-                          child: Column(
+                  ? SingleChildScrollView(
+                      child: Column(
+                        children: <Widget>[
+                          Column(
                             children: <Widget>[
                               CommonText(
                                 'Add a Notes',
@@ -99,8 +99,8 @@ class MinorAddNote extends StatelessWidget {
                               0.09.boxHeight,
                             ],
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     )
                   : Column(
                       children: <Widget>[
