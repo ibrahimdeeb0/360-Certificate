@@ -31,11 +31,11 @@ class UpdatePostcodeController extends GetxController {
     if (Get.arguments != null) {
       userData = Get.arguments[keyData];
       // consoleLogPretty(userData);
-      addressController.text = userData['registered_address'];
-      streetController.text = userData['number_street_name'];
-      cityController.text = userData['city'];
-      postcodeController.text = userData['postal_code'];
-      selectedCountry = userData['country'];
+      addressController.text = userData['registered_address'] ?? '';
+      streetController.text = userData['number_street_name'] ?? '';
+      cityController.text = userData['city'] ?? '';
+      postcodeController.text = userData['postal_code'] ?? '';
+      selectedCountry = userData['country'] ?? '';
       update();
     }
   }

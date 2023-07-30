@@ -10,6 +10,7 @@ class ItemCard extends StatelessWidget {
     this.letterSpacing = 0.7,
     this.marginHorizontal,
     this.isRequired = false,
+    this.marginBottom = 0.02,
   }) : super(key: key);
 
   final String? title;
@@ -20,13 +21,14 @@ class ItemCard extends StatelessWidget {
   final double? letterSpacing;
   final double? marginHorizontal;
   final bool isRequired;
+  final double? marginBottom;
 
   @override
   Widget build(BuildContext context) {
     return CommonContainer(
       onPress: onPressItem?.call,
       width: 1,
-      marginBottom: 0.02,
+      marginBottom: marginBottom,
       marginHorizontal: marginHorizontal ?? 0.0,
       borderBottomWidth: 2,
       borderBottomColor: AppColors.greyLight,
