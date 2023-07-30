@@ -4,14 +4,6 @@ class AddFormTemplateController extends GetxController {
   TextEditingController templateController = TextEditingController();
 
   List<Map<String, dynamic>> listAllForms = <Map<String, dynamic>>[
-    // <String, dynamic>{
-    //   keyId: 1,
-    //   keyName: 'Portable Appliance Testing',
-    // },
-    // <String, dynamic>{
-    //   keyId: 3,
-    //   keyName: 'Domestic Electrical Installation Certificate'
-    // },
     <String, dynamic>{
       keyId: 9,
       keyName: 'Landlord/Homeowner Gas Safety Record',
@@ -42,11 +34,12 @@ class AddFormTemplateController extends GetxController {
       keyName: 'EICR',
       keyRoute: routeFormEICR,
     },
-    <String, dynamic>{
-      keyId: 2,
-      keyName: 'Minor Works',
-      keyRoute: routeFormMinorWorks,
-    },
+    if (currentMode == AppMode.dev)
+      <String, dynamic>{
+        keyId: 2,
+        keyName: 'Minor Works',
+        keyRoute: routeFormMinorWorks,
+      },
   ];
 
   List<Map<String, dynamic>> unActiveForms = <Map<String, dynamic>>[

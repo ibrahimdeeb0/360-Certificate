@@ -58,6 +58,7 @@ class ApiRequest {
     final Stopwatch stopwatch = Stopwatch()..start();
 
     if (!myAppController.isInternetConnect) {
+       showMessage(description: 'There is no internet, please check the internet', textColor: AppColors.redBold);
       myAppController.noInternetWaitingRequests.add(<String, dynamic>{
         keyRequestFunction: requestFunction,
       });

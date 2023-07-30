@@ -73,7 +73,7 @@ class MySettings extends StatelessWidget {
                                   // consoleLogPretty(homeController.allUserData);
                                 },
                                 width: 1,
-                                marginTop: 0.02,
+                                marginTop: 0.015,
                                 borderBottomWidth: 2,
                                 borderBottomColor: AppColors.greyLight,
                                 paddingBottom: 0.015,
@@ -150,7 +150,7 @@ class MySettings extends StatelessWidget {
                                 title: 'Important Numbers',
                                 subTitle:
                                     'License Number, Gas Safe Register Number',
-                                // hideArrow: true,
+                                marginBottom: 0.01,
                               ),
                               Row(
                                 mainAxisAlignment:
