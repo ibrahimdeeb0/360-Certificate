@@ -1,7 +1,9 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'dart:typed_data';
 
+import 'package:flutter/services.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:uuid/uuid.dart';
@@ -65,7 +67,7 @@ class BreakdownServiceController extends GetxController {
       formKeyClientName: '',
       formKeyCustomerName: '',
       formKeyCustomerDate: '',
-      formKeyCustomerPosition:'',
+      formKeyCustomerPosition: '',
     },
 
     // screen5 part1
@@ -235,8 +237,6 @@ class BreakdownServiceController extends GetxController {
     }
     update();
   }
-
-
 
   void onSelectDate(String? part, String? key, DateTime value) {
     final DateFormat formatter = DateFormat('dd-MM-yyyy');
@@ -560,5 +560,32 @@ class BreakdownServiceController extends GetxController {
   void onClose() {
     super.onClose();
     myAppController.clearCertFormInfo();
+  }
+
+  //////////////////////////scan
+  String scanBarcode = 'Unknown';
+
+  /// For Continuous scan
+  Future<void> startBarcodeScanStream() async {
+    FlutterBarcodeScanner.getBarcodeStreamReceiver(
+            '#ff6666', 'Cancel', true, ScanMode.BARCODE)!
+        .listen(
+      (barcode) => consoleLog(barcode, key: 'the value 1'),
+    );
+  }
+
+  Future<void> barcodeScan(String? key) async {
+    String barcodeScanRes;
+    // Platform messages may fail, so we use a try/catch PlatformException.
+    try {
+      barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
+          '#ff6666', 'Cancel', true, ScanMode.QR);
+      consoleLog(barcodeScanRes, key: 'the value 2');
+    } on PlatformException {
+      barcodeScanRes = 'Failed to get platform version.';
+    }
+    scanBarcode = barcodeScanRes;
+    onChangeFormDataValue(key!, barcodeScanRes);
+    update();
   }
 }
