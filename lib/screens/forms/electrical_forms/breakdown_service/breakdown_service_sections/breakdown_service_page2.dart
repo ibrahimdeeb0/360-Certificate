@@ -22,7 +22,7 @@ class BreakdownServicePage2 extends StatelessWidget {
               value: controller.formData[formKeyAdditionalNotes],
               onChanged: (dynamic value) => controller.onChangeFormDataValue(
                   formKeyAdditionalNotes, value),
-              height: 0.3,
+              minLines: 15,
               maxLines: 200,
             ),
           ],

@@ -675,15 +675,16 @@ const String formKeyAdditionalNotes = 'additional_notes';
 //part3
 const String formKeySparesPartsRequired = 'spares_parts_required';
 //part5
-const String formKeyFlueAtmopheric = 'flue_atmopheric';
+const String formKeyInstallationDetails = 'installation_details';
 const String formKeyVentilationSize = 'ventilation_size';
-const String formKeyInstallationDetailsWater = 'installation_details_water';
+const String formKeyWaterFuelSatisfactory = 'water_fuel_satisfactory';
 const String formKeyElectricallyFused = 'electrically_fused';
 const String formKeyCorrectValving = 'correct_valving';
 const String formKeyIsolationAvailable = 'isolation_available';
-const String formKeyBoiler = 'boiler';
+const String formKeyBoilerPlantRoom = 'boiler_plant_room';
 
 // part6
+const String formKeyServiceChecks = 'service_checks';
 const String formKeyHeatExchanger = 'heat_exchanger';
 const String formKeyIgnition = 'ignition';
 const String formKeyGasValve = 'gas_valve';
@@ -694,7 +695,8 @@ const String formKeyBurnersPilot = 'burners_pilot';
 const String formKeyFuel = 'fuel';
 
 //part7
-const String formKeyBurn = 'burn';
+const String formKeyServiceOperation = 'service_operation';
+const String formKeyBurnWasherCleaned = 'burn_washer_cleaned';
 const String formKeyPilotAssembly = 'pilot_assembly';
 const String formKeyIgnitionSystem = 'ignition_system';
 const String formKeyBurnerFas = 'burner_fas';

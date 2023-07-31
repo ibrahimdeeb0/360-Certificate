@@ -72,15 +72,16 @@ class BreakdownServiceController extends GetxController {
 
     // screen5 part1
 
-    formKeyFlueAtmopheric: '',
+    formKeyInstallationDetails: <String>[],
     formKeyVentilationSize: '',
-    formKeyInstallationDetailsWater: '',
+    formKeyWaterFuelSatisfactory: '',
     formKeyElectricallyFused: '',
     formKeyCorrectValving: '',
     formKeyIsolationAvailable: '',
-    formKeyBoiler: '',
+    formKeyBoilerPlantRoom: '',
 
     // screen6 part1
+    formKeyServiceChecks: <String>[],
     formKeyHeatExchanger: '',
     formKeyIgnition: '',
     formKeyGasValve: '',
@@ -89,8 +90,10 @@ class BreakdownServiceController extends GetxController {
     formKeyControlBox: '',
     formKeyBurnersPilot: '',
     formKeyFuel: '',
+
     // screen7 part1
-    formKeyBurn: '',
+    formKeyServiceOperation: <String>[],
+    formKeyBurnWasherCleaned: '',
     formKeyPilotAssembly: '',
     formKeyIgnitionSystem: '',
     formKeyBurnerFas: '',
@@ -226,6 +229,19 @@ class BreakdownServiceController extends GetxController {
 
   void onChangDataSignature(String? part, String? key, dynamic value) {
     formData[part!][key!] = value;
+  }
+
+  void onToggleCheckBoxValues(String? key) {
+    formData[key] == 'true'
+        ? onChangeFormDataValue(
+            key,
+            '',
+          )
+        : onChangeFormDataValue(
+            key,
+            'true',
+          );
+    update();
   }
 
   void onSaveData() {
