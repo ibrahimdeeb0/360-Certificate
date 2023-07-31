@@ -47,8 +47,8 @@ class BreakdownServicePage5 extends StatelessWidget {
 
 class CheckBoxComponent extends StatelessWidget {
   const CheckBoxComponent({
-    super.key,
     required this.text,
+    super.key,
   });
 
   final String text;

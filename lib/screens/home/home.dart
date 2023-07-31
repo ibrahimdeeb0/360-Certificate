@@ -21,42 +21,30 @@ class Home extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                // CommonButton(
-                //   onPress: () {
-                //     // Get.toNamed(
-                //     //   routeCompleteProfile,
-                //     //   arguments: <String, dynamic>{
-                //     //     keyEmail: 'test@emaio.com',
-                //     //     'f_name': 'first name',
-                //     //     'l_name': 'last Name',
-                //     //   },
-                //     // );
-                //     Get.to(const Subscription());
-                //     // consoleLog(controller.trialDetails);
-                //     consoleLog(profileController.userDataProfile);
-                //   },
-                // ),
                 const HomeSearchBar(),
                 Expanded(
                   child: SingleChildScrollView(
                     controller: certificatesController.scrollController,
-                    // physics: const BouncingScrollPhysics(),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
+<<<<<<< HEAD
+=======
+                        // CommonButton(
+                        //   onPress: () {},
+                        // ),
+>>>>>>> f7fa43af4061d3a5242d0c35889157d0e3e799b2
                         if (controller.showFreeAlert)
                           CommonContainer(
                             backgroundColor:
                                 Color(AppColors.orange).withOpacity(0.2),
                             width: 1,
-                            // paddingHorizontal: 0.04,
                             paddingLeft: 0.04,
                             paddingRight: 0.02,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
                                 CommonText(
-                                  // ${controller.trialDetails['']}
                                   '${controller.trialDetails['remaining_days'] ?? 0} Days left until your free expires',
                                   marginHorizontal: 0.015,
                                   leftChild: Icon(

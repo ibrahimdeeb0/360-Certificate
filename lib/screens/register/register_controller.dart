@@ -54,7 +54,6 @@ class RegisterController extends GetxController {
         phoneController.text.trim().isNotEmpty &&
         passwordController.text.trim().isNotEmpty &&
         selectedBusinessType.isNotEmpty;
-
     update();
   }
 

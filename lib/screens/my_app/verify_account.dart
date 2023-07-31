@@ -12,12 +12,15 @@ class VerifyAccount extends StatelessWidget {
         style: appContainerStyles.containerStyles,
         child: Column(
           children: <Widget>[
-            Expanded(
-              child: Padding(
-                padding: EdgeInsets.only(top: DEVICE_HEIGHT * 0.15),
-                child: Image.asset(imageEmailVerify),
-              ),
-            ),
+            const Spacer(),
+            // Expanded(
+            //   child:
+            // ),
+            // Padding(
+            //   padding: EdgeInsets.only(top: DEVICE_HEIGHT * 0.15),
+            //   child: Image.asset(imageEmailVerify),
+            // ),
+            Image.asset(imageEmailVerify),
             const CommonText(
               'Verify Your Email Address',
               fontSize: 28,
@@ -28,7 +31,7 @@ class VerifyAccount extends StatelessWidget {
               "You've entered  ${Get.arguments['email']}  as the email address for your account, please verify this email address",
               fontColor: AppColors.greyDark,
             ),
-            // const Spacer(),
+            const Spacer(),
             CommonButton(
               text: 'Go To Login',
               onPress: () {
