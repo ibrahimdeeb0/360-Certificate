@@ -39,7 +39,7 @@ class Home extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
                                 CommonText(
-                                  '${controller.trialDetails['remaining_days'] ?? 0} Days left until your free expires',
+                                  '${controller.trialDetails['remaining_days'] ?? 0} Days until your trial ends',
                                   marginHorizontal: 0.015,
                                   leftChild: Icon(
                                     Icons.timer_outlined,
