@@ -282,6 +282,9 @@ class HomeController extends GetxController {
           }
         }
         profileController.getUserProfileData();
+        if (Get.isRegistered<MySettingsController>()) {
+          Get.find<MySettingsController>().update();
+        }
       },
       onError: (dynamic error) {
         dismissLoading();

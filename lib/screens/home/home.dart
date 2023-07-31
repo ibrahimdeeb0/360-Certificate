@@ -31,6 +31,7 @@ class Home extends StatelessWidget {
                 //     //     'l_name': 'last Name',
                 //     //   },
                 //     // );
+                //     Get.to(const Subscription());
                 //     // consoleLog(controller.trialDetails);
                 //     consoleLog(profileController.userDataProfile);
                 //   },

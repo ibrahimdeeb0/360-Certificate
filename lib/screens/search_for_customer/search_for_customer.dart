@@ -407,25 +407,54 @@ class CustomerInformationContainer extends StatelessWidget {
               fontSize: fontH2,
             ),
             0.01.boxHeight,
-            CommonText(
-              phone ?? '',
-              fontColor: Colors.grey[600],
-              marginHorizontal: 0.02,
-              leftChild: Icon(
-                Icons.phone,
-                color: Colors.grey[600],
-              ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Icon(
+                  Icons.phone,
+                  color: Colors.grey[600],
+                ),
+                Container(
+                  width: 0.62.flexWidth,
+                  alignment: AlignmentDirectional.centerStart,
+                  child: CommonText(
+                    phone ?? '',
+                    fontColor: Colors.grey[600],
+                    textAlign: TextAlign.start,
+                    marginHorizontal: 0.02,
+                  ),
+                ),
+              ],
             ),
             0.01.boxHeight,
-            CommonText(
-              email ?? '',
-              fontColor: Colors.grey[600],
-              marginHorizontal: 0.02,
-              leftChild: Icon(
-                Icons.mail_outline_outlined,
-                color: Colors.grey[600],
-              ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Icon(
+                  Icons.mail_outline_outlined,
+                  color: Colors.grey[600],
+                ),
+                Container(
+                  width: 0.62.flexWidth,
+                  alignment: AlignmentDirectional.centerStart,
+                  child: CommonText(
+                    email ?? '',
+                    fontColor: Colors.grey[600],
+                    textAlign: TextAlign.start,
+                    marginHorizontal: 0.02,
+                  ),
+                ),
+              ],
             ),
+            // CommonText(
+            //   email ?? '',
+            //   fontColor: Colors.grey[600],
+            //   marginHorizontal: 0.02,
+            //   leftChild: Icon(
+            //     Icons.mail_outline_outlined,
+            //     color: Colors.grey[600],
+            //   ),
+            // ),
           ],
         ),
       ],

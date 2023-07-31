@@ -7,13 +7,13 @@ class MySettingsController extends GetxController {
   Map<String, dynamic> mainUserData = <String, dynamic>{};
   XFile? compLogoFile;
 
-  @override
-  void onReady() {
-    super.onReady();
-    userData = homeController.allUserData['user'];
+  // @override
+  // void onReady() {
+  //   super.onReady();
+  //   userData = homeController.allUserData['user'];
 
-    update();
-  }
+  //   update();
+  // }
 
   // Future<void> getMainUserData() async {
   //   hideKeyboard();
@@ -63,7 +63,7 @@ class MySettingsController extends GetxController {
       body: await imageAsFormData(file: compLogoFile),
     ).request(
       onSuccess: (dynamic data, dynamic response) {
-        // profileController.getUserProfileData(); 
+        // profileController.getUserProfileData();
         homeController.getAllUserData();
       },
       onError: (dynamic error) {
@@ -71,5 +71,11 @@ class MySettingsController extends GetxController {
       },
     );
     update();
+  }
+
+  @override
+  void onInit() {
+    userData = homeController.allUserData['user'];
+    super.onInit();
   }
 }

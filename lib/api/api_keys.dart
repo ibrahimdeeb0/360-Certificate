@@ -4,7 +4,6 @@ String baseUrl = currentMode == AppMode.dev
     ? 'https://360connect.app/certificate-app/api'
     // 'https://360connect.app/certificate-app/api'
     // 'https://certificates.get360connect.com/api'
-
     : 'https://certificates.get360connect.com/api';
 // *************** Api body keys ****************
 
