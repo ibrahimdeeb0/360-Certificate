@@ -19,6 +19,7 @@ const String formKeyCustomerName = 'customer_name';
 const String formKeyCustomerDate = 'customer_date';
 const String formKeyEngineerPosition = 'engineer_position';
 const String formKeyClientPosition = 'client_position';
+const String formKeyCustomerPosition = 'customer_position';
 
 //* EICR Form *//
 // const String formKey = '';
@@ -656,3 +657,50 @@ const String formKeyTestInstrumentOther = 'test_instrumentother';
 // const String formKeyNam = 'name';
 // const String formKeySignature = 'signature';
 // const String formKeyDate = 'date';
+
+//  Breakdown Service
+
+// part1
+const String formKeyService = 'service';
+const String formKeyBreakdown = 'Breakdown';
+const String formKeyCOCORatio = 'co_co2_ratio';
+const String formKeyBoilerMake = 'boiler_make ';
+const String formKeyBoilerModel = 'boiler_model';
+const String formKeyBoilerSerialNum = 'boiler_serial_num';
+const String formKeyAppliancesMake = 'appliances_make';
+const String formKeyAppliancesModel = 'appliances_model';
+const String formKeyAppliancesSerialNum = 'appliances_serial_num';
+//Part2
+const String formKeyAdditionalNotes = 'additional_notes';
+//part3
+const String formKeySparesPartsRequired = 'spares_parts_required';
+//part5
+const String formKeyFlueAtmopheric = 'flue_atmopheric';
+const String formKeyVentilationSize = 'ventilation_size';
+const String formKeyInstallationDetailsWater = 'installation_details_water';
+const String formKeyElectricallyFused = 'electrically_fused';
+const String formKeyCorrectValving = 'correct_valving';
+const String formKeyIsolationAvailable = 'isolation_available';
+const String formKeyBoiler = 'boiler';
+
+// part6
+const String formKeyHeatExchanger = 'heat_exchanger';
+const String formKeyIgnition = 'ignition';
+const String formKeyGasValve = 'gas_valve';
+const String formKeyFan = 'fan';
+const String formKeySafetyDevice = 'safety_device';
+const String formKeyControlBox = 'control_box';
+const String formKeyBurnersPilot = 'burners_pilot';
+const String formKeyFuel = 'fuel';
+
+//part7
+const String formKeyBurn = 'burn';
+const String formKeyPilotAssembly = 'pilot_assembly';
+const String formKeyIgnitionSystem = 'ignition_system';
+const String formKeyBurnerFas = 'burner_fas';
+const String formKeyServiceHeatExchanger = 'service_heat_exchanger';
+const String formKeyFuelElectrical = 'fuel_electrical';
+const String formKeyInterlocksNoted = 'interlocks_noted';
+const String formKeyTimeOfArrival = 'time_of_arrival';
+const String formKeyTimeOfDeparture = 'time_of_departure';
+const String formKeyNextInspectionDate = 'next_inspection_date';

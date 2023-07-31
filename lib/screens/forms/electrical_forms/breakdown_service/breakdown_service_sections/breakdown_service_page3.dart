@@ -19,7 +19,9 @@ class BreakdownServicePage3 extends StatelessWidget {
               ),
             ),
             CommonInput(
-              value: controller.formData[formKeySPDType],
+              value: controller.formData[formKeySparesPartsRequired],
+              onChanged: (dynamic value) =>
+                  controller.onChangeFormDataValue(formKeySparesPartsRequired, value),
               height: 0.3,
               maxLines: 200,
             ),

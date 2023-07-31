@@ -143,6 +143,13 @@ class MoreController extends GetxController {
             Get.toNamed(routeFormMinorWorks);
           },
         },
+        <String, dynamic>{
+          keyId: 0,
+          keyTitle: 'Breakdown Service',
+          keyOnPress: () {
+            Get.toNamed(routeFormBreakdownService);
+          },
+        },
       ],
     },
   ];

@@ -1,7 +1,7 @@
 import '../../../../../general_exports.dart';
 
-class BreakdownServicePage6 extends StatelessWidget {
-  const BreakdownServicePage6({super.key});
+class BreakdownServicePage7 extends StatelessWidget {
+  const BreakdownServicePage7({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -41,15 +41,21 @@ class BreakdownServicePage6 extends StatelessWidget {
               height: 0.05.flexHeight,
             ),
             CommonText(
-              'Hours',
+              'Time',
               fontColor: Color(AppColors.primary),
               fontSize: fontH2,
             ),
-            const SmallInputField(
+            SmallInputField(
               title: 'Time of Arrival',
+              value: controller.formData[formKeyTimeOfArrival],
+              onChanged: (dynamic value) =>
+                  controller.onChangeFormDataValue(formKeyTimeOfArrival, value),
             ),
-            const SmallInputField(
+            SmallInputField(
               title: 'Time of Departure',
+              value: controller.formData[formKeyTimeOfDeparture],
+              onChanged: (dynamic value) => controller.onChangeFormDataValue(
+                  formKeyTimeOfDeparture, value),
             ),
             Divider(
               thickness: 1,
@@ -67,7 +73,7 @@ class BreakdownServicePage6 extends StatelessWidget {
               marginBottom: 0.02,
               enabled: false,
               value: controller.formData[formKeyDeclaration]
-                  [formKeyEngineerDate],
+                  [formKeyNextInspectionDate],
               onTap: () {
                 CommonDatePicker.showDatePicker(
                   context,
@@ -75,7 +81,7 @@ class BreakdownServicePage6 extends StatelessWidget {
                   onConfirm: (DateTime value) {
                     controller.onSelectDate(
                       formKeyDeclaration,
-                      formKeyEngineerDate,
+                      formKeyNextInspectionDate,
                       value,
                     );
                   },

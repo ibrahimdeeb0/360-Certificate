@@ -39,6 +39,24 @@ class BreakdownServiceController extends GetxController {
   DateTime? selectedDate;
 
   Map<String, dynamic> formData = <String, dynamic>{
+    // screen1 part1
+    formKeyService: 'N/A',
+    formKeyBreakdown: 'N/A',
+    formKeyCOCORatio: '',
+    formKeyBoilerMake: '',
+    formKeyBoilerModel: '',
+    formKeyBoilerSerialNum: '',
+    formKeyAppliancesMake: '',
+    formKeyAppliancesModel: '',
+    formKeyAppliancesSerialNum: '',
+
+    // screen2 part1
+
+    formKeyAdditionalNotes: '',
+    // screen3 part1
+    formKeySparesPartsRequired: '',
+
+    // screen4 part1
     formKeyDeclaration: <String, dynamic>{
       formKeyRecordIssueBy: '',
       formKeyReceivedBy: '',
@@ -47,79 +65,39 @@ class BreakdownServiceController extends GetxController {
       formKeyClientName: '',
       formKeyCustomerName: '',
       formKeyCustomerDate: '',
+      formKeyCustomerPosition:'',
     },
 
-    // screen1 part1
-    formKeyDescriptionMinorWorks: '',
-    formKeyDateCompleted: '',
-    formKeySystemType: 'N/A',
-    formKeyZsDistributionBoard: '',
-    // screen1 part2
-    formKeyEarthingConductor: 'N/A',
-    // screen1 part3
-    formKeyWater: 'N/A',
-    formKeyGas: 'N/A',
-    formKeyOil: 'N/A',
-    formKeyProtectiveOther: '',
-    formKeyCommentsExistingInstallation: '',
-    formKeyPageNo: '',
-    formKeyDetailsDepartures: 'N/A',
-    formKeyDateCircuitAlteredExtended: '',
-    formKeyDateDetailsPermittedExceptions: '',
-    formKeyRiskAssessmentAttachedMinor: 'Yes',
+    // screen5 part1
 
-    // screen2 part1
-    formKeyDBConsumerUnit: '',
-    formKeyLocationAndType: '',
-    formKeyCircuitNumber: '',
-    formKeyCircuitDescription: '',
-    formKeyInstallationReferenceMethod: '',
-    formKeyNumberSizeOfConductors: '',
-    // screen2 part2
-    formKeyLive: '',
-    formKeyCpc: '',
-    // screen2 part3
-    formKeyOvercurrentBSEN: '',
-    formKeyOvercurrentType: '',
-    formKeyOvercurrentRating: '',
-    // screen2 part4
-    formKeyRCDBSEN: '',
-    formKeyRCDType: '',
-    formKeyRCDRating: '',
-    formKeyRatedResidualOperatingCurrent: '',
-    //screen2 part5
-    formKeyAFDDBSEN: '',
-    formKeyAFDDType: '',
-    formKeyAFDDRating: '',
-    //screen2 part6
-    formKeySPDBSEN: '',
-    formKeySPDType: '',
+    formKeyFlueAtmopheric: '',
+    formKeyVentilationSize: '',
+    formKeyInstallationDetailsWater: '',
+    formKeyElectricallyFused: '',
+    formKeyCorrectValving: '',
+    formKeyIsolationAvailable: '',
+    formKeyBoiler: '',
 
-    //screen3 part1
-    formKeyContinuityMinor: '',
-    formKeyProtectiveConductorInput: '',
-    formKeyProtectiveConductorR: '',
-    //screen3 part2
-    formKeyRingLL: '',
-    formKeyRingNN: '',
-    formKeyRingCPC: '',
-    //screen3 part3
-    formKeyInsulationLL: '',
-    formKeyInsulationLE: '',
-    formKeyTestVoltage: '',
-    //screen3 part4
-    formKeyPolaritySatisfactory: 'N/A',
-    formKeyEarthFaultLoopImpedanceZs: '',
-    //screen3 part5
-    formKeyRCDTest: 'N/A',
-    formKeyRCDDisconnectionTime: '',
-    //screen3 part6
-    formKeyAFDDTest: 'N/A',
-    formKeySPDFunctionality: 'N/A',
-    //screen3 part7
-    formKeyMultifunction: '',
-    //screen3 part8
-    formKeyTestInstrumentOther: '',
+    // screen6 part1
+    formKeyHeatExchanger: '',
+    formKeyIgnition: '',
+    formKeyGasValve: '',
+    formKeyFan: '',
+    formKeySafetyDevice: '',
+    formKeyControlBox: '',
+    formKeyBurnersPilot: '',
+    formKeyFuel: '',
+    // screen7 part1
+    formKeyBurn: '',
+    formKeyPilotAssembly: '',
+    formKeyIgnitionSystem: '',
+    formKeyBurnerFas: '',
+    formKeyServiceHeatExchanger: '',
+    formKeyFuelElectrical: '',
+    formKeyInterlocksNoted: '',
+    formKeyTimeOfArrival: '',
+    formKeyTimeOfDeparture: '',
+    formKeyNextInspectionDate: '',
   };
 
   Map<String, dynamic> formBody = <String, dynamic>{
@@ -258,16 +236,7 @@ class BreakdownServiceController extends GetxController {
     update();
   }
 
-  void selectedProtective({bool pressIsR1 = false}) {
-    if (pressIsR1) {
-      r1 = true;
-      r2 = false;
-    } else {
-      r1 = false;
-      r2 = true;
-    }
-    update();
-  }
+
 
   void onSelectDate(String? part, String? key, DateTime value) {
     final DateFormat formatter = DateFormat('dd-MM-yyyy');

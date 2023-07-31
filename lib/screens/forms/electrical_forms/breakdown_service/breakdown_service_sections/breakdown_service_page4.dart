@@ -110,14 +110,22 @@ class BreakdownServicePage4 extends StatelessWidget {
                   ),
                 ],
               ),
-            const CommonInput(
+            CommonInput(
               topLabelText: 'ISSUED By:',
               hint: 'Name',
               marginTop: 0.02,
+              value: controller.formData[formKeyDeclaration]
+                  [formKeyEngineerName],
+              onChanged: (dynamic value) => controller.onChangDataSignature(
+                  formKeyDeclaration, formKeyEngineerName, value),
             ),
-            const CommonInput(
+            CommonInput(
               hint: 'Position',
               marginTop: 0.01,
+              value: controller.formData[formKeyDeclaration]
+                  [formKeyEngineerPosition],
+              onChanged: (dynamic value) => controller.onChangDataSignature(
+                  formKeyDeclaration, formKeyEngineerPosition, value),
             ),
             CommonInput(
               hint: 'Select Date',
@@ -187,7 +195,7 @@ class BreakdownServicePage4 extends StatelessWidget {
                         ),
                         EasySignaturePad(
                           onChanged: (String image) {
-                            controller.setImage(image);
+                            controller.setCustomerImage(image);
                           },
                           height: DEVICE_WIDTH ~/ 1.5,
                           width: DEVICE_WIDTH ~/ 1.2,
@@ -200,7 +208,7 @@ class BreakdownServicePage4 extends StatelessWidget {
                         ),
                         CommonButton(
                           text: 'Save',
-                          onPress: controller.onSendSignatureReportForm,
+                          onPress: controller.saveCustomerSignature,
                         ),
                       ],
                     ),
@@ -225,13 +233,14 @@ class BreakdownServicePage4 extends StatelessWidget {
                 ),
               ),
             ),
-            if (controller.signatureBytesImage != null)
+            if (controller.signatureBytes2 != null &&
+                controller.customerSignatureBytes != null)
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   const SizedBox(height: 10),
                   IconButton(
-                    onPressed: controller.clearSignature,
+                    onPressed: controller.clearCustomerSignature,
                     icon: Icon(
                       Icons.highlight_remove_sharp,
                       color: Colors.red,
@@ -242,20 +251,28 @@ class BreakdownServicePage4 extends StatelessWidget {
                     height: DEVICE_WIDTH / 2,
                     width: DEVICE_WIDTH,
                     child: Image.memory(
-                      controller.signatureBytesImage!,
+                      controller.customerSignatureBytes!,
                       fit: BoxFit.cover,
                     ),
                   ),
                 ],
               ),
-            const CommonInput(
+            CommonInput(
               topLabelText: 'ISSUED By:',
               hint: 'Name',
               marginTop: 0.02,
+              value: controller.formData[formKeyDeclaration]
+                  [formKeyEngineerDate],
+              onChanged: (dynamic value) => controller.onChangDataSignature(
+                  formKeyDeclaration, formKeyEngineerDate, value),
             ),
-            const CommonInput(
+            CommonInput(
               hint: 'Position',
               marginTop: 0.01,
+              value: controller.formData[formKeyDeclaration]
+                  [formKeyCustomerPosition],
+              onChanged: (dynamic value) => controller.onChangDataSignature(
+                  formKeyDeclaration, formKeyCustomerPosition, value),
             ),
             CommonInput(
               hint: 'Select Date',
@@ -263,7 +280,7 @@ class BreakdownServicePage4 extends StatelessWidget {
               marginBottom: 0.02,
               enabled: false,
               value: controller.formData[formKeyDeclaration]
-                  [formKeyEngineerDate],
+                  [formKeyCustomerDate],
               onTap: () {
                 CommonDatePicker.showDatePicker(
                   context,
@@ -271,7 +288,7 @@ class BreakdownServicePage4 extends StatelessWidget {
                   onConfirm: (DateTime value) {
                     controller.onSelectDate(
                       formKeyDeclaration,
-                      formKeyEngineerDate,
+                      formKeyCustomerDate,
                       value,
                     );
                   },

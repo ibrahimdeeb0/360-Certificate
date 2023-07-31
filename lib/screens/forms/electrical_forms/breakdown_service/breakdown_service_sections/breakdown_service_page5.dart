@@ -19,9 +19,10 @@ class BreakdownServicePage5 extends StatelessWidget {
                 marginBottom: 0.02,
               ),
             ),
+           
             const CheckBoxComponent(
-                text: 'Flue Atmopheric/Fan/assisted/Fan Dilution'),
-            const CheckBoxComponent(text: 'Ventilation Size/H-L'),
+              text: 'Ventilation Size/H-L',
+            ),
             const CheckBoxComponent(
               text: 'Water/Fuel-Satisfactory',
             ),

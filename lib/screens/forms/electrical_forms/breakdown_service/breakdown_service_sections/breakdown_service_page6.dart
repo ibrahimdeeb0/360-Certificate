@@ -1,7 +1,7 @@
 import '../../../../../general_exports.dart';
 
-class BreakdownServicePage7 extends StatelessWidget {
-  const BreakdownServicePage7({super.key});
+class BreakdownServicePage6 extends StatelessWidget {
+  const BreakdownServicePage6({super.key});
 
   @override
   Widget build(BuildContext context) {

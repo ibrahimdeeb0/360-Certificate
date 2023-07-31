@@ -25,77 +25,74 @@ class BreakdownServicePage1 extends StatelessWidget {
             FormToggleButton(
               title: 'Service',
               titleSize: fontTitle,
-              value: controller.formData[formKeySystemType],
+              value: controller.formData[formKeyService],
               onChangeValue: (dynamic value) =>
-                  controller.onChangeFormDataValue(formKeySystemType, value),
+                  controller.onChangeFormDataValue(formKeyService, value),
               toggleType: FormToggleType.passFailedNA,
             ),
             FormToggleButton(
               title: 'Breakdown',
               titleSize: fontTitle,
-              value: controller.formData[formKeySystemType],
+              value: controller.formData[formKeyBreakdown],
               onChangeValue: (dynamic value) =>
-                  controller.onChangeFormDataValue(formKeySystemType, value),
+                  controller.onChangeFormDataValue(formKeyBreakdown, value),
               toggleType: FormToggleType.passFailedNA,
             ),
-            const SmallInputField(
+            SmallInputField(
               title: 'CO/CO2 Ratio',
+              value: controller.formData[formKeyCOCORatio],
+              onChanged: (dynamic value) =>
+                  controller.onChangeFormDataValue(formKeyCOCORatio, value),
             ),
             CommonInput(
               hint: 'Boiler Make',
               marginBottom: 0.03,
               suffix: const Icon(Icons.keyboard_arrow_down),
-              textInputAction: TextInputAction.newline,
               enabled: false,
-              value: controller.formData[formKeyZsDistributionBoard],
-              onChanged: (dynamic value) => controller.onChangeFormDataValue(
-                  formKeyZsDistributionBoard, value),
+              value: controller.formData[formKeyBoilerMake],
+              onChanged: (dynamic value) =>
+                  controller.onChangeFormDataValue(formKeyBoilerMake, value),
             ),
             CommonInput(
               hint: 'Boiler Model',
               marginBottom: 0.03,
-              textInputAction: TextInputAction.newline,
-              value: controller.formData[formKeyZsDistributionBoard],
-              onChanged: (dynamic value) => controller.onChangeFormDataValue(
-                  formKeyZsDistributionBoard, value),
+              value: controller.formData[formKeyBoilerModel],
+              onChanged: (dynamic value) =>
+                  controller.onChangeFormDataValue(formKeyBoilerModel, value),
             ),
             CommonInput(
               hint: 'Boiler Serial Number',
               marginBottom: 0.03,
               suffix: SvgPicture.asset(iconVector),
-              textInputAction: TextInputAction.newline,
               enabled: false,
-              value: controller.formData[formKeyZsDistributionBoard],
+              value: controller.formData[formKeyBoilerSerialNum],
               onChanged: (dynamic value) => controller.onChangeFormDataValue(
-                  formKeyZsDistributionBoard, value),
+                  formKeyBoilerSerialNum, value),
             ),
             CommonInput(
               hint: 'Appliance Make',
               marginBottom: 0.03,
               suffix: const Icon(Icons.keyboard_arrow_down),
-              textInputAction: TextInputAction.newline,
               enabled: false,
-              value: controller.formData[formKeyZsDistributionBoard],
+              value: controller.formData[formKeyAppliancesMake],
               onChanged: (dynamic value) => controller.onChangeFormDataValue(
-                  formKeyZsDistributionBoard, value),
+                  formKeyAppliancesMake, value),
             ),
             CommonInput(
               hint: 'Appliance Model',
               marginBottom: 0.03,
-              textInputAction: TextInputAction.newline,
-              value: controller.formData[formKeyZsDistributionBoard],
+              value: controller.formData[formKeyAppliancesModel],
               onChanged: (dynamic value) => controller.onChangeFormDataValue(
-                  formKeyZsDistributionBoard, value),
+                  formKeyAppliancesModel, value),
             ),
             CommonInput(
               hint: 'Appliance Serial Number',
               marginBottom: 0.03,
               suffix: SvgPicture.asset(iconVector),
-              textInputAction: TextInputAction.newline,
               enabled: false,
-              value: controller.formData[formKeyZsDistributionBoard],
+              value: controller.formData[formKeyAppliancesSerialNum],
               onChanged: (dynamic value) => controller.onChangeFormDataValue(
-                  formKeyZsDistributionBoard, value),
+                  formKeyAppliancesSerialNum, value),
             ),
             Divider(
               color: Colors.grey[200],
