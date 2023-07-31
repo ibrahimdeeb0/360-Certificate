@@ -28,12 +28,6 @@ class Home extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-<<<<<<< HEAD
-=======
-                        // CommonButton(
-                        //   onPress: () {},
-                        // ),
->>>>>>> f7fa43af4061d3a5242d0c35889157d0e3e799b2
                         if (controller.showFreeAlert)
                           CommonContainer(
                             backgroundColor:
