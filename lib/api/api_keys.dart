@@ -2,10 +2,6 @@ import '../constants/index.dart';
 
 String baseUrl = currentMode == AppMode.dev
     ? 'https://360connect.app/certificate-app/api'
-<<<<<<< HEAD
-=======
-    // 'https://360connect.app/certificate-app/api'
->>>>>>> ace80d691b14016e2e9b757c08c7e150d8a97563
     // 'https://360connect.app/certificate-app/api'
     // 'https://certificates.get360connect.com/api'
 

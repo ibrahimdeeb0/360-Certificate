@@ -34,6 +34,8 @@ const String routeFormWarningNotice = '/form_warning_notice';
 const String routeFormDomesticEic = '/form_domestic_eic';
 const String routeFormPortableTest = '/form_portable_test';
 const String routeFormMinorWorks = '/form_minor_works';
+const String routeFormBreakdownService = '/form_breakdown_service';
+
 
 const String routeCompleteRegister = '/complete_register';
 const String routeCreateCustomerV2 = '/create_customer_v2';

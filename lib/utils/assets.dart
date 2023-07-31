@@ -40,6 +40,7 @@ const String iconMechanicalRepairs = '${iconsPath}icon_mechanical_repairs.svg';
 const String iconCarPainting = '${iconsPath}icon_car_painting.svg';
 const String iconLoader = '${iconsPath}icon_loader.svg';
 const String appSettings = '${iconsPath}app_settings.svg';
+const String iconVector = '${iconsPath}vector.svg';
 
 //More Screen Icons
 const String iconAccount = '${iconsPath}icon_account.svg';

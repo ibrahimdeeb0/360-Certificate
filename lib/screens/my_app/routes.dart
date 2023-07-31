@@ -159,4 +159,9 @@ List<GetPage<dynamic>> appRoutes = <GetPage<dynamic>>[
     name: routeFormMinorWorks,
     page: () => const MinorWorks(),
   ),
+
+   GetPage<BreakdownService>(
+    name: routeFormBreakdownService,
+    page: () => const BreakdownService(),
+  ),
 ];
