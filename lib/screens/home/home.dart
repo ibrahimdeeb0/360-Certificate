@@ -38,17 +38,18 @@ class Home extends StatelessWidget {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
+                                Icon(
+                                  Icons.timer_outlined,
+                                  color: Colors.orange[700],
+                                ),
                                 CommonText(
                                   '${controller.trialDetails['remaining_days'] ?? 0} Days left until your free expires',
-                                  marginHorizontal: 0.015,
-                                  leftChild: Icon(
-                                    Icons.timer_outlined,
-                                    color: Colors.orange[700],
-                                  ),
+                                  marginHorizontal: 0.01,
                                 ),
                                 TextButton(
                                   onPressed: () {
-                                    Get.toNamed(routeSubscription);
+                                    // Get.toNamed(routeSubscription);
+                                    controller.getUrlSubscription();
                                   },
                                   child: CommonText(
                                     'Upgrade',

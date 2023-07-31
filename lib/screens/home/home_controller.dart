@@ -1,3 +1,7 @@
+import 'dart:io';
+
+import 'package:url_launcher/url_launcher.dart';
+
 import '../../general_exports.dart';
 
 class HomeController extends GetxController {
@@ -52,6 +56,30 @@ class HomeController extends GetxController {
     ).request(
       onSuccess: (dynamic data, dynamic response) {
         trialDetails = data;
+
+        update();
+      },
+    );
+  }
+
+  String? urlSubscript;
+  void getUrlSubscription() {
+    ApiRequest(
+      path: '/urlPlans',
+      className: 'HomeController/getUrlSubscription',
+      requestFunction: getUrlSubscription,
+      formatResponse: true,
+      withLoading: true,
+    ).request(
+      onSuccess: (dynamic data, dynamic response) async {
+        urlSubscript = data;
+        // consoleLog(urlSubscript);
+        await launchUrl(
+          Uri.parse(urlSubscript!),
+          mode: Platform.isAndroid
+              ? LaunchMode.externalNonBrowserApplication
+              : LaunchMode.inAppWebView,
+        );
 
         update();
       },

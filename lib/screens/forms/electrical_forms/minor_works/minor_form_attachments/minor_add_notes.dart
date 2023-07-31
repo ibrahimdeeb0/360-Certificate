@@ -53,6 +53,28 @@ class MinorAddNote extends StatelessWidget {
                                         controller.notesData.indexOf(item);
                                     return FormAddNoteCard(
                                       note: item.note,
+                                      dropdownMenu: DropdownButton<String>(
+                                        isExpanded: true,
+                                        value: controller.selectedNoteType,
+                                        dropdownColor: Colors.white,
+                                        // hint: CommonText('test 2'),
+                                        onChanged: (String? newValue) {
+                                          controller.selectedNoteType =
+                                              newValue!;
+                                          controller.update();
+                                        },
+                                        items: controller.dropdownItemsClass
+                                            .map<DropdownMenuItem<String>>(
+                                                (String value) {
+                                          return DropdownMenuItem<String>(
+                                            value: value,
+                                            child: CommonText(
+                                              value,
+                                              fontColor: Colors.grey[800],
+                                            ),
+                                          );
+                                        }).toList(),
+                                      ),
                                       pressDelete: () {
                                         openDialog(
                                           child: CommonText(
@@ -138,12 +160,14 @@ class FormAddNoteCard extends StatelessWidget {
     this.pressView,
     this.pressType,
     this.pressDelete,
+    this.dropdownMenu,
   });
   final String? note;
   final String? type;
   final Function()? pressView;
   final Function()? pressDelete;
   final Function()? pressType;
+  final Widget? dropdownMenu;
 
   @override
   Widget build(BuildContext context) {
@@ -162,31 +186,34 @@ class FormAddNoteCard extends StatelessWidget {
           //   onTap: pressType,
           // ),
 
-          GetBuilder<MinorAttachmentsController>(
-            init: MinorAttachmentsController(),
-            builder: (MinorAttachmentsController controller) {
-              return DropdownButton<String>(
-                isExpanded: true,
-                value: controller.selectedNoteType,
-                dropdownColor: Colors.white,
-                // hint: CommonText('test 2'),
-                onChanged: (String? newValue) {
-                  controller.selectedNoteType = newValue!;
-                  controller.update();
-                },
-                items: controller.dropdownItemsClass
-                    .map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: CommonText(
-                      value,
-                      fontColor: Colors.grey[800],
-                    ),
-                  );
-                }).toList(),
-              );
-            },
-          ),
+          // GetBuilder<MinorAttachmentsController>(
+          //   init: MinorAttachmentsController(),
+          //   builder: (MinorAttachmentsController controller) {
+          //     return
+          //     DropdownButton<String>(
+          //       isExpanded: true,
+          //       value: controller.selectedNoteType,
+          //       dropdownColor: Colors.white,
+          //       // hint: CommonText('test 2'),
+          //       onChanged: (String? newValue) {
+          //         controller.selectedNoteType = newValue!;
+          //         controller.update();
+          //       },
+          //       items: controller.dropdownItemsClass
+          //           .map<DropdownMenuItem<String>>((String value) {
+          //         return DropdownMenuItem<String>(
+          //           value: value,
+          //           child: CommonText(
+          //             value,
+          //             fontColor: Colors.grey[800],
+          //           ),
+          //         );
+          //       }).toList(),
+          //     );
+          //   },
+          // ),
+          dropdownMenu ?? const SizedBox(),
+
           CommonInput(
             topLabelText: 'Note:',
             maxLines: 6,
