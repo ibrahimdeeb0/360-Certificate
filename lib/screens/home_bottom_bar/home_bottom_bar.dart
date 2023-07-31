@@ -84,7 +84,7 @@ class HomeBottomBar extends StatelessWidget {
                 BottomNavigationBarItem(
                   icon: SvgPicture.asset(
                     iconHome,
-                    width: DEVICE_WIDTH * 0.055,
+                    width: DEVICE_WIDTH * 0.06,
                     height: DEVICE_HEIGHT * 0.025,
                     color: controller.selectedIndex == toHome
                         ? Color(AppColors.primary)
@@ -105,10 +105,9 @@ class HomeBottomBar extends StatelessWidget {
                 //   label: 'Invoices',
                 // ),
                 BottomNavigationBarItem(
-                  // icon: Icon(Icons.business),
                   icon: SvgPicture.asset(
                     iconCustomers,
-                    width: DEVICE_WIDTH * 0.055,
+                    width: DEVICE_WIDTH * 0.06,
                     height: DEVICE_HEIGHT * 0.022,
                     color: controller.selectedIndex == toCustomers
                         ? Color(AppColors.primary)
@@ -117,29 +116,14 @@ class HomeBottomBar extends StatelessWidget {
                   label: 'Customers',
                 ),
                 BottomNavigationBarItem(
-                  // icon: Icon(Icons.business),
                   icon: SvgPicture.asset(
                     iconMore,
-                    width: DEVICE_WIDTH * 0.055,
+                    width: DEVICE_WIDTH * 0.06,
                     height: DEVICE_HEIGHT * 0.025,
                     color: controller.selectedIndex == toMore
                         ? Color(AppColors.primary)
                         : Colors.grey[600],
                   ),
-                  // Padding(
-                  //   padding: EdgeInsets.only(
-                  //     bottom: DEVICE_HEIGHT * 0.006,
-                  //     top: DEVICE_HEIGHT * 0.009,
-                  //   ),
-                  //   child: SvgPicture.asset(
-                  //     iconMore,
-                  //     width: DEVICE_WIDTH * 0.015,
-                  //     height: DEVICE_WIDTH * 0.015,
-                  //     color: controller.selectedIndex == toMore
-                  //         ? Color(AppColors.primary)
-                  //         : Colors.grey[600],
-                  //   ),
-                  // ),
                   label: 'More',
                 ),
               ],
