@@ -63,7 +63,7 @@ class Certificates extends StatelessWidget {
                           ),
                         ),
                         const CommonText(
-                          'There Are No Any Certificates',
+                          'No Certificates Found',
                           marginTop: 0.02,
                           fontSize: fontH2,
                           fontWeight: FontWeight.w500,

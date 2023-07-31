@@ -43,7 +43,7 @@ class Home extends StatelessWidget {
                                   color: Colors.orange[700],
                                 ),
                                 CommonText(
-                                  '${controller.trialDetails['remaining_days'] ?? 0} Days left until your free expires',
+                                  '${controller.trialDetails['remaining_days'] ?? 0} Days until your trial ends',
                                   marginHorizontal: 0.01,
                                 ),
                                 TextButton(

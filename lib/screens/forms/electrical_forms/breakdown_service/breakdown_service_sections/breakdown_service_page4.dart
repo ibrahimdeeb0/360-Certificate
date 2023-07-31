@@ -114,6 +114,7 @@ class BreakdownServicePage4 extends StatelessWidget {
               topLabelText: 'ISSUED By:',
               hint: 'Name',
               marginTop: 0.02,
+              enabled: false,
               value: controller.formData[formKeyDeclaration]
                   [formKeyEngineerName],
               onChanged: (dynamic value) => controller.onChangDataSignature(
@@ -262,9 +263,9 @@ class BreakdownServicePage4 extends StatelessWidget {
               hint: 'Name',
               marginTop: 0.02,
               value: controller.formData[formKeyDeclaration]
-                  [formKeyEngineerDate],
+                  [formKeyCustomerName],
               onChanged: (dynamic value) => controller.onChangDataSignature(
-                  formKeyDeclaration, formKeyEngineerDate, value),
+                  formKeyDeclaration, formKeyCustomerName, value),
             ),
             CommonInput(
               hint: 'Position',

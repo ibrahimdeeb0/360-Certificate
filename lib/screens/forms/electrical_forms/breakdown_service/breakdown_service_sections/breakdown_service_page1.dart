@@ -66,8 +66,9 @@ class BreakdownServicePage1 extends StatelessWidget {
               suffix: SvgPicture.asset(iconVector),
               enabled: false,
               value: controller.formData[formKeyBoilerSerialNum],
-              onChanged: (dynamic value) => controller.onChangeFormDataValue(
-                  formKeyBoilerSerialNum, value),
+              onTap: () {
+                controller.barcodeScan(formKeyBoilerSerialNum);
+              },
             ),
             CommonInput(
               hint: 'Appliance Make',
@@ -91,8 +92,9 @@ class BreakdownServicePage1 extends StatelessWidget {
               suffix: SvgPicture.asset(iconVector),
               enabled: false,
               value: controller.formData[formKeyAppliancesSerialNum],
-              onChanged: (dynamic value) => controller.onChangeFormDataValue(
-                  formKeyAppliancesSerialNum, value),
+              onTap: () {
+                controller.barcodeScan(formKeyAppliancesSerialNum);
+              },
             ),
             Divider(
               color: Colors.grey[200],

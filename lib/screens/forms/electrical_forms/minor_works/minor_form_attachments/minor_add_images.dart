@@ -139,7 +139,7 @@ class MinorAddImage extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                           ),
                           CommonText(
-                            'No data available',
+                            'Please attach images',
                             fontColor: Colors.grey[700],
                             marginBottom: 0.1,
                           ),

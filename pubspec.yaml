@@ -83,6 +83,7 @@ dependencies:
   # flutter_webview_plugin: ^0.4.0
   advance_pdf_viewer: ^2.0.1
   another_flushbar: ^1.12.30
+  flutter_barcode_scanner: ^2.0.0
 
 dev_dependencies:
   flutter_test:

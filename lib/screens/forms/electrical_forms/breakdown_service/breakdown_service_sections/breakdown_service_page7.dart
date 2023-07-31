@@ -122,9 +122,6 @@ class BreakdownServicePage7 extends StatelessWidget {
                 );
               },
             ),
-            const CommonButton(
-              text: 'Add Reminder',
-            )
           ],
         );
       },
