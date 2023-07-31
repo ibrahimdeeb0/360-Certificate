@@ -78,14 +78,14 @@ class HomeBottomBar extends StatelessWidget {
             shadowOpacity: 0.2,
             backgroundColor: COMMON_WHITE_COLOR,
             shadowColor: COMMON_GREY_COLOR,
-            height: Platform.isAndroid ? 0.08 : 0.09,
+            height: Platform.isAndroid ? 0.08 : 0.1,
             child: BottomNavigationBar(
               items: <BottomNavigationBarItem>[
                 BottomNavigationBarItem(
                   icon: SvgPicture.asset(
                     iconHome,
-                    width: DEVICE_WIDTH * 0.06,
-                    height: DEVICE_WIDTH * 0.06,
+                    width: DEVICE_WIDTH * 0.055,
+                    height: DEVICE_HEIGHT * 0.025,
                     color: controller.selectedIndex == toHome
                         ? Color(AppColors.primary)
                         : Colors.grey[600],
@@ -109,7 +109,7 @@ class HomeBottomBar extends StatelessWidget {
                   icon: SvgPicture.asset(
                     iconCustomers,
                     width: DEVICE_WIDTH * 0.055,
-                    height: DEVICE_WIDTH * 0.055,
+                    height: DEVICE_HEIGHT * 0.022,
                     color: controller.selectedIndex == toCustomers
                         ? Color(AppColors.primary)
                         : Colors.grey[600],
@@ -120,8 +120,8 @@ class HomeBottomBar extends StatelessWidget {
                   // icon: Icon(Icons.business),
                   icon: SvgPicture.asset(
                     iconMore,
-                    width: DEVICE_WIDTH * 0.05,
-                    height: DEVICE_WIDTH * 0.05,
+                    width: DEVICE_WIDTH * 0.055,
+                    height: DEVICE_HEIGHT * 0.025,
                     color: controller.selectedIndex == toMore
                         ? Color(AppColors.primary)
                         : Colors.grey[600],
