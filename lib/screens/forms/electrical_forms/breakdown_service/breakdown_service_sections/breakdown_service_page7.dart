@@ -19,22 +19,56 @@ class BreakdownServicePage7 extends StatelessWidget {
                 marginBottom: 0.02,
               ),
             ),
-            const CheckBoxComponent(text: 'Burn & Washer Cleaned'),
-            const CheckBoxComponent(text: 'Pilot Assembly Cleaned & Adjusted'),
-            const CheckBoxComponent(
-              text: 'Ignition System Cleaned & Adjusted',
+            CustomCheckBox(
+              title: 'Burn & Washer Cleaned',
+              isSelected:
+                  controller.formData[formKeyBurnWasherCleaned] == 'true',
+              onPress: () {
+                controller.onToggleCheckBoxValues(formKeyBurnWasherCleaned);
+              },
             ),
-            const CheckBoxComponent(
-              text: 'Burner Fas & Airways Cleaned',
+            CustomCheckBox(
+              title: 'Pilot Assembly Cleaned & Adjusted',
+              isSelected: controller.formData[formKeyPilotAssembly] == 'true',
+              onPress: () {
+                controller.onToggleCheckBoxValues(formKeyPilotAssembly);
+              },
             ),
-            const CheckBoxComponent(
-              text: 'Heat Exchanger/Flueways Clean & Clear',
+            CustomCheckBox(
+              title: 'Ignition System Cleaned & Adjusted',
+              isSelected: controller.formData[formKeyIgnitionSystem] == 'true',
+              onPress: () {
+                controller.onToggleCheckBoxValues(formKeyIgnitionSystem);
+              },
             ),
-            const CheckBoxComponent(
-              text: 'Fuel & Electrical Supply Connected Correctly',
+            CustomCheckBox(
+              title: 'Burner Fas & Airways Cleaned',
+              isSelected: controller.formData[formKeyBurnerFas] == 'true',
+              onPress: () {
+                controller.onToggleCheckBoxValues(formKeyBurnerFas);
+              },
             ),
-            const CheckBoxComponent(
-              text: 'Interlocks Noted & in Place',
+            CustomCheckBox(
+              title: 'Heat Exchanger/Flue Ways Clean & Clear',
+              isSelected:
+                  controller.formData[formKeyServiceHeatExchanger] == 'true',
+              onPress: () {
+                controller.onToggleCheckBoxValues(formKeyServiceHeatExchanger);
+              },
+            ),
+            CustomCheckBox(
+              title: 'Fuel & Electrical Supply Connected Correctly',
+              isSelected: controller.formData[formKeyFuelElectrical] == 'true',
+              onPress: () {
+                controller.onToggleCheckBoxValues(formKeyFuelElectrical);
+              },
+            ),
+            CustomCheckBox(
+              title: 'Interlocks Noted & in Place',
+              isSelected: controller.formData[formKeyInterlocksNoted] == 'true',
+              onPress: () {
+                controller.onToggleCheckBoxValues(formKeyInterlocksNoted);
+              },
             ),
             Divider(
               thickness: 1,

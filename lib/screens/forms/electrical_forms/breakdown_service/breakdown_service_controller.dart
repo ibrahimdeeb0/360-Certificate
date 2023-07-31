@@ -65,20 +65,21 @@ class BreakdownServiceController extends GetxController {
       formKeyClientName: '',
       formKeyCustomerName: '',
       formKeyCustomerDate: '',
-      formKeyCustomerPosition:'',
+      formKeyCustomerPosition: '',
     },
 
     // screen5 part1
 
-    formKeyFlueAtmopheric: '',
+    formKeyInstallationDetails: <String>[],
     formKeyVentilationSize: '',
-    formKeyInstallationDetailsWater: '',
+    formKeyWaterFuelSatisfactory: '',
     formKeyElectricallyFused: '',
     formKeyCorrectValving: '',
     formKeyIsolationAvailable: '',
-    formKeyBoiler: '',
+    formKeyBoilerPlantRoom: '',
 
     // screen6 part1
+    formKeyServiceChecks: <String>[],
     formKeyHeatExchanger: '',
     formKeyIgnition: '',
     formKeyGasValve: '',
@@ -87,8 +88,10 @@ class BreakdownServiceController extends GetxController {
     formKeyControlBox: '',
     formKeyBurnersPilot: '',
     formKeyFuel: '',
+
     // screen7 part1
-    formKeyBurn: '',
+    formKeyServiceOperation: <String>[],
+    formKeyBurnWasherCleaned: '',
     formKeyPilotAssembly: '',
     formKeyIgnitionSystem: '',
     formKeyBurnerFas: '',
@@ -226,6 +229,19 @@ class BreakdownServiceController extends GetxController {
     formData[part!][key!] = value;
   }
 
+  void onToggleCheckBoxValues(String? key) {
+    formData[key] == 'true'
+        ? onChangeFormDataValue(
+            key,
+            '',
+          )
+        : onChangeFormDataValue(
+            key,
+            'true',
+          );
+    update();
+  }
+
   void onSaveData() {
     if (formBody[keyData] == <String, dynamic>{} || formBody[keyData] == null) {
       formBody[keyData] = formData;
@@ -235,8 +251,6 @@ class BreakdownServiceController extends GetxController {
     }
     update();
   }
-
-
 
   void onSelectDate(String? part, String? key, DateTime value) {
     final DateFormat formatter = DateFormat('dd-MM-yyyy');

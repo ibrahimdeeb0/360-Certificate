@@ -19,55 +19,54 @@ class BreakdownServicePage5 extends StatelessWidget {
                 marginBottom: 0.02,
               ),
             ),
-           
-            const CheckBoxComponent(
-              text: 'Ventilation Size/H-L',
+            CustomCheckBox(
+              title: 'Ventilation Size/H-L',
+              isSelected: controller.formData[formKeyVentilationSize] == 'true',
+              onPress: () {
+                controller.onToggleCheckBoxValues(formKeyVentilationSize);
+              },
             ),
-            const CheckBoxComponent(
-              text: 'Water/Fuel-Satisfactory',
+            CustomCheckBox(
+              title: 'Water/Fuel-Satisfactory',
+              isSelected:
+                  controller.formData[formKeyWaterFuelSatisfactory] == 'true',
+              onPress: () {
+                controller.onToggleCheckBoxValues(formKeyWaterFuelSatisfactory);
+              },
             ),
-            const CheckBoxComponent(
-              text: 'Electrically Fused',
+            CustomCheckBox(
+              title: 'Electrically Fused',
+              isSelected:
+                  controller.formData[formKeyElectricallyFused] == 'true',
+              onPress: () {
+                controller.onToggleCheckBoxValues(formKeyElectricallyFused);
+              },
             ),
-            const CheckBoxComponent(
-              text: 'Correct Valving Arrangements',
+            CustomCheckBox(
+              title: 'Correct Valving Arrangements',
+              isSelected: controller.formData[formKeyCorrectValving] == 'true',
+              onPress: () {
+                controller.onToggleCheckBoxValues(formKeyCorrectValving);
+              },
             ),
-            const CheckBoxComponent(
-              text: 'Isolation Available - Electrical/Fuel',
+            CustomCheckBox(
+              title: 'Isolation Available - Electrical/Fuel',
+              isSelected:
+                  controller.formData[formKeyIsolationAvailable] == 'true',
+              onPress: () {
+                controller.onToggleCheckBoxValues(formKeyIsolationAvailable);
+              },
             ),
-            const CheckBoxComponent(
-              text: 'Boiler/Plantroom Cleaner',
+            CustomCheckBox(
+              title: 'Boiler/Plant Room Cleaner',
+              isSelected: controller.formData[formKeyBoilerPlantRoom] == 'true',
+              onPress: () {
+                controller.onToggleCheckBoxValues(formKeyBoilerPlantRoom);
+              },
             ),
           ],
         );
       },
-    );
-  }
-}
-
-class CheckBoxComponent extends StatelessWidget {
-  const CheckBoxComponent({
-    required this.text,
-    super.key,
-  });
-
-  final String text;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        0.05.boxHeight,
-        SizedBox(
-          width: 0.85.flexWidth,
-          child: CommonText(
-            text,
-            textAlign: TextAlign.start,
-          ),
-        ),
-        const Icon(Icons.check_box_outline_blank)
-      ],
     );
   }
 }

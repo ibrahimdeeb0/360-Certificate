@@ -19,25 +19,61 @@ class BreakdownServicePage6 extends StatelessWidget {
                 marginBottom: 0.02,
               ),
             ),
-            const CheckBoxComponent(text: 'Heat Exchanger'),
-            const CheckBoxComponent(text: 'Ignition'),
-            const CheckBoxComponent(
-              text: 'Gas Valve',
+            CustomCheckBox(
+              title: 'Heat Exchanger',
+              isSelected: controller.formData[formKeyHeatExchanger] == 'true',
+              onPress: () {
+                controller.onToggleCheckBoxValues(formKeyHeatExchanger);
+              },
             ),
-            const CheckBoxComponent(
-              text: 'Fan',
+            CustomCheckBox(
+              title: 'Ignition',
+              isSelected: controller.formData[formKeyIgnition] == 'true',
+              onPress: () {
+                controller.onToggleCheckBoxValues(formKeyIgnition);
+              },
             ),
-            const CheckBoxComponent(
-              text: 'Safety Device',
+            CustomCheckBox(
+              title: 'Gas Valve',
+              isSelected: controller.formData[formKeyGasValve] == 'true',
+              onPress: () {
+                controller.onToggleCheckBoxValues(formKeyGasValve);
+              },
             ),
-            const CheckBoxComponent(
-              text: 'Control Box',
+            CustomCheckBox(
+              title: 'Fan',
+              isSelected: controller.formData[formKeyFan] == 'true',
+              onPress: () {
+                controller.onToggleCheckBoxValues(formKeyFan);
+              },
             ),
-            const CheckBoxComponent(
-              text: 'Burners & Pilot',
+            CustomCheckBox(
+              title: 'Safety Device',
+              isSelected: controller.formData[formKeySafetyDevice] == 'true',
+              onPress: () {
+                controller.onToggleCheckBoxValues(formKeySafetyDevice);
+              },
             ),
-            const CheckBoxComponent(
-              text: 'Fuel Pressure & Type',
+            CustomCheckBox(
+              title: 'Control Box',
+              isSelected: controller.formData[formKeyControlBox] == 'true',
+              onPress: () {
+                controller.onToggleCheckBoxValues(formKeyControlBox);
+              },
+            ),
+            CustomCheckBox(
+              title: 'Burners & Pilot',
+              isSelected: controller.formData[formKeyBurnersPilot] == 'true',
+              onPress: () {
+                controller.onToggleCheckBoxValues(formKeyBurnersPilot);
+              },
+            ),
+            CustomCheckBox(
+              title: 'Fuel Pressure & Type',
+              isSelected: controller.formData[formKeyFuel] == 'true',
+              onPress: () {
+                controller.onToggleCheckBoxValues(formKeyFuel);
+              },
             ),
           ],
         );
