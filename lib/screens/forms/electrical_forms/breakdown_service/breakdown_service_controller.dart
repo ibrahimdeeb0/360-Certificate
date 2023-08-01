@@ -586,7 +586,7 @@ class BreakdownServiceController extends GetxController {
     FlutterBarcodeScanner.getBarcodeStreamReceiver(
             '#ff6666', 'Cancel', true, ScanMode.BARCODE)!
         .listen(
-      (barcode) => consoleLog(barcode, key: 'the value 1'),
+      (dynamic barcode) => consoleLog(barcode, key: 'the value 1'),
     );
   }
 
