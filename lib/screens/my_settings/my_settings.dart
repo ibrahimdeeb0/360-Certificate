@@ -79,29 +79,33 @@ class MySettings extends StatelessWidget {
                                 paddingBottom: 0.015,
                                 touchEffect:
                                     TouchableEffect(type: TouchTypes.opacity),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: <Widget>[
-                                    const CommonText(
-                                      'View Your Plan',
-                                    ),
-                                    Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: <Widget>[
-                                        CommonText(
-                                          homeController.plan,
-                                          fontColor: Colors.white,
-                                          containerStyle: appContainerStyles
-                                              .planContainerStyle
-                                              .copyWith(marginHorizontal: 0.01),
-                                        ),
-                                        const Icon(Icons.arrow_forward),
-                                      ],
-                                    ),
-                                  ],
+                                child: CommonContainer(
+                                  onPress: homeController.getUrlSubscription,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: <Widget>[
+                                      const CommonText(
+                                        'View Your Plan',
+                                      ),
+                                      Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: <Widget>[
+                                          CommonText(
+                                            homeController.plan,
+                                            fontColor: Colors.white,
+                                            containerStyle: appContainerStyles
+                                                .planContainerStyle
+                                                .copyWith(
+                                                    marginHorizontal: 0.01),
+                                          ),
+                                          const Icon(Icons.arrow_forward),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                               CommonText(
@@ -145,12 +149,14 @@ class MySettings extends StatelessWidget {
                                 subTitle:
                                     controller.userData['registered_address'],
                               ),
-                              const ItemCard(
+                              ItemCard(
                                 isRequired: true,
-                                title: 'Important Numbers',
+                                title: 'License Details',
                                 subTitle:
                                     'License Number, Gas Safe Register Number',
                                 marginBottom: 0.01,
+                                onPressItem: () =>
+                                    Get.to(const LicenseDetails()),
                               ),
                               Row(
                                 mainAxisAlignment:
