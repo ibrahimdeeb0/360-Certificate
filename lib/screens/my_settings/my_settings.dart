@@ -156,7 +156,7 @@ class MySettings extends StatelessWidget {
                                     'License Number, Gas Safe Register Number',
                                 marginBottom: 0.01,
                                 onPressItem: () =>
-                                    Get.to(const LicenseDetails()),
+                                    Get.to(() => const UpdateLicenseNumbers()),
                               ),
                               Row(
                                 mainAxisAlignment:

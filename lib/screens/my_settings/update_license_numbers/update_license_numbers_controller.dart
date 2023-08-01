@@ -1,11 +1,16 @@
-import '../../general_exports.dart';
+import '../../../general_exports.dart';
 
-class UpdateCertNumberController extends GetxController {
+class UpdateLicenseNumbersController extends GetxController {
   TextEditingController gasNumController = TextEditingController();
   TextEditingController electricalNumController = TextEditingController();
 
-  bool isGas = false;
-  bool? isBoth;
+  @override
+  void onInit() {
+    gasNumController.text = homeController.gasNumber ?? '';
+    electricalNumController.text = homeController.electricNumber ?? '';
+    update();
+    super.onInit();
+  }
 
   void onUpdateCertNumber() {
     hideKeyboard();
@@ -16,16 +21,16 @@ class UpdateCertNumberController extends GetxController {
       className: 'UpdateCertNumberController/onUpdateCertNumber',
       requestFunction: onUpdateCertNumber,
       // withLoading: true,
-      body: isGas && isBoth == null
+      body: homeController.isHaveElectrical && homeController.isHaveElectrical
           ? <String, dynamic>{
+              'license_number': electricalNumController.text.trim(),
               'gas_register_number': gasNumController.text.trim(),
             }
-          : !isGas && isBoth == null
+          : homeController.isHaveElectrical
               ? <String, dynamic>{
                   'license_number': electricalNumController.text.trim(),
                 }
               : <String, dynamic>{
-                  'license_number': electricalNumController.text.trim(),
                   'gas_register_number': gasNumController.text.trim(),
                 },
     ).request(
@@ -41,14 +46,5 @@ class UpdateCertNumberController extends GetxController {
         dismissLoading();
       },
     );
-  }
-
-  @override
-  void onInit() {
-    super.onInit();
-    isGas = Get.arguments['is_gas'];
-    isBoth = Get.arguments['is_both'];
-    update();
-    consoleLog(isBoth, key: 'isBoth');
   }
 }
