@@ -73,7 +73,7 @@ class AddNewSite extends StatelessWidget {
                     },
                     toggleValue: controller.isAnotherSiteInfo,
                     text:
-                        'Would you like to add another contact for this property?',
+                        'Do you want to add another contact for the site, such as the tenant?',
                   ),
                   0.02.boxHeight,
 
