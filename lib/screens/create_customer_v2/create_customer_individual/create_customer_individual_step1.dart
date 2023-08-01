@@ -15,7 +15,7 @@ class CreateCustomerIndividualStep1 extends StatelessWidget {
               children: <Widget>[
                 AttentionMessage(
                   message:
-                      'As you selected Individual please enter the inspection property address',
+                      'As you selected Individual please enter the inspection property address. Please input the postcode below.',
                   child: SearchWithWooz(
                     searchWithWoozController: controller.customerIfoAddress,
                     showJustOneSite: true,
@@ -31,7 +31,6 @@ class CreateCustomerIndividualStep1 extends StatelessWidget {
                   keyboardType: TextInputType.phone,
                 ),
                 CommonInput(
-
                   topLabelText: 'Email Address',
                   hint: 'Enter Your Email Address',
                   controller: controller.customerInfoEmailController,
