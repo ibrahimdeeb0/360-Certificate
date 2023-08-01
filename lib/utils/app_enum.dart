@@ -43,20 +43,13 @@ enum CompanyContactType {
 }
 
 enum SiteContactType {
+  agent,
+  talent,
   landlord,
   director,
-  agent,
   siteManager,
   financeManager,
 }
-
-// enum CompanySiteContactType {
-//   landlord,
-//   director,
-//   agent,
-//   siteManager,
-//   financeManager,
-// }
 
 enum SitePropertyType {
   flat,
@@ -75,13 +68,9 @@ enum FilterType {
   all,
 }
 
-enum FormCertType {
-  electrical,
-  gas,
-  electricalAndGas
-}
+enum FormCertType { electrical, gas, electricalAndGas }
 
-enum ImageFormatType{
-  local, 
+enum ImageFormatType {
+  local,
   network,
 }

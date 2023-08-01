@@ -23,10 +23,16 @@ class CreateCustomerV2Controller extends GetxController {
   TextEditingController siteDetailsEmailController = TextEditingController();
   bool isSiteAddSameInfo = true;
   bool isAnotherSiteInfo = false;
+  //
   CustomerContactType? customerContactType;
   CompanyContactType? companyContactType;
   SitePropertyType? sitePropertyType;
   SiteContactType? siteContactType;
+  String? customerContactTypeValue;
+  String? companyContactTypeValue;
+  String? sitePropertyTypeValue;
+  String? siteContactTypeValue;
+  //
   void onWriteSiteName(String? value) {
     customerSiteAddress.siteNameController.text = value ?? '';
   }
@@ -55,10 +61,11 @@ class CreateCustomerV2Controller extends GetxController {
     SitePropertyType.warehouse,
     SitePropertyType.other,
   ];
-  List<SiteContactType> listSitePropertyType = <SiteContactType>[
+  List<SiteContactType> listSiteContactType = <SiteContactType>[
+    SiteContactType.agent,
+    SiteContactType.talent,
     SiteContactType.landlord,
     SiteContactType.director,
-    SiteContactType.agent,
     SiteContactType.siteManager,
     SiteContactType.financeManager,
   ];
@@ -273,8 +280,12 @@ class CreateCustomerV2Controller extends GetxController {
         items: listCustomerContactType,
         onSelectItem: (dynamic value) {
           customerContactType = value;
+          customerContactTypeValue =
+              (value as Enum).name.contains(capitalLetterPattern)
+                  ? addSpaceBeforeCapitalLetter((value).name).capitalize
+                  : (value).name.capitalize;
           update();
-          consoleLog(customerContactType, key: 'customerContactType');
+          consoleLog(customerContactTypeValue, key: 'customerContactType');
         },
         initialValue: customerContactType,
       ),
@@ -287,8 +298,12 @@ class CreateCustomerV2Controller extends GetxController {
         items: listCompanyContactType,
         onSelectItem: (dynamic value) {
           companyContactType = value;
+          companyContactTypeValue =
+              (value as Enum).name.contains(capitalLetterPattern)
+                  ? addSpaceBeforeCapitalLetter((value).name).capitalize
+                  : (value).name.capitalize;
           update();
-          // consoleLog(companyContactType, key: 'customerContactType');
+          consoleLog(companyContactTypeValue, key: 'customerContactType');
         },
         initialValue: companyContactType,
       ),
@@ -298,14 +313,19 @@ class CreateCustomerV2Controller extends GetxController {
   void selectSiteContactType() {
     Get.bottomSheet(
       RadioSelectionSheet(
-        items: listSitePropertyType,
+        items: listSiteContactType,
         onSelectItem: (dynamic value) {
           siteContactType = value;
+          siteContactTypeValue =
+              (value as Enum).name.contains(capitalLetterPattern)
+                  ? addSpaceBeforeCapitalLetter((value).name).capitalize
+                  : (value).name.capitalize;
           update();
-          consoleLog(siteContactType, key: 'siteContactType');
+          consoleLog(siteContactTypeValue, key: 'siteContactType');
         },
         initialValue: siteContactType,
       ),
+      isScrollControlled: true,
     );
   }
 
@@ -315,7 +335,12 @@ class CreateCustomerV2Controller extends GetxController {
         items: listPropertyType,
         onSelectItem: (dynamic value) {
           sitePropertyType = value;
+          sitePropertyTypeValue =
+              (value as Enum).name.contains(capitalLetterPattern)
+                  ? addSpaceBeforeCapitalLetter((value).name).capitalize
+                  : (value).name.capitalize;
           update();
+          consoleLog(sitePropertyTypeValue, key: 'siteContactType');
         },
         initialValue: sitePropertyType,
       ),
@@ -330,10 +355,12 @@ class CreateCustomerV2Controller extends GetxController {
       siteDetailsPhoneController.clear();
       siteDetailsEmailController.clear();
       siteContactType = null;
+      siteContactTypeValue = null;
     } else {
       siteDetailsNameController.text = customerInfoNameController.text;
       siteDetailsPhoneController.text = customerInfoPhoneController.text;
       siteDetailsEmailController.text = customerInfoEmailController.text;
+
       if (customerType == CustomerType.individual) {
         switch (customerContactType) {
           case CustomerContactType.landlord:
@@ -362,6 +389,14 @@ class CreateCustomerV2Controller extends GetxController {
             siteContactType = null;
         }
       }
+
+      siteContactTypeValue =
+          (siteContactType as Enum).name.contains(capitalLetterPattern)
+              ? addSpaceBeforeCapitalLetter((siteContactType as Enum).name)
+                  .capitalize
+              : (siteContactType as Enum).name.capitalize;
+
+      consoleLog(siteContactTypeValue, key: 'siteContactTypeValue');
     }
     update();
   }
@@ -379,10 +414,21 @@ class CreateCustomerV2Controller extends GetxController {
     }
   }
 
+  void onScrollUp() {
+    if (scrollController.positions.isNotEmpty) {
+      scrollController.animateTo(
+        0.0,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.linear,
+      );
+    }
+  }
+
   FocusNode email1FocusNode = FocusNode();
   FocusNode email2FocusNode = FocusNode();
   void onPressNext() {
     hideKeyboard();
+
     validationFillData();
 
     switch (index) {
@@ -393,6 +439,8 @@ class CreateCustomerV2Controller extends GetxController {
           } else {
             flushbarMessage();
           }
+
+          onScrollUp();
         }
         break;
       case 1:
@@ -417,13 +465,26 @@ class CreateCustomerV2Controller extends GetxController {
                       Get.back();
                     }
                     update();
+
+                    onScrollUp();
                   },
                 ),
               );
             } else {
-              index = index + 1;
-              if (index == 2) {
-                toggleSameSiteDetails(value: isAnotherSiteInfo);
+              if (RegExp(validationEmail)
+                  .hasMatch(customerInfoEmailController.text.trim())) {
+                index = index + 1;
+                if (index == 2) {
+                  toggleSameSiteDetails(value: isAnotherSiteInfo);
+                }
+
+                onScrollUp();
+              } else {
+                showMessage(
+                    description: 'Please Enter a valid email',
+                    textColor: COMMON_RED_COLOR);
+
+                FocusScope.of(Get.context!).requestFocus(email1FocusNode);
               }
             }
           } else {
@@ -454,7 +515,16 @@ class CreateCustomerV2Controller extends GetxController {
                 ),
               );
             } else {
-              onAddCustomer();
+              if (RegExp(validationEmail)
+                  .hasMatch(siteDetailsEmailController.text.trim())) {
+                onAddCustomer();
+              } else {
+                showMessage(
+                    description: 'Please Enter a valid email',
+                    textColor: COMMON_RED_COLOR);
+
+                FocusScope.of(Get.context!).requestFocus(email2FocusNode);
+              }
             }
           } else {
             flushbarMessage();
@@ -463,13 +533,6 @@ class CreateCustomerV2Controller extends GetxController {
         break;
 
       // default:
-    }
-    if (scrollController.positions.isNotEmpty) {
-      scrollController.animateTo(
-        0.0,
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.linear,
-      );
     }
 
     update();

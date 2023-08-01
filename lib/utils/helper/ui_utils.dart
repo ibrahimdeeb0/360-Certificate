@@ -131,3 +131,8 @@ Future<String> onPressDownloadPdf(
 
   return '$appDocPath/$pdfTitle.pdf';
 }
+
+String addSpaceBeforeCapitalLetter(String input) {
+  return input.replaceAllMapped(
+      RegExp('([A-Z])'), (Match match) => ' ${match.group(0)}');
+}

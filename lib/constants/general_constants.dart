@@ -42,7 +42,9 @@ double paddingTopScreens = DEVICE_HEIGHT * 0.03;
 const double paddingChild = 8.0;
 const double paddingFormsCard = 0.026;
 
-String validationEmail =
+const String validationEmail =
     r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
 
-String fontFamilyType = 'Careem';
+final RegExp capitalLetterPattern = RegExp('[A-Z]');
+
+const String fontFamilyType = 'Careem';

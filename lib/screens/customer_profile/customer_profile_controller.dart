@@ -82,13 +82,13 @@ class CustomerProfileController extends GetxController
 
   List<Map<String, dynamic>> get mapContactDetails => <Map<String, dynamic>>[
         <String, dynamic>{
-          keyTitle: 'First Name',
-          keyValue: contactData[0]['f_name'] ?? '',
+          keyTitle: 'Name',
+          keyValue: customerData['name'] ?? '',
         },
-        <String, dynamic>{
-          keyTitle: 'Last Name',
-          keyValue: contactData[0]['l_name'] ?? '',
-        },
+        // <String, dynamic>{
+        //   keyTitle: 'Last Name',
+        //   keyValue: contactData[0]['l_name'] ?? '',
+        // },
         <String, dynamic>{
           keyTitle: 'Phone',
           keyValue: contactData[0]['phone'] ?? '',
@@ -106,11 +106,6 @@ class CustomerProfileController extends GetxController
   void onSelectTab(int index) {
     tabIndex = index;
     update();
-    // scrollController.animateTo(
-    //   0.0,
-    //   duration: const Duration(milliseconds: 500),
-    //   curve: Curves.linear,
-    // );
   }
 
   Future<void> onGeCustomerDetails() async {

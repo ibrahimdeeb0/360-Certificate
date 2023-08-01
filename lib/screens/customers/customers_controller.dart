@@ -11,7 +11,7 @@ class CustomersController extends GetxController {
       className: 'CustomersController/getAllCustomers',
       requestFunction: getAllCustomers,
       withLoading: true,
-      // formatResponse: true,
+      formatResponse: true,
     ).request(
       onSuccess: (dynamic data, dynamic response) {
         myAppController.localStorage.saveToStorage(

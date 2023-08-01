@@ -37,18 +37,11 @@ class CreateCustomerIndividualStep1 extends StatelessWidget {
                   keyboardType: TextInputType.emailAddress,
                   marginBottom: 0.02,
                   focusNode: controller.email1FocusNode,
-                  // enabledBorder: const OutlineInputBorder(
-                  //   borderSide: BorderSide(width: 2, color: Colors.red),
-                  // ),
                 ),
                 SelectTypeSheet(
                   label: 'Contact Type',
                   hint: 'Select Contact Type',
-                  value: controller.customerContactType != null
-                      ? (controller.customerContactType as Enum)
-                          .name
-                          .capitalizeFirst
-                      : '',
+                  value: controller.customerContactTypeValue,
                   onTap: controller.selectCustomerContactType,
                 ),
               ],

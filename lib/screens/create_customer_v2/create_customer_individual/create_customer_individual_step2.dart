@@ -62,11 +62,7 @@ class CreateCustomerIndividualStep2 extends StatelessWidget {
                     SelectTypeSheet(
                       label: 'What Is The Property Type',
                       hint: 'Select Property Type',
-                      value: controller.sitePropertyType != null
-                          ? (controller.sitePropertyType as Enum)
-                              .name
-                              .capitalizeFirst
-                          : '',
+                      value: controller.sitePropertyTypeValue,
                       onTap: controller.selectCustomerPropertyType,
                     ),
                     if (controller.sitePropertyType == SitePropertyType.other)
@@ -101,13 +97,18 @@ class CreateCustomerIndividualStep2 extends StatelessWidget {
                     ),
                     0.02.boxHeight,
                     CommonInput(
-                      topLabel: const TopLabelText(
-                        text: 'Full Name',
+                      topLabel: TopLabelText(
+                        text: controller.siteContactTypeValue == null
+                            ? 'Full Name'
+                            : '${controller.siteContactTypeValue} Name',
                       ),
-                      hint: 'Type Full Name',
+                      hint: controller.siteContactTypeValue == null
+                          ? 'Type Full Name'
+                          : 'Type ${controller.siteContactTypeValue} Name',
                       controller: controller.siteDetailsNameController,
                       // onChanged: controller.onChangeIInputs,
                       keyboardType: TextInputType.name,
+                      enabled: controller.isAnotherSiteInfo,
                     ),
                     CommonInput(
                       topLabel: const TopLabelText(
@@ -117,29 +118,35 @@ class CreateCustomerIndividualStep2 extends StatelessWidget {
                       hint: 'Phone Number',
                       controller: controller.siteDetailsPhoneController,
                       keyboardType: TextInputType.phone,
+                      enabled: controller.isAnotherSiteInfo,
                     ),
                     CommonInput(
                       topLabel: const TopLabelText(
                         text: 'Email Address',
                       ),
-                      // topLabelText: 'Email Address',
                       hint: 'Email Address',
                       controller: controller.siteDetailsEmailController,
                       keyboardType: TextInputType.emailAddress,
                       focusNode: controller.email2FocusNode,
+                      enabled: controller.isAnotherSiteInfo,
                     ),
                     SelectTypeSheet(
                       label: 'Contact Type',
-                      //  topLabel: const TopLabelText(
-                      //   text: 'Email Address',
-                      // ),
                       hint: 'Select Contact Type',
-                      value: controller.siteContactType != null
-                          ? (controller.siteContactType as Enum)
-                              .name
-                              .capitalizeFirst
-                          : '',
-                      onTap: controller.selectSiteContactType,
+                      value: controller.isAnotherSiteInfo
+                          ? controller.siteContactTypeValue
+                          : (controller.siteContactType as Enum)
+                                  .name
+                                  .contains(capitalLetterPattern)
+                              ? addSpaceBeforeCapitalLetter(
+                                      (controller.siteContactType as Enum).name)
+                                  .capitalize
+                              : (controller.siteContactType as Enum)
+                                  .name
+                                  .capitalize,
+                      onTap: controller.isAnotherSiteInfo
+                          ? controller.selectSiteContactType
+                          : null,
                     ),
                   ],
                 ),

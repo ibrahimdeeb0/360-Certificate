@@ -52,7 +52,9 @@ class _RadioSelectionSheetState extends State<RadioSelectionSheet> {
                         .toString()
                         .contains('_Map<String, dynamic>')
                     ? item[keyName]
-                    : (item as Enum).name.capitalizeFirst,
+                    : (item as Enum).name.contains(capitalLetterPattern)
+                        ? addSpaceBeforeCapitalLetter((item).name).capitalize
+                        : (item).name.capitalize,
                 onPress: () {
                   setState(() {
                     itemSelected = item;

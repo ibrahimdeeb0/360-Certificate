@@ -37,15 +37,21 @@ class CreateCustomerCompanyStep1 extends StatelessWidget {
                   marginBottom: 0.02,
                 ),
                 SelectTypeSheet(
-                   label: 'Contact Type',
+                  label: 'Contact Type',
                   hint: 'Select Contact Type',
-                  value: controller.companyContactType != null
-                      ? (controller.companyContactType as Enum)
-                          .name
-                          .capitalizeFirst
-                      : '',
+                  value: controller.companyContactTypeValue,
                   onTap: controller.selectCompanyContactType,
                 ),
+                if (controller.companyContactTypeValue != null)
+                  CommonInput(
+                    topLabelText:
+                        '${controller.companyContactTypeValue} Name (Optional)',
+                    hint:
+                        'Enter The ${controller.companyContactTypeValue} Name',
+                    keyboardType: TextInputType.emailAddress,
+                    marginBottom: 0.02,
+                    marginTop: 0.01,
+                  ),
               ],
             ),
           ),
