@@ -37,7 +37,7 @@ class CreateCustomerCompanyStep extends StatelessWidget {
                     ),
                     AttentionMessage(
                       message:
-                          'As you selected Business, this is the Business or Agents details, No the site property you are inspecting',
+                          "Given that you've selected a company, we require the primary company details, not the information of the site you are inspecting. Please input the postcode below.",
                       child: SearchWithWooz(
                         searchWithWoozController: controller.companyIfoAddress,
                       ),
