@@ -1,5 +1,4 @@
 import 'package:flutter_svg/svg.dart';
-import 'package:intl/intl.dart';
 
 import '../../general_exports.dart';
 
@@ -33,8 +32,7 @@ class Certificates extends StatelessWidget {
                             code: '#${item[keyId]}',
                             formType: item[keyForm][keyName],
                             price: '£ 0.0',
-                            date: DateFormat('dd-MM-yyyy').format(
-                                DateTime.parse(item['created_at'].toString())),
+                            date: '${item['created_at']}'.formatDate,
                             certStatus: certStatus,
                             customerName:
                                 '${item['customer']['first_name']}'.capitalize,

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import '../../general_exports.dart';
 
 class CertificateDetails extends StatelessWidget {
@@ -33,7 +35,7 @@ class CertificateDetails extends StatelessWidget {
                       ),
                       CommonContainer(
                         paddingHorizontal: 0.04,
-                        height: 0.81,
+                        height: Platform.isAndroid ? 0.82 : 0.8,
                         child: Column(
                           children: <Widget>[
                             SizedBox(height: DEVICE_HEIGHT * 0.02),
@@ -62,9 +64,6 @@ class CertificateDetails extends StatelessWidget {
                                                 ? Colors.white
                                                 : AppColors.primary,
                                         fontSize: fontH3,
-                                        // item[keyText] == 'Customer Details'
-                                        //     ? fontH4
-                                        //     : fontBody,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),

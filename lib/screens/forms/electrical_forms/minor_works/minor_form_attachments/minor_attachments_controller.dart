@@ -47,12 +47,14 @@ class MinorAttachmentsController extends GetxController {
       imageQuality: 30,
     );
 
-    if (imagesFile.where((XFile img) => img.path == file!.path).isEmpty) {
+    consoleLog(file!.path);
+
+    if (imagesFile.where((XFile img) => img.path == file.path).isEmpty) {
       consoleLog('inside');
       imagesData.insert(
         0,
         FormImageClass(
-          file: file!,
+          file: file,
           onPress: () {
             imagesData
                 .removeWhere((FormImageClass element) => element.file == file);

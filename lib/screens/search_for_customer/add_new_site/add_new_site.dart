@@ -67,14 +67,34 @@ class AddNewSite extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                     marginBottom: 0.02,
                   ),
-                  ToggleYesNo(
-                    onChange: (bool value) {
-                      controller.toggleSameSiteDetails(value: value);
-                    },
-                    toggleValue: controller.isAnotherSiteInfo,
-                    text:
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      CommonText(
                         'Do you want to add another contact for the site, such as the tenant?',
+                        textAlign: TextAlign.start,
+                        fontColor: Colors.grey[700],
+                        containerStyle: const CommonContainerModel(width: 0.7),
+                        bottomChild: const SizedBox(),
+                      ),
+                      Switch(
+                        value: controller.isAnotherSiteInfo,
+                        onChanged: (bool value) {
+                          controller.toggleSameSiteDetails(value: value);
+                        },
+                        activeColor: Color(AppColors.primary),
+                      ),
+                    ],
                   ),
+                  // ToggleYesNo(
+                  //   onChange: (bool value) {
+                  //     controller.toggleSameSiteDetails(value: value);
+                  //   },
+                  //   toggleValue: controller.isAnotherSiteInfo,
+                  //   text:
+                  //       'Do you want to add another contact for the site, such as the tenant?',
+                  // ),
                   0.02.boxHeight,
 
                   if (controller.isAnotherSiteInfo)

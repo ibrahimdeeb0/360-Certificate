@@ -57,6 +57,7 @@ class AddNewNotesController extends GetxController {
     hideKeyboard();
     startLoading();
     final Map<String, dynamic> bodyObject = <String, dynamic>{
+      'note_type_id': 1, // 1 type for private
       keyTitle: titleNote.text.trim(),
       'body': detailsNote.text.trim(),
       'files_id': deletedImages,

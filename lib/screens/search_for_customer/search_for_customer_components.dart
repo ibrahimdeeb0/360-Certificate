@@ -178,9 +178,9 @@ class ShowSiteDetailsSheet extends StatelessWidget {
             ),
             CustomerInformationContainer(
               type: customerType,
-              name: customerData['contact']['f_name'] ?? '',
-              email: customerData['contact']['email'] ?? 'email test',
-              phone: customerData['contact']['phone'] ?? 'email test',
+              name: customerData['f_name'] ?? '',
+              email: customerData['email'] ?? 'email test',
+              phone: customerData['phone'] ?? 'email test',
             ),
             CommonContainer(
               width: 1,
@@ -221,7 +221,7 @@ class ShowSiteDetailsSheet extends StatelessWidget {
                   Get.back();
                 }
                 myAppController.certFormInfo[keyCustomerId] =
-                    customerData['contact']['customer_id'];
+                    customerData['customer_id'];
                 myAppController.certFormInfo[keySiteId] = siteItem[keyId];
 
                 consoleLog(myAppController.certFormInfo);

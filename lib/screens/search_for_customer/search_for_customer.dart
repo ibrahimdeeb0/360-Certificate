@@ -79,20 +79,19 @@ class SearchForCustomer extends StatelessWidget {
                           Get.to(
                             () => const AddNewSite(),
                             arguments: <String, dynamic>{
-                              keyId: item['contact']['customer_id'],
+                              keyId: item['customer_id'],
                             },
                           );
                           // consoleLog(item);
                         },
                         customerData: item,
-                        type: item['contact']['type'].contains('landlord')
+                        type: item['type'].contains('landlord')
                             ? CustomerType.individual
                             : CustomerType.company,
-                        name: item['contact']['f_name'],
-                        email: item['contact']['email'] ?? 'email test',
-                        phone: item['contact']['phone'] ?? 'phone test',
-                        listSites:
-                            item['contact']['customer']['sites'] ?? <dynamic>[],
+                        name: item['f_name'],
+                        email: item['email'] ?? 'email test',
+                        phone: item['phone'] ?? 'phone test',
+                        listSites: item['customer']['sites'] ?? <dynamic>[],
                       ),
                     ),
                 ],
