@@ -65,12 +65,13 @@ class SearchForCustomer extends StatelessWidget {
                       ],
                     ),
                   ),
-                  if (controller.showMessageSearch)
-                    const NoResultSearchingContainer(
-                      title: 'Please use box for searching',
-                      hideAddCustomer: true,
-                    )
-                  else if (controller.showMessageNoResult)
+                  // if (controller.showMessageSearch)
+                  //   const NoResultSearchingContainer(
+                  //     title: 'Please use box for searching',
+                  //     hideAddCustomer: true,
+                  //   )
+                  // else
+                  if (controller.showMessageNoResult)
                     const NoResultSearchingContainer()
                   else
                     ...controller.searchResult.map(

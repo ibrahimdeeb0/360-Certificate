@@ -8,12 +8,19 @@ class SearchForCustomerController extends GetxController {
   TextEditingController searchController = TextEditingController();
   List<dynamic> searchResult = <dynamic>[];
   bool showMessageNoResult = false;
-  bool showMessageSearch = true;
+  // bool showMessageSearch = true;
+
+  List<dynamic> allCustomers = <dynamic>[];
+
+  @override
+  void onReady() {
+    getAllCustomers();
+    super.onReady();
+  }
 
   void onSearching(String value) {
     if (value == '') {
-      searchResult = <dynamic>[];
-      showMessageSearch = true;
+      searchResult = allCustomers;
       update();
     } else {
       _dio
@@ -33,18 +40,38 @@ class SearchForCustomerController extends GetxController {
         ),
       )
           .then((dynamic response) {
-        // consoleLog(response.data['data'], key: 'searchingResult');
         searchResult = response.data['data'];
-        if (searchResult.isEmpty) {
+        if (searchResult.isEmpty && searchController.text.trim().isNotEmpty) {
           showMessageNoResult = true;
         } else {
           showMessageNoResult = false;
         }
-        showMessageSearch = false;
+
+        if (searchController.text.trim().isEmpty) {
+          searchResult = allCustomers;
+        }
         consoleLogPretty(searchResult, key: 'searchingResult');
         update();
       });
     }
     // consoleLog(searchResult, key: 'searchingResult');
+  }
+
+  Future<void> getAllCustomers() async {
+    hideKeyboard();
+
+    ApiRequest(
+      path: '/all-customers-sites',
+      className: 'SearchForCustomerController/getAllCustomers',
+      requestFunction: getAllCustomers,
+      withLoading: true,
+      // formatResponse: true,
+    ).request(
+      onSuccess: (dynamic data, dynamic response) {
+        allCustomers = data;
+        searchResult = data;
+        update();
+      },
+    );
   }
 }
