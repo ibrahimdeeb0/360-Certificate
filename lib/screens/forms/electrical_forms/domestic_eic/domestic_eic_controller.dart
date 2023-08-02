@@ -271,11 +271,15 @@ class DomesticEicController extends GetxController {
 
     formData[formKeyDeclaration][formKeyNameInspectionBy] =
         '${profileController.userDataProfile['first_name']} ${profileController.userDataProfile['last_name']}';
+
+    onSelectDate(formKeyDeclaration, formKeyDateInspectionBy, DateTime.now());
+    onSelectDate(formKeyDeclaration, formKeyDateReviewedBy, DateTime.now());
+
     update();
   }
 
   void onSelectDate(String? part, String? key, DateTime value) {
-    formData[part!][key!] = '$value'.split(' ')[0];
+    formData[part!][key!] = '$value'.formatDate;
     update();
     selectedDate = value;
   }

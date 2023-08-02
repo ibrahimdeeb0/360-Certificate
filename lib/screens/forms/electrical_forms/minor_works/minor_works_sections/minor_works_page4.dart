@@ -147,7 +147,7 @@ class MinorWorksPage4 extends StatelessWidget {
                   context,
                   currentTime: controller.selectedDate ?? DateTime.now(),
                   onConfirm: (DateTime value) {
-                    controller.onSelectDate(
+                    controller.onSelectDeclarationDate(
                       formKeyDeclaration,
                       formKeyEngineerDate,
                       value,
@@ -288,7 +288,7 @@ class MinorWorksPage4 extends StatelessWidget {
                         context,
                         currentTime: controller.selectedDate ?? DateTime.now(),
                         onConfirm: (DateTime value) {
-                          controller.onSelectDate(
+                          controller.onSelectDeclarationDate(
                             formKeyDeclaration,
                             formKeyCustomerDate,
                             value,

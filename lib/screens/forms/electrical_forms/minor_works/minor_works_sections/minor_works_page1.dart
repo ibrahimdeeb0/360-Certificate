@@ -34,15 +34,13 @@ class MinorWorksPage1 extends StatelessWidget {
               suffix: const Icon(Icons.calendar_today_outlined),
               marginBottom: 0.02,
               enabled: false,
-              value: controller.formData[formKeyDeclaration]
-                  [formKeyDateCompleted],
+              value: controller.formData[formKeyDateCompleted],
               onTap: () {
                 CommonDatePicker.showDatePicker(
                   context,
                   currentTime: controller.selectedDate ?? DateTime.now(),
                   onConfirm: (DateTime value) {
                     controller.onSelectDate(
-                      formKeyDeclaration,
                       formKeyDateCompleted,
                       value,
                     );

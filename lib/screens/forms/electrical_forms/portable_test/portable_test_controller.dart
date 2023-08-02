@@ -156,6 +156,9 @@ class PortableTestController extends GetxController {
 
     formData[formKeyDeclaration][formKeyNameInspectionBy] =
         '${profileController.userDataProfile['first_name']} ${profileController.userDataProfile['last_name']}';
+
+    onSelectDate(formKeyDeclaration, formKeyDateInspectionBy, DateTime.now());
+
     update();
   }
 

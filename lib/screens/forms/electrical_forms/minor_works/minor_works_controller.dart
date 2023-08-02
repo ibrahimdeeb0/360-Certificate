@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:uuid/uuid.dart';
 
@@ -212,6 +211,15 @@ class MinorWorksController extends GetxController {
 
     formData[formKeyDeclaration][formKeyRecordIssueBy] =
         '${profileController.userDataProfile['first_name']} ${profileController.userDataProfile['last_name']}';
+
+    onSelectDeclarationDate(
+        formKeyDeclaration, formKeyEngineerDate, DateTime.now());
+
+    onSelectDeclarationDate(
+        formKeyDeclaration, formKeyCustomerDate, DateTime.now());
+
+    onSelectDate(formKeyDateCompleted, DateTime.now());
+
     update();
   }
   //*---------------------------------------------*//
@@ -266,11 +274,14 @@ class MinorWorksController extends GetxController {
     update();
   }
 
-  void onSelectDate(String? part, String? key, DateTime value) {
-    final DateFormat formatter = DateFormat('dd-MM-yyyy');
-    final String dateValue = formatter.format(value);
-    // '$value'.split(' ')[0];
-    formData[part!][key!] = dateValue;
+  void onSelectDeclarationDate(String? part, String? key, DateTime value) {
+    formData[part!][key!] = '$value'.formatDate;
+    selectedDate = value;
+    update();
+  }
+
+  void onSelectDate(String? key, DateTime value) {
+    formData[key!] = '$value'.formatDate;
     selectedDate = value;
     update();
   }

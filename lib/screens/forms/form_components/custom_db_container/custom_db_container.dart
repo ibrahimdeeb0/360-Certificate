@@ -31,7 +31,8 @@ class CircuitDetailsContainer extends StatelessWidget {
         width: 1,
         marginBottom: 0.01,
         borderRadius: 0.02,
-        height: 0.13,
+        // height: 0.13,
+        minHeight: 0.13,
         paddingBottom: 0.015,
         paddingLeft: 0.03,
         paddingRight: 0.03,
@@ -52,7 +53,7 @@ class CircuitDetailsContainer extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 SizedBox(
-                  height: DEVICE_HEIGHT * 0.012,
+                  height: DEVICE_HEIGHT * 0.01,
                 ),
                 CommonText(
                   dbName ?? 'Circuit Name: ',

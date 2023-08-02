@@ -166,11 +166,15 @@ class DangerNoticeController extends GetxController {
 
     formData[formKeyDeclaration][formKeyEngineerName] =
         '${profileController.userDataProfile['first_name']} ${profileController.userDataProfile['last_name']}';
+
+    onSelectDate(formKeyDeclaration, formKeyReceivedDate, DateTime.now());
+    onSelectDate(formKeyPart1, formKeyDateElectricalDanger, DateTime.now());
+
     update();
   }
 
   void onSelectDate(String? part, String? key, DateTime value) {
-    formData[part!][key!] = '$value'.split(' ')[0];
+    formData[part!][key!] = '$value'.formatDate;
     update();
     selectedDate = value;
   }
