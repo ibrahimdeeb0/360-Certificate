@@ -7,6 +7,7 @@ class BreakdownServicePage1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ListBreakdownService list = ListBreakdownService();
     return GetBuilder<BreakdownServiceController>(
       init: BreakdownServiceController(),
       builder: (BreakdownServiceController controller) {
@@ -50,8 +51,15 @@ class BreakdownServicePage1 extends StatelessWidget {
               suffix: const Icon(Icons.keyboard_arrow_down),
               enabled: false,
               value: controller.formData[formKeyBoilerMake],
-              onChanged: (dynamic value) =>
-                  controller.onChangeFormDataValue(formKeyBoilerMake, value),
+              onTap: () => Get.bottomSheet(
+                BreakServiceSelectSheet(
+                  keyOfValue: formKeyBoilerMake,
+                  listTitles: list.listBoilerMake,
+                  controller: controller,
+                  keyOfBreakServiceType: formKeyBoilerMake,
+                ),
+                isScrollControlled: true,
+              ),
             ),
             CommonInput(
               hint: 'Boiler Model',
@@ -76,8 +84,15 @@ class BreakdownServicePage1 extends StatelessWidget {
               suffix: const Icon(Icons.keyboard_arrow_down),
               enabled: false,
               value: controller.formData[formKeyAppliancesMake],
-              onChanged: (dynamic value) => controller.onChangeFormDataValue(
-                  formKeyAppliancesMake, value),
+              onTap: () => Get.bottomSheet(
+                BreakServiceSelectSheet(
+                  keyOfValue: formKeyAppliancesMake,
+                  listTitles: list.listApplianceMake,
+                  controller: controller,
+                  keyOfBreakServiceType: formKeyAppliancesMake,
+                ),
+                isScrollControlled: true,
+              ),
             ),
             CommonInput(
               hint: 'Appliance Model',
