@@ -153,6 +153,12 @@ class RegisterController extends GetxController {
             description: '${error['errors']['password'][0]} \n',
             textColor: COMMON_RED_COLOR,
           );
+        } else if ((error['errors']['email'] == null &&
+            error['errors']['phone'] != null)) {
+          showMessage(
+            description: '${error['errors']['phone'][0]} \n',
+            textColor: COMMON_RED_COLOR,
+          );
         } else {
           showMessage(
             description: '${error['message']}\n',
