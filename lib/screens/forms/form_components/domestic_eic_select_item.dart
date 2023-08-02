@@ -1,6 +1,6 @@
 import '../../../general_exports.dart';
 
-class FormSelectItemSheet extends StatelessWidget {
+class FormSelectItemSheet extends StatefulWidget {
   const FormSelectItemSheet({
     required this.listTitles,
     required this.keyOfValue,
@@ -13,6 +13,35 @@ class FormSelectItemSheet extends StatelessWidget {
   final String keyOfValue;
   final String partOfValue;
   final dynamic controller;
+
+  @override
+  State<FormSelectItemSheet> createState() => _FormSelectItemSheetState();
+}
+
+class _FormSelectItemSheetState extends State<FormSelectItemSheet> {
+  TextEditingController textEditingController = TextEditingController();
+  List<String>? filterValues;
+
+  @override
+  // ignore: always_declare_return_types
+  initState() {
+    setState(() {
+      filterValues = widget.listTitles;
+    });
+
+    super.initState();
+  }
+
+  void onSearchForCustomer(String searchValue) {
+    filterValues = widget.listTitles
+        .where((String item) =>
+            item.toLowerCase().contains(searchValue.toLowerCase()))
+        .toList();
+
+    consoleLog(filterValues);
+
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,36 +58,50 @@ class FormSelectItemSheet extends StatelessWidget {
           physics: const BouncingScrollPhysics(),
           child: Column(
             children: <Widget>[
-              SizedBox(height: DEVICE_HEIGHT * 0.03),
-              ...listTitles
-                  .map(
-                    (String title) => ListOfStrings(
-                      onPress: title == 'Other'
-                          ? () => Get.bottomSheet(
-                                FormWriteOtherItemSheet(
-                                  controller: controller,
-                                  keyOfValue: keyOfValue,
-                                  partOfValue: partOfValue,
-                                ),
-                                isScrollControlled: true,
-                                elevation: 0.0,
-                              )
-                          : () {
-                              if (controller.formData[partOfValue]
-                                  .containsKey(keyOfValue)) {
-                                controller.formData[partOfValue][keyOfValue] =
-                                    title;
-                                controller.update();
-                              }
-                              // consoleLog(
-                              //     controller.formData[partOfValue][keyOfValue]);
-                              hideKeyboard();
-                              Get.back();
-                            },
-                      name: title,
-                    ),
-                  )
-                  .toList(),
+              0.015.boxHeight,
+              CommonInput(
+                hint: 'Type here to search',
+                onChanged: onSearchForCustomer,
+                controller: textEditingController,
+              ),
+              if (filterValues != null)
+                if (filterValues!.isNotEmpty)
+                  ...filterValues!
+                      .map(
+                        (String title) => ListOfStrings(
+                          onPress: title == 'Other'
+                              ? () => Get.bottomSheet(
+                                    FormWriteOtherItemSheet(
+                                      controller: widget.controller,
+                                      keyOfValue: widget.keyOfValue,
+                                      partOfValue: widget.partOfValue,
+                                    ),
+                                    isScrollControlled: true,
+                                    elevation: 0.0,
+                                  )
+                              : () {
+                                  if (widget
+                                      .controller.formData[widget.partOfValue]
+                                      .containsKey(widget.keyOfValue)) {
+                                    widget.controller
+                                            .formData[widget.partOfValue]
+                                        [widget.keyOfValue] = title;
+                                    widget.controller.update();
+                                  }
+                                  // consoleLog(
+                                  //     controller.formData[partOfValue][keyOfValue]);
+                                  hideKeyboard();
+                                  Get.back();
+                                },
+                          name: title,
+                        ),
+                      )
+                      .toList()
+                else
+                  const CommonText(
+                    'There are no results',
+                    marginVertical: 0.06,
+                  ),
               SizedBox(height: DEVICE_HEIGHT * 0.02),
             ],
           ),

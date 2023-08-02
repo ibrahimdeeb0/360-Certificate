@@ -1,6 +1,6 @@
 import '../../../../general_exports.dart';
 
-class EICRSelectBT extends StatelessWidget {
+class EICRSelectBT extends StatefulWidget {
   const EICRSelectBT({
     required this.listTitles,
     required this.keyOfValue,
@@ -13,6 +13,35 @@ class EICRSelectBT extends StatelessWidget {
   final EicrController controller;
 
   @override
+  State<EICRSelectBT> createState() => _EICRSelectBTState();
+}
+
+class _EICRSelectBTState extends State<EICRSelectBT> {
+  TextEditingController textEditingController = TextEditingController();
+  List<String>? filterValues;
+
+  @override
+  // ignore: always_declare_return_types
+  initState() {
+    setState(() {
+      filterValues = widget.listTitles;
+    });
+
+    super.initState();
+  }
+
+  void onSearchForCustomer(String searchValue) {
+    filterValues = widget.listTitles
+        .where((String item) =>
+            item.toLowerCase().contains(searchValue.toLowerCase()))
+        .toList();
+
+    consoleLog(filterValues);
+
+    setState(() {});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BottomSheetContainer(
       title: 'Select',
@@ -20,33 +49,47 @@ class EICRSelectBT extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            SizedBox(height: DEVICE_HEIGHT * 0.02),
-            ...listTitles
-                .map(
-                  (String title) => ListOfStrings(
-                    onPress: title == 'Other'
-                        ? () => Get.bottomSheet(
-                              EICRInputOtherBT(
-                                controller: controller,
-                                keyOfValue: keyOfValue,
-                              ),
-                              isScrollControlled: true,
-                              elevation: 0.0,
-                            )
-                        : () {
-                            if (controller.gazSafetyData
-                                .containsKey(keyOfValue)) {
-                              controller.gazSafetyData[keyOfValue] = title;
-                              controller.update();
-                              consoleLog(controller.gazSafetyData[keyOfValue]);
-                            }
-                            hideKeyboard();
-                            Get.back();
-                          },
-                    name: title,
-                  ),
-                )
-                .toList(),
+            0.015.boxHeight,
+            CommonInput(
+              hint: 'Type here to search',
+              onChanged: onSearchForCustomer,
+              controller: textEditingController,
+            ),
+            if (filterValues != null)
+              if (filterValues!.isNotEmpty)
+                ...filterValues!
+                    .map(
+                      (String title) => ListOfStrings(
+                        onPress: title == 'Other'
+                            ? () => Get.bottomSheet(
+                                  EICRInputOtherBT(
+                                    controller: widget.controller,
+                                    keyOfValue: widget.keyOfValue,
+                                  ),
+                                  isScrollControlled: true,
+                                  elevation: 0.0,
+                                )
+                            : () {
+                                if (widget.controller.gazSafetyData
+                                    .containsKey(widget.keyOfValue)) {
+                                  widget.controller
+                                      .gazSafetyData[widget.keyOfValue] = title;
+                                  widget.controller.update();
+                                  consoleLog(widget.controller
+                                      .gazSafetyData[widget.keyOfValue]);
+                                }
+                                hideKeyboard();
+                                Get.back();
+                              },
+                        name: title,
+                      ),
+                    )
+                    .toList()
+              else
+                const CommonText(
+                  'There are no results',
+                  marginVertical: 0.06,
+                ),
             SizedBox(height: DEVICE_HEIGHT * 0.02),
           ],
         ),

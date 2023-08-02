@@ -38,6 +38,7 @@ class LandLordApplianceSection1 extends StatelessWidget {
                   keyOfValue: formKeyApplianceDesignation,
                   controller: controller,
                 ),
+                isScrollControlled: true,
               ),
             ),
             CustomSelectContainer(
@@ -50,6 +51,7 @@ class LandLordApplianceSection1 extends StatelessWidget {
                   keyOfValue: formKeyApplianceType,
                   controller: controller,
                 ),
+                isScrollControlled: true,
               ),
             ),
             CommonInput(
@@ -68,6 +70,7 @@ class LandLordApplianceSection1 extends StatelessWidget {
                   keyOfValue: formKeyApplianceMake,
                   controller: controller,
                 ),
+                isScrollControlled: true,
               ),
             ),
             SmallInputField(
@@ -81,6 +84,7 @@ class LandLordApplianceSection1 extends StatelessWidget {
                   keyOfValue: formKeyApplianceOwnedBy,
                   controller: controller,
                 ),
+                isScrollControlled: true,
               ),
             ),
             SmallInputField(
@@ -95,6 +99,7 @@ class LandLordApplianceSection1 extends StatelessWidget {
                   keyOfValue: formKeyApplianceInspected,
                   controller: controller,
                 ),
+                isScrollControlled: true,
               ),
             ),
             SmallInputField(
@@ -109,6 +114,7 @@ class LandLordApplianceSection1 extends StatelessWidget {
                   keyOfValue: formKeyApplianceFlueType,
                   controller: controller,
                 ),
+                isScrollControlled: true,
               ),
             ),
           ],

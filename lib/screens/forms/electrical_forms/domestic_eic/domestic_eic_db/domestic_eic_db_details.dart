@@ -42,6 +42,7 @@ class DBrdDetails extends StatelessWidget {
                             keyOfValue: formKeyDBRef,
                             controller: controller,
                           ),
+                          isScrollControlled: true,
                         ),
                         width: 0.65,
                         marginBottom: 0.02,
@@ -89,6 +90,7 @@ class DBrdDetails extends StatelessWidget {
                         keyOfValue: formKeyBoardMainSwitchTypeBS,
                         controller: controller,
                       ),
+                      isScrollControlled: true,
                     ),
                   ),
                   SmallInputField(
@@ -101,6 +103,7 @@ class DBrdDetails extends StatelessWidget {
                         keyOfValue: formKeyBoardRating,
                         controller: controller,
                       ),
+                      isScrollControlled: true,
                     ),
                     isInputSelection: true,
                     suffix: const CommonText(
@@ -121,6 +124,7 @@ class DBrdDetails extends StatelessWidget {
                         keyOfValue: formKeyBoardSupplyConductors,
                         controller: controller,
                       ),
+                      isScrollControlled: true,
                     ),
                     isInputSelection: true,
                     suffix: SvgPicture.asset(
@@ -139,6 +143,7 @@ class DBrdDetails extends StatelessWidget {
                         keyOfValue: formKeyBoardEarth,
                         controller: controller,
                       ),
+                      isScrollControlled: true,
                     ),
                     isInputSelection: true,
                     suffix: SvgPicture.asset(
@@ -158,6 +163,7 @@ class DBrdDetails extends StatelessWidget {
                         keyOfValue: formKeyBoardLocation,
                         controller: controller,
                       ),
+                      isScrollControlled: true,
                     ),
                   ),
                   FormToggleButton(
@@ -181,6 +187,7 @@ class DBrdDetails extends StatelessWidget {
                         keyOfValue: formKeyBoardSuppliedFrom,
                         controller: controller,
                       ),
+                      isScrollControlled: true,
                     ),
                     isInputSelection: true,
                   ),
@@ -222,6 +229,7 @@ class DBrdDetails extends StatelessWidget {
                         keyOfValue: formKeyBoardRating2,
                         controller: controller,
                       ),
+                      isScrollControlled: true,
                     ),
                     isInputSelection: true,
                     suffix: const CommonText(

@@ -1,6 +1,6 @@
 import '../../../../../general_exports.dart';
 
-class DBSelectBT extends StatelessWidget {
+class DBSelectBT extends StatefulWidget {
   const DBSelectBT({
     required this.listTitles,
     required this.keyOfValue,
@@ -15,6 +15,35 @@ class DBSelectBT extends StatelessWidget {
   final bool isChilde;
 
   @override
+  State<DBSelectBT> createState() => _DBSelectBTState();
+}
+
+class _DBSelectBTState extends State<DBSelectBT> {
+  TextEditingController textEditingController = TextEditingController();
+  List<String>? filterValues;
+
+  @override
+  // ignore: always_declare_return_types
+  initState() {
+    setState(() {
+      filterValues = widget.listTitles;
+    });
+
+    super.initState();
+  }
+
+  void onSearchForCustomer(String searchValue) {
+    filterValues = widget.listTitles
+        .where((String item) =>
+            item.toLowerCase().contains(searchValue.toLowerCase()))
+        .toList();
+
+    consoleLog(filterValues);
+
+    setState(() {});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BottomSheetContainer(
       title: 'Select',
@@ -22,45 +51,55 @@ class DBSelectBT extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            ...listTitles
-                .map(
-                  (String title) => ListOfStrings(
-                    onPress: title == 'Other'
-                        ? () => Get.bottomSheet(
-                              DBInputOtherBT(
-                                controller: controller,
-                                keyOfValue: keyOfValue,
-                                isChilde: isChilde,
-                              ),
-                              isScrollControlled: true,
-                            )
-                        : () {
-                            if (isChilde) {
-                              if (controller.childCircuitData
-                                  .containsKey(keyOfValue)) {
-                                controller.childCircuitData[keyOfValue] = title;
-                                controller.update();
-                                consoleLog(
-                                    controller.childCircuitData[keyOfValue]);
-                              }
-                            } else {
-                              if (controller.parentDistrBoardData
-                                  .containsKey(keyOfValue)) {
-                                controller.parentDistrBoardData[keyOfValue] =
-                                    title;
-                                controller.update();
-                                consoleLog(controller
-                                    .parentDistrBoardData[keyOfValue]);
-                              }
-                            }
+            0.015.boxHeight,
+            CommonInput(
+              hint: 'Type here to search',
+              onChanged: onSearchForCustomer,
+              controller: textEditingController,
+            ),
+            if (filterValues != null)
+              if (filterValues!.isNotEmpty)
+                ...filterValues!
+                    .map(
+                      (String title) => ListOfStrings(
+                        onPress: title == 'Other'
+                            ? () => Get.bottomSheet(
+                                  DBInputOtherBT(
+                                    controller: widget.controller,
+                                    keyOfValue: widget.keyOfValue,
+                                    isChilde: widget.isChilde,
+                                  ),
+                                  isScrollControlled: true,
+                                )
+                            : () {
+                                if (widget.isChilde) {
+                                  if (widget.controller.childCircuitData
+                                      .containsKey(widget.keyOfValue)) {
+                                    widget.controller.childCircuitData[
+                                        widget.keyOfValue] = title;
+                                    widget.controller.update();
+                                    consoleLog(widget.controller
+                                        .childCircuitData[widget.keyOfValue]);
+                                  }
+                                } else {
+                                  if (widget.controller.parentDistrBoardData
+                                      .containsKey(widget.keyOfValue)) {
+                                    widget.controller.parentDistrBoardData[
+                                        widget.keyOfValue] = title;
+                                    widget.controller.update();
+                                    consoleLog(
+                                        widget.controller.parentDistrBoardData[
+                                            widget.keyOfValue]);
+                                  }
+                                }
 
-                            hideKeyboard();
-                            Get.back();
-                          },
-                    name: title,
-                  ),
-                )
-                .toList(),
+                                hideKeyboard();
+                                Get.back();
+                              },
+                        name: title,
+                      ),
+                    )
+                    .toList(),
             SizedBox(height: DEVICE_HEIGHT * 0.02),
           ],
         ),
