@@ -113,6 +113,7 @@ class MinorWorksPage2 extends StatelessWidget {
                             controller: controller,
                             keyOfValue: formKeyLive,
                           ),
+                          isScrollControlled: true,
                         ),
                       ),
                       CommonInput(
@@ -131,6 +132,7 @@ class MinorWorksPage2 extends StatelessWidget {
                             controller: controller,
                             keyOfValue: formKeyCpc,
                           ),
+                          isScrollControlled: true,
                         ),
                       ),
                     ],
@@ -169,6 +171,7 @@ class MinorWorksPage2 extends StatelessWidget {
                         keyOfValue: formKeyOvercurrentBSEN,
                         keyOfBSType: formKeyOvercurrentType,
                       ),
+                      isScrollControlled: true,
                     ),
                   ),
                   CommonInput(
@@ -198,6 +201,7 @@ class MinorWorksPage2 extends StatelessWidget {
                         controller: controller,
                         keyOfValue: formKeyOvercurrentRating,
                       ),
+                      isScrollControlled: true,
                     ),
                   ),
                 ],
@@ -234,6 +238,7 @@ class MinorWorksPage2 extends StatelessWidget {
                         keyOfValue: formKeyRCDBSEN,
                         keyOfBSType: formKeyRCDType,
                       ),
+                      isScrollControlled: true,
                     ),
                   ),
                   CommonInput(
@@ -257,6 +262,7 @@ class MinorWorksPage2 extends StatelessWidget {
                         controller: controller,
                         keyOfValue: formKeyRCDRating,
                       ),
+                      isScrollControlled: true,
                     ),
                   ),
                   CommonInput(
@@ -275,6 +281,7 @@ class MinorWorksPage2 extends StatelessWidget {
                         controller: controller,
                         keyOfValue: formKeyRatedResidualOperatingCurrent,
                       ),
+                      isScrollControlled: true,
                     ),
                   ),
                 ],
@@ -312,6 +319,7 @@ class MinorWorksPage2 extends StatelessWidget {
                         keyOfValue: formKeyAFDDBSEN,
                         keyOfBSType: formKeyAFDDType,
                       ),
+                      isScrollControlled: true,
                     ),
                   ),
                   CommonInput(
@@ -339,6 +347,7 @@ class MinorWorksPage2 extends StatelessWidget {
                         controller: controller,
                         keyOfValue: formKeyAFDDRating,
                       ),
+                      isScrollControlled: true,
                     ),
                   ),
                 ],
@@ -375,6 +384,7 @@ class MinorWorksPage2 extends StatelessWidget {
                         keyOfValue: formKeySPDBSEN,
                         keyOfBSType: formKeySPDType,
                       ),
+                      isScrollControlled: true,
                     ),
                   ),
                   CommonInput(
