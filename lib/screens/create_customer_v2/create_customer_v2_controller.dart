@@ -354,8 +354,8 @@ class CreateCustomerV2Controller extends GetxController {
       siteDetailsNameController.clear();
       siteDetailsPhoneController.clear();
       siteDetailsEmailController.clear();
-      siteContactType = null;
-      siteContactTypeValue = null;
+      siteContactType = SiteContactType.talent;
+      siteContactTypeValue = SiteContactType.talent.name;
     } else {
       siteDetailsNameController.text = customerInfoNameController.text;
       siteDetailsPhoneController.text = customerInfoPhoneController.text;

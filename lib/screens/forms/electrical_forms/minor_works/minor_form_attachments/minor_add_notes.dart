@@ -218,6 +218,7 @@ class FormAddNoteCard extends StatelessWidget {
             topLabelText: 'Note:',
             maxLines: 6,
             value: note ?? '',
+            enabled: false,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,

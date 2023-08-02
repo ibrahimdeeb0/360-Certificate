@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:uuid/uuid.dart';
 
@@ -189,7 +190,8 @@ class LandlordSafetyController extends GetxController {
   }
 
   void onSelectDate(String? part, String? key, DateTime value) {
-    formData[part!][key!] = '$value'.split(' ')[0];
+    formData[part!][key!] = DateFormat('dd-MM-yyyy').format(value);
+    // formData[part!][key!] = '$value'.split(' ')[0];
     update();
     selectedDate = value;
   }
@@ -507,7 +509,7 @@ class LandlordSafetyController extends GetxController {
         // certificatesController.getAllCert();
         // homeController.getCertCount();
         profileController.getUserProfileData();
-         homeController.getAllUserData();
+        homeController.getAllUserData();
 
         if (isFromCertificate) {
           Get.back();
