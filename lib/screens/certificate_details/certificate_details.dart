@@ -35,7 +35,8 @@ class CertificateDetails extends StatelessWidget {
                       ),
                       CommonContainer(
                         paddingHorizontal: 0.04,
-                        height: Platform.isAndroid ? 0.82 : 0.8,
+                        height: Platform.isAndroid ? 0.82 : 0.79,
+                        // backgroundColor: Colors.green,
                         child: Column(
                           children: <Widget>[
                             SizedBox(height: DEVICE_HEIGHT * 0.02),

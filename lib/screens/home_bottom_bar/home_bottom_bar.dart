@@ -78,7 +78,7 @@ class HomeBottomBar extends StatelessWidget {
             shadowOpacity: 0.2,
             backgroundColor: COMMON_WHITE_COLOR,
             shadowColor: COMMON_GREY_COLOR,
-            height: Platform.isAndroid ? 0.08 : 0.1,
+            height: Platform.isAndroid ? 0.08 : 0.11,
             child: BottomNavigationBar(
               items: <BottomNavigationBarItem>[
                 BottomNavigationBarItem(
