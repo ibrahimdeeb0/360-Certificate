@@ -22,9 +22,10 @@ class AddNewSiteController extends GetxController {
   ];
 
   List<SiteContactType> listSitePropertyType = <SiteContactType>[
+    SiteContactType.agent,
+    SiteContactType.talent,
     SiteContactType.landlord,
     SiteContactType.director,
-    SiteContactType.agent,
     SiteContactType.siteManager,
     SiteContactType.financeManager,
   ];
