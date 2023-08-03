@@ -195,6 +195,7 @@ class AddNewSiteController extends GetxController {
       },
     ).request(
       onSuccess: (dynamic data, dynamic response) {
+        Get.find<SearchForCustomerController>().getAllCustomers();
         Get.find<SearchForCustomerController>().onSearching(
             Get.find<SearchForCustomerController>()
                 .searchController
