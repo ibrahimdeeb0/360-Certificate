@@ -61,6 +61,7 @@ class AddNewNotesController extends GetxController {
       keyTitle: titleNote.text.trim(),
       'body': detailsNote.text.trim(),
       'files_id': deletedImages,
+      'exclude': 'no',
     };
     consoleLog(deletedImages, key: 'deletedImages');
     if (status == NoteType.noteNew) {
@@ -70,6 +71,7 @@ class AddNewNotesController extends GetxController {
         path: '/certificates/$certId/notes/create',
         className: 'RegisterController/onCreateNote',
         requestFunction: onSave,
+        formatResponse: true,
         body: selectedImages.isEmpty
             ? bodyObject
             : await uploadArrayToFormData(
@@ -79,7 +81,7 @@ class AddNewNotesController extends GetxController {
       ).request(
         onSuccess: (dynamic data, dynamic response) {
           if (Get.isRegistered<CertificateDetailsController>()) {
-            Get.find<CertificateDetailsController>().getCompetedCert();
+            Get.find<CertificateDetailsController>().getCertificateDetails();
           }
           Get.back();
           update();
@@ -97,6 +99,7 @@ class AddNewNotesController extends GetxController {
         className: 'RegisterController/onCreateNote',
         requestFunction: onSave,
         withLoading: true,
+        formatResponse: true,
         body: selectedImages.isEmpty
             ? bodyObject
             : await uploadArrayToFormData(
@@ -104,6 +107,7 @@ class AddNewNotesController extends GetxController {
                   'note_type_id': 0, // 1 type for private
                   keyTitle: titleNote.text.trim(),
                   'body': detailsNote.text.trim(),
+                  'exclude': 'no',
                   // 'note_files': <dynamic>[],
                   'files_id[]': deletedImages,
                 },
@@ -113,7 +117,7 @@ class AddNewNotesController extends GetxController {
         onSuccess: (dynamic data, dynamic response) {
           dismissLoading();
           if (Get.isRegistered<CertificateDetailsController>()) {
-            Get.find<CertificateDetailsController>().getCompetedCert();
+            Get.find<CertificateDetailsController>().getCertificateDetails();
           }
           Get.back();
         },

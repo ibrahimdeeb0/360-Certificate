@@ -864,7 +864,7 @@ class EicrController extends GetxController {
 
       if (isFromCertificate) {
         Get.back();
-        Get.find<CertificateDetailsController>().getCompetedCert();
+        Get.find<CertificateDetailsController>().getCertificateDetails();
       } else {
         Get.offNamed(
           routeCertificateDetails,
@@ -911,14 +911,14 @@ class EicrController extends GetxController {
               )
             : certData,
       ).request(onSuccess: (dynamic data, dynamic response) async {
-       myAppController.clearCertFormInfo();
-      // certificatesController.getAllCert();
-      profileController.getUserProfileData();
-      homeController.getAllUserData();
+        myAppController.clearCertFormInfo();
+        // certificatesController.getAllCert();
+        profileController.getUserProfileData();
+        homeController.getAllUserData();
 
         if (isFromCertificate) {
           Get.back();
-          Get.find<CertificateDetailsController>().getCompetedCert();
+          Get.find<CertificateDetailsController>().getCertificateDetails();
         } else {
           Get.offNamed(
             routeCertificateDetails,

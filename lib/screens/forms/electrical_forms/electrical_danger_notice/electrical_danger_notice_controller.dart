@@ -433,7 +433,7 @@ class DangerNoticeController extends GetxController {
 
         if (isFromCertificate) {
           Get.back();
-          Get.find<CertificateDetailsController>().getCompetedCert();
+          Get.find<CertificateDetailsController>().getCertificateDetails();
         } else {
           Get.offNamed(
             routeCertificateDetails,
@@ -487,7 +487,7 @@ class DangerNoticeController extends GetxController {
 
         if (isFromCertificate) {
           Get.back();
-          Get.find<CertificateDetailsController>().getCompetedCert();
+          Get.find<CertificateDetailsController>().getCertificateDetails();
         } else {
           Get.offNamed(
             routeCertificateDetails,

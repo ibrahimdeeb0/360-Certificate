@@ -67,19 +67,18 @@ class CertificateDetailsController extends GetxController
   @override
   void onReady() {
     super.onReady();
-    getCompetedCert();
+    getCertificateDetails();
   }
 
   String? pdfFilePath;
-  Future<void> getCompetedCert() async {
+  Future<void> getCertificateDetails() async {
     hideKeyboard();
     startLoading();
 
     ApiRequest(
       path: '$formGetCertificate/${Get.arguments[keyId]}/view',
-      className: 'CertificateDetailsController/getCompetedCert',
-      requestFunction: getCompetedCert,
-
+      className: 'CertificateDetailsController/getCertDetails',
+      requestFunction: getCertificateDetails,
       // withLoading: true,
       formatResponse: true,
     ).request(onSuccess: (dynamic data, dynamic response) async {
