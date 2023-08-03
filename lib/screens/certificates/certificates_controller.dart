@@ -107,7 +107,7 @@ class CertificatesController extends GetxController {
       className: 'CertificatesController/getAllCert',
       requestFunction: getAllCert,
       withLoading: true,
-      // formatResponse: true,
+      formatResponse: true,
     ).request(
       onSuccess: (dynamic data, dynamic response) {
         myAppController.localStorage.saveToStorage(
@@ -146,6 +146,7 @@ class CertificatesController extends GetxController {
       className: 'CertificatesController/getPaginationCerts',
       requestFunction: getPaginationCerts,
       withLoading: withLoading ?? true,
+      formatResponse: true,
     ).request(
       onSuccess: (dynamic data, dynamic response) {
         myAppController.localStorage.saveToStorage(
