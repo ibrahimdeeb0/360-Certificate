@@ -125,9 +125,9 @@ class AddNewSiteController extends GetxController {
         siteDetailsPhoneController.text.trim().isNotEmpty;
     // final bool emailNotEmpty =
     //     siteDetailsEmailController.text.trim().isNotEmpty;
-    final bool contactTypeNotNull = siteContactType != null;
+    // final bool contactTypeNotNull = siteContactType != null; && contactTypeNotNull
 
-    return nameNotEmpty && phoneNotEmpty && contactTypeNotNull;
+    return nameNotEmpty && phoneNotEmpty;
   }
 
   Future<void> flushbarMessage() async {
@@ -186,7 +186,7 @@ class AddNewSiteController extends GetxController {
             ? addressControllerMap.listAddressData.first.state
             : '',
         'copy_contact': isAnotherSiteInfo ? 'no' : 'yes',
-        'type': siteContactType != null ? siteContactType.name : '',
+        'type': siteContactType.name,
         'f_name': siteDetailsNameController.text.trim(),
         'email': siteDetailsPhoneController.text.trim(),
         'phone': siteDetailsEmailController.text.trim(),
