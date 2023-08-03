@@ -130,9 +130,13 @@ class MinorWorksPage4 extends StatelessWidget {
               textAlign: TextAlign.start,
               fontColor: Colors.grey[500],
             ),
-            const CommonInput(
+            CommonInput(
               topLabelText: 'Position:',
               marginBottom: 0.02,
+              value: controller.formData[formKeyDeclaration]
+                  [formKeyEngineerPosition],
+              onChanged: (dynamic value) => controller.onChangDataSignature(
+                  formKeyDeclaration, formKeyEngineerPosition, value),
             ),
             CommonInput(
               topLabelText: 'Date:',
@@ -177,10 +181,10 @@ class MinorWorksPage4 extends StatelessWidget {
                     marginTop: 0.01,
                     marginBottom: 0.02,
                     value: controller.formData[formKeyDeclaration]
-                        [formKeyClientName],
+                        [formKeyCustomerName],
                     onChanged: (String value) =>
                         controller.onChangDataSignature(
-                            formKeyDeclaration, formKeyClientName, value),
+                            formKeyDeclaration, formKeyCustomerName, value),
                   ),
                   Align(
                     child: CommonText(

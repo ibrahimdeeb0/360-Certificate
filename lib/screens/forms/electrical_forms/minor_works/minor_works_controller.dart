@@ -39,11 +39,9 @@ class MinorWorksController extends GetxController {
 
   Map<String, dynamic> formData = <String, dynamic>{
     formKeyDeclaration: <String, dynamic>{
-      formKeyRecordIssueBy: '',
-      formKeyReceivedBy: '',
       formKeyEngineerName: '',
       formKeyEngineerDate: '',
-      formKeyClientName: '',
+      formKeyEngineerPosition: '',
       formKeyCustomerName: '',
       formKeyCustomerDate: '',
     },
@@ -137,6 +135,18 @@ class MinorWorksController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    //*----------initial values------------*//
+    formData[formKeyDeclaration][formKeyEngineerName] =
+        '${profileController.userDataProfile['first_name']} ${profileController.userDataProfile['last_name']}';
+
+    onSelectDeclarationDate(
+        formKeyDeclaration, formKeyEngineerDate, DateTime.now());
+
+    onSelectDeclarationDate(
+        formKeyDeclaration, formKeyCustomerDate, DateTime.now());
+
+    onSelectDate(formKeyDateCompleted, DateTime.now());
+    //*----------------------*//
     isFromCertificate = Get.arguments?[formKeyFromCertificate] ?? false;
     customerId = myAppController.certFormInfo[keyCustomerId];
     siteId = myAppController.certFormInfo[keySiteId];
@@ -208,17 +218,6 @@ class MinorWorksController extends GetxController {
 
       update();
     }
-
-    formData[formKeyDeclaration][formKeyRecordIssueBy] =
-        '${profileController.userDataProfile['first_name']} ${profileController.userDataProfile['last_name']}';
-
-    onSelectDeclarationDate(
-        formKeyDeclaration, formKeyEngineerDate, DateTime.now());
-
-    onSelectDeclarationDate(
-        formKeyDeclaration, formKeyCustomerDate, DateTime.now());
-
-    onSelectDate(formKeyDateCompleted, DateTime.now());
 
     update();
   }
@@ -454,7 +453,7 @@ class MinorWorksController extends GetxController {
 
         if (isFromCertificate) {
           Get.back();
-          Get.find<CertificateDetailsController>().getCompetedCert();
+          Get.find<CertificateDetailsController>().getCertificateDetails();
         } else {
           Get.offNamed(
             routeCertificateDetails,
@@ -509,7 +508,7 @@ class MinorWorksController extends GetxController {
 
         if (isFromCertificate) {
           Get.back();
-          Get.find<CertificateDetailsController>().getCompetedCert();
+          Get.find<CertificateDetailsController>().getCertificateDetails();
         } else {
           Get.offNamed(
             routeCertificateDetails,

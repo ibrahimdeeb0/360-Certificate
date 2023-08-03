@@ -186,7 +186,7 @@ class AddNewSiteController extends GetxController {
             ? addressControllerMap.listAddressData.first.state
             : '',
         'copy_contact': isAnotherSiteInfo ? 'no' : 'yes',
-        'type': siteContactType != null ? siteContactType!.name : '',
+        'type': siteContactType != null ? siteContactType.name : '',
         'f_name': siteDetailsNameController.text.trim(),
         'email': siteDetailsPhoneController.text.trim(),
         'phone': siteDetailsEmailController.text.trim(),
