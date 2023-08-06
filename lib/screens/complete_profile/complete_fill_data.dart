@@ -78,7 +78,7 @@ class CompleteFillData extends StatelessWidget {
             marginBottom: 0.02,
             marginHorizontal: 0.04,
             child: CommonText(
-              controller.currentPage == CurrentPage.page4 ? 'Finished' : 'Next',
+              controller.currentPage == CurrentPage.page4 ? 'Finish' : 'Next',
               marginHorizontal: 0.02,
               fontColor: Colors.white,
               fontWeight: FontWeight.bold,

@@ -54,7 +54,7 @@ class CertTab extends StatelessWidget {
                   CertTitleItem(
                     title: 'Street No & Name',
                     subTitle:
-                        '${controller.certDetails['form_data']['site']['postal_code']}',
+                        '${controller.certDetails['form_data']['site']['street_num']}',
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
