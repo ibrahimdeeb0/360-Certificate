@@ -48,11 +48,19 @@ class BreakdownServiceAttachmentsController extends GetxController {
     );
 
     if (imagesFile.where((XFile img) => img.path == file!.path).isEmpty) {
-      consoleLog('inside');
+      int? idValue;
+      if (imagesData.isNotEmpty) {
+        idValue = imagesData.first.id + 1;
+      } else {
+        idValue = imagesData.length + 1;
+      }
+
       imagesData.insert(
         0,
         FormImageClass(
+          id: idValue,
           file: file!,
+          image: file.path,
           onPress: () {
             imagesData
                 .removeWhere((FormImageClass element) => element.file == file);

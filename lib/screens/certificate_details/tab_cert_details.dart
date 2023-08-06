@@ -31,7 +31,7 @@ class CertTab extends StatelessWidget {
                   CertTitleItem(
                     title: 'Site Name',
                     subTitle:
-                        '${controller.certDetails['form_data']['customer']['sites'][0]['name']}',
+                        '${controller.certDetails['form_data']['site']['name']}',
                   ),
                   CertTitleItem(
                     title: 'Customer Name',
@@ -54,7 +54,7 @@ class CertTab extends StatelessWidget {
                   CertTitleItem(
                     title: 'Street No & Name',
                     subTitle:
-                        '${controller.certDetails['form_data']['customer']['sites'][0]['street_num']}',
+                        '${controller.certDetails['form_data']['site']['postal_code']}',
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -62,12 +62,12 @@ class CertTab extends StatelessWidget {
                       CertTitleItem(
                         title: 'City',
                         subTitle:
-                            '${controller.certDetails['form_data']['customer']['sites'][0]['city']}',
+                            '${controller.certDetails['form_data']['site']['city']}',
                       ),
                       CertTitleItem(
                         title: 'Country',
                         subTitle:
-                            '${controller.certDetails['form_data']['customer']['country']['name']}',
+                            '${controller.certDetails['form_data']['site']['country_id']}',
                       ),
                       const SizedBox(),
                     ],
@@ -75,7 +75,7 @@ class CertTab extends StatelessWidget {
                   CertTitleItem(
                     title: 'Postcode',
                     subTitle:
-                        '${controller.certDetails['form_data']['customer']['sites'][0]['postal_code']}',
+                        '${controller.certDetails['form_data']['site']['postal_code']}',
                   ),
                 ],
               ),

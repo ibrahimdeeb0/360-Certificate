@@ -11,6 +11,19 @@ class CertificateDetails extends StatelessWidget {
       appBar: Header(
         title: 'Certificate',
       ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     // Map<String, dynamic> test = {
+      //     //   'cert_id': 0,
+      //     //   'attachment_type': '',
+      //     //   'note_title': '',
+      //     //   'note_body': '',
+      //     //   'image_id': '',
+      //     //   'is_include': '',
+      //     // };
+      //     // consoleLogPretty(test);
+      //   },
+      // ),
       body: GetBuilder<CertificateDetailsController>(
         init: CertificateDetailsController(),
         builder: (CertificateDetailsController controller) {
@@ -35,7 +48,7 @@ class CertificateDetails extends StatelessWidget {
                       ),
                       CommonContainer(
                         paddingHorizontal: 0.04,
-                        height: Platform.isAndroid ? 0.82 : 0.79,
+                        height: Platform.isAndroid ? 0.822 : 0.79,
                         // backgroundColor: Colors.green,
                         child: Column(
                           children: <Widget>[
@@ -75,6 +88,7 @@ class CertificateDetails extends StatelessWidget {
                             ),
                             // Body
                             Expanded(
+                              flex: 2,
                               child: SingleChildScrollView(
                                 controller: controller.scrollController,
                                 child: Column(
