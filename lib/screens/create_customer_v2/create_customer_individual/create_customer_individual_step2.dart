@@ -32,15 +32,41 @@ class CreateCustomerIndividualStep2 extends StatelessWidget {
                 onChanged: controller.onWriteSiteName,
                 keyboardType: TextInputType.name,
               ),
-              ToggleYesNo(
-                onChange: (bool value) {
-                  consoleLog(value);
-                  controller.isSiteAddSameInfo = value;
-                  controller.update();
-                  consoleLog(controller.isSiteAddSameInfo);
-                },
-                toggleValue: controller.isSiteAddSameInfo,
-                text: 'Does the site address match the customer details?',
+              // ToggleYesNo(
+              //   onChange: (bool value) {
+              //     consoleLog(value);
+              //     controller.isSiteAddSameInfo = value;
+              //     controller.update();
+              //     consoleLog(controller.isSiteAddSameInfo);
+              //   },
+              //   toggleValue: controller.isSiteAddSameInfo,
+              //   text: 'Is the site address the same the customer details?',
+              // ),
+              // 0.02.boxHeight,
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  CommonText(
+                    'Is the site address the same the customer details?',
+                    textAlign: TextAlign.start,
+                    fontColor: Colors.grey[700],
+                    containerStyle: const CommonContainerModel(width: 0.7),
+                    bottomChild: const SizedBox(),
+                  ),
+                  Switch(
+                    value: controller.isSiteAddSameInfo,
+                    onChanged: (bool value) {
+                      // controller.isSiteAddSameInfo = value;
+                      //     consoleLog(value);
+                      controller.isSiteAddSameInfo = value;
+                      controller.update();
+                      consoleLog(controller.isSiteAddSameInfo);
+                    },
+                    activeColor: Color(AppColors.primary),
+                  ),
+                ],
               ),
               0.02.boxHeight,
 
