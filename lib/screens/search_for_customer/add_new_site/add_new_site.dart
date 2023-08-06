@@ -135,11 +135,9 @@ class AddNewSite extends StatelessWidget {
                             //   text: 'Email Address',
                             // ),
                             hint: 'Select Contact Type',
-                            value: controller.siteContactType != null
-                                ? (controller.siteContactType as Enum)
-                                    .name
-                                    .capitalizeFirst
-                                : '',
+                            value: (controller.siteContactType)
+                                .name
+                                .capitalizeFirst,
                             onTap: controller.selectSiteContactType,
                           ),
                         ],

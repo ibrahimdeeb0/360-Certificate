@@ -15,7 +15,7 @@ class SearchForCustomer extends StatelessWidget {
         init: SearchForCustomerController(),
         builder: (SearchForCustomerController controller) {
           controller.searchResult
-              .sort((a, b) => a['f_name'].compareTo(b['f_name']));
+              .sort((dynamic a,dynamic b) => a['f_name'].compareTo(b['f_name']));
 
           return CommonContainer(
             style: appContainerStyles.containerStyles,
