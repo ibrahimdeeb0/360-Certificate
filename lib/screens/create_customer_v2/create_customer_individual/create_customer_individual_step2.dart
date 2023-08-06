@@ -40,7 +40,7 @@ class CreateCustomerIndividualStep2 extends StatelessWidget {
                   consoleLog(controller.isSiteAddSameInfo);
                 },
                 toggleValue: controller.isSiteAddSameInfo,
-                text: 'Is the site address the same the customer details?',
+                text: 'Does the site address match the customer details?',
               ),
               0.02.boxHeight,
 
