@@ -88,21 +88,12 @@ class MySettings extends StatelessWidget {
                                       const CommonText(
                                         'View Your Plan',
                                       ),
-                                      Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: <Widget>[
-                                          CommonText(
-                                            homeController.plan,
-                                            fontColor: Colors.white,
-                                            containerStyle: appContainerStyles
-                                                .planContainerStyle
-                                                .copyWith(
-                                                    marginHorizontal: 0.01),
-                                          ),
-                                          const Icon(Icons.arrow_forward),
-                                        ],
+                                      CommonText(
+                                        homeController.plan,
+                                        fontColor: Colors.white,
+                                        containerStyle: appContainerStyles
+                                            .planContainerStyle
+                                            .copyWith(marginHorizontal: 0.01),
                                       ),
                                     ],
                                   ),
