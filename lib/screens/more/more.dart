@@ -28,6 +28,7 @@ class More extends StatelessWidget {
                       fontColor: Colors.white,
                       containerStyle: appContainerStyles.planContainerStyle
                           .copyWith(marginBottom: 0.01),
+                      onPress: homeController.getUrlSubscription,
                     ),
                   ),
                   Container(
