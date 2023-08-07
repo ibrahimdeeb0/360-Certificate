@@ -57,49 +57,41 @@ class MinorAttachmentsController extends GetxController {
       imageQuality: 30,
     );
 
-    consoleLog(file!.path);
+    if (file != null) {
+      if (imagesFile.where((XFile img) => img.path == file.path).isEmpty) {
+        int? idValue;
+        if (imagesData.isNotEmpty) {
+          idValue = imagesData.first.id + 1;
+        } else {
+          idValue = imagesData.length + 1;
+        }
 
-    if (imagesFile.where((XFile img) => img.path == file.path).isEmpty) {
-      int? idValue;
-      if (imagesData.isNotEmpty) {
-        idValue = imagesData.first.id + 1;
-      } else {
-        idValue = imagesData.length + 1;
+        imagesData.insert(
+          0,
+          FormImageClass(
+            id: idValue,
+            file: file,
+            onPress: () {
+              imagesData.removeWhere(
+                  (FormImageClass element) => element.file == file);
+
+              imagesFile
+                  .removeWhere((XFile element) => element.path == file.path);
+              update();
+            },
+            image: file.path,
+          ),
+        );
+        imagesFile.insert(0, file);
       }
-
-      consoleLog('inside');
-      imagesData.insert(
-        0,
-        FormImageClass(
-          id: idValue,
-          file: file,
-          onPress: () {
-            imagesData
-                .removeWhere((FormImageClass element) => element.file == file);
-
-            imagesFile
-                .removeWhere((XFile element) => element.path == file.path);
-            update();
-          },
-          image: file.path,
-        ),
+    } else {
+      showMessage(
+        description: 'No image has been uploaded',
+        textColor: Colors.red[800],
       );
-      // imagesData.add(
-      //   FormImageClass(
-      //     file: file!,
-      //     onPress: () {
-      //       imagesData
-      //           .removeWhere((FormImageClass element) => element.file == file);
-
-      //       imagesFile
-      //           .removeWhere((XFile element) => element.path == file.path);
-      //       update();
-      //     },
-      //   ),
-      // );
-      // imagesFile.add(file);
-      imagesFile.insert(0, file);
     }
+
+    consoleLog(file!.path);
 
     consoleLog(imagesFile, key: 'selected_Images');
 

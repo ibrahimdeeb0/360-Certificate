@@ -135,6 +135,8 @@ class MinorWorksController extends GetxController {
   List<FormImageClass> imagesData = <FormImageClass>[];
   List<FormNoteClass> notesData = <FormNoteClass>[];
 
+  // List<Map<String, dynamic>> formAttachmentsData = <Map<String, dynamic>>[];
+
   //*------------------------------------------------*//
   @override
   void onInit() {
@@ -324,23 +326,35 @@ class MinorWorksController extends GetxController {
     update();
   }
 
-  List<Map<String, dynamic>> formAttachmentsData = <Map<String, dynamic>>[];
-  Future<void> onSaveFormAttachments() async {
-    if (imagesData.isNotEmpty) {
-      for (FormImageClass item in imagesData) {
-        formAttachmentsData.add(
-          <String, dynamic>{
-            'id': item.id,
-            'exclude': item.isIncluded ? 'yes' : 'no',
-            'note': item.note,
-            'image': item.image,
-          },
-        );
-      }
-    }
-    // consoleLog(imagesData);
-    consoleLogPretty(formAttachmentsData, key: 'formAttachmentsData');
-  }
+  // Future<void> onStoreFormImages() async {
+  //   hideKeyboard();
+  //   if (imagesData.isNotEmpty) {
+  //     for (FormImageClass item in imagesData) {
+  //       startLoading();
+
+  //       ApiRequest(
+  //         path: '/store-image',
+  //         method: ApiMethods.post,
+  //         className: 'MinorWorksController/onStoreFormImages',
+  //         requestFunction: onStoreFormImages,
+  //         withLoading: true,
+  //         body: await addFormDataToJson(
+  //           jsonObject: <String, dynamic>{
+  //             'type': 'form',
+  //             'type_id': 2,
+  //           },
+  //           file: item.file,
+  //           fileKey: 'image',
+  //         ),
+  //       ).request(
+  //         onSuccess: (dynamic data, dynamic response) {
+  //           update();
+  //         },
+  //         // onError: (error) {},
+  //       );
+  //     }
+  //   }
+  // }
 
   // *****************  signature functions **************** //
 

@@ -55,27 +55,36 @@ class MinorWriteNote extends StatelessWidget {
                         CommonButton(
                           onPress: () {
                             hideKeyboard();
-                            if (fromImage) {
-                              controller.imagesData[Get.arguments['index']]
-                                  .note = controller.noteController.text.trim();
-                            } else {
-                              if (isUpdateNote) {
-                                controller.notesData[Get.arguments['index']]
+
+                            if (controller.noteController.text
+                                .trim()
+                                .isNotEmpty) {
+                              if (fromImage) {
+                                controller.imagesData[Get.arguments['index']]
                                         .note =
                                     controller.noteController.text.trim();
                               } else {
-                                controller.notesData.insert(
-                                  0,
-                                  FormNoteClass(
-                                    note: controller.noteController.text.trim(),
-                                  ),
-                                );
+                                if (isUpdateNote) {
+                                  controller.notesData[Get.arguments['index']]
+                                          .note =
+                                      controller.noteController.text.trim();
+                                } else {
+                                  controller.notesData.insert(
+                                    0,
+                                    FormNoteClass(
+                                      note:
+                                          controller.noteController.text.trim(),
+                                    ),
+                                  );
+                                }
                               }
-                            }
 
-                            controller.noteController.clear();
-                            controller.update();
-                            Get.back();
+                              controller.noteController.clear();
+                              controller.update();
+                              Get.back();
+                            } else {
+                              Get.back();
+                            }
                           },
                           text: 'Save',
                           width: 0.45,
