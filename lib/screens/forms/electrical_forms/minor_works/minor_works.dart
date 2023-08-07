@@ -13,6 +13,12 @@ class MinorWorks extends StatelessWidget {
             withBack: false,
             title: 'Minor Works',
             circleNumbering: '',
+            showSaveBtn: (controller.selectedId !=
+                    controller.listFormSections.length - 1) &&
+                !controller.isTemplate!,
+            onPressSave: () {
+              controller.onNext(fromSave: true);
+            },
             actionItem: ActionItem(
               type: ActionType.image,
             ),
@@ -23,6 +29,27 @@ class MinorWorks extends StatelessWidget {
               Get.to(() => const MinorAddNote());
             },
           ),
+          // floatingActionButton: FloatingActionButton(
+          //   onPressed: () {
+          //     List<Map<String, dynamic>> data = [];
+          //     if (controller.imagesData.isNotEmpty) {
+          //       for (FormImageClass item in controller.imagesData) {
+          //         data.add(
+          //           <String, dynamic>{
+          //             'id': item.id,
+          //             'exclude': item.isIncluded ? 'yes' : 'no',
+          //             'note': item.note,
+          //             'image': item.image,
+          //           },
+          //         );
+          //       }
+          //     }
+          //     consoleLog(controller.imagesData);
+          //     consoleLogPretty(data);
+          //   },
+          // ),
+          // floatingActionButtonLocation:
+          //     FloatingActionButtonLocation.miniStartTop,
           body: CommonContainer(
             width: 1,
             height: 1,
@@ -70,9 +97,8 @@ class MinorWorks extends StatelessWidget {
                           width: 0.44,
                         ),
                         CommonButton(
-                          // text: controller.finalPageButton(),
-                          text: 'Next',
-                          onPress: controller.onPress,
+                          text: controller.finalPageButton(),
+                          onPress: controller.onNext,
                           width: 0.44,
                         ),
                       ],

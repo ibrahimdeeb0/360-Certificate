@@ -13,7 +13,9 @@ class MinorAddImage extends StatelessWidget {
               title: 'Images & Notes',
               withShadow: true,
               actionItem: ActionItem(type: ActionType.save),
-              onPressSave: () {},
+              onPressSave: () {
+                Get.back();
+              },
             ),
             floatingActionButton: Visibility(
               visible: controller.imagesData.isNotEmpty,
@@ -93,6 +95,7 @@ class MinorAddImage extends StatelessWidget {
                                                 Get.back();
                                               }
                                               item.onPress?.call();
+                                              controller.update();
                                             },
                                             title: '',
                                           );

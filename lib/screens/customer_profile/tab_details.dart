@@ -27,8 +27,12 @@ class DetailsTab extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      const CommonText(
-                        'Are the billing details the same ',
+                      SizedBox(
+                        width: 0.65.flexWidth,
+                        child: const CommonText(
+                          "Is the site's address provided the same as the customer's address?",
+                          textAlign: TextAlign.start,
+                        ),
                       ),
                       if (controller.billingSame)
                         const CommonButton(
