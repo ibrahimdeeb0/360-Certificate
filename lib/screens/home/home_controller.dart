@@ -192,7 +192,7 @@ class HomeController extends GetxController {
           plan = '${allUserData['user']['subscriptions'][0]['name']} Plan';
           moreController.update();
         } else {
-          plan = 'Not Subscription';
+          plan = 'Not Subscribed';
           moreController.update();
         }
 
