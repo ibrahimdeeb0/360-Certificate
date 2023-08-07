@@ -129,6 +129,7 @@ class MinorAddImage extends StatelessWidget {
                                   ),
                               ],
                             ),
+                            0.06.boxHeight
                           ],
                         ),
                       )

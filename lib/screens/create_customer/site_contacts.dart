@@ -14,7 +14,7 @@ class SiteContacts extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         CommonText(
-          'Is The Site Contact The Same As The Client Contact ?',
+          'Is The Site Contact The Same As The Client Contact?',
           textAlign: TextAlign.start,
           marginBottom: 0.015,
           columnCrossAxisAlignment: CrossAxisAlignment.start,
