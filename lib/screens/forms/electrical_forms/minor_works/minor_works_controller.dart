@@ -141,7 +141,7 @@ class MinorWorksController extends GetxController {
     super.onInit();
     //*----------initial values------------*//
     formData[formKeyDeclaration][formKeyEngineerName] =
-        '${profileController.userDataProfile['first_name']} ${profileController.userDataProfile['last_name']}';
+        '${profileController.userProfileData['first_name']} ${profileController.userProfileData['last_name']}';
 
     onSelectDeclarationDate(
         formKeyDeclaration, formKeyEngineerDate, DateTime.now());

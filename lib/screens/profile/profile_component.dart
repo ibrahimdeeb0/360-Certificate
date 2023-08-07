@@ -60,13 +60,13 @@ class ProfileComponent extends StatelessWidget {
                               clipBehavior: Clip.hardEdge,
                             ),
                             child: controller.fileImage == null
-                                ? controller.userDataProfile[
+                                ? controller.userProfileData[
                                             'image_profile_url'] ==
                                         null
                                     ? const CircleContainer()
                                     : CachedImage(
                                         image:
-                                            '${controller.userDataProfile['image_profile_url']}',
+                                            '${controller.userProfileData['image_profile_url']}',
                                         width: DEVICE_WIDTH * 1,
                                         height: DEVICE_WIDTH * 1,
                                         withPlaceHolder: true,
@@ -139,7 +139,7 @@ class ProfileComponent extends StatelessWidget {
                               children: <Widget>[
                                 SizedBox(height: DEVICE_HEIGHT * 0.008),
                                 CommonText(
-                                  keepCertUsage ?? '45/100',
+                                  keepCertUsage ?? '',
                                   style: appTextStyles
                                       .h2StyleBlack()
                                       .copyWith(textAlign: TextAlign.start),
@@ -170,7 +170,7 @@ class ProfileComponent extends StatelessWidget {
                               children: <Widget>[
                                 SizedBox(height: DEVICE_HEIGHT * 0.008),
                                 CommonText(
-                                  emailAllowance ?? '37/100',
+                                  emailAllowance ?? '',
                                   style: appTextStyles.h2StyleBlack().copyWith(
                                         rowMainAxisSize: MainAxisSize.max,
                                         textAlign: TextAlign.start,
@@ -225,9 +225,9 @@ class ProfileComponent extends StatelessWidget {
                       CommonInput(
                         enabled: false,
                         topLabelText: 'Email',
-                        hint: controller.userDataProfile.isEmpty
+                        hint: controller.userProfileData.isEmpty
                             ? ' '
-                            : controller.userDataProfile['email'],
+                            : controller.userProfileData['email'],
                         marginBottom: 0.01,
                       ),
                       CommonInput(

@@ -4,7 +4,7 @@ import '../../general_exports.dart';
 void showMessage({
   String? description,
   String? type,
-  int? textColor,
+  dynamic textColor,
   bool withBackground = true,
   int duration = 3,
   Color? backgroundColor,

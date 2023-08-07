@@ -15,10 +15,9 @@ class Profile extends StatelessWidget {
           body: ProfileComponent(
             emailAllowance: '0/100',
             diskSpace: '5 GB',
-            // keepCertUsage: '0/100',
             deleteJobUsage: '0/100',
-            keepCertUsage: controller.userDataProfile.isNotEmpty
-                ? '${controller.userDataProfile['certificate_count']}/ ${homeController.showFreeAlert ? '20' : '100'} '
+            keepCertUsage: controller.userProfileData.isNotEmpty
+                ? '${controller.userProfileData['certificate_count']}/ ${homeController.showFreeAlert ? '20' : '100'} '
                 : '',
           ),
         );

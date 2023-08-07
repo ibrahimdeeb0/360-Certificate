@@ -64,13 +64,13 @@ class HomeHeader extends StatelessWidget with PreferredSizeWidget {
                         height: DEVICE_HEIGHT * 1,
                         fit: BoxFit.cover,
                       )
-                    : controller.userDataProfile.isNotEmpty
-                        ? controller.userDataProfile['image_profile_url'] ==
+                    : controller.userProfileData.isNotEmpty
+                        ? controller.userProfileData['image_profile_url'] ==
                                 null
                             ? const CircleContainer()
                             : CachedImage(
                                 image:
-                                    '${controller.userDataProfile['image_profile_url']}',
+                                    '${controller.userProfileData['image_profile_url']}',
                                 width: DEVICE_WIDTH * 1,
                                 height: DEVICE_HEIGHT * 1,
                                 withPlaceHolder: true,

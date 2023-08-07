@@ -10,14 +10,7 @@ class ProfileController extends GetxController {
   TextEditingController newPassController = TextEditingController();
   TextEditingController confirmNewPassController = TextEditingController();
 
-  Map<String, dynamic> userDataProfile = <String, dynamic>{};
-  // Map<String, dynamic> userDataProfile = <String, dynamic>{};
-
-  // @override
-  // void onInit() {
-  //   super.onInit();
-  //   getUserProfileData();
-  // }
+  Map<String, dynamic> userProfileData = <String, dynamic>{};
 
   void onPressNewPass() {
     final bool validInputsPass = currentPassController.text.isNotEmpty &&
@@ -45,17 +38,20 @@ class ProfileController extends GetxController {
       formatResponse: true,
     ).request(
       onSuccess: (dynamic data, dynamic response) {
-        userDataProfile = data['user'];
+        userProfileData = data['user'];
         setData();
+
+        if (Get.isRegistered<MySettingsController>()) {
+          Get.find<MySettingsController>().update();
+        }
       },
-      // onError: (dynamic error) {},
     );
   }
 
   void setData() {
-    firstNameController.text = userDataProfile['first_name'];
-    lastNameController.text = userDataProfile['last_name'];
-    phoneNumberController.text = userDataProfile['phone'];
+    firstNameController.text = userProfileData['first_name'];
+    lastNameController.text = userProfileData['last_name'];
+    phoneNumberController.text = userProfileData['phone'];
     update();
   }
 
@@ -92,88 +88,87 @@ class ProfileController extends GetxController {
 
   Future<void> onUpdateProfileData() async {
     hideKeyboard();
-    // startLoading();
-    if (fileImage == null) {
+    ApiRequest(
+      method: ApiMethods.put,
+      path: keyProfileUpdate,
+      className: 'MyProfileController/onUpdateProfileData',
+      requestFunction: onUpdateProfileData,
+      withLoading: true,
+      body: <String, dynamic>{
+        'first_name': firstNameController.text.isEmpty
+            ? '${userProfileData['first_name']}'
+            : firstNameController.text,
+        'last_name': lastNameController.text.isEmpty
+            ? '${userProfileData['last_name']}'
+            : lastNameController.text,
+        'email': '${userProfileData['email']}',
+        'phone': firstNameController.text.isEmpty
+            ? '${userProfileData['phone']}'
+            : phoneNumberController.text,
+      },
+    ).request(
+      onSuccess: (dynamic data, dynamic response) {
+        showMessage(
+          description: 'Success Edit Changes',
+        );
+        getUserProfileData();
+        update();
+      },
+    );
+  }
+
+  final ImagePicker _picker = ImagePicker();
+  XFile? fileImage;
+  Future<dynamic> pickerFunction(ImageSource source) async {
+    hideKeyboard();
+
+    final XFile? file = await _picker.pickImage(
+      source: source,
+      imageQuality: 30,
+    );
+
+    if (file != null) {
+      fileImage = file;
+      update();
+      if (Get.isBottomSheetOpen!) {
+        Get.back();
+      }
+      onUpdateProfileImage();
+    } else {
+      showMessage(
+        description: 'No image has been uploaded',
+        textColor: Colors.red[800],
+      );
+    }
+  }
+
+  Future<void> onUpdateProfileImage() async {
+    hideKeyboard();
+    if (fileImage != null) {
       ApiRequest(
-        method: ApiMethods.put,
-        path: keyProfileUpdate,
-        className: 'MyProfileController/onUpdateProfileData',
-        requestFunction: onUpdateProfileData,
+        path: '/profile/update-image',
+        method: ApiMethods.post,
+        className: 'ProfileController/onUpdateProfileImage',
+        requestFunction: onUpdateProfileImage,
+        body: await imageAsFormData(
+          file: fileImage,
+          fileKey: 'image',
+        ),
         withLoading: true,
-        body: <String, dynamic>{
-          'first_name': firstNameController.text.isEmpty
-              ? '${userDataProfile['first_name']}'
-              : firstNameController.text,
-          'last_name': lastNameController.text.isEmpty
-              ? '${userDataProfile['last_name']}'
-              : lastNameController.text,
-          'email': '${userDataProfile['email']}',
-          'phone': firstNameController.text.isEmpty
-              ? '${userDataProfile['phone']}'
-              : phoneNumberController.text,
-        },
       ).request(
         onSuccess: (dynamic data, dynamic response) {
           showMessage(
-            description: 'Success Edit Changes',
+            description: 'Success Update Image',
           );
-
           getUserProfileData();
           update();
         },
       );
     } else {
-      ApiRequest(
-        method: ApiMethods.post,
-        path: keyProfileUpdate,
-        className: 'MyProfileController/onUpdateProfileData',
-        requestFunction: onUpdateProfileData,
-        withLoading: true,
-        body: await addFormDataToJson(
-          file: fileImage,
-          jsonObject: <String, dynamic>{
-            '_method': 'put',
-            'first_name': firstNameController.text.isEmpty
-                ? '${userDataProfile['first_name']}'
-                : firstNameController.text,
-            'last_name': lastNameController.text.isEmpty
-                ? '${userDataProfile['last_name']}'
-                : lastNameController.text,
-            'email': '${userDataProfile['email']}',
-            'phone': firstNameController.text.isEmpty
-                ? '${userDataProfile['phone']}'
-                : phoneNumberController.text,
-          },
-          fileKey: 'image',
-        ),
-      ).request(
-        onSuccess: (dynamic data, dynamic response) {
-          showMessage(
-            description: 'Success Edit Changes',
-          );
-          getUserProfileData();
-
-          update();
-        },
+      showMessage(
+        description: 'Please upload an image',
+        textColor: Colors.red[800],
       );
     }
-  }
-
-  XFile? fileImage;
-  Future<dynamic> pickerFunction(ImageSource source) async {
-    await ImagePicker()
-        .pickImage(
-      source: source,
-      imageQuality: 30,
-    )
-        .then(
-      (XFile? value) {
-        fileImage = value;
-        update();
-        Get.back();
-        return null;
-      },
-    );
-    update();
   }
 }
