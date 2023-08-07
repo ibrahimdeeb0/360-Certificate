@@ -291,9 +291,8 @@ class UpdatePostcodeController extends GetxController {
       },
     ).request(
       onSuccess: (dynamic data, dynamic response) {
-        // profileController.getUserProfileData();
-        homeController.getAllUserData();
-        Get.back();
+        profileController.getUserProfileData();
+         Get.back();
         // update();
       },
       onError: (dynamic error) {

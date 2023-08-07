@@ -35,7 +35,7 @@ class More extends StatelessWidget {
                     // color: Colors.green,
                     padding: EdgeInsets.symmetric(horizontal: 0.04.flexWidth),
                     child: CommonText(
-                      'Hello, ${profileController.userDataProfile['first_name']}'
+                      'Hello, ${profileController.userProfileData['first_name']}'
                           .capitalize,
                       fontSize: fontH1,
                       fontWeight: FontWeight.bold,

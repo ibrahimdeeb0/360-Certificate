@@ -7,49 +7,35 @@ class MySettingsController extends GetxController {
   Map<String, dynamic> mainUserData = <String, dynamic>{};
   XFile? compLogoFile;
 
-  // @override
-  // void onReady() {
-  //   super.onReady();
-  //   userData = homeController.allUserData['user'];
+  @override
+  void onInit() {
+    // userData = pro.allUserData['user'];
+    userData = profileController.userProfileData;
+    super.onInit();
+  }
 
-  //   update();
-  // }
-
-  // Future<void> getMainUserData() async {
-  //   hideKeyboard();
-  //   ApiRequest(
-  //     path: keyProfile,
-  //     className: 'MySettingsController/getMainUserData',
-  //     requestFunction: getMainUserData,
-  //     withLoading: true,
-  //     formatResponse: true,
-  //   ).request(
-  //     onSuccess: (dynamic data, dynamic response) {
-  //       mainUserData = data['user'];
-  //       update();
-  //     },
-  //   );
-  // }
-
+  final ImagePicker _picker = ImagePicker();
   Future<dynamic> pickerImage(ImageSource source) async {
     hideKeyboard();
-    await ImagePicker()
-        .pickImage(
+
+    final XFile? file = await _picker.pickImage(
       source: source,
       imageQuality: 30,
-    )
-        .then(
-      (XFile? value) {
-        compLogoFile = value;
-        update();
-        if (Get.isBottomSheetOpen!) {
-          Get.back();
-        }
-        updateCompanyLogo();
-        return null;
-      },
     );
-    update();
+
+    if (file != null) {
+      compLogoFile = file;
+      update();
+      if (Get.isBottomSheetOpen!) {
+        Get.back();
+      }
+      updateCompanyLogo();
+    } else {
+      showMessage(
+        description: 'No image has been uploaded',
+        textColor: Colors.red[800],
+      );
+    }
   }
 
   Future<void> updateCompanyLogo() async {
@@ -63,19 +49,12 @@ class MySettingsController extends GetxController {
       body: await imageAsFormData(file: compLogoFile),
     ).request(
       onSuccess: (dynamic data, dynamic response) {
-        // profileController.getUserProfileData();
-        homeController.getAllUserData();
+        profileController.getUserProfileData();
       },
       onError: (dynamic error) {
         dismissLoading();
       },
     );
     update();
-  }
-
-  @override
-  void onInit() {
-    userData = homeController.allUserData['user'];
-    super.onInit();
   }
 }

@@ -185,7 +185,7 @@ class LandlordSafetyController extends GetxController {
     }
 
     formData[formKeyDeclaration][formKeyRecordIssueBy] =
-        '${profileController.userDataProfile['first_name']} ${profileController.userDataProfile['last_name']}';
+        '${profileController.userProfileData['first_name']} ${profileController.userProfileData['last_name']}';
     update();
   }
 
