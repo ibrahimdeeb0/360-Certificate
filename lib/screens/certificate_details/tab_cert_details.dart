@@ -67,7 +67,7 @@ class CertTab extends StatelessWidget {
                       CertTitleItem(
                         title: 'Country',
                         subTitle:
-                            '${controller.certDetails['form_data']['customer']['country']['name']}',
+                            '${controller.certDetails['form_data']['site']['country_id']}',
                       ),
                       const SizedBox(),
                     ],

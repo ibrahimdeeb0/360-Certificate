@@ -131,6 +131,10 @@ class MinorWorksController extends GetxController {
         const MinorWorksPage4(),
       ];
 
+  //*----------------- Images and Notes Attachments ----------------*//
+  List<FormImageClass> imagesData = <FormImageClass>[];
+  List<FormNoteClass> notesData = <FormNoteClass>[];
+
   //*------------------------------------------------*//
   @override
   void onInit() {
@@ -219,17 +223,36 @@ class MinorWorksController extends GetxController {
       update();
     }
 
+    //? If Certificate not Created
+    if (isCertificateCreated == false) {
+      onCreateCertificate();
+    }
+
     update();
   }
   //*---------------------------------------------*//
 
-  void onPress() {
-    if (selectedId == listFormSections.length - 1) {
-      // last screen
+  void onNext({bool fromSave = false}) {
+    if (isTemplate!) {
+      if (listFormSections.length - 2 == selectedId) {
+        consoleLog('Last Pages In Template');
+        onSaveTemplate();
+      } else {
+        selectedId = selectedId + 1;
+        update();
+      }
     } else {
-      selectedId = selectedId + 1;
-      update();
+      if (selectedId == listFormSections.length - 1) {
+        // last screen
+        consoleLog('Last Pages');
+        onCompleteCertificate();
+      } else if (fromSave) {
+        onUpdateCertificate();
+      } else {
+        selectedId = selectedId + 1;
+      }
     }
+    update();
     scrollController.jumpTo(0.0);
   }
 
@@ -248,17 +271,19 @@ class MinorWorksController extends GetxController {
     formData[key!] = value;
   }
 
-  void onChangDataSignature(String? part, String? key, dynamic value) {
+  void onChangDeclarationData(String? part, String? key, dynamic value) {
     formData[part!][key!] = value;
   }
 
-  void onSaveData() {
-    if (formBody[keyData] == <String, dynamic>{} || formBody[keyData] == null) {
-      formBody[keyData] = formData;
-    } else {
-      formBody[keyData] = <String, dynamic>{};
-      formBody[keyData] = formData;
-    }
+  void onSelectDeclarationDate(String? part, String? key, DateTime value) {
+    formData[part!][key!] = '$value'.formatDate;
+    selectedDate = value;
+    update();
+  }
+
+  void onSelectDate(String? key, DateTime value) {
+    formData[key!] = '$value'.formatDate;
+    selectedDate = value;
     update();
   }
 
@@ -273,16 +298,48 @@ class MinorWorksController extends GetxController {
     update();
   }
 
-  void onSelectDeclarationDate(String? part, String? key, DateTime value) {
-    formData[part!][key!] = '$value'.formatDate;
-    selectedDate = value;
+  String finalPageButton() {
+    if (isTemplate!) {
+      if (selectedId < listFormSections.length - 2) {
+        return 'Next';
+      } else {
+        return 'Save';
+      }
+    } else {
+      if (selectedId < listFormSections.length - 1) {
+        return 'Next';
+      } else {
+        return 'Complete';
+      }
+    }
+  }
+
+  void onSaveData() {
+    if (formBody[keyData] == <String, dynamic>{} || formBody[keyData] == null) {
+      formBody[keyData] = formData;
+    } else {
+      formBody[keyData] = <String, dynamic>{};
+      formBody[keyData] = formData;
+    }
     update();
   }
 
-  void onSelectDate(String? key, DateTime value) {
-    formData[key!] = '$value'.formatDate;
-    selectedDate = value;
-    update();
+  List<Map<String, dynamic>> formAttachmentsData = <Map<String, dynamic>>[];
+  Future<void> onSaveFormAttachments() async {
+    if (imagesData.isNotEmpty) {
+      for (FormImageClass item in imagesData) {
+        formAttachmentsData.add(
+          <String, dynamic>{
+            'id': item.id,
+            'exclude': item.isIncluded ? 'yes' : 'no',
+            'note': item.note,
+            'image': item.image,
+          },
+        );
+      }
+    }
+    // consoleLog(imagesData);
+    consoleLogPretty(formAttachmentsData, key: 'formAttachmentsData');
   }
 
   // *****************  signature functions **************** //
@@ -412,11 +469,6 @@ class MinorWorksController extends GetxController {
       formatResponse: true,
 
       body: certData,
-      // await addFormDataToJson(
-      //   fileKey: 'customer_signature',
-      //   file: customerSignature,
-      //   jsonObject: certData,
-      // ),
     ).request(
       onSuccess: (dynamic data, dynamic response) async {
         certId = data['form_data']['id'];

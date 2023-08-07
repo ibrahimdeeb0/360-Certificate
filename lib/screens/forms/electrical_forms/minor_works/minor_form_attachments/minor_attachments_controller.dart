@@ -4,6 +4,7 @@ import '../../../../../general_exports.dart';
 
 class FormImageClass {
   FormImageClass({
+    required this.id,
     required this.file,
     this.image,
     this.onPress,
@@ -11,6 +12,7 @@ class FormImageClass {
     this.note,
   });
 
+  final int id;
   final String? image;
   final XFile file;
   final Function()? onPress;
@@ -39,6 +41,14 @@ class MinorAttachmentsController extends GetxController {
 
   String selectedNoteType = 'Private Certificate Note';
 
+  @override
+  void onReady() {
+    imagesData = Get.find<MinorWorksController>().imagesData;
+    notesData = Get.find<MinorWorksController>().notesData;
+    update();
+    super.onReady();
+  }
+
   Future<void> pickImage() async {
     hideKeyboard();
 
@@ -50,10 +60,18 @@ class MinorAttachmentsController extends GetxController {
     consoleLog(file!.path);
 
     if (imagesFile.where((XFile img) => img.path == file.path).isEmpty) {
+      int? idValue;
+      if (imagesData.isNotEmpty) {
+        idValue = imagesData.first.id + 1;
+      } else {
+        idValue = imagesData.length + 1;
+      }
+
       consoleLog('inside');
       imagesData.insert(
         0,
         FormImageClass(
+          id: idValue,
           file: file,
           onPress: () {
             imagesData
@@ -63,6 +81,7 @@ class MinorAttachmentsController extends GetxController {
                 .removeWhere((XFile element) => element.path == file.path);
             update();
           },
+          image: file.path,
         ),
       );
       // imagesData.add(
@@ -94,4 +113,11 @@ class MinorAttachmentsController extends GetxController {
     'Private Certificate Note',
     'Certificate Note',
   ];
+
+  @override
+  void onClose() {
+    Get.find<MinorWorksController>().imagesData = imagesData;
+    Get.find<MinorWorksController>().notesData = notesData;
+    super.onClose();
+  }
 }

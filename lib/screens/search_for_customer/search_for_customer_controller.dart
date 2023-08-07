@@ -70,6 +70,7 @@ class SearchForCustomerController extends GetxController {
       onSuccess: (dynamic data, dynamic response) {
         allCustomers = data;
         searchResult = data;
+        
         update();
       },
     );

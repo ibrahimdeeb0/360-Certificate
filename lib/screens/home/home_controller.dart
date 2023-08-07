@@ -86,41 +86,6 @@ class HomeController extends GetxController {
     );
   }
 
-  // SubscriptionModel? subscriptionModel;
-  // void getPlansDetails() {
-  //   ApiRequest(
-  //     path: '/show-interval-plans',
-  //     className: 'HomeController/getPlansDetails',
-  //     requestFunction: getPlansDetails,
-  //     // formatResponse: true,
-  //   ).request(
-  //     onSuccess: (dynamic data, dynamic response) {
-  //       consoleLogPretty(data, key: 'show_interval_plans');
-  //       subscriptionModel = SubscriptionModel.fromJson(data);
-  //       plansDetails = data;
-  //       // consoleLog(subscriptionModel, key: 'response_data');
-  //       update();
-  //     },
-  //   );
-  // }
-
-  // void getPlansData() {
-  //   ApiRequest(
-  //     path: '/show-plans',
-  //     className: 'HomeController/getPlansData',
-  //     requestFunction: getPlansData,
-  //     formatResponse: true,
-  //   ).request(
-  //     onSuccess: (dynamic data, dynamic response) {
-  //       // consoleLogPretty(data, key: 'show_plans');
-  //       // subscriptionModel = SubscriptionModel.fromJson(data);
-  //       // plansDetails = data;
-  //       // consoleLog(subscriptionModel, key: 'response_data');
-  //       update();
-  //     },
-  //   );
-  // }
-
   Future<void> getCertCount() async {
     ApiRequest(
       path: formGetCerCount,
@@ -189,7 +154,8 @@ class HomeController extends GetxController {
           plan = 'Free Plan';
           moreController.update();
         } else if (allUserData['subscription_status'].contains('active')) {
-          plan = '${allUserData['user']['subscriptions'][0]['name']} Plan';
+          plan =
+              '${allUserData['user']['subscriptions'][0]['product_name']} Plan';
           moreController.update();
         } else {
           plan = 'Not Subscribed';

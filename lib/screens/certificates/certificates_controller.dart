@@ -10,6 +10,7 @@ class CertificatesController extends GetxController {
   int page = 1;
   int? lastPage;
   bool isLoading = false;
+  bool showMessage = true;
 
   FilterType selectedType = FilterType.all;
 
@@ -120,6 +121,11 @@ class CertificatesController extends GetxController {
         onFilterCert(certItem: filterItem, disableBack: true);
         lastPage = data['last_page'];
         isLoading = false;
+        if (filteredCert.isEmpty) {
+          showMessage = true;
+        } else {
+          showMessage = false;
+        }
         update();
         homeController.update();
       },
@@ -134,6 +140,11 @@ class CertificatesController extends GetxController {
       onFilterCert(certItem: filterItem, disableBack: true);
       lastPage = apiData['last_page'];
       isLoading = false;
+      if (filteredCert.isEmpty) {
+        showMessage = true;
+      } else {
+        showMessage = false;
+      }
       update();
       homeController.update();
     }

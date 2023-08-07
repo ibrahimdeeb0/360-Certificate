@@ -15,7 +15,9 @@ class MinorAddNote extends StatelessWidget {
               actionItem: ActionItem(
                 type: ActionType.save,
               ),
-              onPressSave: () {},
+              onPressSave: () {
+                Get.back();
+              },
             ),
             floatingActionButton: Visibility(
               visible: controller.notesData.isNotEmpty,
