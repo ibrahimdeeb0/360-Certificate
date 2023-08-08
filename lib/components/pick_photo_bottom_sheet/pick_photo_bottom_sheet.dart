@@ -1,4 +1,5 @@
 import 'package:flutter_svg/svg.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import '../../general_exports.dart';
 
@@ -35,38 +36,48 @@ class PickPhotoBottomSheet extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 PickContainer(
-                  onPress: onCamera,
-                  // onPress: () {
-                  //   controller.attachmentImages = <AttachImageClass>[
-                  //     AttachImageClass(
-                  //       image: testImage,
-                  //       // isImage: false,
-                  //       onPress: () => controller.pickImage(fromGallery: false),
-                  //       attachType: AttachType.camera,
-                  //     ),
-                  //   ];
-                  //   // controller.pickImage(
-                  //   //   fromGallery: false,
-                  //   // );
-                  // },
+                  onPress: () async {
+                    final PermissionStatus status =
+                        await Permission.camera.request();
+
+                    if (status.isGranted) {
+                      onCamera?.call();
+                    } else {
+                      openDialog(
+                          title: 'Camera Permission',
+                          description: 'Do need to go to access camera ?',
+                          cancelText: 'Cancel',
+                          confirmText: 'Open',
+                          onCancel: Get.back,
+                          onConfirm: () {
+                            openAppSettings();
+                            Get.back();
+                          });
+                    }
+                  },
                   title: 'Camera',
                   icon: const Icon(Icons.camera_alt_outlined),
                 ),
                 PickContainer(
-                  onPress: onGallery,
-                  // onPress: () {
-                  //   controller.attachmentImages = <AttachImageClass>[
-                  //     AttachImageClass(
-                  //       image: testImage,
-                  //       // isImage: true,
-                  //       onPress: () => controller.pickImage(fromGallery: true),
-                  //       attachType: AttachType.camera,
-                  //     ),
-                  //   ];
-                  //   // controller.pickImage(
-                  //   //   fromGallery: true,
-                  //   // );
-                  // },
+                  onPress: () async {
+                    final PermissionStatus status =
+                        await Permission.mediaLibrary.request();
+
+                    if (status.isGranted) {
+                      onGallery?.call();
+                    } else {
+                      openDialog(
+                          title: 'Gallery Permission',
+                          description: 'Do need to go to access Gallery ?',
+                          cancelText: 'Cancel',
+                          confirmText: 'Open',
+                          onCancel: Get.back,
+                          onConfirm: () {
+                            openAppSettings();
+                            Get.back();
+                          });
+                    }
+                  },
                   title: 'Gallery',
                   icon: const Icon(Icons.filter_sharp),
                 ),
