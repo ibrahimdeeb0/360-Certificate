@@ -110,10 +110,13 @@ class BreakdownServicePage4 extends StatelessWidget {
                   ),
                 ],
               ),
-            CommonInput(
-              topLabelText: 'ISSUED By:',
-              hint: 'Name',
+            const CommonText(
+              'ISSUED By:',
               marginTop: 0.02,
+            ),
+            CommonInput(
+              topLabelText: 'Name',
+              hint: 'Name',
               enabled: false,
               value: controller.formData[formKeyDeclaration]
                   [formKeyEngineerName],
@@ -122,7 +125,7 @@ class BreakdownServicePage4 extends StatelessWidget {
             ),
             CommonInput(
               hint: 'Position',
-              marginTop: 0.01,
+              topLabelText: 'Position',
               value: controller.formData[formKeyDeclaration]
                   [formKeyEngineerPosition],
               onChanged: (dynamic value) => controller.onChangDataSignature(
@@ -130,6 +133,7 @@ class BreakdownServicePage4 extends StatelessWidget {
             ),
             CommonInput(
               hint: 'Select Date',
+              topLabelText: 'Select Date',
               suffix: const Icon(Icons.calendar_today_outlined),
               marginBottom: 0.02,
               enabled: false,
@@ -258,10 +262,13 @@ class BreakdownServicePage4 extends StatelessWidget {
                   ),
                 ],
               ),
-            CommonInput(
-              topLabelText: 'ISSUED By:',
-              hint: 'Name',
+            const CommonText(
+              'ISSUED By:',
               marginTop: 0.02,
+            ),
+            CommonInput(
+              topLabelText: 'Name',
+              hint: 'Name',
               value: controller.formData[formKeyDeclaration]
                   [formKeyCustomerName],
               onChanged: (dynamic value) => controller.onChangDataSignature(
@@ -269,7 +276,7 @@ class BreakdownServicePage4 extends StatelessWidget {
             ),
             CommonInput(
               hint: 'Position',
-              marginTop: 0.01,
+              topLabelText: 'Position',
               value: controller.formData[formKeyDeclaration]
                   [formKeyCustomerPosition],
               onChanged: (dynamic value) => controller.onChangDataSignature(
@@ -277,6 +284,7 @@ class BreakdownServicePage4 extends StatelessWidget {
             ),
             CommonInput(
               hint: 'Select Date',
+              topLabelText: 'Select Date',
               suffix: const Icon(Icons.calendar_today_outlined),
               marginBottom: 0.02,
               enabled: false,

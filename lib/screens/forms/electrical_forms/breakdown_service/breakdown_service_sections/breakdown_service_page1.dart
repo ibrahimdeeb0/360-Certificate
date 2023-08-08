@@ -47,7 +47,7 @@ class BreakdownServicePage1 extends StatelessWidget {
             ),
             CommonInput(
               hint: 'Boiler Make',
-              marginBottom: 0.03,
+              topLabelText: 'Boiler Make',
               suffix: const Icon(Icons.keyboard_arrow_down),
               enabled: false,
               value: controller.formData[formKeyBoilerMake],
@@ -63,14 +63,14 @@ class BreakdownServicePage1 extends StatelessWidget {
             ),
             CommonInput(
               hint: 'Boiler Model',
-              marginBottom: 0.03,
+              topLabelText: 'Boiler Model',
               value: controller.formData[formKeyBoilerModel],
               onChanged: (dynamic value) =>
                   controller.onChangeFormDataValue(formKeyBoilerModel, value),
             ),
             CommonInput(
               hint: 'Boiler Serial Number',
-              marginBottom: 0.03,
+              topLabelText: 'Boiler Serial Number',
               suffix: SvgPicture.asset(iconVector),
               enabled: false,
               value: controller.formData[formKeyBoilerSerialNum],
@@ -80,7 +80,7 @@ class BreakdownServicePage1 extends StatelessWidget {
             ),
             CommonInput(
               hint: 'Appliance Make',
-              marginBottom: 0.03,
+              topLabelText: 'Appliance Make',
               suffix: const Icon(Icons.keyboard_arrow_down),
               enabled: false,
               value: controller.formData[formKeyAppliancesMake],
@@ -96,13 +96,14 @@ class BreakdownServicePage1 extends StatelessWidget {
             ),
             CommonInput(
               hint: 'Appliance Model',
-              marginBottom: 0.03,
+              topLabelText: 'Appliance Model',
               value: controller.formData[formKeyAppliancesModel],
               onChanged: (dynamic value) => controller.onChangeFormDataValue(
                   formKeyAppliancesModel, value),
             ),
             CommonInput(
               hint: 'Appliance Serial Number',
+              topLabelText: 'Appliance Serial Number',
               marginBottom: 0.03,
               suffix: SvgPicture.asset(iconVector),
               enabled: false,

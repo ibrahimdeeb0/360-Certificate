@@ -95,14 +95,15 @@ class BreakdownServicePage7 extends StatelessWidget {
               thickness: 1,
               height: 0.05.flexHeight,
             ),
+            CommonText(
+              'Next Inspection',
+              fontColor: Color(AppColors.primary),
+              fontSize: fontH2,
+              marginBottom: 0.01,
+            ),
             CommonInput(
               hint: 'Select Date',
-              topLabel: CommonText(
-                'Next Inspection',
-                fontColor: Color(AppColors.primary),
-                fontSize: fontH2,
-                marginBottom: 0.01,
-              ),
+              topLabelText: 'Select Date',
               suffix: const Icon(Icons.calendar_today_outlined),
               marginBottom: 0.02,
               enabled: false,
