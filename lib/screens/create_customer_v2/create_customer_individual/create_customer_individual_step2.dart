@@ -167,6 +167,10 @@ class CreateCustomerIndividualStep2 extends StatelessWidget {
                       controller: controller.siteDetailsPhoneController,
                       keyboardType: TextInputType.phone,
                       enabled: controller.isAnotherSiteInfo,
+                      prefix: const CommonText(
+                        '+44',
+                        marginHorizontal: 0.03,
+                      ),
                     ),
                     CommonInput(
                       topLabel: const TopLabelText(

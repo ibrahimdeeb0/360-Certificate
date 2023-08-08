@@ -12,12 +12,12 @@ class MinorWorksPage2 extends StatelessWidget {
         return Column(
           // crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            CommonText(
-              'Part 2: Circuit  Details',
-              fontColor: AppColors.primary,
-              fontSize: fontH2,
-              marginBottom: 0.02,
-            ),
+            // CommonText(
+            //   'Part 2: Circuit  Details',
+            //   fontColor: AppColors.primary,
+            //   fontSize: fontH2,
+            //   marginBottom: 0.02,
+            // ),
             SizedBox(
               child: Column(
                 children: <Widget>[

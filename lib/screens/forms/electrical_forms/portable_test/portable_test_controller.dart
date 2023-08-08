@@ -32,6 +32,12 @@ class PortableTestController extends GetxController {
 
   DateTime? selectedDate;
 
+  //
+  FormImagesAttachmentsController formImagesAttachmentsController =
+      FormImagesAttachmentsController();
+  FormNotesAttachmentsController formNotesAttachmentsController =
+      FormNotesAttachmentsController();
+
   List<dynamic> applianceData = <dynamic>[];
   Map<String, dynamic> applianceSummaryData = <String, dynamic>{};
 
@@ -56,6 +62,11 @@ class PortableTestController extends GetxController {
   List<Widget> get listFormSections => <Widget>[
         const PortableTestPage1(),
         const PortableTestPage2(),
+      ];
+
+  List<String> get listSectionsTitle => <String>[
+        'Part 1 : Appliances Details',
+        'Part 2 : Signature  Details',
       ];
 
   //* Circuit - Page Numbers *//
@@ -159,6 +170,11 @@ class PortableTestController extends GetxController {
 
     onSelectDate(formKeyDeclaration, formKeyDateInspectionBy, DateTime.now());
 
+    //? If Certificate not Created need to create it
+    if (isCertificateCreated == false) {
+      onCreateCertificate();
+    }
+
     update();
   }
 
@@ -186,18 +202,17 @@ class PortableTestController extends GetxController {
         consoleLog('Last Pages');
         onCompleteCertificate();
       } else {
-        if (selectedId == 0 && (isCertificateCreated == false)) {
-          onCreateCertificate();
-          isCertificateCreated = true;
-        } else if (fromSave && (isCertificateCreated == false)) {
-          onCreateCertificate();
-        } else if (fromSave && (isCertificateCreated == true)) {
+        if (selectedId == listFormSections.length - 1) {
+          // last screen
+          consoleLog('Last Pages');
+          onCompleteCertificate();
+        } else if (fromSave) {
           onUpdateCertificate();
         } else {
           selectedId = selectedId + 1;
         }
-
         update();
+        scrollController.jumpTo(0.0);
       }
     }
 
@@ -213,14 +228,27 @@ class PortableTestController extends GetxController {
       selectedId = selectedId - 1;
       update();
     } else {
-      Get.back();
+      Get.bottomSheet(
+        CancelAddCustomerSheet(
+          message: 'Would you like cancel process',
+          onPressFirstBtn: () {
+            hideKeyboard();
+            Get
+              ..back()
+              ..back();
+          },
+        ),
+        isScrollControlled: true,
+      );
     }
 
-    scrollController.animateTo(
-      0.0,
-      duration: const Duration(milliseconds: 400),
-      curve: Curves.linear,
-    );
+    if (selectedId != 0 && scrollController.positions.isNotEmpty) {
+      scrollController.animateTo(
+        0.0,
+        duration: const Duration(milliseconds: 400),
+        curve: Curves.linear,
+      );
+    }
   }
 
   String finalPageButton() {
@@ -235,6 +263,66 @@ class PortableTestController extends GetxController {
         return 'Next';
       } else {
         return 'Complete';
+      }
+    }
+  }
+
+  // *****************  Store Form Attachments Functions **************** //
+  Future<void> onStoreFormImagesAttachment() async {
+    consoleLog('store Images Attachments');
+    hideKeyboard();
+    if (formImagesAttachmentsController.imagesData.isNotEmpty) {
+      for (FormImageClass item in formImagesAttachmentsController.imagesData) {
+        ApiRequest(
+          method: ApiMethods.post,
+          path: '/certificates/create/attachment',
+          className: 'PortableTestController/onStoreFormImagesAttachment',
+          requestFunction: onStoreFormImagesAttachment,
+          withLoading: true,
+          body: <String, dynamic>{
+            'certificate_id': certId,
+            'image_id': item.imageId,
+            // true included ? no exclude : yes exclude
+            'exclude': item.isIncluded ? 'no' : 'yes',
+            // 'note_title': '',
+            if (item.note != null) 'note_body': item.note,
+            'attachment_type_id': 1
+          },
+        ).request(
+          onSuccess: (dynamic data, dynamic response) {
+            update();
+          },
+        );
+      }
+      onStoreFormNotesAttachment();
+    }
+  }
+
+  //
+  Future<void> onStoreFormNotesAttachment() async {
+    // consoleLog('store Notes Attachments');
+    hideKeyboard();
+    if (formNotesAttachmentsController.notesData.isNotEmpty) {
+      for (FormNoteClass item in formNotesAttachmentsController.notesData) {
+        ApiRequest(
+          method: ApiMethods.post,
+          path: '/certificates/create/attachment',
+          className: 'PortableTestController/onStoreFormNotesAttachment',
+          requestFunction: onStoreFormNotesAttachment,
+          withLoading: true,
+          formatResponse: true,
+          body: <String, dynamic>{
+            'certificate_id': certId,
+            'exclude': item.type == 'Certificate Note' ? 'yes' : 'no',
+            // 'note_title': '',
+            'note_body': item.note,
+            'attachment_type_id': 2,
+          },
+        ).request(
+          onSuccess: (dynamic data, dynamic response) {
+            update();
+          },
+        );
       }
     }
   }
@@ -315,12 +403,12 @@ class PortableTestController extends GetxController {
 
   // *****************  Press Finish ****************
 
-  void testData() {
-    hideKeyboard();
-    onSaveData();
-    onSaveApplianceData();
-    consoleLogPretty(formBody);
-  }
+  // void testData() {
+  //   hideKeyboard();
+  //   onSaveData();
+  //   onSaveApplianceData();
+  //   consoleLogPretty(formBody);
+  // }
 
   Future<void> onCreateCertificate() async {
     hideKeyboard();
@@ -334,16 +422,15 @@ class PortableTestController extends GetxController {
       ...formBody,
     };
 
-    consoleLogPretty(certData);
+    consoleLogPretty(certData, key: 'form_data');
 
     ApiRequest(
       method: ApiMethods.post,
       path: keyCreateForm,
       className: 'LandlordSafetyController/onCreateCertificate',
       requestFunction: onCreateCertificate,
-      // withLoading: true,
+      withLoading: true,
       formatResponse: true,
-
       body: certData,
     ).request(
       onSuccess: (dynamic data, dynamic response) async {
@@ -357,6 +444,7 @@ class PortableTestController extends GetxController {
     hideKeyboard();
     onSaveData();
     onSaveApplianceData();
+    onStoreFormImagesAttachment();
 
     final Map<String, dynamic> certData = <String, dynamic>{
       ...formBody,
@@ -404,6 +492,7 @@ class PortableTestController extends GetxController {
     hideKeyboard();
     onSaveData();
     onSaveApplianceData();
+    onStoreFormImagesAttachment();
 
     final Map<String, dynamic> certData = <String, dynamic>{
       ...formBody,

@@ -51,12 +51,12 @@ class BreakdownServiceAddImage extends StatelessWidget {
                                           controller.imagesData.indexOf(item);
 
                                       return FormAddImageCard(
-                                        fileName: item.file.path
-                                            .split('/')
-                                            .last
-                                            .split('picker')
-                                            .last,
-                                        imagePath: item.file.path,
+                                        // fileName: item.file.path
+                                        //     .split('/')
+                                        //     .last
+                                        //     .split('picker')
+                                        //     .last,
+                                        // imagePath: item.file.path,
                                         pressToggleInclude: () {
                                           controller.imagesData[itemIndex]
                                               .isIncluded = !item.isIncluded;
@@ -64,13 +64,13 @@ class BreakdownServiceAddImage extends StatelessWidget {
                                         },
                                         isIncluded: item.isIncluded,
                                         pressView: () {
-                                          Get.dialog(
-                                            ViewImageContainer(
-                                              imagePath: item.file.path,
-                                              imageType: ImageFormatType.local,
-                                              isFullScreen: true,
-                                            ),
-                                          );
+                                          // Get.dialog(
+                                          //   ViewImageContainer(
+                                          //     imagePath: item.file.path,
+                                          //     imageType: ImageFormatType.local,
+                                          //     isFullScreen: true,
+                                          //   ),
+                                          // );
                                         },
                                         pressDelete: () {
                                           openDialog(

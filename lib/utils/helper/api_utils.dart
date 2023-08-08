@@ -15,6 +15,7 @@ dynamic addFormDataToJson({
     file.path,
     filename: file.path.split('/').last,
   );
+  consoleLog(jsonObject);
   return dio_form_data.FormData.fromMap(jsonObject);
 }
 

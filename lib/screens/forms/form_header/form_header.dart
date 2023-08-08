@@ -85,7 +85,7 @@ class FormHeader extends StatelessWidget with PreferredSizeWidget {
             : const SizedBox(),
 
         actions: <Widget>[
-          if (actionItem == null)
+          if (actionItem == null && circleNumbering != null)
             CircleNumbering(numbers: circleNumbering ?? ''),
           if (actionItem != null)
             CommonContainer(

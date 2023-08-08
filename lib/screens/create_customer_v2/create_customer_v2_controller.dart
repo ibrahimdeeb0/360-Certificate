@@ -645,7 +645,7 @@ class CreateCustomerV2Controller extends GetxController {
       if (customerType == CustomerType.company) ...companyAddress,
       'client_l_name': 'test',
       'client_f_name': customerInfoNameController.text.trim(),
-      'client_phone': customerInfoPhoneController.text.trim(),
+      'client_phone': '+44${customerInfoPhoneController.text.trim()}',
       'client_email': customerInfoEmailController.text.trim(),
       //companyContactType
       'client_type': customerType == CustomerType.individual
@@ -660,7 +660,7 @@ class CreateCustomerV2Controller extends GetxController {
       'site_contact_type': siteContactType!.name,
       'site_contact_f_name': siteDetailsNameController.text.trim(),
       'site_contact_l_name': '',
-      'site_contact_phone': siteDetailsPhoneController.text.trim(),
+      'site_contact_phone': '+44${siteDetailsPhoneController.text.trim()}',
       'site_contact_email': siteDetailsEmailController.text.trim(),
       //
       'other_value': propertyTypeOtherController.text.trim(),

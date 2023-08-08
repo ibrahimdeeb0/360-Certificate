@@ -11,12 +11,12 @@ class MinorWorksPage3 extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            CommonText(
-              'Part 3: Test Results For The Circuit Altered or Extended',
-              fontColor: AppColors.primary,
-              fontSize: fontH2,
-              marginBottom: 0.02,
-            ),
+            // CommonText(
+            //   'Part 3: Test Results For The Circuit Altered or Extended',
+            //   fontColor: AppColors.primary,
+            //   fontSize: fontH2,
+            //   marginBottom: 0.02,
+            // ),
             Divider(
               color: Colors.grey[200],
               thickness: 3,

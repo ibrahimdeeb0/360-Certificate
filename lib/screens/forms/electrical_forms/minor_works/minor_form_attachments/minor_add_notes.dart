@@ -154,108 +154,108 @@ class MinorAddNote extends StatelessWidget {
   }
 }
 
-class FormAddNoteCard extends StatelessWidget {
-  const FormAddNoteCard({
-    super.key,
-    this.note,
-    this.type,
-    this.pressView,
-    this.pressType,
-    this.pressDelete,
-    this.dropdownMenu,
-  });
-  final String? note;
-  final String? type;
-  final Function()? pressView;
-  final Function()? pressDelete;
-  final Function()? pressType;
-  final Widget? dropdownMenu;
+// class FormAddNoteCard extends StatelessWidget {
+//   const FormAddNoteCard({
+//     super.key,
+//     this.note,
+//     this.type,
+//     this.pressView,
+//     this.pressType,
+//     this.pressDelete,
+//     this.dropdownMenu,
+//   });
+//   final String? note;
+//   final String? type;
+//   final Function()? pressView;
+//   final Function()? pressDelete;
+//   final Function()? pressType;
+//   final Widget? dropdownMenu;
 
-  @override
-  Widget build(BuildContext context) {
-    return CommonContainer(
-      borderBottomWidth: 2,
-      borderBottomColor: Colors.grey[300],
-      marginBottom: 0.02,
-      paddingBottom: 0.02,
-      child: Column(
-        children: <Widget>[
-          // CommonInput(
-          //   topLabelText: 'Type',
-          //   value: type ?? '',
-          //   suffix: const Icon(Icons.keyboard_arrow_down),
-          //   enabled: false,
-          //   onTap: pressType,
-          // ),
+//   @override
+//   Widget build(BuildContext context) {
+//     return CommonContainer(
+//       borderBottomWidth: 2,
+//       borderBottomColor: Colors.grey[300],
+//       marginBottom: 0.02,
+//       paddingBottom: 0.02,
+//       child: Column(
+//         children: <Widget>[
+//           // CommonInput(
+//           //   topLabelText: 'Type',
+//           //   value: type ?? '',
+//           //   suffix: const Icon(Icons.keyboard_arrow_down),
+//           //   enabled: false,
+//           //   onTap: pressType,
+//           // ),
 
-          // GetBuilder<MinorAttachmentsController>(
-          //   init: MinorAttachmentsController(),
-          //   builder: (MinorAttachmentsController controller) {
-          //     return
-          //     DropdownButton<String>(
-          //       isExpanded: true,
-          //       value: controller.selectedNoteType,
-          //       dropdownColor: Colors.white,
-          //       // hint: CommonText('test 2'),
-          //       onChanged: (String? newValue) {
-          //         controller.selectedNoteType = newValue!;
-          //         controller.update();
-          //       },
-          //       items: controller.dropdownItemsClass
-          //           .map<DropdownMenuItem<String>>((String value) {
-          //         return DropdownMenuItem<String>(
-          //           value: value,
-          //           child: CommonText(
-          //             value,
-          //             fontColor: Colors.grey[800],
-          //           ),
-          //         );
-          //       }).toList(),
-          //     );
-          //   },
-          // ),
-          dropdownMenu ?? const SizedBox(),
+//           // GetBuilder<MinorAttachmentsController>(
+//           //   init: MinorAttachmentsController(),
+//           //   builder: (MinorAttachmentsController controller) {
+//           //     return
+//           //     DropdownButton<String>(
+//           //       isExpanded: true,
+//           //       value: controller.selectedNoteType,
+//           //       dropdownColor: Colors.white,
+//           //       // hint: CommonText('test 2'),
+//           //       onChanged: (String? newValue) {
+//           //         controller.selectedNoteType = newValue!;
+//           //         controller.update();
+//           //       },
+//           //       items: controller.dropdownItemsClass
+//           //           .map<DropdownMenuItem<String>>((String value) {
+//           //         return DropdownMenuItem<String>(
+//           //           value: value,
+//           //           child: CommonText(
+//           //             value,
+//           //             fontColor: Colors.grey[800],
+//           //           ),
+//           //         );
+//           //       }).toList(),
+//           //     );
+//           //   },
+//           // ),
+//           dropdownMenu ?? const SizedBox(),
 
-          CommonInput(
-            topLabelText: 'Note:',
-            maxLines: 6,
-            value: note ?? '',
-            enabled: false,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              TextButton.icon(
-                onPressed: pressView,
-                icon: Icon(
-                  Icons.visibility,
-                  color: Color(AppColors.primary),
-                ),
-                label: CommonText(
-                  'View',
-                  style: appTextStyles.h3BoldStyle(),
-                ),
-              ),
-              CommonContainer(
-                backgroundColor: Colors.grey[400],
-                height: 0.03,
-                width: 0.005,
-              ),
-              TextButton.icon(
-                onPressed: pressDelete,
-                icon: Icon(
-                  Icons.delete,
-                  color: Colors.red[900],
-                ),
-                label: CommonText(
-                  'Delete',
-                  style: appTextStyles.h3BoldStyle(),
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-}
+//           CommonInput(
+//             topLabelText: 'Note:',
+//             maxLines: 6,
+//             value: note ?? '',
+//             enabled: false,
+//           ),
+//           Row(
+//             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//             children: <Widget>[
+//               TextButton.icon(
+//                 onPressed: pressView,
+//                 icon: Icon(
+//                   Icons.visibility,
+//                   color: Color(AppColors.primary),
+//                 ),
+//                 label: CommonText(
+//                   'View',
+//                   style: appTextStyles.h3BoldStyle(),
+//                 ),
+//               ),
+//               CommonContainer(
+//                 backgroundColor: Colors.grey[400],
+//                 height: 0.03,
+//                 width: 0.005,
+//               ),
+//               TextButton.icon(
+//                 onPressed: pressDelete,
+//                 icon: Icon(
+//                   Icons.delete,
+//                   color: Colors.red[900],
+//                 ),
+//                 label: CommonText(
+//                   'Delete',
+//                   style: appTextStyles.h3BoldStyle(),
+//                 ),
+//               ),
+//             ],
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }

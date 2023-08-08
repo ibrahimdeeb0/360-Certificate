@@ -23,33 +23,22 @@ class MinorWorks extends StatelessWidget {
               type: ActionType.image,
             ),
             pressImage: () {
-              Get.to(() => const MinorAddImage());
+              Get.to(
+                () => const MinorAddImage(),
+                arguments: <String, dynamic>{
+                  'cert_id': controller.certId,
+                },
+              );
             },
             pressNote: () {
-              Get.to(() => const MinorAddNote());
+              Get.to(
+                () => const MinorAddNote(),
+                arguments: <String, dynamic>{
+                  'cert_id': controller.certId,
+                },
+              );
             },
           ),
-          // floatingActionButton: FloatingActionButton(
-          //   onPressed: () {
-          //     List<Map<String, dynamic>> data = [];
-          //     if (controller.imagesData.isNotEmpty) {
-          //       for (FormImageClass item in controller.imagesData) {
-          //         data.add(
-          //           <String, dynamic>{
-          //             'id': item.id,
-          //             'exclude': item.isIncluded ? 'yes' : 'no',
-          //             'note': item.note,
-          //             'image': item.image,
-          //           },
-          //         );
-          //       }
-          //     }
-          //     consoleLog(controller.imagesData);
-          //     consoleLogPretty(data);
-          //   },
-          // ),
-          // floatingActionButtonLocation:
-          //     FloatingActionButtonLocation.miniStartTop,
           body: CommonContainer(
             width: 1,
             height: 1,
@@ -66,11 +55,22 @@ class MinorWorks extends StatelessWidget {
                       ),
                       child: Column(
                         children: <Widget>[
+                          SizedBox(height: DEVICE_HEIGHT * 0.07),
                           controller.listFormSections[controller.selectedId],
                           SizedBox(height: DEVICE_HEIGHT * 0.09),
                         ],
                       ),
                     ),
+                  ),
+                ),
+                Positioned(
+                  top: 0,
+                  right: 0,
+                  left: 0,
+                  child: StepperHeader(
+                    currentIndex: controller.selectedId,
+                    lastIndex: controller.listFormSections.length - 1,
+                    title: controller.listSectionsTitle[controller.selectedId],
                   ),
                 ),
                 Positioned(

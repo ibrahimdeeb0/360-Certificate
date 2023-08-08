@@ -2,54 +2,37 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../../../../general_exports.dart';
 
-class FormImageClass {
-  FormImageClass({
-    required this.id,
-    required this.file,
-    this.image,
-    this.onPress,
-    this.isIncluded = false,
-    this.note,
-  });
 
-  final int id;
-  final String? image;
-  final XFile file;
-  final Function()? onPress;
-  bool isIncluded;
-  String? note;
-}
 
-class FormNoteClass {
-  FormNoteClass({
-    this.note,
-    this.type,
-    this.onPress,
-  });
-
-  String? note;
-  String? type;
-  final Function()? onPress;
-}
 
 class MinorAttachmentsController extends GetxController {
   TextEditingController noteController = TextEditingController();
   final ImagePicker _picker = ImagePicker();
-  List<XFile> imagesFile = <XFile>[];
+  // List<XFile> imagesFile = <XFile>[];
   List<FormImageClass> imagesData = <FormImageClass>[];
   List<FormNoteClass> notesData = <FormNoteClass>[];
 
   String selectedNoteType = 'Private Certificate Note';
 
+  int? certId;
+
   @override
-  void onReady() {
-    imagesData = Get.find<MinorWorksController>().imagesData;
-    notesData = Get.find<MinorWorksController>().notesData;
+  void onInit() {
+    certId = Get.arguments['cert_id'];
+    consoleLog(certId, key: 'certId');
     update();
-    super.onReady();
+    super.onInit();
   }
 
-  Future<void> pickImage() async {
+  // @override
+  // void onReady() {
+  //   imagesData = Get.find<MinorWorksController>().imagesData;
+  //   notesData = Get.find<MinorWorksController>().notesData;
+  //   update();
+  //   super.onReady();
+  // }
+
+  Future<void> pickFormImage() async {
     hideKeyboard();
 
     final XFile? file = await _picker.pickImage(
@@ -58,32 +41,51 @@ class MinorAttachmentsController extends GetxController {
     );
 
     if (file != null) {
-      if (imagesFile.where((XFile img) => img.path == file.path).isEmpty) {
-        int? idValue;
-        if (imagesData.isNotEmpty) {
-          idValue = imagesData.first.id + 1;
-        } else {
-          idValue = imagesData.length + 1;
-        }
+      int? imgId;
+      String imgName = '';
+      ApiRequest(
+        path: '/store-image',
+        method: ApiMethods.post,
+        className: 'MinorWorksController/pickFormImage',
+        requestFunction: pickFormImage,
+        withLoading: true,
+        body: await addFormDataToJson(
+          jsonObject: <String, dynamic>{
+            'type': 'form',
+            'type_id': certId,
+          },
+          file: file,
+          fileKey: 'image',
+        ),
+      ).request(
+        onSuccess: (dynamic data, dynamic response) {
+          imgId = data[keyId];
+          imgName = data['image'];
+          update();
+        },
+      );
 
-        imagesData.insert(
-          0,
-          FormImageClass(
-            id: idValue,
-            file: file,
-            onPress: () {
-              imagesData.removeWhere(
-                  (FormImageClass element) => element.file == file);
-
-              imagesFile
-                  .removeWhere((XFile element) => element.path == file.path);
-              update();
-            },
-            image: file.path,
-          ),
-        );
-        imagesFile.insert(0, file);
-      }
+      imagesData.insert(
+        0,
+        FormImageClass(
+          imageId: imgId!,
+          imageName: imgName,
+          onPress: () {
+            // API for delete image
+            ApiRequest(
+              path: '/delete-image/imgId',
+              method: ApiMethods.post,
+              className: 'MinorWorksController/pickFormImage',
+              requestFunction: pickFormImage,
+              body: <String, dynamic>{},
+            ).request(
+              onSuccess: (dynamic data, dynamic response) {
+                update();
+              },
+            );
+          },
+        ),
+      );
     } else {
       showMessage(
         description: 'No image has been uploaded',
@@ -91,13 +93,6 @@ class MinorAttachmentsController extends GetxController {
       );
     }
 
-    consoleLog(file!.path);
-
-    consoleLog(imagesFile, key: 'selected_Images');
-
-    // if (Get.isBottomSheetOpen!) {
-    //   Get.back();
-    // }
     update();
   }
 
@@ -108,8 +103,8 @@ class MinorAttachmentsController extends GetxController {
 
   @override
   void onClose() {
-    Get.find<MinorWorksController>().imagesData = imagesData;
-    Get.find<MinorWorksController>().notesData = notesData;
+    // Get.find<controller>().imagesData = imagesData;
+    // Get.find<controller>().notesData = notesData;
     super.onClose();
   }
 }

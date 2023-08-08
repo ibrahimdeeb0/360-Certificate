@@ -119,6 +119,10 @@ class AddNewSite extends StatelessWidget {
                             hint: 'Phone Number',
                             controller: controller.siteDetailsPhoneController,
                             keyboardType: TextInputType.phone,
+                            prefix: const CommonText(
+                              '+44',
+                              marginHorizontal: 0.03,
+                            ),
                           ),
                           CommonInput(
                             topLabel: const TopLabelText(

@@ -28,6 +28,10 @@ class CreateCustomerCompanyStep1 extends StatelessWidget {
                   hint: 'Enter phone number',
                   controller: controller.customerInfoPhoneController,
                   keyboardType: TextInputType.phone,
+                  prefix: const CommonText(
+                    '+44',
+                    marginHorizontal: 0.03,
+                  ),
                 ),
                 CommonInput(
                   topLabelText: 'Email Address',

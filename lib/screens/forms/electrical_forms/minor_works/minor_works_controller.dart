@@ -131,6 +131,13 @@ class MinorWorksController extends GetxController {
         const MinorWorksPage4(),
       ];
 
+  List<String> get listSectionsTitle => <String>[
+        'Part 1 : Derails of The Minor Works, Supply Characteristics & Earthing Arrangements',
+        'Part 2 : Circuit  Details',
+        'Part 3 : Test Results For The Circuit Altered or Extended',
+        'Part 4 : Declaration',
+      ];
+
   //*----------------- Images and Notes Attachments ----------------*//
   List<FormImageClass> imagesData = <FormImageClass>[];
   List<FormNoteClass> notesData = <FormNoteClass>[];
@@ -255,7 +262,6 @@ class MinorWorksController extends GetxController {
       }
     }
     update();
-    scrollController.jumpTo(0.0);
   }
 
   void onBack() {

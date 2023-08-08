@@ -29,6 +29,10 @@ class CreateCustomerIndividualStep1 extends StatelessWidget {
                   hint: '000 000 0000',
                   controller: controller.customerInfoPhoneController,
                   keyboardType: TextInputType.phone,
+                  prefix: const CommonText(
+                    '+44',
+                    marginHorizontal: 0.03,
+                  ),
                 ),
                 CommonInput(
                   topLabelText: 'Email Address',

@@ -176,6 +176,7 @@ class CancelAddCustomerSheet extends StatelessWidget {
             CommonText(
               message ?? 'Would you like cancel process of adding Customer',
               marginBottom: 0.03,
+              marginTop: 0.01,
               fontSize: fontH2,
               textAlign: TextAlign.start,
             ),

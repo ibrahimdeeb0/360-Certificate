@@ -48,29 +48,29 @@ class BreakdownServiceAttachmentsController extends GetxController {
     );
 
     if (imagesFile.where((XFile img) => img.path == file!.path).isEmpty) {
-      int? idValue;
-      if (imagesData.isNotEmpty) {
-        idValue = imagesData.first.id + 1;
-      } else {
-        idValue = imagesData.length + 1;
-      }
+      // int? idValue;
+      // if (imagesData.isNotEmpty) {
+      //   idValue = imagesData.first.id + 1;
+      // } else {
+      //   idValue = imagesData.length + 1;
+      // }
 
-      imagesData.insert(
-        0,
-        FormImageClass(
-          id: idValue,
-          file: file!,
-          image: file.path,
-          onPress: () {
-            imagesData
-                .removeWhere((FormImageClass element) => element.file == file);
+      // imagesData.insert(
+      //   0,
+      //   FormImageClass(
+      //     id: idValue,
+      //     file: file!,
+      //     image: file.path,
+      //     onPress: () {
+      //       imagesData
+      //           .removeWhere((FormImageClass element) => element.file == file);
 
-            imagesFile
-                .removeWhere((XFile element) => element.path == file.path);
-            update();
-          },
-        ),
-      );
+      //       imagesFile
+      //           .removeWhere((XFile element) => element.path == file.path);
+      //       update();
+      //     },
+      //   ),
+      // );
       // imagesData.add(
       //   FormImageClass(
       //     file: file!,
@@ -85,7 +85,7 @@ class BreakdownServiceAttachmentsController extends GetxController {
       //   ),
       // );
       // imagesFile.add(file);
-      imagesFile.insert(0, file);
+      // imagesFile.insert(0, file);
     }
 
     consoleLog(imagesFile, key: 'selected_Images');

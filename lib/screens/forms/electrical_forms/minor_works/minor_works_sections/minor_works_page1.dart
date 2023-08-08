@@ -11,14 +11,14 @@ class MinorWorksPage1 extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            CommonText(
-              'Part 1 Derails of The Minor Works, Supply Characteristics & Earthing Arrangements',
-              fontColor: AppColors.primary,
-              fontSize: fontH2,
-              marginBottom: 0.02,
-              // marginHorizontal: 0.04,
-              // marginTop: 0.08,
-            ),
+            // CommonText(
+            //   'Part 1 Derails of The Minor Works, Supply Characteristics & Earthing Arrangements',
+            //   fontColor: AppColors.primary,
+            //   fontSize: fontH2,
+            //   marginBottom: 0.02,
+            //   // marginHorizontal: 0.04,
+            //   // marginTop: 0.08,
+            // ),
             CommonInput(
               topLabelText: 'Description of Minor Works:',
               maxLines: 200,
