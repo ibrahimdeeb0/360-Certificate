@@ -295,6 +295,8 @@ class PortableTestController extends GetxController {
         );
       }
       onStoreFormNotesAttachment();
+    } else {
+      onStoreFormNotesAttachment();
     }
   }
 
