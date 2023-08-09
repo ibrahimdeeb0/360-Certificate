@@ -16,6 +16,7 @@ class FormNotesAttachmentsController extends GetxController {
   int? certId;
 
   List<FormNoteClass> notesData = <FormNoteClass>[];
+   List<FormNoteClass> tempMotesData = <FormNoteClass>[];
   TextEditingController noteController = TextEditingController();
 
   // String selectedNoteType = 'Private Certificate Note';
@@ -39,11 +40,11 @@ class FormNotesAttachmentsController extends GetxController {
   // **************  Get Form Attachments From Certificate Details ********//
   Future<void> onSetFormAttachments() async {
     hideKeyboard();
-    notesData.clear();
+    // notesData.clear();
     if (certAttachments.isNotEmpty) {
       for (Map<String, dynamic> item in certAttachments) {
         if (item['attachment_type_id'] == 2) {
-          notesData.insert(
+          tempMotesData.insert(
             0,
             FormNoteClass(
               note: item['note_body'],

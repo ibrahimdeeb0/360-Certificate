@@ -26,7 +26,8 @@ class FormNotesAttachments extends StatelessWidget {
             // },
           ),
           floatingActionButton: Visibility(
-            visible: controller.notesData.isNotEmpty,
+            visible: controller.notesData.isNotEmpty ||
+                controller.tempMotesData.isNotEmpty,
             child: FloatingActionButton(
               onPressed: () {
                 Get.to(
@@ -47,7 +48,8 @@ class FormNotesAttachments extends StatelessWidget {
           body: CommonContainer(
             style: appContainerStyles.containerStyles,
             paddingTop: 0.02,
-            child: controller.notesData.isNotEmpty
+            child: (controller.notesData.isNotEmpty ||
+                    controller.tempMotesData.isNotEmpty)
                 ? SingleChildScrollView(
                     child: Column(
                       children: <Widget>[
@@ -89,13 +91,56 @@ class FormNotesAttachments extends StatelessWidget {
                                       ).toList(),
                                     ),
                                     pressView: () => pressView(
-                                        controller: controller,
-                                        itemIndex: itemIndex,
-                                        item: item),
+                                      controller: controller,
+                                      itemIndex: itemIndex,
+                                      item: item,
+                                    ),
                                     pressDelete: () => pressDelete(
-                                        controller: controller,
-                                        itemIndex: itemIndex,
-                                        item: item),
+                                      controller: controller,
+                                      itemIndex: itemIndex,
+                                      item: item,
+                                    ),
+                                  );
+                                },
+                              ),
+                            if (controller.tempMotesData.isNotEmpty)
+                              ...controller.tempMotesData.map(
+                                (FormNoteClass item) {
+                                  final int itemIndex =
+                                      controller.tempMotesData.indexOf(item);
+                                  return FormAddNoteCard(
+                                    note: item.note,
+                                    dropdownMenu: DropdownButton<String>(
+                                      isExpanded: true,
+                                      value: item.type,
+                                      dropdownColor: Colors.white,
+                                      onChanged: (String? newValue) {
+                                        item.type = newValue;
+                                        controller.update();
+                                      },
+                                      items: controller.dropdownItemsClass
+                                          .map<DropdownMenuItem<String>>(
+                                        (String value) {
+                                          return DropdownMenuItem<String>(
+                                            value: value,
+                                            child: CommonText(
+                                              value,
+                                              fontColor: Colors.grey[800],
+                                            ),
+                                          );
+                                        },
+                                      ).toList(),
+                                    ),
+                                    pressView: () => pressView(
+                                      controller: controller,
+                                      itemIndex: itemIndex,
+                                      item: item,
+                                    ),
+                                    pressDelete: () => pressDelete(
+                                      controller: controller,
+                                      itemIndex: itemIndex,
+                                      item: item,
+                                    ),
                                   );
                                 },
                               ),
@@ -105,31 +150,14 @@ class FormNotesAttachments extends StatelessWidget {
                       ],
                     ),
                   )
-                : Column(
-                    children: <Widget>[
-                      0.02.boxHeight,
-                      CommonText(
-                        'Add a Notes',
-                        fontColor: AppColors.primary,
-                        fontSize: fontH2,
-                        marginBottom: 0.02,
-                      ),
-                      CommonText(
-                        'No Notes are added. Add your first note',
-                        fontColor: Colors.grey[700],
-                        marginBottom: 0.1,
-                      ),
-                      CommonButton(
-                        onPress: () {
-                          Get.to(
-                            () => FormNotesWriteNote(
-                              formNotesAttachmentsController: controller,
-                            ),
-                          );
-                        },
-                        text: 'Add a Note',
-                      ),
-                    ],
+                : NotesEmptyMessage(
+                    onPress: () {
+                      Get.to(
+                        () => FormNotesWriteNote(
+                          formNotesAttachmentsController: controller,
+                        ),
+                      );
+                    },
                   ),
           ),
         );
@@ -186,6 +214,38 @@ class FormNotesAttachments extends StatelessWidget {
   }
 }
 
+class NotesEmptyMessage extends StatelessWidget {
+  const NotesEmptyMessage({
+    super.key,
+    this.onPress,
+  });
+  final Function()? onPress;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        0.02.boxHeight,
+        CommonText(
+          'Add a Notes',
+          fontColor: AppColors.primary,
+          fontSize: fontH2,
+          marginBottom: 0.02,
+        ),
+        CommonText(
+          'No Notes are added. Add your first note',
+          fontColor: Colors.grey[700],
+          marginBottom: 0.1,
+        ),
+        CommonButton(
+          onPress: onPress,
+          text: 'Add a Note',
+        ),
+      ],
+    );
+  }
+}
+
 class FormAddNoteCard extends StatelessWidget {
   const FormAddNoteCard({
     super.key,
@@ -212,42 +272,7 @@ class FormAddNoteCard extends StatelessWidget {
       paddingBottom: 0.02,
       child: Column(
         children: <Widget>[
-          // CommonInput(
-          //   topLabelText: 'Type',
-          //   value: type ?? '',
-          //   suffix: const Icon(Icons.keyboard_arrow_down),
-          //   enabled: false,
-          //   onTap: pressType,
-          // ),
-
-          // GetBuilder<MinorAttachmentsController>(
-          //   init: MinorAttachmentsController(),
-          //   builder: (MinorAttachmentsController controller) {
-          //     return
-          //     DropdownButton<String>(
-          //       isExpanded: true,
-          //       value: controller.selectedNoteType,
-          //       dropdownColor: Colors.white,
-          //       // hint: CommonText('test 2'),
-          //       onChanged: (String? newValue) {
-          //         controller.selectedNoteType = newValue!;
-          //         controller.update();
-          //       },
-          //       items: controller.dropdownItemsClass
-          //           .map<DropdownMenuItem<String>>((String value) {
-          //         return DropdownMenuItem<String>(
-          //           value: value,
-          //           child: CommonText(
-          //             value,
-          //             fontColor: Colors.grey[800],
-          //           ),
-          //         );
-          //       }).toList(),
-          //     );
-          //   },
-          // ),
           dropdownMenu ?? const SizedBox(),
-
           CommonInput(
             topLabelText: 'Note:',
             maxLines: 6,

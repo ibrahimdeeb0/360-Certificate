@@ -26,7 +26,8 @@ class FormImagesAttachments extends StatelessWidget {
             // },
           ),
           floatingActionButton: Visibility(
-            visible: controller.imagesData.isNotEmpty,
+            visible: controller.imagesData.isNotEmpty ||
+                controller.tempImagesData.isNotEmpty,
             child: FloatingActionButton(
               onPressed: () {
                 Get.bottomSheet(
@@ -48,7 +49,8 @@ class FormImagesAttachments extends StatelessWidget {
           body: CommonContainer(
             style: appContainerStyles.containerStyles,
             paddingTop: 0.02,
-            child: controller.imagesData.isNotEmpty
+            child: controller.imagesData.isNotEmpty ||
+                    controller.tempImagesData.isNotEmpty
                 ? SingleChildScrollView(
                     child: Column(
                       children: <Widget>[
@@ -91,47 +93,53 @@ class FormImagesAttachments extends StatelessWidget {
                                   );
                                 },
                               ),
+                            if (controller.tempImagesData.isNotEmpty)
+                              ...controller.tempImagesData.map(
+                                (FormImageClass item) {
+                                  final int itemIndex =
+                                      controller.tempImagesData.indexOf(item);
+
+                                  return FormAddImageCard(
+                                    fileName: item.imageName!.split('/').last,
+                                    isIncluded: item.isIncluded,
+                                    note: item.note,
+                                    pressToggleInclude: () =>
+                                        pressToggleInclude(
+                                            controller: controller,
+                                            itemIndex: itemIndex,
+                                            item: item),
+                                    pressView: () => pressView(
+                                        controller: controller,
+                                        itemIndex: itemIndex,
+                                        item: item),
+                                    pressDelete: () => pressDelete(
+                                        controller: controller,
+                                        itemIndex: itemIndex,
+                                        item: item),
+                                    pressNote: () => pressNote(
+                                        controller: controller,
+                                        itemIndex: itemIndex,
+                                        item: item),
+                                  );
+                                },
+                              ),
                           ],
                         ),
                         0.1.boxHeight
                       ],
                     ),
                   )
-                : Column(
-                    children: <Widget>[
-                      CommonText(
-                        'Uploaded Images',
-                        fontColor: AppColors.primary,
-                        fontSize: fontH2,
-                        marginBottom: 0.02,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      CommonText(
-                        'Please attach images',
-                        fontColor: Colors.grey[700],
-                        marginBottom: 0.1,
-                      ),
-                      CommonButton(
-                        onPress: () {
-                          Get.bottomSheet(
-                            PickPhotoBottomSheet(
-                              title: 'Select',
-                              onCamera: () => controller.pickFormImage(
-                                  imageSource: ImageSource.camera),
-                              onGallery: () => controller.pickFormImage(),
-                            ),
-                          );
-                        },
-                        child: const CommonText(
-                          'Upload Image',
-                          fontColor: Colors.white,
-                          leftChild: Icon(
-                            Icons.file_upload_outlined,
-                            color: Colors.white,
-                          ),
+                : ImagesEmptyMessage(
+                    onPress: () {
+                      Get.bottomSheet(
+                        PickPhotoBottomSheet(
+                          title: 'Select',
+                          onCamera: () => controller.pickFormImage(
+                              imageSource: ImageSource.camera),
+                          onGallery: () => controller.pickFormImage(),
                         ),
-                      ),
-                    ],
+                      );
+                    },
                   ),
           ),
         );
@@ -157,7 +165,7 @@ class FormImagesAttachments extends StatelessWidget {
     Get.dialog(
       ViewImageContainer(
         imagePath: item.imageURL,
-        isFullScreen: true,
+        // isFullScreen: true,
       ),
     );
   }
@@ -208,6 +216,45 @@ class FormImagesAttachments extends StatelessWidget {
         formImagesAttachmentsController: controller,
         index: itemIndex,
       ),
+    );
+  }
+}
+
+class ImagesEmptyMessage extends StatelessWidget {
+  const ImagesEmptyMessage({
+    super.key,
+    this.onPress,
+  });
+  final Function()? onPress;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        CommonText(
+          'Uploaded Images',
+          fontColor: AppColors.primary,
+          fontSize: fontH2,
+          marginBottom: 0.02,
+          fontWeight: FontWeight.bold,
+        ),
+        CommonText(
+          'Please attach images',
+          fontColor: Colors.grey[700],
+          marginBottom: 0.1,
+        ),
+        CommonButton(
+          onPress: onPress,
+          child: const CommonText(
+            'Upload Image',
+            fontColor: Colors.white,
+            leftChild: Icon(
+              Icons.file_upload_outlined,
+              color: Colors.white,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

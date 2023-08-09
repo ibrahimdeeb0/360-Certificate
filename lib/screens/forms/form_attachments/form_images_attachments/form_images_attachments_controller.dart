@@ -27,6 +27,7 @@ class FormImagesAttachmentsController extends GetxController {
   int? certId;
 
   List<FormImageClass> imagesData = <FormImageClass>[];
+  List<FormImageClass> tempImagesData = <FormImageClass>[];
   TextEditingController noteController = TextEditingController();
 
   //
@@ -127,11 +128,11 @@ class FormImagesAttachmentsController extends GetxController {
   Future<void> onSetFormAttachments() async {
     // consoleLog('store Images Attachments');
     hideKeyboard();
-    imagesData.clear();
+    // tempImagesData.clear();
     if (certAttachments.isNotEmpty) {
       for (Map<String, dynamic> item in certAttachments) {
         if (item['attachment_type_id'] == 1) {
-          imagesData.insert(
+          tempImagesData.insert(
             0,
             FormImageClass(
               imageId: item['image']['id'],
@@ -148,11 +149,11 @@ class FormImagesAttachmentsController extends GetxController {
                   body: <String, dynamic>{},
                 ).request(
                   onSuccess: (dynamic data, dynamic response) {
-                    imagesData.removeWhere(
-                      (FormImageClass element) =>
-                          element.imageId == item['image']['id'],
-                    );
-                    update();
+                    // tempImagesData.removeWhere(
+                    //   (FormImageClass element) =>
+                    //       element.imageId == item['image']['id'],
+                    // );
+                    // update();
                   },
                 );
               },
