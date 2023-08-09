@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import '../../../../../general_exports.dart';
 
 class FormNotesWriteNote extends StatelessWidget {
@@ -66,11 +68,21 @@ class FormNotesWriteNote extends StatelessWidget {
                                 controller.notesData[index!].note =
                                     controller.noteController.text.trim();
                               } else {
+                                final Random random = Random();
+                                final int randomNumber =
+                                    random.nextInt(1000000);
                                 controller.notesData.insert(
                                   0,
                                   FormNoteClass(
+                                    id: randomNumber,
                                     note: controller.noteController.text.trim(),
                                     type: controller.dropdownItemsClass.first,
+                                    onPress: () {
+                                      controller.notesData.removeWhere(
+                                        (FormNoteClass element) =>
+                                            element.id == randomNumber,
+                                      );
+                                    },
                                   ),
                                 );
                               }

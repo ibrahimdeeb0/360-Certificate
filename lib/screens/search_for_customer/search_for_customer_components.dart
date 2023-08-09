@@ -7,10 +7,12 @@ class NoResultSearchingContainer extends StatelessWidget {
     super.key,
     this.title,
     this.hideAddCustomer = false,
+    this.icon,
   });
 
   final String? title;
   final bool hideAddCustomer;
+  final Icon? icon;
 
   @override
   Widget build(BuildContext context) {
@@ -22,11 +24,12 @@ class NoResultSearchingContainer extends StatelessWidget {
           CircleAvatar(
             backgroundColor: Colors.grey.shade300,
             radius: 50,
-            child: SvgPicture.asset(
-              iconSearch,
-              width: 0.05.flexWidth,
-              height: 0.05.flexHeight,
-            ),
+            child: icon ??
+                SvgPicture.asset(
+                  iconSearch,
+                  width: 0.05.flexWidth,
+                  height: 0.05.flexHeight,
+                ),
           ),
           CommonText(
             title ?? 'No Result',

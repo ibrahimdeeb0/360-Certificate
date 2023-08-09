@@ -69,13 +69,13 @@ class MinorWriteNote extends StatelessWidget {
                                           .note =
                                       controller.noteController.text.trim();
                                 } else {
-                                  controller.notesData.insert(
-                                    0,
-                                    FormNoteClass(
-                                      note:
-                                          controller.noteController.text.trim(),
-                                    ),
-                                  );
+                                  // controller.notesData.insert(
+                                  //   0,
+                                  //   FormNoteClass(
+                                  //     note:
+                                  //         controller.noteController.text.trim(),
+                                  //   ),
+                                  // );
                                 }
                               }
 

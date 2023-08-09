@@ -206,7 +206,7 @@ class FormNotesAttachments extends StatelessWidget {
         if (Get.isDialogOpen!) {
           Get.back();
         }
-        controller.notesData.removeAt(itemIndex);
+        item.onPress?.call();
         controller.update();
       },
       title: '',

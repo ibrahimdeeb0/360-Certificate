@@ -14,8 +14,8 @@ class SearchForCustomer extends StatelessWidget {
       body: GetBuilder<SearchForCustomerController>(
         init: SearchForCustomerController(),
         builder: (SearchForCustomerController controller) {
-          controller.searchResult
-              .sort((dynamic a,dynamic b) => a['f_name'].compareTo(b['f_name']));
+          controller.searchResult.sort(
+              (dynamic a, dynamic b) => a['f_name'].compareTo(b['f_name']));
 
           return CommonContainer(
             style: appContainerStyles.containerStyles,
@@ -68,13 +68,16 @@ class SearchForCustomer extends StatelessWidget {
                       ],
                     ),
                   ),
-                  // if (controller.showMessageSearch)
-                  //   const NoResultSearchingContainer(
-                  //     title: 'Please use box for searching',
-                  //     hideAddCustomer: true,
-                  //   )
-                  // else
-                  if (controller.showMessageNoResult)
+                  if (controller.isNoCustomers)
+                    NoResultSearchingContainer(
+                      title: 'No customers has been added yet',
+                      icon: Icon(
+                        Icons.person_off,
+                        size: 0.02.flexAll,
+                      ),
+                      // hideAddCustomer: true,
+                    )
+                  else if (controller.showMessageNoResult)
                     const NoResultSearchingContainer()
                   else
                     ...controller.searchResult.map(

@@ -2,11 +2,13 @@ import '../../../../general_exports.dart';
 
 class FormNoteClass {
   FormNoteClass({
+    required this.id,
     this.note,
     this.type,
     this.onPress,
   });
 
+  int id;
   String? note;
   String? type;
   final Function()? onPress;
@@ -16,7 +18,7 @@ class FormNotesAttachmentsController extends GetxController {
   int? certId;
 
   List<FormNoteClass> notesData = <FormNoteClass>[];
-   List<FormNoteClass> tempMotesData = <FormNoteClass>[];
+  List<FormNoteClass> tempMotesData = <FormNoteClass>[];
   TextEditingController noteController = TextEditingController();
 
   // String selectedNoteType = 'Private Certificate Note';
@@ -47,10 +49,32 @@ class FormNotesAttachmentsController extends GetxController {
           tempMotesData.insert(
             0,
             FormNoteClass(
+              id: item[keyId],
               note: item['note_body'],
               type: item['exclude'] == 'yes'
                   ? 'Certificate Note'
                   : 'Private Certificate Note',
+              onPress: () {
+                //?-------Delete Attachment from database-------------//
+                ApiRequest(
+                  path: '/certificates/delete/${item[keyId]}/attachment',
+                  method: ApiMethods.post,
+                  className:
+                      'FormNotesAttachmentsController/onSetFormAttachments',
+                  requestFunction: onSetFormAttachments,
+                  withLoading: true,
+                  body: <String, dynamic>{},
+                ).request(
+                  onSuccess: (dynamic data, dynamic response) {
+                    tempMotesData.removeWhere(
+                      (FormNoteClass element) =>
+                          element.note == item['note_body'],
+                    );
+                    update();
+                  },
+                );
+                //-------------------//
+              },
             ),
           );
         } else {

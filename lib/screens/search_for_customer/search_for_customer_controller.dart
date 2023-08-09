@@ -8,6 +8,8 @@ class SearchForCustomerController extends GetxController {
   TextEditingController searchController = TextEditingController();
   List<dynamic> searchResult = <dynamic>[];
   bool showMessageNoResult = false;
+  // if there is no customers iun system
+  bool isNoCustomers = true;
   // bool showMessageSearch = true;
 
   List<dynamic> allCustomers = <dynamic>[];
@@ -70,7 +72,8 @@ class SearchForCustomerController extends GetxController {
       onSuccess: (dynamic data, dynamic response) {
         allCustomers = data;
         searchResult = data;
-        
+        isNoCustomers = allCustomers.isEmpty;
+
         update();
       },
     );

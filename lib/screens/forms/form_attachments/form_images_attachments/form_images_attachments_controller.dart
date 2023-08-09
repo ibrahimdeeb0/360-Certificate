@@ -139,6 +139,7 @@ class FormImagesAttachmentsController extends GetxController {
               imageName: item['image']['image'],
               imageURL: item['image']['file_url'],
               onPress: () {
+                //*-------Delete Image from database-------------//
                 // API for delete image
                 ApiRequest(
                   path: '/delete-image/${item['image']['id']}',
@@ -149,11 +150,24 @@ class FormImagesAttachmentsController extends GetxController {
                   body: <String, dynamic>{},
                 ).request(
                   onSuccess: (dynamic data, dynamic response) {
-                    // tempImagesData.removeWhere(
-                    //   (FormImageClass element) =>
-                    //       element.imageId == item['image']['id'],
-                    // );
-                    // update();
+                    //?-------Delete Attachment from database-------------//
+                    ApiRequest(
+                      path: '/certificates/delete/${item[keyId]}/attachment',
+                      method: ApiMethods.post,
+                      className: 'MinorWorksController/pickFormImage',
+                      requestFunction: pickFormImage,
+                      withLoading: true,
+                      body: <String, dynamic>{},
+                    ).request(
+                      onSuccess: (dynamic data, dynamic response) {
+                        tempImagesData.removeWhere(
+                          (FormImageClass element) =>
+                              element.imageId == item['image']['id'],
+                        );
+                        update();
+                      },
+                    );
+                    //-------------------//
                   },
                 );
               },

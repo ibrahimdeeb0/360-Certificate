@@ -64,12 +64,13 @@ class BreakdownServiceWriteNote extends StatelessWidget {
                                         .note =
                                     controller.noteController.text.trim();
                               } else {
-                                controller.notesData.insert(
-                                  0,
-                                  FormNoteClass(
-                                    note: controller.noteController.text.trim(),
-                                  ),
-                                );
+                                // controller.notesData.insert(
+                                //   0,
+                                //   FormNoteClass(
+                                //     id: 0,
+                                //     note: controller.noteController.text.trim(),
+                                //   ),
+                                // );
                               }
                             }
 
