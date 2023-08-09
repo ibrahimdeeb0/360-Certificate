@@ -44,7 +44,7 @@ enum CompanyContactType {
 
 enum SiteContactType {
   agent,
-  talent,
+  tenant,
   landlord,
   director,
   siteManager,

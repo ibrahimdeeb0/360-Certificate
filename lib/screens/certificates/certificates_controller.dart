@@ -102,13 +102,14 @@ class CertificatesController extends GetxController {
 
   Future<void> getAllCert() async {
     hideKeyboard();
+    startLoading();
     page = 1;
 
     ApiRequest(
       path: '$formGetAllCertificates?page=$page&perPage=5',
       className: 'CertificatesController/getAllCert',
       requestFunction: getAllCert,
-      withLoading: true,
+      // withLoading: true,
       formatResponse: true,
     ).request(
       onSuccess: (dynamic data, dynamic response) {
@@ -128,6 +129,10 @@ class CertificatesController extends GetxController {
         }
         update();
         homeController.update();
+        dismissLoading();
+      },
+      onError: (dynamic error) {
+        dismissLoading();
       },
     );
     if (!myAppController.isInternetConnect) {
@@ -147,6 +152,7 @@ class CertificatesController extends GetxController {
       }
       update();
       homeController.update();
+      dismissLoading();
     }
   }
 

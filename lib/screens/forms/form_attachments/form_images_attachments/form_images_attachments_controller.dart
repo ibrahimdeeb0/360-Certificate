@@ -22,16 +22,26 @@ class FormImageClass {
 }
 
 class FormImagesAttachmentsController extends GetxController {
+  final ImagePicker _picker = ImagePicker();
+
   int? certId;
 
   List<FormImageClass> imagesData = <FormImageClass>[];
   TextEditingController noteController = TextEditingController();
 
-  final ImagePicker _picker = ImagePicker();
+  //
+  List<dynamic> certAttachments = <dynamic>[];
+  // List<dynamic> formNotes = <dynamic>[];
+
+  bool isAttachmentsAdding = false;
 
   @override
   void onInit() {
     consoleLog(certId, key: 'certId');
+    if (!isAttachmentsAdding) {
+      getCertAttachments();
+    }
+
     super.onInit();
   }
 
@@ -111,5 +121,66 @@ class FormImagesAttachmentsController extends GetxController {
     }
 
     update();
+  }
+
+  // **************  Get Form Attachments From Certificate Details ********//
+  Future<void> onSetFormAttachments() async {
+    // consoleLog('store Images Attachments');
+    hideKeyboard();
+    imagesData.clear();
+    if (certAttachments.isNotEmpty) {
+      for (Map<String, dynamic> item in certAttachments) {
+        if (item['attachment_type_id'] == 1) {
+          imagesData.insert(
+            0,
+            FormImageClass(
+              imageId: item['image']['id'],
+              imageName: item['image']['image'],
+              imageURL: item['image']['file_url'],
+              onPress: () {
+                // API for delete image
+                ApiRequest(
+                  path: '/delete-image/${item['image']['id']}',
+                  method: ApiMethods.post,
+                  className: 'MinorWorksController/pickFormImage',
+                  requestFunction: pickFormImage,
+                  withLoading: true,
+                  body: <String, dynamic>{},
+                ).request(
+                  onSuccess: (dynamic data, dynamic response) {
+                    imagesData.removeWhere(
+                      (FormImageClass element) =>
+                          element.imageId == item['image']['id'],
+                    );
+                    update();
+                  },
+                );
+              },
+            ),
+          );
+        } else {
+          continue;
+        }
+      }
+    }
+  }
+
+  Future<void> getCertAttachments() async {
+    hideKeyboard();
+
+    ApiRequest(
+      path: '/certificates/$certId/get-attachments',
+      className: 'FormImagesAttachmentsController/getCertAttachments',
+      requestFunction: getCertAttachments,
+      withLoading: true,
+      formatResponse: true,
+    ).request(
+      onSuccess: (dynamic data, dynamic response) async {
+        certAttachments = data;
+        isAttachmentsAdding = true;
+        onSetFormAttachments();
+        update();
+      },
+    );
   }
 }

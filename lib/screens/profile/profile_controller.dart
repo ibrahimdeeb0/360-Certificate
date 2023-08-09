@@ -29,12 +29,12 @@ class ProfileController extends GetxController {
 
   //!-------------
 
-  void getUserProfileData() {
+  void getUserProfileData({bool withLoading = true}) {
     ApiRequest(
       path: '/profile',
       className: 'ProfileController/getUserProfileData',
       requestFunction: getUserProfileData,
-      withLoading: true,
+      withLoading: withLoading,
       formatResponse: true,
     ).request(
       onSuccess: (dynamic data, dynamic response) {

@@ -24,9 +24,57 @@ class FormNotesAttachmentsController extends GetxController {
     'Certificate Note',
   ];
 
+  List<dynamic> certAttachments = <dynamic>[];
+  bool isAttachmentsAdding = false;
+
   @override
   void onInit() {
     consoleLog(certId, key: 'certId');
+    if (!isAttachmentsAdding) {
+      getCertAttachments();
+    }
     super.onInit();
+  }
+
+  // **************  Get Form Attachments From Certificate Details ********//
+  Future<void> onSetFormAttachments() async {
+    hideKeyboard();
+    notesData.clear();
+    if (certAttachments.isNotEmpty) {
+      for (Map<String, dynamic> item in certAttachments) {
+        if (item['attachment_type_id'] == 2) {
+          notesData.insert(
+            0,
+            FormNoteClass(
+              note: item['note_body'],
+              type: item['exclude'] == 'yes'
+                  ? 'Certificate Note'
+                  : 'Private Certificate Note',
+            ),
+          );
+        } else {
+          continue;
+        }
+      }
+    }
+  }
+
+  Future<void> getCertAttachments() async {
+    hideKeyboard();
+
+    ApiRequest(
+      path: '/certificates/$certId/get-attachments',
+      className: 'FormNotesAttachmentsController/getCertAttachments',
+      requestFunction: getCertAttachments,
+      withLoading: true,
+      formatResponse: true,
+    ).request(
+      onSuccess: (dynamic data, dynamic response) async {
+        certAttachments = data;
+        isAttachmentsAdding = true;
+        onSetFormAttachments();
+        update();
+      },
+    );
   }
 }

@@ -9,7 +9,7 @@ class AddNewSiteController extends GetxController {
   TextEditingController siteDetailsPhoneController = TextEditingController();
   TextEditingController siteDetailsEmailController = TextEditingController();
 
-  SiteContactType siteContactType = SiteContactType.talent;
+  SiteContactType siteContactType = SiteContactType.tenant;
   SitePropertyType? sitePropertyType;
   TextEditingController propertyTypeOtherController = TextEditingController();
   List<SitePropertyType> listPropertyType = <SitePropertyType>[
@@ -23,7 +23,7 @@ class AddNewSiteController extends GetxController {
 
   List<SiteContactType> listSitePropertyType = <SiteContactType>[
     SiteContactType.agent,
-    SiteContactType.talent,
+    SiteContactType.tenant,
     SiteContactType.landlord,
     SiteContactType.director,
     SiteContactType.siteManager,

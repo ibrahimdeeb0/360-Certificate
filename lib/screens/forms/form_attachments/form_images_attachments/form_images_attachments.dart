@@ -255,18 +255,15 @@ class FormAddImageCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Hero(
-                tag: imagePath ?? '',
-                child: TextButton.icon(
-                  onPressed: pressView,
-                  icon: Icon(
-                    Icons.visibility,
-                    color: Color(AppColors.primary),
-                  ),
-                  label: CommonText(
-                    'View',
-                    style: appTextStyles.h3BoldStyle(),
-                  ),
+              TextButton.icon(
+                onPressed: pressView,
+                icon: Icon(
+                  Icons.visibility,
+                  color: Color(AppColors.primary),
+                ),
+                label: CommonText(
+                  'View',
+                  style: appTextStyles.h3BoldStyle(),
                 ),
               ),
               CommonContainer(

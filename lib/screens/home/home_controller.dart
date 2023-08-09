@@ -139,7 +139,6 @@ class HomeController extends GetxController {
           value: data,
         ); */
 
-        dismissLoading();
         // userDataProfile = data['user'];
         allUserData = data;
 
@@ -275,7 +274,7 @@ class HomeController extends GetxController {
             );
           }
         }
-        profileController.getUserProfileData();
+        profileController.getUserProfileData(withLoading: !isUserSubscribe);
         if (Get.isRegistered<MySettingsController>()) {
           Get.find<MySettingsController>().update();
         }

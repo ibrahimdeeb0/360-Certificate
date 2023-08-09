@@ -63,7 +63,7 @@ class CreateCustomerV2Controller extends GetxController {
   ];
   List<SiteContactType> listSiteContactType = <SiteContactType>[
     SiteContactType.agent,
-    SiteContactType.talent,
+    SiteContactType.tenant,
     SiteContactType.landlord,
     SiteContactType.director,
     SiteContactType.siteManager,
@@ -354,8 +354,8 @@ class CreateCustomerV2Controller extends GetxController {
       siteDetailsNameController.clear();
       siteDetailsPhoneController.clear();
       siteDetailsEmailController.clear();
-      siteContactType = SiteContactType.talent;
-      siteContactTypeValue = SiteContactType.talent.name;
+      siteContactType = SiteContactType.tenant;
+      siteContactTypeValue = SiteContactType.tenant.name;
     } else {
       siteDetailsNameController.text = customerInfoNameController.text;
       siteDetailsPhoneController.text = customerInfoPhoneController.text;

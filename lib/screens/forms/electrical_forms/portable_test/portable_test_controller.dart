@@ -269,7 +269,7 @@ class PortableTestController extends GetxController {
 
   // *****************  Store Form Attachments Functions **************** //
   Future<void> onStoreFormImagesAttachment() async {
-    consoleLog('store Images Attachments');
+    // consoleLog('store Images Attachments');
     hideKeyboard();
     if (formImagesAttachmentsController.imagesData.isNotEmpty) {
       for (FormImageClass item in formImagesAttachmentsController.imagesData) {

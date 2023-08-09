@@ -81,7 +81,7 @@ class CertificateDetailsController extends GetxController
       path: '$formGetCertificate/${Get.arguments[keyId]}/view',
       className: 'CertificateDetailsController/getCertDetails',
       requestFunction: getCertificateDetails,
-      withLoading: true,
+      // withLoading: true,
       formatResponse: true,
     ).request(
       onSuccess: (dynamic data, dynamic response) async {
@@ -99,7 +99,7 @@ class CertificateDetailsController extends GetxController
         // consoleLog(data['form_data']['id'], key: 'cert_id');
 
         update();
-        // dismissLoading();
+        dismissLoading();
         getCertAttachments();
       },
       // onError: (dynamic onError) {
@@ -112,7 +112,7 @@ class CertificateDetailsController extends GetxController
       );
       certDetails = apiData;
       update();
-      // dismissLoading();
+      dismissLoading();
       getCertAttachments();
     }
   }
