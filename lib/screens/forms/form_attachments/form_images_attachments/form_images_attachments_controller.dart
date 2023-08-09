@@ -106,6 +106,9 @@ class FormImagesAttachmentsController extends GetxController {
     if (Get.isBottomSheetOpen!) {
       Get.back();
     }
+    if (Get.isBottomSheetOpen!) {
+      Get.back();
+    }
 
     update();
   }

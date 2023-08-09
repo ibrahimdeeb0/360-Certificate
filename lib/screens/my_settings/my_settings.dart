@@ -161,7 +161,16 @@ class MySettings extends StatelessWidget {
                                             consoleLog(
                                                 controller.userData['logo']);
                                             Get.bottomSheet(
-                                              const PickImageSheet(),
+                                              // const PickImageSheet(),
+                                              PickPhotoBottomSheet(
+                                                title: 'Add Photo',
+                                                onGallery: () =>
+                                                    controller.pickerImage(
+                                                        ImageSource.gallery),
+                                                onCamera: () =>
+                                                    controller.pickerImage(
+                                                        ImageSource.camera),
+                                              ),
                                             );
                                           }
                                         : null,
@@ -209,7 +218,17 @@ class MySettings extends StatelessWidget {
                                     IconButton(
                                       onPressed: () {
                                         Get.bottomSheet(
-                                          const PickImageSheet(),
+                                          // const PickImageSheet(),
+
+                                          PickPhotoBottomSheet(
+                                            title: 'Add Photo',
+                                            onGallery: () =>
+                                                controller.pickerImage(
+                                                    ImageSource.gallery),
+                                            onCamera: () =>
+                                                controller.pickerImage(
+                                                    ImageSource.camera),
+                                          ),
                                         );
                                       },
                                       icon: Icon(
@@ -269,48 +288,6 @@ class SettingHeader extends StatelessWidget {
             child: const Icon(Icons.edit),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class PickImageSheet extends StatelessWidget {
-  const PickImageSheet({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return BottomSheetContainer(
-      title: 'Select',
-      height: 0.25,
-      child: GetBuilder<MySettingsController>(
-        init: MySettingsController(),
-        builder: (MySettingsController controller) {
-          return Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              CommonButton(
-                onPress: () => controller.pickerImage(
-                  ImageSource.gallery,
-                ),
-                text: 'Import from Gallery',
-                marginBottom: 0.015,
-                height: 0.06,
-                borderRadius: 0.02,
-              ),
-              CommonButton(
-                onPress: () {
-                  controller.pickerImage(
-                    ImageSource.camera,
-                  );
-                },
-                text: 'Import from Camera',
-                borderRadius: 0.02,
-                marginBottom: 0.015,
-                height: 0.06,
-              ),
-            ],
-          );
-        },
       ),
     );
   }

@@ -5,14 +5,14 @@ import '../../general_exports.dart';
 
 class PickPhotoBottomSheet extends StatelessWidget {
   const PickPhotoBottomSheet({
-    required this.controller,
+    // required this.controller,
     required this.title,
     this.onCamera,
     this.onGallery,
     Key? key,
   }) : super(key: key);
 
-  final dynamic controller;
+  // final dynamic controller;
   final String title;
   final Function? onCamera;
   final Function? onGallery;

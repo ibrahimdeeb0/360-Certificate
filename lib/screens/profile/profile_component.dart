@@ -89,7 +89,14 @@ class ProfileComponent extends StatelessWidget {
                               ),
                               child: CommonContainer(
                                 onPress: () => Get.bottomSheet(
-                                  const ImportImageBottomSheet(),
+                                  // const ImportImageBottomSheet(),
+                                  PickPhotoBottomSheet(
+                                    title: 'Add Photo',
+                                    onGallery: () => controller
+                                        .pickerFunction(ImageSource.gallery),
+                                    onCamera: () => controller
+                                        .pickerFunction(ImageSource.camera),
+                                  ),
                                 ),
                                 style: CommonContainerModel(
                                   touchEffect: TouchableEffect(
@@ -354,48 +361,6 @@ class ProfileComponent extends StatelessWidget {
           ),
         );
       },
-    );
-  }
-}
-
-class ImportImageBottomSheet extends StatelessWidget {
-  const ImportImageBottomSheet({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return BottomSheetContainer(
-      title: 'Select',
-      height: 0.25,
-      child: GetBuilder<ProfileController>(
-        init: ProfileController(),
-        builder: (ProfileController controller) {
-          return Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              CommonButton(
-                onPress: () => controller.pickerFunction(
-                  ImageSource.gallery,
-                ),
-                text: 'Import from Gallery',
-                marginBottom: 0.015,
-                height: 0.06,
-                borderRadius: 0.02,
-              ),
-              CommonButton(
-                onPress: () {
-                  controller.pickerFunction(
-                    ImageSource.camera,
-                  );
-                },
-                text: 'Import from Camera',
-                borderRadius: 0.02,
-                marginBottom: 0.015,
-                height: 0.06,
-              ),
-            ],
-          );
-        },
-      ),
     );
   }
 }

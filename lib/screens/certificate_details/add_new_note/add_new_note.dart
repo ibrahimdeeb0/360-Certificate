@@ -44,7 +44,6 @@ class AddNewNote extends StatelessWidget {
                     onPress: () {
                       Get.bottomSheet(
                         PickPhotoBottomSheet(
-                          controller: Get.find<AddNewNotesController>(),
                           title: 'Add Photo',
                           onGallery: () => controller.pickImage(
                             fromGallery: true,

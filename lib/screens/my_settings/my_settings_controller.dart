@@ -36,6 +36,10 @@ class MySettingsController extends GetxController {
         textColor: Colors.red[800],
       );
     }
+
+    if (Get.isBottomSheetOpen!) {
+      Get.back();
+    }
   }
 
   Future<void> updateCompanyLogo() async {

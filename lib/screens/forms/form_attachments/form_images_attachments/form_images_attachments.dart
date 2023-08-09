@@ -31,7 +31,6 @@ class FormImagesAttachments extends StatelessWidget {
               onPressed: () {
                 Get.bottomSheet(
                   PickPhotoBottomSheet(
-                    controller: controller,
                     title: 'Select',
                     onCamera: () => controller.pickFormImage(
                         imageSource: ImageSource.camera),
@@ -116,7 +115,6 @@ class FormImagesAttachments extends StatelessWidget {
                         onPress: () {
                           Get.bottomSheet(
                             PickPhotoBottomSheet(
-                              controller: controller,
                               title: 'Select',
                               onCamera: () => controller.pickFormImage(
                                   imageSource: ImageSource.camera),
