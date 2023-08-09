@@ -10,9 +10,11 @@ class Certificates extends StatelessWidget {
     return GetBuilder<CertificatesController>(
       init: certificatesController,
       builder: (CertificatesController controller) {
-        return controller.showMessage
-            ? const SizedBox()
-            : CommonContainer(
+        return
+            // return controller.showMessage
+            //     ? const SizedBox()
+            // :
+            CommonContainer(
                 paddingHorizontal: 0.04,
                 child: controller.filteredCert.isNotEmpty
                     ? Column(
