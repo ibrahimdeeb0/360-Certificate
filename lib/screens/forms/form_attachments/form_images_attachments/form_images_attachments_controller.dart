@@ -146,7 +146,7 @@ class FormImagesAttachmentsController extends GetxController {
                   method: ApiMethods.post,
                   className: 'MinorWorksController/pickFormImage',
                   requestFunction: pickFormImage,
-                  withLoading: true,
+                  // withLoading: true,
                   body: <String, dynamic>{},
                 ).request(
                   onSuccess: (dynamic data, dynamic response) {

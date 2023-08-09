@@ -93,6 +93,7 @@ class CertificateDetailsController extends GetxController
         certStatus = data[keyFormData]['status']['name'];
         statusId = data[keyFormData]['status_id'];
         certId = data[keyFormData][keyId];
+        certAttachments = data[keyFormData]['certificate_attachments'];
         // formBody = data[formData];
 
         // consoleLog(data['form_data']['form_id'], key: 'form_id');
@@ -100,7 +101,7 @@ class CertificateDetailsController extends GetxController
 
         update();
         dismissLoading();
-        getCertAttachments();
+        // getCertAttachments();
       },
       // onError: (dynamic onError) {
       //   dismissLoading();
@@ -113,7 +114,7 @@ class CertificateDetailsController extends GetxController
       certDetails = apiData;
       update();
       dismissLoading();
-      getCertAttachments();
+      // getCertAttachments();
     }
   }
 
@@ -301,22 +302,22 @@ class CertificateDetailsController extends GetxController
     );
   }
 
-  Future<void> getCertAttachments() async {
-    hideKeyboard();
+  // Future<void> getCertAttachments() async {
+  //   hideKeyboard();
 
-    ApiRequest(
-      path: '/certificates/$certId/get-attachments',
-      className: 'CertificateDetailsController/getCertAttachments',
-      requestFunction: getCertAttachments,
-      withLoading: true,
-      formatResponse: true,
-    ).request(
-      onSuccess: (dynamic data, dynamic response) async {
-        certAttachments = data;
-        update();
-      },
-    );
-  }
+  //   ApiRequest(
+  //     path: '/certificates/$certId/get-attachments',
+  //     className: 'CertificateDetailsController/getCertAttachments',
+  //     requestFunction: getCertAttachments,
+  //     withLoading: true,
+  //     formatResponse: true,
+  //   ).request(
+  //     onSuccess: (dynamic data, dynamic response) async {
+  //       certAttachments = data;
+  //       update();
+  //     },
+  //   );
+  // }
 
   @override
   void onClose() {
