@@ -11,19 +11,6 @@ class CertificateDetails extends StatelessWidget {
       appBar: Header(
         title: 'Certificate',
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {
-      //     // Map<String, dynamic> test = {
-      //     //   'cert_id': 0,
-      //     //   'attachment_type': '',
-      //     //   'note_title': '',
-      //     //   'note_body': '',
-      //     //   'image_id': '',
-      //     //   'is_include': '',
-      //     // };
-      //     // consoleLogPretty(test);
-      //   },
-      // ),
       body: GetBuilder<CertificateDetailsController>(
         init: CertificateDetailsController(),
         builder: (CertificateDetailsController controller) {

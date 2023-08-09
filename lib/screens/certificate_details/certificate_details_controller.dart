@@ -42,6 +42,7 @@ class CertificateDetailsController extends GetxController
   // Email test =
 
   Map<dynamic, dynamic> certDetails = <dynamic, dynamic>{};
+  List<dynamic> certAttachments = <dynamic>[];
   String certStatus = 'Pending';
   int statusId = 1;
   int certId = 0;
@@ -67,6 +68,7 @@ class CertificateDetailsController extends GetxController
   @override
   void onReady() {
     super.onReady();
+
     getCertificateDetails();
   }
 
@@ -79,34 +81,39 @@ class CertificateDetailsController extends GetxController
       path: '$formGetCertificate/${Get.arguments[keyId]}/view',
       className: 'CertificateDetailsController/getCertDetails',
       requestFunction: getCertificateDetails,
-      // withLoading: true,
+      withLoading: true,
       formatResponse: true,
-    ).request(onSuccess: (dynamic data, dynamic response) async {
-      myAppController.localStorage.saveToStorage(
-        key: 'getCompetedCerts',
-        value: data,
-      );
-      certDetails = data;
-      certStatus = data[keyFormData]['status']['name'];
-      statusId = data[keyFormData]['status_id'];
-      certId = data[keyFormData][keyId];
-      // formBody = data[formData];
+    ).request(
+      onSuccess: (dynamic data, dynamic response) async {
+        myAppController.localStorage.saveToStorage(
+          key: 'getCompetedCerts',
+          value: data,
+        );
+        certDetails = data;
+        certStatus = data[keyFormData]['status']['name'];
+        statusId = data[keyFormData]['status_id'];
+        certId = data[keyFormData][keyId];
+        // formBody = data[formData];
 
-      // consoleLog(data['form_data']['form_id'], key: 'form_id');
-      // consoleLog(data['form_data']['id'], key: 'cert_id');
+        // consoleLog(data['form_data']['form_id'], key: 'form_id');
+        // consoleLog(data['form_data']['id'], key: 'cert_id');
 
-      update();
-      dismissLoading();
-    }, onError: (dynamic onError) {
-      dismissLoading();
-    });
+        update();
+        // dismissLoading();
+        getCertAttachments();
+      },
+      // onError: (dynamic onError) {
+      //   dismissLoading();
+      // },
+    );
     if (!myAppController.isInternetConnect) {
       final dynamic apiData = await myAppController.localStorage.getFromStorage(
         key: 'getCompetedCerts',
       );
       certDetails = apiData;
       update();
-      dismissLoading();
+      // dismissLoading();
+      getCertAttachments();
     }
   }
 
@@ -290,6 +297,23 @@ class CertificateDetailsController extends GetxController
           description: '${response['message']}',
           // textColor: AppColors.deepGreen,
         );
+      },
+    );
+  }
+
+  Future<void> getCertAttachments() async {
+    hideKeyboard();
+
+    ApiRequest(
+      path: '/certificates/$certId/get-attachments',
+      className: 'CertificateDetailsController/getCertAttachments',
+      requestFunction: getCertAttachments,
+      withLoading: true,
+      formatResponse: true,
+    ).request(
+      onSuccess: (dynamic data, dynamic response) async {
+        certAttachments = data;
+        update();
       },
     );
   }

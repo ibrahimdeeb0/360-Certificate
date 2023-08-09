@@ -17,13 +17,16 @@ class NotesTab extends StatelessWidget {
           children: <Widget>[
             CommonText(
               'Add New Note',
-              onPress: () => Get.toNamed(
-                routeAddNewNote,
-                arguments: <String, dynamic>{
-                  keyId: controller.certId,
-                  keyStatus: NoteType.noteNew,
-                },
-              ),
+              onPress: () {
+                consoleLogPretty(controller.certAttachments);
+              },
+              // () => Get.toNamed(
+              //   routeAddNewNote,
+              //   arguments: <String, dynamic>{
+              //     keyId: controller.certId,
+              //     keyStatus: NoteType.noteNew,
+              //   },
+              // ),
               rowMainAxisAlignment: MainAxisAlignment.spaceBetween,
               rightChild: const Icon(Icons.add_circle_outline),
               containerStyle: CommonContainerModel(
@@ -35,7 +38,18 @@ class NotesTab extends StatelessWidget {
                 touchEffect: TouchableEffect(type: TouchTypes.opacity),
               ),
             ),
-            ...controller.certDetails[keyFormData]['notes'].map(
+            ...controller.certAttachments.map(
+              (dynamic note) => NotesCard(
+                title: note['note_title'] ?? '',
+                details: note['note_body'] ?? '',
+                images: note['image'] != null
+                    ? <dynamic>[
+                        note['image'],
+                      ]
+                    : <dynamic>[],
+              ),
+            ),
+            /* ...controller.certDetails[keyFormData]['notes'].map(
               (dynamic note) => NotesCard(
                 title: note[keyTitle],
                 details: note['body'],
@@ -55,7 +69,7 @@ class NotesTab extends StatelessWidget {
                   );
                 },
               ),
-            ),
+            ), */
             // NotesCard(),
             0.03.boxHeight,
           ],
@@ -133,14 +147,15 @@ class NotesCard extends StatelessWidget {
                   clipBehavior: Clip.hardEdge,
                   marginRight: 0.04,
                   onPress: () => Get.dialog(
-                    ViewImageContainer(imagePath: '${images?[index]['url']}'),
+                    ViewImageContainer(
+                        imagePath: '${images?[index]['file_url']}'),
                   ),
                   child: AnimatedSwitcher(
                     duration: const Duration(milliseconds: 500),
                     child: Hero(
-                      tag: '${images?[index]['url']}',
+                      tag: '${images?[index]['file_url']}',
                       child: CachedImage(
-                        image: '${images?[index]['url']}',
+                        image: '${images?[index]['file_url']}',
                         withPlaceHolder: true,
                         fit: BoxFit.cover,
                         width: 1.flexWidth,
