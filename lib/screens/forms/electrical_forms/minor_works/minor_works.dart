@@ -12,7 +12,6 @@ class MinorWorks extends StatelessWidget {
           appBar: FormHeader(
             withBack: false,
             title: 'Minor Works',
-            circleNumbering: '',
             showSaveBtn: (controller.selectedId !=
                     controller.listFormSections.length - 1) &&
                 !controller.isTemplate!,
@@ -23,19 +22,23 @@ class MinorWorks extends StatelessWidget {
               type: ActionType.image,
             ),
             pressImage: () {
+              controller.formImagesAttachmentsController.certId =
+                  controller.certId;
               Get.to(
-                () => const MinorAddImage(),
-                arguments: <String, dynamic>{
-                  'cert_id': controller.certId,
-                },
+                () => FormImagesAttachments(
+                  formImagesAttachmentsController:
+                      controller.formImagesAttachmentsController,
+                ),
               );
             },
             pressNote: () {
+              controller.formNotesAttachmentsController.certId =
+                  controller.certId;
               Get.to(
-                () => const MinorAddNote(),
-                arguments: <String, dynamic>{
-                  'cert_id': controller.certId,
-                },
+                () => FormNotesAttachments(
+                  formNotesAttachmentsController:
+                      controller.formNotesAttachmentsController,
+                ),
               );
             },
           ),

@@ -37,6 +37,11 @@ class MinorWorksController extends GetxController {
   bool r2 = false;
   DateTime? selectedDate;
 
+  FormImagesAttachmentsController formImagesAttachmentsController =
+      FormImagesAttachmentsController();
+  FormNotesAttachmentsController formNotesAttachmentsController =
+      FormNotesAttachmentsController();
+
   Map<String, dynamic> formData = <String, dynamic>{
     formKeyDeclaration: <String, dynamic>{
       formKeyEngineerName: '',

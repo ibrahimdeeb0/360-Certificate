@@ -45,12 +45,6 @@ class PortableTest extends StatelessWidget {
                   !controller.isTemplate!),
               onPressSave: () => controller.onNext(fromSave: true),
             ),
-            // floatingActionButton: FloatingActionButton(
-            //   onPressed: () {
-            //     // controller.onStoreFormImagesAttachment();
-            //     controller.onStoreFormNotesAttachment();
-            //   },
-            // ),
             body: CommonContainer(
               width: 1,
               height: 1,
