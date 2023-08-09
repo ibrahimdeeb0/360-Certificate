@@ -42,6 +42,7 @@ class ProfileController extends GetxController {
         setData();
 
         if (Get.isRegistered<MySettingsController>()) {
+          Get.find<MySettingsController>().userData = userProfileData;
           Get.find<MySettingsController>().update();
         }
       },
