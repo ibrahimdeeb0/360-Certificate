@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter_svg/svg.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -60,8 +62,10 @@ class PickPhotoBottomSheet extends StatelessWidget {
                 ),
                 PickContainer(
                   onPress: () async {
-                    final PermissionStatus status =
-                        await Permission.mediaLibrary.request();
+                    final PermissionStatus status = Platform.isAndroid
+                        ? await Permission.mediaLibrary.request()
+                        : await Permission.photos.request();
+                    // await Permission.mediaLibrary.request();
 
                     if (status.isGranted) {
                       onGallery?.call();
