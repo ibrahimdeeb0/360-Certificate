@@ -337,35 +337,67 @@ class MinorWorksController extends GetxController {
     update();
   }
 
-  // Future<void> onStoreFormImages() async {
-  //   hideKeyboard();
-  //   if (imagesData.isNotEmpty) {
-  //     for (FormImageClass item in imagesData) {
-  //       startLoading();
+  // *****************  Store Form Attachments Functions **************** //
+  Future<void> onStoreFormImagesAttachment() async {
+    // consoleLog('store Images Attachments');
+    hideKeyboard();
+    if (formImagesAttachmentsController.imagesData.isNotEmpty) {
+      for (FormImageClass item in formImagesAttachmentsController.imagesData) {
+        ApiRequest(
+          method: ApiMethods.post,
+          path: '/certificates/create/attachment',
+          className: 'PortableTestController/onStoreFormImagesAttachment',
+          requestFunction: onStoreFormImagesAttachment,
+          withLoading: true,
+          body: <String, dynamic>{
+            'certificate_id': certId,
+            'image_id': item.imageId,
+            // true included ? no exclude : yes exclude
+            'exclude': item.isIncluded ? 'no' : 'yes',
+            // 'note_title': '',
+            if (item.note != null) 'note_body': item.note,
+            'attachment_type_id': 1
+          },
+        ).request(
+          onSuccess: (dynamic data, dynamic response) {
+            update();
+          },
+        );
+      }
+      onStoreFormNotesAttachment();
+    } else {
+      onStoreFormNotesAttachment();
+    }
+  }
 
-  //       ApiRequest(
-  //         path: '/store-image',
-  //         method: ApiMethods.post,
-  //         className: 'MinorWorksController/onStoreFormImages',
-  //         requestFunction: onStoreFormImages,
-  //         withLoading: true,
-  //         body: await addFormDataToJson(
-  //           jsonObject: <String, dynamic>{
-  //             'type': 'form',
-  //             'type_id': 2,
-  //           },
-  //           file: item.file,
-  //           fileKey: 'image',
-  //         ),
-  //       ).request(
-  //         onSuccess: (dynamic data, dynamic response) {
-  //           update();
-  //         },
-  //         // onError: (error) {},
-  //       );
-  //     }
-  //   }
-  // }
+  //
+  Future<void> onStoreFormNotesAttachment() async {
+    // consoleLog('store Notes Attachments');
+    hideKeyboard();
+    if (formNotesAttachmentsController.notesData.isNotEmpty) {
+      for (FormNoteClass item in formNotesAttachmentsController.notesData) {
+        ApiRequest(
+          method: ApiMethods.post,
+          path: '/certificates/create/attachment',
+          className: 'PortableTestController/onStoreFormNotesAttachment',
+          requestFunction: onStoreFormNotesAttachment,
+          withLoading: true,
+          formatResponse: true,
+          body: <String, dynamic>{
+            'certificate_id': certId,
+            'exclude': item.type == 'Certificate Note' ? 'yes' : 'no',
+            // 'note_title': '',
+            'note_body': item.note,
+            'attachment_type_id': 2,
+          },
+        ).request(
+          onSuccess: (dynamic data, dynamic response) {
+            update();
+          },
+        );
+      }
+    }
+  }
 
   // *****************  signature functions **************** //
 

@@ -683,7 +683,7 @@ class CreateCustomerV2Controller extends GetxController {
 
         consoleLog(myAppController.certFormInfo);
 
-        //* fist back for close create customer screen
+        //* first back for close create customer screen
         //* second  back for close search screen
         //* fist back for close select form screen
 

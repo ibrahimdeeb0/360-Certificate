@@ -47,6 +47,34 @@ class NotesTab extends StatelessWidget {
                         note['image'],
                       ]
                     : <dynamic>[],
+                onEdit: () {
+                  if (note['attachment_type_id'] == 1) {
+                    Get.to(
+                      () => const EditCertImage(),
+                      arguments: <String, dynamic>{
+                        keyData: note,
+                      },
+                    );
+                  } else if (note['attachment_type_id'] == 2) {
+                    /*  Get.to(
+                      () => EditNoteAttachment(
+                        noteData: note,
+                      ),
+                    ); */
+                  } else if (note['attachment_type_id'] == 3) {
+                    Get.toNamed(
+                      routeAddNewNote,
+                      arguments: <String, dynamic>{
+                        keyId: controller.certId,
+                        keyStatus: NoteType.noteUpdate,
+                        'id_note': note[keyId],
+                        keyTitle: note['note_title'],
+                        keyDetails: note['note_body'],
+                        'images': note['files'],
+                      },
+                    );
+                  }
+                },
               ),
             ),
             /* ...controller.certDetails[keyFormData]['notes'].map(

@@ -74,3 +74,5 @@ enum ImageFormatType {
   local,
   network,
 }
+
+enum AttachmentType { image, note }

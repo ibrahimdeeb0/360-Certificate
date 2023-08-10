@@ -268,7 +268,6 @@ class FormAddImageCard extends StatelessWidget {
     this.pressNote,
     this.pressToggleInclude,
     this.isIncluded = false,
-    this.imagePath,
     this.note,
   });
 
@@ -278,7 +277,6 @@ class FormAddImageCard extends StatelessWidget {
   final Function()? pressNote;
   final Function()? pressToggleInclude;
   final bool isIncluded;
-  final String? imagePath;
   final String? note;
 
   @override
