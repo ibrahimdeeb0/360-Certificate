@@ -53,14 +53,17 @@ class NotesTab extends StatelessWidget {
                       () => const EditCertImage(),
                       arguments: <String, dynamic>{
                         keyData: note,
+                        keyId: controller.certId,
                       },
                     );
                   } else if (note['attachment_type_id'] == 2) {
-                    /*  Get.to(
-                      () => EditNoteAttachment(
-                        noteData: note,
-                      ),
-                    ); */
+                    Get.to(
+                      () => const EditCertNote(),
+                      arguments: <String, dynamic>{
+                        keyData: note,
+                        keyId: controller.certId,
+                      },
+                    );
                   } else if (note['attachment_type_id'] == 3) {
                     Get.toNamed(
                       routeAddNewNote,

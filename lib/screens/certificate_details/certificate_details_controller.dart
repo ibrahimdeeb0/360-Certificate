@@ -69,6 +69,8 @@ class CertificateDetailsController extends GetxController
   void onReady() {
     super.onReady();
 
+    certId = Get.arguments[keyId];
+
     getCertificateDetails();
   }
 
