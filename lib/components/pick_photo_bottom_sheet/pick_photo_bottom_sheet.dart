@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter_svg/svg.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -42,6 +40,8 @@ class PickPhotoBottomSheet extends StatelessWidget {
                     final PermissionStatus status =
                         await Permission.camera.request();
 
+                    consoleLog(status, key: 'Permission_Status');
+
                     if (status.isGranted) {
                       onCamera?.call();
                     } else {
@@ -62,24 +62,44 @@ class PickPhotoBottomSheet extends StatelessWidget {
                 ),
                 PickContainer(
                   onPress: () async {
-                    final PermissionStatus status = Platform.isAndroid
-                        ? await Permission.mediaLibrary.request()
-                        : await Permission.photos.request();
-                    // await Permission.mediaLibrary.request();
+                    final PermissionStatus status =
+                        // Platform.isAndroid
+                        //     ? await Permission.mediaLibrary.request()
+                        //     : await Permission.photos.request();
+                        await Permission.mediaLibrary.request();
+
+                    consoleLog(status, key: 'Permission_Status');
 
                     if (status.isGranted) {
                       onGallery?.call();
-                    } else {
+                    }
+                    // if (status.) {
+
+                    //   openDialog(
+                    //     title: 'Gallery Permission',
+                    //     description: 'Do need to go to access Gallery ?',
+                    //     cancelText: 'Cancel',
+                    //     confirmText: 'Open',
+                    //     onCancel: Get.back,
+                    //     onConfirm: () {
+                    //       openAppSettings();
+                    //       Get.back();
+                    //     },
+                    //   );
+
+                    // }
+                    else {
                       openDialog(
-                          title: 'Gallery Permission',
-                          description: 'Do need to go to access Gallery ?',
-                          cancelText: 'Cancel',
-                          confirmText: 'Open',
-                          onCancel: Get.back,
-                          onConfirm: () {
-                            openAppSettings();
-                            Get.back();
-                          });
+                        title: 'Gallery Permission',
+                        description: 'Do need to go to access Gallery ?',
+                        cancelText: 'Cancel',
+                        confirmText: 'Open',
+                        onCancel: Get.back,
+                        onConfirm: () {
+                          openAppSettings();
+                          Get.back();
+                        },
+                      );
                     }
                   },
                   title: 'Gallery',
