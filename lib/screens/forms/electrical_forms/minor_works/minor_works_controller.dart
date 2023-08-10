@@ -537,6 +537,7 @@ class MinorWorksController extends GetxController {
   Future<void> onUpdateCertificate() async {
     hideKeyboard();
     onSaveData();
+    onStoreFormImagesAttachment();
 
     final Map<String, dynamic> certData = <String, dynamic>{
       ...formBody,
@@ -583,6 +584,7 @@ class MinorWorksController extends GetxController {
   Future<void> onCompleteCertificate() async {
     hideKeyboard();
     onSaveData();
+    onStoreFormImagesAttachment();
 
     final Map<String, dynamic> certData = <String, dynamic>{
       ...formBody,
