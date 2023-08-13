@@ -28,7 +28,7 @@ class EditCertImage extends StatelessWidget {
               children: <Widget>[
                 FormAddImageCard(
                   fileName: controller.imageClass?.imageName!.split('/').last,
-                  isIncluded: controller.imageClass!.isIncluded,
+                  isIncluded: controller.imageClass!.isNotIncluded,
                   note: controller.imageClass?.note,
                   pressToggleInclude: () => pressToggleInclude(
                     controller: controller,
@@ -51,7 +51,8 @@ class EditCertImage extends StatelessWidget {
   void pressToggleInclude({
     required EditCertImageController controller,
   }) {
-    controller.imageClass!.isIncluded = !(controller.imageClass!.isIncluded);
+    controller.imageClass!.isNotIncluded =
+        !(controller.imageClass!.isNotIncluded);
     controller.update();
   }
 

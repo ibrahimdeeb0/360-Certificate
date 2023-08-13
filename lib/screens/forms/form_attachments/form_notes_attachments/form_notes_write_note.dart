@@ -76,7 +76,7 @@ class FormNotesWriteNote extends StatelessWidget {
                                   FormNoteClass(
                                     id: randomNumber,
                                     note: controller.noteController.text.trim(),
-                                    type: controller.dropdownItemsClass.first,
+                                    type: 'Certificate Note',
                                     onPress: () {
                                       controller.notesData.removeWhere(
                                         (FormNoteClass element) =>

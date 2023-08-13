@@ -49,6 +49,7 @@ class NotesTab extends StatelessWidget {
                     : <dynamic>[],
                 onEdit: () {
                   if (note['attachment_type_id'] == 1) {
+                    consoleLogPretty(note);
                     Get.to(
                       () => const EditCertImage(),
                       arguments: <String, dynamic>{
@@ -57,6 +58,7 @@ class NotesTab extends StatelessWidget {
                       },
                     );
                   } else if (note['attachment_type_id'] == 2) {
+                    consoleLogPretty(note);
                     Get.to(
                       () => const EditCertNote(),
                       arguments: <String, dynamic>{

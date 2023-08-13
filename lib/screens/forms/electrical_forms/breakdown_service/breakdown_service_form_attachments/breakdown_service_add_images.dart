@@ -59,10 +59,11 @@ class BreakdownServiceAddImage extends StatelessWidget {
                                         // imagePath: item.file.path,
                                         pressToggleInclude: () {
                                           controller.imagesData[itemIndex]
-                                              .isIncluded = !item.isIncluded;
+                                                  .isNotIncluded =
+                                              !item.isNotIncluded;
                                           controller.update();
                                         },
-                                        isIncluded: item.isIncluded,
+                                        isIncluded: item.isNotIncluded,
                                         pressView: () {
                                           // Get.dialog(
                                           //   ViewImageContainer(

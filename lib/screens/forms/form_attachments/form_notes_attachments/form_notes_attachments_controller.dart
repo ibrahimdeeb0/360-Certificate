@@ -52,8 +52,8 @@ class FormNotesAttachmentsController extends GetxController {
               id: item[keyId],
               note: item['note_body'],
               type: item['exclude'] == 'yes'
-                  ? 'Certificate Note'
-                  : 'Private Certificate Note',
+                  ? 'Private Certificate Note'
+                  : 'Certificate Note',
               onPress: () {
                 //?-------Delete Attachment from database-------------//
                 ApiRequest(

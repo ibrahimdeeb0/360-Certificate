@@ -71,7 +71,7 @@ class FormImagesAttachments extends StatelessWidget {
 
                                   return FormAddImageCard(
                                     fileName: item.imageName!.split('/').last,
-                                    isIncluded: item.isIncluded,
+                                    isIncluded: item.isNotIncluded,
                                     note: item.note,
                                     pressToggleInclude: () =>
                                         pressToggleInclude(
@@ -101,7 +101,7 @@ class FormImagesAttachments extends StatelessWidget {
 
                                   return FormAddImageCard(
                                     fileName: item.imageName!.split('/').last,
-                                    isIncluded: item.isIncluded,
+                                    isIncluded: item.isNotIncluded,
                                     note: item.note,
                                     pressToggleInclude: () =>
                                         pressToggleInclude(
@@ -152,7 +152,7 @@ class FormImagesAttachments extends StatelessWidget {
     required FormImageClass item,
     required int itemIndex,
   }) {
-    controller.imagesData[itemIndex].isIncluded = !item.isIncluded;
+    controller.imagesData[itemIndex].isNotIncluded = !item.isNotIncluded;
     controller.update();
   }
 
