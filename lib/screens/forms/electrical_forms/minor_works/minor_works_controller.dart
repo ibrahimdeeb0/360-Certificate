@@ -394,7 +394,7 @@ class MinorWorksController extends GetxController {
           formatResponse: true,
           body: <String, dynamic>{
             'certificate_id': certId,
-            'exclude': item.type == 'Certificate Note' ? 'yes' : 'no',
+            'exclude': item.type == 'Certificate Note' ? 'no' : 'yes',
             // 'note_title': '',
             'note_body': item.note,
             'attachment_type_id': 2,
