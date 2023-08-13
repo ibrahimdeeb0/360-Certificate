@@ -281,6 +281,7 @@ class FormAddImageCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // consoleLog(note, key: 'note');
     return SizedBox(
       child: Column(
         children: <Widget>[
@@ -292,7 +293,7 @@ class FormAddImageCard extends StatelessWidget {
           ),
           if (note != null)
             CommonInput(
-              value: note ?? '',
+              value: note,
               height: 0.12,
               maxLines: 60,
               enabled: false,

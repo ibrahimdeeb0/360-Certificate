@@ -99,8 +99,8 @@ class MinorWorksController extends GetxController {
 
     //screen3 part1
     formKeyContinuityMinor: '',
-    formKeyProtectiveConductorInput: '',
-    formKeyProtectiveConductorR: '',
+    formKeyProtectiveConductorR1R2: '',
+    formKeyProtectiveConductorR2: '',
     //screen3 part2
     formKeyRingLL: '',
     formKeyRingNN: '',
@@ -304,9 +304,13 @@ class MinorWorksController extends GetxController {
     if (pressIsR1) {
       r1 = true;
       r2 = false;
+      formData[formKeyProtectiveConductorR1R2] = 'yes';
+      formData[formKeyProtectiveConductorR2] = 'no';
     } else {
       r1 = false;
       r2 = true;
+      formData[formKeyProtectiveConductorR1R2] = 'no';
+      formData[formKeyProtectiveConductorR2] = 'yes';
     }
     update();
   }
@@ -338,6 +342,7 @@ class MinorWorksController extends GetxController {
   }
 
   // *****************  Store Form Attachments Functions **************** //
+  bool isStorImgDone = false;
   Future<void> onStoreFormImagesAttachment() async {
     // consoleLog('store Images Attachments');
     hideKeyboard();
@@ -364,13 +369,17 @@ class MinorWorksController extends GetxController {
           },
         );
       }
+
+      isStorImgDone = true;
       onStoreFormNotesAttachment();
     } else {
+      isStorImgDone = true;
       onStoreFormNotesAttachment();
     }
   }
 
   //
+  bool isStorNoteDone = false;
   Future<void> onStoreFormNotesAttachment() async {
     // consoleLog('store Notes Attachments');
     hideKeyboard();
@@ -396,6 +405,9 @@ class MinorWorksController extends GetxController {
           },
         );
       }
+      isStorNoteDone = true;
+    } else {
+      isStorNoteDone = true;
     }
   }
 
@@ -537,7 +549,10 @@ class MinorWorksController extends GetxController {
   Future<void> onUpdateCertificate() async {
     hideKeyboard();
     onSaveData();
-    onStoreFormImagesAttachment();
+
+    if (!isStorImgDone && !isStorNoteDone) {
+      onStoreFormImagesAttachment();
+    }
 
     final Map<String, dynamic> certData = <String, dynamic>{
       ...formBody,
@@ -583,17 +598,21 @@ class MinorWorksController extends GetxController {
 
   Future<void> onCompleteCertificate() async {
     hideKeyboard();
-    onSaveData();
-    onStoreFormImagesAttachment();
-
-    final Map<String, dynamic> certData = <String, dynamic>{
-      ...formBody,
-      'customer_id': customerId,
-      'status_id': idCompleted,
-      'site_id': siteId,
-    };
 
     if (signatureBytes != null) {
+      onSaveData();
+
+      if (!isStorImgDone && !isStorNoteDone) {
+        onStoreFormImagesAttachment();
+      }
+
+      final Map<String, dynamic> certData = <String, dynamic>{
+        ...formBody,
+        'customer_id': customerId,
+        'status_id': idCompleted,
+        'site_id': siteId,
+      };
+
       startLoading();
       ApiRequest(
         method: ApiMethods.post,
@@ -614,13 +633,16 @@ class MinorWorksController extends GetxController {
         myAppController.clearCertFormInfo();
         // certificatesController.getAllCert();
         // homeController.getCertCount();
-        profileController.getUserProfileData();
-        homeController.getAllUserData();
 
         if (isFromCertificate) {
+          homeController.getCertCount();
+          certificatesController.getAllCert();
           Get.back();
           Get.find<CertificateDetailsController>().getCertificateDetails();
         } else {
+          profileController.getUserProfileData();
+          homeController.getAllUserData();
+          //
           Get.offNamed(
             routeCertificateDetails,
             arguments: <String, dynamic>{

@@ -19,14 +19,14 @@ class NotesTab extends StatelessWidget {
               'Add New Note',
               onPress: () {
                 consoleLogPretty(controller.certAttachments);
+                Get.to(
+                  () => const EditCertDetailsNote(),
+                  arguments: <String, dynamic>{
+                    keyId: controller.certId,
+                    keyStatus: NoteType.noteNew,
+                  },
+                );
               },
-              // () => Get.toNamed(
-              //   routeAddNewNote,
-              //   arguments: <String, dynamic>{
-              //     keyId: controller.certId,
-              //     keyStatus: NoteType.noteNew,
-              //   },
-              // ),
               rowMainAxisAlignment: MainAxisAlignment.spaceBetween,
               rightChild: const Icon(Icons.add_circle_outline),
               containerStyle: CommonContainerModel(
@@ -65,15 +65,13 @@ class NotesTab extends StatelessWidget {
                       },
                     );
                   } else if (note['attachment_type_id'] == 3) {
-                    Get.toNamed(
-                      routeAddNewNote,
+                    consoleLogPretty(note);
+                    Get.to(
+                      () => const EditCertDetailsNote(),
                       arguments: <String, dynamic>{
                         keyId: controller.certId,
                         keyStatus: NoteType.noteUpdate,
-                        'id_note': note[keyId],
-                        keyTitle: note['note_title'],
-                        keyDetails: note['note_body'],
-                        'images': note['files'],
+                        keyData: note,
                       },
                     );
                   }

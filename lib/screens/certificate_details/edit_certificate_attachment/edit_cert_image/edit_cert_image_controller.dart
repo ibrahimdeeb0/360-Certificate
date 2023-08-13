@@ -23,7 +23,7 @@ class EditCertImageController extends GetxController {
       imageName: imageData['image']['image'],
       imageURL: imageData['image']['file_url'],
       isIncluded: !(imageData['exclude'] == 'yes'),
-      note: imageData['note_body'] ?? '',
+      note: imageData['note_body'],
       onPress: () {
         startLoading();
         //*-------Delete Image from database-------------//
