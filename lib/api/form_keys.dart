@@ -637,14 +637,14 @@ const String formKeySPDBSEN = 'spd_bs_en';
 const String formKeySPDType = 'spd_type';
 
 const String formKeyContinuityMinor = 'continuity';
-const String formKeyProtectiveConductorInput = 'protective_conductor_input ';
-const String formKeyProtectiveConductorR = 'protective_conductor_r ';
+const String formKeyProtectiveConductorInput = 'protective_conductor_input';
+const String formKeyProtectiveConductorR = 'protective_conductor_r';
 const String formKeyRingLL = 'ring_ll';
 const String formKeyRingNN = 'ring_nn';
 const String formKeyRingCPC = 'ring_cpc';
 const String formKeyInsulationLL = 'insulation_ring_ll';
 const String formKeyInsulationLE = 'insulation_ring_le';
-const String formKeyTestVoltage = 'insulation_test_voltage ';
+const String formKeyTestVoltage = 'insulation_test_voltage';
 const String formKeyPolaritySatisfactory = 'polarity_satisfactory:';
 const String formKeyEarthFaultLoopImpedanceZs = 'earth_fault_loop_impedance_zs';
 const String formKeyRCDTest = 'rcd_test';
