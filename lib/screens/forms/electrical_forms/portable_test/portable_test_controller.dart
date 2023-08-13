@@ -283,7 +283,7 @@ class PortableTestController extends GetxController {
             'certificate_id': certId,
             'image_id': item.imageId,
             // true included ? no exclude : yes exclude
-            'exclude': item.isIncluded ? 'no' : 'yes',
+            'exclude': item.isNotIncluded ? 'no' : 'yes',
             // 'note_title': '',
             if (item.note != null) 'note_body': item.note,
             'attachment_type_id': 1

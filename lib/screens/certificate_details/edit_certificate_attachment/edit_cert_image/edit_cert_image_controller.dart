@@ -22,7 +22,7 @@ class EditCertImageController extends GetxController {
       imageId: imageData['image']['id'],
       imageName: imageData['image']['image'],
       imageURL: imageData['image']['file_url'],
-      isIncluded: !(imageData['exclude'] == 'yes'),
+      isNotIncluded: (imageData['exclude'] == 'yes'),
       note: imageData['note_body'],
       onPress: () {
         startLoading();
@@ -78,7 +78,7 @@ class EditCertImageController extends GetxController {
         'certificate_id': Get.arguments[keyId],
         'image_id': imageClass!.imageId,
         // true included ? no exclude : yes exclude
-        'exclude': imageClass!.isIncluded ? 'no' : 'yes',
+        'exclude': imageClass!.isNotIncluded ? 'no' : 'yes',
         // 'note_title': '',
         if (imageClass!.note != null) 'note_body': imageClass!.note,
         'attachment_type_id': 1

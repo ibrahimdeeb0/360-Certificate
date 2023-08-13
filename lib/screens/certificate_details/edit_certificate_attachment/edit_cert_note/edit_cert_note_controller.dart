@@ -26,8 +26,8 @@ class EditCertNoteController extends GetxController {
       id: noteData[keyId],
       note: noteData['note_body'],
       type: noteData['exclude'] == 'yes'
-          ? 'Certificate Note'
-          : 'Private Certificate Note',
+          ? 'Private Certificate Note'
+          : 'Certificate Note',
       onPress: () {
         //?-------Delete Attachment from database-------------//
         ApiRequest(
@@ -63,7 +63,7 @@ class EditCertNoteController extends GetxController {
       withLoading: true,
       body: <String, dynamic>{
         'certificate_id': certId,
-        'exclude': noteClass!.type == 'Certificate Note' ? 'yes' : 'no',
+        'exclude': noteClass!.type == 'Private Certificate Note' ? 'yes' : 'no',
         // 'note_title': '',
         'note_body': noteClass!.note,
         'attachment_type_id': 2,

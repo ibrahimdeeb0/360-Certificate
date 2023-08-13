@@ -8,7 +8,7 @@ class FormImageClass {
     this.imageName,
     this.imageURL,
     this.onPress,
-    this.isIncluded = false,
+    this.isNotIncluded = false,
     this.note,
   });
 
@@ -17,7 +17,7 @@ class FormImageClass {
   final String? imageURL;
 
   final Function()? onPress;
-  bool isIncluded;
+  bool isNotIncluded;
   String? note;
 }
 
@@ -138,7 +138,7 @@ class FormImagesAttachmentsController extends GetxController {
               imageId: item['image']['id'],
               imageName: item['image']['image'],
               imageURL: item['image']['file_url'],
-              isIncluded: !(item['exclude'] == 'yes'),
+              isNotIncluded: (item['exclude'] == 'yes'),
               note: item['note_body'],
               onPress: () {
                 //*-------Delete Image from database-------------//
