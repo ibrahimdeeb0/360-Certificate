@@ -637,8 +637,8 @@ const String formKeySPDBSEN = 'spd_bs_en';
 const String formKeySPDType = 'spd_type';
 
 const String formKeyContinuityMinor = 'continuity';
-const String formKeyProtectiveConductorInput = 'protective_conductor_input ';
-const String formKeyProtectiveConductorR = 'protective_conductor_r ';
+const String formKeyProtectiveConductorR1R2 = 'protective_conductor_r1_r2';
+const String formKeyProtectiveConductorR2 = 'protective_conductor_r';
 const String formKeyRingLL = 'ring_ll';
 const String formKeyRingNN = 'ring_nn';
 const String formKeyRingCPC = 'ring_cpc';

@@ -138,9 +138,12 @@ class FormImagesAttachmentsController extends GetxController {
               imageId: item['image']['id'],
               imageName: item['image']['image'],
               imageURL: item['image']['file_url'],
+              isIncluded: !(item['exclude'] == 'yes'),
+              note: item['note_body'],
               onPress: () {
                 //*-------Delete Image from database-------------//
                 // API for delete image
+                startLoading();
                 ApiRequest(
                   path: '/delete-image/${item['image']['id']}',
                   method: ApiMethods.post,

@@ -28,8 +28,8 @@ class AddNewNotesController extends GetxController {
       images = Get.arguments['images'];
       consoleLogPretty(images, key: 'images');
     }
-    consoleLog('certId: $certId || noteId: $noteId || ${Get.arguments}',
-        key: 'arguments');
+    // consoleLog('certId: $certId || noteId: $noteId || ${Get.arguments}',
+    //     key: 'arguments');
     update();
   }
 
