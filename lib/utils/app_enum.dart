@@ -76,3 +76,5 @@ enum ImageFormatType {
 }
 
 enum AttachmentType { image, note }
+
+enum DateType { date, time12Hr, time24Hr }

@@ -92,6 +92,10 @@ class FormTemplateController extends GetxController {
           Get.toNamed(
             routeFormMinorWorks,
           );
+        } else if (formId == 32) {
+          Get.toNamed(
+            routeFormBreakdownService,
+          );
         }
 
         update();

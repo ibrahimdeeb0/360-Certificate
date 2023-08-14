@@ -40,69 +40,70 @@ class BreakdownServiceController extends GetxController {
   bool r2 = false;
   DateTime? selectedDate;
 
+  FormImagesAttachmentsController formImagesAttachmentsController =
+      FormImagesAttachmentsController();
+  FormNotesAttachmentsController formNotesAttachmentsController =
+      FormNotesAttachmentsController();
+
   Map<String, dynamic> formData = <String, dynamic>{
-    // screen1 part1
-    formKeyService: 'N/A',
-    formKeyBreakdown: 'N/A',
-    formKeyCOCORatio: '',
-    formKeyBoilerMake: '',
-    formKeyBoilerModel: '',
-    formKeyBoilerSerialNum: '',
-    formKeyAppliancesMake: '',
-    formKeyAppliancesModel: '',
-    formKeyAppliancesSerialNum: '',
-
-    // screen2 part1
-
-    formKeyAdditionalNotes: '',
-    // screen3 part1
-    formKeySparesPartsRequired: '',
-
-    // screen4 part1
+    formKeyPart1: <String, dynamic>{
+      formKeyService: 'N/A',
+      formKeyBreakdown: 'N/A',
+      formKeyCOCORatio: '',
+      formKeyBoilerMake: '',
+      formKeyBoilerModel: '',
+      formKeyBoilerSerialNum: '',
+      formKeyAppliancesMake: '',
+      formKeyAppliancesModel: '',
+      formKeyAppliancesSerialNum: '',
+    },
+    formKeyPart2: <String, dynamic>{
+      formKeyAdditionalNotes: '',
+    },
+    formKeyPart3: <String, dynamic>{
+      formKeySparesPartsRequired: '',
+    },
+    formKeyPart4: <String, dynamic>{
+      // formKeyInstallationDetails: <String>[],
+      formKeyVentilationSize: '',
+      formKeyWaterFuelSatisfactory: '',
+      formKeyElectricallyFused: '',
+      formKeyCorrectValving: '',
+      formKeyIsolationAvailable: '',
+      formKeyBoilerPlantRoom: '',
+    },
+    formKeyPart5: <String, dynamic>{
+      // formKeyServiceChecks: <String>[],
+      formKeyHeatExchanger: '',
+      formKeyIgnition: '',
+      formKeyGasValve: '',
+      formKeyFan: '',
+      formKeySafetyDevice: '',
+      formKeyControlBox: '',
+      formKeyBurnersPilot: '',
+      formKeyFuel: '',
+    },
+    formKeyPart6: <String, dynamic>{
+      // formKeyServiceOperation: <String>[],
+      formKeyBurnWasherCleaned: '',
+      formKeyPilotAssembly: '',
+      formKeyIgnitionSystem: '',
+      formKeyBurnerFas: '',
+      formKeyServiceHeatExchanger: '',
+      formKeyFuelElectrical: '',
+      formKeyInterlocksNoted: '',
+      formKeyTimeOfArrival: '',
+      formKeyTimeOfDeparture: '',
+      formKeyNextInspectionDate: '',
+    },
     formKeyDeclaration: <String, dynamic>{
-      formKeyRecordIssueBy: '',
-      formKeyReceivedBy: '',
       formKeyEngineerName: '',
       formKeyEngineerDate: '',
-      formKeyClientName: '',
+      formKeyEngineerPosition: '',
       formKeyCustomerName: '',
       formKeyCustomerDate: '',
       formKeyCustomerPosition: '',
     },
-
-    // screen5 part1
-
-    formKeyInstallationDetails: <String>[],
-    formKeyVentilationSize: '',
-    formKeyWaterFuelSatisfactory: '',
-    formKeyElectricallyFused: '',
-    formKeyCorrectValving: '',
-    formKeyIsolationAvailable: '',
-    formKeyBoilerPlantRoom: '',
-
-    // screen6 part1
-    formKeyServiceChecks: <String>[],
-    formKeyHeatExchanger: '',
-    formKeyIgnition: '',
-    formKeyGasValve: '',
-    formKeyFan: '',
-    formKeySafetyDevice: '',
-    formKeyControlBox: '',
-    formKeyBurnersPilot: '',
-    formKeyFuel: '',
-
-    // screen7 part1
-    formKeyServiceOperation: <String>[],
-    formKeyBurnWasherCleaned: '',
-    formKeyPilotAssembly: '',
-    formKeyIgnitionSystem: '',
-    formKeyBurnerFas: '',
-    formKeyServiceHeatExchanger: '',
-    formKeyFuelElectrical: '',
-    formKeyInterlocksNoted: '',
-    formKeyTimeOfArrival: '',
-    formKeyTimeOfDeparture: '',
-    formKeyNextInspectionDate: '',
   };
 
   Map<String, dynamic> formBody = <String, dynamic>{
@@ -120,10 +121,24 @@ class BreakdownServiceController extends GetxController {
         const BreakdownServicePage7(),
       ];
 
+  List<String> get listSectionsTitle => <String>[
+        'Part 1 : Description of Works',
+        'Part 2 : Additional Notes',
+        'Part 3 : Spares/Parts Required',
+        'Part 4 : Installation Details',
+        'Part 5 : Service Checks',
+        'Part 6 : Service Operations',
+        'Part 7 : Engineers Details',
+      ];
+
   //*------------------------------------------------*//
   @override
   void onInit() {
     super.onInit();
+    //*----------initial values------------*//
+    formData[formKeyDeclaration][formKeyEngineerName] =
+        '${profileController.userProfileData['first_name']} ${profileController.userProfileData['last_name']}';
+
     isFromCertificate = Get.arguments?[formKeyFromCertificate] ?? false;
     customerId = myAppController.certFormInfo[keyCustomerId];
     siteId = myAppController.certFormInfo[keySiteId];
@@ -196,49 +211,137 @@ class BreakdownServiceController extends GetxController {
       update();
     }
 
-    formData[formKeyDeclaration][formKeyRecordIssueBy] =
-        '${profileController.userProfileData['first_name']} ${profileController.userProfileData['last_name']}';
+    if (myAppController.certFormInfo[keyFormDataStatus] ==
+            FormDataStatus.newForm ||
+        myAppController.certFormInfo[keyFormDataStatus] ==
+            FormDataStatus.newTemp) {
+      onSelectDate(
+        part: formKeyDeclaration,
+        key: formKeyEngineerDate,
+        value: DateTime.now(),
+        type: DateType.date,
+      );
+
+      onSelectDate(
+        part: formKeyDeclaration,
+        key: formKeyCustomerDate,
+        value: DateTime.now(),
+        type: DateType.date,
+      );
+
+      onSelectDate(
+        part: formKeyPart6,
+        key: formKeyNextInspectionDate,
+        value: DateTime.now(),
+        type: DateType.date,
+      );
+    }
+
+    //? If Certificate not Created need to create it
+    if (isCertificateCreated == false && !(isTemplate!)) {
+      onCreateCertificate();
+    }
     update();
   }
   //*---------------------------------------------*//
 
-  void onPress() {
-    if (selectedId == listFormSections.length - 1) {
-      // last screen
+  void onPressNext({bool fromSave = false}) {
+    if (isTemplate!) {
+      if (listFormSections.length - 2 == selectedId) {
+        consoleLog('Last Pages In Template');
+        onSaveTemplate();
+      } else {
+        selectedId = selectedId + 1;
+        update();
+      }
     } else {
-      selectedId = selectedId + 1;
-      update();
+      if (listFormSections.length - 1 == selectedId) {
+        consoleLog('Last Pages');
+        onCompleteCertificate();
+      } else {
+        if (selectedId == listFormSections.length - 1) {
+          // last screen
+          consoleLog('Last Pages');
+          onCompleteCertificate();
+        } else if (fromSave) {
+          onUpdateCertificate();
+        } else {
+          selectedId = selectedId + 1;
+        }
+        update();
+        scrollController.jumpTo(0.0);
+      }
     }
-    scrollController.jumpTo(0.0);
+
+    scrollController.animateTo(
+      0.0,
+      duration: const Duration(milliseconds: 400),
+      curve: Curves.linear,
+    );
   }
 
-  void onBack() {
-    if (selectedId == 0) {
-      // first screen
-      Get.back();
-    } else {
+  void onPressBack() {
+    if (selectedId > 0) {
       selectedId = selectedId - 1;
       update();
+    } else {
+      Get.bottomSheet(
+        CancelAddCustomerSheet(
+          message: 'Would you like cancel process',
+          onPressFirstBtn: () {
+            hideKeyboard();
+            Get
+              ..back()
+              ..back();
+          },
+        ),
+        isScrollControlled: true,
+      );
     }
-    scrollController.jumpTo(0.0);
+
+    if (selectedId != 0 && scrollController.positions.isNotEmpty) {
+      scrollController.animateTo(
+        0.0,
+        duration: const Duration(milliseconds: 400),
+        curve: Curves.linear,
+      );
+    }
   }
 
-  void onChangeFormDataValue(String? key, dynamic value) {
-    formData[key!] = value;
+  String finalPageButton() {
+    if (isTemplate!) {
+      if (selectedId < listFormSections.length - 2) {
+        return 'Next';
+      } else {
+        return 'Save';
+      }
+    } else {
+      if (selectedId < listFormSections.length - 1) {
+        return 'Next';
+      } else {
+        return 'Complete';
+      }
+    }
+  }
+
+  void onChangeFormDataValue(String? partKey, String? keyValue, dynamic value) {
+    formData[partKey!][keyValue!] = value;
   }
 
   void onChangDataSignature(String? part, String? key, dynamic value) {
     formData[part!][key!] = value;
   }
 
-  void onToggleCheckBoxValues(String? key) {
-    formData[key] == 'true'
+  void onToggleCheckBoxValues(String? partKey, String? keyValue) {
+    formData[partKey][keyValue] == 'true'
         ? onChangeFormDataValue(
-            key,
+            partKey,
+            keyValue,
             '',
           )
         : onChangeFormDataValue(
-            key,
+            partKey,
+            keyValue,
             'true',
           );
     update();
@@ -254,13 +357,93 @@ class BreakdownServiceController extends GetxController {
     update();
   }
 
-  void onSelectDate(String? part, String? key, DateTime value) {
-    final DateFormat formatter = DateFormat('dd-MM-yyyy');
-    final String dateValue = formatter.format(value);
-    // '$value'.split(' ')[0];
-    formData[part!][key!] = dateValue;
-    selectedDate = value;
-    update();
+  void onSelectDate({
+    required String part,
+    required String key,
+    required DateTime value,
+    required DateType type,
+  }) {
+    if (type == DateType.date) {
+      final DateFormat formatter = DateFormat('dd-MM-yyyy');
+      final String dateValue = formatter.format(value);
+      formData[part][key] = dateValue;
+      selectedDate = value;
+      update();
+    } else if (type == DateType.time12Hr) {
+      final String dateValue = DateFormat.jm().format(value).toString();
+      formData[part][key] = dateValue;
+      update();
+    }
+  }
+
+  // *****************  Store Form Attachments Functions **************** //
+  bool isStorImgDone = false;
+  Future<void> onStoreFormImagesAttachment() async {
+    // consoleLog('store Images Attachments');
+    hideKeyboard();
+    if (formImagesAttachmentsController.imagesData.isNotEmpty) {
+      for (FormImageClass item in formImagesAttachmentsController.imagesData) {
+        ApiRequest(
+          method: ApiMethods.post,
+          path: '/certificates/create/attachment',
+          className: 'PortableTestController/onStoreFormImagesAttachment',
+          requestFunction: onStoreFormImagesAttachment,
+          withLoading: true,
+          body: <String, dynamic>{
+            'certificate_id': certId,
+            'image_id': item.imageId,
+            // true included ? no exclude : yes exclude
+            'exclude': item.isNotIncluded ? 'yes' : 'no',
+            // 'note_title': '',
+            if (item.note != null) 'note_body': item.note,
+            'attachment_type_id': 1
+          },
+        ).request(
+          onSuccess: (dynamic data, dynamic response) {
+            update();
+          },
+        );
+      }
+
+      isStorImgDone = true;
+      onStoreFormNotesAttachment();
+    } else {
+      isStorImgDone = true;
+      onStoreFormNotesAttachment();
+    }
+  }
+
+  //
+  bool isStorNoteDone = false;
+  Future<void> onStoreFormNotesAttachment() async {
+    // consoleLog('store Notes Attachments');
+    hideKeyboard();
+    if (formNotesAttachmentsController.notesData.isNotEmpty) {
+      for (FormNoteClass item in formNotesAttachmentsController.notesData) {
+        ApiRequest(
+          method: ApiMethods.post,
+          path: '/certificates/create/attachment',
+          className: 'PortableTestController/onStoreFormNotesAttachment',
+          requestFunction: onStoreFormNotesAttachment,
+          withLoading: true,
+          formatResponse: true,
+          body: <String, dynamic>{
+            'certificate_id': certId,
+            'exclude': item.type == 'Private Certificate Note' ? 'yes' : 'no',
+            // 'note_title': '',
+            'note_body': item.note,
+            'attachment_type_id': 2,
+          },
+        ).request(
+          onSuccess: (dynamic data, dynamic response) {
+            update();
+          },
+        );
+      }
+      isStorNoteDone = true;
+    } else {
+      isStorNoteDone = true;
+    }
   }
 
   // *****************  signature functions **************** //
@@ -275,7 +458,6 @@ class BreakdownServiceController extends GetxController {
       signatureBytes = null;
       update();
     }
-    // storeFormData();
   }
 
   Future<void> setCustomerImage(String bytes) async {
@@ -407,6 +589,10 @@ class BreakdownServiceController extends GetxController {
     hideKeyboard();
     onSaveData();
 
+    if (!isStorImgDone && !isStorNoteDone) {
+      onStoreFormImagesAttachment();
+    }
+
     final Map<String, dynamic> certData = <String, dynamic>{
       ...formBody,
       'customer_id': customerId,
@@ -453,15 +639,20 @@ class BreakdownServiceController extends GetxController {
     hideKeyboard();
     onSaveData();
 
-    final Map<String, dynamic> certData = <String, dynamic>{
-      ...formBody,
-      'customer_id': customerId,
-      'status_id': idCompleted,
-      'site_id': siteId,
-    };
-
     if (signatureBytes != null) {
       startLoading();
+
+      final Map<String, dynamic> certData = <String, dynamic>{
+        ...formBody,
+        'customer_id': customerId,
+        'status_id': idCompleted,
+        'site_id': siteId,
+      };
+
+      if (!isStorImgDone && !isStorNoteDone) {
+        onStoreFormImagesAttachment();
+      }
+
       ApiRequest(
         method: ApiMethods.post,
         path: '/certificates/$certId/update',
@@ -590,7 +781,7 @@ class BreakdownServiceController extends GetxController {
     );
   }
 
-  Future<void> barcodeScan(String? key) async {
+  Future<void> barcodeScan(String? keyPart, String? keyValue) async {
     String barcodeScanRes;
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
@@ -601,7 +792,7 @@ class BreakdownServiceController extends GetxController {
       barcodeScanRes = 'Failed to get platform version.';
     }
     scanBarcode = barcodeScanRes;
-    onChangeFormDataValue(key!, barcodeScanRes);
+    onChangeFormDataValue(keyPart!, keyValue!, barcodeScanRes);
     update();
   }
 }

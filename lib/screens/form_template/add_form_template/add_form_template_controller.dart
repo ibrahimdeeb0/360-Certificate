@@ -34,12 +34,17 @@ class AddFormTemplateController extends GetxController {
       keyName: 'EICR',
       keyRoute: routeFormEICR,
     },
-    // if (currentMode == AppMode.dev)
-    //   <String, dynamic>{
-    //     keyId: 2,
-    //     keyName: 'Minor Works',
-    //     keyRoute: routeFormMinorWorks,
-    //   },
+    <String, dynamic>{
+      keyId: 2,
+      keyName: 'Minor Works',
+      keyRoute: routeFormMinorWorks,
+    },
+    if (currentMode == AppMode.dev)
+      <String, dynamic>{
+        keyId: 32,
+        keyName: 'Breakdown Service',
+        keyRoute: routeFormBreakdownService,
+      },
   ];
 
   List<Map<String, dynamic>> unActiveForms = <Map<String, dynamic>>[

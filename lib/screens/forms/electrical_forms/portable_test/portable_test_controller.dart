@@ -168,10 +168,15 @@ class PortableTestController extends GetxController {
     formData[formKeyDeclaration][formKeyNameInspectionBy] =
         '${profileController.userProfileData['first_name']} ${profileController.userProfileData['last_name']}';
 
-    onSelectDate(formKeyDeclaration, formKeyDateInspectionBy, DateTime.now());
+    if (myAppController.certFormInfo[keyFormDataStatus] ==
+            FormDataStatus.newForm ||
+        myAppController.certFormInfo[keyFormDataStatus] ==
+            FormDataStatus.newTemp) {
+      onSelectDate(formKeyDeclaration, formKeyDateInspectionBy, DateTime.now());
+    }
 
     //? If Certificate not Created need to create it
-    if (isCertificateCreated == false) {
+    if (isCertificateCreated == false && !(isTemplate!)) {
       onCreateCertificate();
     }
 
@@ -501,16 +506,16 @@ class PortableTestController extends GetxController {
       onSaveData();
       onSaveApplianceData();
 
-      if (!isStorImgDone && !isStorNoteDone) {
-        onStoreFormImagesAttachment();
-      }
-
       final Map<String, dynamic> certData = <String, dynamic>{
         ...formBody,
         'customer_id': customerId,
         'status_id': idCompleted,
         'site_id': siteId,
       };
+
+      if (!isStorImgDone && !isStorNoteDone) {
+        onStoreFormImagesAttachment();
+      }
 
       consoleLogPretty(certData);
 

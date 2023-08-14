@@ -189,7 +189,7 @@ class CancelAddCustomerSheet extends StatelessWidget {
             ),
             CommonButton(
               onPress: onPressFirstBtn,
-              text: 'Yes would like cancel the operation',
+              text: 'Yes',
               backgroundColor: Colors.grey[200],
               fontColor: Colors.black,
               marginBottom: 0.02,

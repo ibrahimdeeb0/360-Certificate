@@ -17,9 +17,15 @@ class PortableTest extends StatelessWidget {
             appBar: FormHeader(
               withBack: false,
               title: 'Portable Appliance Test',
-              actionItem: ActionItem(
-                type: ActionType.image,
-              ),
+              showSaveBtn: ((controller.selectedId !=
+                      controller.listFormSections.length - 1) &&
+                  !controller.isTemplate!),
+              onPressSave: () => controller.onNext(fromSave: true),
+              actionItem: (controller.isTemplate!)
+                  ? null
+                  : ActionItem(
+                      type: ActionType.image,
+                    ),
               pressImage: () {
                 controller.formImagesAttachmentsController.certId =
                     controller.certId;
@@ -40,10 +46,6 @@ class PortableTest extends StatelessWidget {
                   ),
                 );
               },
-              showSaveBtn: ((controller.selectedId !=
-                      controller.listFormSections.length - 1) &&
-                  !controller.isTemplate!),
-              onPressSave: () => controller.onNext(fromSave: true),
             ),
             /*  floatingActionButton: FloatingActionButton(
               onPressed: () {

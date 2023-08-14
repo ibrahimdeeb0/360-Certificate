@@ -157,14 +157,6 @@ class MinorWorksController extends GetxController {
     formData[formKeyDeclaration][formKeyEngineerName] =
         '${profileController.userProfileData['first_name']} ${profileController.userProfileData['last_name']}';
 
-    onSelectDeclarationDate(
-        formKeyDeclaration, formKeyEngineerDate, DateTime.now());
-
-    onSelectDeclarationDate(
-        formKeyDeclaration, formKeyCustomerDate, DateTime.now());
-
-    onSelectDate(formKeyDateCompleted, DateTime.now());
-    //*----------------------*//
     isFromCertificate = Get.arguments?[formKeyFromCertificate] ?? false;
     customerId = myAppController.certFormInfo[keyCustomerId];
     siteId = myAppController.certFormInfo[keySiteId];
@@ -237,8 +229,22 @@ class MinorWorksController extends GetxController {
       update();
     }
 
-    //? If Certificate not Created
-    if (isCertificateCreated == false) {
+    if (myAppController.certFormInfo[keyFormDataStatus] ==
+            FormDataStatus.newForm ||
+        myAppController.certFormInfo[keyFormDataStatus] ==
+            FormDataStatus.newTemp) {
+      onSelectDeclarationDate(
+          formKeyDeclaration, formKeyEngineerDate, DateTime.now());
+
+      onSelectDeclarationDate(
+          formKeyDeclaration, formKeyCustomerDate, DateTime.now());
+
+      onSelectDate(formKeyDateCompleted, DateTime.now());
+      //*----------------------*//
+    }
+
+    //? If Certificate not Created need to create it
+    if (isCertificateCreated == false && !(isTemplate!)) {
       onCreateCertificate();
     }
 

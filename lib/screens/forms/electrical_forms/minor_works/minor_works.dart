@@ -23,9 +23,11 @@ class MinorWorks extends StatelessWidget {
               onPressSave: () {
                 controller.onNext(fromSave: true);
               },
-              actionItem: ActionItem(
-                type: ActionType.image,
-              ),
+              actionItem: (controller.isTemplate!)
+                  ? null
+                  : ActionItem(
+                      type: ActionType.image,
+                    ),
               pressImage: () {
                 controller.formImagesAttachmentsController.certId =
                     controller.certId;

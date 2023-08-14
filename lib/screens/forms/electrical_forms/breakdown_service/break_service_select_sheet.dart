@@ -3,6 +3,7 @@ import '../../../../../general_exports.dart';
 class BreakServiceSelectSheet extends StatefulWidget {
   const BreakServiceSelectSheet({
     required this.listTitles,
+    required this.keyOfPart,
     required this.keyOfValue,
     required this.controller,
     this.keyOfBreakServiceType,
@@ -10,6 +11,7 @@ class BreakServiceSelectSheet extends StatefulWidget {
   });
 
   final List<String> listTitles;
+  final String keyOfPart;
   final String keyOfValue;
   final String? keyOfBreakServiceType;
   final BreakdownServiceController controller;
@@ -26,6 +28,8 @@ class _BreakServiceSelectSheetState extends State<BreakServiceSelectSheet> {
   @override
   // ignore: always_declare_return_types
   initState() {
+    hideKeyboard();
+
     setState(() {
       filterValues = widget.listTitles;
     });
@@ -73,6 +77,7 @@ class _BreakServiceSelectSheetState extends State<BreakServiceSelectSheet> {
                               ? () => Get.bottomSheet(
                                     BreakServiceSelectSheetOtherBT(
                                       controller: widget.controller,
+                                      keyOfPart: widget.keyOfPart,
                                       keyOfValue: widget.keyOfValue,
                                     ),
                                     isScrollControlled: true,
@@ -90,16 +95,17 @@ class _BreakServiceSelectSheetState extends State<BreakServiceSelectSheet> {
                                       lists.listBoilerMake)) {
                                     final int index =
                                         widget.listTitles.indexOf(title);
-                                    widget.controller
-                                        .formData[widget.keyOfValue] = title;
-                                    widget.controller
-                                            .formData[widget.keyOfBreakServiceType!] =
+                                    widget.controller.formData[widget.keyOfPart]
+                                        [widget.keyOfValue] = title;
+                                    widget.controller.formData[widget.keyOfPart]
+                                            [widget.keyOfBreakServiceType!] =
                                         lists.listBoilerMake[index];
                                     widget.controller.update();
-                                  } else if (widget.controller.formData
+                                  } else if (widget
+                                      .controller.formData[widget.keyOfPart]
                                       .containsKey(widget.keyOfValue)) {
-                                    widget.controller
-                                        .formData[widget.keyOfValue] = title;
+                                    widget.controller.formData[widget.keyOfPart]
+                                        [widget.keyOfValue] = title;
                                     widget.controller.update();
                                   }
                                   hideKeyboard();
@@ -125,11 +131,13 @@ class _BreakServiceSelectSheetState extends State<BreakServiceSelectSheet> {
 
 class BreakServiceSelectSheetOtherBT extends StatelessWidget {
   const BreakServiceSelectSheetOtherBT({
+    required this.keyOfPart,
     required this.keyOfValue,
     required this.controller,
     super.key,
   });
 
+  final String keyOfPart;
   final String keyOfValue;
   final BreakdownServiceController controller;
 
@@ -147,8 +155,8 @@ class BreakServiceSelectSheetOtherBT extends StatelessWidget {
               hint: 'typing...',
               textInputAction: TextInputAction.go,
               controller: controller.otherInputController,
-              onChanged: (dynamic value) =>
-                  controller.onChangeFormDataValue(keyOfValue, value),
+              onChanged: (dynamic value) => controller.onChangeFormDataValue(
+                  keyOfPart, keyOfValue, value),
             ),
             CommonButton(
               onPress: () {

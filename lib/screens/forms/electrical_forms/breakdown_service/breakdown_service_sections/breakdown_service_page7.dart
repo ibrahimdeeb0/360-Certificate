@@ -1,3 +1,5 @@
+import 'package:easy_signature_pad/easy_signature_pad.dart';
+
 import '../../../../../general_exports.dart';
 
 class BreakdownServicePage7 extends StatelessWidget {
@@ -11,117 +13,294 @@ class BreakdownServicePage7 extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Center(
+            Align(
               child: CommonText(
-                'Service Operations',
-                fontColor: AppColors.primary,
-                fontSize: fontH2,
-                marginBottom: 0.02,
+                onPress: () => Get.bottomSheet(
+                  elevation: 0.0,
+                  BottomSheetContainer(
+                    style: appContainerStyles.bottomSheetContainer().copyWith(
+                          marginHorizontal: 0.05,
+                          height: 0.55,
+                          marginBottom: 0.2,
+                          borderRadius: 0.06,
+                          paddingBottom: 0.02,
+                          clipBehavior: Clip.hardEdge,
+                        ),
+                    child: Column(
+                      children: <Widget>[
+                        const CommonText(
+                          'Signature',
+                          fontSize: fontH2,
+                        ),
+                        const CommonText(
+                          'Draw your signature below',
+                          fontSize: fontH2,
+                        ),
+                        SizedBox(
+                          height: DEVICE_HEIGHT * 0.01,
+                        ),
+                        EasySignaturePad(
+                          onChanged: (String image) {
+                            controller.setImage(image);
+                          },
+                          height: DEVICE_WIDTH ~/ 1.5,
+                          width: DEVICE_WIDTH ~/ 1.2,
+                          strokeWidth: 4.0,
+                          borderRadius: 10.0,
+                          borderColor: Colors.grey,
+                        ),
+                        SizedBox(
+                          height: DEVICE_HEIGHT * 0.01,
+                        ),
+                        CommonButton(
+                          text: 'Save',
+                          onPress: controller.onSendSignatureReportForm,
+                        ),
+                      ],
+                    ),
+                  ),
+                  isScrollControlled: true,
+                  enableDrag: false,
+                ),
+                'Tap Here To Sign',
+                fontWeight: FontWeight.w500,
+                fontColor: Color(AppColors.grey).withOpacity(0.8),
+                containerStyle: CommonContainerModel(
+                  width: 0.9,
+                  height: 0.08,
+                  backgroundColor: Colors.grey.withOpacity(0.2),
+                  alignment: Alignment.center,
+                  borderWidth: 1,
+                  borderRadius: 0.01,
+                  borderColor: Color(AppColors.grey).withOpacity(0.2),
+                  touchEffect: TouchableEffect(
+                    type: TouchTypes.opacity,
+                  ),
+                ),
               ),
             ),
-            CustomCheckBox(
-              title: 'Burn & Washer Cleaned',
-              isSelected:
-                  controller.formData[formKeyBurnWasherCleaned] == 'true',
-              onPress: () {
-                controller.onToggleCheckBoxValues(formKeyBurnWasherCleaned);
-              },
-            ),
-            CustomCheckBox(
-              title: 'Pilot Assembly Cleaned & Adjusted',
-              isSelected: controller.formData[formKeyPilotAssembly] == 'true',
-              onPress: () {
-                controller.onToggleCheckBoxValues(formKeyPilotAssembly);
-              },
-            ),
-            CustomCheckBox(
-              title: 'Ignition System Cleaned & Adjusted',
-              isSelected: controller.formData[formKeyIgnitionSystem] == 'true',
-              onPress: () {
-                controller.onToggleCheckBoxValues(formKeyIgnitionSystem);
-              },
-            ),
-            CustomCheckBox(
-              title: 'Burner Fas & Airways Cleaned',
-              isSelected: controller.formData[formKeyBurnerFas] == 'true',
-              onPress: () {
-                controller.onToggleCheckBoxValues(formKeyBurnerFas);
-              },
-            ),
-            CustomCheckBox(
-              title: 'Heat Exchanger/Flue Ways Clean & Clear',
-              isSelected:
-                  controller.formData[formKeyServiceHeatExchanger] == 'true',
-              onPress: () {
-                controller.onToggleCheckBoxValues(formKeyServiceHeatExchanger);
-              },
-            ),
-            CustomCheckBox(
-              title: 'Fuel & Electrical Supply Connected Correctly',
-              isSelected: controller.formData[formKeyFuelElectrical] == 'true',
-              onPress: () {
-                controller.onToggleCheckBoxValues(formKeyFuelElectrical);
-              },
-            ),
-            CustomCheckBox(
-              title: 'Interlocks Noted & in Place',
-              isSelected: controller.formData[formKeyInterlocksNoted] == 'true',
-              onPress: () {
-                controller.onToggleCheckBoxValues(formKeyInterlocksNoted);
-              },
-            ),
-            Divider(
-              thickness: 1,
-              height: 0.05.flexHeight,
-            ),
-            CommonText(
-              'Time',
-              fontColor: Color(AppColors.primary),
-              fontSize: fontH2,
-            ),
-            SmallInputField(
-              title: 'Time of Arrival',
-              value: controller.formData[formKeyTimeOfArrival],
-              onChanged: (dynamic value) =>
-                  controller.onChangeFormDataValue(formKeyTimeOfArrival, value),
-            ),
-            SmallInputField(
-              title: 'Time of Departure',
-              value: controller.formData[formKeyTimeOfDeparture],
-              onChanged: (dynamic value) => controller.onChangeFormDataValue(
-                  formKeyTimeOfDeparture, value),
-            ),
-            Divider(
-              thickness: 1,
-              height: 0.05.flexHeight,
-            ),
-            CommonText(
-              'Next Inspection',
-              fontColor: Color(AppColors.primary),
-              fontSize: fontH2,
-              marginBottom: 0.01,
+            if (controller.signatureBytesImage != null)
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  const SizedBox(height: 10),
+                  IconButton(
+                    onPressed: controller.clearSignature,
+                    icon: Icon(
+                      Icons.highlight_remove_sharp,
+                      color: Colors.red,
+                      size: 0.08.flexWidth,
+                    ),
+                  ),
+                  SizedBox(
+                    height: DEVICE_WIDTH / 2,
+                    width: DEVICE_WIDTH,
+                    child: Image.memory(
+                      controller.signatureBytesImage!,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ],
+              ),
+            const CommonText(
+              'ISSUED By:',
+              marginTop: 0.02,
             ),
             CommonInput(
-              hint: 'Select Date',
-              topLabelText: 'Select Date',
-              suffix: const Icon(Icons.calendar_today_outlined),
-              marginBottom: 0.02,
+              topLabelText: 'Name',
+              hint: 'Name',
               enabled: false,
               value: controller.formData[formKeyDeclaration]
-                  [formKeyNextInspectionDate],
+                  [formKeyEngineerName],
+              onChanged: (dynamic value) => controller.onChangDataSignature(
+                  formKeyDeclaration, formKeyEngineerName, value),
+            ),
+            CommonInput(
+              hint: 'Position',
+              topLabelText: 'Position',
+              value: controller.formData[formKeyDeclaration]
+                  [formKeyEngineerPosition],
+              onChanged: (dynamic value) => controller.onChangDataSignature(
+                  formKeyDeclaration, formKeyEngineerPosition, value),
+            ),
+            GestureDetector(
               onTap: () {
                 CommonDatePicker.showDatePicker(
                   context,
                   currentTime: controller.selectedDate ?? DateTime.now(),
                   onConfirm: (DateTime value) {
                     controller.onSelectDate(
-                      formKeyDeclaration,
-                      formKeyNextInspectionDate,
-                      value,
+                      part: formKeyDeclaration,
+                      key: formKeyEngineerDate,
+                      value: value,
+                      type: DateType.date,
                     );
                   },
                 );
               },
+              child: CommonInput(
+                hint: 'Select Date',
+                topLabelText: 'Select Date',
+                suffix: const Icon(Icons.calendar_today_outlined),
+                marginBottom: 0.02,
+                enabled: false,
+                value: controller.formData[formKeyDeclaration]
+                    [formKeyEngineerDate],
+              ),
+            ),
+            const Divider(
+              thickness: 1,
+            ),
+            CommonText(
+              'Received By',
+              textAlign: TextAlign.start,
+              columnCrossAxisAlignment: CrossAxisAlignment.start,
+              columnMainAxisSize: MainAxisSize.min,
+              marginTop: 0.02,
+              fontColor: Color(AppColors.primary),
+              fontSize: fontH2,
+              bottomChild: CommonText(
+                'I acknowledge receipt of this certificate in Connection with installation.',
+                textAlign: TextAlign.start,
+                marginTop: 0.02,
+                fontColor: Colors.grey[500],
+              ),
+            ),
+            0.02.boxHeight,
+            Align(
+              child: CommonText(
+                onPress: () => Get.bottomSheet(
+                  elevation: 0.0,
+                  BottomSheetContainer(
+                    style: appContainerStyles.bottomSheetContainer().copyWith(
+                          marginHorizontal: 0.05,
+                          height: 0.55,
+                          marginBottom: 0.2,
+                          borderRadius: 0.06,
+                          paddingBottom: 0.02,
+                          clipBehavior: Clip.hardEdge,
+                        ),
+                    child: Column(
+                      children: <Widget>[
+                        const CommonText(
+                          'Signature',
+                          fontSize: fontH2,
+                        ),
+                        const CommonText(
+                          'Draw your signature below',
+                          fontSize: fontH2,
+                        ),
+                        SizedBox(
+                          height: DEVICE_HEIGHT * 0.01,
+                        ),
+                        EasySignaturePad(
+                          onChanged: (String image) {
+                            controller.setCustomerImage(image);
+                          },
+                          height: DEVICE_WIDTH ~/ 1.5,
+                          width: DEVICE_WIDTH ~/ 1.2,
+                          strokeWidth: 4.0,
+                          borderRadius: 10.0,
+                          borderColor: Colors.grey,
+                        ),
+                        SizedBox(
+                          height: DEVICE_HEIGHT * 0.01,
+                        ),
+                        CommonButton(
+                          text: 'Save',
+                          onPress: controller.saveCustomerSignature,
+                        ),
+                      ],
+                    ),
+                  ),
+                  isScrollControlled: true,
+                  enableDrag: false,
+                ),
+                'Tap Here To Sign',
+                fontWeight: FontWeight.w500,
+                fontColor: Color(AppColors.grey).withOpacity(0.8),
+                containerStyle: CommonContainerModel(
+                  width: 0.9,
+                  height: 0.08,
+                  backgroundColor: Colors.grey.withOpacity(0.2),
+                  alignment: Alignment.center,
+                  borderWidth: 1,
+                  borderRadius: 0.01,
+                  borderColor: Color(AppColors.grey).withOpacity(0.2),
+                  touchEffect: TouchableEffect(
+                    type: TouchTypes.opacity,
+                  ),
+                ),
+              ),
+            ),
+            if (controller.signatureBytes2 != null &&
+                controller.customerSignatureBytes != null)
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  const SizedBox(height: 10),
+                  IconButton(
+                    onPressed: controller.clearCustomerSignature,
+                    icon: Icon(
+                      Icons.highlight_remove_sharp,
+                      color: Colors.red,
+                      size: 0.08.flexWidth,
+                    ),
+                  ),
+                  SizedBox(
+                    height: DEVICE_WIDTH / 2,
+                    width: DEVICE_WIDTH,
+                    child: Image.memory(
+                      controller.customerSignatureBytes!,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ],
+              ),
+            const CommonText(
+              'ISSUED By:',
+              marginTop: 0.02,
+            ),
+            CommonInput(
+              topLabelText: 'Name',
+              hint: 'Name',
+              value: controller.formData[formKeyDeclaration]
+                  [formKeyCustomerName],
+              onChanged: (dynamic value) => controller.onChangDataSignature(
+                  formKeyDeclaration, formKeyCustomerName, value),
+            ),
+            CommonInput(
+              hint: 'Position',
+              topLabelText: 'Position',
+              value: controller.formData[formKeyDeclaration]
+                  [formKeyCustomerPosition],
+              onChanged: (dynamic value) => controller.onChangDataSignature(
+                  formKeyDeclaration, formKeyCustomerPosition, value),
+            ),
+            GestureDetector(
+              onTap: () {
+                CommonDatePicker.showDatePicker(
+                  context,
+                  currentTime: controller.selectedDate ?? DateTime.now(),
+                  onConfirm: (DateTime value) {
+                    controller.onSelectDate(
+                      part: formKeyDeclaration,
+                      key: formKeyCustomerDate,
+                      value: value,
+                      type: DateType.date,
+                    );
+                  },
+                );
+              },
+              child: CommonInput(
+                hint: 'Select Date',
+                topLabelText: 'Select Date',
+                suffix: const Icon(Icons.calendar_today_outlined),
+                marginBottom: 0.02,
+                enabled: false,
+                value: controller.formData[formKeyDeclaration]
+                    [formKeyCustomerDate],
+              ),
             ),
           ],
         );

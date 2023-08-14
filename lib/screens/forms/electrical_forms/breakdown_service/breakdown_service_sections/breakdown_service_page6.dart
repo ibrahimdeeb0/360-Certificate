@@ -11,68 +11,161 @@ class BreakdownServicePage6 extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Center(
+            /*  Center(
               child: CommonText(
-                'Service Checks',
+                'Service Operations',
                 fontColor: AppColors.primary,
                 fontSize: fontH2,
                 marginBottom: 0.02,
               ),
-            ),
+            ), */
             CustomCheckBox(
-              title: 'Heat Exchanger',
-              isSelected: controller.formData[formKeyHeatExchanger] == 'true',
+              title: 'Burn & Washer Cleaned',
+              isSelected: controller.formData[formKeyPart6]
+                      [formKeyBurnWasherCleaned] ==
+                  'true',
               onPress: () {
-                controller.onToggleCheckBoxValues(formKeyHeatExchanger);
+                controller.onToggleCheckBoxValues(
+                    formKeyPart6, formKeyBurnWasherCleaned);
               },
             ),
             CustomCheckBox(
-              title: 'Ignition',
-              isSelected: controller.formData[formKeyIgnition] == 'true',
+              title: 'Pilot Assembly Cleaned & Adjusted',
+              isSelected: controller.formData[formKeyPart6]
+                      [formKeyPilotAssembly] ==
+                  'true',
               onPress: () {
-                controller.onToggleCheckBoxValues(formKeyIgnition);
+                controller.onToggleCheckBoxValues(
+                    formKeyPart6, formKeyPilotAssembly);
               },
             ),
             CustomCheckBox(
-              title: 'Gas Valve',
-              isSelected: controller.formData[formKeyGasValve] == 'true',
+              title: 'Ignition System Cleaned & Adjusted',
+              isSelected: controller.formData[formKeyPart6]
+                      [formKeyIgnitionSystem] ==
+                  'true',
               onPress: () {
-                controller.onToggleCheckBoxValues(formKeyGasValve);
+                controller.onToggleCheckBoxValues(
+                    formKeyPart6, formKeyIgnitionSystem);
               },
             ),
             CustomCheckBox(
-              title: 'Fan',
-              isSelected: controller.formData[formKeyFan] == 'true',
+              title: 'Burner Fas & Airways Cleaned',
+              isSelected:
+                  controller.formData[formKeyPart6][formKeyBurnerFas] == 'true',
               onPress: () {
-                controller.onToggleCheckBoxValues(formKeyFan);
+                controller.onToggleCheckBoxValues(
+                    formKeyPart6, formKeyBurnerFas);
               },
             ),
             CustomCheckBox(
-              title: 'Safety Device',
-              isSelected: controller.formData[formKeySafetyDevice] == 'true',
+              title: 'Heat Exchanger/Flue Ways Clean & Clear',
+              isSelected: controller.formData[formKeyPart6]
+                      [formKeyServiceHeatExchanger] ==
+                  'true',
               onPress: () {
-                controller.onToggleCheckBoxValues(formKeySafetyDevice);
+                controller.onToggleCheckBoxValues(
+                    formKeyPart6, formKeyServiceHeatExchanger);
               },
             ),
             CustomCheckBox(
-              title: 'Control Box',
-              isSelected: controller.formData[formKeyControlBox] == 'true',
+              title: 'Fuel & Electrical Supply Connected Correctly',
+              isSelected: controller.formData[formKeyPart6]
+                      [formKeyFuelElectrical] ==
+                  'true',
               onPress: () {
-                controller.onToggleCheckBoxValues(formKeyControlBox);
+                controller.onToggleCheckBoxValues(
+                    formKeyPart6, formKeyFuelElectrical);
               },
             ),
             CustomCheckBox(
-              title: 'Burners & Pilot',
-              isSelected: controller.formData[formKeyBurnersPilot] == 'true',
+              title: 'Interlocks Noted & in Place',
+              isSelected: controller.formData[formKeyPart6]
+                      [formKeyInterlocksNoted] ==
+                  'true',
               onPress: () {
-                controller.onToggleCheckBoxValues(formKeyBurnersPilot);
+                controller.onToggleCheckBoxValues(
+                    formKeyPart6, formKeyInterlocksNoted);
               },
             ),
-            CustomCheckBox(
-              title: 'Fuel Pressure & Type',
-              isSelected: controller.formData[formKeyFuel] == 'true',
-              onPress: () {
-                controller.onToggleCheckBoxValues(formKeyFuel);
+            Divider(
+              thickness: 1,
+              height: 0.05.flexHeight,
+            ),
+            CommonText(
+              'Time',
+              fontColor: Color(AppColors.primary),
+              fontSize: fontH2,
+            ),
+            SmallInputField(
+              title: 'Time of Arrival',
+              value: controller.formData[formKeyPart6][formKeyTimeOfArrival],
+              isInputSelection: true,
+              onTap: () {
+                CommonDatePicker.showTime12hPicker(
+                  context,
+                  currentTime: controller.selectedDate ?? DateTime.now(),
+                  onConfirm: (DateTime value) {
+                    controller.onSelectDate(
+                      part: formKeyPart6,
+                      key: formKeyTimeOfArrival,
+                      value: value,
+                      type: DateType.time12Hr,
+                    );
+                  },
+                );
+              },
+            ),
+            SmallInputField(
+              title: 'Time of Departure',
+              value: controller.formData[formKeyPart6][formKeyTimeOfDeparture],
+              isInputSelection: true,
+              onTap: () {
+                CommonDatePicker.showTime12hPicker(
+                  context,
+                  currentTime: controller.selectedDate ?? DateTime.now(),
+                  onConfirm: (DateTime value) {
+                    controller.onSelectDate(
+                      part: formKeyPart6,
+                      key: formKeyTimeOfDeparture,
+                      value: value,
+                      type: DateType.time12Hr,
+                    );
+                  },
+                );
+              },
+            ),
+            Divider(
+              thickness: 1,
+              height: 0.05.flexHeight,
+            ),
+            CommonText(
+              'Next Inspection',
+              fontColor: Color(AppColors.primary),
+              fontSize: fontH2,
+              marginBottom: 0.01,
+            ),
+            CommonInput(
+              hint: 'Select Date',
+              topLabelText: 'Select Date',
+              suffix: const Icon(Icons.calendar_today_outlined),
+              marginBottom: 0.02,
+              enabled: false,
+              value: controller.formData[formKeyPart6]
+                  [formKeyNextInspectionDate],
+              onTap: () {
+                CommonDatePicker.showDatePicker(
+                  context,
+                  currentTime: controller.selectedDate ?? DateTime.now(),
+                  onConfirm: (DateTime value) {
+                    controller.onSelectDate(
+                      part: formKeyPart6,
+                      key: formKeyNextInspectionDate,
+                      value: value,
+                      type: DateType.date,
+                    );
+                  },
+                );
               },
             ),
           ],

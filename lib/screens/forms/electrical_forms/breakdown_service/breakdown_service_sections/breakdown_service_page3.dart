@@ -10,18 +10,19 @@ class BreakdownServicePage3 extends StatelessWidget {
       builder: (BreakdownServiceController controller) {
         return Column(
           children: <Widget>[
-            Center(
+            /*  Center(
               child: CommonText(
                 'Spares/Parts Required',
                 fontColor: AppColors.primary,
                 fontSize: fontH2,
                 marginBottom: 0.02,
               ),
-            ),
+            ), */
             CommonInput(
-              value: controller.formData[formKeySparesPartsRequired],
+              value: controller.formData[formKeyPart3]
+                  [formKeySparesPartsRequired],
               onChanged: (dynamic value) => controller.onChangeFormDataValue(
-                  formKeySparesPartsRequired, value),
+                  formKeyPart3, formKeySparesPartsRequired, value),
               minLines: 15,
               maxLines: 200,
             ),

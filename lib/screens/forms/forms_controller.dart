@@ -21,6 +21,13 @@ class FormsController extends GetxController {
                 keyRoute: routeFormWarningNotice,
                 'form_cert_type': FormCertType.gas,
               },
+              if (currentMode == AppMode.dev)
+                <String, dynamic>{
+                  keyId: 32,
+                  keyTitle: 'Breakdown Service',
+                  keyRoute: routeFormBreakdownService,
+                  'form_cert_type': FormCertType.gas,
+                },
             ],
           },
         if (homeController.isHaveElectrical)
@@ -51,7 +58,6 @@ class FormsController extends GetxController {
                 keyRoute: routeFormEICR,
                 'form_cert_type': FormCertType.electrical,
               },
-              // if (currentMode == AppMode.dev)
               <String, dynamic>{
                 keyId: 2,
                 keyTitle: 'Minor Works',

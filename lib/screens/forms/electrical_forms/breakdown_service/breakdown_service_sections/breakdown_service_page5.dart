@@ -11,57 +11,78 @@ class BreakdownServicePage5 extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Center(
-              child: CommonText(
-                'Installation Details',
-                fontColor: AppColors.primary,
-                fontSize: fontH2,
-                marginBottom: 0.02,
-              ),
-            ),
             CustomCheckBox(
-              title: 'Ventilation Size/H-L',
-              isSelected: controller.formData[formKeyVentilationSize] == 'true',
+              title: 'Heat Exchanger',
+              isSelected: controller.formData[formKeyPart5]
+                      [formKeyHeatExchanger] ==
+                  'true',
               onPress: () {
-                controller.onToggleCheckBoxValues(formKeyVentilationSize);
+                controller.onToggleCheckBoxValues(
+                    formKeyPart5, formKeyHeatExchanger);
               },
             ),
             CustomCheckBox(
-              title: 'Water/Fuel-Satisfactory',
+              title: 'Ignition',
               isSelected:
-                  controller.formData[formKeyWaterFuelSatisfactory] == 'true',
+                  controller.formData[formKeyPart5][formKeyIgnition] == 'true',
               onPress: () {
-                controller.onToggleCheckBoxValues(formKeyWaterFuelSatisfactory);
+                controller.onToggleCheckBoxValues(
+                    formKeyPart5, formKeyIgnition);
               },
             ),
             CustomCheckBox(
-              title: 'Electrically Fused',
+              title: 'Gas Valve',
               isSelected:
-                  controller.formData[formKeyElectricallyFused] == 'true',
+                  controller.formData[formKeyPart5][formKeyGasValve] == 'true',
               onPress: () {
-                controller.onToggleCheckBoxValues(formKeyElectricallyFused);
+                controller.onToggleCheckBoxValues(
+                    formKeyPart5, formKeyGasValve);
               },
             ),
             CustomCheckBox(
-              title: 'Correct Valving Arrangements',
-              isSelected: controller.formData[formKeyCorrectValving] == 'true',
-              onPress: () {
-                controller.onToggleCheckBoxValues(formKeyCorrectValving);
-              },
-            ),
-            CustomCheckBox(
-              title: 'Isolation Available - Electrical/Fuel',
+              title: 'Fan',
               isSelected:
-                  controller.formData[formKeyIsolationAvailable] == 'true',
+                  controller.formData[formKeyPart5][formKeyFan] == 'true',
               onPress: () {
-                controller.onToggleCheckBoxValues(formKeyIsolationAvailable);
+                controller.onToggleCheckBoxValues(formKeyPart5, formKeyFan);
               },
             ),
             CustomCheckBox(
-              title: 'Boiler/Plant Room Cleaner',
-              isSelected: controller.formData[formKeyBoilerPlantRoom] == 'true',
+              title: 'Safety Device',
+              isSelected: controller.formData[formKeyPart5]
+                      [formKeySafetyDevice] ==
+                  'true',
               onPress: () {
-                controller.onToggleCheckBoxValues(formKeyBoilerPlantRoom);
+                controller.onToggleCheckBoxValues(
+                    formKeyPart5, formKeySafetyDevice);
+              },
+            ),
+            CustomCheckBox(
+              title: 'Control Box',
+              isSelected: controller.formData[formKeyPart5]
+                      [formKeyControlBox] ==
+                  'true',
+              onPress: () {
+                controller.onToggleCheckBoxValues(
+                    formKeyPart5, formKeyControlBox);
+              },
+            ),
+            CustomCheckBox(
+              title: 'Burners & Pilot',
+              isSelected: controller.formData[formKeyPart5]
+                      [formKeyBurnersPilot] ==
+                  'true',
+              onPress: () {
+                controller.onToggleCheckBoxValues(
+                    formKeyPart5, formKeyBurnersPilot);
+              },
+            ),
+            CustomCheckBox(
+              title: 'Fuel Pressure & Type',
+              isSelected:
+                  controller.formData[formKeyPart5][formKeyFuel] == 'true',
+              onPress: () {
+                controller.onToggleCheckBoxValues(formKeyPart5, formKeyFuel);
               },
             ),
           ],

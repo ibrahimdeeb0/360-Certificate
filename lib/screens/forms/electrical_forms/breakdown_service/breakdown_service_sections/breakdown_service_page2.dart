@@ -10,18 +10,10 @@ class BreakdownServicePage2 extends StatelessWidget {
       builder: (BreakdownServiceController controller) {
         return Column(
           children: <Widget>[
-            Center(
-              child: CommonText(
-                'Additional Notes',
-                fontColor: AppColors.primary,
-                fontSize: fontH2,
-                marginBottom: 0.02,
-              ),
-            ),
             CommonInput(
-              value: controller.formData[formKeyAdditionalNotes],
+              value: controller.formData[formKeyPart2][formKeyAdditionalNotes],
               onChanged: (dynamic value) => controller.onChangeFormDataValue(
-                  formKeyAdditionalNotes, value),
+                  formKeyPart2, formKeyAdditionalNotes, value),
               minLines: 15,
               maxLines: 200,
             ),

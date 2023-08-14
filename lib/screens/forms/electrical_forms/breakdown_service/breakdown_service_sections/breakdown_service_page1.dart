@@ -14,45 +14,36 @@ class BreakdownServicePage1 extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Center(
-              child: CommonText(
-                'Description of Works',
-                fontColor: AppColors.primary,
-                fontSize: fontH2,
-                marginBottom: 0.02,
-                textAlign: TextAlign.center,
-              ),
-            ),
             FormToggleButton(
               title: 'Service',
               titleSize: fontTitle,
-              value: controller.formData[formKeyService],
+              value: controller.formData[formKeyPart1][formKeyService],
               onChangeValue: (dynamic value) =>
-                  controller.onChangeFormDataValue(formKeyService, value),
+                  controller.onChangeFormDataValue(
+                formKeyPart1,
+                formKeyService,
+                value,
+              ),
               toggleType: FormToggleType.passFailedNA,
             ),
             FormToggleButton(
               title: 'Breakdown',
               titleSize: fontTitle,
-              value: controller.formData[formKeyBreakdown],
-              onChangeValue: (dynamic value) =>
-                  controller.onChangeFormDataValue(formKeyBreakdown, value),
+              value: controller.formData[formKeyPart1][formKeyBreakdown],
+              onChangeValue: (dynamic value) => controller
+                  .onChangeFormDataValue(formKeyPart1, formKeyBreakdown, value),
               toggleType: FormToggleType.passFailedNA,
             ),
             SmallInputField(
               title: 'CO/CO2 Ratio',
-              value: controller.formData[formKeyCOCORatio],
-              onChanged: (dynamic value) =>
-                  controller.onChangeFormDataValue(formKeyCOCORatio, value),
+              value: controller.formData[formKeyPart1][formKeyCOCORatio],
+              onChanged: (dynamic value) => controller.onChangeFormDataValue(
+                  formKeyPart1, formKeyCOCORatio, value),
             ),
-            CommonInput(
-              hint: 'Boiler Make',
-              topLabelText: 'Boiler Make',
-              suffix: const Icon(Icons.keyboard_arrow_down),
-              enabled: false,
-              value: controller.formData[formKeyBoilerMake],
+            GestureDetector(
               onTap: () => Get.bottomSheet(
                 BreakServiceSelectSheet(
+                  keyOfPart: formKeyPart1,
                   keyOfValue: formKeyBoilerMake,
                   listTitles: list.listBoilerMake,
                   controller: controller,
@@ -60,32 +51,38 @@ class BreakdownServicePage1 extends StatelessWidget {
                 ),
                 isScrollControlled: true,
               ),
+              child: CommonInput(
+                hint: 'Boiler Make',
+                topLabelText: 'Boiler Make',
+                suffix: const Icon(Icons.keyboard_arrow_down),
+                enabled: false,
+                value: controller.formData[formKeyPart1][formKeyBoilerMake],
+              ),
             ),
             CommonInput(
               hint: 'Boiler Model',
               topLabelText: 'Boiler Model',
-              value: controller.formData[formKeyBoilerModel],
-              onChanged: (dynamic value) =>
-                  controller.onChangeFormDataValue(formKeyBoilerModel, value),
+              value: controller.formData[formKeyPart1][formKeyBoilerModel],
+              onChanged: (dynamic value) => controller.onChangeFormDataValue(
+                  formKeyPart1, formKeyBoilerModel, value),
             ),
-            CommonInput(
-              hint: 'Boiler Serial Number',
-              topLabelText: 'Boiler Serial Number',
-              suffix: SvgPicture.asset(iconVector),
-              enabled: false,
-              value: controller.formData[formKeyBoilerSerialNum],
+            GestureDetector(
               onTap: () {
-                controller.barcodeScan(formKeyBoilerSerialNum);
+                controller.barcodeScan(formKeyPart1, formKeyBoilerSerialNum);
               },
+              child: CommonInput(
+                hint: 'Boiler Serial Number',
+                topLabelText: 'Boiler Serial Number',
+                suffix: SvgPicture.asset(iconVector),
+                enabled: false,
+                value: controller.formData[formKeyPart1]
+                    [formKeyBoilerSerialNum],
+              ),
             ),
-            CommonInput(
-              hint: 'Appliance Make',
-              topLabelText: 'Appliance Make',
-              suffix: const Icon(Icons.keyboard_arrow_down),
-              enabled: false,
-              value: controller.formData[formKeyAppliancesMake],
+            GestureDetector(
               onTap: () => Get.bottomSheet(
                 BreakServiceSelectSheet(
+                  keyOfPart: formKeyPart1,
                   keyOfValue: formKeyAppliancesMake,
                   listTitles: list.listApplianceMake,
                   controller: controller,
@@ -93,24 +90,35 @@ class BreakdownServicePage1 extends StatelessWidget {
                 ),
                 isScrollControlled: true,
               ),
+              child: CommonInput(
+                hint: 'Appliance Make',
+                topLabelText: 'Appliance Make',
+                suffix: const Icon(Icons.keyboard_arrow_down),
+                enabled: false,
+                value: controller.formData[formKeyPart1][formKeyAppliancesMake],
+              ),
             ),
             CommonInput(
               hint: 'Appliance Model',
               topLabelText: 'Appliance Model',
-              value: controller.formData[formKeyAppliancesModel],
+              value: controller.formData[formKeyPart1][formKeyAppliancesModel],
               onChanged: (dynamic value) => controller.onChangeFormDataValue(
-                  formKeyAppliancesModel, value),
+                  formKeyPart1, formKeyAppliancesModel, value),
             ),
-            CommonInput(
-              hint: 'Appliance Serial Number',
-              topLabelText: 'Appliance Serial Number',
-              marginBottom: 0.03,
-              suffix: SvgPicture.asset(iconVector),
-              enabled: false,
-              value: controller.formData[formKeyAppliancesSerialNum],
+            GestureDetector(
               onTap: () {
-                controller.barcodeScan(formKeyAppliancesSerialNum);
+                controller.barcodeScan(
+                    formKeyPart1, formKeyAppliancesSerialNum);
               },
+              child: CommonInput(
+                hint: 'Appliance Serial Number',
+                topLabelText: 'Appliance Serial Number',
+                marginBottom: 0.03,
+                suffix: SvgPicture.asset(iconVector),
+                enabled: false,
+                value: controller.formData[formKeyPart1]
+                    [formKeyAppliancesSerialNum],
+              ),
             ),
             Divider(
               color: Colors.grey[200],
