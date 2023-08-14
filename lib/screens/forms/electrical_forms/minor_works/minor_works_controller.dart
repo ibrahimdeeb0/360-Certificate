@@ -280,20 +280,32 @@ class MinorWorksController extends GetxController {
     update();
   }
 
-  void onBack() {
-    if (selectedId == 0) {
-      // first screen
-      Get.back();
-    } else {
+  void onPressBack() {
+    if (selectedId > 0) {
       selectedId = selectedId - 1;
       update();
+    } else {
+      Get.bottomSheet(
+        CancelAddCustomerSheet(
+          message: 'Would you like cancel process',
+          onPressFirstBtn: () {
+            hideKeyboard();
+            Get
+              ..back()
+              ..back();
+          },
+        ),
+        isScrollControlled: true,
+      );
+    }
+
+    if (selectedId != 0 && scrollController.positions.isNotEmpty) {
       scrollController.animateTo(
         0.0,
         duration: const Duration(milliseconds: 400),
         curve: Curves.linear,
       );
     }
-    scrollController.jumpTo(0.0);
   }
 
   void onChangeFormDataValue(String? key, dynamic value) {
@@ -628,6 +640,8 @@ class MinorWorksController extends GetxController {
         'status_id': idCompleted,
         'site_id': siteId,
       };
+
+      consoleLogPretty(certData);
 
       startLoading();
       ApiRequest(

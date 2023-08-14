@@ -268,6 +268,7 @@ class PortableTestController extends GetxController {
   }
 
   // *****************  Store Form Attachments Functions **************** //
+  bool isStorImgDone = false;
   Future<void> onStoreFormImagesAttachment() async {
     // consoleLog('store Images Attachments');
     hideKeyboard();
@@ -283,7 +284,7 @@ class PortableTestController extends GetxController {
             'certificate_id': certId,
             'image_id': item.imageId,
             // true included ? no exclude : yes exclude
-            'exclude': item.isNotIncluded ? 'no' : 'yes',
+            'exclude': item.isNotIncluded ? 'yes' : 'no',
             // 'note_title': '',
             if (item.note != null) 'note_body': item.note,
             'attachment_type_id': 1
@@ -294,13 +295,17 @@ class PortableTestController extends GetxController {
           },
         );
       }
+
+      isStorImgDone = true;
       onStoreFormNotesAttachment();
     } else {
+      isStorImgDone = true;
       onStoreFormNotesAttachment();
     }
   }
 
   //
+  bool isStorNoteDone = false;
   Future<void> onStoreFormNotesAttachment() async {
     // consoleLog('store Notes Attachments');
     hideKeyboard();
@@ -315,7 +320,7 @@ class PortableTestController extends GetxController {
           formatResponse: true,
           body: <String, dynamic>{
             'certificate_id': certId,
-            'exclude': item.type == 'Certificate Note' ? 'yes' : 'no',
+            'exclude': item.type == 'Private Certificate Note' ? 'yes' : 'no',
             // 'note_title': '',
             'note_body': item.note,
             'attachment_type_id': 2,
@@ -326,6 +331,9 @@ class PortableTestController extends GetxController {
           },
         );
       }
+      isStorNoteDone = true;
+    } else {
+      isStorNoteDone = true;
     }
   }
 
@@ -405,13 +413,6 @@ class PortableTestController extends GetxController {
 
   // *****************  Press Finish ****************
 
-  // void testData() {
-  //   hideKeyboard();
-  //   onSaveData();
-  //   onSaveApplianceData();
-  //   consoleLogPretty(formBody);
-  // }
-
   Future<void> onCreateCertificate() async {
     hideKeyboard();
     onSaveData();
@@ -446,7 +447,10 @@ class PortableTestController extends GetxController {
     hideKeyboard();
     onSaveData();
     onSaveApplianceData();
-    onStoreFormImagesAttachment();
+
+    if (!isStorImgDone && !isStorNoteDone) {
+      onStoreFormImagesAttachment();
+    }
 
     final Map<String, dynamic> certData = <String, dynamic>{
       ...formBody,
@@ -492,20 +496,24 @@ class PortableTestController extends GetxController {
 
   Future<void> onCompleteCertificate() async {
     hideKeyboard();
-    onSaveData();
-    onSaveApplianceData();
-    onStoreFormImagesAttachment();
-
-    final Map<String, dynamic> certData = <String, dynamic>{
-      ...formBody,
-      'customer_id': customerId,
-      'status_id': idCompleted,
-      'site_id': siteId,
-    };
-
-    consoleLogPretty(certData);
 
     if (signatureBytes != null) {
+      onSaveData();
+      onSaveApplianceData();
+
+      if (!isStorImgDone && !isStorNoteDone) {
+        onStoreFormImagesAttachment();
+      }
+
+      final Map<String, dynamic> certData = <String, dynamic>{
+        ...formBody,
+        'customer_id': customerId,
+        'status_id': idCompleted,
+        'site_id': siteId,
+      };
+
+      consoleLogPretty(certData);
+
       startLoading();
       ApiRequest(
         method: ApiMethods.post,

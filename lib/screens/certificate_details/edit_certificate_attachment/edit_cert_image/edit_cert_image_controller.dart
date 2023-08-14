@@ -78,7 +78,7 @@ class EditCertImageController extends GetxController {
         'certificate_id': Get.arguments[keyId],
         'image_id': imageClass!.imageId,
         // true included ? no exclude : yes exclude
-        'exclude': imageClass!.isNotIncluded ? 'no' : 'yes',
+        'exclude': imageClass!.isNotIncluded ? 'yes' : 'no',
         // 'note_title': '',
         if (imageClass!.note != null) 'note_body': imageClass!.note,
         'attachment_type_id': 1
