@@ -75,6 +75,13 @@ class MoreController extends GetxController {
             Get.toNamed(routeFormWarningNotice);
           },
         },
+        <String, dynamic>{
+          keyId: 31,
+          keyTitle: 'Breakdown Service',
+          keyOnPress: () {
+            Get.toNamed(routeFormBreakdownService);
+          },
+        },
         // <String, dynamic>{
         //   keyId: 0,
         //   keyTitle: 'Caravan Boat Gas Safety Inspection Record',
@@ -141,13 +148,6 @@ class MoreController extends GetxController {
           keyTitle: 'Minor Works',
           keyOnPress: () {
             Get.toNamed(routeFormMinorWorks);
-          },
-        },
-        <String, dynamic>{
-          keyId: 32,
-          keyTitle: 'Breakdown Service',
-          keyOnPress: () {
-            Get.toNamed(routeFormBreakdownService);
           },
         },
       ],
