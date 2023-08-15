@@ -4,7 +4,6 @@ class CertificatesController extends GetxController {
   ScrollController scrollController = ScrollController();
 
   List<dynamic> allCerts = <dynamic>[];
-  // List<dynamic> listCert = <dynamic>[];
   List<dynamic> filteredCert = <dynamic>[];
 
   int page = 1;

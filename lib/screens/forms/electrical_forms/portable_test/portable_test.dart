@@ -47,13 +47,6 @@ class PortableTest extends StatelessWidget {
                 );
               },
             ),
-            /*  floatingActionButton: FloatingActionButton(
-              onPressed: () {
-                consoleLog(
-                    controller.formImagesAttachmentsController.imagesData);
-                consoleLog(controller.formNotesAttachmentsController.notesData);
-              },
-            ), */
             body: CommonContainer(
               width: 1,
               height: 1,

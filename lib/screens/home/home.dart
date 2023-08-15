@@ -11,6 +11,10 @@ class Home extends StatelessWidget {
       appBar: HomeHeader(),
       backgroundColor: Colors.white,
       resizeToAvoidBottomInset: true,
+      // floatingActionButton: FloatingActionButton(onPressed: () {
+      //   Get.to(Subscription());
+      // }),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerTop, 
       body: GetBuilder<HomeController>(
         init: homeController,
         builder: (HomeController controller) {
