@@ -176,12 +176,12 @@ class FormToggleButtonController extends GetxController {
     } else if (toggleType == FormToggleType.trueFalseOnly) {
       // typing here code
       switch (currentValue) {
-        case 'False':
-          currentValue = 'True';
-
-          break;
         case 'True':
           currentValue = 'False';
+
+          break;
+        case 'False':
+          currentValue = 'True';
 
           break;
         default:
@@ -189,8 +189,8 @@ class FormToggleButtonController extends GetxController {
           break;
       }
 
-      update();
-      // consoleLog(currentValue);
+      consoleLog(currentValue);
     }
+    update();
   }
 }
