@@ -7,6 +7,7 @@ enum FormToggleType {
   trueFalse,
   multi,
   yesNo,
+  trueFalseOnly,
 }
 
 class FormToggleButtonController extends GetxController {
@@ -172,9 +173,24 @@ class FormToggleButtonController extends GetxController {
 
           break;
       }
-    }
+    } else if (toggleType == FormToggleType.trueFalseOnly) {
+      // typing here code
+      switch (currentValue) {
+        case 'False':
+          currentValue = 'True';
 
-    update();
-    // consoleLog(currentValue);
+          break;
+        case 'True':
+          currentValue = 'False';
+
+          break;
+        default:
+          currentValue = 'False';
+          break;
+      }
+
+      update();
+      // consoleLog(currentValue);
+    }
   }
 }
