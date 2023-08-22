@@ -28,6 +28,13 @@ class FormsController extends GetxController {
                   keyRoute: routeFormBreakdownService,
                   'form_cert_type': FormCertType.gas,
                 },
+              if (currentMode == AppMode.dev)
+                <String, dynamic>{
+                  keyId: 15,
+                  keyTitle: 'Maintenance Service',
+                  keyRoute: routeFormMaintenanceService,
+                  'form_cert_type': FormCertType.gas,
+                },
             ],
           },
         if (homeController.isHaveElectrical)

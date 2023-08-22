@@ -160,12 +160,12 @@ List<GetPage<dynamic>> appRoutes = <GetPage<dynamic>>[
     page: () => const MinorWorks(),
   ),
 
-   GetPage<BreakdownService>(
+  GetPage<BreakdownService>(
     name: routeFormBreakdownService,
     page: () => const BreakdownService(),
   ),
 
-  GetPage<BreakdownService>(
+  GetPage<MaintenanceService>(
     name: routeFormMaintenanceService,
     page: () => const MaintenanceService(),
   ),

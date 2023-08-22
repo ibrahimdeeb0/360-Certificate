@@ -25,7 +25,7 @@ class MaintenanceServicePage4 extends StatelessWidget {
             ),
             FormToggleButton(
               title:
-                  'if NO, has warning notice been issued and warning lable attached?',
+                  'if NO, has warning notice been issued and warning label attached?',
               titleSize: fontTitle,
               value: controller.formData[formKeyPart4][formKeyHasWarningNotice],
               onChangeValue: (dynamic value) =>
@@ -40,7 +40,8 @@ class MaintenanceServicePage4 extends StatelessWidget {
               title:
                   'Does installation conform to requirements of manufacturers instructions/installation standards?',
               titleSize: fontTitle,
-              value: controller.formData[formKeyPart4][formKeyInstallationConform],
+              value: controller.formData[formKeyPart4]
+                  [formKeyInstallationConform],
               onChangeValue: (dynamic value) =>
                   controller.onChangeFormDataValue(
                 formKeyPart4,
@@ -63,7 +64,8 @@ class MaintenanceServicePage4 extends StatelessWidget {
               ),
             ),
             CommonInput(
-              value: controller.formData[formKeyPart2][formKeyFollowingRemedial],
+              value: controller.formData[formKeyPart2]
+                  [formKeyFollowingRemedial],
               onChanged: (dynamic value) => controller.onChangeFormDataValue(
                   formKeyPart2, formKeyFollowingRemedial, value),
               minLines: 8,

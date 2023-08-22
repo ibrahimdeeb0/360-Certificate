@@ -239,12 +239,12 @@ class MaintenanceServiceController extends GetxController {
         type: DateType.date,
       );
 
-      onSelectDate(
-        part: formKeyPart6,
-        key: formKeyNextInspectionDate,
-        value: DateTime.now(),
-        type: DateType.date,
-      );
+      // onSelectDate(
+      //   part: formKeyPart5,
+      //   key: formKeyNextInspectionDate,
+      //   value: DateTime.now(),
+      //   type: DateType.date,
+      // );
     }
 
     //? If Certificate not Created need to create it
