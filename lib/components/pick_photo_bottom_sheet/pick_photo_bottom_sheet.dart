@@ -44,7 +44,7 @@ class PickPhotoBottomSheet extends StatelessWidget {
 
                     if (status.isDenied || status.isRestricted) {
                       openDialog(
-                        title: 'Camera Permission',
+                        title: 'Camera Permission $status',
                         description: 'Do need to go to access camera ?',
                         cancelText: 'Cancel',
                         confirmText: 'Open',

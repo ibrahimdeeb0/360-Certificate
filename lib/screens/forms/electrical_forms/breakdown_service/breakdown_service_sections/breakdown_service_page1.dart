@@ -24,7 +24,7 @@ class BreakdownServicePage1 extends StatelessWidget {
                 formKeyService,
                 value,
               ),
-              toggleType: FormToggleType.passFailedNA,
+              toggleType: FormToggleType.trueFalseOnly,
             ),
             FormToggleButton(
               title: 'Breakdown',
@@ -32,7 +32,7 @@ class BreakdownServicePage1 extends StatelessWidget {
               value: controller.formData[formKeyPart1][formKeyBreakdown],
               onChangeValue: (dynamic value) => controller
                   .onChangeFormDataValue(formKeyPart1, formKeyBreakdown, value),
-              toggleType: FormToggleType.passFailedNA,
+              toggleType: FormToggleType.trueFalseOnly,
             ),
             SmallInputField(
               title: 'CO/CO2 Ratio',

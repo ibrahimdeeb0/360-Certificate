@@ -82,6 +82,14 @@ class MoreController extends GetxController {
             Get.toNamed(routeFormBreakdownService);
           },
         },
+
+        <String, dynamic>{
+          keyId: 15,
+          keyTitle: 'Maintenance Service',
+          keyOnPress: () {
+            Get.toNamed(routeFormMaintenanceService);
+          },
+        },
         // <String, dynamic>{
         //   keyId: 0,
         //   keyTitle: 'Caravan Boat Gas Safety Inspection Record',
