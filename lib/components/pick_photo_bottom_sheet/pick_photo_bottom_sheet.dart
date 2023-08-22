@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter_svg/svg.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -44,7 +46,7 @@ class PickPhotoBottomSheet extends StatelessWidget {
 
                     if (status.isDenied || status.isRestricted) {
                       openDialog(
-                        title: 'Camera Permission $status',
+                        title: 'Camera Permission',
                         description: 'Do need to go to access camera ?',
                         cancelText: 'Cancel',
                         confirmText: 'Open',
@@ -63,33 +65,13 @@ class PickPhotoBottomSheet extends StatelessWidget {
                 ),
                 PickContainer(
                   onPress: () async {
-                    final PermissionStatus status =
-                        // Platform.isAndroid
-                        //     ? await Permission.mediaLibrary.request()
-                        //     : await Permission.photos.request();
-                        await Permission.mediaLibrary.request();
+                    final PermissionStatus status = Platform.isAndroid
+                        ? await Permission.mediaLibrary.request()
+                        : await Permission.photos.request();
 
                     consoleLog(status, key: 'Permission_Status');
 
-                    if (status.isGranted) {
-                      onGallery?.call();
-                    }
-                    // if (status.) {
-
-                    //   openDialog(
-                    //     title: 'Gallery Permission',
-                    //     description: 'Do need to go to access Gallery ?',
-                    //     cancelText: 'Cancel',
-                    //     confirmText: 'Open',
-                    //     onCancel: Get.back,
-                    //     onConfirm: () {
-                    //       openAppSettings();
-                    //       Get.back();
-                    //     },
-                    //   );
-
-                    // }
-                    else {
+                    if (status.isDenied || status.isRestricted) {
                       openDialog(
                         title: 'Gallery Permission',
                         description: 'Do need to go to access Gallery ?',
@@ -101,6 +83,8 @@ class PickPhotoBottomSheet extends StatelessWidget {
                           Get.back();
                         },
                       );
+                    } else {
+                      onGallery?.call();
                     }
                   },
                   title: 'Gallery',
