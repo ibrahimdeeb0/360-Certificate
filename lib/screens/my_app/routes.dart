@@ -164,4 +164,9 @@ List<GetPage<dynamic>> appRoutes = <GetPage<dynamic>>[
     name: routeFormBreakdownService,
     page: () => const BreakdownService(),
   ),
+
+  GetPage<BreakdownService>(
+    name: routeFormMaintenanceService,
+    page: () => const MaintenanceService(),
+  ),
 ];

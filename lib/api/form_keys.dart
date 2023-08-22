@@ -706,3 +706,72 @@ const String formKeyInterlocksNoted = 'interlocks_noted';
 const String formKeyTimeOfArrival = 'time_of_arrival';
 const String formKeyTimeOfDeparture = 'time_of_departure';
 const String formKeyNextInspectionDate = 'next_inspection_date';
+
+//  Maintenance Service
+
+// part1
+
+const String formKeyServiceMaintenance = 'service';
+const String formKeyMaintenance = 'maintenance';
+const String formKeyGasCarriedOut = 'gas_carried_out';
+const String formKeyGasTightnessTest = 'gas_tightness_test';
+const String formKeyMaintenanceApplianceLocation = 'appliance_location';
+const String formKeyMaintenanceApplianceType = 'appliance_type';
+const String formKeyMaintenanceApplianceMake = 'appliance_make';
+const String formKeyMaintenanceApplianceModel = 'appliance_model';
+
+// Part 2
+const String formKeyBurnerInjectors = 'burner_injectors';
+const String formKeyBurnerInjectorsInput = 'burner_injectors_input';
+const String formKeyMaintenanceHeatExchanger = 'heat_exchanger';
+const String formKeyHeatExchangerInput = 'heat_exchanger_input';
+const String formKeyMaintenanceIgnition = 'ignition';
+const String formKeyIgnitionInput = 'ignition_input';
+const String formKeyElectrics = 'electrics';
+const String formKeyElectricsInput = 'electrics_input';
+const String formKeyControls = 'controls';
+const String formKeyControlsInput = 'controls_input';
+const String formKeyGasWaterLeaks = 'gas_water_leaks';
+const String formKeyGasWaterLeaksInput = 'gas_water_leaks_input';
+const String formKeySeals = 'seals';
+const String formKeySealsInput = 'seals_input';
+const String formKeyGasPipework = 'gas_pipework';
+const String formKeyGasPipeworkInput = 'gas_pipework_input';
+const String formKeyMaintenanceFan = 'fan';
+const String formKeyFanInput = 'fan_input';
+const String formKeyFireplaceOpening = 'fireplace_opening';
+const String formKeyFireplaceOpeningInput = 'fireplace_opening_input';
+const String formKeyClosurePlate = 'closure_plate';
+const String formKeyClosurePlateInput = 'closure_plate_input';
+const String formKeyFlamePicture = 'flame_picture';
+const String formKeyFlamePictureInput = 'flame_picture_input';
+const String formKeyMaintenanceLocation = 'location';
+const String formKeyMaintenanceLocationInput = 'location_input';
+const String formKeyStability = 'stability';
+const String formKeyStabilityInput = 'stability_input';
+const String formKeyReturnAirPlenum = 'return_air_plenum';
+const String formKeyReturnAirPlenumInput = 'return_air_plenum_input';
+
+// part 3
+const String formKeyMaintenanceVentilation = 'ventilation';
+const String formKeyMaintenanceVentilationInput = 'ventilation_input';
+const String formKeyFluTermination = 'flu_termination';
+const String formKeyFluTerminationInput = 'flu_termination_input';
+const String formKeyFluFlowTest = 'flu_flow_test';
+const String formKeyFluFlowTestInput = 'location_input';
+const String formKeySpillageTest = 'spillage_test';
+const String formKeySpillageTestInput = 'spillage_test_input';
+const String formKeyOperatingPressure = 'operating_pressure';
+const String formKeySafetyDevices = 'safety_devices';
+const String formKeySafetyDevicesInput = 'safety_devices_input';
+const String formKeyMaintenanceOther = 'other';
+const String formKeyOtherInput = 'other_input';
+
+// part 4
+const String formKeySafeToUse = 'safe_to_use';
+const String formKeyHasWarningNotice = 'has_warning_notice';
+const String formKeyInstallationConform = 'installation_conform';
+const String formKeyFollowingRemedial = ' following_remedial';
+
+
+// part 5

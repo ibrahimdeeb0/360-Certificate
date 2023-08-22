@@ -273,12 +273,13 @@ class FormAddNoteCard extends StatelessWidget {
       child: Column(
         children: <Widget>[
           dropdownMenu ?? const SizedBox(),
-          CommonInput(
-            topLabelText: 'Note:',
-            maxLines: 6,
-            value: note ?? '',
-            enabled: false,
-          ),
+          if (note != null || note != '')
+            CommonInput(
+              topLabelText: 'Note:',
+              maxLines: 6,
+              value: note ?? '',
+              enabled: false,
+            ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[

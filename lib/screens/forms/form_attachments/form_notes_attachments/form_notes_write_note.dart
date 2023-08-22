@@ -61,31 +61,28 @@ class FormNotesWriteNote extends StatelessWidget {
                           onPress: () {
                             hideKeyboard();
 
-                            if (controller.noteController.text
+                            if (isUpdateNote) {
+                              controller.notesData[index!].note =
+                                  controller.noteController.text.trim();
+                            } else if (controller.noteController.text
                                 .trim()
                                 .isNotEmpty) {
-                              if (isUpdateNote) {
-                                controller.notesData[index!].note =
-                                    controller.noteController.text.trim();
-                              } else {
-                                final Random random = Random();
-                                final int randomNumber =
-                                    random.nextInt(1000000);
-                                controller.notesData.insert(
-                                  0,
-                                  FormNoteClass(
-                                    id: randomNumber,
-                                    note: controller.noteController.text.trim(),
-                                    type: 'Certificate Note',
-                                    onPress: () {
-                                      controller.notesData.removeWhere(
-                                        (FormNoteClass element) =>
-                                            element.id == randomNumber,
-                                      );
-                                    },
-                                  ),
-                                );
-                              }
+                              final Random random = Random();
+                              final int randomNumber = random.nextInt(1000000);
+                              controller.notesData.insert(
+                                0,
+                                FormNoteClass(
+                                  id: randomNumber,
+                                  note: controller.noteController.text.trim(),
+                                  type: 'Certificate Note',
+                                  onPress: () {
+                                    controller.notesData.removeWhere(
+                                      (FormNoteClass element) =>
+                                          element.id == randomNumber,
+                                    );
+                                  },
+                                ),
+                              );
 
                               controller.noteController.clear();
                               controller.update();

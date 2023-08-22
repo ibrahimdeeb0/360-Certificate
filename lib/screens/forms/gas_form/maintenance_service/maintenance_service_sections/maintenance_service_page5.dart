@@ -2,14 +2,14 @@ import 'package:easy_signature_pad/easy_signature_pad.dart';
 
 import '../../../../../general_exports.dart';
 
-class BreakdownServicePage7 extends StatelessWidget {
-  const BreakdownServicePage7({super.key});
+class MaintenanceServicePage5 extends StatelessWidget {
+  const MaintenanceServicePage5({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<BreakdownServiceController>(
-      init: BreakdownServiceController(),
-      builder: (BreakdownServiceController controller) {
+    return GetBuilder<MaintenanceServiceController>(
+      init: MaintenanceServiceController(),
+      builder: (MaintenanceServiceController controller) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -302,7 +302,6 @@ class BreakdownServicePage7 extends StatelessWidget {
                     [formKeyCustomerDate],
               ),
             ),
-         
           ],
         );
       },
