@@ -6,7 +6,7 @@ class CertificatesController extends GetxController {
   List<dynamic> allCerts = <dynamic>[];
   List<dynamic> filteredCert = <dynamic>[];
 
-  int page = 1;
+  int currentPage = 1;
   int? lastPage;
   bool isLoading = false;
   bool showMessage = true;
@@ -42,16 +42,19 @@ class CertificatesController extends GetxController {
     scrollController.addListener(
       () {
         if (scrollController.positions.isNotEmpty) {
-          if (scrollController.position.pixels ==
+          if (scrollController.offset ==
               (scrollController.position.maxScrollExtent)) {
-            isLoading = true;
-            homeController.update();
-            if (page <= lastPage!) {
-              page = page + 1;
-              getPaginationCerts(withLoading: false);
-            } else {
-              isLoading = false;
+            if (!isLoading) {
+              isLoading = true;
               homeController.update();
+
+              if (currentPage < lastPage!) {
+                getPaginationCerts(
+                    withLoading: false, currentPage: currentPage++);
+              } else {
+                isLoading = false;
+                homeController.update();
+              }
             }
           }
         }
@@ -102,10 +105,10 @@ class CertificatesController extends GetxController {
   Future<void> getAllCert() async {
     hideKeyboard();
     startLoading();
-    page = 1;
+    currentPage = 1;
 
     ApiRequest(
-      path: '$formGetAllCertificates?page=$page&perPage=5',
+      path: '$formGetAllCertificates?page=$currentPage&perPage=5',
       className: 'CertificatesController/getAllCert',
       requestFunction: getAllCert,
       // withLoading: true,
@@ -117,9 +120,10 @@ class CertificatesController extends GetxController {
           value: data,
         );
         allCerts = data[keyData];
-        filteredCert = data[keyData];
+        filteredCert = allCerts;
         onFilterCert(certItem: filterItem, disableBack: true);
-        lastPage = data['last_page'];
+        lastPage = data['last_page'] + 1;
+        currentPage++;
         isLoading = false;
         if (filteredCert.isEmpty) {
           showMessage = true;
@@ -138,11 +142,11 @@ class CertificatesController extends GetxController {
       final dynamic apiData = await myAppController.localStorage.getFromStorage(
         key: 'getAllCert',
       );
-      // allCerts = apiData[keyData];
       allCerts = apiData[keyData];
-      filteredCert = apiData[keyData];
+      filteredCert = allCerts;
       onFilterCert(certItem: filterItem, disableBack: true);
-      lastPage = apiData['last_page'];
+      lastPage = apiData['last_page'] + 1;
+      currentPage++;
       isLoading = false;
       if (filteredCert.isEmpty) {
         showMessage = true;
@@ -155,11 +159,11 @@ class CertificatesController extends GetxController {
     }
   }
 
-  Future<void> getPaginationCerts({bool? withLoading}) async {
+  Future<void> getPaginationCerts({bool? withLoading, int? currentPage}) async {
     hideKeyboard();
 
     ApiRequest(
-      path: '$formGetAllCertificates?page=$page&perPage=5',
+      path: '$formGetAllCertificates?page=$currentPage&perPage=5',
       className: 'CertificatesController/getPaginationCerts',
       requestFunction: getPaginationCerts,
       withLoading: withLoading ?? true,
@@ -171,12 +175,13 @@ class CertificatesController extends GetxController {
           value: data,
         );
         allCerts.addAll(data[keyData]);
-        filteredCert.addAll(data[keyData]);
+        filteredCert = allCerts;
         onFilterCert(certItem: filterItem);
-        lastPage = data['last_page'];
+        lastPage = data['last_page'] + 1;
+
+        consoleLog(currentPage, key: 'currentPage');
         isLoading = false;
-        // filteredCert =
-        // sortedCerts();
+
         update();
         homeController.update();
       },
@@ -185,12 +190,14 @@ class CertificatesController extends GetxController {
       final dynamic apiData = await myAppController.localStorage.getFromStorage(
         key: 'getPaginationCerts',
       );
-      // allCerts = apiData[keyData];
       allCerts.addAll(apiData[keyData]);
-      filteredCert.addAll(apiData[keyData]);
+      filteredCert = allCerts;
       onFilterCert(certItem: filterItem);
-      lastPage = apiData['last_page'];
+      lastPage = apiData['last_page'] + 1;
+
+      consoleLog(currentPage, key: 'currentPage');
       isLoading = false;
+
       update();
       homeController.update();
     }

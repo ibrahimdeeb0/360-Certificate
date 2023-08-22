@@ -1,9 +1,5 @@
 # 360 Certificate
 
-# flutter build apk --release
-
-# 360 Connect
-
 To build dev version you have to do::
 
 1- change bundle name in all app

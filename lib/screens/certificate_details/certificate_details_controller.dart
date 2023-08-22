@@ -228,6 +228,13 @@ class CertificateDetailsController extends GetxController
           formKeyFromCertificate: true,
         },
       );
+    } else if (certDetails['form_data']['form_id'] == 31) {
+      Get.toNamed(
+        routeFormBreakdownService,
+        arguments: <String, dynamic>{
+          formKeyFromCertificate: true,
+        },
+      );
     }
   }
 

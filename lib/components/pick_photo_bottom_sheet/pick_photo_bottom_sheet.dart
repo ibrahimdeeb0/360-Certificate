@@ -42,19 +42,20 @@ class PickPhotoBottomSheet extends StatelessWidget {
 
                     consoleLog(status, key: 'Permission_Status');
 
-                    if (status.isGranted) {
-                      onCamera?.call();
-                    } else {
+                    if (status.isDenied || status.isRestricted) {
                       openDialog(
-                          title: 'Camera Permission',
-                          description: 'Do need to go to access camera ?',
-                          cancelText: 'Cancel',
-                          confirmText: 'Open',
-                          onCancel: Get.back,
-                          onConfirm: () {
-                            openAppSettings();
-                            Get.back();
-                          });
+                        title: 'Camera Permission',
+                        description: 'Do need to go to access camera ?',
+                        cancelText: 'Cancel',
+                        confirmText: 'Open',
+                        onCancel: Get.back,
+                        onConfirm: () {
+                          openAppSettings();
+                          Get.back();
+                        },
+                      );
+                    } else {
+                      onCamera?.call();
                     }
                   },
                   title: 'Camera',
