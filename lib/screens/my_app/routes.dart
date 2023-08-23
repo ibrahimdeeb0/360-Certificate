@@ -1,4 +1,5 @@
 import '../../general_exports.dart';
+import '../forms/gas_form/gas_test_purge/index.dart';
 
 List<GetPage<dynamic>> appRoutes = <GetPage<dynamic>>[
   GetPage<SplashScreen>(
@@ -168,5 +169,10 @@ List<GetPage<dynamic>> appRoutes = <GetPage<dynamic>>[
   GetPage<MaintenanceService>(
     name: routeFormMaintenanceService,
     page: () => const MaintenanceService(),
+  ),
+
+  GetPage<GasTestPurge>(
+    name: routeFormGasTestPurge,
+    page: () => const GasTestPurge(),
   ),
 ];
