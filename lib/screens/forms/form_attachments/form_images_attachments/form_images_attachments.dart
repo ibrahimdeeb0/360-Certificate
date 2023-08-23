@@ -73,6 +73,10 @@ class FormImagesAttachments extends StatelessWidget {
                                     fileName: item.imageName!.split('/').last,
                                     isIncluded: item.isNotIncluded,
                                     note: item.note,
+                                    onTap: () => pressNote(
+                                        controller: controller,
+                                        itemIndex: itemIndex,
+                                        item: item),
                                     pressToggleInclude: () =>
                                         pressToggleInclude(
                                             controller: controller,
@@ -103,6 +107,10 @@ class FormImagesAttachments extends StatelessWidget {
                                     fileName: item.imageName!.split('/').last,
                                     isIncluded: item.isNotIncluded,
                                     note: item.note,
+                                    onTap: () => pressNote(
+                                        controller: controller,
+                                        itemIndex: itemIndex,
+                                        item: item),
                                     pressToggleInclude: () =>
                                         pressToggleInclude(
                                             controller: controller,
@@ -208,6 +216,7 @@ class FormImagesAttachments extends StatelessWidget {
     required FormImageClass item,
     required int itemIndex,
   }) {
+    // controller.noteController.clear();
     if (item.note != null) {
       controller.noteController.text = item.note!;
     }
@@ -269,6 +278,7 @@ class FormAddImageCard extends StatelessWidget {
     this.pressToggleInclude,
     this.isIncluded = false,
     this.note,
+    this.onTap,
   });
 
   final String? fileName;
@@ -278,7 +288,7 @@ class FormAddImageCard extends StatelessWidget {
   final Function()? pressToggleInclude;
   final bool isIncluded;
   final String? note;
-
+  final dynamic Function()? onTap;
   @override
   Widget build(BuildContext context) {
     // consoleLog(note, key: 'note');
@@ -297,6 +307,7 @@ class FormAddImageCard extends StatelessWidget {
               height: 0.12,
               maxLines: 60,
               enabled: false,
+              onTap: onTap,
             ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

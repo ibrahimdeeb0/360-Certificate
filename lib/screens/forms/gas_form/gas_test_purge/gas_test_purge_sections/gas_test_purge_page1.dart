@@ -84,10 +84,10 @@ class GasTestPurgePage1 extends StatelessWidget {
               fontSize: fontH2,
             ),
             const SmallInputField(
-              title: 'Calculated presume drop (mbar/bar)',
+              title: 'Actual presume drop (mbar/bar)',
             ),
             FormToggleButton(
-              title: 'Gas tightness test carried out?',
+              title: 'Strength test Pass or Fail',
               titleSize: fontTitle,
               value: controller.formData[formKeyPart1][formKeyGasCarriedOut],
               onChangeValue: (dynamic value) =>

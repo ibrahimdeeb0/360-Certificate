@@ -773,5 +773,71 @@ const String formKeyHasWarningNotice = 'has_warning_notice';
 const String formKeyInstallationConform = 'installation_conform';
 const String formKeyFollowingRemedial = ' following_remedial';
 
-
 // part 5
+
+//* Gas Test & Purge*//
+// const String formKey = '';
+
+// Page 1
+// part 1
+const String formKeyStateTest = 'State_test';
+const String formKeyInstallation = 'installation';
+const String formKeyHaveComponents = 'have_components';
+const String formKeyCalculatedStrength = 'calculated_strength';
+const String formKeyTestMedium = 'test_medium';
+const String formKeyStabilizationPeriod = 'stabilization_period';
+const String formKeyStrengthDuration = 'strength_test_duration';
+const String formKeyPermittedPresume = 'permitted_presume_drop';
+const String formKeyCalculatedPresume = 'calculated_presume';
+// part 2
+const String formKeyActualPresume = 'actual_presume';
+const String formKeyStrengthTest = 'strength_test';
+
+// Page 2
+// part 1
+const String formKeyGasType = 'gas_type';
+const String formKeyInstallationTightness = 'installation';
+const String formKeyWeatherOrChanges = 'weather_or_changes';
+const String formKeyMeterTypeDiaphragm = 'meter_type_diaphragm';
+const String formKeyMeterType = 'meter_type';
+const String formKeyMeterBypass = 'meter_bypass';
+// part 2
+const String formKeyGasMeter = 'gas_meter';
+const String formKeyInstallationPipework = 'installation_pipework';
+const String formKeyTotalIV = 'total_iv';
+// part 3
+const String formKeyTestMediumFuel = 'test_medium_fuel';
+const String formKeyTightnessTest = 'tightness_test';
+const String formKeyPressureGauge = 'pressure_gauge';
+const String formKeyMPLR = 'mplr';
+const String formKeyTestPeriod = 'test_period';
+const String formKeyStabilizationPeriodGas = 'stabilization_period';
+const String formKeyTightnessTestDuration = 'tightness_test_duration';
+const String formKeyInadequatelyVentilated = 'inadequately_ventilated';
+const String formKeyBarometricPressure = 'barometric_pressure';
+// part 4
+const String formKeyActualPressureDrop = 'actual_pressure_drop';
+const String formKeyActualLeakRate = 'actual_leak_rate';
+const String formKeyInadequatelyVentilatedAreas =
+    'inadequately_ventilated_areas';
+const String formKeyTightnessTestPassOrFail = 'tightness_test';
+// Page 3
+// part 1
+const String formKeyHasRiskAssessment = 'risk_assessment';
+const String formKeyWrittenProcedure = 'written_procedure';
+const String formKeyNoSmoking = 'no_smoking';
+const String formKeyVicinityOfPurge = 'vicinity_of_purge';
+const String formKeyAppropriateValves = 'appropriate_valves';
+const String formKeyNitrogenGas = 'nitrogen_gas';
+const String formKeySuitableFire = 'suitable_fire';
+const String formKeyWayRadios = 'way_radios';
+const String formKeyElectricalBonds = 'electrical_bonds';
+// part 2
+const String formKeyCalculateGasMeter = 'gas_meter';
+const String formKeyCalculateInstallationPipework = 'installation_pipework';
+const String formKeyTotalPurge = 'Total_purge';
+// part 3
+const String formKeyGasDetector = 'gas_detector';
+// part 4
+const String formKeyCarryOutPurge = 'carry_out_purge';
+const String formKeyPurgePassOrFail = 'purge_pass_or_fail';

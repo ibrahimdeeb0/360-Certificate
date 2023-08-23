@@ -255,6 +255,7 @@ class FormAddNoteCard extends StatelessWidget {
     this.pressType,
     this.pressDelete,
     this.dropdownMenu,
+    this.onTap,
   });
   final String? note;
   final String? type;
@@ -262,6 +263,7 @@ class FormAddNoteCard extends StatelessWidget {
   final Function()? pressDelete;
   final Function()? pressType;
   final Widget? dropdownMenu;
+  final Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -279,6 +281,7 @@ class FormAddNoteCard extends StatelessWidget {
               maxLines: 6,
               value: note ?? '',
               enabled: false,
+              onTap: onTap,
             ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,

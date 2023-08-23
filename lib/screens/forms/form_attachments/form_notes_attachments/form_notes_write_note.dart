@@ -64,6 +64,9 @@ class FormNotesWriteNote extends StatelessWidget {
                             if (isUpdateNote) {
                               controller.notesData[index!].note =
                                   controller.noteController.text.trim();
+                              controller.noteController.clear();
+                              controller.update();
+                              Get.back();
                             } else if (controller.noteController.text
                                 .trim()
                                 .isNotEmpty) {
