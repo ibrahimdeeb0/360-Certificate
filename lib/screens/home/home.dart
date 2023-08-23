@@ -1,3 +1,4 @@
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../general_exports.dart';
@@ -14,7 +15,7 @@ class Home extends StatelessWidget {
       // floatingActionButton: FloatingActionButton(onPressed: () {
       //   Get.to(Subscription());
       // }),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.centerTop, 
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerTop,
       body: GetBuilder<HomeController>(
         init: homeController,
         builder: (HomeController controller) {

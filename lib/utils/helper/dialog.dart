@@ -19,7 +19,7 @@ void openDialog({
     title: title ?? 'Alert',
     content: child ??
         CommonText(
-          description ?? 'Save this form as a template',  
+          description ?? 'Save this form as a template',
           style: appTextStyles.h3StyleBlack(),
         ),
     confirm: CommonButton(
@@ -67,4 +67,63 @@ Future<dynamic> formsDialog({
     ),
     backgroundColor: Colors.white,
   );
+}
+
+Future<dynamic> openSimpleDialog({
+  Widget? titleIcon,
+  String? title,
+  String? description,
+  String? btnText,
+  Function()? onPress,
+}) {
+  return Get.dialog(
+    CustomDialog(
+      description: description,
+      onPress: onPress,
+      title: title,
+      titleIcon: titleIcon,
+      btnText: btnText,
+    ),
+  );
+}
+
+class CustomDialog extends StatelessWidget {
+  const CustomDialog({
+    super.key,
+    this.titleIcon,
+    this.title,
+    this.description,
+    this.btnText,
+    this.onPress,
+  });
+  final Widget? titleIcon;
+  final String? title;
+  final String? description;
+  final String? btnText;
+  final Function()? onPress;
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      backgroundColor: Colors.white,
+      title: CommonText(
+        title ?? '',
+        marginTop: titleIcon != null ? 0.025 : null,
+        fontWeight: FontWeight.bold,
+        topChild: titleIcon,
+      ),
+      content: CommonText(
+        description ?? '',
+        fontSize: fontH3,
+        fontColor: Colors.grey[700],
+      ),
+      actions: <Widget>[
+        CommonButton(
+          text: btnText ?? '',
+          onPress: onPress,
+          width: 1,
+        ),
+      ],
+    );
+  }
 }
