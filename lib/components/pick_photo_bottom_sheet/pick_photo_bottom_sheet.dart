@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -42,18 +43,22 @@ class PickPhotoBottomSheet extends StatelessWidget {
                     final PermissionStatus status =
                         await Permission.camera.request();
 
-                    consoleLog(status, key: 'Permission_Status');
-
-                    if (status.isDenied || status.isRestricted) {
-                      openDialog(
-                        title: 'Camera Permission',
-                        description: 'Do need to go to access camera ?',
-                        cancelText: 'Cancel',
-                        confirmText: 'Open',
-                        onCancel: Get.back,
-                        onConfirm: () {
-                          openAppSettings();
+                    if (status.isDenied ||
+                        status.isRestricted ||
+                        status.isPermanentlyDenied) {
+                      openSimpleDialog(
+                        title:
+                            'Allowing 360 Certificate App to access the camera',
+                        description:
+                            'This allows you to share photos with the application',
+                        btnText: 'Open Settings',
+                        titleIcon: Icon(
+                          Icons.camera_alt_outlined,
+                          color: Color(AppColors.primary),
+                        ),
+                        onPress: () {
                           Get.back();
+                          openAppSettings();
                         },
                       );
                     } else {
@@ -65,22 +70,35 @@ class PickPhotoBottomSheet extends StatelessWidget {
                 ),
                 PickContainer(
                   onPress: () async {
-                    final PermissionStatus status = Platform.isAndroid
-                        ? await Permission.mediaLibrary.request()
-                        : await Permission.photos.request();
+                    final DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+                    final AndroidDeviceInfo androidInfo =
+                        await deviceInfo.androidInfo;
 
-                    consoleLog(status, key: 'Permission_Status');
+                    final PermissionStatus status = Platform.isIOS
+                        ? await Permission.photos.request()
+                        : Platform.isAndroid
+                            ? androidInfo.version.sdkInt < 33
+                                ? await Permission.storage.request()
+                                : await Permission.photos.request()
+                            : await Permission.storage.request();
 
-                    if (status.isDenied || status.isRestricted) {
-                      openDialog(
-                        title: 'Gallery Permission',
-                        description: 'Do need to go to access Gallery ?',
-                        cancelText: 'Cancel',
-                        confirmText: 'Open',
-                        onCancel: Get.back,
-                        onConfirm: () {
-                          openAppSettings();
+                    if (status.isDenied ||
+                        status.isRestricted ||
+                        status.isPermanentlyDenied) {
+                      openSimpleDialog(
+                        title: Platform.isIOS
+                            ? 'Allowing 360 Certificate App to access the Photos'
+                            : 'Allowing 360 Certificate App to access the Gallery',
+                        description:
+                            'This allows you to share photos with the application',
+                        btnText: 'Open Settings',
+                        titleIcon: Icon(
+                          Icons.filter_sharp,
+                          color: Color(AppColors.primary),
+                        ),
+                        onPress: () {
                           Get.back();
+                          openAppSettings();
                         },
                       );
                     } else {

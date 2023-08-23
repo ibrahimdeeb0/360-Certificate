@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../general_exports.dart';
@@ -9,6 +10,10 @@ class HomeController extends GetxController {
   Map<String, dynamic> trialDetails = <String, dynamic>{};
   // Map<String, dynamic> plansDetails = <String, dynamic>{};
 
+  int? sdkInt;
+
+  // String version = SystemProperties.androidBuildVersion;
+
   dynamic certCountData;
   int countCompleteCert = 0;
   int countUnCompleteCert = 0;
@@ -16,9 +21,10 @@ class HomeController extends GetxController {
   bool showFreeAlert = false;
 
   @override
-  void onReady() {
+  Future<void> onReady() async {
     super.onReady();
     getAllUserData();
+
     // getPlansDetails();
     // getCertCount();
   }
