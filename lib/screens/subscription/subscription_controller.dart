@@ -1,41 +1,23 @@
 import '../../general_exports.dart';
 
-class SubscriptionController extends GetxController
-    with GetSingleTickerProviderStateMixin {
-  ScrollController scrollController = ScrollController();
-  late TabController tabController;
-  int tabIndex = 0;
+class SubscriptionController extends GetxController {
+  List<bool> isSelected = <bool>[false, false, true, true, false];
 
-  List<dynamic> tabItems = <dynamic>[
-    <String, dynamic>{
-      keyId: 0,
-      'text': 'Monthly',
-    },
-    <String, dynamic>{
-      keyId: 1,
-      'text': 'Annual',
-    },
-  ];
+  int? lastIndex;
+  void onChange(int index) {
+    lastIndex = index;
+    if (index == lastIndex) {
+      isSelected[index] = true;
+    } else {
+      isSelected[index] = !isSelected[index];
+    }
 
-  YearlyPlans? selectedYearPlane;
-  MonthlyPlans? selectedMonthPlane;
+    for (int i = 0; i < isSelected.length; i++) {
+      if (i != index) {
+        isSelected[i] = false;
+      }
+    }
 
-  @override
-  void onInit() {
-    super.onInit();
-    tabController = TabController(length: tabItems.length, vsync: this);
-  }
-
-  void onSelectTab(int index) {
-    tabIndex = index;
-    selectedYearPlane = null;
-    selectedMonthPlane = null;
     update();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-    tabController.dispose();
   }
 }

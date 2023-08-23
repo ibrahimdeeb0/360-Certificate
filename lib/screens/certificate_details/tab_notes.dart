@@ -149,8 +149,7 @@ class NotesCard extends StatelessWidget {
             ),
           ),
           CommonText(
-            details ??
-                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy",
+            details ?? '',
             fontSize: fontBody,
             fontColor: Colors.grey[600],
             textAlign: TextAlign.start,
