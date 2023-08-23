@@ -72,18 +72,7 @@ class GasTestPurgePage2 extends StatelessWidget {
               ),
               toggleType: FormToggleType.trueFalseOnly,
             ),
-            Divider(
-              color: Colors.grey[200],
-              thickness: 3,
-              height: 0.05.flexHeight,
-            ),
-            CommonText(
-              'Installation volume (IV)',
-              textAlign: TextAlign.center,
-              marginBottom: 0.03,
-              fontColor: Color(AppColors.primary),
-              fontSize: fontH2,
-            ),
+            
             const SmallInputField(
               title: 'Gas Meter (m2)',
             ),

@@ -56,6 +56,7 @@ class FormImagesWriteNote extends StatelessWidget {
                         CommonButton(
                           onPress: () {
                             hideKeyboard();
+                            consoleLog(controller.noteController.text);
 
                             if (controller.noteController.text
                                 .trim()
