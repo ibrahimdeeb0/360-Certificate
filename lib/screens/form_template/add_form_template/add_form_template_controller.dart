@@ -45,6 +45,12 @@ class AddFormTemplateController extends GetxController {
         keyName: 'Breakdown Service',
         keyRoute: routeFormBreakdownService,
       },
+    if (currentMode == AppMode.dev)
+      <String, dynamic>{
+        keyId: 13,
+        keyName: 'Gas Test & Purge',
+        keyRoute: routeFormGasTestPurge,
+      },
   ];
 
   List<Map<String, dynamic>> unActiveForms = <Map<String, dynamic>>[
