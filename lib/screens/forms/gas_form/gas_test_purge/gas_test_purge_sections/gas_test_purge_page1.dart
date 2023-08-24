@@ -29,7 +29,7 @@ class GasTestPurgePage1 extends StatelessWidget {
                 formKeyStateTest,
                 value,
               ),
-              toggleType: FormToggleType.trueFalseOnly,
+              toggleType: FormToggleType.statTest,
             ),
             FormToggleButton(
               title: 'Installation-New-(N) New Extension-(NE) Existing-(E)',
@@ -38,7 +38,7 @@ class GasTestPurgePage1 extends StatelessWidget {
               onChangeValue: (dynamic value) =>
                   controller.onChangeFormDataValue(
                       formKeyPart1, formKeyInstallation, value),
-              toggleType: FormToggleType.trueFalseOnly,
+              toggleType: FormToggleType.installation,
             ),
             FormToggleButton(
               title:
@@ -68,15 +68,15 @@ class GasTestPurgePage1 extends StatelessWidget {
                 ),
                 isScrollControlled: true,
               ),
-              child:
-            SmallInputField(
-              title: 'Test medium',
-              value: controller.formData[formKeyPart1][formKeyTestMedium],
-              onChanged: (dynamic value) => controller.onChangeFormDataValue(
-                  formKeyPart1, formKeyTestMedium, value),
-              suffix: const Icon(Icons.keyboard_arrow_down),
-              isInputSelection: true,
-            ),),
+              child: SmallInputField(
+                title: 'Test medium',
+                value: controller.formData[formKeyPart1][formKeyTestMedium],
+                onChanged: (dynamic value) => controller.onChangeFormDataValue(
+                    formKeyPart1, formKeyTestMedium, value),
+                suffix: const Icon(Icons.keyboard_arrow_down),
+                isInputSelection: true,
+              ),
+            ),
             SmallInputField(
               title: 'Stabilization period (Minutes)',
               value: controller.formData[formKeyPart1]

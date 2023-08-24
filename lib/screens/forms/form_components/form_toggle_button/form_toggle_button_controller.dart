@@ -8,6 +8,9 @@ enum FormToggleType {
   multi,
   yesNo,
   trueFalseOnly,
+  statTest,
+  installation,
+  gasTypeNatural,
 }
 
 class FormToggleButtonController extends GetxController {
@@ -190,6 +193,75 @@ class FormToggleButtonController extends GetxController {
       }
 
       consoleLog(currentValue);
+    } else if (toggleType == FormToggleType.statTest) {
+      // typing here code
+      switch (currentValue) {
+        case 'N/A':
+          currentValue = 'P';
+
+          break;
+        case 'P':
+          currentValue = 'H';
+
+          break;
+
+        case 'H':
+          currentValue = 'N/A';
+
+          break;
+
+        default:
+          currentValue = 'N/A';
+
+          break;
+      }
+    } else if (toggleType == FormToggleType.installation) {
+      // typing here code
+      switch (currentValue) {
+        case 'N/A':
+          currentValue = 'N';
+
+          break;
+        case 'N':
+          currentValue = 'NE';
+
+          break;
+
+        case 'NE':
+          currentValue = 'E';
+
+          break;
+        case 'E':
+          currentValue = 'N/E';
+
+          break;
+
+        default:
+          currentValue = 'N/A';
+
+          break;
+      }
+    } else if (toggleType == FormToggleType.gasTypeNatural) {
+      // typing here code
+      switch (currentValue) {
+        case 'N/A':
+          currentValue = 'NG';
+
+          break;
+        case 'NG':
+          currentValue = 'LPG';
+
+          break;
+
+        case 'LPG':
+          currentValue = 'N/A';
+
+          break;
+        default:
+          currentValue = 'N/A';
+
+          break;
+      }
     }
     update();
   }

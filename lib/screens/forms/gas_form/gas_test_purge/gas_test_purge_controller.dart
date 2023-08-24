@@ -48,8 +48,8 @@ class GasTestPurgeController extends GetxController {
 
   Map<String, dynamic> formData = <String, dynamic>{
     formKeyPart1: <String, dynamic>{
-      formKeyStateTest: 'False',
-      formKeyInstallation: 'False',
+      formKeyStateTest: 'N/A',
+      formKeyInstallation: 'N/A',
       formKeyHaveComponents: 'False',
       formKeyCalculatedStrength: '',
       formKeyTestMedium: '',
@@ -61,7 +61,7 @@ class GasTestPurgeController extends GetxController {
       formKeyStrengthTest: 'False',
     },
     formKeyPart2: <String, dynamic>{
-      formKeyGasType: 'False',
+      formKeyGasType: 'N/A',
       formKeyInstallationTightness: 'False',
       formKeyWeatherOrChanges: 'False',
       formKeyMeterTypeDiaphragm: '',

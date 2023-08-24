@@ -30,7 +30,7 @@ class GasTestPurgePage2 extends StatelessWidget {
                 formKeyGasType,
                 value,
               ),
-              toggleType: FormToggleType.trueFalseOnly,
+              toggleType: FormToggleType.gasTypeNatural,
             ),
             FormToggleButton(
               title: 'Installation-New-(N) New Extension-(NE) Existing-(E)',
