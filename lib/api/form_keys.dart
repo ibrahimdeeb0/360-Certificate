@@ -820,8 +820,16 @@ const String formKeyActualPressureDrop = 'actual_pressure_drop';
 const String formKeyActualLeakRate = 'actual_leak_rate';
 const String formKeyInadequatelyVentilatedAreas =
     'inadequately_ventilated_areas';
-const String formKeyTightnessTestPassOrFail = 'tightness_test';
-// Page 3
+const String formKeyTightnessTestPassOrFail = 'tightness_test_pass_fail';
+
+//page 3 
+const String formKeyStrengthTestGas = 'strength_test_gas';
+const String formKeyTightnessTestGas = 'tightness_test_gas';
+const String formKeyPurgeGas = 'purge_gas';
+
+
+
+// Page 4
 // part 1
 const String formKeyHasRiskAssessment = 'risk_assessment';
 const String formKeyWrittenProcedure = 'written_procedure';

@@ -22,12 +22,11 @@ class GasTestPurgePage1 extends StatelessWidget {
             FormToggleButton(
               title: 'State test method pneumatic (P) or hydrostatic (H)',
               titleSize: fontTitle,
-              value: controller.formData[formKeyPart1]
-                  [formKeyServiceMaintenance],
+              value: controller.formData[formKeyPart1][formKeyStateTest],
               onChangeValue: (dynamic value) =>
                   controller.onChangeFormDataValue(
                 formKeyPart1,
-                formKeyServiceMaintenance,
+                formKeyStateTest,
                 value,
               ),
               toggleType: FormToggleType.trueFalseOnly,
@@ -35,41 +34,74 @@ class GasTestPurgePage1 extends StatelessWidget {
             FormToggleButton(
               title: 'Installation-New-(N) New Extension-(NE) Existing-(E)',
               titleSize: fontTitle,
-              value: controller.formData[formKeyPart1][formKeyMaintenance],
+              value: controller.formData[formKeyPart1][formKeyInstallation],
               onChangeValue: (dynamic value) =>
                   controller.onChangeFormDataValue(
-                      formKeyPart1, formKeyMaintenance, value),
+                      formKeyPart1, formKeyInstallation, value),
               toggleType: FormToggleType.trueFalseOnly,
             ),
             FormToggleButton(
               title:
                   'Have components not suitable for strength testing been removed or isolated from installation',
               titleSize: fontTitle,
-              value: controller.formData[formKeyPart1][formKeyMaintenance],
+              value: controller.formData[formKeyPart1][formKeyHaveComponents],
               onChangeValue: (dynamic value) =>
                   controller.onChangeFormDataValue(
-                      formKeyPart1, formKeyMaintenance, value),
+                      formKeyPart1, formKeyHaveComponents, value),
               toggleType: FormToggleType.trueFalseOnly,
             ),
-            const SmallInputField(
+            SmallInputField(
               title: 'Calculated strength test pressure (STP) (mbar/bar)',
+              value: controller.formData[formKeyPart1]
+                  [formKeyCalculatedStrength],
+              onChanged: (dynamic value) => controller.onChangeFormDataValue(
+                  formKeyPart1, formKeyCalculatedStrength, value),
             ),
-            const SmallInputField(
+            GestureDetector(
+              onTap: () => Get.bottomSheet(
+                GasTestPurgeSelectSheet(
+                  keyOfPart: formKeyPart1,
+                  keyOfValue: formKeyTestMedium,
+                  listTitles: list.listTestMedium,
+                  controller: controller,
+                  keyOfGasTestPurgeType: formKeyTestMedium,
+                ),
+                isScrollControlled: true,
+              ),
+              child:
+            SmallInputField(
               title: 'Test medium',
-              suffix: Icon(Icons.keyboard_arrow_down),
+              value: controller.formData[formKeyPart1][formKeyTestMedium],
+              onChanged: (dynamic value) => controller.onChangeFormDataValue(
+                  formKeyPart1, formKeyTestMedium, value),
+              suffix: const Icon(Icons.keyboard_arrow_down),
               isInputSelection: true,
-            ),
-            const SmallInputField(
+            ),),
+            SmallInputField(
               title: 'Stabilization period (Minutes)',
+              value: controller.formData[formKeyPart1]
+                  [formKeyStabilizationPeriod],
+              onChanged: (dynamic value) => controller.onChangeFormDataValue(
+                  formKeyPart1, formKeyStabilizationPeriod, value),
             ),
-            const SmallInputField(
+            SmallInputField(
               title: 'Strength test duration (STD) (Minutes)',
+              value: controller.formData[formKeyPart1][formKeyStrengthDuration],
+              onChanged: (dynamic value) => controller.onChangeFormDataValue(
+                  formKeyPart1, formKeyStrengthDuration, value),
             ),
-            const SmallInputField(
+            SmallInputField(
               title: 'Permitted presume drop (% STP)',
+              value: controller.formData[formKeyPart1][formKeyPermittedPresume],
+              onChanged: (dynamic value) => controller.onChangeFormDataValue(
+                  formKeyPart1, formKeyPermittedPresume, value),
             ),
-            const SmallInputField(
+            SmallInputField(
               title: 'Calculated presume drop (mbar/bar)',
+              value: controller.formData[formKeyPart1]
+                  [formKeyCalculatedPresume],
+              onChanged: (dynamic value) => controller.onChangeFormDataValue(
+                  formKeyPart1, formKeyCalculatedPresume, value),
             ),
             Divider(
               color: Colors.grey[200],
@@ -83,17 +115,20 @@ class GasTestPurgePage1 extends StatelessWidget {
               fontColor: Color(AppColors.primary),
               fontSize: fontH2,
             ),
-            const SmallInputField(
+            SmallInputField(
               title: 'Actual presume drop (mbar/bar)',
+              value: controller.formData[formKeyPart1][formKeyActualPresume],
+              onChanged: (dynamic value) => controller.onChangeFormDataValue(
+                  formKeyPart1, formKeyActualPresume, value),
             ),
             FormToggleButton(
               title: 'Strength test Pass or Fail',
               titleSize: fontTitle,
-              value: controller.formData[formKeyPart1][formKeyGasCarriedOut],
+              value: controller.formData[formKeyPart1][formKeyStrengthTest],
               onChangeValue: (dynamic value) =>
                   controller.onChangeFormDataValue(
                 formKeyPart1,
-                formKeyGasCarriedOut,
+                formKeyStrengthTest,
                 value,
               ),
               toggleType: FormToggleType.trueFalseOnly,

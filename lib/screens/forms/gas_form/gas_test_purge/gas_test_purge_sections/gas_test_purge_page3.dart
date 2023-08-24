@@ -6,6 +6,8 @@ class GasTestPurgePage3 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ListGasTestPurge list = ListGasTestPurge();
+
     return GetBuilder<GasTestPurgeController>(
       init: GasTestPurgeController(),
       builder: (GasTestPurgeController controller) {
@@ -22,11 +24,11 @@ class GasTestPurgePage3 extends StatelessWidget {
               title: 'Has a risk assessment been carried out?',
               titleSize: fontTitle,
               value: controller.formData[formKeyPart3]
-                  [formKeyMaintenanceVentilation],
+                  [formKeyHasRiskAssessment],
               onChangeValue: (dynamic value) =>
                   controller.onChangeFormDataValue(
                 formKeyPart3,
-                formKeyMaintenanceVentilation,
+                formKeyHasRiskAssessment,
                 value,
               ),
               toggleType: FormToggleType.trueFalseOnly,
@@ -34,12 +36,11 @@ class GasTestPurgePage3 extends StatelessWidget {
             FormToggleButton(
               title: 'Has a written procedure for theurgy been prepared? ',
               titleSize: fontTitle,
-              value: controller.formData[formKeyPart3]
-                  [formKeyMaintenanceVentilation],
+              value: controller.formData[formKeyPart3][formKeyWrittenProcedure],
               onChangeValue: (dynamic value) =>
                   controller.onChangeFormDataValue(
                 formKeyPart3,
-                formKeyMaintenanceVentilation,
+                formKeyWrittenProcedure,
                 value,
               ),
               toggleType: FormToggleType.trueFalseOnly,
@@ -47,12 +48,11 @@ class GasTestPurgePage3 extends StatelessWidget {
             FormToggleButton(
               title: 'Have"NO SMOKING" signs etc been displayed as necessary?',
               titleSize: fontTitle,
-              value: controller.formData[formKeyPart3]
-                  [formKeyMaintenanceVentilation],
+              value: controller.formData[formKeyPart3][formKeyNoSmoking],
               onChangeValue: (dynamic value) =>
                   controller.onChangeFormDataValue(
                 formKeyPart3,
-                formKeyMaintenanceVentilation,
+                formKeyNoSmoking,
                 value,
               ),
               toggleType: FormToggleType.trueFalseOnly,
@@ -61,12 +61,11 @@ class GasTestPurgePage3 extends StatelessWidget {
               title:
                   'Have persons in the vicinity of the purge been advised accordingly?',
               titleSize: fontTitle,
-              value: controller.formData[formKeyPart3]
-                  [formKeyMaintenanceVentilation],
+              value: controller.formData[formKeyPart3][formKeyVicinityOfPurge],
               onChangeValue: (dynamic value) =>
                   controller.onChangeFormDataValue(
                 formKeyPart3,
-                formKeyMaintenanceVentilation,
+                formKeyVicinityOfPurge,
                 value,
               ),
               toggleType: FormToggleType.trueFalseOnly,
@@ -76,11 +75,11 @@ class GasTestPurgePage3 extends StatelessWidget {
                   'Have all appropriate valves to and from the section of pipe been labelled?',
               titleSize: fontTitle,
               value: controller.formData[formKeyPart3]
-                  [formKeyMaintenanceVentilation],
+                  [formKeyAppropriateValves],
               onChangeValue: (dynamic value) =>
                   controller.onChangeFormDataValue(
                 formKeyPart3,
-                formKeyMaintenanceVentilation,
+                formKeyAppropriateValves,
                 value,
               ),
               toggleType: FormToggleType.trueFalseOnly,
@@ -89,12 +88,11 @@ class GasTestPurgePage3 extends StatelessWidget {
               title:
                   'Where nitrogen gas is being used for an indirect purge have the gas cylinders been checked/] verified for their correct content?',
               titleSize: fontTitle,
-              value: controller.formData[formKeyPart3]
-                  [formKeyMaintenanceVentilation],
+              value: controller.formData[formKeyPart3][formKeyNitrogenGas],
               onChangeValue: (dynamic value) =>
                   controller.onChangeFormDataValue(
                 formKeyPart3,
-                formKeyMaintenanceVentilation,
+                formKeyNitrogenGas,
                 value,
               ),
               toggleType: FormToggleType.trueFalseOnly,
@@ -103,12 +101,11 @@ class GasTestPurgePage3 extends StatelessWidget {
               title:
                   'Are suitable fire extinguishers available in case of an incident?',
               titleSize: fontTitle,
-              value: controller.formData[formKeyPart3]
-                  [formKeyMaintenanceVentilation],
+              value: controller.formData[formKeyPart3][formKeySuitableFire],
               onChangeValue: (dynamic value) =>
                   controller.onChangeFormDataValue(
                 formKeyPart3,
-                formKeyMaintenanceVentilation,
+                formKeySuitableFire,
                 value,
               ),
               toggleType: FormToggleType.trueFalseOnly,
@@ -116,12 +113,11 @@ class GasTestPurgePage3 extends StatelessWidget {
             FormToggleButton(
               title: 'Are two way radios (intrinsically safe) available?',
               titleSize: fontTitle,
-              value: controller.formData[formKeyPart3]
-                  [formKeyMaintenanceVentilation],
+              value: controller.formData[formKeyPart3][formKeyWayRadios],
               onChangeValue: (dynamic value) =>
                   controller.onChangeFormDataValue(
                 formKeyPart3,
-                formKeyMaintenanceVentilation,
+                formKeyWayRadios,
                 value,
               ),
               toggleType: FormToggleType.trueFalseOnly,
@@ -129,12 +125,11 @@ class GasTestPurgePage3 extends StatelessWidget {
             FormToggleButton(
               title: 'Are all electrical bonds fitted as necessary?',
               titleSize: fontTitle,
-              value: controller.formData[formKeyPart3]
-                  [formKeyMaintenanceVentilation],
+              value: controller.formData[formKeyPart3][formKeyElectricalBonds],
               onChangeValue: (dynamic value) =>
                   controller.onChangeFormDataValue(
                 formKeyPart3,
-                formKeyMaintenanceVentilation,
+                formKeyElectricalBonds,
                 value,
               ),
               toggleType: FormToggleType.trueFalseOnly,
@@ -154,23 +149,22 @@ class GasTestPurgePage3 extends StatelessWidget {
             SmallInputField(
               title: 'Gas Meter (m2)',
               value: controller.formData[formKeyPart3]
-                  [formKeyOperatingPressure],
+                  [formKeyCalculateGasMeter],
               onChanged: (dynamic value) => controller.onChangeFormDataValue(
-                  formKeyPart3, formKeyOperatingPressure, value),
+                  formKeyPart3, formKeyCalculateGasMeter, value),
             ),
             SmallInputField(
               title: 'Installation pipework & fittings(m2)',
               value: controller.formData[formKeyPart3]
-                  [formKeyOperatingPressure],
+                  [formKeyCalculateInstallationPipework],
               onChanged: (dynamic value) => controller.onChangeFormDataValue(
-                  formKeyPart3, formKeyOperatingPressure, value),
+                  formKeyPart3, formKeyCalculateInstallationPipework, value),
             ),
             SmallInputField(
               title: 'Total purge volume (m3)',
-              value: controller.formData[formKeyPart3]
-                  [formKeyOperatingPressure],
+              value: controller.formData[formKeyPart3][formKeyTotalPurge],
               onChanged: (dynamic value) => controller.onChangeFormDataValue(
-                  formKeyPart3, formKeyOperatingPressure, value),
+                  formKeyPart3, formKeyTotalPurge, value),
             ),
             Divider(
               color: Colors.grey[200],
@@ -181,12 +175,11 @@ class GasTestPurgePage3 extends StatelessWidget {
               title:
                   'Is Gas detector/oxygen measuring device as appropriate, intrinsically safe',
               titleSize: fontTitle,
-              value: controller.formData[formKeyPart3]
-                  [formKeyMaintenanceVentilation],
+              value: controller.formData[formKeyPart3][formKeyGasDetector],
               onChangeValue: (dynamic value) =>
                   controller.onChangeFormDataValue(
                 formKeyPart3,
-                formKeyMaintenanceVentilation,
+                formKeyGasDetector,
                 value,
               ),
               toggleType: FormToggleType.trueFalseOnly,
@@ -206,19 +199,30 @@ class GasTestPurgePage3 extends StatelessWidget {
             SmallInputField(
               title:
                   'Carry out purge noting final test criteria readings (02% or LFL%)',
-              value: controller.formData[formKeyPart3]
-                  [formKeyOperatingPressure],
+              value: controller.formData[formKeyPart3][formKeyCarryOutPurge],
               onChanged: (dynamic value) => controller.onChangeFormDataValue(
-                  formKeyPart3, formKeyOperatingPressure, value),
+                  formKeyPart3, formKeyCarryOutPurge, value),
             ),
-            SmallInputField(
-              title: 'Purge Pass or Fail',
-              isInputSelection: true,
-              suffix: const Icon(Icons.keyboard_arrow_down_rounded),
-              value: controller.formData[formKeyPart3]
-                  [formKeyOperatingPressure],
-              onChanged: (dynamic value) => controller.onChangeFormDataValue(
-                  formKeyPart3, formKeyOperatingPressure, value),
+            GestureDetector(
+              onTap: () => Get.bottomSheet(
+                GasTestPurgeSelectSheet(
+                  keyOfPart: formKeyPart3,
+                  keyOfValue: formKeyPurgePassOrFail,
+                  listTitles: list.listPurge,
+                  controller: controller,
+                  keyOfGasTestPurgeType: formKeyPurgePassOrFail,
+                ),
+                isScrollControlled: true,
+              ),
+              child: SmallInputField(
+                title: 'Purge Pass or Fail',
+                isInputSelection: true,
+                suffix: const Icon(Icons.keyboard_arrow_down_rounded),
+                value: controller.formData[formKeyPart3]
+                    [formKeyPurgePassOrFail],
+                onChanged: (dynamic value) => controller.onChangeFormDataValue(
+                    formKeyPart3, formKeyPurgePassOrFail, value),
+              ),
             ),
           ],
         );
