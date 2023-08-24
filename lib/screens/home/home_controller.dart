@@ -7,11 +7,6 @@ import '../../general_exports.dart';
 class HomeController extends GetxController {
   List<dynamic> formsData = <dynamic>[];
   Map<String, dynamic> trialDetails = <String, dynamic>{};
-  // Map<String, dynamic> plansDetails = <String, dynamic>{};
-
-  int? sdkInt;
-
-  // String version = SystemProperties.androidBuildVersion;
 
   dynamic certCountData;
   int countCompleteCert = 0;
@@ -23,9 +18,6 @@ class HomeController extends GetxController {
   Future<void> onReady() async {
     super.onReady();
     getAllUserData();
-
-    // getPlansDetails();
-    // getCertCount();
   }
 
   Future<void> getFormsData() async {
