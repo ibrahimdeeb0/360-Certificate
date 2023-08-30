@@ -175,4 +175,9 @@ List<GetPage<dynamic>> appRoutes = <GetPage<dynamic>>[
     name: routeFormGasTestPurge,
     page: () => const GasTestPurge(),
   ),
+  GetPage<UpcomingForms>(
+    name: routeUpcomingForms,
+    page: () => const UpcomingForms(),
+  ),
+  
 ];

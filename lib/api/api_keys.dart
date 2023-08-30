@@ -16,6 +16,7 @@ const String keyIsRequired = 'is_required';
 const String keyDetails = 'description';
 const String keyImage = 'image';
 const String keyTitle = 'title';
+const String keyDescription = 'description';
 const String keyColor = 'color';
 const String keySubTitle = 'sub_title';
 const String keyLatitude = 'latitude';

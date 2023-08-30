@@ -30,6 +30,11 @@ class MoreController extends GetxController {
         //   keyOnPress: () => Get.toNamed(routeMySubscription),
         // },
         <String, dynamic>{
+          keyTitle: 'Upcoming Forms',
+          keyIcon: iconSubscription,
+          keyOnPress: () => Get.to(() => const UpcomingForms()),
+        },
+        <String, dynamic>{
           keyTitle: 'Logout',
           keyIcon: iconLogout,
           keyOnPress: myAppController.onSignOut,

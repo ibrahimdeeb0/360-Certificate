@@ -164,6 +164,14 @@ const String iconCompany = '${iconsPath}icon_company.svg';
 const String iconCongratulations = '${iconsPath}icon_congratulations.svg';
 const String iconFormsOops = '${iconsPath}forms_oops.svg';
 const String iconNotFoundCert = '${iconsPath}not_found_cert.svg';
+const String iconFire = '${iconsPath}fire.svg';
+const String iconArrowDown = '${iconsPath}arrow_down.svg';
+const String iconArrowGoi = '${iconsPath}arrow_goi.svg';
+const String iconSun = '${iconsPath}sun.svg';
+const String iconRelation = '${iconsPath}relation.svg';
+const String iconEye = '${iconsPath}eye.svg';
+const String iconElectrical = '${iconsPath}electrical.svg';
+const String iconBell = '${iconsPath}bell.svg';
 
 // ----------------------------------------
 
