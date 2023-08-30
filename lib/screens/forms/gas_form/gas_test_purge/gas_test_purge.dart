@@ -1,5 +1,4 @@
 import '../../../../general_exports.dart';
-import 'index.dart';
 
 class GasTestPurge extends StatelessWidget {
   const GasTestPurge({super.key});

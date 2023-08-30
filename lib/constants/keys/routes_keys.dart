@@ -18,7 +18,7 @@ const String routeCustomers = '/customers';
 const String routeFormTemplates = '/form_templates';
 const String routeMySettings = '/my_settings';
 const String routeMySubscription = '/my_subscription';
-const String routeUpcomingForms  = '/upcoming_forms ';
+const String routeUpcomingForms = '/upcoming_forms ';
 const String routeSearch = '/search';
 const String routeCompletedCert = '/sort_certificate';
 const String routeCertificateDetails = '/certificate_details';
@@ -38,9 +38,7 @@ const String routeFormMinorWorks = '/form_minor_works';
 const String routeFormBreakdownService = '/form_breakdown_service';
 const String routeFormMaintenanceService = '/form_maintenance_service';
 const String routeFormGasTestPurge = '/form_gas_test_purge';
-
-
-
+const String routeFormLeisureIndustry = '/form_leisure_industry';
 
 const String routeCompleteRegister = '/complete_register';
 const String routeCreateCustomerV2 = '/create_customer_v2';

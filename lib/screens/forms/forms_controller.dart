@@ -42,6 +42,13 @@ class FormsController extends GetxController {
                   keyRoute: routeFormGasTestPurge,
                   'form_cert_type': FormCertType.gas,
                 },
+              if (currentMode == AppMode.dev)
+                <String, dynamic>{
+                  keyId: 26,
+                  keyTitle: 'Leisure Industry Gas Safety Record',
+                  keyRoute: routeFormLeisureIndustry,
+                  'form_cert_type': FormCertType.gas,
+                },
             ],
           },
         if (homeController.isHaveElectrical)

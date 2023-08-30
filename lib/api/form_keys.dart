@@ -822,12 +822,10 @@ const String formKeyInadequatelyVentilatedAreas =
     'inadequately_ventilated_areas';
 const String formKeyTightnessTestPassOrFail = 'tightness_test_pass_fail';
 
-//page 3 
+//page 3
 const String formKeyStrengthTestGas = 'strength_test_gas';
 const String formKeyTightnessTestGas = 'tightness_test_gas';
 const String formKeyPurgeGas = 'purge_gas';
-
-
 
 // Page 4
 // part 1
@@ -849,3 +847,34 @@ const String formKeyGasDetector = 'gas_detector';
 // part 4
 const String formKeyCarryOutPurge = 'carry_out_purge';
 const String formKeyPurgePassOrFail = 'purge_pass_or_fail';
+
+// Leisure Industry Gas Safety Record
+// part4
+//1
+const String formKeyApplianceApproved1 = 'appliance_approved1';
+const String formKeyApplianceIsCo1 = 'appliance_is_co1';
+const String formKeyApplianceTestCo1 = 'appliance_test_co1';
+//2
+const String formKeyApplianceApproved2 = 'appliance_approved2';
+const String formKeyApplianceIsCo2 = 'appliance_is_co2';
+const String formKeyApplianceTestCo2 = 'appliance_test_co2';
+//3
+const String formKeyApplianceApproved3 = 'appliance_approved3';
+const String formKeyApplianceIsCo3 = 'appliance_is_co3';
+const String formKeyApplianceTestCo3 = 'appliance_test_co3';
+//4
+const String formKeyApplianceApproved4 = 'appliance_approved4';
+const String formKeyApplianceIsCo4 = 'appliance_is_co4';
+const String formKeyApplianceTestCo4 = 'appliance_test_co4';
+//5
+const String formKeyApplianceApproved5 = 'appliance_approved5';
+const String formKeyApplianceIsCo5 = 'appliance_is_co5';
+const String formKeyApplianceTestCo5 = 'appliance_test_co5';
+//
+const String formKeyCylinder = 'cylinder';
+const String formKeyGasInstallationPipework = 'gas_installation_pipework';
+const String formKeyGasTightnessSatisfactory = 'gas_tightness_satisfactory';
+const String formKeyEmergencyControl = 'emergency_control';
+//
+const String formKeyLPGOperating = 'lpg_operating';
+const String formKeyLPGLockup = 'lpg_lockup';

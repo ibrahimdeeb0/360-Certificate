@@ -1,7 +1,6 @@
 import 'package:easy_signature_pad/easy_signature_pad.dart';
 
 import '../../../../../general_exports.dart';
-import '../index.dart';
 
 class GasTestPurgePage5 extends StatelessWidget {
   const GasTestPurgePage5({super.key});

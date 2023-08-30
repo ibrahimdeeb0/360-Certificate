@@ -1,16 +1,14 @@
-import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 
-import 'package:flutter/services.dart';
-import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../../../general_exports.dart';
 
-class GasTestPurgeController extends GetxController {
+class LeisureIndustryController extends GetxController {
   int? formId;
   int? certId;
   int? customerId;
@@ -21,10 +19,9 @@ class GasTestPurgeController extends GetxController {
   bool? isUpdateCert;
   dynamic tempData;
   String? templateName;
+
   bool isFromCertificate = false;
-  bool isCertificateCreated = false;
-  //
-  TextEditingController otherInputController = TextEditingController();
+
   int selectedId = 0;
   ScrollController scrollController = ScrollController();
   Uint8List? signatureBytes;
@@ -36,83 +33,85 @@ class GasTestPurgeController extends GetxController {
   String? pdfFilePath;
   Uuid uuid = const Uuid();
 
-  bool r1 = false;
-  bool r2 = false;
+  bool isCertificateCreated = false;
+
   DateTime? selectedDate;
+
+  List<dynamic> applianceData = <dynamic>[];
 
   FormImagesAttachmentsController formImagesAttachmentsController =
       FormImagesAttachmentsController();
   FormNotesAttachmentsController formNotesAttachmentsController =
       FormNotesAttachmentsController();
 
+  List<String> get listSectionsTitle => <String>[
+        'Pipework Inspection Details',
+        'Tightness Test Details',
+        'Test Gas',
+        'Audible CO Alarm',
+        'Engineers Details',
+      ];
+
   Map<String, dynamic> formData = <String, dynamic>{
     formKeyPart1: <String, dynamic>{
-      formKeyStateTest: 'N/A',
-      formKeyInstallation: 'N/A',
-      formKeyHaveComponents: 'False',
-      formKeyCalculatedStrength: '',
-      formKeyTestMedium: '',
-      formKeyStabilizationPeriod: '',
-      formKeyStrengthDuration: '',
-      formKeyPermittedPresume: '',
-      formKeyCalculatedPresume: '',
-      formKeyActualPresume: '',
-      formKeyStrengthTest: 'False',
+      formKeyDetailsOfWorkP1: '',
     },
     formKeyPart2: <String, dynamic>{
-      formKeyGasType: 'N/A',
-      formKeyInstallationTightness: 'False',
-      formKeyWeatherOrChanges: 'False',
-      formKeyMeterTypeDiaphragm: '',
-      formKeyMeterType: '',
-      formKeyMeterBypass: 'False',
-      formKeyGasMeter: '',
-      formKeyInstallationPipework: '',
-      formKeyTotalIV: '',
-      formKeyTestMediumFuel: '',
-      formKeyTightnessTest: '',
-      formKeyPressureGauge: '',
-      formKeyMPLR: '',
-      formKeyTestPeriod: '',
-      formKeyStabilizationPeriodGas: '',
-      formKeyTightnessTestDuration: '',
-      formKeyInadequatelyVentilated: 'False',
-      formKeyBarometricPressure: 'False',
-      formKeyActualPressureDrop: '',
-      formKeyActualLeakRate: '',
-      formKeyInadequatelyVentilatedAreas: 'False',
-      formKeyTightnessTestPassOrFail: '',
+      formKeyPipeworkVisualP2: 'N/A',
+      formKeyPipeworkOutcomeSupplyP2: 'N/A',
+      formKeyPipeworkEmergencyP2: 'N/A',
+      formKeyPipeworkOutcomeTightnessP2: 'N/A',
+      formKeyPipeworkProtectiveP2: 'N/A',
     },
     formKeyPart3: <String, dynamic>{
-      formKeyHasRiskAssessment: 'False',
-      formKeyWrittenProcedure: 'False',
-      formKeyNoSmoking: 'False',
-      formKeyVicinityOfPurge: 'False',
-      formKeyAppropriateValves: 'False',
-      formKeyNitrogenGas: 'False',
-      formKeySuitableFire: 'False',
-      formKeyWayRadios: 'False',
-      formKeyElectricalBonds: 'False',
-      formKeyCalculateGasMeter: '',
-      formKeyCalculateInstallationPipework: '',
-      formKeyTotalPurge: '',
-      formKeyGasDetector: 'False',
-      formKeyCarryOutPurge: '',
-      formKeyPurgePassOrFail: '',
+      formKeyDefectsIdentified1: '',
+      formKeyDefectsIdentified2: '',
+      formKeyDefectsIdentified3: '',
+      formKeyDefectsIdentified4: '',
+      formKeyDefectsIdentified5: '',
+      //
+      formKeyWarningNotice1: 'N/A',
+      formKeyWarningNotice2: 'N/A',
+      formKeyWarningNotice3: 'N/A',
+      formKeyWarningNotice4: 'N/A',
+      formKeyWarningNotice5: 'N/A',
     },
     formKeyPart4: <String, dynamic>{
-      formKeyStrengthTestGas: 'False',
-      formKeyTightnessTestGas: 'False',
-      formKeyPurgeGas: 'False',
+      formKeyRecordRemedialAction: '',
+    },
+    formKeyPart5: <String, dynamic>{
+      formKeyNextSafetyCheckBy: '',
+    },
+    formKeyPart6: <String, dynamic>{
+      formKeyApplianceApproved1: 'N/A',
+      formKeyApplianceIsCo1: 'N/A',
+      formKeyApplianceTestCo1: 'N/A',
+      formKeyApplianceApproved2: 'N/A',
+      formKeyApplianceIsCo2: 'N/A',
+      formKeyApplianceTestCo2: 'N/A',
+      formKeyApplianceApproved3: 'N/A',
+      formKeyApplianceIsCo3: 'N/A',
+      formKeyApplianceTestCo3: 'N/A',
+      formKeyApplianceApproved4: 'N/A',
+      formKeyApplianceIsCo4: 'N/A',
+      formKeyApplianceTestCo4: 'N/A',
+      formKeyApplianceApproved5: 'N/A',
+      formKeyApplianceIsCo5: 'N/A',
+      formKeyApplianceTestCo5: 'N/A',
+
+      ///
+      formKeyCylinder: 'N/A',
+      formKeyGasInstallationPipework: 'N/A',
+      formKeyGasTightnessSatisfactory: 'N/A',
+      formKeyEmergencyControl: 'N/A',
+      formKeyLPGOperating: '',
+      formKeyLPGLockup: '',
     },
     formKeyDeclaration: <String, dynamic>{
-      formKeyEngineerName: '',
-      formKeyEngineerDate: '',
-      formKeyEngineerPosition: '',
-      formKeyCustomerName: '',
-      formKeyCustomerDate: '',
-      formKeyCustomerPosition: '',
+      formKeyRecordIssueBy: '',
+      formKeyReceivedBy: '',
     },
+    formKeyAppliance: <dynamic>[],
   };
 
   Map<String, dynamic> formBody = <String, dynamic>{
@@ -121,133 +120,13 @@ class GasTestPurgeController extends GetxController {
   };
 
   List<Widget> get listFormSections => <Widget>[
-        const GasTestPurgePage1(),
-        const GasTestPurgePage2(),
-        const GasTestPurgePage3(),
-        const GasTestPurgePage4(),
-        const GasTestPurgePage5(),
+        const LeisurePage2(),
+        const LeisurePage3(),
+        const LeisurePage4(),
+        const LeisurePage5(),
+        const LeisurePage6(),
       ];
 
-  List<String> get listSectionsTitle => <String>[
-        'Strength Test Details',
-        'Tightness Test Details',
-        'Purging Procedure Details',
-        'Indicate work undertaken',
-        'Engineers Details',
-      ];
-
-  //*------------------------------------------------*//
-  @override
-  void onInit() {
-    super.onInit();
-    //*----------initial values------------*//
-    formData[formKeyDeclaration][formKeyEngineerName] =
-        '${profileController.userProfileData['first_name']} ${profileController.userProfileData['last_name']}';
-
-    isFromCertificate = Get.arguments?[formKeyFromCertificate] ?? false;
-    customerId = myAppController.certFormInfo[keyCustomerId];
-    siteId = myAppController.certFormInfo[keySiteId];
-    formId = myAppController.certFormInfo[keyFormId];
-    formBody[keyFormId] = myAppController.certFormInfo[keyFormId];
-    isTemplate =
-        myAppController.certFormInfo[keyFormStatus] == FormStatus.template;
-    isUpdateCert = myAppController.certFormInfo[keyFormDataStatus] ==
-        FormDataStatus.editCert;
-    isEditTemplate = myAppController.certFormInfo[keyFormDataStatus] ==
-        FormDataStatus.editTemp;
-
-    consoleLog(myAppController.certFormInfo, key: 'general_form_data');
-
-    //? get Template Data
-    if (myAppController.certFormInfo[keyTemplateData] != null &&
-        isTemplate! == false) {
-      tempData = myAppController.certFormInfo[keyTemplateData][keyData];
-    }
-    //? set Template Data to form body
-    if (myAppController.certFormInfo[keyFormDataStatus] ==
-        FormDataStatus.setTemp) {
-      consoleLog('Set Template', key: 'Set_Template');
-      formBody = myAppController.certFormInfo[keyTemplateData][keyData];
-
-      if (formBody[keyData].isNotEmpty) {
-        formData = formBody[keyData];
-      }
-
-      update();
-    }
-    //? create new template
-    if (myAppController.certFormInfo[keyFormDataStatus] ==
-        FormDataStatus.newTemp) {
-      consoleLog('New Template', key: 'New_Template');
-      templateName = myAppController.certFormInfo[keyNameTemp];
-    }
-    //? Update Template
-    if (myAppController.certFormInfo[keyFormDataStatus] ==
-        FormDataStatus.editTemp) {
-      consoleLog('Edit Template', key: 'Edit_Template');
-      tempData = myAppController.certFormInfo[keyTemplateData];
-      templateName = myAppController.certFormInfo[keyNameTemp];
-      formBody = myAppController.certFormInfo[keyTemplateData][keyData];
-
-      if (formBody[keyData].isNotEmpty) {
-        formData = formBody[keyData];
-      }
-
-      update();
-    }
-
-    //? Edit Certificate
-    if (myAppController.certFormInfo[keyFormDataStatus] ==
-        FormDataStatus.editCert) {
-      consoleLog('Edit Certificate', key: 'Edit_Certificate');
-      certId = myAppController.certFormInfo[keyCertId];
-      formId = myAppController.certFormInfo[keyFormId];
-      customerId = myAppController.certFormInfo[keyCustomerId];
-      siteId = myAppController.certFormInfo[keySiteId];
-      formBody[keyFormId] = myAppController.certFormInfo[keyFormId];
-      formBody[keyData] = myAppController.certFormInfo[keyTemplateData];
-      //
-      if (formBody[keyData].isNotEmpty) {
-        formData = formBody[keyData];
-      }
-
-      isCertificateCreated = true;
-
-      update();
-    }
-
-    if (myAppController.certFormInfo[keyFormDataStatus] ==
-            FormDataStatus.newForm ||
-        myAppController.certFormInfo[keyFormDataStatus] ==
-            FormDataStatus.newTemp) {
-      onSelectDate(
-        part: formKeyDeclaration,
-        key: formKeyEngineerDate,
-        value: DateTime.now(),
-        type: DateType.date,
-      );
-
-      onSelectDate(
-        part: formKeyDeclaration,
-        key: formKeyCustomerDate,
-        value: DateTime.now(),
-        type: DateType.date,
-      );
-
-      // onSelectDate(
-      //   part: formKeyPart5,
-      //   key: formKeyNextInspectionDate,
-      //   value: DateTime.now(),
-      //   type: DateType.date,
-      // );
-    }
-
-    //? If Certificate not Created need to create it
-    if (isCertificateCreated == false && !(isTemplate!)) {
-      onCreateCertificate();
-    }
-    update();
-  }
   //*---------------------------------------------*//
 
   void onPressNext({bool fromSave = false}) {
@@ -285,32 +164,167 @@ class GasTestPurgeController extends GetxController {
     );
   }
 
+  //* Circuit - Page Numbers *//
+  String pagesNum() {
+    if (isTemplate!) {
+      if (selectedId == listFormSections.length - 2) {
+        return '${listFormSections.length - 1}/${listFormSections.length - 1}';
+      } else {
+        return '${selectedId + 1}/${listFormSections.length - 1}';
+      }
+    } else {
+      if (selectedId == listFormSections.length) {
+        return '${listFormSections.length}/${listFormSections.length}';
+      } else {
+        return '${selectedId + 1}/${listFormSections.length}';
+      }
+    }
+  }
+
+  @override
+  void onInit() {
+    super.onInit();
+    isFromCertificate = Get.arguments?[formKeyFromCertificate] ?? false;
+    customerId = myAppController.certFormInfo[keyCustomerId];
+    siteId = myAppController.certFormInfo[keySiteId];
+    formId = myAppController.certFormInfo[keyFormId];
+    formBody[keyFormId] = myAppController.certFormInfo[keyFormId];
+    isTemplate =
+        myAppController.certFormInfo[keyFormStatus] == FormStatus.template;
+    isUpdateCert = myAppController.certFormInfo[keyFormDataStatus] ==
+        FormDataStatus.editCert;
+    isEditTemplate = myAppController.certFormInfo[keyFormDataStatus] ==
+        FormDataStatus.editTemp;
+
+    consoleLog(myAppController.certFormInfo, key: 'general_form_data');
+
+    //? get Template Data
+    if (myAppController.certFormInfo[keyTemplateData] != null &&
+        isTemplate! == false) {
+      tempData = myAppController.certFormInfo[keyTemplateData][keyData];
+    }
+    //? set Template Data to form body
+    if (myAppController.certFormInfo[keyFormDataStatus] ==
+        FormDataStatus.setTemp) {
+      consoleLog('Set Template', key: 'Set_Template');
+      formBody = myAppController.certFormInfo[keyTemplateData][keyData];
+
+      if (formBody[keyData].isNotEmpty) {
+        formData = formBody[keyData];
+      }
+      applianceData = formBody[keyData][formKeyAppliance];
+
+      update();
+    }
+    //? create new template
+    if (myAppController.certFormInfo[keyFormDataStatus] ==
+        FormDataStatus.newTemp) {
+      consoleLog('New Template', key: 'New_Template');
+      templateName = myAppController.certFormInfo[keyNameTemp];
+    }
+    //? Update Template
+    if (myAppController.certFormInfo[keyFormDataStatus] ==
+        FormDataStatus.editTemp) {
+      consoleLog('Edit Template', key: 'Edit_Template');
+      tempData = myAppController.certFormInfo[keyTemplateData];
+      templateName = myAppController.certFormInfo[keyNameTemp];
+      formBody = myAppController.certFormInfo[keyTemplateData][keyData];
+
+      if (formBody[keyData].isNotEmpty) {
+        formData = formBody[keyData];
+      }
+
+      applianceData = formData[formKeyAppliance];
+
+      update();
+    }
+
+    //? Edit Certificate
+    if (myAppController.certFormInfo[keyFormDataStatus] ==
+        FormDataStatus.editCert) {
+      consoleLog('Edit Certificate', key: 'Edit_Certificate');
+      certId = myAppController.certFormInfo[keyCertId];
+      formId = myAppController.certFormInfo[keyFormId];
+      customerId = myAppController.certFormInfo[keyCustomerId];
+      siteId = myAppController.certFormInfo[keySiteId];
+      formBody[keyFormId] = myAppController.certFormInfo[keyFormId];
+      formBody[keyData] = myAppController.certFormInfo[keyTemplateData];
+      //
+      if (formBody[keyData].isNotEmpty) {
+        formData = formBody[keyData];
+      }
+      applianceData = formBody[keyData][formKeyAppliance];
+
+      isCertificateCreated = true;
+
+      update();
+    }
+
+    formData[formKeyDeclaration][formKeyRecordIssueBy] =
+        '${profileController.userProfileData['first_name']} ${profileController.userProfileData['last_name']}';
+    update();
+  }
+
+  void onSelectDate(String? part, String? key, DateTime value) {
+    formData[part!][key!] = DateFormat('dd-MM-yyyy').format(value);
+    // formData[part!][key!] = '$value'.split(' ')[0];
+    update();
+    selectedDate = value;
+  }
+
+  void onChangeFormDataValue(String? part, String? key, dynamic value) {
+    formData[part!][key!] = value;
+  }
+
+  void onNext({bool fromSave = false}) {
+    if (isTemplate!) {
+      if (listFormSections.length - 2 == selectedId) {
+        consoleLog('Last Pages In Template');
+        onSaveTemplate();
+      } else {
+        selectedId = selectedId + 1;
+        update();
+      }
+    } else {
+      if (listFormSections.length - 1 == selectedId) {
+        consoleLog('Last Pages');
+        onCompleteCertificate();
+      } else {
+        if (selectedId == 0 && (isCertificateCreated == false)) {
+          onCreateCertificate();
+          isCertificateCreated = true;
+        } else if (fromSave && (isCertificateCreated == false)) {
+          onCreateCertificate();
+        } else if (fromSave && (isCertificateCreated == true)) {
+          onUpdateCertificate();
+        } else {
+          selectedId = selectedId + 1;
+        }
+
+        update();
+      }
+    }
+
+    scrollController.animateTo(
+      0.0,
+      duration: const Duration(milliseconds: 400),
+      curve: Curves.linear,
+    );
+  }
+
   void onPressBack() {
     if (selectedId > 0) {
       selectedId = selectedId - 1;
       update();
     } else {
-      Get.bottomSheet(
-        CancelAddCustomerSheet(
-          message: 'Would you like cancel process',
-          onPressFirstBtn: () {
-            hideKeyboard();
-            Get
-              ..back()
-              ..back();
-          },
-        ),
-        isScrollControlled: true,
-      );
+      Get.back();
     }
 
-    if (selectedId != 0 && scrollController.positions.isNotEmpty) {
-      scrollController.animateTo(
-        0.0,
-        duration: const Duration(milliseconds: 400),
-        curve: Curves.linear,
-      );
-    }
+    scrollController.animateTo(
+      0.0,
+      duration: const Duration(milliseconds: 400),
+      curve: Curves.linear,
+    );
   }
 
   String finalPageButton() {
@@ -329,113 +343,6 @@ class GasTestPurgeController extends GetxController {
     }
   }
 
-  void onChangeFormDataValue(String? partKey, String? keyValue, dynamic value) {
-    formData[partKey!][keyValue!] = value;
-  }
-
-  void onChangDataSignature(String? part, String? key, dynamic value) {
-    formData[part!][key!] = value;
-  }
-
-  void onSaveData() {
-    if (formBody[keyData] == <String, dynamic>{} || formBody[keyData] == null) {
-      formBody[keyData] = formData;
-    } else {
-      formBody[keyData] = <String, dynamic>{};
-      formBody[keyData] = formData;
-    }
-    update();
-  }
-
-  void onSelectDate({
-    required String part,
-    required String key,
-    required DateTime value,
-    required DateType type,
-  }) {
-    if (type == DateType.date) {
-      final DateFormat formatter = DateFormat('dd-MM-yyyy');
-      final String dateValue = formatter.format(value);
-      formData[part][key] = dateValue;
-      selectedDate = value;
-      update();
-    } else if (type == DateType.time12Hr) {
-      final String dateValue = DateFormat.jm().format(value).toString();
-      formData[part][key] = dateValue;
-      update();
-    }
-  }
-
-  // *****************  Store Form Attachments Functions **************** //
-  bool isStorImgDone = false;
-  Future<void> onStoreFormImagesAttachment() async {
-    // consoleLog('store Images Attachments');
-    hideKeyboard();
-    if (formImagesAttachmentsController.imagesData.isNotEmpty) {
-      for (FormImageClass item in formImagesAttachmentsController.imagesData) {
-        ApiRequest(
-          method: ApiMethods.post,
-          path: '/certificates/create/attachment',
-          className: 'PortableTestController/onStoreFormImagesAttachment',
-          requestFunction: onStoreFormImagesAttachment,
-          withLoading: true,
-          body: <String, dynamic>{
-            'certificate_id': certId,
-            'image_id': item.imageId,
-            // true included ? no exclude : yes exclude
-            'exclude': item.isNotIncluded ? 'yes' : 'no',
-            // 'note_title': '',
-            if (item.note != null) 'note_body': item.note,
-            'attachment_type_id': 1
-          },
-        ).request(
-          onSuccess: (dynamic data, dynamic response) {
-            update();
-          },
-        );
-      }
-
-      isStorImgDone = true;
-      onStoreFormNotesAttachment();
-    } else {
-      isStorImgDone = true;
-      onStoreFormNotesAttachment();
-    }
-  }
-
-  //
-  bool isStorNoteDone = false;
-  Future<void> onStoreFormNotesAttachment() async {
-    // consoleLog('store Notes Attachments');
-    hideKeyboard();
-    if (formNotesAttachmentsController.notesData.isNotEmpty) {
-      for (FormNoteClass item in formNotesAttachmentsController.notesData) {
-        ApiRequest(
-          method: ApiMethods.post,
-          path: '/certificates/create/attachment',
-          className: 'PortableTestController/onStoreFormNotesAttachment',
-          requestFunction: onStoreFormNotesAttachment,
-          withLoading: true,
-          formatResponse: true,
-          body: <String, dynamic>{
-            'certificate_id': certId,
-            'exclude': item.type == 'Private Certificate Note' ? 'yes' : 'no',
-            // 'note_title': '',
-            'note_body': item.note,
-            'attachment_type_id': 2,
-          },
-        ).request(
-          onSuccess: (dynamic data, dynamic response) {
-            update();
-          },
-        );
-      }
-      isStorNoteDone = true;
-    } else {
-      isStorNoteDone = true;
-    }
-  }
-
   // *****************  signature functions **************** //
 
   // ***************** add  **************** //
@@ -448,6 +355,7 @@ class GasTestPurgeController extends GetxController {
       signatureBytes = null;
       update();
     }
+    // storeFormData();
   }
 
   Future<void> setCustomerImage(String bytes) async {
@@ -466,7 +374,6 @@ class GasTestPurgeController extends GetxController {
   void clearSignature() {
     signatureBytes = null;
     signatureBytesImage = null;
-
     // storeFormData();
     update();
   }
@@ -538,11 +445,33 @@ class GasTestPurgeController extends GetxController {
     Get.back();
   }
 
+  void onSaveData() {
+    if (formBody[keyData] == <String, dynamic>{} || formBody[keyData] == null) {
+      formBody[keyData] = formData;
+    } else {
+      formBody[keyData] = <String, dynamic>{};
+      formBody[keyData] = formData;
+    }
+    update();
+  }
+
+  void onSaveApplianceData() {
+    formData[formKeyAppliance] = applianceData;
+  }
+
   // *****************  Press Finish ****************
+
+  void testData() {
+    hideKeyboard();
+    onSaveData();
+    onSaveApplianceData();
+    consoleLogPretty(formBody);
+  }
 
   Future<void> onCreateCertificate() async {
     hideKeyboard();
     onSaveData();
+    onSaveApplianceData();
 
     final Map<String, dynamic> certData = <String, dynamic>{
       'customer_id': customerId,
@@ -556,7 +485,7 @@ class GasTestPurgeController extends GetxController {
     ApiRequest(
       method: ApiMethods.post,
       path: keyCreateForm,
-      className: 'LandlordSafetyController/onCreateCertificate',
+      className: 'LeisureIndustryController/onCreateCertificate',
       requestFunction: onCreateCertificate,
       // withLoading: true,
       formatResponse: true,
@@ -578,10 +507,7 @@ class GasTestPurgeController extends GetxController {
   Future<void> onUpdateCertificate() async {
     hideKeyboard();
     onSaveData();
-
-    if (!isStorImgDone && !isStorNoteDone) {
-      onStoreFormImagesAttachment();
-    }
+    onSaveApplianceData();
 
     final Map<String, dynamic> certData = <String, dynamic>{
       ...formBody,
@@ -628,25 +554,21 @@ class GasTestPurgeController extends GetxController {
   Future<void> onCompleteCertificate() async {
     hideKeyboard();
     onSaveData();
+    onSaveApplianceData();
+
+    final Map<String, dynamic> certData = <String, dynamic>{
+      ...formBody,
+      'customer_id': customerId,
+      'status_id': idCompleted,
+      'site_id': siteId,
+    };
 
     if (signatureBytes != null) {
       startLoading();
-
-      final Map<String, dynamic> certData = <String, dynamic>{
-        ...formBody,
-        'customer_id': customerId,
-        'status_id': idCompleted,
-        'site_id': siteId,
-      };
-
-      if (!isStorImgDone && !isStorNoteDone) {
-        onStoreFormImagesAttachment();
-      }
-
       ApiRequest(
         method: ApiMethods.post,
         path: '/certificates/$certId/update',
-        className: 'LandlordSafetyController/onCompleteCertificate',
+        className: 'LeisureIndustryController/onCompleteCertificate',
         formatResponse: true,
         requestFunction: onCompleteCertificate,
         // withLoading: true,
@@ -704,6 +626,7 @@ class GasTestPurgeController extends GetxController {
   Future<void> storeTemplate() async {
     hideKeyboard();
     onSaveData();
+    onSaveApplianceData();
 
     startLoading();
     if (isEditTemplate!) {
@@ -711,7 +634,7 @@ class GasTestPurgeController extends GetxController {
       ApiRequest(
         method: ApiMethods.put,
         path: '/forms/templates/${tempData[keyId]}/update',
-        className: 'LandlordSafetyController/storeTemplate',
+        className: 'LeisureIndustryController/storeTemplate',
         requestFunction: storeTemplate,
         body: <String, dynamic>{
           'name': templateName,
@@ -732,7 +655,7 @@ class GasTestPurgeController extends GetxController {
       ApiRequest(
         method: ApiMethods.post,
         path: keyStoreFormTemplate,
-        className: 'LandlordSafetyController/storeTemplate',
+        className: 'LeisureIndustryController/storeTemplate',
         requestFunction: storeTemplate,
         body: <String, dynamic>{
           'name': templateName,
@@ -757,32 +680,5 @@ class GasTestPurgeController extends GetxController {
   void onClose() {
     super.onClose();
     myAppController.clearCertFormInfo();
-  }
-
-  //////////////////////////scan
-  String scanBarcode = 'Unknown';
-
-  /// For Continuous scan
-  Future<void> startBarcodeScanStream() async {
-    FlutterBarcodeScanner.getBarcodeStreamReceiver(
-            '#ff6666', 'Cancel', true, ScanMode.BARCODE)!
-        .listen(
-      (dynamic barcode) => consoleLog(barcode, key: 'the value 1'),
-    );
-  }
-
-  Future<void> barcodeScan(String? keyPart, String? keyValue) async {
-    String barcodeScanRes;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    try {
-      barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
-          '#ff6666', 'Cancel', true, ScanMode.QR);
-      consoleLog(barcodeScanRes, key: 'the value 2');
-    } on PlatformException {
-      barcodeScanRes = 'Failed to get platform version.';
-    }
-    scanBarcode = barcodeScanRes;
-    onChangeFormDataValue(keyPart!, keyValue!, barcodeScanRes);
-    update();
   }
 }
