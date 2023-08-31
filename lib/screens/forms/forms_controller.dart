@@ -45,7 +45,7 @@ class FormsController extends GetxController {
               if (currentMode == AppMode.dev)
                 <String, dynamic>{
                   keyId: 26,
-                  keyTitle: 'Leisure Industry Gas Safety Record',
+                  keyTitle: 'Landlord Gas Safety record for the Leisure Industry',
                   keyRoute: routeFormLeisureIndustry,
                   'form_cert_type': FormCertType.gas,
                 },

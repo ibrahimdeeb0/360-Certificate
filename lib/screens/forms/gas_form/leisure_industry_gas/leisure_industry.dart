@@ -11,8 +11,8 @@ class LeisureIndustry extends StatelessWidget {
         return Scaffold(
           appBar: FormHeader(
             withBack: false,
-            title: 'Leisure Industry Gas Safety Record',
-            titleSize: fontH3,
+            title: 'Landlord Gas Safety record for the Leisure Industry',
+            titleSize: fontH4,
             showSaveBtn: ((controller.selectedId !=
                     controller.listFormSections.length - 1) &&
                 !controller.isTemplate!),
