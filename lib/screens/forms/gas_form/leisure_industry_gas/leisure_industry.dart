@@ -103,7 +103,7 @@ class LeisureIndustry extends StatelessWidget {
                         ),
                         CommonButton(
                           text: controller.finalPageButton(),
-                          onPress: controller.onNext,
+                          onPress: controller.onPressNext,
                           width: 0.44,
                         ),
                       ],

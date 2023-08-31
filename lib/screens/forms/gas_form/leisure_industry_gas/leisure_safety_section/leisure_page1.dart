@@ -26,7 +26,7 @@ class LeisurePage2 extends StatelessWidget {
                 children: <Widget>[
                   FormToggleButton(
                     title: 'Gas pipework visual inspection',
-                    toggleType: FormToggleType.passFailedNA,
+                    toggleType: FormToggleType.yesNoNA,
                     textWidth: 0.6,
                     value: controller.formData[formKeyPart2]
                         [formKeyPipeworkVisualP2],
@@ -36,7 +36,7 @@ class LeisurePage2 extends StatelessWidget {
                   ),
                   FormToggleButton(
                     title: 'Outcome of gas supply pipework visual inspection',
-                    toggleType: FormToggleType.passFailedNA,
+                    toggleType: FormToggleType.yesNoNA,
                     textWidth: 0.6,
                     value: controller.formData[formKeyPart2]
                         [formKeyPipeworkOutcomeSupplyP2],
@@ -47,7 +47,7 @@ class LeisurePage2 extends StatelessWidget {
                   FormToggleButton(
                     title:
                         'Is the Emergency Control Valve access satisfactory?',
-                    toggleType: FormToggleType.passFailedNA,
+                    toggleType: FormToggleType.yesNoNA,
                     textWidth: 0.6,
                     value: controller.formData[formKeyPart2]
                         [formKeyPipeworkEmergencyP2],
@@ -57,7 +57,7 @@ class LeisurePage2 extends StatelessWidget {
                   ),
                   FormToggleButton(
                     title: 'Outcome of gas tightness test?',
-                    toggleType: FormToggleType.passFailedNA,
+                    toggleType: FormToggleType.yesNoNA,
                     textWidth: 0.6,
                     value: controller.formData[formKeyPart2]
                         [formKeyPipeworkOutcomeTightnessP2],
@@ -67,7 +67,7 @@ class LeisurePage2 extends StatelessWidget {
                   ),
                   FormToggleButton(
                     title: 'Is protective equipotential bonding satisfactory?',
-                    toggleType: FormToggleType.passFailedNA,
+                    toggleType: FormToggleType.yesNoNA,
                     textWidth: 0.6,
                     value: controller.formData[formKeyPart2]
                         [formKeyPipeworkProtectiveP2],

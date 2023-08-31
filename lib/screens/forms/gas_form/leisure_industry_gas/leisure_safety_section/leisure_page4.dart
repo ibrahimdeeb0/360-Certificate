@@ -34,7 +34,7 @@ class LeisurePage5 extends StatelessWidget {
               ),
               FormToggleButton(
                 title: 'Approved CO alarm fitted Yes/No/NA',
-                toggleType: FormToggleType.passFailedNA,
+                toggleType: FormToggleType.yesNoNA,
                 textWidth: 0.6,
                 value: controller.formData[formKeyPart6]
                     [formKeyApplianceApproved1],
@@ -44,7 +44,7 @@ class LeisurePage5 extends StatelessWidget {
               ),
               FormToggleButton(
                 title: 'Is CO alarm in date Yes/No/NA',
-                toggleType: FormToggleType.passFailedNA,
+                toggleType: FormToggleType.yesNoNA,
                 textWidth: 0.6,
                 value: controller.formData[formKeyPart6][formKeyApplianceIsCo1],
                 onChangeValue: (dynamic value) =>
@@ -53,7 +53,7 @@ class LeisurePage5 extends StatelessWidget {
               ),
               FormToggleButton(
                 title: 'Testing of CO alarm satisfactoryYes/No/NA',
-                toggleType: FormToggleType.passFailedNA,
+                toggleType: FormToggleType.yesNoNA,
                 textWidth: 0.6,
                 value: controller.formData[formKeyPart6]
                     [formKeyApplianceTestCo1],
@@ -76,7 +76,7 @@ class LeisurePage5 extends StatelessWidget {
               ),
               FormToggleButton(
                 title: 'Approved CO alarm fitted Yes/No/NA',
-                toggleType: FormToggleType.passFailedNA,
+                toggleType: FormToggleType.yesNoNA,
                 textWidth: 0.6,
                 value: controller.formData[formKeyPart6]
                     [formKeyApplianceApproved2],
@@ -86,7 +86,7 @@ class LeisurePage5 extends StatelessWidget {
               ),
               FormToggleButton(
                 title: 'Is CO alarm in date Yes/No/NA',
-                toggleType: FormToggleType.passFailedNA,
+                toggleType: FormToggleType.yesNoNA,
                 textWidth: 0.6,
                 value: controller.formData[formKeyPart6][formKeyApplianceIsCo2],
                 onChangeValue: (dynamic value) =>
@@ -95,7 +95,7 @@ class LeisurePage5 extends StatelessWidget {
               ),
               FormToggleButton(
                 title: 'Testing of CO alarm satisfactoryYes/No/NA',
-                toggleType: FormToggleType.passFailedNA,
+                toggleType: FormToggleType.yesNoNA,
                 textWidth: 0.6,
                 value: controller.formData[formKeyPart6]
                     [formKeyApplianceTestCo2],
@@ -118,7 +118,7 @@ class LeisurePage5 extends StatelessWidget {
               ),
               FormToggleButton(
                 title: 'Approved CO alarm fitted Yes/No/NA',
-                toggleType: FormToggleType.passFailedNA,
+                toggleType: FormToggleType.yesNoNA,
                 textWidth: 0.6,
                 value: controller.formData[formKeyPart6]
                     [formKeyApplianceApproved3],
@@ -128,7 +128,7 @@ class LeisurePage5 extends StatelessWidget {
               ),
               FormToggleButton(
                 title: 'Is CO alarm in date Yes/No/NA',
-                toggleType: FormToggleType.passFailedNA,
+                toggleType: FormToggleType.yesNoNA,
                 textWidth: 0.6,
                 value: controller.formData[formKeyPart6][formKeyApplianceIsCo3],
                 onChangeValue: (dynamic value) =>
@@ -137,7 +137,7 @@ class LeisurePage5 extends StatelessWidget {
               ),
               FormToggleButton(
                 title: 'Testing of CO alarm satisfactoryYes/No/NA',
-                toggleType: FormToggleType.passFailedNA,
+                toggleType: FormToggleType.yesNoNA,
                 textWidth: 0.6,
                 value: controller.formData[formKeyPart6]
                     [formKeyApplianceTestCo3],
@@ -160,7 +160,7 @@ class LeisurePage5 extends StatelessWidget {
               ),
               FormToggleButton(
                 title: 'Approved CO alarm fitted Yes/No/NA',
-                toggleType: FormToggleType.passFailedNA,
+                toggleType: FormToggleType.yesNoNA,
                 textWidth: 0.6,
                 value: controller.formData[formKeyPart6]
                     [formKeyApplianceApproved4],
@@ -170,17 +170,16 @@ class LeisurePage5 extends StatelessWidget {
               ),
               FormToggleButton(
                 title: 'Is CO alarm in date Yes/No/NA',
-                toggleType: FormToggleType.passFailedNA,
+                toggleType: FormToggleType.yesNoNA,
                 textWidth: 0.6,
-                value: controller.formData[formKeyPart6]
-                    [formKeyApplianceIsCo4],
+                value: controller.formData[formKeyPart6][formKeyApplianceIsCo4],
                 onChangeValue: (dynamic value) =>
                     controller.onChangeFormDataValue(
                         formKeyPart6, formKeyApplianceIsCo4, value),
               ),
               FormToggleButton(
                 title: 'Testing of CO alarm satisfactoryYes/No/NA',
-                toggleType: FormToggleType.passFailedNA,
+                toggleType: FormToggleType.yesNoNA,
                 textWidth: 0.6,
                 value: controller.formData[formKeyPart6]
                     [formKeyApplianceTestCo4],
@@ -203,7 +202,7 @@ class LeisurePage5 extends StatelessWidget {
               ),
               FormToggleButton(
                 title: 'Approved CO alarm fitted Yes/No/NA',
-                toggleType: FormToggleType.passFailedNA,
+                toggleType: FormToggleType.yesNoNA,
                 textWidth: 0.6,
                 value: controller.formData[formKeyPart6]
                     [formKeyApplianceTestCo4],
@@ -213,17 +212,16 @@ class LeisurePage5 extends StatelessWidget {
               ),
               FormToggleButton(
                 title: 'Is CO alarm in date Yes/No/NA',
-                toggleType: FormToggleType.passFailedNA,
+                toggleType: FormToggleType.yesNoNA,
                 textWidth: 0.6,
-                value: controller.formData[formKeyPart6]
-                    [formKeyApplianceIsCo5],
+                value: controller.formData[formKeyPart6][formKeyApplianceIsCo5],
                 onChangeValue: (dynamic value) =>
                     controller.onChangeFormDataValue(
                         formKeyPart6, formKeyApplianceIsCo5, value),
               ),
               FormToggleButton(
                 title: 'Testing of CO alarm satisfactoryYes/No/NA',
-                toggleType: FormToggleType.passFailedNA,
+                toggleType: FormToggleType.yesNoNA,
                 textWidth: 0.6,
                 value: controller.formData[formKeyPart6]
                     [formKeyApplianceTestCo5],
@@ -238,10 +236,9 @@ class LeisurePage5 extends StatelessWidget {
               FormToggleButton(
                 title:
                     'Cylinder/final connection hoses to LAV/boat satisfactory (Yes/No)',
-                toggleType: FormToggleType.passFailedNA,
+                toggleType: FormToggleType.yesNoNA,
                 textWidth: 0.6,
-                value: controller.formData[formKeyPart6]
-                    [formKeyCylinder],
+                value: controller.formData[formKeyPart6][formKeyCylinder],
                 onChangeValue: (dynamic value) =>
                     controller.onChangeFormDataValue(
                         formKeyPart6, formKeyCylinder, value),
@@ -249,7 +246,7 @@ class LeisurePage5 extends StatelessWidget {
               FormToggleButton(
                 title:
                     'Gas installation pipework (visual inspection) satisfactory (Yes/No)',
-                toggleType: FormToggleType.passFailedNA,
+                toggleType: FormToggleType.yesNoNA,
                 textWidth: 0.6,
                 value: controller.formData[formKeyPart6]
                     [formKeyGasInstallationPipework],
@@ -259,7 +256,7 @@ class LeisurePage5 extends StatelessWidget {
               ),
               FormToggleButton(
                 title: 'Gas tightness test satisfactory(Yes/No/NA)',
-                toggleType: FormToggleType.passFailedNA,
+                toggleType: FormToggleType.yesNoNA,
                 textWidth: 0.6,
                 value: controller.formData[formKeyPart6]
                     [formKeyGasTightnessSatisfactory],
@@ -270,7 +267,7 @@ class LeisurePage5 extends StatelessWidget {
               FormToggleButton(
                 title:
                     'Emergency Control Value (ECV) accessible and operable (Yes/NO) ',
-                toggleType: FormToggleType.passFailedNA,
+                toggleType: FormToggleType.yesNoNA,
                 textWidth: 0.6,
                 value: controller.formData[formKeyPart6]
                     [formKeyGasTightnessSatisfactory],
@@ -278,19 +275,17 @@ class LeisurePage5 extends StatelessWidget {
                     controller.onChangeFormDataValue(
                         formKeyPart6, formKeyGasTightnessSatisfactory, value),
               ),
-               SmallInputField(
+              SmallInputField(
                 title: 'LPG regulator operating pressure (mbar)',
-                 value: controller.formData[formKeyPart6]
-                  [formKeyLPGOperating],
-              onChanged: (dynamic value) => controller.onChangeFormDataValue(
-                  formKeyPart6, formKeyLPGOperating, value),
+                value: controller.formData[formKeyPart6][formKeyLPGOperating],
+                onChanged: (dynamic value) => controller.onChangeFormDataValue(
+                    formKeyPart6, formKeyLPGOperating, value),
               ),
-               SmallInputField(
+              SmallInputField(
                 title: 'LPG regulator operating pressure (mbar)',
-                 value: controller.formData[formKeyPart6]
-                  [formKeyLPGLockup],
-              onChanged: (dynamic value) => controller.onChangeFormDataValue(
-                  formKeyPart6, formKeyLPGLockup, value),
+                value: controller.formData[formKeyPart6][formKeyLPGLockup],
+                onChanged: (dynamic value) => controller.onChangeFormDataValue(
+                    formKeyPart6, formKeyLPGLockup, value),
               ),
             ],
           ),
