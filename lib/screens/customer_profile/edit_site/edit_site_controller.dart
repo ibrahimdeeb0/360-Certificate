@@ -32,10 +32,11 @@ class EditSiteController extends GetxController {
           Get.find<CustomerProfileController>().onGeCustomerDetails();
         }
         Get.back();
-        // update();
+        update();
       },
       onError: (dynamic error) {
         dismissLoading();
+        update();
       },
     );
   }

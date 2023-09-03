@@ -97,8 +97,7 @@ class _CertDetailsCardState extends State<CertDetailsCard> {
           AnimatedContainer(
             duration: const Duration(milliseconds: 500),
             width: DEVICE_WIDTH * 1,
-            height:
-                widget.toggle! ? DEVICE_HEIGHT * 0.225 : DEVICE_HEIGHT * 0.0,
+            height: widget.toggle! ? DEVICE_HEIGHT * 0.26 : DEVICE_HEIGHT * 0.0,
             color: const Color(0xffEBE9E9),
             onEnd: () {
               setState(() {
