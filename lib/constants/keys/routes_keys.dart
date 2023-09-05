@@ -39,6 +39,7 @@ const String routeFormBreakdownService = '/form_breakdown_service';
 const String routeFormMaintenanceService = '/form_maintenance_service';
 const String routeFormGasTestPurge = '/form_gas_test_purge';
 const String routeFormLeisureIndustry = '/form_leisure_industry';
+const String routeFormElectricalIsolation = '/form_electrical_isolation';
 
 const String routeCompleteRegister = '/complete_register';
 const String routeCreateCustomerV2 = '/create_customer_v2';

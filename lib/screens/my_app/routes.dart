@@ -182,4 +182,8 @@ List<GetPage<dynamic>> appRoutes = <GetPage<dynamic>>[
     name: routeFormLeisureIndustry,
     page: () => const LeisureIndustry(),
   ),
+  GetPage<ElectricalIsolation>(
+    name: routeFormElectricalIsolation,
+    page: () => const ElectricalIsolation(),
+  ),
 ];

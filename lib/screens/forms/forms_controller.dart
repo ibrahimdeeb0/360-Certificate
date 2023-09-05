@@ -21,34 +21,33 @@ class FormsController extends GetxController {
                 keyRoute: routeFormWarningNotice,
                 'form_cert_type': FormCertType.gas,
               },
-              if (currentMode == AppMode.dev)
-                <String, dynamic>{
-                  keyId: 31,
-                  keyTitle: 'Breakdown Service',
-                  keyRoute: routeFormBreakdownService,
-                  'form_cert_type': FormCertType.gas,
-                },
-              if (currentMode == AppMode.dev)
-                <String, dynamic>{
-                  keyId: 15,
-                  keyTitle: 'Maintenance Service',
-                  keyRoute: routeFormMaintenanceService,
-                  'form_cert_type': FormCertType.gas,
-                },
-              if (currentMode == AppMode.dev)
-                <String, dynamic>{
-                  keyId: 13,
-                  keyTitle: 'Gas Test & Purge',
-                  keyRoute: routeFormGasTestPurge,
-                  'form_cert_type': FormCertType.gas,
-                },
-              if (currentMode == AppMode.dev)
-                <String, dynamic>{
-                  keyId: 26,
-                  keyTitle: 'Landlord Gas Safety record for the Leisure Industry',
-                  keyRoute: routeFormLeisureIndustry,
-                  'form_cert_type': FormCertType.gas,
-                },
+              <String, dynamic>{
+                keyId: 31,
+                keyTitle: 'Breakdown Service',
+                keyRoute: routeFormBreakdownService,
+                'form_cert_type': FormCertType.gas,
+              },
+              <String, dynamic>{
+                keyId: 15,
+                keyTitle: 'Maintenance Service',
+                keyRoute: routeFormMaintenanceService,
+                'form_cert_type': FormCertType.gas,
+              },
+              // if (currentMode == AppMode.dev)
+              //   <String, dynamic>{
+              //     keyId: 13,
+              //     keyTitle: 'Gas Test & Purge',
+              //     keyRoute: routeFormGasTestPurge,
+              //     'form_cert_type': FormCertType.gas,
+              //   },
+              // if (currentMode == AppMode.dev)
+              //   <String, dynamic>{
+              //     keyId: 26,
+              //     keyTitle:
+              //         'Landlord Gas Safety record for the Leisure Industry',
+              //     keyRoute: routeFormLeisureIndustry,
+              //     'form_cert_type': FormCertType.gas,
+              //   },
             ],
           },
         if (homeController.isHaveElectrical)
@@ -85,6 +84,13 @@ class FormsController extends GetxController {
                 keyRoute: routeFormMinorWorks,
                 'form_cert_type': FormCertType.electrical,
               },
+              // if (currentMode == AppMode.dev)
+              //   <String, dynamic>{
+              //     keyId: 32,
+              //     keyTitle: 'Electrical Isolation',
+              //     keyRoute: routeFormElectricalIsolation,
+              //     'form_cert_type': FormCertType.electrical,
+              //   },
             ],
           },
       ];
