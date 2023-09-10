@@ -235,9 +235,30 @@ class CertificateDetailsController extends GetxController
           formKeyFromCertificate: true,
         },
       );
+    } else if (certDetails['form_data']['form_id'] == 13) {
+      Get.toNamed(
+        routeFormGasTestPurge,
+        arguments: <String, dynamic>{
+          formKeyFromCertificate: true,
+        },
+      );
+    } else if (certDetails['form_data']['form_id'] == 26) {
+      Get.toNamed(
+        routeFormLeisureIndustry,
+        arguments: <String, dynamic>{
+          formKeyFromCertificate: true,
+        },
+      );
     } else if (certDetails['form_data']['form_id'] == 15) {
       Get.toNamed(
         routeFormMaintenanceService,
+        arguments: <String, dynamic>{
+          formKeyFromCertificate: true,
+        },
+      );
+    } else if (certDetails['form_data']['form_id'] == 32) {
+      Get.toNamed(
+        routeFormElectricalIsolation,
         arguments: <String, dynamic>{
           formKeyFromCertificate: true,
         },

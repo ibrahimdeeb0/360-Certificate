@@ -32,7 +32,7 @@ class SortCertificateCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return CommonContainer(
       onPress: onPress,
-      width: 1,
+      width: 1.flexWidth,
       borderRadius: 0.03,
       paddingHorizontal: 0.03,
       paddingVertical: 0.015,

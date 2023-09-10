@@ -20,6 +20,12 @@ dynamic isTablet(dynamic tabletValue, dynamic mobileValue) {
   }
 }
 
+dynamic isTablets(
+    BuildContext context, dynamic tabletValue, dynamic mobileValue) {
+  final double screenWidth = MediaQuery.of(context).size.width;
+  return screenWidth < 600 ? mobileValue : tabletValue;
+}
+
 int setColor(String? color) {
   if (color == null || color.isEmpty) {
     return AppColors.white;

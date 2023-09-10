@@ -18,18 +18,43 @@ class ElectricalIsolationPage1 extends StatelessWidget {
                 fontColor: Color(AppColors.primary),
               ),
             ),
-            const CommonInput(
+            CommonInput(
               topLabelText: 'Location',
               marginTop: 0.01,
+              value: controller.formData[formKeyPart1]
+                  [formKeyIsolationLocation],
+              onChanged: (dynamic value) => controller.onChangeFormDataValue(
+                formKeyPart1,
+                formKeyIsolationLocation,
+                value,
+              ),
             ),
-            const CommonInput(
+            CommonInput(
               topLabelText: 'Equipment/Circuit to be isolated',
+              value: controller.formData[formKeyPart1][formKeyEquipment],
+              onChanged: (dynamic value) => controller.onChangeFormDataValue(
+                formKeyPart1,
+                formKeyEquipment,
+                value,
+              ),
             ),
-            const CommonInput(
+            CommonInput(
               topLabelText: 'SAFETY LOCKS have been fitted at',
+              value: controller.formData[formKeyPart1][formKeySafty],
+              onChanged: (dynamic value) => controller.onChangeFormDataValue(
+                formKeyPart1,
+                formKeySafty,
+                value,
+              ),
             ),
-            const CommonInput(
+            CommonInput(
               topLabelText: 'CAUTION NOTICES posted at:',
+              value: controller.formData[formKeyPart1][formKeyCaution],
+              onChanged: (dynamic value) => controller.onChangeFormDataValue(
+                formKeyPart1,
+                formKeyCaution,
+                value,
+              ),
             ),
             Divider(
               color: Colors.grey[200],
@@ -44,28 +69,86 @@ class ElectricalIsolationPage1 extends StatelessWidget {
                 fontColor: Color(AppColors.primary),
               ),
             ),
-            const FormToggleButton(
+            FormToggleButton(
               title: 'Fuses removed',
               titleSize: fontH2,
+              value: controller.formData[formKeyPart1][formKeyFuses],
+              onChangeValue: (dynamic value) =>
+                  controller.onChangeFormDataValue(
+                formKeyPart1,
+                formKeyFuses,
+                value,
+              ),
             ),
-            const FormToggleButton(
+            FormToggleButton(
               title: 'Isolated in OFF position',
               titleSize: fontH2,
+              value: controller.formData[formKeyPart1][formKeyIsolationOff],
+              onChangeValue: (dynamic value) =>
+                  controller.onChangeFormDataValue(
+                formKeyPart1,
+                formKeyIsolationOff,
+                value,
+              ),
             ),
-            const FormToggleButton(
+            FormToggleButton(
               title: 'MCB in OFF position',
               titleSize: fontH2,
+              value: controller.formData[formKeyPart1][formKeyMcbOff],
+              onChangeValue: (dynamic value) =>
+                  controller.onChangeFormDataValue(
+                formKeyPart1,
+                formKeyMcbOff,
+                value,
+              ),
             ),
-            const FormToggleButton(
+            FormToggleButton(
               title: 'Safety Locks fitted',
               titleSize: fontH2,
+              value: controller.formData[formKeyPart1][formKeyFitted],
+              onChangeValue: (dynamic value) =>
+                  controller.onChangeFormDataValue(
+                formKeyPart1,
+                formKeyFitted,
+                value,
+              ),
             ),
-            const FormToggleButton(
+            FormToggleButton(
               title: 'Tags fitted',
               titleSize: fontH2,
+              value: controller.formData[formKeyPart1][formKeyTagsFitted],
+              onChangeValue: (dynamic value) =>
+                  controller.onChangeFormDataValue(
+                formKeyPart1,
+                formKeyTagsFitted,
+                value,
+              ),
             ),
-            const SmallInputField(
+            SmallInputField(
               title: 'Time of isolation',
+              value: controller.formData[formKeyPart1][formKeyTimeIsolation],
+              isInputSelection: true,
+              onTap: () {
+                CommonDatePicker.showTime12hPicker(
+                  context,
+                  currentTime: controller.selectedDate ?? DateTime.now(),
+                  onConfirm: (DateTime value) {
+                    controller.onSelectDate(
+                      part: formKeyPart1,
+                      key: formKeyTimeIsolation,
+                      value: value,
+                      type: DateType.time12Hr,
+                    );
+                  },
+                );
+              },
+            ),
+            CommonInput(
+              topLabelText: 'Note',
+              maxLines: 6,
+              value: controller.formData[formKeyPart1][formKeyIsolationNote],
+              onChanged: (dynamic value) => controller.onChangeFormDataValue(
+                  formKeyPart1, formKeyIsolationNote, value),
             ),
           ],
         );

@@ -24,11 +24,14 @@ class HomeCards extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // final double screenWidth = MediaQuery.of(context).size.width;
+
     return CommonContainer(
       onPress: onPress,
       backgroundColor: bgColor ?? AppColors.homeClr1,
       width: width ?? 0.45,
       // height: 0.12,
+      // style: appContainerStyles.containertTabletStyles,
       borderRadius: 0.06,
       paddingHorizontal: paddingHorizontal ?? 0.02,
       paddingVertical: 0.015,

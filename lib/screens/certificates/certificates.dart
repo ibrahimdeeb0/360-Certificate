@@ -12,6 +12,7 @@ class Certificates extends StatelessWidget {
       builder: (CertificatesController controller) {
         return CommonContainer(
           paddingHorizontal: 0.04,
+          width: 1.flexWidth,
           child: controller.filteredCert.isNotEmpty
               ? Column(
                   children: <Widget>[

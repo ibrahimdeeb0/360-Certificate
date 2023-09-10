@@ -13,6 +13,20 @@ class ElectricalIsolationPage2 extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            Center(
+              child: CommonText(
+                'Handover for Service',
+                fontColor: Color(AppColors.primary),
+                fontSize: fontH2,
+                marginBottom: 0.03,
+              ),
+            ),
+            CommonText(
+              'Equipment has been isolated and checked by the electrically competent person below',
+              fontSize: fontH3,
+              fontColor: Colors.grey[500],
+              marginBottom: 0.03,
+            ),
             Align(
               child: CommonText(
                 onPress: () => Get.bottomSheet(
@@ -115,56 +129,23 @@ class ElectricalIsolationPage2 extends StatelessWidget {
               onChanged: (dynamic value) => controller.onChangDataSignature(
                   formKeyDeclaration, formKeyEngineerName, value),
             ),
-            CommonInput(
-              hint: 'Position',
-              topLabelText: 'Position',
-              value: controller.formData[formKeyDeclaration]
-                  [formKeyEngineerPosition],
-              onChanged: (dynamic value) => controller.onChangDataSignature(
-                  formKeyDeclaration, formKeyEngineerPosition, value),
-            ),
-            GestureDetector(
-              onTap: () {
-                CommonDatePicker.showDatePicker(
-                  context,
-                  currentTime: controller.selectedDate ?? DateTime.now(),
-                  onConfirm: (DateTime value) {
-                    controller.onSelectDate(
-                      part: formKeyDeclaration,
-                      key: formKeyEngineerDate,
-                      value: value,
-                      type: DateType.date,
-                    );
-                  },
-                );
-              },
-              child: CommonInput(
-                hint: 'Select Date',
-                topLabelText: 'Select Date',
-                suffix: const Icon(Icons.calendar_today_outlined),
-                marginBottom: 0.02,
-                enabled: false,
-                value: controller.formData[formKeyDeclaration]
-                    [formKeyEngineerDate],
-              ),
-            ),
             const Divider(
               thickness: 1,
             ),
-            CommonText(
-              'Received By',
-              textAlign: TextAlign.start,
-              columnCrossAxisAlignment: CrossAxisAlignment.start,
-              columnMainAxisSize: MainAxisSize.min,
-              marginTop: 0.02,
-              fontColor: Color(AppColors.primary),
-              fontSize: fontH2,
-              bottomChild: CommonText(
-                'I acknowledge receipt of this certificate in Connection with installation.',
-                textAlign: TextAlign.start,
+            Center(
+              child: CommonText(
+                'Clearance',
+                fontColor: Color(AppColors.primary),
+                fontSize: fontH2,
+                marginBottom: 0.03,
                 marginTop: 0.02,
-                fontColor: Colors.grey[500],
               ),
+            ),
+            CommonText(
+              'The work for which this certificate was issued is now complete. Locks, Isolation and warning notices have been removed. Equipment subject to this certificate is energised',
+              fontSize: fontH3,
+              fontColor: Colors.grey[500],
+              marginBottom: 0.03,
             ),
             0.02.boxHeight,
             Align(

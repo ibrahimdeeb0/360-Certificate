@@ -39,8 +39,8 @@ class CustomerProfile extends StatelessWidget {
                           child: Column(
                             children: <Widget>[
                               HomeCards(
-                                paddingHorizontal: 0.04,
-                                width: 1,
+                                // paddingHorizontal: 0.04,
+                                // width: 1,
                                 iconPath: iconCertificates,
                                 title: controller.certData.length.toString(),
                                 subTitle: 'Number Of Certs',

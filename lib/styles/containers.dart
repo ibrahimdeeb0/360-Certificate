@@ -8,6 +8,12 @@ class DefaultContainerStyles {
     backgroundColor: Colors.white,
   );
 
+  CommonContainerModel containertTabletStyles = CommonContainerModel(
+    width: 1 * DEVICE_WIDTH,
+    height: 1 * DEVICE_HEIGHT,
+    backgroundColor: Colors.white,
+  );
+
   CommonContainerModel defaultButtonContainer = const CommonContainerModel(
     width: 1,
     height: 0.06,

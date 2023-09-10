@@ -878,3 +878,19 @@ const String formKeyEmergencyControl = 'emergency_control';
 //
 const String formKeyLPGOperating = 'lpg_operating';
 const String formKeyLPGLockup = 'lpg_lockup';
+
+// Electrical Isolation
+// part1
+
+const String formKeyIsolationLocation = 'isolation_location';
+const String formKeyEquipment = 'equipment';
+const String formKeySafty = 'safty';
+const String formKeyCaution = 'caution';
+
+const String formKeyFuses = 'fuses';
+const String formKeyIsolationOff = 'isolation_off';
+const String formKeyMcbOff = 'mcb_off';
+const String formKeyFitted = 'fitted';
+const String formKeyTagsFitted = 'tags_fitted';
+const String formKeyTimeIsolation = 'time_isolation';
+const String formKeyIsolationNote = 'isolation_note';
