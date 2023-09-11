@@ -181,7 +181,7 @@ class CancelAddCustomerSheet extends StatelessWidget {
               textAlign: TextAlign.start,
             ),
             CommonText(
-              'When press yes operation will be canceled',
+              'When press yes the status of the operation will become pending',
               rowMainAxisSize: MainAxisSize.max,
               textAlign: TextAlign.start,
               marginBottom: 0.04,

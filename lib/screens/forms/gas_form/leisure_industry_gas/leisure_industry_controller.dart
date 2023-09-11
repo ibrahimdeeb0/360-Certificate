@@ -262,6 +262,17 @@ class LeisureIndustryController extends GetxController {
 
     formData[formKeyDeclaration][formKeyRecordIssueBy] =
         '${profileController.userProfileData['first_name']} ${profileController.userProfileData['last_name']}';
+    if (myAppController.certFormInfo[keyFormDataStatus] ==
+            FormDataStatus.newForm ||
+        myAppController.certFormInfo[keyFormDataStatus] ==
+            FormDataStatus.newTemp) {
+      onSelectDate(formKeyDeclaration, formKeyDateInspectionBy, DateTime.now());
+    }
+
+    //? If Certificate not Created need to create it
+    if (isCertificateCreated == false && !(isTemplate!)) {
+      onCreateCertificate();
+    }
     update();
   }
 
@@ -485,7 +496,7 @@ class LeisureIndustryController extends GetxController {
     ApiRequest(
       method: ApiMethods.post,
       path: keyCreateForm,
-      className: 'LeisureIndustryController/onCreateCertificate',
+      className: 'LandlordSafetyController/onCreateCertificate',
       requestFunction: onCreateCertificate,
       // withLoading: true,
       formatResponse: true,

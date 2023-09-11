@@ -16,7 +16,7 @@ class LeisureIndustry extends StatelessWidget {
             showSaveBtn: ((controller.selectedId !=
                     controller.listFormSections.length - 1) &&
                 !controller.isTemplate!),
-            onPressSave: () => controller.onPressNext(fromSave: true),
+            onPressSave: () => controller.onNext(fromSave: true),
             actionItem: (controller.isTemplate!)
                 ? null
                 : ActionItem(

@@ -280,7 +280,7 @@ class HomeController extends GetxController {
         dismissLoading();
       },
     );
-    /*  if (!myAppController.isInternetConnect) {
+    if (!myAppController.isInternetConnect) {
       final dynamic apiData = await myAppController.localStorage.getFromStorage(
         key: 'getAllUserData',
       );
@@ -305,13 +305,10 @@ class HomeController extends GetxController {
         moreController.update();
       }
 
-      
-
       checkCertsNumbers();
-     
 
       update();
-    } */
+    }
   }
 
   void checkCertsNumbers() {
