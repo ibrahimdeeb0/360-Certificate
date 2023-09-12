@@ -262,6 +262,7 @@ class LeisureIndustryController extends GetxController {
 
     formData[formKeyDeclaration][formKeyRecordIssueBy] =
         '${profileController.userProfileData['first_name']} ${profileController.userProfileData['last_name']}';
+        
     if (myAppController.certFormInfo[keyFormDataStatus] ==
             FormDataStatus.newForm ||
         myAppController.certFormInfo[keyFormDataStatus] ==
