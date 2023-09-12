@@ -8,7 +8,7 @@ class DefaultContainerStyles {
     backgroundColor: Colors.white,
   );
 
-  CommonContainerModel containertTabletStyles = CommonContainerModel(
+  CommonContainerModel containerTabletStyles = CommonContainerModel(
     width: 1 * DEVICE_WIDTH,
     height: 1 * DEVICE_HEIGHT,
     backgroundColor: Colors.white,

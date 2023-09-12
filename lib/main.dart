@@ -31,8 +31,12 @@ Future<void> main() async {
     ),
   );
 
+  SystemChrome.setPreferredOrientations(<DeviceOrientation>[
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+
   await GetStorage.init();
-  
 
   // Get.put(AppLanguageController());
   Get.put(MyAppController());
@@ -87,10 +91,6 @@ Future<void> main() async {
       marginBottom: 0.012,
     ),
   );
-  SystemChrome.setPreferredOrientations(<DeviceOrientation>[
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
-  ]);
 
   runApp(const MyApp());
   // final RemoteMessage? initialMessage =

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 import '../../general_exports.dart';
@@ -16,7 +17,8 @@ class MyAppController extends GetxController {
   bool isInternetConnect = true;
   List<Map<String, dynamic>> noInternetWaitingRequests =
       <Map<String, dynamic>>[];
-
+  bool isConnectionAlertNotOpened = true;
+  bool showTextConnection = false;
   // Map<String, dynamic>? selectedCustomer;
   // Map<String, dynamic>? selectedForm;
   // Map<String, dynamic>? selectedTemplate;
@@ -88,6 +90,7 @@ class MyAppController extends GetxController {
     update();
   }
 
+  bool isInternetDialogOpened = false;
   Future<void> checkInternet() async {
     final dynamic connectivityResult =
         await (Connectivity().checkConnectivity());
@@ -95,6 +98,10 @@ class MyAppController extends GetxController {
       if (connectivityResult == ConnectivityResult.wifi ||
           connectivityResult == ConnectivityResult.mobile) {
         isInternetConnect = true;
+        if (SmartDialog.config.isExist && isInternetDialogOpened) {
+          SmartDialog.dismiss();
+        }
+        isInternetDialogOpened = false;
         if (noInternetWaitingRequests.isNotEmpty) {
           for (final Map<String, dynamic> element
               in noInternetWaitingRequests) {
@@ -105,6 +112,11 @@ class MyAppController extends GetxController {
         }
       } else {
         isInternetConnect = false;
+        if (!SmartDialog.config.isExist && (isInternetDialogOpened == false)) {
+          //bottom
+          await noInternetDialog(height: 70, alignment: Alignment.bottomCenter);
+          isInternetDialogOpened = true;
+        }
       }
       update();
     } on SocketException {
@@ -118,6 +130,27 @@ class MyAppController extends GetxController {
   void resendNoInternetRequests() {
     noInternetWaitingRequests.map((Map<String, dynamic> requestData) =>
         requestData['requestFunction']?.call());
+  }
+
+  Future<void> noInternetDialog({
+    required AlignmentGeometry alignment,
+    double width = double.infinity,
+    double height = double.infinity,
+  }) async {
+    await SmartDialog.show(
+      alignment: alignment,
+      builder: (_) => Container(
+        width: width,
+        height: height,
+        color: Colors.grey[400],
+        child: const Center(
+          child: CommonText(
+            'There is no Internet, Please check your connection',
+          ),
+        ),
+      ),
+    );
+    await Future<dynamic>.delayed(const Duration(milliseconds: 500));
   }
 
   void onUserUpdated(dynamic userDataValue) {
@@ -165,6 +198,37 @@ class MyAppController extends GetxController {
           timer.cancel();
         }
       });
+
+  //* to change Animation Connecting Internet  */
+  void onChangeValue() {
+    isConnectionAlertNotOpened = false;
+    showTextConnection = false;
+    update();
+    // close Texts
+    Timer(
+      const Duration(milliseconds: 500),
+      () {
+        showTextConnection = true;
+        update();
+      },
+    );
+    // close container
+    Timer(
+      const Duration(seconds: 2),
+      () {
+        isConnectionAlertNotOpened = !isConnectionAlertNotOpened;
+        showTextConnection = false;
+        update();
+      },
+    );
+  }
+
+  void onEndAnimationInternet() {
+    if (isConnectionAlertNotOpened) {
+      showTextConnection = false;
+      update();
+    }
+  }
 
   @override
   void onClose() {

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 
@@ -50,6 +52,72 @@ class MyApp extends StatelessWidget {
                 // FloatingActionButton(
                 //   onPressed: languageController.changeLanguage,
                 // ),
+              ),
+              Positioned(
+                top: DEVICE_HEIGHT * (Platform.isAndroid ? 0.04 : 0.05),
+                right: DEVICE_HEIGHT * 0.02,
+                child: GetBuilder<MyAppController>(
+                  init: myAppController,
+                  builder: (MyAppController controller) {
+                    return GestureDetector(
+                      onTap: controller.isConnectionAlertNotOpened
+                          ? () => controller.onChangeValue()
+                          : () {},
+                      child: AnimatedContainer(
+                        duration: const Duration(milliseconds: 500),
+                        onEnd: controller.onEndAnimationInternet,
+                        clipBehavior: Clip.hardEdge,
+                        height: controller.isConnectionAlertNotOpened
+                            ? DEVICE_HEIGHT * 0.022
+                            : DEVICE_HEIGHT * 0.055,
+                        width: controller.isConnectionAlertNotOpened
+                            ? DEVICE_WIDTH * 0.05
+                            : DEVICE_WIDTH * 0.75,
+                        margin: EdgeInsets.only(
+                          right: controller.isConnectionAlertNotOpened
+                              ? 0
+                              : DEVICE_WIDTH * 0.07,
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(35),
+                          color: controller.isConnectionAlertNotOpened
+                              ? controller.isInternetConnect
+                                  ? Colors.green
+                                  : Colors.red
+                              : const Color(0xFFE6E6E6),
+                        ),
+                        child: controller.isConnectionAlertNotOpened
+                            ? SizedBox(
+                                width: DEVICE_WIDTH * 0.04,
+                                height: DEVICE_HEIGHT * 0.017,
+                              )
+                            : controller.showTextConnection
+                                ? CommonText(
+                                    controller.isInternetConnect
+                                        ? 'Internet Connected '
+                                        : 'You are not connected internet',
+                                    fontFamily: fontFamilyType,
+                                    rowMainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    rightChild: const SizedBox(),
+                                    leftChild: Padding(
+                                      padding: EdgeInsets.only(
+                                        left: DEVICE_WIDTH * 0.03,
+                                      ),
+                                      child: CircleAvatar(
+                                        radius: 8,
+                                        backgroundColor:
+                                            controller.isInternetConnect
+                                                ? Colors.green
+                                                : Colors.red,
+                                      ),
+                                    ),
+                                  )
+                                : const SizedBox(),
+                      ),
+                    );
+                  },
+                ),
               ),
             ],
           ),

@@ -11,9 +11,7 @@ class Home extends StatelessWidget {
       appBar: HomeHeader(),
       backgroundColor: Colors.white,
       resizeToAvoidBottomInset: true,
-      // floatingActionButton: FloatingActionButton(onPressed: () {
-      //   Get.to(Subscription());
-      // }),
+      // floatingActionButton: FloatingActionButton(onPressed: () async {}),
       // floatingActionButtonLocation: FloatingActionButtonLocation.centerTop,
       body: GetBuilder<HomeController>(
         init: homeController,
@@ -21,7 +19,7 @@ class Home extends StatelessWidget {
           return CommonContainer(
             // height: 1,
             // width: 1,
-            style: appContainerStyles.containertTabletStyles,
+            style: appContainerStyles.containerTabletStyles,
 
             backgroundColor: Colors.white,
             child: Column(
