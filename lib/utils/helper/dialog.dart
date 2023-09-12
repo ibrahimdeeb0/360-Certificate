@@ -74,7 +74,10 @@ Future<dynamic> openSimpleDialog({
   String? title,
   String? description,
   String? btnText,
+  String? scendBtnText,
   Function()? onPress,
+  Function()? onPressScendBtn,
+  bool showScendBtn = false,
 }) {
   return Get.dialog(
     CustomDialog(
@@ -83,6 +86,9 @@ Future<dynamic> openSimpleDialog({
       title: title,
       titleIcon: titleIcon,
       btnText: btnText,
+      onPressScendBtn: onPressScendBtn,
+      scendBtnText: scendBtnText,
+      showScendBtn: showScendBtn,
     ),
   );
 }
@@ -94,13 +100,19 @@ class CustomDialog extends StatelessWidget {
     this.title,
     this.description,
     this.btnText,
+    this.scendBtnText,
     this.onPress,
+    this.onPressScendBtn,
+    this.showScendBtn = false,
   });
   final Widget? titleIcon;
   final String? title;
   final String? description;
   final String? btnText;
+  final String? scendBtnText;
   final Function()? onPress;
+  final Function()? onPressScendBtn;
+  final bool showScendBtn;
 
   @override
   Widget build(BuildContext context) {
@@ -108,7 +120,7 @@ class CustomDialog extends StatelessWidget {
       backgroundColor: Colors.white,
       title: CommonText(
         title ?? '',
-        marginTop: titleIcon != null ? 0.025 : null,
+        marginTop: titleIcon != null ? 0.02 : null,
         fontWeight: FontWeight.bold,
         topChild: titleIcon,
       ),
@@ -122,7 +134,18 @@ class CustomDialog extends StatelessWidget {
           text: btnText ?? '',
           onPress: onPress,
           width: 1,
+          marginBottom: 0.015,
         ),
+        if (showScendBtn)
+          CommonButton(
+            text: scendBtnText ?? '',
+            onPress: onPressScendBtn,
+            width: 1,
+            borderColor: AppColors.primary,
+            borderWidth: 2,
+            backgroundColor: Colors.white,
+            fontColor: Colors.black,
+          ),
       ],
     );
   }

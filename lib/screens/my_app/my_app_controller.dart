@@ -142,7 +142,7 @@ class MyAppController extends GetxController {
       builder: (_) => Container(
         width: width,
         height: height,
-        color: Colors.grey[400],
+        color: Colors.white,
         child: const Center(
           child: CommonText(
             'There is no Internet, Please check your connection',
