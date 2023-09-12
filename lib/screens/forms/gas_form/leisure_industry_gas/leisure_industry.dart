@@ -16,12 +16,12 @@ class LeisureIndustry extends StatelessWidget {
             showSaveBtn: ((controller.selectedId !=
                     controller.listFormSections.length - 1) &&
                 !controller.isTemplate!),
-            onPressSave: () => controller.onNext(fromSave: true),
+            onPressSave: () => controller.onPressNext(fromSave: true),
             actionItem: (controller.isTemplate!)
                 ? null
                 : ActionItem(
                     type: ActionType.image,
-                  ),
+                  ), 
             pressImage: () {
               controller.formImagesAttachmentsController.certId =
                   controller.certId;
