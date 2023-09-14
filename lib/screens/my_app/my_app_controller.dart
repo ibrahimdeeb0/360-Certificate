@@ -97,10 +97,10 @@ class MyAppController extends GetxController {
     try {
       if (connectivityResult == ConnectivityResult.wifi ||
           connectivityResult == ConnectivityResult.mobile) {
-        isInternetConnect = true;
-        if (SmartDialog.config.isExist && isInternetDialogOpened) {
+        if (SmartDialog.config.isExist && isInternetConnect == false) {
           SmartDialog.dismiss();
         }
+        isInternetConnect = true;
         isInternetDialogOpened = false;
         if (noInternetWaitingRequests.isNotEmpty) {
           for (final Map<String, dynamic> element
@@ -150,7 +150,7 @@ class MyAppController extends GetxController {
         ),
       ),
     );
-    await Future<dynamic>.delayed(const Duration(milliseconds: 500));
+    // await Future<dynamic>.delayed(const Duration(milliseconds: 500));
   }
 
   void onUserUpdated(dynamic userDataValue) {

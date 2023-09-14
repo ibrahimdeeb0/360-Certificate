@@ -14,6 +14,7 @@ class SplashController extends GetxController {
         consoleLog(myAppController.userData, key: 'inSplash');
 
         if (showForceUpdate) {
+                // * this is the dialog to till user we have important update.
           openSimpleDialog(
             title: 'Update Available',
             btnText: 'Update Now',
@@ -37,9 +38,6 @@ class SplashController extends GetxController {
             },
             scendBtnText: 'Skip for now',
           );
-          // CustomDialog(
-
-          // );
         } else {
           Get.offAndToNamed(
             // && myAppController.userData?['profile_complete']
