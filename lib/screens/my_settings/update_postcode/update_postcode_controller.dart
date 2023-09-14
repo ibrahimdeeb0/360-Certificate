@@ -25,6 +25,8 @@ class UpdatePostcodeController extends GetxController {
 
   List<dynamic> allCountries = <dynamic>[];
 
+  DateTime? lastDateTime;
+
   @override
   void onInit() {
     super.onInit();
@@ -51,27 +53,38 @@ class UpdatePostcodeController extends GetxController {
   void onSearchingAddress(String value) {
     if (value == '') {
       listAddress = <dynamic>[];
+      update();
     } else {
-      _dio
-          .get(
-        urlAutocomplete,
-        queryParameters: <String, dynamic>{
-          'key': publicKey,
-          'input': value,
-          'language': language,
-          'types': types,
-          'components': components,
-        },
-        options: Options(
-          headers: <String, dynamic>{
-            'referer': 'http://360connect.app',
-          },
-        ),
-      )
-          .then(
-        (dynamic response) {
-          listAddress = response.data['localities'];
-          update();
+      lastDateTime = DateTime.now();
+      Future<dynamic>.delayed(
+        const Duration(seconds: 3),
+        () {
+          if (DateTime.now().difference(lastDateTime!) >=
+                  const Duration(seconds: 1) &&
+              value == searchAddressController.text) {
+            _dio
+                .get(
+              urlAutocomplete,
+              queryParameters: <String, dynamic>{
+                'key': publicKey,
+                'input': value,
+                'language': language,
+                'types': types,
+                'components': components,
+              },
+              options: Options(
+                headers: <String, dynamic>{
+                  'referer': 'http://360connect.app',
+                },
+              ),
+            )
+                .then(
+              (dynamic response) {
+                listAddress = response.data['localities'];
+                update();
+              },
+            );
+          }
         },
       );
     }
@@ -292,7 +305,7 @@ class UpdatePostcodeController extends GetxController {
     ).request(
       onSuccess: (dynamic data, dynamic response) {
         profileController.getUserProfileData();
-         Get.back();
+        Get.back();
         // update();
       },
       onError: (dynamic error) {

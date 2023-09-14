@@ -150,7 +150,7 @@ class MyAppController extends GetxController {
         ),
       ),
     );
-    await Future<dynamic>.delayed(const Duration(milliseconds: 500));
+    // await Future<dynamic>.delayed(const Duration(milliseconds: 500));
   }
 
   void onUserUpdated(dynamic userDataValue) {

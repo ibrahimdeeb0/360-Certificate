@@ -69,7 +69,7 @@ class ForceUpdate extends StatelessWidget {
                   visible: forceData[keyIsRequired] == 'false',
                   child: Flexible(
                     child: CommonButton(
-                      text: keyCancel.tr,
+                      text: 'Cancel',
                       onPress: checkOffMode?.call,
                     ),
                   ),

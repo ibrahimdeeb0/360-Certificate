@@ -440,30 +440,41 @@ class CompleteProfileController extends GetxController {
   }
 
   //* Searching for Address with Autocomplete *//
+  DateTime? lastDateTime;
   void onSearchingAddress(String value) {
     if (value == '') {
       listAddress = <dynamic>[];
     } else {
-      _dio
-          .get(
-        urlAutocomplete,
-        queryParameters: <String, dynamic>{
-          'key': publicKey,
-          'input': value,
-          'language': language,
-          'types': types,
-          'components': components,
-        },
-        options: Options(
-          headers: <String, dynamic>{
-            'referer': 'http://360connect.app',
-          },
-        ),
-      )
-          .then(
-        (dynamic response) {
-          listAddress = response.data['localities'];
-          update();
+      lastDateTime = DateTime.now();
+      Future<dynamic>.delayed(
+        const Duration(seconds: 2),
+        () {
+          if (DateTime.now().difference(lastDateTime!) >=
+                  const Duration(seconds: 1) &&
+              value == addressController.text) {
+            _dio
+                .get(
+              urlAutocomplete,
+              queryParameters: <String, dynamic>{
+                'key': publicKey,
+                'input': value,
+                'language': language,
+                'types': types,
+                'components': components,
+              },
+              options: Options(
+                headers: <String, dynamic>{
+                  'referer': 'http://360connect.app',
+                },
+              ),
+            )
+                .then(
+              (dynamic response) {
+                listAddress = response.data['localities'];
+                update();
+              },
+            );
+          }
         },
       );
     }

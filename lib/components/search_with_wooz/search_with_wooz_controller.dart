@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:dio/dio.dart';
 
 import '../../general_exports.dart';
@@ -79,6 +81,9 @@ class SearchWithWoozController extends GetxController {
   List<dynamic> allCountries = <dynamic>[];
   Map<String, dynamic>? selectedCountry;
 
+  DateTime? lastDateTime;
+  Future<dynamic>? myFunction;
+
   @override
   void onReady() {
     getCountries();
@@ -88,31 +93,49 @@ class SearchWithWoozController extends GetxController {
   //* Searching for Address using Autocomplete *//
   void onSearchingAddress(String value) {
     if (value == '') {
+      // consoleLog('inside Empty', key: 'Inside_Empty');
+
       listAddress = <dynamic>[];
+      update();
     } else {
-      _dio
-          .get(
-        urlAutocomplete,
-        queryParameters: <String, dynamic>{
-          'key': publicKey,
-          'input': value,
-          'language': language,
-          'types': types,
-          'components': components,
-        },
-        options: Options(
-          headers: <String, dynamic>{
-            'referer': 'http://360connect.app',
-          },
-        ),
-      )
-          .then(
-        (dynamic response) {
-          listAddress = response.data['localities'];
-          // consoleLogPretty(listAddress, key: 'list_Address');
-          update();
+      lastDateTime = DateTime.now();
+      // startLoading();
+      Future<dynamic>.delayed(
+        const Duration(seconds: 2),
+        () {
+          if (DateTime.now().difference(lastDateTime!) >=
+                  const Duration(seconds: 1) &&
+              value == addressController.text) {
+            // dismissLoading();
+            //*-------------------- Function Body  ---------------------//
+            // consoleLog('inside Function Body', key: 'Inside_Function_Body');
+            _dio
+                .get(
+              urlAutocomplete,
+              queryParameters: <String, dynamic>{
+                'key': publicKey,
+                'input': value,
+                'language': language,
+                'types': types,
+                'components': components,
+              },
+              options: Options(
+                headers: <String, dynamic>{
+                  'referer': 'http://360connect.app',
+                },
+              ),
+            )
+                .then(
+              (dynamic response) {
+                listAddress = response.data['localities'];
+                consoleLogPretty(listAddress, key: 'list_Address');
+                update();
+              },
+            );
+          }
         },
       );
+      //*--------------------   ---------------------//
     }
   }
 
@@ -195,7 +218,7 @@ class SearchWithWoozController extends GetxController {
     )
         .then(
       (dynamic details) async {
-        // consoleLogPretty(details.data, key: 'onGetAddressDetails');
+        consoleLogPretty(details.data, key: 'onGetAddressDetails');
         hideKeyboard();
         setAddressData(
           data: details.data,
