@@ -70,9 +70,11 @@ class MyApp extends StatelessWidget {
                         height: controller.isConnectionAlertNotOpened
                             ? DEVICE_HEIGHT * 0.022
                             : DEVICE_HEIGHT * 0.055,
-                        width: controller.isConnectionAlertNotOpened
-                            ? DEVICE_WIDTH * 0.05
-                            : DEVICE_WIDTH * 0.75,
+                        width: controller.isInternetConnect
+                            ? 0.0
+                            : controller.isConnectionAlertNotOpened
+                                ? DEVICE_WIDTH * 0.05
+                                : DEVICE_WIDTH * 0.75,
                         margin: EdgeInsets.only(
                           right: controller.isConnectionAlertNotOpened
                               ? 0

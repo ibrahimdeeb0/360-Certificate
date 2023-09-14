@@ -97,10 +97,10 @@ class MyAppController extends GetxController {
     try {
       if (connectivityResult == ConnectivityResult.wifi ||
           connectivityResult == ConnectivityResult.mobile) {
-        isInternetConnect = true;
-        if (SmartDialog.config.isExist && isInternetDialogOpened) {
+        if (SmartDialog.config.isExist && isInternetConnect == false) {
           SmartDialog.dismiss();
         }
+        isInternetConnect = true;
         isInternetDialogOpened = false;
         if (noInternetWaitingRequests.isNotEmpty) {
           for (final Map<String, dynamic> element
