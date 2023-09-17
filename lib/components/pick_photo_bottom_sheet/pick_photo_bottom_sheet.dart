@@ -48,9 +48,9 @@ class PickPhotoBottomSheet extends StatelessWidget {
                         status.isPermanentlyDenied) {
                       openSimpleDialog(
                         title:
-                            'Allowing 360 Certificate App to access the camera',
+                            'Allowing 360 Certificate App to access the camera on your device',
                         description:
-                            'This allows you to share photos with the application',
+                            'This allows you to share photos with the application on your device',
                         btnText: 'Open Settings',
                         titleIcon: Icon(
                           Icons.camera_alt_outlined,
@@ -92,8 +92,8 @@ class PickPhotoBottomSheet extends StatelessWidget {
                         status.isPermanentlyDenied) {
                       openSimpleDialog(
                         title: Platform.isIOS
-                            ? 'Allowing 360 Certificate App to access the Photos'
-                            : 'Allowing 360 Certificate App to access the Gallery',
+                            ? 'Allowing 360 Certificate App to access the Photos on your device'
+                            : 'Allowing 360 Certificate App to access the Photos on your device',
                         description:
                             'This allows you to share photos with the application',
                         btnText: 'Open Settings',
