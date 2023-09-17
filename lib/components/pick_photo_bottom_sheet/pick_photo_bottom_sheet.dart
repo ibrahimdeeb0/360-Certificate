@@ -75,21 +75,17 @@ class PickPhotoBottomSheet extends StatelessWidget {
                     if (Platform.isIOS) {
                       status = await Permission.photos.request();
                     } else {
-                      // await Permission.storage.request();
                       final DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
                       final AndroidDeviceInfo androidInfo =
                           await deviceInfo.androidInfo;
 
-                      // consoleLog(androidInfo.version.sdkInt,
-                      //     key: 'SDK-Version');
-
-                      // await Permission.photos.request();
+                      consoleLog(androidInfo.version.sdkInt,
+                          key: 'SDK-Version');
 
                       status = androidInfo.version.sdkInt < 33
-                          ? await Permission.mediaLibrary.request()
+                          ? await Permission.storage.request()
                           : await Permission.photos.request();
                     }
-                    //
 
                     if (status.isDenied ||
                         status.isRestricted ||
