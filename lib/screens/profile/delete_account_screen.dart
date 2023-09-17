@@ -8,7 +8,7 @@ class DeleteAccountScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: Header(
+      appBar: const Header(
         title: 'Delete Account',
       ),
       body: GetBuilder<DeleteAccountController>(

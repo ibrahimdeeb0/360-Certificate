@@ -15,7 +15,7 @@ class FormNotesAttachments extends StatelessWidget {
       global: false,
       builder: (FormNotesAttachmentsController controller) {
         return Scaffold(
-          appBar: Header(
+          appBar: const Header(
             title: 'Notes',
             withShadow: true,
             // actionItem: ActionItem(

@@ -7,7 +7,7 @@ class Invoices extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: Header(
+      appBar: const Header(
         title: 'Invoices',
         withBack: false,
       ),

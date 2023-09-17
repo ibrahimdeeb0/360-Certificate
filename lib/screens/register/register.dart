@@ -6,7 +6,7 @@ class Register extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: Header(
+      appBar: const Header(
         title: '',
       ),
       body: GetBuilder<RegisterController>(

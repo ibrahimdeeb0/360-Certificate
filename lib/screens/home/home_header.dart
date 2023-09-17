@@ -4,8 +4,8 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../general_exports.dart';
 
-class HomeHeader extends StatelessWidget with PreferredSizeWidget {
-  HomeHeader({
+class HomeHeader extends StatelessWidget implements PreferredSizeWidget {
+  const HomeHeader({
     Key? key,
     //  this.isViewedNotification = true,
   }) : super(key: key);

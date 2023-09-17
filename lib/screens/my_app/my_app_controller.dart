@@ -97,7 +97,7 @@ class MyAppController extends GetxController {
     try {
       if (connectivityResult == ConnectivityResult.wifi ||
           connectivityResult == ConnectivityResult.mobile) {
-        if (SmartDialog.config.isExist && isInternetConnect == false) {
+        if (SmartDialog.config.checkExist() && isInternetConnect == false) {
           SmartDialog.dismiss();
         }
         isInternetConnect = true;
@@ -112,7 +112,8 @@ class MyAppController extends GetxController {
         }
       } else {
         isInternetConnect = false;
-        if (!SmartDialog.config.isExist && (isInternetDialogOpened == false)) {
+        if (!SmartDialog.config.checkExist() &&
+            (isInternetDialogOpened == false)) {
           //bottom
           await noInternetDialog(height: 70, alignment: Alignment.bottomCenter);
           isInternetDialogOpened = true;

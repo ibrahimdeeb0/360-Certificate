@@ -1,7 +1,7 @@
 import '../../../general_exports.dart';
 
-class FormHeader extends StatelessWidget with PreferredSizeWidget {
-  FormHeader({
+class FormHeader extends StatelessWidget implements PreferredSizeWidget {
+ const FormHeader({
     this.title,
     this.withoutBackGround = false,
     this.onPressBack,

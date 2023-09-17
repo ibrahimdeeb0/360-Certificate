@@ -12,7 +12,7 @@ class MinorWriteNote extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: Header(
+      appBar: const Header(
         title: 'Notes',
         withShadow: true,
       ),

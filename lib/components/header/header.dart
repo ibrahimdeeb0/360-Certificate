@@ -2,8 +2,8 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../general_exports.dart';
 
-class Header extends StatelessWidget with PreferredSizeWidget {
-  Header({
+class Header extends StatelessWidget implements PreferredSizeWidget {
+  const Header({
     this.title,
     this.withNotification = false,
     this.withSearch = false,

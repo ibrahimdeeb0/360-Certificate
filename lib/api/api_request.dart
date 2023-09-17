@@ -131,7 +131,7 @@ class ApiRequest {
       }
     } on Exception catch (error) {
       dismissLoading();
-      if (error is DioError) {
+      if (error is DioException) {
         final dynamic errorData = error.response?.data ??
             <String, dynamic>{
               'errors': <Map<String, String>>[

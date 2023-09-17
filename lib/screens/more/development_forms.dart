@@ -9,7 +9,7 @@ class DevelopmentForms extends StatelessWidget {
       init: MoreController(),
       builder: (MoreController controller) {
         return Scaffold(
-          appBar: Header(
+          appBar: const Header(
             title: 'Forms',
           ),
           body: CommonContainer(

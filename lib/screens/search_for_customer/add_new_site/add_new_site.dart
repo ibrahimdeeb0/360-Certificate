@@ -9,7 +9,7 @@ class AddNewSite extends StatelessWidget {
       init: AddNewSiteController(),
       builder: (AddNewSiteController controller) {
         return Scaffold(
-          appBar: Header(
+          appBar: const Header(
             title: 'Add New Site',
             withShadow: true,
           ),

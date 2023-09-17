@@ -12,7 +12,7 @@ class PortableAppliances extends StatelessWidget {
       builder: (PortableAppliancesController controller) {
         return Scaffold(
           backgroundColor: Colors.white,
-          appBar: Header(
+          appBar: const Header(
             title: 'Test Appliances',
           ),
           body: CommonContainer(

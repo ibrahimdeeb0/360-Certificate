@@ -12,7 +12,7 @@ class LandlordAppliances extends StatelessWidget {
       builder: (LandlordAppliancesController controller) {
         return Scaffold(
           backgroundColor: Colors.white,
-          appBar: Header(
+          appBar: const Header(
             title: '',
             // rightText: 'Done',
             // withActionText: true,

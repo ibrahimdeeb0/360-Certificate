@@ -17,7 +17,7 @@ class FormImagesAttachments extends StatelessWidget {
       global: false,
       builder: (FormImagesAttachmentsController controller) {
         return Scaffold(
-          appBar: Header(
+          appBar: const Header(
             title: 'Images & Notes',
             withShadow: true,
             // actionItem: ActionItem(type: ActionType.save),

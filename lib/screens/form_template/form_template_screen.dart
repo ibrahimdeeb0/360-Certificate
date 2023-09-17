@@ -25,7 +25,7 @@ class FormTemplate extends StatelessWidget {
           fontColor: Colors.white,
         ),
       ),
-      appBar: Header(
+      appBar: const Header(
         title: 'Form Template',
       ),
       body: GetBuilder<FormTemplateController>(

@@ -6,18 +6,23 @@ import '../default_pop_up/index.dart';
 dynamic turnOnNotificationRequest() {
   openPopUp(
     GetBuilder<TurnOnNotificationRequestController>(
-        init: TurnOnNotificationRequestController(),
-        builder: (TurnOnNotificationRequestController controller) {
-          return DefaultPopUp(
-            okButtonSettings: ButtonSettings(
-              onPress: AppSettings.openNotificationSettings,
-              title: keyGoToSettings.tr,
-            ),
-            showNeverButton: true,
-            neverButtonSettings: ButtonSettings(
-              onPress: controller.onPressDoNotShowAgain,
-            ),
-          );
-        }),
+      init: TurnOnNotificationRequestController(),
+      builder: (TurnOnNotificationRequestController controller) {
+        return DefaultPopUp(
+          okButtonSettings: ButtonSettings(
+            onPress: () {
+              AppSettings.openAppSettings(
+                type: AppSettingsType.notification,
+              );
+            },
+            title: keyGoToSettings.tr,
+          ),
+          showNeverButton: true,
+          neverButtonSettings: ButtonSettings(
+            onPress: controller.onPressDoNotShowAgain,
+          ),
+        );
+      },
+    ),
   );
 }

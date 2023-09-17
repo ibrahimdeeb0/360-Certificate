@@ -9,7 +9,7 @@ class Profile extends StatelessWidget {
       init: profileController,
       builder: (ProfileController controller) {
         return Scaffold(
-          appBar: Header(
+          appBar: const Header(
             title: 'My Profile',
           ),
           body: ProfileComponent(

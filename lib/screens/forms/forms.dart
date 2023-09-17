@@ -11,7 +11,7 @@ class Forms extends StatelessWidget {
       init: FormsController(),
       builder: (FormsController controller) {
         return Scaffold(
-          appBar: Header(
+          appBar: const Header(
             title: 'Forms',
           ),
           body: CommonContainer(

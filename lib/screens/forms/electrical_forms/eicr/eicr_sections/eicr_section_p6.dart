@@ -353,16 +353,16 @@ class EICRSectionF extends StatelessWidget {
                       keyboardType: TextInputType.number,
                       textInputAction: TextInputAction.go,
                     ),
-                    Row(
+                    const Row(
                       children: <Widget>[
-                        const CommonText(
+                        CommonText(
                           'Note:',
                         ),
                         CommonContainer(
                           width: 0.7,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const <Widget>[
+                            children: <Widget>[
                               CommonText(
                                 '(1) by enquiry',
                                 marginTop: 0.01,

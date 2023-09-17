@@ -8,7 +8,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: HomeHeader(),
+      appBar: const HomeHeader(),
       backgroundColor: Colors.white,
       resizeToAvoidBottomInset: true,
       // floatingActionButton: FloatingActionButton(onPressed: () async {}),

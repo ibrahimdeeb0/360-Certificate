@@ -10,7 +10,7 @@ class CircuitDetails extends StatelessWidget {
       builder: (DBController controller) {
         return Scaffold(
           backgroundColor: Colors.white,
-          appBar: Header(
+          appBar: const Header(
             title: '',
             // actionItem: ActionItem(
             //   type: ActionType.save,

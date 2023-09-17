@@ -8,7 +8,7 @@ class CompletedCert extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: Header(
+      appBar: const Header(
         title: 'Completed Certs',
       ),
       body: GetBuilder<CompletedCertController>(

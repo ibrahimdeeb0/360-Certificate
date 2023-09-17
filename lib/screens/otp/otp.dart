@@ -9,7 +9,7 @@ class OTP extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: Header(
+      appBar: const Header(
         title: '',
       ),
       backgroundColor: Colors.white,

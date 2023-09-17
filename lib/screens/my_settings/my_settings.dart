@@ -11,7 +11,7 @@ class MySettings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: Header(
+      appBar: const Header(
         title: 'My Settings',
       ),
       body: GetBuilder<MySettingsController>(

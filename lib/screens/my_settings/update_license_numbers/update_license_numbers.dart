@@ -7,7 +7,7 @@ class UpdateLicenseNumbers extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: Header(
+      appBar: const Header(
         title: 'License Details',
       ),
       body: GetBuilder<UpdateLicenseNumbersController>(

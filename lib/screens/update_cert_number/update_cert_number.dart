@@ -8,7 +8,7 @@ class UpdateCertNumber extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: Header(title: 'Important Numbers'),
+      appBar: const Header(title: 'Important Numbers'),
       body: GetBuilder<UpdateCertNumberController>(
         init: UpdateCertNumberController(),
         builder: (UpdateCertNumberController controller) {

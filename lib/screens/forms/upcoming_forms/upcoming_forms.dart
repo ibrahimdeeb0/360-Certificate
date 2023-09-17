@@ -8,7 +8,7 @@ class UpcomingForms extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: Header(
+      appBar: const Header(
         title: 'Upcoming Forms',
         withShadow: true,
       ),
