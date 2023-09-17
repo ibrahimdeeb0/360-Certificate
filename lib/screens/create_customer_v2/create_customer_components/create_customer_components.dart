@@ -1,5 +1,3 @@
-import 'package:flutter_svg/svg.dart';
-
 import '../../../general_exports.dart';
 
 class SelectCustomerTypeContainer extends StatelessWidget {
@@ -69,8 +67,8 @@ class SelectCustomerTypeContainer extends StatelessWidget {
                             : 0.008.flexAll
                         : 0.017.flexAll),
                     onEnd: onEnd,
-                    child: SvgPicture.asset(
-                      iconPath,
+                    child: SvgIconHelper(
+                      iconPath: iconPath,
                       color: isSelected != null
                           ? isSelected!
                               ? Color(AppColors.primary)

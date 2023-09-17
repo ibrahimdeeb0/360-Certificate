@@ -1,5 +1,3 @@
-import 'package:flutter_svg/svg.dart';
-
 import '../../general_exports.dart';
 
 class Customers extends StatelessWidget {
@@ -84,8 +82,8 @@ class CustomerCard extends StatelessWidget {
                 name ?? '',
                 fontColor: AppColors.primary,
                 marginHorizontal: 0.02,
-                leftChild: SvgPicture.asset(
-                  iconPerson,
+                leftChild: SvgIconHelper(
+                  iconPath: iconPerson,
                   color: Color(AppColors.primary),
                 ),
               ),
@@ -111,9 +109,9 @@ class CustomerCard extends StatelessWidget {
             rowCrossAxisAlignment: CrossAxisAlignment.start,
             leftChild: Padding(
               padding: EdgeInsets.only(right: 0.02.flexWidth),
-              child: SvgPicture.asset(
-                iconLocation,
-                color: Colors.grey[600],
+              child: SvgIconHelper(
+                iconPath: iconLocation,
+                color: Colors.grey[600]!,
               ),
             ),
           ),

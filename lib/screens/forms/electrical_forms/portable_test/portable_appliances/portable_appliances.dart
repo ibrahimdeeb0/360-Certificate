@@ -72,8 +72,8 @@ class PortableAppliances extends StatelessWidget {
                             ],
                           ),
                         ),
-                        SvgPicture.asset(
-                          iconArrowGo,
+                        const SvgIconHelper(
+                          iconPath: iconArrowGo,
                           color: Colors.black,
                           width: 16.0,
                           height: 16.0,

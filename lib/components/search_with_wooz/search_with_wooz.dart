@@ -1,5 +1,3 @@
-import 'package:flutter_svg/svg.dart';
-
 import '../../general_exports.dart';
 
 class SearchWithWooz extends StatelessWidget {
@@ -37,8 +35,8 @@ class SearchWithWooz extends StatelessWidget {
                   children: <Widget>[
                     CommonInput(
                       hint: 'Type The Postcode Of The Property',
-                      prefix: SvgPicture.asset(
-                        iconSearch,
+                      prefix: SvgIconHelper(
+                        iconPath: iconSearch,
                         color: Color(AppColors.primary),
                       ),
                       // marginBottom: 0.02,
@@ -125,8 +123,8 @@ class SearchWithWooz extends StatelessWidget {
                         marginBottom: 0.02,
                         child: CommonInput(
                           hint: 'Type The Postcode Of The Property',
-                          prefix: SvgPicture.asset(
-                            iconSearch,
+                          prefix: SvgIconHelper(
+                            iconPath: iconSearch,
                             color: Color(AppColors.primary),
                           ),
                           marginBottom: 0,

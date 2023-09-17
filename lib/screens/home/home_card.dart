@@ -1,4 +1,3 @@
-import 'package:flutter_svg/svg.dart';
 
 import '../../general_exports.dart';
 
@@ -48,8 +47,8 @@ class HomeCards extends StatelessWidget {
             fontSize: 28,
             fontWeight: FontWeight.bold,
             rowMainAxisAlignment: MainAxisAlignment.spaceBetween,
-            rightChild: SvgPicture.asset(
-              iconPath ?? iconOutCerts,
+            rightChild: SvgIconHelper(
+             iconPath:  iconPath ?? iconOutCerts,
               width: DEVICE_WIDTH * 0.03,
               height: DEVICE_HEIGHT * 0.03,
               color: Color(AppColors.primary),

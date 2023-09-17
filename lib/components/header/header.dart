@@ -1,5 +1,3 @@
-import 'package:flutter_svg/svg.dart';
-
 import '../../general_exports.dart';
 
 class Header extends StatelessWidget implements PreferredSizeWidget {
@@ -130,13 +128,19 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
                           color: Color(AppColors.primary),
                         )
                       : actionItem?.type == ActionType.filter
-                          ? SvgPicture.asset(iconFilter, color: Colors.black)
+                          ? SvgIconHelper(
+                              iconPath: iconFilter,
+                              color: Colors.black,
+                              height: DEVICE_HEIGHT * 0.03,
+                              width: DEVICE_WIDTH * 0.06,
+                            )
                           : actionItem?.type == ActionType.search
                               ? Padding(
                                   padding: EdgeInsets.only(
                                     right: DEVICE_WIDTH * 0.015,
                                   ),
-                                  child: SvgPicture.asset(iconSearch,
+                                  child: const SvgIconHelper(
+                                      iconPath: iconSearch,
                                       color: Colors.black),
                                 )
                               : actionItem?.type == ActionType.addImage
@@ -155,7 +159,8 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
               marginBottom: 0.006,
               marginHorizontal: 0.04,
               touchEffect: TouchableEffect(type: TouchTypes.opacity),
-              child: SvgPicture.asset(iconSearch, color: Colors.black),
+              child: const SvgIconHelper(
+                  iconPath: iconSearch, color: Colors.black),
             ),
         ],
       ),

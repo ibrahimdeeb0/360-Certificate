@@ -1,5 +1,3 @@
-import 'package:flutter_svg/svg.dart';
-
 import '../../general_exports.dart';
 
 class CompleteProfileDone extends StatelessWidget {
@@ -23,9 +21,9 @@ class CompleteProfileDone extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     0.08.boxHeight,
-                    SvgPicture.asset(
-                      iconSetupDone,
-                      color: Colors.green[600],
+                    SvgIconHelper(
+                      iconPath: iconSetupDone,
+                      color: Colors.green[600]!,
                     ),
                     const CommonText(
                       "Congratulations, you've successfully set up your 360 Connect Certificate account!",

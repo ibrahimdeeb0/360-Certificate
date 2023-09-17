@@ -1,5 +1,3 @@
-import 'package:flutter_svg/svg.dart';
-
 import '../../general_exports.dart';
 
 class DeleteAccountScreen extends StatelessWidget {
@@ -38,8 +36,8 @@ class DeleteAccountScreen extends StatelessWidget {
                           ),
                       leftChild: Padding(
                         padding: EdgeInsets.only(right: DEVICE_WIDTH * 0.025),
-                        child: SvgPicture.asset(
-                          iconAttention,
+                        child: SvgIconHelper(
+                          iconPath: iconAttention,
                           color: const Color(0xff856404),
                           width: DEVICE_WIDTH * 0.02,
                           height: DEVICE_HEIGHT * 0.02,

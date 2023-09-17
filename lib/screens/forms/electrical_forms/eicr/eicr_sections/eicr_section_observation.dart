@@ -1,5 +1,3 @@
-import 'package:flutter_svg/flutter_svg.dart';
-
 import '../../../../../general_exports.dart';
 
 class SectionObservation extends StatelessWidget {
@@ -50,8 +48,8 @@ class SectionObservation extends StatelessWidget {
                         description:
                             'By turning on this switch all your C1 & C2 observations are set to satisfactory and your EICR is turned into a completion certificate to demonstrate the work has been completed.The original EICR is not affected and theRemedial Certificate is not saved separately. It can however be generated at any time from your savedEICR',
                       ),
-                      child: SvgPicture.asset(
-                        iconAttention,
+                      child: SvgIconHelper(
+                        iconPath: iconAttention,
                         color: Color(AppColors.primary),
                         width: DEVICE_WIDTH * 0.025,
                         height: DEVICE_HEIGHT * 0.025,

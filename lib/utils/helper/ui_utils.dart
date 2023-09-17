@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter_html_to_pdf/flutter_html_to_pdf.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -46,12 +45,12 @@ Widget getMyIcon({
       ? const Center()
       : icon.startsWith('http')
           ? icon.toString().contains('svg')
-              ? SvgPicture.network(
-                  icon,
+              ? SvgIconNetworkHelper(
+                  iconPath: icon,
                   fit: BoxFit.fill,
                   height: height,
                   width: width,
-                  color: color == null ? null : Color(color),
+                  color: Color(color ?? AppColors.black),
                 )
               : CachedImage(
                   image: icon,
@@ -60,12 +59,12 @@ Widget getMyIcon({
                   width: width,
                 )
           : icon.toString().contains('svg')
-              ? SvgPicture.asset(
-                  icon,
+              ? SvgIconHelper(
+                  iconPath: icon,
                   fit: BoxFit.fill,
                   height: height,
                   width: width,
-                  color: color == null ? null : Color(color),
+                  color: Color(color ?? AppColors.black),
                 )
               : Image.asset(
                   icon,

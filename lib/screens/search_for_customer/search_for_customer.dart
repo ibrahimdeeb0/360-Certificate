@@ -1,5 +1,3 @@
-import 'package:flutter_svg/svg.dart';
-
 import '../../general_exports.dart';
 
 class SearchForCustomer extends StatelessWidget {
@@ -43,8 +41,8 @@ class SearchForCustomer extends StatelessWidget {
                           controller: controller.searchController,
                           onChanged: controller.onSearching,
                           keyboardType: TextInputType.streetAddress,
-                          prefix: SvgPicture.asset(
-                            iconSearch,
+                          prefix: const SvgIconHelper(
+                            iconPath: iconSearch,
                             color: Colors.black,
                           ),
                           fillColor: AppColors.greyInputs,

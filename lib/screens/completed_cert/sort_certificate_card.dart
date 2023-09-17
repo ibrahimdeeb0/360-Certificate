@@ -1,5 +1,3 @@
-import 'package:flutter_svg/svg.dart';
-
 import '../../general_exports.dart';
 
 class SortCertificateCard extends StatelessWidget {
@@ -47,8 +45,8 @@ class SortCertificateCard extends StatelessWidget {
               CommonText(
                 code ?? '',
                 marginHorizontal: 0.025,
-                leftChild: SvgPicture.asset(
-                  iconCertificates,
+                leftChild: const SvgIconHelper(
+                  iconPath: iconCertificates,
                   color: Colors.black,
                 ),
               ),
@@ -96,8 +94,8 @@ class SortCertificateCard extends StatelessWidget {
           CommonText(
             customerName ?? '',
             marginHorizontal: 0.02,
-            leftChild: SvgPicture.asset(
-              iconPerson,
+            leftChild: const SvgIconHelper(
+              iconPath: iconPerson,
               color: Colors.black,
             ),
             containerStyle: const CommonContainerModel(
@@ -116,8 +114,8 @@ class SortCertificateCard extends StatelessWidget {
             rowCrossAxisAlignment: CrossAxisAlignment.start,
             leftChild: Padding(
               padding: EdgeInsets.only(right: DEVICE_WIDTH * 0.02),
-              child: SvgPicture.asset(
-                iconLocation,
+              child: SvgIconHelper(
+                iconPath: iconLocation,
                 color: Color(AppColors.greyDark),
               ),
             ),

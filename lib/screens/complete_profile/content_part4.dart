@@ -1,5 +1,3 @@
-import 'package:flutter_svg/svg.dart';
-
 import '../../general_exports.dart';
 
 class ContentPart4 extends StatelessWidget {
@@ -51,8 +49,8 @@ class ContentPart4 extends StatelessWidget {
                       hint: 'Enter Your Postcode',
                       marginBottom: 0.012,
                       controller: controller.addressController, //picture
-                      prefix: SvgPicture.asset(
-                        iconSearch,
+                      prefix: SvgIconHelper(
+                        iconPath: iconSearch,
                         color: Color(AppColors.primary),
                       ),
                       onTap: () => Get.bottomSheet(
