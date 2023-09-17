@@ -210,8 +210,8 @@ class ViewDBDetails extends StatelessWidget {
               ],
             ),
           ),
-          SvgPicture.asset(
-            iconArrowGo,
+          const SvgIconHelper(
+            iconPath: iconArrowGo,
             color: Colors.black,
             width: 16.0,
             height: 16.0,
@@ -330,8 +330,8 @@ class ViewCircuitsDetails extends StatelessWidget {
               ),
               Visibility(
                 visible: !isComplete,
-                child: SvgPicture.asset(
-                  iconArrowGo,
+                child: SvgIconHelper(
+                  iconPath: iconArrowGo,
                   color: Colors.grey,
                   width: DEVICE_WIDTH * 0.014,
                   height: DEVICE_HEIGHT * 0.014,

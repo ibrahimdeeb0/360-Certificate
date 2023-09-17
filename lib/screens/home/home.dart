@@ -210,8 +210,8 @@ class HomeSearchBar extends StatelessWidget {
             hint: 'Search for certificate, customer',
             marginTop: 0.005,
             width: 0.8,
-            prefix: SvgPicture.asset(
-              iconSearch,
+            prefix: const SvgIconHelper(
+              iconPath: iconSearch,
               color: Colors.black,
             ),
             enabled: false,
@@ -239,8 +239,8 @@ class HomeSearchBar extends StatelessWidget {
                     const FilterCert(),
                     isScrollControlled: true,
                   ),
-                  icon: SvgPicture.asset(
-                    iconFilter,
+                  icon: const SvgIconHelper(
+                    iconPath: iconFilter,
                     color: Colors.black,
                   ),
                 ),

@@ -1,5 +1,3 @@
-import 'package:flutter_svg/svg.dart';
-
 import '../../../../../general_exports.dart';
 
 class DomesticEicPage3 extends StatelessWidget {
@@ -38,8 +36,8 @@ class DomesticEicPage3 extends StatelessWidget {
                               'TN-C No separate earth conductors,neutral used as earth throughout supply and installation. Not permitted for a low voltage public supply in theUK \n\nTN-S Separate earth conductor back to substation \n\nTN-C-S (Protective Multiple Earthing)Supply combines neutral and earth separate in the installation\n\nTT No earth provided by supplier;installation requires earth rod(common with overhead supply lines)\n\n IT Supply may be portable generator with no earth connection, installation supplies own earth rod. Not permitted for a low voltage public supply in the UK\n\nWhere the supply to an installation is at high voltage, protection against faults between the high voltage supply and earth shall be provided in accordance with Section 442',
                         );
                       },
-                      icon: SvgPicture.asset(
-                        iconAttention,
+                      icon: SvgIconHelper(
+                        iconPath: iconAttention,
                         width: DEVICE_WIDTH * 0.012,
                         height: DEVICE_HEIGHT * 0.02,
                         color: Color(AppColors.primary),
@@ -109,8 +107,8 @@ class DomesticEicPage3 extends StatelessWidget {
                               'A conductor or conductive part intended to be energized in normal use, including a neutral conductor but,by convention, not a PEN conductor',
                         );
                       },
-                      icon: SvgPicture.asset(
-                        iconAttention,
+                      icon: SvgIconHelper(
+                        iconPath: iconAttention,
                         width: DEVICE_WIDTH * 0.012,
                         height: DEVICE_HEIGHT * 0.02,
                         color: Color(AppColors.primary),

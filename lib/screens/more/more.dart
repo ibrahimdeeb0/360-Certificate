@@ -1,5 +1,3 @@
-import 'package:flutter_svg/svg.dart';
-
 import '../../general_exports.dart';
 
 class More extends StatelessWidget {
@@ -122,8 +120,8 @@ class MoreComponents extends StatelessWidget {
                 backgroundColor:
                     isLogout ? Color(AppColors.red).withOpacity(0.1) : null,
                 circuitSize: 0.12,
-                iconWidget: SvgPicture.asset(
-                  iconPath ?? iconCustomers,
+                iconWidget: SvgIconHelper(
+                  iconPath: iconPath ?? iconCustomers,
                   color: isLogout
                       ? Color(AppColors.red)
                       : Color(AppColors.primary),

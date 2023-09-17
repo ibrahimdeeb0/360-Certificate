@@ -5,4 +5,5 @@ export 'extension_helper.dart';
 export 'loading.dart';
 export 'log.dart';
 export 'messages.dart';
+export 'svg_icon_helper.dart';
 export 'ui_utils.dart';

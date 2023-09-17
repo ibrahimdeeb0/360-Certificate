@@ -1,5 +1,3 @@
-import 'package:flutter_svg/svg.dart';
-
 import '../../../../general_exports.dart';
 
 class CircuitDetailsContainer extends StatelessWidget {
@@ -112,8 +110,8 @@ class CircuitDetailsContainer extends StatelessWidget {
                   ),
                 ),
               ),
-              SvgPicture.asset(
-                iconArrowGo,
+              SvgIconHelper(
+                iconPath: iconArrowGo,
                 color: Colors.grey,
                 width: DEVICE_WIDTH * 0.014,
                 height: DEVICE_HEIGHT * 0.014,

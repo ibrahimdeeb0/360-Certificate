@@ -1,5 +1,3 @@
-import 'package:flutter_svg/svg.dart';
-
 import '../../general_exports.dart';
 
 class AppSearching extends StatelessWidget {
@@ -37,8 +35,8 @@ class AppSearching extends StatelessWidget {
                       marginTop: 0.02,
                       controller: controller.searchController,
                       onChanged: controller.onSearching,
-                      prefix: SvgPicture.asset(
-                        iconSearch,
+                      prefix: const SvgIconHelper(
+                        iconPath: iconSearch,
                         color: Colors.black,
                       ),
                       disabledBorder: OutlineInputBorder(
@@ -142,8 +140,8 @@ class SearchResultCard extends StatelessWidget {
             fontSize: fontTitle,
             fontColor: AppColors.primary,
             // fontWeight: FontWeight.bold,
-            leftChild: SvgPicture.asset(
-              iconPath ?? iconPerson,
+            leftChild: SvgIconHelper(
+              iconPath: iconPath ?? iconPerson,
               color: Color(AppColors.primary),
               height: 0.025.flexHeight,
               width: 0.025.flexWidth,

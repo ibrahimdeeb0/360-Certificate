@@ -1,7 +1,5 @@
 import 'dart:io';
 
-import 'package:flutter_svg/flutter_svg.dart';
-
 import '../../general_exports.dart';
 
 class HomeBottomBar extends StatelessWidget {
@@ -82,47 +80,35 @@ class HomeBottomBar extends StatelessWidget {
             child: BottomNavigationBar(
               items: <BottomNavigationBarItem>[
                 BottomNavigationBarItem(
-                  icon: SvgPicture.asset(
-                    iconHome,
-                    width: DEVICE_WIDTH * 0.06,
-                    height: DEVICE_HEIGHT * 0.03,
+                  icon: SvgIconHelper(
+                    iconPath: iconHome,
                     color: controller.selectedIndex == toHome
                         ? Color(AppColors.primary)
-                        : Colors.grey[600],
+                        : Colors.grey[600]!,
+                    height: DEVICE_HEIGHT * 0.03,
+                    width: DEVICE_WIDTH * 0.06,
                   ),
                   label: 'Home',
                 ),
-                // BottomNavigationBarItem(
-                //   // icon: Icon(Icons.business),
-                //   icon: SvgPicture.asset(
-                //     iconInvoice,
-                //     width: DEVICE_WIDTH * 0.05,
-                //     height: DEVICE_WIDTH * 0.05,
-                //     color: controller.selectedIndex == toInvoices
-                //         ? Color(AppColors.primary)
-                //         : Colors.grey[600],
-                //   ),
-                //   label: 'Invoices',
-                // ),
                 BottomNavigationBarItem(
-                  icon: SvgPicture.asset(
-                    iconCustomers,
-                    width: DEVICE_WIDTH * 0.06,
-                    height: DEVICE_HEIGHT * 0.03,
+                  icon: SvgIconHelper(
+                    iconPath: iconCustomers,
                     color: controller.selectedIndex == toCustomers
                         ? Color(AppColors.primary)
-                        : Colors.grey[600],
+                        : Colors.grey[600]!,
+                    height: DEVICE_HEIGHT * 0.03,
+                    width: DEVICE_WIDTH * 0.06,
                   ),
                   label: 'Customers',
                 ),
                 BottomNavigationBarItem(
-                  icon: SvgPicture.asset(
-                    iconMore,
-                    width: DEVICE_WIDTH * 0.06,
-                    height: DEVICE_HEIGHT * 0.03,
+                  icon: SvgIconHelper(
+                    iconPath: iconMore,
                     color: controller.selectedIndex == toMore
                         ? Color(AppColors.primary)
-                        : Colors.grey[600],
+                        : Colors.grey[600]!,
+                    height: DEVICE_HEIGHT * 0.03,
+                    width: DEVICE_WIDTH * 0.06,
                   ),
                   label: 'More',
                 ),

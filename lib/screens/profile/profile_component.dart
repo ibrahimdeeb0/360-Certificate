@@ -295,18 +295,18 @@ class ProfileComponent extends StatelessWidget {
                         touchEffect: TouchableEffect(
                           type: TouchTypes.opacity,
                         ),
-                        child: Row(
+                        child: const Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             CommonText(
                               'Change Password',
                               marginHorizontal: 0.025,
-                              leftChild: SvgPicture.asset(
-                                iconChangePassword,
+                              leftChild: SvgIconHelper(
+                                iconPath: iconChangePassword,
                                 color: Colors.black,
                               ),
                             ),
-                            const Icon(Icons.keyboard_arrow_right),
+                            Icon(Icons.keyboard_arrow_right),
                           ],
                         ),
                       ),

@@ -1,5 +1,3 @@
-import 'package:flutter_svg/svg.dart';
-
 import '../../general_exports.dart';
 
 class FormTemplate extends StatelessWidget {
@@ -122,8 +120,8 @@ class FormTemplateCard extends StatelessWidget {
               tempName ?? 'Form Template Name',
               marginLeft: 0.01,
               rowMainAxisSize: MainAxisSize.max,
-              leftChild: SvgPicture.asset(
-                iconFormTemplate,
+              leftChild: SvgIconHelper(
+                iconPath: iconFormTemplate,
                 height: DEVICE_HEIGHT * 0.03,
                 width: DEVICE_WIDTH * 0.03,
                 color: Color(AppColors.primary),
