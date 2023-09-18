@@ -104,13 +104,15 @@ class MoreController extends GetxController {
           },
         },
 
-        <String, dynamic>{
-          keyId: 26,
-          keyTitle: 'Landlord Gas Safety record for the Leisure Industry',
-          keyOnPress: () {
-            Get.toNamed(routeFormLeisureIndustry);
-          },
-        },
+        //! new form needed
+        // <String, dynamic>{
+        //   keyId: 26,
+        //   keyTitle: 'Landlord Gas Safety record for the Leisure Industry',
+        //   keyOnPress: () {
+        //     Get.toNamed(routeFormLeisureIndustry);
+        //   },
+        // },
+
         // <String, dynamic>{
         //   keyId: 0,
         //   keyTitle: 'Caravan Boat Gas Safety Inspection Record',

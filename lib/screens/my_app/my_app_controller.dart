@@ -49,7 +49,6 @@ class MyAppController extends GetxController {
     };
     consoleLog('cleared general form data successfully',
         key: 'clear_Cert_Form_Info');
-    update();
   }
 
   @override
