@@ -107,7 +107,6 @@ class LoginController extends GetxController {
       ).request(
         onSuccess: (dynamic data, dynamic response) {
           consoleLog(data, key: 'response_Login');
-          // myAppController.onUserAuthenticated(response[keyData]);
 
           if (data['user']['email_verified_at'] == null) {
             // email not verified
@@ -122,11 +121,11 @@ class LoginController extends GetxController {
           else if (data['isProfileComplete']) {
             myAppController.onUserAuthenticated(response[keyData]);
 
-            homeBottomBarController = Get.put(HomeBottomBarController());
-            homeController = Get.put(HomeController());
-            profileController = Get.put(ProfileController());
             myAppController = Get.put(MyAppController());
+            homeBottomBarController = Get.put(HomeBottomBarController());
+            profileController = Get.put(ProfileController());
             certificatesController = Get.put(CertificatesController());
+            homeController = Get.put(HomeController());
 
             Get.offAllNamed(routeHomeBottomBar);
           }
@@ -144,10 +143,17 @@ class LoginController extends GetxController {
             );
           }
         },
-        // onError: (dynamic error) {
-        //   consoleLog('Error : $error', key: 'login_error');
-        //   // dismissLoading();
-        // },
+        onError: (dynamic error) {
+          consoleLog('Error : $error', key: 'login_error');
+
+          if (error[keyData]['code'] == 403) {
+            Get.bottomSheet(
+              RestoreAccountBottomSheet(
+                restoreData: error[keyData],
+              ),
+            );
+          }
+        },
       );
     }
     update();
