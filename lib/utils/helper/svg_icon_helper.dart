@@ -6,9 +6,13 @@ class SvgIconHelper extends StatelessWidget {
     required this.iconPath,
     required this.color,
     this.height = 20,
-    Key? key,
     this.width = 15,
+<<<<<<< HEAD
     this.fit = BoxFit.contain, // Provide a default value here
+=======
+    this.fit = BoxFit.contain,
+    Key? key,
+>>>>>>> 5595e7301dfe7b1a07df675df5697c0c87270aff
   }) : super(key: key);
   final String iconPath;
   final double height;
@@ -35,7 +39,11 @@ class SvgIconNetworkHelper extends StatelessWidget {
     this.height = 20,
     Key? key,
     this.width = 15,
+<<<<<<< HEAD
     this.fit = BoxFit.contain, // Provide a default value here
+=======
+    this.fit = BoxFit.contain,
+>>>>>>> 5595e7301dfe7b1a07df675df5697c0c87270aff
   }) : super(key: key);
   final String iconPath;
   final double height;

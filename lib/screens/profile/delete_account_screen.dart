@@ -17,44 +17,29 @@ class DeleteAccountScreen extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: <Widget>[
+                  0.02.boxHeight,
                   CommonContainer(
+                    style: appContainerStyles.cardStyle,
                     backgroundColor: const Color(0xfffff3cd),
-                    width: 1,
-                    height: 0.15,
-                    paddingHorizontal: 0.04,
-                    paddingVertical: 0.01,
-                    marginTop: 0.02,
-                    borderWidth: 1,
-                    borderColor: const Color(0xffffeeba),
-                    borderRadius: 0.01,
                     child: CommonText(
                       'Warning!',
-                      style: appTextStyles.h1Style().copyWith(
-                            fontColor: const Color(0xff856404),
-                            rowMainAxisSize: MainAxisSize.max,
-                            textAlign: TextAlign.start,
-                          ),
-                      leftChild: Padding(
-                        padding: EdgeInsets.only(right: DEVICE_WIDTH * 0.025),
-                        child: SvgIconHelper(
-                          iconPath: iconAttention,
-                          color: const Color(0xff856404),
-                          width: DEVICE_WIDTH * 0.02,
-                          height: DEVICE_HEIGHT * 0.02,
-                        ),
+                      fontSize: fontH1,
+                      fontColor: const Color.fromARGB(255, 109, 83, 5),
+                      columnCrossAxisAlignment: CrossAxisAlignment.start,
+                      marginHorizontal: 0.02,
+                      leftChild: SvgIconHelper(
+                        iconPath: iconAttention,
+                        color: const Color.fromARGB(255, 109, 83, 5),
+                        width: DEVICE_WIDTH * 0.02,
+                        height: DEVICE_HEIGHT * 0.02,
                       ),
-                      bottomChild: CommonText(
+                      bottomChild: const CommonText(
                         'Warning, after a week of deleting your account, you will not be able to retrieve it and all data related to it will be deleted.',
-                        style: appTextStyles.h3Style().copyWith(
-                              fontColor: const Color(0xff856404),
-                              textAlign: TextAlign.start,
-                              rowMainAxisSize: MainAxisSize.max,
-                              rowCrossAxisAlignment: CrossAxisAlignment.start,
-                              columnCrossAxisAlignment:
-                                  CrossAxisAlignment.start,
-                            ),
+                        fontColor: Color.fromARGB(255, 109, 83, 5),
+                        textAlign: TextAlign.start,
                         containerStyle:
-                            const CommonContainerModel(marginTop: 0.015),
+                            CommonContainerModel(marginTop: 0.015, width: 0.9),
+                        bottomChild: SizedBox(),
                       ),
                     ),
                   ),
@@ -64,12 +49,6 @@ class DeleteAccountScreen extends StatelessWidget {
                     hint: 'Type Password here',
                     controller: controller.passwordController,
                   ),
-                  // CustomInput(
-                  //   marginTop: 0.03,
-                  //   title: 'Please Confirm Your Password',
-                  //   hint: 'Type Password here',
-                  //   controller: controller.passwordController,
-                  // ),
                   CommonInput(
                     marginTop: 0.015,
                     text: 'Why do you want to delete?',
@@ -77,20 +56,16 @@ class DeleteAccountScreen extends StatelessWidget {
                     controller: controller.descriptionController,
                     maxLines: 7,
                   ),
-                  // CustomInputDescription(
-                  //   marginTop: 0.015,
-                  //   title: 'Why do you want to delete?',
-                  //   hint: 'Type ...',
-                  //   controller: controller.descriptionController,
-                  // ),
                   SizedBox(
                     height: DEVICE_HEIGHT * 0.24,
                   ),
                   CommonButton(
                     onPress: () => controller.fieldsValidation(),
                     text: 'Delete',
-                    fontColor: AppColors.red,
-                    backgroundColor: Color(AppColors.red).withOpacity(0.1),
+                    fontColor: Colors.red[700],
+                    backgroundColor: Colors.red[100],
+                    overlayColor: Colors.grey[300],
+                    marginBottom: 0.02,
                   ),
                 ],
               ),

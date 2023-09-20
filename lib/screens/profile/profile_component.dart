@@ -284,6 +284,7 @@ class ProfileComponent extends StatelessWidget {
                     children: <Widget>[
                       //*---------Change Password------------------//
                       CommonContainer(
+                        marginBottom: 0.02,
                         onPress: () {
                           hideKeyboard();
                           Get.to(
@@ -295,10 +296,10 @@ class ProfileComponent extends StatelessWidget {
                         touchEffect: TouchableEffect(
                           type: TouchTypes.opacity,
                         ),
-                        child: const Row(
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                            CommonText(
+                            const CommonText(
                               'Change Password',
                               marginHorizontal: 0.025,
                               leftChild: SvgIconHelper(
@@ -306,44 +307,50 @@ class ProfileComponent extends StatelessWidget {
                                 color: Colors.black,
                               ),
                             ),
-                            Icon(Icons.keyboard_arrow_right),
+                            SvgIconHelper(
+                              iconPath: iconArrowGo,
+                              color: Color(AppColors.primary),
+                            ),
                           ],
                         ),
                       ),
 
+                      Divider(
+                        thickness: 3,
+                        color: Colors.grey[300],
+                      ),
+
                       //*---------Delete Account------------------//
-                      // CommonContainer(
-                      //   onPress: () {
-                      //     hideKeyboard();
-                      //     Get.to(
-                      //       () => const DeleteAccountScreen(),
-                      //       transition: Transition.fade,
-                      //     );
-                      //   },
-                      //   style: CommonContainerModel(
-                      //     marginTop: 0.02,
-                      //     touchEffect:
-                      //         TouchableEffect(type: TouchTypes.opacity),
-                      //   ),
-                      //   child: CustomTextRow(
-                      //     title: 'Delete Account',
-                      //     titleColor: AppColors.red,
-                      //     leftChild: SvgPicture.asset(
-                      //       iconDeleteAccount,
-                      //       width: DEVICE_WIDTH * 0.028,
-                      //       height: DEVICE_HEIGHT * 0.028,
-                      //       color: Color(AppColors.red),
-                      //     ),
-                      //     withRightChild: true,
-                      //     rightChild: SvgPicture.asset(
-                      //       iconArrowGo,
-                      //       color: Color(
-                      //         AppColors.primary,
-                      //       ),
-                      //     ),
-                      //     paddingBottom: 0.0,
-                      //   ),
-                      // ),
+                      CommonContainer(
+                        onPress: () {
+                          hideKeyboard();
+                          Get.to(
+                            () => const DeleteAccountScreen(),
+                            transition: Transition.fade,
+                          );
+                        },
+                        style: CommonContainerModel(
+                          marginTop: 0.02,
+                          touchEffect:
+                              TouchableEffect(type: TouchTypes.opacity),
+                        ),
+                        child: CustomTextRow(
+                          title: 'Delete Account',
+                          titleColor: AppColors.red,
+                          leftChild: SvgIconHelper(
+                            iconPath: iconDeleteAccount,
+                            color: Color(AppColors.red),
+                            width: DEVICE_WIDTH * 0.028,
+                            height: DEVICE_HEIGHT * 0.028,
+                          ),
+                          withRightChild: true,
+                          rightChild: SvgIconHelper(
+                            iconPath: iconArrowGo,
+                            color: Color(AppColors.primary),
+                          ),
+                          paddingBottom: 0.0,
+                        ),
+                      ),
 
                       CommonButton(
                         onPress: () => controller.onUpdateProfileData(),

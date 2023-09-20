@@ -27,6 +27,7 @@ class DeleteAccountController extends GetxController {
   }
 
   void startTimer() {
+    resetTimer();
     const Duration oneSec = Duration(seconds: 1);
     myTimer = Timer.periodic(
       oneSec,
@@ -43,14 +44,19 @@ class DeleteAccountController extends GetxController {
     update();
   }
 
+  void resetTimer() {
+    startTime = 5;
+    update();
+  }
+
   Future<void> onDeleteAccount() async {
     hideKeyboard();
-    startLoading();
     ApiRequest(
       method: ApiMethods.delete,
       path: keyDeleteAccount,
       className: 'DeleteAccountController/onDeleteAccount',
       requestFunction: onDeleteAccount,
+      withLoading: true,
       body: <String, dynamic>{
         'password': passwordController.text,
         'message': descriptionController.text,
@@ -58,10 +64,8 @@ class DeleteAccountController extends GetxController {
     ).request(
       onSuccess: (dynamic data, dynamic response) {
         myAppController.onSignOut();
-        update();
-        dismissLoading();
+        // update();
       },
-      // onError: (error) {},
     );
   }
 }
