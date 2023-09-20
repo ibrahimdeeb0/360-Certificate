@@ -8,13 +8,13 @@ class SvgIconHelper extends StatelessWidget {
     this.height = 20,
     Key? key,
     this.width = 15,
-    this.fit,
+    this.fit = BoxFit.contain, // Provide a default value here
   }) : super(key: key);
   final String iconPath;
   final double height;
   final double width;
   final Color color;
-  final BoxFit? fit;
+  final BoxFit fit;
 
   @override
   Widget build(BuildContext context) {
@@ -23,12 +23,10 @@ class SvgIconHelper extends StatelessWidget {
       colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
       height: height,
       width: width,
-      fit: fit!,
+      fit: fit,
     );
   }
 }
-
-
 
 class SvgIconNetworkHelper extends StatelessWidget {
   const SvgIconNetworkHelper({
@@ -37,13 +35,13 @@ class SvgIconNetworkHelper extends StatelessWidget {
     this.height = 20,
     Key? key,
     this.width = 15,
-    this.fit,
+    this.fit = BoxFit.contain, // Provide a default value here
   }) : super(key: key);
   final String iconPath;
   final double height;
   final double width;
   final Color color;
-  final BoxFit? fit;
+  final BoxFit fit;
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +50,7 @@ class SvgIconNetworkHelper extends StatelessWidget {
       colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
       height: height,
       width: width,
-      fit: fit!,
+      fit: fit,
     );
   }
 }
