@@ -149,6 +149,13 @@ class MySettings extends StatelessWidget {
                                 onPressItem: () =>
                                     Get.to(() => const UpdateLicenseNumbers()),
                               ),
+                              ItemCard(
+                                isRequired: true,
+                                title: 'Certificates Validate',
+                                marginTop: 0.02,
+                                onPressItem: () =>
+                                    Get.to(() => const CretificatesValidate()),
+                              ),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,

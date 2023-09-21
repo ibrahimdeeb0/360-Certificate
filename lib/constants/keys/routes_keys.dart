@@ -46,3 +46,4 @@ const String routeSearchForCustomer = '/search_for_customer';
 const String routeOpenWebView = '/open_web_view';
 const String routeSubscription = '/subscription';
 const String routeUpdateCertNumber = '/update_cert_number';
+const String routeCretificatesValidate = '/cretificates|_validate';

@@ -49,6 +49,7 @@ void openDialog({
 Future<dynamic> formsDialog({
   String? title,
   String? description,
+  double? fontSizeDes,
 }) {
   return Get.defaultDialog(
     title: title ?? 'title',
@@ -57,6 +58,7 @@ Future<dynamic> formsDialog({
       style: appTextStyles.h4StyleBlack(),
       marginTop: 0.01,
       marginBottom: 0.01,
+      fontSize: fontSizeDes ?? fontH4,
     ),
     // onConfirm: Get.back,
     confirm: CommonButton(

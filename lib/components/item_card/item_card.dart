@@ -11,6 +11,7 @@ class ItemCard extends StatelessWidget {
     this.marginHorizontal,
     this.isRequired = false,
     this.marginBottom = 0.02,
+    this.marginTop,
   }) : super(key: key);
 
   final String? title;
@@ -20,6 +21,8 @@ class ItemCard extends StatelessWidget {
   // letter Spacing for Sub title
   final double? letterSpacing;
   final double? marginHorizontal;
+  final double? marginTop;
+
   final bool isRequired;
   final double? marginBottom;
 
@@ -30,6 +33,7 @@ class ItemCard extends StatelessWidget {
       width: 1,
       marginBottom: marginBottom,
       marginHorizontal: marginHorizontal ?? 0.0,
+      marginTop: marginTop ?? 0.0,
       borderBottomWidth: 2,
       borderBottomColor: AppColors.greyLight,
       paddingTop: 0.0,

@@ -8,7 +8,7 @@ class More extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: GetBuilder<MoreController>(
-        init: MoreController(),
+        init: moreController,
         builder: (MoreController controller) {
           return CommonContainer(
             style: const CommonContainerModel(

@@ -180,4 +180,9 @@ List<GetPage<dynamic>> appRoutes = <GetPage<dynamic>>[
     name: routeFormElectricalIsolation,
     page: () => const ElectricalIsolation(),
   ),
+
+  GetPage<CretificatesValidate>(
+    name: routeCretificatesValidate,
+    page: () => const CretificatesValidate(),
+  ),
 ];

@@ -7,7 +7,7 @@ class SvgIconHelper extends StatelessWidget {
     required this.color,
     this.height = 20,
     this.width = 15,
-    this.fit = BoxFit.contain, // Provide a default value here
+    this.fit = BoxFit.contain, 
     Key? key,
   }) : super(key: key);
   final String iconPath;
