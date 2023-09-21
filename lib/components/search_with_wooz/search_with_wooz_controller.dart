@@ -101,7 +101,7 @@ class SearchWithWoozController extends GetxController {
       lastDateTime = DateTime.now();
       // startLoading();
       Future<dynamic>.delayed(
-        const Duration(seconds: 2),
+        const Duration(milliseconds: 1600),
         () {
           if (DateTime.now().difference(lastDateTime!) >=
                   const Duration(seconds: 1) &&
@@ -246,7 +246,8 @@ class SearchWithWoozController extends GetxController {
     data['result']['address_components'].forEach((dynamic item) =>
         addressDetails![item['types'][0]] = item['long_name']);
 
-    consoleLogPretty(addressDetails, key: 'json_Details');
+    // consoleLogPretty(addressDetails, key: 'json_Details');
+    consoleLogPretty(data, key: 'more_Details_data');
     update();
 
     final String addressLat =
