@@ -53,9 +53,6 @@ class LeisureIndustryController extends GetxController {
       ];
 
   Map<String, dynamic> formData = <String, dynamic>{
-    formKeyPart1: <String, dynamic>{
-      formKeyDetailsOfWorkP1: '',
-    },
     formKeyPart2: <String, dynamic>{
       formKeyPipeworkVisualP2: 'N/A',
       formKeyPipeworkOutcomeSupplyP2: 'N/A',
