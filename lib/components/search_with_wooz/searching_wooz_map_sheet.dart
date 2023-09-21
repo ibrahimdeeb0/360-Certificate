@@ -37,7 +37,7 @@ class SearchSelectedAddress extends StatelessWidget {
                   child: controller.listAddress == null
                       ? const Center(
                           child: CommonText(
-                            'Please Type in box for searching...',
+                            'Please Type in box for searching..',
                             marginTop: 0.1,
                           ),
                         )

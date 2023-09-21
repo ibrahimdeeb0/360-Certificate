@@ -1,9 +1,23 @@
 import 'dart:async';
 
+import 'package:flutter/services.dart';
+
 import '../../general_exports.dart';
 
 class SplashController extends GetxController {
   bool showForceUpdate = false;
+
+  @override
+  void onInit() {
+    SystemChrome.setPreferredOrientations(<DeviceOrientation>[
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+    super.onInit();
+
+    update();
+  }
+
   @override
   Future<void> onReady() async {
     super.onReady();
@@ -14,7 +28,7 @@ class SplashController extends GetxController {
         consoleLog(myAppController.userData, key: 'inSplash');
 
         if (showForceUpdate) {
-                // * this is the dialog to till user we have important update.
+          // * this is the dialog to till user we have important update.
           openSimpleDialog(
             title: 'Update Available',
             btnText: 'Update Now',

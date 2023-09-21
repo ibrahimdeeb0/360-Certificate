@@ -43,6 +43,8 @@ class PickPhotoBottomSheet extends StatelessWidget {
                     final PermissionStatus status =
                         await Permission.camera.request();
 
+                    consoleLog(status, key: 'status');
+
                     if (status.isDenied ||
                         status.isRestricted ||
                         status.isPermanentlyDenied) {
@@ -86,6 +88,8 @@ class PickPhotoBottomSheet extends StatelessWidget {
                           ? await Permission.storage.request()
                           : await Permission.photos.request();
                     }
+
+                    consoleLog(status, key: 'status');
 
                     if (status.isDenied ||
                         status.isRestricted ||

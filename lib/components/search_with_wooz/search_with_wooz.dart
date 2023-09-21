@@ -10,6 +10,7 @@ class SearchWithWooz extends StatelessWidget {
     this.isLess = false,
     this.showJustOneSite = false,
     this.isIndividualSite = true,
+    this.isJustDetails = false,
     super.key,
   });
 
@@ -21,6 +22,7 @@ class SearchWithWooz extends StatelessWidget {
   final bool isLess;
   final bool showJustOneSite;
   final bool isIndividualSite;
+  final bool isJustDetails;
 
   @override
   Widget build(BuildContext context) {
@@ -33,25 +35,27 @@ class SearchWithWooz extends StatelessWidget {
           child: isIndividualSite
               ? Column(
                   children: <Widget>[
-                    CommonInput(
-                      hint: 'Type The Postcode Of The Property',
-                      prefix: SvgIconHelper(
-                        iconPath: iconSearch,
-                        color: Color(AppColors.primary),
+                    if (!isJustDetails)
+                      CommonInput(
+                        hint: 'Type The Postcode Of The Property',
+                        prefix: SvgIconHelper(
+                          iconPath: iconSearch,
+                          color: Color(AppColors.primary),
+                        ),
+                        // marginBottom: 0.02,
+                        controller: controller.addressController,
+                        enabled: false,
+                        onTap: () {
+                          Get.bottomSheet(
+                            SearchSelectedAddress(
+                              searchWithWoozController:
+                                  searchWithWoozController,
+                            ),
+                            isScrollControlled: true,
+                          );
+                        },
+                        focusNode: focusNode,
                       ),
-                      // marginBottom: 0.02,
-                      controller: controller.addressController,
-                      enabled: false,
-                      onTap: () {
-                        Get.bottomSheet(
-                          SearchSelectedAddress(
-                            searchWithWoozController: searchWithWoozController,
-                          ),
-                          isScrollControlled: true,
-                        );
-                      },
-                      focusNode: focusNode,
-                    ),
                     if (isExpandable ?? controller.isExpandedDetails)
                       CommonContainer(
                         borderTopWidth: 2,

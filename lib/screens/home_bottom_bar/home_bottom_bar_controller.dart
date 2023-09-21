@@ -1,3 +1,5 @@
+import 'package:flutter/services.dart';
+
 import '../../general_exports.dart';
 
 class HomeBottomBarController extends GetxController {
@@ -13,13 +15,16 @@ class HomeBottomBarController extends GetxController {
     }
   }
 
-  // @override
-  // void onInit() {
-  //   //  implement onInit
-  //   super.onInit();
-  //   selectedIndex = 0;
-  //   update();
-  // }
+  @override
+  void onInit() {
+    SystemChrome.setPreferredOrientations(<DeviceOrientation>[
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+    super.onInit();
+
+    update();
+  }
   // @override
   // void onReady() {
   //   //  implement onReady

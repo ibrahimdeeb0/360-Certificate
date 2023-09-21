@@ -64,23 +64,122 @@ class CreateCustomerIndividualStep2 extends StatelessWidget {
                       controller.update();
                       consoleLog(controller.isSiteAddSameInfo);
                     },
-                    activeColor: Color(AppColors.primary),
+                    activeColor: Colors.green,
                   ),
                 ],
               ),
               0.02.boxHeight,
 
               // if No
-              if (!controller.isSiteAddSameInfo)
-                CommonContainer(
+              // if (!controller.isSiteAddSameInfo)
+              CommonContainer(
                   style: appContainerStyles.cardStyle,
                   paddingBottom: 0,
-                  child: SearchWithWooz(
-                    searchWithWoozController: controller.customerSiteAddress,
-                    isLess: controller.isShowLess,
-                    pressSeeLess: controller.toggleShowLess,
+                  child: AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 300),
+                    transitionBuilder:
+                        (Widget child, Animation<double> animation) {
+                      // return ScaleTransition(scale: animation, child: child);
+                      return FadeTransition(
+                        opacity: animation,
+                        child: child,
+                      );
+                    },
+                    child: controller.isSiteAddSameInfo
+                        ? CommonContainer(
+                            child: Column(
+                              children: <Widget>[
+                                CommonInput(
+                                  topLabelText: 'Street No  & Name',
+                                  value: controller.companyIfoAddress
+                                      .listAddressData[0].street,
+                                  enabled: false,
+                                ),
+                                CommonInput(
+                                  topLabelText: 'City',
+                                  value: controller.companyIfoAddress
+                                      .listAddressData[0].city,
+                                  enabled: false,
+                                ),
+                                CommonInput(
+                                  topLabelText: 'State/Province',
+                                  value: controller.companyIfoAddress
+                                      .listAddressData[0].state,
+                                  enabled: false,
+                                ),
+                                CommonInput(
+                                  topLabelText: 'Postcode',
+                                  value: controller.companyIfoAddress
+                                      .listAddressData[0].postcode,
+                                  enabled: false,
+                                ),
+                                CommonInput(
+                                  topLabelText: 'Country',
+                                  value: controller.companyIfoAddress
+                                      .listAddressData[0].country,
+                                  enabled: false,
+                                ),
+                              ],
+                            ),
+                          )
+                        : SearchWithWooz(
+                            searchWithWoozController:
+                                controller.customerSiteAddress,
+                            isLess: controller.isShowLess,
+                            pressSeeLess: controller.toggleShowLess,
+                          ),
+                  )
+
+                  /*  controller.isSiteAddSameInfo
+                    ? CommonContainer(
+                        borderTopWidth: 2,
+                        borderTopColor: Colors.grey[400],
+                        paddingVertical: 0.01,
+                        marginTop: 0.015,
+                        child: Column(
+                          children: <Widget>[
+                            CommonInput(
+                              topLabelText: 'Street No  & Name',
+                              value: controller
+                                  .companyIfoAddress.listAddressData[0].street,
+                              enabled: false,
+                            ),
+                            CommonInput(
+                              topLabelText: 'City',
+                              value: controller
+                                  .companyIfoAddress.listAddressData[0].city,
+                              enabled: false,
+                            ),
+                            CommonInput(
+                              topLabelText: 'State/Province',
+                              value: controller
+                                  .companyIfoAddress.listAddressData[0].state,
+                              enabled: false,
+                            ),
+                            CommonInput(
+                              topLabelText: 'Postcode',
+                              value: controller.companyIfoAddress
+                                  .listAddressData[0].postcode,
+                              enabled: false,
+                            ),
+                            CommonInput(
+                              topLabelText: 'Country',
+                              value: controller
+                                  .companyIfoAddress.listAddressData[0].country,
+                              enabled: false,
+                            ),
+                          ],
+                        ),
+                      )
+                    : SearchWithWooz(
+                        searchWithWoozController:
+                            controller.customerSiteAddress,
+                        isLess: controller.isShowLess,
+                        pressSeeLess: controller.toggleShowLess,
+                      ), */
                   ),
-                ),
+
+              //
               CommonContainer(
                 style: appContainerStyles.cardStyle,
                 child: Column(
@@ -139,7 +238,7 @@ class CreateCustomerIndividualStep2 extends StatelessWidget {
                           onChanged: (bool value) {
                             controller.toggleSameSiteDetails(value: value);
                           },
-                          activeColor: Color(AppColors.primary),
+                          activeColor: Colors.green,
                         ),
                       ],
                     ),
