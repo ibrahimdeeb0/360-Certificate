@@ -20,12 +20,13 @@ class CretificatesValidateController extends GetxController {
           keyTitle: 'Warning Notice',
           keyOnPress: () {
             Get.bottomSheet(
-              CretificatesValidateBTSheet(
-                listTitles: const <String>[],
-                controller: MinorWorksController(),
-                keyOfValue: formKeyOvercurrentBSEN,
-                keyOfBSType: formKeyOvercurrentType,
-              ),
+              const SelectValidateBTSheet(),
+              //   CretificatesValidateBTSheet(
+              //     listTitles: const <String>[],
+              //     controller: MinorWorksController(),
+              //     keyOfValue: formKeyOvercurrentBSEN,
+              //     keyOfBSType: formKeyOvercurrentType,
+              //   ),
               isScrollControlled: true,
             );
           },
@@ -36,12 +37,7 @@ class CretificatesValidateController extends GetxController {
           keyTitle: 'Breakdown Service',
           keyOnPress: () {
             Get.bottomSheet(
-              CretificatesValidateBTSheet(
-                listTitles: const <String>[],
-                controller: MinorWorksController(),
-                keyOfValue: formKeyOvercurrentBSEN,
-                keyOfBSType: formKeyOvercurrentType,
-              ),
+              const SelectValidateBTSheet(),
               isScrollControlled: true,
             );
           },
@@ -52,12 +48,7 @@ class CretificatesValidateController extends GetxController {
           keyTitle: 'Maintenance Service',
           keyOnPress: () {
             Get.bottomSheet(
-              CretificatesValidateBTSheet(
-                listTitles: const <String>[],
-                controller: MinorWorksController(),
-                keyOfValue: formKeyOvercurrentBSEN,
-                keyOfBSType: formKeyOvercurrentType,
-              ),
+              const SelectValidateBTSheet(),
               isScrollControlled: true,
             );
           },
@@ -68,12 +59,7 @@ class CretificatesValidateController extends GetxController {
           keyTitle: 'Gas Test & Purge',
           keyOnPress: () {
             Get.bottomSheet(
-              CretificatesValidateBTSheet(
-                listTitles: const <String>[],
-                controller: MinorWorksController(),
-                keyOfValue: formKeyOvercurrentBSEN,
-                keyOfBSType: formKeyOvercurrentType,
-              ),
+              const SelectValidateBTSheet(),
               isScrollControlled: true,
             );
           },
@@ -84,12 +70,7 @@ class CretificatesValidateController extends GetxController {
           keyTitle: 'Portable Appliance Testing (PAT)',
           keyOnPress: () {
             Get.bottomSheet(
-              CretificatesValidateBTSheet(
-                listTitles: const <String>[],
-                controller: MinorWorksController(),
-                keyOfValue: formKeyOvercurrentBSEN,
-                keyOfBSType: formKeyOvercurrentType,
-              ),
+              const SelectValidateBTSheet(),
               isScrollControlled: true,
             );
           },
@@ -100,12 +81,7 @@ class CretificatesValidateController extends GetxController {
           keyTitle: 'Domestic Electrical Installation Certificate',
           keyOnPress: () {
             Get.bottomSheet(
-              CretificatesValidateBTSheet(
-                listTitles: const <String>[],
-                controller: MinorWorksController(),
-                keyOfValue: formKeyOvercurrentBSEN,
-                keyOfBSType: formKeyOvercurrentType,
-              ),
+              const SelectValidateBTSheet(),
               isScrollControlled: true,
             );
           },
@@ -116,12 +92,7 @@ class CretificatesValidateController extends GetxController {
           keyTitle: 'Electrical Danger Notice',
           keyOnPress: () {
             Get.bottomSheet(
-              CretificatesValidateBTSheet(
-                listTitles: const <String>[],
-                controller: MinorWorksController(),
-                keyOfValue: formKeyOvercurrentBSEN,
-                keyOfBSType: formKeyOvercurrentType,
-              ),
+              const SelectValidateBTSheet(),
               isScrollControlled: true,
             );
           },
@@ -132,12 +103,7 @@ class CretificatesValidateController extends GetxController {
           keyTitle: 'EICR',
           keyOnPress: () {
             Get.bottomSheet(
-              CretificatesValidateBTSheet(
-                listTitles: list.eicr,
-                controller: MinorWorksController(),
-                keyOfValue: formKeyOvercurrentBSEN,
-                keyOfBSType: formKeyOvercurrentType,
-              ),
+              const SelectValidateBTSheet(),
               isScrollControlled: true,
             );
           },
@@ -148,12 +114,7 @@ class CretificatesValidateController extends GetxController {
           keyTitle: 'Minor Works',
           keyOnPress: () {
             Get.bottomSheet(
-              CretificatesValidateBTSheet(
-                listTitles: const <String>[],
-                controller: MinorWorksController(),
-                keyOfValue: formKeyOvercurrentBSEN,
-                keyOfBSType: formKeyOvercurrentType,
-              ),
+              const SelectValidateBTSheet(),
               isScrollControlled: true,
             );
           },
@@ -164,17 +125,16 @@ class CretificatesValidateController extends GetxController {
           keyTitle: 'Electrical Isolation',
           keyOnPress: () {
             Get.bottomSheet(
-              CretificatesValidateBTSheet(
-                listTitles: const <String>[],
-                controller: MinorWorksController(),
-                keyOfValue: formKeyOvercurrentBSEN,
-                keyOfBSType: formKeyOvercurrentType,
-              ),
+              const SelectValidateBTSheet(),
               isScrollControlled: true,
             );
           },
         },
       ];
+
+  List<dynamic> allYear = <dynamic>[];
+  List<String> selectedYear = <String>[];
+  List<String> selectedTempYears = <String>[];
 
   List<Map<String, dynamic>> filtterForm = <Map<String, dynamic>>[];
   TextEditingController seachController = TextEditingController();
@@ -189,10 +149,71 @@ class CretificatesValidateController extends GetxController {
     update();
   }
 
+  void onSelectTempYears(String item) {
+    if (selectedTempYears.isEmpty) {
+      selectedTempYears.add(item);
+    } else {
+      if (selectedTempYears
+          .where((String element) => element == item)
+          .isNotEmpty) {
+        selectedTempYears.removeWhere((String element) => element == item);
+      }
+    }
+    update();
+  }
+
+  void onSelectYear() {
+    hideKeyboard();
+    selectedYear = <String>[];
+    selectedYear = selectedTempYears;
+    update();
+    if (Get.isBottomSheetOpen!) {
+      Get.back();
+    }
+  }
+
+  Future<void> getAllYears(int id) async {
+    hideKeyboard();
+    ApiRequest(
+      path: '/certificates/get-years/form/$id',
+      className: 'CretificatesValidateController/allYear',
+      requestFunction: getAllYears,
+      formatResponse: true,
+    ).request(
+      onSuccess: (dynamic data, dynamic response) {
+        allYear = data;
+        update();
+      },
+    );
+    update();
+  }
+
+  void onCreatValidYear() {
+    hideKeyboard();
+    ApiRequest(
+      className: 'CretificatesValidateController/allYear',
+      requestFunction: onCreatValidYear,
+      formatResponse: true,
+      method: ApiMethods.post,
+      path: '/certificates/form-valid/create',
+      body: <dynamic, dynamic>{
+        // 'form_id':
+        // 'years':
+      },
+      withLoading: true,
+    ).request(
+      onSuccess: (dynamic data, dynamic response) {},
+    );
+  }
+
   @override
   void onReady() {
     filtterForm = forms;
     update();
+    const int id = 123;
+    getAllYears(id);
+    update();
+
     super.onReady();
   }
 }

@@ -1,0 +1,15 @@
+
+
+{
+    "status": true,
+    "message": "success array",
+    "data": {
+        "valid_years" :  [
+            "1",
+            "3",
+            "5"
+          ]
+}
+    
+   
+  }
