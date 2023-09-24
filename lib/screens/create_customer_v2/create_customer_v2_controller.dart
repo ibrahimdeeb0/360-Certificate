@@ -21,7 +21,7 @@ class CreateCustomerV2Controller extends GetxController {
   TextEditingController siteDetailsNameController = TextEditingController();
   TextEditingController siteDetailsPhoneController = TextEditingController();
   TextEditingController siteDetailsEmailController = TextEditingController();
-  bool isSiteAddSameInfo = true;
+  bool isSiteAddSameInfo = false;
   bool isAnotherSiteInfo = false;
   //
   CustomerContactType? customerContactType;

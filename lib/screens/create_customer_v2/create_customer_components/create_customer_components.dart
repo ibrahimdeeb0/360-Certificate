@@ -234,7 +234,7 @@ class AttentionMessage extends StatelessWidget {
                 color: Colors.orange[600],
               ),
               SizedBox(
-                width: 0.775.flexWidth,
+                width: 0.77.flexWidth,
                 child: CommonText(
                   message ?? '',
                   marginLeft: 0.015,
