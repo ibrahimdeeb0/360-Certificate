@@ -52,19 +52,33 @@ class CreateCustomerIndividualStep2 extends StatelessWidget {
                     'Is the site address the same the customer details?',
                     textAlign: TextAlign.start,
                     fontColor: Colors.grey[700],
-                    containerStyle: const CommonContainerModel(width: 0.7),
+                    containerStyle: const CommonContainerModel(width: 0.64),
                     bottomChild: const SizedBox(),
                   ),
-                  Switch(
-                    value: controller.isSiteAddSameInfo,
-                    onChanged: (bool value) {
-                      // controller.isSiteAddSameInfo = value;
-                      //     consoleLog(value);
-                      controller.isSiteAddSameInfo = value;
-                      controller.update();
-                      consoleLog(controller.isSiteAddSameInfo);
-                    },
-                    activeColor: Colors.green,
+                  Row(
+                    children: <Widget>[
+                      if (!controller.isSiteAddSameInfo)
+                        CommonText(
+                          'No',
+                          fontColor: Colors.grey[700],
+                          fontWeight: FontWeight.bold,
+                        ),
+                      Switch(
+                        value: controller.isSiteAddSameInfo,
+                        onChanged: (bool value) {
+                          controller.isSiteAddSameInfo = value;
+                          controller.update();
+                          consoleLog(controller.isSiteAddSameInfo);
+                        },
+                        activeColor: Colors.green,
+                      ),
+                      if (controller.isSiteAddSameInfo)
+                        CommonText(
+                          'Yes',
+                          fontColor: Colors.green[700],
+                          fontWeight: FontWeight.bold,
+                        ),
+                    ],
                   ),
                 ],
               ),
@@ -230,15 +244,31 @@ class CreateCustomerIndividualStep2 extends StatelessWidget {
                           textAlign: TextAlign.start,
                           fontColor: Colors.grey[700],
                           containerStyle:
-                              const CommonContainerModel(width: 0.7),
+                              const CommonContainerModel(width: 0.64),
                           bottomChild: const SizedBox(),
                         ),
-                        Switch(
-                          value: controller.isAnotherSiteInfo,
-                          onChanged: (bool value) {
-                            controller.toggleSameSiteDetails(value: value);
-                          },
-                          activeColor: Colors.green,
+                        Row(
+                          children: <Widget>[
+                            if (!controller.isAnotherSiteInfo)
+                              CommonText(
+                                'No',
+                                fontColor: Colors.grey[700],
+                                fontWeight: FontWeight.bold,
+                              ),
+                            Switch(
+                              value: controller.isAnotherSiteInfo,
+                              onChanged: (bool value) {
+                                controller.toggleSameSiteDetails(value: value);
+                              },
+                              activeColor: Colors.green,
+                            ),
+                            if (controller.isAnotherSiteInfo)
+                              CommonText(
+                                'Yes',
+                                fontColor: Colors.green[700],
+                                fontWeight: FontWeight.bold,
+                              ),
+                          ],
                         ),
                       ],
                     ),

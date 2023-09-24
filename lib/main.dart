@@ -5,21 +5,20 @@ import 'package:get_storage/get_storage.dart';
 import 'general_exports.dart';
 
 // Add this function
-// Future<void> _ensureScreenSize(dynamic window) async {
-//   return window.viewConfiguration.geometry.isEmpty
-//       ? Future<void>.delayed(
-//           const Duration(milliseconds: 10),
-//           () => _ensureScreenSize(window),
-//         )
-//       : Future<void>.value();
-// }
+Future<void> _ensureScreenSize(dynamic window) async {
+  return window.physicalGeometry.isEmpty
+      ? Future<void>.delayed(
+          const Duration(milliseconds: 10),
+          () => _ensureScreenSize(window),
+        )
+      : Future<void>.value();
+}
 
 Future<void> main() async {
-  // final SingletonFlutterWindow window =
-  //     WidgetsFlutterBinding.ensureInitialized().window;
-  // await _ensureScreenSize(window);
-
   WidgetsFlutterBinding.ensureInitialized();
+  final FlutterView window =
+      WidgetsBinding.instance.platformDispatcher.views.single;
+  await _ensureScreenSize(window);
 
   GestureBinding.instance.resamplingEnabled = true;
 

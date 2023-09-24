@@ -25,13 +25,14 @@ class CreateCustomerIndividualStep extends StatelessWidget {
               duration: const Duration(milliseconds: 300),
               width: 1.flexWidth,
               height: controller.customerType == CustomerType.individual
-                  ? 0.12.flexHeight
+                  ? 0.13.flexHeight
                   : 0.0.flexHeight,
               // color: Colors.blueGrey,
               onEnd: controller.onEndExpanded,
               child: controller.customerType == CustomerType.individual
                   ? controller.showIndividualInputs
                       ? CommonInput(
+                          // height: 0.06,
                           // topLabelText: 'Name',
                           topLabel: const TopLabelText(
                             text: 'Full Name',
