@@ -420,20 +420,19 @@ class CompleteProfileController extends GetxController {
 
   // electricBoardId
   void onSelectElectricBoard(Map<String, dynamic> item) {
-    if (selectedElectricBoard
-        .where((Map<String, dynamic> element) => element[keyId] == item[keyId])
-        .isNotEmpty) {
-      selectedElectricBoard.remove(item);
-    } else {
+    final String itemId = item[keyId].toString();
+
+    if (selectedElectricBoard.isEmpty ||
+        selectedElectricBoard[0][keyId] != itemId) {
+      selectedElectricBoard.clear();
       selectedElectricBoard.add(item);
+
+      electricBoardId = <int>[int.parse(itemId)];
+    } else {
+      selectedElectricBoard.clear();
+      electricBoardId.clear();
     }
 
-    electricBoardId = <int>[];
-    if (selectedElectricBoard.isNotEmpty) {
-      for (Map<String, dynamic> prop in selectedElectricBoard) {
-        electricBoardId.add(prop[keyId]);
-      }
-    }
     consoleLog(electricBoardId, key: 'electricBoardId');
 
     update();

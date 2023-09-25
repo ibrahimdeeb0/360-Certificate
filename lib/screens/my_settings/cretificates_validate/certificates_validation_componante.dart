@@ -85,164 +85,58 @@ class ChildeItemsValidate extends StatelessWidget {
   }
 }
 
-// class CretificatesValidateBTSheet extends StatefulWidget {
-//   const CretificatesValidateBTSheet(
-//       {required this.listTitles,
-//       required this.keyOfValue,
-//       required this.controller,
-//       super.key,
-//       this.keyOfBSType});
-//   final List<String> listTitles;
-//   final String keyOfValue;
-//   final String? keyOfBSType;
-//   final MinorWorksController controller;
-
-//   @override
-//   State<CretificatesValidateBTSheet> createState() =>
-//       _CretificatesValidateBTSheetState();
-// }
-
-// class _CretificatesValidateBTSheetState
-//     extends State<CretificatesValidateBTSheet> {
-//   TextEditingController textEditingController = TextEditingController();
-//   List<String>? filterValues;
-
-//   @override
-//   // ignore: always_declare_return_types
-//   initState() {
-//     setState(() {
-//       filterValues = widget.listTitles;
-//     });
-
-//     super.initState();
-//   }
-
-//   void onSearchForCustomer(String searchValue) {
-//     filterValues = widget.listTitles
-//         .where((String item) =>
-//             item.toLowerCase().contains(searchValue.toLowerCase()))
-//         .toList();
-
-//     consoleLog(filterValues);
-
-//     setState(() {});
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     final ListMinorWorks lists = ListMinorWorks();
-//     return BottomSheetContainer(
-//       // title: 'Select',
-//       responsiveContent: true,
-//       child: RawScrollbar(
-//         thumbColor: Colors.grey[400],
-//         crossAxisMargin: 2.0,
-//         radius: const Radius.circular(20),
-//         thickness: 4,
-//         child: SingleChildScrollView(
-//           child: Column(
-//             crossAxisAlignment: CrossAxisAlignment.start,
-//             children: <Widget>[
-//               0.015.boxHeight,
-//               const CommonText(
-//                 'Select the expiry period of the certificate',
-//                 textAlign: TextAlign.start,
-//                 fontSize: fontH2,
-//               ),
-//               0.015.boxHeight,
-//               CommonInput(
-//                 hint: 'Type here to search',
-//                 onChanged: onSearchForCustomer,
-//                 controller: textEditingController,
-//               ),
-//               if (filterValues != null)
-//                 if (filterValues!.isNotEmpty)
-//                   ...filterValues!
-//                       .map(
-//                         (String title) => ListOfStrings(
-//                           onPress: title == 'Other'
-//                               ? () => Get.bottomSheet(
-//                                     MinorWorksSelectBTOtherBT(
-//                                       controller: widget.controller,
-//                                       keyOfValue: widget.keyOfValue,
-//                                     ),
-//                                     isScrollControlled: true,
-//                                   )
-//                               : () {
-//                                   bool areListsEqual(
-//                                       List<String> list1, List<String> list2) {
-//                                     return Set<dynamic>.from(list1)
-//                                             .containsAll(list2) &&
-//                                         Set<dynamic>.from(list2)
-//                                             .containsAll(list1);
-//                                   }
-
-//                                   if (areListsEqual(
-//                                       widget.listTitles, lists.listBS)) {
-//                                     final int index =
-//                                         widget.listTitles.indexOf(title);
-//                                     widget.controller
-//                                         .formData[widget.keyOfValue] = title;
-//                                     widget.controller
-//                                             .formData[widget.keyOfBSType!] =
-//                                         lists.listBSType[index];
-//                                     widget.controller.update();
-//                                   } else if (widget.controller.formData
-//                                       .containsKey(widget.keyOfValue)) {
-//                                     widget.controller
-//                                         .formData[widget.keyOfValue] = title;
-//                                     widget.controller.update();
-//                                   }
-//                                   hideKeyboard();
-//                                   Get.back();
-//                                 },
-//                           name: title,
-//                         ),
-//                       )
-//                       .toList()
-//                 else
-//                   const CommonText(
-//                     'There are no results',
-//                     marginVertical: 0.06,
-//                   ),
-//               const CommonButton(
-//                 text: 'Select',
-//               ),
-//               0.03.boxHeight,
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
-
 class SelectValidateBTSheet extends StatelessWidget {
-  const SelectValidateBTSheet({super.key});
+  const SelectValidateBTSheet({
+    required this.data,
+    super.key,
+  });
+
+  final Map<String, dynamic> data;
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<CretificatesValidateController>(
       init: CretificatesValidateController(),
       builder: (CretificatesValidateController controller) {
+        // reset value when open bottom sheet
+        // controller.selectedYear = null;
+
         return BottomSheetContainer(
-          title: 'Select the expiry period of the certificate',
+          // title: 'Select the expiry period of the certificate',
           responsiveContent: true,
           child: SingleChildScrollView(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                ...controller.allYear.map(
+                const CommonText(
+                  'Select the expiry period of the certificate',
+                  marginVertical: 0.01,
+                  fontSize: fontH2,
+                ),
+                ...data['valid'].map(
                   (dynamic item) => CustomRadioSelection(
-                    title: item,
-                    onPress: () => controller.onSelectTempYears(item),
-                    isSelected: controller.selectedTempYears
-                        .where((String element) => element == item)
-                        .isNotEmpty,
+                    title: '$item',
+                    onPress: () {
+                      controller.onSelectRadio(item);
+                      controller.update();
+                    },
+                    isSelected: ((data['form_valid'].isNotEmpty) &&
+                            (data['form_valid'][0]['years'] == item)) ||
+                        (controller.selectedYear == item),
+                    showRightText: ((data['form_valid'].isNotEmpty) &&
+                        (data['form_valid'][0]['years'] == item)),
+                    rightText: 'Default',
                   ),
                 ),
                 SizedBox(height: DEVICE_HEIGHT * 0.02),
                 CommonButton(
-                  onPress: controller.onSelectYear,
+                  enabled:(controller.selectedYear != null),
+                  onPress: () {
+                    controller.onCreatValidYear(
+                      formId: data[keyId],
+                      years: controller.selectedYear!,
+                    );
+                  },
                   text: 'Confirm',
                   marginBottom: 0.02,
                 ),

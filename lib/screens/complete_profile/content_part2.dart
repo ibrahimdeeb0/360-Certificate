@@ -173,7 +173,7 @@ class ElectricalCompliance extends StatelessWidget {
               rowMainAxisSize: MainAxisSize.max,
             ),
             ...controller.listElectricBoard.map(
-              (Map<String, dynamic> item) => CustomCheckBox(
+              (Map<String, dynamic> item) => CustomRadioSelection(
                 title: item[keyName],
                 onPress: () => controller.onSelectElectricBoard(item),
                 isSelected: controller.selectedElectricBoard

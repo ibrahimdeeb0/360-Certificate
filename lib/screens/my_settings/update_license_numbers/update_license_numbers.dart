@@ -30,6 +30,31 @@ class UpdateLicenseNumbers extends StatelessWidget {
                           fontSize: fontH2,
                           fontColor: Color(AppColors.primary),
                         ),
+                        const CommonText(
+                          'Please select your board from the list below:',
+                          marginBottom: 0.02,
+                          marginTop: 0.03,
+                          textAlign: TextAlign.start,
+                          rowMainAxisSize: MainAxisSize.max,
+                        ),
+                        ...controller
+                            .completeProfilecontroller.listElectricBoard
+                            .map(
+                          (Map<String, dynamic> item) => CustomRadioSelection(
+                            title: item[keyName],
+                            onPress: () {
+                              controller.completeProfilecontroller
+                                  .onSelectElectricBoard(item);
+                              controller.update();
+                            },
+                            isSelected: controller
+                                .completeProfilecontroller.selectedElectricBoard
+                                .where((Map<String, dynamic> element) =>
+                                    element[keyId] == item[keyId])
+                                .isNotEmpty,
+                          ),
+                        ),
+                        0.03.boxHeight,
                         AttentionMessage(
                           message:
                               "Please note that you won't be able to create Certificates without valid license number",

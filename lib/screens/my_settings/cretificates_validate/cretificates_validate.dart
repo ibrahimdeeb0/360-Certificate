@@ -30,14 +30,22 @@ class CretificatesValidate extends StatelessWidget {
                       textInputAction: TextInputAction.done,
                     ),
                   ),
-                  ...controller.filtterForm
-                      .map(
-                        (dynamic childe) => ChildeItemsValidate(
-                          text: childe[keyTitle],
-                          onPress: childe[keyOnPress],
-                        ),
-                      )
-                      .toList(),
+                  0.02.boxHeight,
+                  ...controller.fillterdForms2.map(
+                    (dynamic childe) => ChildeItemsValidate(
+                      text: childe[keyName],
+                      onPress: () {
+                        controller.selectedYear = null;
+                        Get.bottomSheet(
+                          SelectValidateBTSheet(
+                            data: childe,
+                          ),
+                          isScrollControlled: true,
+                        );
+                      },
+                    ),
+                  ),
+                  // childe['valid']
                 ],
               ),
             ),
