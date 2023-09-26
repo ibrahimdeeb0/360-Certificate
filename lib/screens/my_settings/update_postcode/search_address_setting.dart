@@ -74,8 +74,9 @@ class SearchAddressSetting extends StatelessWidget {
               ),
               CommonInput(
                 onChanged: controller.onSearchingAddress,
-                hint: 'Enter address or city or postal code',
                 controller: controller.searchAddressController,
+                hint: 'Enter the full postcode',
+                maxLength: 9,
               ),
               SizedBox(
                 height: DEVICE_HEIGHT * 0.02,

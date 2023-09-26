@@ -93,18 +93,16 @@ class SearchWithWoozController extends GetxController {
   //* Searching for Address using Autocomplete *//
   void onSearchingAddress(String value) {
     if (value == '') {
-      // consoleLog('inside Empty', key: 'Inside_Empty');
-
       listAddress = <dynamic>[];
       update();
     } else {
       lastDateTime = DateTime.now();
       // startLoading();
       Future<dynamic>.delayed(
-        const Duration(milliseconds: 1600),
+        const Duration(milliseconds: 1500),
         () {
           if (DateTime.now().difference(lastDateTime!) >=
-                  const Duration(seconds: 1) &&
+                  const Duration(milliseconds: 1500) &&
               value == addressController.text) {
             // dismissLoading();
             //*-------------------- Function Body  ---------------------//
@@ -149,8 +147,6 @@ class SearchWithWoozController extends GetxController {
 
     addressType = address['type'];
     update();
-    // consoleLog(addressType, key: 'addressType');
-    // consoleLog(address, key: 'address');
 
     switch (addressType) {
       case 'locality':

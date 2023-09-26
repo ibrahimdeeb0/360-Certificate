@@ -146,6 +146,10 @@ class LoginController extends GetxController {
         onError: (dynamic error) {
           consoleLog('Error : $error', key: 'login_error');
 
+          showMessage(
+            description: '${error['message']}',
+            textColor: Colors.red[700],
+          );
           if (error[keyData]['code'] == 403) {
             Get.bottomSheet(
               RestoreAccountBottomSheet(
