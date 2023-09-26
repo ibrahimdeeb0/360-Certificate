@@ -61,10 +61,6 @@ class MoreController extends GetxController {
     update();
   }
 
-  
-
-
-
   // Form
   List<Map<String, dynamic>> formItems = <Map<String, dynamic>>[
     <String, dynamic>{
@@ -90,34 +86,12 @@ class MoreController extends GetxController {
           keyOnPress: () {
             Get.toNamed(routeFormWarningNotice);
           },
-          'press_details': () {
-            Get.bottomSheet(
-              CretificatesValidateBTSheet(
-                listTitles: const <String>[],
-                controller: MinorWorksController(),
-                keyOfValue: formKeyOvercurrentBSEN,
-                keyOfBSType: formKeyOvercurrentType,
-              ),
-              isScrollControlled: true,
-            );
-          },
         },
         <String, dynamic>{
           keyId: 31,
           keyTitle: 'Breakdown Service',
           keyOnPress: () {
             Get.toNamed(routeFormBreakdownService);
-          },
-          'press_details': () {
-            Get.bottomSheet(
-              CretificatesValidateBTSheet(
-                listTitles: const <String>[],
-                controller: MinorWorksController(),
-                keyOfValue: formKeyOvercurrentBSEN,
-                keyOfBSType: formKeyOvercurrentType,
-              ),
-              isScrollControlled: true,
-            );
           },
         },
 
@@ -127,17 +101,6 @@ class MoreController extends GetxController {
           keyOnPress: () {
             Get.toNamed(routeFormMaintenanceService);
           },
-          'press_details': () {
-            Get.bottomSheet(
-              CretificatesValidateBTSheet(
-                listTitles: const <String>[],
-                controller: MinorWorksController(),
-                keyOfValue: formKeyOvercurrentBSEN,
-                keyOfBSType: formKeyOvercurrentType,
-              ),
-              isScrollControlled: true,
-            );
-          },
         },
 
         <String, dynamic>{
@@ -145,17 +108,6 @@ class MoreController extends GetxController {
           keyTitle: 'Gas Test & Purge',
           keyOnPress: () {
             Get.toNamed(routeFormGasTestPurge);
-          },
-          'press_details': () {
-            Get.bottomSheet(
-              CretificatesValidateBTSheet(
-                listTitles: const <String>[],
-                controller: MinorWorksController(),
-                keyOfValue: formKeyOvercurrentBSEN,
-                keyOfBSType: formKeyOvercurrentType,
-              ),
-              isScrollControlled: true,
-            );
           },
         },
 
@@ -207,34 +159,12 @@ class MoreController extends GetxController {
           keyOnPress: () {
             Get.toNamed(routeFormPortableTest);
           },
-          'press_details': () {
-            Get.bottomSheet(
-              CretificatesValidateBTSheet(
-                listTitles: const <String>[],
-                controller: MinorWorksController(),
-                keyOfValue: formKeyOvercurrentBSEN,
-                keyOfBSType: formKeyOvercurrentType,
-              ),
-              isScrollControlled: true,
-            );
-          },
         },
         <String, dynamic>{
           keyId: 3,
           keyTitle: 'Domestic Electrical Installation Certificate',
           keyOnPress: () {
             Get.toNamed(routeFormDomesticEic);
-          },
-          'press_details': () {
-            Get.bottomSheet(
-              CretificatesValidateBTSheet(
-                listTitles: const <String>[],
-                controller: MinorWorksController(),
-                keyOfValue: formKeyOvercurrentBSEN,
-                keyOfBSType: formKeyOvercurrentType,
-              ),
-              isScrollControlled: true,
-            );
           },
         },
         <String, dynamic>{
@@ -243,34 +173,12 @@ class MoreController extends GetxController {
           keyOnPress: () {
             Get.toNamed(routeFormDangerNotice);
           },
-          'press_details': () {
-            Get.bottomSheet(
-              CretificatesValidateBTSheet(
-                listTitles: const <String>[],
-                controller: MinorWorksController(),
-                keyOfValue: formKeyOvercurrentBSEN,
-                keyOfBSType: formKeyOvercurrentType,
-              ),
-              isScrollControlled: true,
-            );
-          },
         },
         <String, dynamic>{
           keyId: 5,
           keyTitle: 'EICR',
           keyOnPress: () {
             Get.toNamed(routeFormEICR);
-          },
-          'press_details': () {
-            Get.bottomSheet(
-              CretificatesValidateBTSheet(
-                listTitles: const <String>[],
-                controller: MinorWorksController(),
-                keyOfValue: formKeyOvercurrentBSEN,
-                keyOfBSType: formKeyOvercurrentType,
-              ),
-              isScrollControlled: true,
-            );
           },
         },
         <String, dynamic>{
@@ -279,34 +187,12 @@ class MoreController extends GetxController {
           keyOnPress: () {
             Get.toNamed(routeFormMinorWorks);
           },
-          'press_details': () {
-            Get.bottomSheet(
-              CretificatesValidateBTSheet(
-                listTitles: const <String>[],
-                controller: MinorWorksController(),
-                keyOfValue: formKeyOvercurrentBSEN,
-                keyOfBSType: formKeyOvercurrentType,
-              ),
-              isScrollControlled: true,
-            );
-          },
         },
         <String, dynamic>{
           keyId: 32,
           keyTitle: 'Electrical Isolation',
           keyOnPress: () {
             Get.toNamed(routeFormElectricalIsolation);
-          },
-          'press_details': () {
-            Get.bottomSheet(
-              CretificatesValidateBTSheet(
-                listTitles: const <String>[],
-                controller: MinorWorksController(),
-                keyOfValue: formKeyOvercurrentBSEN,
-                keyOfBSType: formKeyOvercurrentType,
-              ),
-              isScrollControlled: true,
-            );
           },
         },
       ],

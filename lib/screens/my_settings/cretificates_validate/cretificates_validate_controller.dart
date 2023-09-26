@@ -3,196 +3,104 @@ import '../../../general_exports.dart';
 class CretificatesValidateController extends GetxController {
   final CretificatesValidateList list = CretificatesValidateList();
 
-  List<Map<String, dynamic>> get forms => <Map<String, dynamic>>[
-        <String, dynamic>{
-          keyId: 9,
-          keyTitle: 'Landlord/Homeowner Gas Safety Record',
-          keyOnPress: () {
-            formsDialog(
-                title: 'warning',
-                description: 'The gas certificate is valid for only one year.');
-          },
-          keyType: FormCertType.gas,
-        },
-        <String, dynamic>{
-          keyType: FormCertType.gas,
-          keyId: 11,
-          keyTitle: 'Warning Notice',
-          keyOnPress: () {
-            Get.bottomSheet(
-              CretificatesValidateBTSheet(
-                listTitles: const <String>[],
-                controller: MinorWorksController(),
-                keyOfValue: formKeyOvercurrentBSEN,
-                keyOfBSType: formKeyOvercurrentType,
-              ),
-              isScrollControlled: true,
-            );
-          },
-        },
-        <String, dynamic>{
-          keyType: FormCertType.gas,
-          keyId: 31,
-          keyTitle: 'Breakdown Service',
-          keyOnPress: () {
-            Get.bottomSheet(
-              CretificatesValidateBTSheet(
-                listTitles: const <String>[],
-                controller: MinorWorksController(),
-                keyOfValue: formKeyOvercurrentBSEN,
-                keyOfBSType: formKeyOvercurrentType,
-              ),
-              isScrollControlled: true,
-            );
-          },
-        },
-        <String, dynamic>{
-          keyType: FormCertType.gas,
-          keyId: 15,
-          keyTitle: 'Maintenance Service',
-          keyOnPress: () {
-            Get.bottomSheet(
-              CretificatesValidateBTSheet(
-                listTitles: const <String>[],
-                controller: MinorWorksController(),
-                keyOfValue: formKeyOvercurrentBSEN,
-                keyOfBSType: formKeyOvercurrentType,
-              ),
-              isScrollControlled: true,
-            );
-          },
-        },
-        <String, dynamic>{
-          keyType: FormCertType.gas,
-          keyId: 13,
-          keyTitle: 'Gas Test & Purge',
-          keyOnPress: () {
-            Get.bottomSheet(
-              CretificatesValidateBTSheet(
-                listTitles: const <String>[],
-                controller: MinorWorksController(),
-                keyOfValue: formKeyOvercurrentBSEN,
-                keyOfBSType: formKeyOvercurrentType,
-              ),
-              isScrollControlled: true,
-            );
-          },
-        },
-        <String, dynamic>{
-          keyType: FormCertType.electrical,
-          keyId: 1,
-          keyTitle: 'Portable Appliance Testing (PAT)',
-          keyOnPress: () {
-            Get.bottomSheet(
-              CretificatesValidateBTSheet(
-                listTitles: const <String>[],
-                controller: MinorWorksController(),
-                keyOfValue: formKeyOvercurrentBSEN,
-                keyOfBSType: formKeyOvercurrentType,
-              ),
-              isScrollControlled: true,
-            );
-          },
-        },
-        <String, dynamic>{
-          keyType: FormCertType.electrical,
-          keyId: 3,
-          keyTitle: 'Domestic Electrical Installation Certificate',
-          keyOnPress: () {
-            Get.bottomSheet(
-              CretificatesValidateBTSheet(
-                listTitles: const <String>[],
-                controller: MinorWorksController(),
-                keyOfValue: formKeyOvercurrentBSEN,
-                keyOfBSType: formKeyOvercurrentType,
-              ),
-              isScrollControlled: true,
-            );
-          },
-        },
-        <String, dynamic>{
-          keyType: FormCertType.electrical,
-          keyId: 4,
-          keyTitle: 'Electrical Danger Notice',
-          keyOnPress: () {
-            Get.bottomSheet(
-              CretificatesValidateBTSheet(
-                listTitles: const <String>[],
-                controller: MinorWorksController(),
-                keyOfValue: formKeyOvercurrentBSEN,
-                keyOfBSType: formKeyOvercurrentType,
-              ),
-              isScrollControlled: true,
-            );
-          },
-        },
-        <String, dynamic>{
-          keyType: FormCertType.electrical,
-          keyId: 5,
-          keyTitle: 'EICR',
-          keyOnPress: () {
-            Get.bottomSheet(
-              CretificatesValidateBTSheet(
-                listTitles: list.eicr,
-                controller: MinorWorksController(),
-                keyOfValue: formKeyOvercurrentBSEN,
-                keyOfBSType: formKeyOvercurrentType,
-              ),
-              isScrollControlled: true,
-            );
-          },
-        },
-        <String, dynamic>{
-          keyType: FormCertType.electrical,
-          keyId: 2,
-          keyTitle: 'Minor Works',
-          keyOnPress: () {
-            Get.bottomSheet(
-              CretificatesValidateBTSheet(
-                listTitles: const <String>[],
-                controller: MinorWorksController(),
-                keyOfValue: formKeyOvercurrentBSEN,
-                keyOfBSType: formKeyOvercurrentType,
-              ),
-              isScrollControlled: true,
-            );
-          },
-        },
-        <String, dynamic>{
-          keyType: FormCertType.electrical,
-          keyId: 32,
-          keyTitle: 'Electrical Isolation',
-          keyOnPress: () {
-            Get.bottomSheet(
-              CretificatesValidateBTSheet(
-                listTitles: const <String>[],
-                controller: MinorWorksController(),
-                keyOfValue: formKeyOvercurrentBSEN,
-                keyOfBSType: formKeyOvercurrentType,
-              ),
-              isScrollControlled: true,
-            );
-          },
-        },
-      ];
-
-  List<Map<String, dynamic>> filtterForm = <Map<String, dynamic>>[];
+  // List<Map<String, dynamic>> filtterForm = <Map<String, dynamic>>[];
   TextEditingController seachController = TextEditingController();
   void onSearch(String searchValue) {
-    filtterForm = forms
+    fillterdForms2 = fillterdForms
         .where((dynamic item) =>
-            item[keyTitle].toLowerCase().contains(searchValue.toLowerCase()))
+            item[keyName].toLowerCase().contains(searchValue.toLowerCase()))
         .toList();
 
-    consoleLog(filtterForm);
+    consoleLog(fillterdForms);
 
     update();
   }
 
+  String? selectedYear;
+
+  void onSelectRadio(String? value) {
+    if (selectedYear != value) {
+      selectedYear = value;
+    }
+    update();
+    // consoleLog(selectedYear);
+  }
+
+  List<dynamic> allForms = <String>[];
+  List<Map<String, dynamic>> fillterdForms = <Map<String, dynamic>>[];
+  List<Map<String, dynamic>> fillterdForms2 = <Map<String, dynamic>>[];
+  List<int> availbleId = <int>[
+    9,
+    11,
+    31,
+    15,
+    13,
+    1,
+    3,
+    4,
+    5,
+    2,
+    32,
+  ];
+
+  int? extractedId;
+  Future<void> getAllForms() async {
+    hideKeyboard();
+    ApiRequest(
+      path: '/certificates/get-forms',
+      className: 'CretificatesValidateController/allForms',
+      requestFunction: getAllForms,
+      formatResponse: true,
+      withLoading: true,
+    ).request(
+      onSuccess: (dynamic data, dynamic response) {
+        allForms = data;
+
+        fillterdForms = <Map<String, dynamic>>[
+          ...allForms.where(
+            (dynamic element) => (availbleId.contains(element[keyId])),
+          ),
+        ];
+        fillterdForms2 = fillterdForms;
+        consoleLogPretty(fillterdForms, key: 'fillterd_Forms');
+
+        update();
+      },
+    );
+    update();
+  }
+
+  void onCreatValidYear({required int formId, required String years}) {
+    hideKeyboard();
+    startLoading();
+    ApiRequest(
+      className: 'CretificatesValidateController/allYear',
+      requestFunction: onCreatValidYear,
+      formatResponse: true,
+      method: ApiMethods.post,
+      path: '/certificates/form-valid/create',
+      body: <dynamic, dynamic>{
+        'form_id': formId,
+        'years': years,
+      },
+    ).request(
+      onSuccess: (dynamic data, dynamic response) {
+        if (Get.isBottomSheetOpen!) {
+          Get.back();
+        }
+        getAllForms();
+        // Get.back();
+      },
+    );
+  }
+
   @override
   void onReady() {
-    filtterForm = forms;
     update();
+
+    getAllForms();
+    update();
+
     super.onReady();
   }
 }

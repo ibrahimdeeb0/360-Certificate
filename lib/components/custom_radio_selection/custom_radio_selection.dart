@@ -29,8 +29,8 @@ class CustomRadioSelection extends StatelessWidget {
             fontColor: isSelected ? AppColors.primary : AppColors.greyDark,
             textAlign: TextAlign.start,
             rowMainAxisSize: MainAxisSize.max,
-            containerStyle: const CommonContainerModel(
-              width: 0.8,
+            containerStyle: CommonContainerModel(
+              width: showRightText ? 0.6 : 0.8,
               alignment: AlignmentDirectional.topStart,
             ),
             bottomChild: const SizedBox(),

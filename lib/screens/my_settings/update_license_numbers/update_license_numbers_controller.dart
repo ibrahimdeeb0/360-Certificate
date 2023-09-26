@@ -4,6 +4,9 @@ class UpdateLicenseNumbersController extends GetxController {
   TextEditingController gasNumController = TextEditingController();
   TextEditingController electricalNumController = TextEditingController();
 
+  final CompleteProfileController completeProfilecontroller =
+              CompleteProfileController();
+
   @override
   void onInit() {
     gasNumController.text = homeController.gasNumber ?? '';
