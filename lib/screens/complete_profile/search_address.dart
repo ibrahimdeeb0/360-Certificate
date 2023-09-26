@@ -27,15 +27,16 @@ class SearchFullAddress extends StatelessWidget {
                                 ...controller.searchAllAddress!
                                     .map(
                                       (dynamic element) => ListOfStrings(
-                                          name: element['description'],
-                                          onPress: () {
-                                            consoleLogPretty(element);
-                                            controller.onGetAddressDetails(
-                                              publicId: element['public_id'],
-                                              addressType: 'postal_code',
-                                            );
-                                            Get.back();
-                                          }),
+                                        name: element['description'],
+                                        onPress: () {
+                                          consoleLogPretty(element);
+                                          controller.onGetAddressDetails(
+                                            publicId: element['public_id'],
+                                            addressType: 'postal_code',
+                                          );
+                                          Get.back();
+                                        },
+                                      ),
                                     )
                                     .toList(),
                               ],
@@ -74,8 +75,10 @@ class SearchAddress extends StatelessWidget {
               ),
               CommonInput(
                 onChanged: controller.onSearchingAddress,
-                hint: 'Enter address or city or postal code',
+                hint: 'Enter the full postcode',
                 controller: controller.searchAddressController,
+                keyboardType: TextInputType.streetAddress,
+                maxLength: 9,
               ),
               SizedBox(
                 height: DEVICE_HEIGHT * 0.02,

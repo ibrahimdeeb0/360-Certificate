@@ -446,11 +446,11 @@ class CompleteProfileController extends GetxController {
     } else {
       lastDateTime = DateTime.now();
       Future<dynamic>.delayed(
-        const Duration(seconds: 2),
+        const Duration(milliseconds: 1500),
         () {
           if (DateTime.now().difference(lastDateTime!) >=
-                  const Duration(seconds: 1) &&
-              value == addressController.text) {
+                  const Duration(milliseconds: 1500) &&
+              value == searchAddressController.text) {
             _dio
                 .get(
               urlAutocomplete,

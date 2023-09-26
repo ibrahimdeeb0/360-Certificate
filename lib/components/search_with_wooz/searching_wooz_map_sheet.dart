@@ -23,11 +23,11 @@ class SearchSelectedAddress extends StatelessWidget {
                 height: DEVICE_HEIGHT * 0.02,
               ),
               CommonInput(
-                hint: 'Enter address or city or postal code',
+                hint: 'Enter the full postcode',
                 controller: controller.addressController,
                 onChanged: controller.onSearchingAddress,
-                // focusNode: controller.focusNode2,
                 keyboardType: TextInputType.streetAddress,
+                maxLength: 9,
               ),
               SizedBox(
                 height: DEVICE_HEIGHT * 0.02,

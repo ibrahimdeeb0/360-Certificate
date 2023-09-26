@@ -17,10 +17,7 @@ class Home extends StatelessWidget {
         init: homeController,
         builder: (HomeController controller) {
           return CommonContainer(
-            // height: 1,
-            // width: 1,
             style: appContainerStyles.containerTabletStyles,
-
             backgroundColor: Colors.white,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

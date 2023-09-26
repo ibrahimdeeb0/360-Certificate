@@ -659,7 +659,7 @@ class CreateCustomerV2Controller extends GetxController {
       'copy_contact': isAnotherSiteInfo ? 'no' : 'yes',
       'site_contact_type': siteContactType!.name,
       'site_contact_f_name': siteDetailsNameController.text.trim(),
-      'site_contact_l_name': '',
+      // 'site_contact_l_name': '',
       'site_contact_phone': '+44${siteDetailsPhoneController.text.trim()}',
       'site_contact_email': siteDetailsEmailController.text.trim(),
       //
