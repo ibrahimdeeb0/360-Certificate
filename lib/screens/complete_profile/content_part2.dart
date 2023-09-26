@@ -102,6 +102,7 @@ class GasCompliance extends StatelessWidget {
                       hint: '0800 408 5500',
                       marginBottom: 0.015,
                       controller: controller.gasNumberController,
+                      maxLength: 7,
                     ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -85,6 +85,7 @@ class UpdateLicenseNumbers extends StatelessWidget {
                             // hint: '',
                             // value: homeController.gasNumber,
                             controller: controller.gasNumController,
+                            maxLength: 7,
                           ),
                         ),
                       ],
