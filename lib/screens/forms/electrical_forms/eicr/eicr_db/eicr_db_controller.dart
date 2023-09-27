@@ -685,11 +685,14 @@ class DistributionBoardController extends GetxController
     selectedParentDistrBoardData?[listChildCircuitData].add(
       <String, dynamic>{
         ...childCircuitData,
-        keyId: selectedParentDistrBoardData?[listChildCircuitData],
+        'circuit_reference_a':
+            '${selectedParentDistrBoardData?[listChildCircuitData].last[keyId] + 1}',
+        keyId:
+            selectedParentDistrBoardData?[listChildCircuitData].last[keyId] + 1,
       },
     );
     update();
-    consoleLogPretty(selectedParentDistrBoardData?[listChildCircuitData]);
+    consoleLogPretty(selectedParentDistrBoardData?[listChildCircuitData].last);
   }
 
   void onSaveChildeValues() {

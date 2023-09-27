@@ -163,6 +163,8 @@ class EICRPart3Select extends StatefulWidget {
 }
 
 class _EICRPart3SelectState extends State<EICRPart3Select> {
+  List<String> listWords = <String>[];
+  String myWord = '';
   @override
   Widget build(BuildContext context) {
     return BottomSheetContainer(
@@ -171,34 +173,29 @@ class _EICRPart3SelectState extends State<EICRPart3Select> {
       child: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            ...widget.listTitles
-                .map(
-                  (String title) => CustomRadioSelection(
-                    isSelected:  
-                        // widget.controller.gazSafetyData.containsKey(widget.keyOfValue) &&
-                        (widget.controller.gazSafetyData[widget.keyOfValue] !=
-                                '' ||
-                            widget.controller
-                                    .gazSafetyData[widget.keyOfValue] !=
-                                'N/A'),
-                    onPress: () {
-                      if (widget.controller.gazSafetyData
-                          .containsKey(widget.keyOfValue)) {
-                        widget.controller.gazSafetyData[widget.keyOfValue] =
-                            title;
-                        widget.controller.update();
-                        consoleLog(
-                            widget.controller.gazSafetyData[widget.keyOfValue]);
+            ...widget.listTitles.map(
+              (String title) => CustomRadioSelection(
+                isSelected: listWords.contains(title),
+                onPress: () {
+                  setState(
+                    () {
+                      if (listWords.contains(title)) {
+                        listWords.remove(title);
+                      } else {
+                        listWords.add(title);
                       }
-                      hideKeyboard();
-                      // Get.back();
                     },
-                    title: title,
-                  ),
-                )
-                .toList(),
+                  );
+                },
+                title: title,
+              ),
+            ),
             CommonButton(
               onPress: () {
+                // Get.back();
+                myWord = listWords.join(', \n');
+                widget.controller.gazSafetyData[widget.keyOfValue] = myWord;
+                widget.controller.update();
                 Get.back();
               },
               marginTop: 0.02,

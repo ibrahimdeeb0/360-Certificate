@@ -29,8 +29,12 @@ class CircuitDetailsP1 extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   // CommonInput(
-                  //   hint: '',
+                  //   topLabelText: 'Circuit Reference',
+                  //   value:
+                  //       controller.childCircuitData[formKeyCircuitReferenceA],
                   //   width: 0.7,
+                  //   marginBottom: 0.02,
+                  //   enabled: false,
                   // ),
                   CustomSelectContainer(
                     width: 0.7,
@@ -38,16 +42,16 @@ class CircuitDetailsP1 extends StatelessWidget {
                     value:
                         controller.childCircuitData[formKeyCircuitReferenceA],
                     hint: 'Answer',
-                    // onTap: () {
-                    //   controller.circuitNumIndex = 0;
-                    //   controller.circuitTypeIndex = 0;
-                    //   controller.update();
-                    //   Get.bottomSheet(
-                    //     CustomItemPicker(
-                    //       controller: Get.find<DistributionBoardController>(),
-                    //     ),
-                    //   );
-                    // },
+                    onTap: () {
+                      controller.circuitNumIndex = 0;
+                      controller.circuitTypeIndex = 0;
+                      controller.update();
+                      Get.bottomSheet(
+                        CustomItemPicker(
+                          controller: Get.find<DistributionBoardController>(),
+                        ),
+                      );
+                    },
                     marginBottom: 0.02,
                   ),
                   Image.asset(
