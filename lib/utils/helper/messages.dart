@@ -10,31 +10,36 @@ void showMessage({
   Color? backgroundColor,
   double? fontSize,
 }) {
-  Get.snackbar(
-    '',
-    '',
-    titleText: CommonText(
-      style: appTextStyles
-          .h3MediumStyleBlack()
-          .copyWith(textAlign: TextAlign.start),
-      containerStyle: const CommonContainerModel(
-          alignment: AlignmentDirectional.centerStart),
-      'Alert'.tr,
-      // 'Alert'.tr,
-      // text: description!,
-    ),
-    messageText: CommonText(
-      style: appTextStyles.h3MediumStyle().copyWith(
-            textAlign: TextAlign.start,
-            fontSize: fontSize,
-          ),
-      fontColor: textColor,
-      description!,
-    ),
-    backgroundColor: withBackground ? backgroundColor ?? Colors.white60 : null,
-    barBlur: 2,
-    duration: Duration(seconds: duration),
-  );
+  if (!Get.isSnackbarOpen) {
+    Get.snackbar(
+      '',
+      '',
+      titleText: CommonText(
+        style: appTextStyles
+            .h3MediumStyleBlack()
+            .copyWith(textAlign: TextAlign.start),
+        containerStyle: const CommonContainerModel(
+            alignment: AlignmentDirectional.centerStart),
+        'Alert'.tr,
+        // 'Alert'.tr,
+        // text: description!,
+      ),
+      messageText: CommonText(
+        style: appTextStyles.h3MediumStyle().copyWith(
+              textAlign: TextAlign.start,
+              fontSize: fontSize,
+            ),
+        fontColor: textColor,
+        description!,
+      ),
+      backgroundColor:
+          withBackground ? backgroundColor ?? Colors.white60 : null,
+      barBlur: 2,
+      duration: Duration(seconds: duration),
+    );
+  } else {
+    Get.closeAllSnackbars();
+  }
 }
 
 /// show popup

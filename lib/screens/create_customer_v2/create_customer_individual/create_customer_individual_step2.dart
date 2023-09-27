@@ -35,17 +35,6 @@ class CreateCustomerIndividualStep2 extends StatelessWidget {
                 onChanged: controller.onWriteSiteName,
                 keyboardType: TextInputType.name,
               ),
-              // ToggleYesNo(
-              //   onChange: (bool value) {
-              //     consoleLog(value);
-              //     controller.isSiteAddSameInfo = value;
-              //     controller.update();
-              //     consoleLog(controller.isSiteAddSameInfo);
-              //   },
-              //   toggleValue: controller.isSiteAddSameInfo,
-              //   text: 'Is the site address the same the customer details?',
-              // ),
-              // 0.02.boxHeight,
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -69,9 +58,7 @@ class CreateCustomerIndividualStep2 extends StatelessWidget {
                       Switch(
                         value: controller.isSiteAddSameInfo,
                         onChanged: (bool value) {
-                          controller.isSiteAddSameInfo = value;
-                          controller.update();
-                          consoleLog(controller.isSiteAddSameInfo);
+                          controller.toggleSameSitePostcode(value: value);
                         },
                         activeColor: Colors.green,
                       ),

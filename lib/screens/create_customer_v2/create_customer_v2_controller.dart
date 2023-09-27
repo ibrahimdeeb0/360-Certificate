@@ -347,6 +347,12 @@ class CreateCustomerV2Controller extends GetxController {
     );
   }
 
+  void toggleSameSitePostcode({bool value = false}) {
+    isSiteAddSameInfo = value;
+    update();
+    consoleLog(isSiteAddSameInfo, key: 'isSiteAddSameInfo');
+  }
+
   void toggleSameSiteDetails({bool? value}) {
     isAnotherSiteInfo = value!;
     // if true == yes
@@ -458,7 +464,13 @@ class CreateCustomerV2Controller extends GetxController {
                   },
                   pressYes: () {
                     index = index + 1;
+                    consoleLog('test', key: 'test');
                     if (index == 2) {
+                      if (customerType == CustomerType.individual) {
+                        toggleSameSitePostcode(value: true);
+                      } else {
+                        toggleSameSitePostcode();
+                      }
                       toggleSameSiteDetails(value: isAnotherSiteInfo);
                     }
                     if (Get.isBottomSheetOpen!) {
@@ -475,6 +487,11 @@ class CreateCustomerV2Controller extends GetxController {
                   .hasMatch(customerInfoEmailController.text.trim())) {
                 index = index + 1;
                 if (index == 2) {
+                  if (customerType == CustomerType.individual) {
+                    toggleSameSitePostcode(value: true);
+                  } else {
+                    toggleSameSitePostcode();
+                  }
                   toggleSameSiteDetails(value: isAnotherSiteInfo);
                 }
 
