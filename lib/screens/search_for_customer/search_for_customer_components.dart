@@ -399,7 +399,12 @@ class SiteResultContainer extends StatelessWidget {
                         '-',
                         marginHorizontal: 0.015,
                       ),
-                      CommonText(siteName ?? ''),
+                      SizedBox(
+                          width: 0.5.flexWidth,
+                          child: CommonText(
+                            siteName ?? '',
+                            textAlign: TextAlign.start,
+                          )),
                     ],
                   ),
                 ),
