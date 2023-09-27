@@ -30,31 +30,65 @@ class UpdateLicenseNumbers extends StatelessWidget {
                           fontSize: fontH2,
                           fontColor: Color(AppColors.primary),
                         ),
-                        const CommonText(
-                          'Please select your board from the list below:',
-                          marginBottom: 0.02,
-                          marginTop: 0.03,
+                        CommonText(
+                          '',
+                          marginTop: 0.01,
+                          marginBottom: 0.01,
+                          fontSize: fontH3,
                           textAlign: TextAlign.start,
-                          rowMainAxisSize: MainAxisSize.max,
-                        ),
-                        ...controller
-                            .completeProfilecontroller.listElectricBoard
-                            .map(
-                          (Map<String, dynamic> item) => CustomRadioSelection(
-                            title: item[keyName],
-                            onPress: () {
-                              controller.completeProfilecontroller
-                                  .onSelectElectricBoard(item);
+                          // fontColor: Color(AppColors.primary),
+                          inlineSpans: <InlineSpan>[
+                            const TextSpan(
+                              text: 'You are selected the ',
+                            ),
+                            TextSpan(
+                              text:
+                                  '${controller.selectedBoard?[keyName] ?? ''}',
+                              style:
+                                  TextStyle(color: Color(AppColors.deepOrange)),
+                            ),
+                            const TextSpan(
+                              text: ' do you want change it ?',
+                            ),
+                          ],
+                          rightChild: Switch(
+                            value: controller.isboardFrom,
+                            onChanged: (bool value) {
+                              controller.isboardFrom = value;
                               controller.update();
+                              consoleLog(controller.isboardFrom);
                             },
-                            isSelected: controller
-                                .completeProfilecontroller.selectedElectricBoard
-                                .where((Map<String, dynamic> element) =>
-                                    element[keyId] == item[keyId])
-                                .isNotEmpty,
+                            activeColor: Colors.green,
                           ),
                         ),
-                        0.03.boxHeight,
+                        if (controller.isboardFrom == true)
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              const CommonText(
+                                'Please select your board from the list below:',
+                                marginBottom: 0.02,
+                                marginTop: 0.03,
+                                textAlign: TextAlign.start,
+                                rowMainAxisSize: MainAxisSize.max,
+                              ),
+                              ...controller.listElectricBoard.map(
+                                (dynamic item) => CustomRadioSelection(
+                                  title: item[keyName],
+                                  onPress: () {
+                                    controller.onSelectElectricBoard(item);
+                                    controller.update();
+                                  },
+                                  isSelected: controller.selectedElectricBoard
+                                      .where((Map<String, dynamic> element) =>
+                                          element[keyId] == item[keyId])
+                                      .isNotEmpty,
+                                ),
+                              ),
+                              0.03.boxHeight,
+                            ],
+                          ),
+                        0.02.boxHeight,
                         AttentionMessage(
                           message:
                               "Please note that you won't be able to create Certificates without valid license number",
@@ -82,16 +116,20 @@ class UpdateLicenseNumbers extends StatelessWidget {
                               "Please note that you won't be able to create Certificates without valid Gas Safe Register number",
                           child: CommonInput(
                             topLabelText: 'Gas Safe Register number',
-                            // hint: '',
+                            hint: 'Please Add Gas Reg Number',
                             // value: homeController.gasNumber,
                             controller: controller.gasNumController,
+                            maxLength: 7,
                           ),
                         ),
                       ],
                     ),
-                  0.13.boxHeight,
+                  0.08.boxHeight,
                   CommonButton(
-                    onPress: controller.onUpdateCertNumber,
+                    onPress: () {
+                      controller.onUpdateCertNumber();
+                      controller.onUpdateboardFrom();
+                    },
                     text: 'Save',
                     marginBottom: 0.03,
                     marginTop: 0.02,

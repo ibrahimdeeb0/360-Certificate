@@ -54,8 +54,9 @@ class UpdateCertNumber extends StatelessWidget {
                               " Please note that you won't be able to create certificates without a valid Gas Safe Register number.",
                           child: CommonInput(
                             topLabelText: 'Gas Safe Register Number',
-                            hint: 'type here',
+                            hint: 'Please enter the gas registration number',
                             controller: controller.gasNumController,
+                            maxLength: 7,
                           ),
                         ),
                       ],
@@ -90,8 +91,9 @@ class UpdateCertNumber extends StatelessWidget {
                               " Please note that you won't be able to create certificates without a valid Gas Safe Register number.",
                           child: CommonInput(
                             topLabelText: 'Gas Safe Register Number',
-                            hint: 'type here',
+                            hint: 'Please enter the gas registration number',
                             controller: controller.gasNumController,
+                            maxLength: 7,
                           ),
                         ),
                       ],

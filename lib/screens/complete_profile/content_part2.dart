@@ -99,9 +99,10 @@ class GasCompliance extends StatelessWidget {
                   if (controller.gasRegisterNumber)
                     CommonInput(
                       topLabelText: 'Gas Safe Register Number',
-                      hint: '0800 408 5500',
+                      hint: 'Please enter the gas registration number',
                       marginBottom: 0.015,
                       controller: controller.gasNumberController,
+                      maxLength: 7,
                     ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
