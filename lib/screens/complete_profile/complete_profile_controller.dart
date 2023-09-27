@@ -145,10 +145,23 @@ class CompleteProfileController extends GetxController {
 
   XFile? compLogoFile;
 
+  void test() {
+    consoleLog(entryAddressController.text);
+    consoleLog(entryAddressController.text = addressController.text);
+  }
+
 //* ----- Switch  Manual Address Entry
   bool isManualAddressEntry = false;
   void toggleManualAddressEntry({bool? value}) {
     isManualAddressEntry = value!;
+    if (isManualAddressEntry == true) {
+      entryCityController.text = cityController.text;
+      entryCountryController.text = countryController.text;
+      entryPostcodeController.text = postcodeController.text;
+      entryStateController.text = stateController.text;
+      entryStreetController.text = streetController.text;
+    }
+
     update();
   }
 
@@ -692,6 +705,7 @@ class CompleteProfileController extends GetxController {
           ? entryStateController.text.trim()
           : stateController.text.trim(),
     };
+    // consoleLog(bodyJson);
     ApiRequest(
       method: ApiMethods.post,
       path: keyCompleteProfile,
