@@ -674,12 +674,18 @@ class DistributionBoardController extends GetxController
   }
 
   // **------ Childe Circuit Functions -----------** //
+  // int lastId = 0;
   void onCreateChildeCircuit() {
+    // lastId =
+    //     lastId <= selectedParentDistrBoardData?[listChildCircuitData].length + 1
+    //         ? (selectedParentDistrBoardData?[listChildCircuitData].length + 1)
+    //         : (lastId + 1);
+
     //*---- Create New Circuit ----*//
     selectedParentDistrBoardData?[listChildCircuitData].add(
       <String, dynamic>{
         ...childCircuitData,
-        keyId: selectedParentDistrBoardData?[listChildCircuitData].length + 1,
+        keyId: selectedParentDistrBoardData?[listChildCircuitData],
       },
     );
     update();

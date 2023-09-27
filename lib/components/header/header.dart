@@ -53,8 +53,8 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
         elevation: withShadow ? 1 : 0,
         toolbarHeight: kToolbarHeight + (DEVICE_HEIGHT * isTablet(0.028, 0.01)),
         // backgroundColor: withoutBackGround ? Colors.transparent : Colors.white,
-        backgroundColor: Colors.transparent,
-        foregroundColor: Colors.transparent,
+        // backgroundColor: Colors.transparent,
+        // foregroundColor: Colors.transparent,
         surfaceTintColor: Colors.white,
         // allow pack icon
         // automaticallyImplyLeading: withBack,

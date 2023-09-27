@@ -37,36 +37,36 @@ class BottomSheetContainer extends StatelessWidget {
             left: 0,
             child: CommonText(
               title ?? '',
-              // style: appTextStyles.h2StyleBlack(),
-              // fontWeight: FontWeight.w500,
-              // rowMainAxisAlignment: MainAxisAlignment.spaceBetween,
-              // rowMainAxisSize: MainAxisSize.max,
-              // containerStyle: CommonContainerModel(
-              //   backgroundColor:
-              //       title != null ? AppColors.white : Colors.transparent,
-              //   topLeftRadius: 0.05,
-              //   topRightRadius: 0.05,
-              //   alignment: AlignmentDirectional.topStart,
-              // ),
-              // rightChild: CircleContainer(
-              //   onPress: Get.back,
-              //   circuitSize: 0.065,
-              //   backgroundColor: Colors.black26,
-              //   iconWidget: Icon(
-              //     size: 18.0,
-              //     Icons.close,
-              //     color: Color(AppColors.white),
-              //   ),
-              // ),
-              // topChild: CommonContainer(
-              //   style: CommonContainerModel(
-              //     width: 0.15,
-              //     height: 0.007,
-              //     borderRadius: 0.015,
-              //     backgroundColor: AppColors.grey,
-              //     marginVertical: 0.01,
-              //   ),
-              // ),
+              style: appTextStyles.h2StyleBlack(),
+              fontWeight: FontWeight.w500,
+              rowMainAxisAlignment: MainAxisAlignment.spaceBetween,
+              rowMainAxisSize: MainAxisSize.max,
+              containerStyle: CommonContainerModel(
+                backgroundColor:
+                    title != null ? AppColors.white : Colors.transparent,
+                topLeftRadius: 0.05,
+                topRightRadius: 0.05,
+                alignment: AlignmentDirectional.topStart,
+              ),
+              rightChild: CircleContainer(
+                onPress: Get.back,
+                circuitSize: 0.065,
+                backgroundColor: Colors.black26,
+                iconWidget: Icon(
+                  size: 18.0,
+                  Icons.close,
+                  color: Color(AppColors.white),
+                ),
+              ),
+              topChild: CommonContainer(
+                style: CommonContainerModel(
+                  width: 0.15,
+                  height: 0.007,
+                  borderRadius: 0.015,
+                  backgroundColor: AppColors.grey,
+                  marginVertical: 0.01,
+                ),
+              ),
             ),
           ),
         ],

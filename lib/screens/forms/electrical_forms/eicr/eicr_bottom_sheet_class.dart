@@ -146,45 +146,68 @@ class EICRInputOtherBT extends StatelessWidget {
   }
 }
 
-// class FilterFormSectionsBT extends StatelessWidget {
-//   const FilterFormSectionsBT({super.key});
+class EICRPart3Select extends StatefulWidget {
+  const EICRPart3Select({
+    required this.listTitles,
+    required this.keyOfValue,
+    required this.controller,
+    super.key,
+  });
 
-//   @override
-//   Widget build(BuildContext context) {
-//     final EICRListsForm myLists = EICRListsForm();
-//     return GetBuilder<EicrController>(
-//       init: EicrController(),
-//       builder: (EicrController controller) {
-//         return BottomSheetContainer(
-//           responsiveContent: true,
-//           title: 'Select',
-//           child: SingleChildScrollView(
-//             child: Column(
-//               children: <Widget>[
-//                 ...myLists.listFilterSections.map(
-//                   (dynamic item) => CustomCheckBox(
-//                     title: item['title'],
-//                     isSelected: controller.listFormSections
-//                         .where(
-//                           (dynamic element) => element['id'] == item['id'],
-//                         )
-//                         .isNotEmpty,
-//                     selectedColor: Colors.black,
-//                     onPress: () {
-//                       // controller.searching();
-//                       controller.removeSection(item['id'], item);
-//                     },
-//                   ),
-//                 ),
-//                 const CustomCheckBoxForForms2(
-//                   title: 'title aa',
-//                   isChecked: true,
-//                 ),
-//               ],
-//             ),
-//           ),
-//         );
-//       },
-//     );
-//   }
-// }
+  final List<String> listTitles;
+  final String keyOfValue;
+  final EicrController controller;
+
+  @override
+  State<EICRPart3Select> createState() => _EICRPart3SelectState();
+}
+
+class _EICRPart3SelectState extends State<EICRPart3Select> {
+  @override
+  Widget build(BuildContext context) {
+    return BottomSheetContainer(
+      title: 'Type here',
+      responsiveContent: true,
+      child: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            ...widget.listTitles
+                .map(
+                  (String title) => CustomRadioSelection(
+                    isSelected:  
+                        // widget.controller.gazSafetyData.containsKey(widget.keyOfValue) &&
+                        (widget.controller.gazSafetyData[widget.keyOfValue] !=
+                                '' ||
+                            widget.controller
+                                    .gazSafetyData[widget.keyOfValue] !=
+                                'N/A'),
+                    onPress: () {
+                      if (widget.controller.gazSafetyData
+                          .containsKey(widget.keyOfValue)) {
+                        widget.controller.gazSafetyData[widget.keyOfValue] =
+                            title;
+                        widget.controller.update();
+                        consoleLog(
+                            widget.controller.gazSafetyData[widget.keyOfValue]);
+                      }
+                      hideKeyboard();
+                      // Get.back();
+                    },
+                    title: title,
+                  ),
+                )
+                .toList(),
+            CommonButton(
+              onPress: () {
+                Get.back();
+              },
+              marginTop: 0.02,
+              marginBottom: 0.015,
+              text: 'Confirm',
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

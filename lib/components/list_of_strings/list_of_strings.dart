@@ -37,16 +37,6 @@ class ListOfStrings extends StatelessWidget {
         borderBottomColor: Color(AppColors.grey).withOpacity(0.3),
       ),
       bottomChild: const SizedBox(),
-      // leftChild: Padding(
-      //   padding: EdgeInsets.only(right: DEVICE_WIDTH * 0.03),
-      //   child: withLeftIcon
-      //       ? SvgPicture.asset(
-      //           leftIcon!,
-      //           width: 30,
-      //           height: 30,
-      //         )
-      //       : const SizedBox(),
-      // ),
     );
   }
 }

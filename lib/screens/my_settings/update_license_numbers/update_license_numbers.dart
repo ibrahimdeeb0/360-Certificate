@@ -52,16 +52,16 @@ class UpdateLicenseNumbers extends StatelessWidget {
                             ),
                           ],
                           rightChild: Switch(
-                            value: controller.isboardFrom,
+                            value: controller.isBoardFrom,
                             onChanged: (bool value) {
-                              controller.isboardFrom = value;
+                              controller.isBoardFrom = value;
                               controller.update();
-                              consoleLog(controller.isboardFrom);
+                              consoleLog(controller.isBoardFrom);
                             },
                             activeColor: Colors.green,
                           ),
                         ),
-                        if (controller.isboardFrom == true)
+                        if (controller.isBoardFrom == true)
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
@@ -73,16 +73,14 @@ class UpdateLicenseNumbers extends StatelessWidget {
                                 rowMainAxisSize: MainAxisSize.max,
                               ),
                               ...controller.listElectricBoard.map(
-                                (dynamic item) => CustomRadioSelection(
+                                (Map<String, dynamic> item) =>
+                                    CustomRadioSelection(
                                   title: item[keyName],
                                   onPress: () {
                                     controller.onSelectElectricBoard(item);
-                                    controller.update();
                                   },
-                                  isSelected: controller.selectedElectricBoard
-                                      .where((Map<String, dynamic> element) =>
-                                          element[keyId] == item[keyId])
-                                      .isNotEmpty,
+                                  isSelected: controller.selectedNewBoard ==
+                                      item['id'].toString(),
                                 ),
                               ),
                               0.03.boxHeight,
@@ -94,7 +92,6 @@ class UpdateLicenseNumbers extends StatelessWidget {
                               "Please note that you won't be able to create Certificates without valid license number",
                           child: CommonInput(
                             topLabelText: 'License number',
-                            // hint: '',
                             controller: controller.electricalNumController,
                           ),
                         ),
@@ -127,8 +124,21 @@ class UpdateLicenseNumbers extends StatelessWidget {
                   0.08.boxHeight,
                   CommonButton(
                     onPress: () {
-                      controller.onUpdateCertNumber();
-                      controller.onUpdateboardFrom();
+                      // consoleLog(controller.electricalNumController.text);
+                      // consoleLog(homeController.electricNumber);
+                      if (controller.electricalNumController.text !=
+                              homeController.electricNumber ||
+                          controller.gasNumController.text !=
+                              homeController.gasNumber) {
+                        controller.onUpdateCertNumber();
+                      }
+
+                      if (controller.isBoardFrom &&
+                          (controller.selectedNewBoard != null)) {
+                        controller.onUpdateBoardFrom();
+                      }
+
+                      Get.back();
                     },
                     text: 'Save',
                     marginBottom: 0.03,

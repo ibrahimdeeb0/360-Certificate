@@ -1,7 +1,7 @@
 import '../../../general_exports.dart';
 
 class FormHeader extends StatelessWidget implements PreferredSizeWidget {
- const FormHeader({
+  const FormHeader({
     this.title,
     this.withoutBackGround = false,
     this.onPressBack,
@@ -53,8 +53,8 @@ class FormHeader extends StatelessWidget implements PreferredSizeWidget {
         toolbarHeight:
             kToolbarHeight + (DEVICE_HEIGHT * isTablet(0.028, 0.014)),
         // backgroundColor: withoutBackGround ? Colors.transparent : Colors.white,
-        backgroundColor: Colors.transparent,
-        foregroundColor: Colors.transparent,
+        // backgroundColor: Colors.transparent,
+        // foregroundColor: Colors.transparent,
         surfaceTintColor: Colors.white,
         // allow pack icon
         // automaticallyImplyLeading: withBack,

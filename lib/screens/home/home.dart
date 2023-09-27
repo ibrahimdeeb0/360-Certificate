@@ -17,7 +17,10 @@ class Home extends StatelessWidget {
         init: homeController,
         builder: (HomeController controller) {
           return CommonContainer(
+            // height: 1,
+            // width: 1,
             style: appContainerStyles.containerTabletStyles,
+
             backgroundColor: Colors.white,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,6 +32,18 @@ class Home extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
+                        // CommonButton(
+                        //   onPress: () {
+                        //     Get.toNamed(
+                        //       routeCompleteProfile,
+                        //       arguments: <String, dynamic>{
+                        //         keyEmail: 'test',
+                        //         'f_name': 'test',
+                        //         'l_name': 'test',
+                        //       },
+                        //     );
+                        //   },
+                        // ),
                         if (controller.showFreeAlert)
                           CommonContainer(
                             backgroundColor:
