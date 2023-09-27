@@ -48,7 +48,9 @@ class ContentPart4 extends StatelessWidget {
                     CommonInput(
                       hint: 'Enter Your Postcode',
                       marginBottom: 0.012,
-                      controller: controller.addressController, //picture
+                      controller: controller.isManualAddressEntry
+                          ? null
+                          : controller.addressController, //picture
                       prefix: SvgIconHelper(
                         iconPath: iconSearch,
                         color: Color(AppColors.primary),
