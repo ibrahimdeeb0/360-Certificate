@@ -30,6 +30,10 @@ class CreateCustomerCompanyStep extends StatelessWidget {
                   children: <Widget>[
                     CommonInput(
                       topLabelText: 'Company Name',
+                      topLabel: const TopLabelText(
+                        text: 'Company Name',
+                        isRequired: true,
+                      ),
                       hint: 'Enter Company Name',
                       controller: controller.customerInfoNameController,
                       keyboardType: TextInputType.name,
