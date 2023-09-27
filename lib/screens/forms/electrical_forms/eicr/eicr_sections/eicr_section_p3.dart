@@ -25,18 +25,18 @@ class EICRSectionC extends StatelessWidget {
                 ),
                 hint: 'Select or Typing',
                 maxLines: 6,
-                // textInputAction: TextInputAction.newline,
                 value: controller.gazSafetyData[formKeyExtentElectricalC],
                 onChanged: (dynamic value) => controller.onChangeFormDataValue(
                     formKeyExtentElectricalC, value),
                 suffix: SuffixInputIcon(
                   onPress: () => Get.bottomSheet(
                     elevation: 0.0,
-                    EICRSelectBT(
+                    EICRPart3Select(
                       controller: controller,
                       keyOfValue: formKeyExtentElectricalC,
                       listTitles: formList.listExtentSuggestions,
                     ),
+                    isScrollControlled: true,
                   ),
                   iconWidget: const Icon(
                     Icons.filter_list,

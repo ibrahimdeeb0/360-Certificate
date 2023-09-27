@@ -564,6 +564,7 @@ class SmallInputField extends StatelessWidget {
                     : const SizedBox()),
             keyboardType: keyboardType,
             textInputAction: textInputAction,
+            enableSuggestions: true,
           ),
         ],
       ),

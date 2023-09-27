@@ -97,8 +97,7 @@ class DistributionBoardScreen extends StatelessWidget {
                               transition: Transition.rightToLeftWithFade,
                             );
                           },
-                          circuitName:
-                              'circuit: ${item['circuit_reference_a']}',
+                          circuitName: 'circuit: ${item['id']}',
                           locationName: item['circuit_designation_a'],
                           isComplete: item['mark_as_completed'],
                         ),

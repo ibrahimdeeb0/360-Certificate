@@ -105,32 +105,52 @@ class CreateCustomerIndividualStep2 extends StatelessWidget {
                               children: <Widget>[
                                 CommonInput(
                                   topLabelText: 'Street No  & Name',
-                                  value: controller.companyIfoAddress
-                                      .listAddressData[0].street,
+                                  value: controller.customerType ==
+                                          CustomerType.company
+                                      ? controller.companyIfoAddress
+                                          .listAddressData[0].street
+                                      : controller.customerIfoAddress
+                                          .listAddressData[0].street,
                                   enabled: false,
                                 ),
                                 CommonInput(
                                   topLabelText: 'City',
-                                  value: controller.companyIfoAddress
-                                      .listAddressData[0].city,
+                                  value: controller.customerType ==
+                                          CustomerType.company
+                                      ? controller.companyIfoAddress
+                                          .listAddressData[0].city
+                                      : controller.customerIfoAddress
+                                          .listAddressData[0].city,
                                   enabled: false,
                                 ),
                                 CommonInput(
                                   topLabelText: 'State/Province',
-                                  value: controller.companyIfoAddress
-                                      .listAddressData[0].state,
+                                  value: controller.customerType ==
+                                          CustomerType.company
+                                      ? controller.companyIfoAddress
+                                          .listAddressData[0].state
+                                      : controller.customerIfoAddress
+                                          .listAddressData[0].state,
                                   enabled: false,
                                 ),
                                 CommonInput(
                                   topLabelText: 'Postcode',
-                                  value: controller.companyIfoAddress
-                                      .listAddressData[0].postcode,
+                                  value: controller.customerType ==
+                                          CustomerType.company
+                                      ? controller.companyIfoAddress
+                                          .listAddressData[0].postcode
+                                      : controller.customerIfoAddress
+                                          .listAddressData[0].postcode,
                                   enabled: false,
                                 ),
                                 CommonInput(
                                   topLabelText: 'Country',
-                                  value: controller.companyIfoAddress
-                                      .listAddressData[0].country,
+                                  value: controller.customerType ==
+                                          CustomerType.company
+                                      ? controller.companyIfoAddress
+                                          .listAddressData[0].country
+                                      : controller.customerIfoAddress
+                                          .listAddressData[0].country,
                                   enabled: false,
                                 ),
                               ],

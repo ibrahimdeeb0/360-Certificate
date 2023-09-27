@@ -10,6 +10,12 @@ class EICRSectionD extends StatelessWidget {
     // final EICRListsForm formList = EICRListsForm();
     return GetBuilder<EicrController>(
       builder: (EicrController controller) {
+        //        String selectedArea = 'j_area';
+        // String selectedCarClass = 'P';
+        final List<String> dropdownItems = <String>[
+          'SATISFACTORY',
+          'UNSATISFACTORY'
+        ];
         return CommonContainer(
           style: appContainerStyles.formSectionsStyle,
           child: Column(
@@ -42,17 +48,45 @@ class EICRSectionD extends StatelessWidget {
                 // textInputAction: TextInputAction.newline,
                 marginBottom: 0.025,
               ),
-              CommonInput(
-                topLabel: const CommonText(
-                  'Overall assessment of the installation terms of its suitability for continued use',
-                  textAlign: TextAlign.start,
-                  marginBottom: 0.01,
+              const CommonText(
+                'Overall assessment of the installation terms of its suitability for continued use',
+                textAlign: TextAlign.start,
+                marginBottom: 0.01,
+              ),
+              Container(
+                margin: EdgeInsets.only(bottom: 0.015.flexHeight),
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey, width: 2.0),
+                  borderRadius: BorderRadius.circular(8.0),
                 ),
-                value: controller.gazSafetyData[formKeyOverallAssessmentD],
-                onChanged: (dynamic value) => controller.onChangeFormDataValue(
-                    formKeyOverallAssessmentD, value),
-                hint: 'Typing...',
-                marginBottom: 0.03,
+                padding: EdgeInsets.only(
+                    left: 0.03.flexWidth, right: 0.01.flexWidth),
+                child: DropdownButton<String>(
+                  isExpanded: true,
+                  value:
+                      controller.gazSafetyData[formKeyOverallAssessmentD] != ''
+                          ? controller.gazSafetyData[formKeyOverallAssessmentD]
+                          : null,
+                  dropdownColor: Colors.white,
+                  hint: const CommonText('Select'),
+                  onChanged: (String? newValue) {
+                    controller.onChangeFormDataValue(
+                        formKeyOverallAssessmentD, newValue);
+                    controller.update();
+                  },
+                  items: dropdownItems.map<DropdownMenuItem<String>>(
+                    (String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: CommonText(
+                          value,
+                          fontColor: Colors.grey[800],
+                        ),
+                      );
+                    },
+                  ).toList(),
+                  underline: const SizedBox(),
+                ),
               ),
               CommonText(
                 'An unsatisfactory rating indicates that serious and/or potentially dangerous conditions have been identified',

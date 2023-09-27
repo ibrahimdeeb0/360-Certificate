@@ -28,22 +28,26 @@ class CircuitDetailsP1 extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
+                  // CommonInput(
+                  //   hint: '',
+                  //   width: 0.7,
+                  // ),
                   CustomSelectContainer(
                     width: 0.7,
                     title: 'Circuit Reference',
                     value:
                         controller.childCircuitData[formKeyCircuitReferenceA],
                     hint: 'Answer',
-                    onTap: () {
-                      controller.circuitNumIndex = 0;
-                      controller.circuitTypeIndex = 0;
-                      controller.update();
-                      Get.bottomSheet(
-                        CustomItemPicker(
-                          controller: Get.find<DistributionBoardController>(),
-                        ),
-                      );
-                    },
+                    // onTap: () {
+                    //   controller.circuitNumIndex = 0;
+                    //   controller.circuitTypeIndex = 0;
+                    //   controller.update();
+                    //   Get.bottomSheet(
+                    //     CustomItemPicker(
+                    //       controller: Get.find<DistributionBoardController>(),
+                    //     ),
+                    //   );
+                    // },
                     marginBottom: 0.02,
                   ),
                   Image.asset(
@@ -94,7 +98,7 @@ class CircuitDetailsP1 extends StatelessWidget {
                 value: controller.childCircuitData[formKeyNumberOfPointA],
                 onChanged: (dynamic value) => controller.onChangeChildeDbValues(
                     formKeyNumberOfPointA, value),
-                keyboardType: TextInputType.number,
+                keyboardType: TextInputType.name,
               ),
               // Section 2
               CommonContainer(
