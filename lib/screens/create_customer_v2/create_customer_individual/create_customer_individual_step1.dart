@@ -44,6 +44,7 @@ class CreateCustomerIndividualStep1 extends StatelessWidget {
                 ),
                 SelectTypeSheet(
                   label: 'Contact Type',
+                  isRequired: true,
                   hint: 'Select Contact Type',
                   value: controller.customerContactTypeValue,
                   onTap: controller.selectCustomerContactType,

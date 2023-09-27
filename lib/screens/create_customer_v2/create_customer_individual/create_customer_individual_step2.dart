@@ -25,7 +25,10 @@ class CreateCustomerIndividualStep2 extends StatelessWidget {
                 // marginVertical: 0.02,
               ),
               CommonInput(
-                topLabelText: 'Site Name',
+                topLabel: const TopLabelText(
+                  text: 'Site Name',
+                  isRequired: true,
+                ),
                 hint: 'Enter Your Site Name',
                 marginBottom: 0.015,
                 controller: controller.siteNameController,
@@ -172,6 +175,7 @@ class CreateCustomerIndividualStep2 extends StatelessWidget {
                   children: <Widget>[
                     SelectTypeSheet(
                       label: 'What Is The Property Type',
+                      isRequired: true,
                       hint: 'Select Property Type',
                       value: controller.sitePropertyTypeValue,
                       onTap: controller.selectCustomerPropertyType,
@@ -285,6 +289,7 @@ class CreateCustomerIndividualStep2 extends StatelessWidget {
                     ),
                     SelectTypeSheet(
                       label: 'Contact Type',
+                      isRequired: true,
                       hint: 'Select Contact Type',
                       value: controller.isAnotherSiteInfo
                           ? controller.siteContactTypeValue

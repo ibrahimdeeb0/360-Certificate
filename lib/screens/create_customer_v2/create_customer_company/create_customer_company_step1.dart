@@ -42,6 +42,7 @@ class CreateCustomerCompanyStep1 extends StatelessWidget {
                 ),
                 SelectTypeSheet(
                   label: 'Contact Type',
+                  isRequired: true,
                   hint: 'Select Contact Type',
                   value: controller.companyContactTypeValue,
                   onTap: controller.selectCompanyContactType,

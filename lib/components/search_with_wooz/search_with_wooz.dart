@@ -65,27 +65,42 @@ class SearchWithWooz extends StatelessWidget {
                         child: Column(
                           children: <Widget>[
                             CommonInput(
-                              topLabelText: 'Street No  & Name',
+                              topLabel: const TopLabelText(
+                                text: 'Street No  & Name',
+                                isRequired: true,
+                              ),
                               value: controller.listAddressData[0].street,
                               enabled: false,
                             ),
                             CommonInput(
-                              topLabelText: 'City',
+                              topLabel: const TopLabelText(
+                                text: 'City',
+                                isRequired: true,
+                              ),
                               value: controller.listAddressData[0].city,
                               enabled: false,
                             ),
                             CommonInput(
-                              topLabelText: 'State/Province',
+                              topLabel: const TopLabelText(
+                                text: 'State/Province',
+                                isRequired: true,
+                              ),
                               value: controller.listAddressData[0].state,
                               enabled: false,
                             ),
                             CommonInput(
-                              topLabelText: 'Postcode',
+                              topLabel: const TopLabelText(
+                                text: 'Postcode',
+                                isRequired: true,
+                              ),
                               value: controller.listAddressData[0].postcode,
                               enabled: false,
                             ),
                             CommonInput(
-                              topLabelText: 'Country',
+                              topLabel: const TopLabelText(
+                                text: 'Country',
+                                isRequired: true,
+                              ),
                               value: controller.listAddressData[0].country,
                               enabled: false,
                             ),
