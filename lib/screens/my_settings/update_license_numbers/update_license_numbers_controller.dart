@@ -3,10 +3,7 @@ import '../../../general_exports.dart';
 class UpdateLicenseNumbersController extends GetxController {
   TextEditingController gasNumController = TextEditingController();
   TextEditingController electricalNumController = TextEditingController();
-  bool isboardFrom = false;
-
-  final CompleteProfileController completeProfilecontroller =
-      CompleteProfileController();
+  bool isBoardFrom = false;
 
   List<Map<String, dynamic>> selectedElectricBoard = <Map<String, dynamic>>[];
   List<int> electricBoardId = <int>[];
@@ -43,21 +40,13 @@ class UpdateLicenseNumbersController extends GetxController {
   ];
 
   // electricBoardId
+  String? selectedNewBoard;
   void onSelectElectricBoard(Map<String, dynamic> item) {
     final String itemId = item[keyId].toString();
 
-    if (selectedElectricBoard.isEmpty ||
-        selectedElectricBoard[0][keyId] != itemId) {
-      selectedElectricBoard.clear();
-      selectedElectricBoard.add(item);
+    selectedNewBoard = itemId;
 
-      electricBoardId = <int>[int.parse(itemId)];
-    } else {
-      selectedElectricBoard.clear();
-      electricBoardId.clear();
-    }
-
-    consoleLog(electricBoardId, key: 'electricBoardId');
+    consoleLog(selectedNewBoard, key: 'selectedNewBoard');
 
     update();
   }
@@ -105,21 +94,20 @@ class UpdateLicenseNumbersController extends GetxController {
     );
   }
 
-  void onUpdateboardFrom() {
+  void onUpdateBoardFrom() {
     hideKeyboard();
     ApiRequest(
-      className: 'UpdateCertNumberController/onUpdateboardFrom',
+      className: 'UpdateCertNumberController/onUpdateBoardFrom',
       method: ApiMethods.post,
-      path: '/update-electricboard/${electricBoardId[0]}',
-      requestFunction: onUpdateboardFrom,
+      path: '/update-electricboard/$selectedNewBoard',
+      requestFunction: onUpdateBoardFrom,
       withLoading: true,
       formatResponse: true,
     ).request(
       onSuccess: (dynamic data, dynamic response) {
-        Get.back();
-      },
-      onError: (dynamic error) {
-        dismissLoading();
+        // if (Get.isRegistered<UpdateLicenseNumbersController>()) {
+        //   Get.back();
+        // }
       },
     );
   }
@@ -152,10 +140,9 @@ class UpdateLicenseNumbersController extends GetxController {
             dismissLoading();
           },
         );
-        Get.back();
-      },
-      onError: (dynamic error) {
-        dismissLoading();
+        // if (Get.isRegistered<UpdateLicenseNumbersController>()) {
+        //   Get.back();
+        // }
       },
     );
   }

@@ -661,7 +661,7 @@ class CompleteProfileController extends GetxController {
   Future<void> onCompleteProfile() async {
     final Map<String, dynamic> bodyJson = <String, dynamic>{
       'categories_id': selectFormGroupId,
-      'electric_board_id': electricBoardId,
+      'electric_board_id': electricBoardId.first,
       'gas_register_number': gasNumberController.text.trim(),
       'license_number': electricalLicenseController.text.trim(),
       'company_name': registeredCompanyController.text.trim(),
