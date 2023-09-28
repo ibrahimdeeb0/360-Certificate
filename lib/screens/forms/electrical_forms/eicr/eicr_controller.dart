@@ -441,21 +441,21 @@ class EicrController extends GetxController {
       case FormDateType.recommendation:
         {
           gazSafetyData[formKeyYearsRecommendationsE] =
-              dateTime.toString().split(' ').first;
+              dateTime.toString().formatDate;
         }
         break;
 
       case FormDateType.inspectedBy:
         {
           gazSafetyData[formKeyEICRdeclaration][formKeyInspectedDate] =
-              dateTime.toString().split(' ').first;
+              dateTime.toString().formatDate;
         }
         break;
 
       case FormDateType.reportBy:
         {
           gazSafetyData[formKeyEICRdeclaration][formKeyReportDate] =
-              dateTime.toString().split(' ').first;
+              dateTime.toString().formatDate;
         }
         break;
     }

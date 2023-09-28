@@ -63,7 +63,7 @@ class EICRSectionJ extends StatelessWidget {
                 hint: controller.gazSafetyData[formKeyEarthFaultJ] == ''
                     ? 'Answer'
                     : controller.gazSafetyData[formKeyEarthFaultJ],
-                keyboardType: TextInputType.number,
+                keyboardType: TextInputType.text,
                 value: controller.gazSafetyData[formKeyMftJ],
                 onChanged: (dynamic value) =>
                     controller.onChangeFormDataValue(formKeyMftJ, value),
