@@ -24,6 +24,7 @@ class CreateCustomerIndividualStep2 extends StatelessWidget {
                 fontColor: Colors.grey[700],
                 // marginVertical: 0.02,
               ),
+
               CommonInput(
                 topLabel: const TopLabelText(
                   text: 'Site Name',
