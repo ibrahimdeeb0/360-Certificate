@@ -28,20 +28,20 @@ class LeisurePage2 extends StatelessWidget {
                     title: 'Gas pipework visual inspection',
                     toggleType: FormToggleType.yesNoNA,
                     textWidth: 0.6,
-                    value: controller.formData[formKeyPart2]
+                    value: controller.formData[formKeyPart1]
                         [formKeyPipeworkVisualP2],
                     onChangeValue: (dynamic value) =>
                         controller.onChangeFormDataValue(
-                            formKeyPart2, formKeyPipeworkVisualP2, value),
+                            formKeyPart1, formKeyPipeworkVisualP2, value),
                   ),
                   FormToggleButton(
                     title: 'Outcome of gas supply pipework visual inspection',
                     toggleType: FormToggleType.yesNoNA,
                     textWidth: 0.6,
-                    value: controller.formData[formKeyPart2]
+                    value: controller.formData[formKeyPart1]
                         [formKeyPipeworkOutcomeSupplyP2],
                     onChangeValue: (dynamic value) =>
-                        controller.onChangeFormDataValue(formKeyPart2,
+                        controller.onChangeFormDataValue(formKeyPart1,
                             formKeyPipeworkOutcomeSupplyP2, value),
                   ),
                   FormToggleButton(
@@ -49,31 +49,31 @@ class LeisurePage2 extends StatelessWidget {
                         'Is the Emergency Control Valve access satisfactory?',
                     toggleType: FormToggleType.yesNoNA,
                     textWidth: 0.6,
-                    value: controller.formData[formKeyPart2]
+                    value: controller.formData[formKeyPart1]
                         [formKeyPipeworkEmergencyP2],
                     onChangeValue: (dynamic value) =>
                         controller.onChangeFormDataValue(
-                            formKeyPart2, formKeyPipeworkEmergencyP2, value),
+                            formKeyPart1, formKeyPipeworkEmergencyP2, value),
                   ),
                   FormToggleButton(
                     title: 'Outcome of gas tightness test?',
                     toggleType: FormToggleType.yesNoNA,
                     textWidth: 0.6,
-                    value: controller.formData[formKeyPart2]
+                    value: controller.formData[formKeyPart1]
                         [formKeyPipeworkOutcomeTightnessP2],
                     onChangeValue: (dynamic value) =>
-                        controller.onChangeFormDataValue(formKeyPart2,
+                        controller.onChangeFormDataValue(formKeyPart1,
                             formKeyPipeworkOutcomeTightnessP2, value),
                   ),
                   FormToggleButton(
                     title: 'Is protective equipotential bonding satisfactory?',
                     toggleType: FormToggleType.yesNoNA,
                     textWidth: 0.6,
-                    value: controller.formData[formKeyPart2]
+                    value: controller.formData[formKeyPart1]
                         [formKeyPipeworkProtectiveP2],
                     onChangeValue: (dynamic value) =>
                         controller.onChangeFormDataValue(
-                            formKeyPart2, formKeyPipeworkProtectiveP2, value),
+                            formKeyPart1, formKeyPipeworkProtectiveP2, value),
                   ),
                   Divider(
                     color: Colors.grey[200],
@@ -97,10 +97,10 @@ class LeisurePage2 extends StatelessWidget {
                             num: '1',
                           ),
                           marginBottom: 0.015,
-                          value: controller.formData[formKeyPart3]
+                          value: controller.formData[formKeyPart2]
                               [formKeyDefectsIdentified1],
                           onChanged: (dynamic value) =>
-                              controller.onChangeFormDataValue(formKeyPart3,
+                              controller.onChangeFormDataValue(formKeyPart2,
                                   formKeyDefectsIdentified1, value),
                         ),
                         CommonInput(
@@ -108,10 +108,10 @@ class LeisurePage2 extends StatelessWidget {
                             num: '2',
                           ),
                           marginBottom: 0.015,
-                          value: controller.formData[formKeyPart3]
+                          value: controller.formData[formKeyPart2]
                               [formKeyDefectsIdentified2],
                           onChanged: (dynamic value) =>
-                              controller.onChangeFormDataValue(formKeyPart3,
+                              controller.onChangeFormDataValue(formKeyPart2,
                                   formKeyDefectsIdentified2, value),
                         ),
                         CommonInput(
@@ -119,10 +119,10 @@ class LeisurePage2 extends StatelessWidget {
                             num: '3',
                           ),
                           marginBottom: 0.015,
-                          value: controller.formData[formKeyPart3]
+                          value: controller.formData[formKeyPart2]
                               [formKeyDefectsIdentified3],
                           onChanged: (dynamic value) =>
-                              controller.onChangeFormDataValue(formKeyPart3,
+                              controller.onChangeFormDataValue(formKeyPart2,
                                   formKeyDefectsIdentified3, value),
                         ),
                         CommonInput(
@@ -130,10 +130,10 @@ class LeisurePage2 extends StatelessWidget {
                             num: '4',
                           ),
                           marginBottom: 0.015,
-                          value: controller.formData[formKeyPart3]
+                          value: controller.formData[formKeyPart2]
                               [formKeyDefectsIdentified4],
                           onChanged: (dynamic value) =>
-                              controller.onChangeFormDataValue(formKeyPart3,
+                              controller.onChangeFormDataValue(formKeyPart2,
                                   formKeyDefectsIdentified4, value),
                         ),
                         CommonInput(
@@ -141,10 +141,10 @@ class LeisurePage2 extends StatelessWidget {
                             num: '5',
                           ),
                           marginBottom: 0.015,
-                          value: controller.formData[formKeyPart3]
+                          value: controller.formData[formKeyPart2]
                               [formKeyDefectsIdentified5],
                           onChanged: (dynamic value) =>
-                              controller.onChangeFormDataValue(formKeyPart3,
+                              controller.onChangeFormDataValue(formKeyPart2,
                                   formKeyDefectsIdentified5, value),
                         ),
                       ],
@@ -169,11 +169,11 @@ class LeisurePage2 extends StatelessWidget {
                           isBtnBox: true,
                           toggleType: FormToggleType.yesNoNA,
                           textWidget: const SizedBox(),
-                          value: controller.formData[formKeyPart3]
+                          value: controller.formData[formKeyPart2]
                               [formKeyWarningNotice1],
                           onChangeValue: (dynamic value) =>
                               controller.onChangeFormDataValue(
-                                  formKeyPart3, formKeyWarningNotice1, value),
+                                  formKeyPart2, formKeyWarningNotice1, value),
                         ),
                       ),
                       CommonText(
@@ -183,11 +183,11 @@ class LeisurePage2 extends StatelessWidget {
                           isBtnBox: true,
                           toggleType: FormToggleType.yesNoNA,
                           textWidget: const SizedBox(),
-                          value: controller.formData[formKeyPart3]
+                          value: controller.formData[formKeyPart2]
                               [formKeyWarningNotice2],
                           onChangeValue: (dynamic value) =>
                               controller.onChangeFormDataValue(
-                                  formKeyPart3, formKeyWarningNotice2, value),
+                                  formKeyPart2, formKeyWarningNotice2, value),
                         ),
                       ),
                       CommonText(
@@ -197,11 +197,11 @@ class LeisurePage2 extends StatelessWidget {
                           isBtnBox: true,
                           toggleType: FormToggleType.yesNoNA,
                           textWidget: const SizedBox(),
-                          value: controller.formData[formKeyPart3]
+                          value: controller.formData[formKeyPart2]
                               [formKeyWarningNotice3],
                           onChangeValue: (dynamic value) =>
                               controller.onChangeFormDataValue(
-                                  formKeyPart3, formKeyWarningNotice3, value),
+                                  formKeyPart2, formKeyWarningNotice3, value),
                         ),
                       ),
                       CommonText(
@@ -211,11 +211,11 @@ class LeisurePage2 extends StatelessWidget {
                           isBtnBox: true,
                           toggleType: FormToggleType.yesNoNA,
                           textWidget: const SizedBox(),
-                          value: controller.formData[formKeyPart3]
+                          value: controller.formData[formKeyPart2]
                               [formKeyWarningNotice4],
                           onChangeValue: (dynamic value) =>
                               controller.onChangeFormDataValue(
-                                  formKeyPart3, formKeyWarningNotice4, value),
+                                  formKeyPart2, formKeyWarningNotice4, value),
                         ),
                       ),
                       CommonText(
@@ -225,11 +225,11 @@ class LeisurePage2 extends StatelessWidget {
                           isBtnBox: true,
                           toggleType: FormToggleType.yesNoNA,
                           textWidget: const SizedBox(),
-                          value: controller.formData[formKeyPart3]
+                          value: controller.formData[formKeyPart2]
                               [formKeyWarningNotice5],
                           onChangeValue: (dynamic value) =>
                               controller.onChangeFormDataValue(
-                                  formKeyPart3, formKeyWarningNotice5, value),
+                                  formKeyPart2, formKeyWarningNotice5, value),
                         ),
                       ),
                     ],

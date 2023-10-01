@@ -169,10 +169,9 @@ class CertificateDetailsController extends GetxController
   }
 
   void onEditCert() {
-    // consoleLogPretty(certDetails['form_data']['form_id']);
+    // consoleLogPretty(certDetails['form_data']['data']);
     myAppController.certFormInfo[keyFormDataStatus] = FormDataStatus.editCert;
-    myAppController.certFormInfo[keyCertId] =
-        certDetails['form_data']['num_cert'] ?? certDetails['form_data'][keyId];
+    myAppController.certFormInfo[keyCertId] = certDetails['form_data'][keyId];
     myAppController.certFormInfo[keyCustomerId] =
         certDetails['form_data']['customer']['id'];
     //
@@ -181,8 +180,10 @@ class CertificateDetailsController extends GetxController
     //
     myAppController.certFormInfo[keyFormId] =
         certDetails['form_data']['form_id'];
+    //
     myAppController.certFormInfo[keyTemplateData] =
         certDetails['form_data']['data'];
+    //
     if (certDetails['form_data']['form_id'] == 5) {
       Get.toNamed(
         routeFormEICR,
@@ -263,6 +264,13 @@ class CertificateDetailsController extends GetxController
     } else if (certDetails['form_data']['form_id'] == 32) {
       Get.toNamed(
         routeFormElectricalIsolation,
+        arguments: <String, dynamic>{
+          formKeyFromCertificate: true,
+        },
+      );
+    } else if (certDetails['form_data']['form_id'] == 26) {
+      Get.toNamed(
+        routeFormLeisureIndustry,
         arguments: <String, dynamic>{
           formKeyFromCertificate: true,
         },

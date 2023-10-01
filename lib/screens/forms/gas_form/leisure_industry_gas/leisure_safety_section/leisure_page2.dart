@@ -35,10 +35,10 @@ class LeisurePage3 extends StatelessWidget {
                 maxLines: 6,
                 keyboardType: TextInputType.multiline,
                 textInputAction: TextInputAction.newline,
-                value: controller.formData[formKeyPart4]
+                value: controller.formData[formKeyPart3]
                     [formKeyRecordRemedialAction],
                 onChanged: (dynamic value) => controller.onChangeFormDataValue(
-                    formKeyPart4, formKeyRecordRemedialAction, value),
+                    formKeyPart3, formKeyRecordRemedialAction, value),
               ),
               Divider(
                 color: Colors.grey[200],
@@ -61,7 +61,7 @@ class LeisurePage3 extends StatelessWidget {
                     currentTime: controller.selectedDate ?? DateTime.now(),
                     onConfirm: (DateTime value) {
                       controller.onSelectDate(
-                        formKeyPart5,
+                        formKeyPart4,
                         formKeyNextSafetyCheckBy,
                         value,
                       );
@@ -73,7 +73,7 @@ class LeisurePage3 extends StatelessWidget {
                 // value: ,
                 marginBottom: 0.02,
                 suffix: const Icon(Icons.keyboard_arrow_down),
-                value: controller.formData[formKeyPart5]
+                value: controller.formData[formKeyPart4]
                     [formKeyNextSafetyCheckBy],
                 // onChanged: (dynamic value) => controller.onChangeFormDataValue(
                 //     formKeyPart7, formKeyNextSafetyCheckBy, value),

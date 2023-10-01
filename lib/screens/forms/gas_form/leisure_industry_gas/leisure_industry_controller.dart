@@ -53,14 +53,14 @@ class LeisureIndustryController extends GetxController {
       ];
 
   Map<String, dynamic> formData = <String, dynamic>{
-    formKeyPart2: <String, dynamic>{
+    formKeyPart1: <String, dynamic>{
       formKeyPipeworkVisualP2: 'N/A',
       formKeyPipeworkOutcomeSupplyP2: 'N/A',
       formKeyPipeworkEmergencyP2: 'N/A',
       formKeyPipeworkOutcomeTightnessP2: 'N/A',
       formKeyPipeworkProtectiveP2: 'N/A',
     },
-    formKeyPart3: <String, dynamic>{
+    formKeyPart2: <String, dynamic>{
       formKeyDefectsIdentified1: '',
       formKeyDefectsIdentified2: '',
       formKeyDefectsIdentified3: '',
@@ -73,13 +73,13 @@ class LeisureIndustryController extends GetxController {
       formKeyWarningNotice4: 'N/A',
       formKeyWarningNotice5: 'N/A',
     },
-    formKeyPart4: <String, dynamic>{
+    formKeyPart3: <String, dynamic>{
       formKeyRecordRemedialAction: '',
     },
-    formKeyPart5: <String, dynamic>{
+    formKeyPart4: <String, dynamic>{
       formKeyNextSafetyCheckBy: '',
     },
-    formKeyPart6: <String, dynamic>{
+    formKeyPart5: <String, dynamic>{
       formKeyApplianceApproved1: 'N/A',
       formKeyApplianceIsCo1: 'N/A',
       formKeyApplianceTestCo1: 'N/A',
