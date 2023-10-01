@@ -31,7 +31,7 @@ class CertTab extends StatelessWidget {
                   CertTitleItem(
                     title: 'Site Name',
                     subTitle:
-                        '${controller.certDetails['form_data']['site']['name']}',
+                        '${controller.certDetails['form_data']['site']?['name'] ?? ''}',
                   ),
                   CertTitleItem(
                     title: 'Customer Name',
@@ -54,7 +54,7 @@ class CertTab extends StatelessWidget {
                   CertTitleItem(
                     title: 'Street No & Name',
                     subTitle:
-                        '${controller.certDetails['form_data']['site']['street_num']}',
+                        '${controller.certDetails['form_data']['site']?['street_num'] ?? ''}',
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -62,13 +62,13 @@ class CertTab extends StatelessWidget {
                       CertTitleItem(
                         title: 'City',
                         subTitle:
-                            '${controller.certDetails['form_data']['site']['city']}',
+                            '${controller.certDetails['form_data']['site']?['city'] ?? ''}',
                       ),
                       CertTitleItem(
                         title: 'Country',
                         subTitle:
                             //! Need to Fix
-                            '${controller.certDetails['form_data']['site']['country']['name']}',
+                            '${controller.certDetails['form_data']['site']?['country']['name'] ?? ''} ',
                       ),
                       const SizedBox(),
                     ],
@@ -76,7 +76,7 @@ class CertTab extends StatelessWidget {
                   CertTitleItem(
                     title: 'Postcode',
                     subTitle:
-                        '${controller.certDetails['form_data']['site']['postal_code']}',
+                        '${controller.certDetails['form_data']['site']?['postal_code'] ?? ''}',
                   ),
                 ],
               ),

@@ -46,6 +46,7 @@ class CertificateDetailsController extends GetxController
   String certStatus = 'Pending';
   int statusId = 1;
   int certId = 0;
+  int certNum = 0;
   dynamic formBody;
 
   @override
@@ -69,8 +70,8 @@ class CertificateDetailsController extends GetxController
   void onReady() {
     super.onReady();
 
+    certNum = Get.arguments['num_cert'] ?? Get.arguments[keyId];
     certId = Get.arguments[keyId];
-
     getCertificateDetails();
   }
 
@@ -80,7 +81,8 @@ class CertificateDetailsController extends GetxController
     startLoading();
 
     ApiRequest(
-      path: '$formGetCertificate/${Get.arguments[keyId]}/view',
+      path:
+          '$formGetCertificate/${Get.arguments['num_cert'] ?? Get.arguments[keyId]}/view',
       className: 'CertificateDetailsController/getCertDetails',
       requestFunction: getCertificateDetails,
       // withLoading: true,
@@ -94,6 +96,7 @@ class CertificateDetailsController extends GetxController
         certDetails = data;
         certStatus = data[keyFormData]['status']['name'];
         statusId = data[keyFormData]['status_id'];
+        certNum = data[keyFormData]['num_cert'] ?? data[keyFormData][keyId];
         certId = data[keyFormData][keyId];
         certAttachments = data[keyFormData]['certificate_attachments'];
         // formBody = data[formData];
@@ -168,7 +171,8 @@ class CertificateDetailsController extends GetxController
   void onEditCert() {
     // consoleLogPretty(certDetails['form_data']['form_id']);
     myAppController.certFormInfo[keyFormDataStatus] = FormDataStatus.editCert;
-    myAppController.certFormInfo[keyCertId] = certDetails['form_data'][keyId];
+    myAppController.certFormInfo[keyCertId] =
+        certDetails['form_data']['num_cert'] ?? certDetails['form_data'][keyId];
     myAppController.certFormInfo[keyCustomerId] =
         certDetails['form_data']['customer']['id'];
     //

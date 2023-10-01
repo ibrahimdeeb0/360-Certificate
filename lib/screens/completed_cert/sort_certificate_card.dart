@@ -52,7 +52,7 @@ class SortCertificateCard extends StatelessWidget {
               ),
               CommonContainer(
                 // backgroundColor: Colors.blueGrey,
-                width: 0.5,
+                width: 0.44,
                 alignment: AlignmentDirectional.topEnd,
                 child: CommonText(
                   formType ?? '',

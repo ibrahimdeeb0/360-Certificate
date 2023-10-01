@@ -29,8 +29,9 @@ class Certificates extends StatelessWidget {
                                 'customer_id': item['customer_id'],
                               },
                             );
+                            consoleLogPretty(item);
                           },
-                          code: '#${item[keyId]}',
+                          code: '#${item['num_cert'] ?? item['id']}',
                           formType: item[keyForm][keyName],
                           price: '£ 0.0',
                           date: '${item['created_at']}'.formatDate,
