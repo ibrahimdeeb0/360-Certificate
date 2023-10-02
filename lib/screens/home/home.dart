@@ -32,19 +32,19 @@ class Home extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        CommonButton(
-                          onPress: () {
-                            Get.toNamed(
-                              routeCompleteProfile,
-                              arguments: <String, dynamic>{
-                                keyEmail: 'test',
-                                'f_name': 'test',
-                                'l_name': 'test',
-                              },
-                            );
-                            // Get.toNamed(routeSubscription);
-                          },
-                        ),
+                        // CommonButton(
+                        //   onPress: () {
+                        //     // Get.toNamed(
+                        //     //   routeCompleteProfile,
+                        //     //   arguments: <String, dynamic>{
+                        //     //     keyEmail: 'test',
+                        //     //     'f_name': 'test',
+                        //     //     'l_name': 'test',
+                        //     //   },
+                        //     // );
+                        //     // Get.toNamed(routeSubscription);
+                        //   },
+                        // ),
                         if (controller.showFreeAlert)
                           CommonContainer(
                             backgroundColor:
@@ -240,25 +240,20 @@ class HomeSearchBar extends StatelessWidget {
             fillColor: AppColors.greyInputs,
             onTap: () => Get.toNamed(routeSearch),
           ),
-          GetBuilder<CertificatesController>(
-            init: certificatesController,
-            builder: (CertificatesController controller) {
-              return CommonContainer(
-                backgroundColor: Color(AppColors.primary).withOpacity(0.1),
-                size: 0.12,
-                boxShape: BoxShape.circle,
-                child: IconButton(
-                  onPressed: () => Get.bottomSheet(
-                    const FilterCert(),
-                    isScrollControlled: true,
-                  ),
-                  icon: const SvgIconHelper(
-                    iconPath: iconFilter,
-                    color: Colors.black,
-                  ),
-                ),
-              );
-            },
+          CommonContainer(
+            backgroundColor: Color(AppColors.primary).withOpacity(0.1),
+            size: 0.12,
+            boxShape: BoxShape.circle,
+            child: IconButton(
+              onPressed: () => Get.bottomSheet(
+                const FilterCert(),
+                isScrollControlled: true,
+              ),
+              icon: const SvgIconHelper(
+                iconPath: iconFilter,
+                color: Colors.black,
+              ),
+            ),
           ),
         ],
       ),

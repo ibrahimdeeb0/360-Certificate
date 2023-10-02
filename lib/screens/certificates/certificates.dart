@@ -82,28 +82,25 @@ class FilterCert extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final CertificatesController controller =
+        Get.find<CertificatesController>();
     return BottomSheetContainer(
       title: 'Filter',
       responsiveContent: true,
-      child: GetBuilder<CertificatesController>(
-        init: certificatesController,
-        builder: (CertificatesController controller) {
-          return SingleChildScrollView(
-            child: Column(
-              children: <Widget>[
-                SizedBox(height: DEVICE_HEIGHT * 0.03),
-                ...controller.filterItems.map(
-                  (Map<String, dynamic> item) => CustomRadioSelection(
-                    title: item[keyTitle],
-                    onPress: () => controller.onFilterCert(certItem: item),
-                    isSelected: controller.selectedType == item[keyType],
-                  ),
-                ),
-                SizedBox(height: DEVICE_HEIGHT * 0.03),
-              ],
+      child: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            SizedBox(height: DEVICE_HEIGHT * 0.03),
+            ...controller.filterItems.map(
+              (Map<String, dynamic> item) => CustomRadioSelection(
+                title: item[keyTitle],
+                onPress: () => controller.onFilterCert(certItem: item),
+                isSelected: controller.selectedType == item[keyType],
+              ),
             ),
-          );
-        },
+            SizedBox(height: DEVICE_HEIGHT * 0.03),
+          ],
+        ),
       ),
     );
   }

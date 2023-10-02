@@ -45,7 +45,10 @@ class ContentPart4 extends StatelessWidget {
                       ],
                     ),
                     0.02.boxHeight,
-                    CommonInput(
+                    SearchWithWooz(
+                      searchWithWoozController: controller.mapController,
+                    ),
+                    /* CommonInput(
                       hint: 'Enter Your Postcode',
                       marginBottom: 0.012,
                       controller: controller.addressController, //picture
@@ -59,7 +62,9 @@ class ContentPart4 extends StatelessWidget {
                         elevation: 0.0,
                       ),
                       enabled: false,
-                    ),
+                    ), */
+/* 
+
                     if (controller.showAddressFiled ||
                         controller.isManualAddressEntry)
                       Column(
@@ -164,6 +169,9 @@ class ContentPart4 extends StatelessWidget {
                           ),
                         ],
                       ),
+                  */
+                 
+                 
                   ],
                 ),
               ),

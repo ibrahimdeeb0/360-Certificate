@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../general_exports.dart';
@@ -32,21 +31,7 @@ class CompleteProfileController extends GetxController {
   TextEditingController registrationNumberController = TextEditingController();
   TextEditingController vATNumberController = TextEditingController();
 
-  TextEditingController searchAddressController = TextEditingController();
-  TextEditingController addressController = TextEditingController();
-  TextEditingController streetController = TextEditingController();
-  TextEditingController cityController = TextEditingController();
-  TextEditingController postcodeController = TextEditingController();
-  TextEditingController countryController = TextEditingController();
-  TextEditingController stateController = TextEditingController();
-  //
-  TextEditingController entrySearchAddressController = TextEditingController();
-  TextEditingController entryAddressController = TextEditingController();
-  TextEditingController entryStreetController = TextEditingController();
-  TextEditingController entryCityController = TextEditingController();
-  TextEditingController entryPostcodeController = TextEditingController();
-  TextEditingController entryCountryController = TextEditingController();
-  TextEditingController entryStateController = TextEditingController();
+  SearchWithWoozController mapController = SearchWithWoozController();
 
 //formCertType
   String page2Title = '';
@@ -145,70 +130,18 @@ class CompleteProfileController extends GetxController {
 
   XFile? compLogoFile;
 
-  void test() {
-    consoleLog(entryAddressController.text);
-    consoleLog(entryAddressController.text = addressController.text);
-  }
-
-//* ----- Switch  Manual Address Entry
-  bool isManualAddressEntry = false;
-  void toggleManualAddressEntry({bool? value}) {
-    isManualAddressEntry = value!;
-    if (isManualAddressEntry == true) {
-      entryCityController.text = cityController.text;
-      entryCountryController.text = countryController.text;
-      entryPostcodeController.text = postcodeController.text;
-      entryStateController.text = stateController.text;
-      entryStreetController.text = streetController.text;
-    }
-
-    update();
-  }
-
-  //* ----- Map
-
-  final Dio _dio = Dio();
-
-  List<dynamic>? listAddress;
-  List<dynamic>? searchAllAddress;
-  Map<String, dynamic>? specificAddress;
-  String? addressType;
-  Map<String, dynamic>? addressData;
-  Map<String, dynamic>? addressDetails = <String, dynamic>{};
-
-  Map<String, dynamic>? selectedCountry;
-
   @override
   void onInit() {
     super.onInit();
-    // fName = Get.arguments['f_name'];
-    // lName = Get.arguments['l_name'];
-    // email = Get.arguments[keyEmail];
+
     fName = myAppController.userData['user']['first_name'];
     lName = myAppController.userData['user']['last_name'];
     email = myAppController.userData['user']['email'];
   }
 
-  // @override
-  // void onReady() {
-  //   super.onReady();
-  //   getCountries();
-  // }
-
   void toggleVat() {
     isVatRegistered = !isVatRegistered;
     update();
-  }
-
-  void searchForCountryId() {
-    if (allCountries
-        .where((dynamic e) => e['name'] == countryController.text)
-        .isNotEmpty) {
-      selectedCountry = allCountries
-          .firstWhereOrNull((dynamic e) => e['name'] == countryController.text);
-    }
-
-    consoleLog(selectedCountry, key: 'selected_Country');
   }
 
   String headerTitle() => titleMap[currentPage.name] ?? '';
@@ -295,31 +228,10 @@ class CompleteProfileController extends GetxController {
         break;
       case CurrentPage.page4:
         {
-          if (addressController.text.trim().isEmpty &&
-              !(isManualAddressEntry)) {
+          if (mapController.listAddressData.isEmpty) {
             isValidP4 = false;
             validationMessage = 'Please enters your company address';
             flushBarMessage();
-          } else if (isManualAddressEntry) {
-            final bool isSuccess = entryCityController.text.isNotEmpty &&
-                entryPostcodeController.text.isNotEmpty &&
-                entryCountryController.text.isNotEmpty &&
-                entryStateController.text.isNotEmpty &&
-                entryStreetController.text.isNotEmpty;
-
-            if (addressController.text.trim().isEmpty) {
-              if (entryStreetController.text.isNotEmpty &&
-                  entryPostcodeController.text.isNotEmpty) {
-                addressController.text =
-                    '${entryStreetController.text}, ${entryStateController.text}, ${entryPostcodeController.text}';
-              }
-            }
-
-            /*   showBottomSheetMessage(
-              isSuccess: isSuccess,
-            ); */
-
-            isValidP4 = isSuccess;
           } else {
             isValidP4 = true;
             validationMessage = '';
@@ -451,226 +363,6 @@ class CompleteProfileController extends GetxController {
     update();
   }
 
-  //* Searching for Address with Autocomplete *//
-  DateTime? lastDateTime;
-  void onSearchingAddress(String value) {
-    if (value == '') {
-      listAddress = <dynamic>[];
-    } else {
-      lastDateTime = DateTime.now();
-      Future<dynamic>.delayed(
-        const Duration(milliseconds: 1500),
-        () {
-          if (DateTime.now().difference(lastDateTime!) >=
-                  const Duration(milliseconds: 1500) &&
-              value == searchAddressController.text) {
-            _dio
-                .get(
-              urlAutocomplete,
-              queryParameters: <String, dynamic>{
-                'key': publicKey,
-                'input': value,
-                'language': language,
-                'types': types,
-                'components': components,
-              },
-              options: Options(
-                headers: <String, dynamic>{
-                  'referer': 'http://360connect.app',
-                },
-              ),
-            )
-                .then(
-              (dynamic response) {
-                listAddress = response.data['localities'];
-                update();
-              },
-            );
-          }
-        },
-      );
-    }
-  }
-
-  //* on Select Address using  locality, address, postal_code *//
-  void onSelectAddress({
-    required Map<String, dynamic> address,
-  }) {
-    final String publicId = address['public_id'];
-
-    addressType = address['type'];
-    update();
-
-    switch (addressType) {
-      case 'locality':
-        {
-          onGetAddressDetails(
-            publicId: publicId,
-            addressType: 'locality',
-          );
-        }
-        break;
-
-      case 'address':
-        {
-          onGetAddressDetails(
-            publicId: publicId,
-            addressType: 'address',
-          );
-        }
-        break;
-
-      case 'postal_code':
-        {
-          onGetAddressDetails(
-            publicId: publicId,
-            addressType: 'postal_code',
-          );
-        }
-        break;
-
-      default:
-        {
-          showMessage(
-            description:
-                'the only search type is: Locality or Address or Postcode',
-            textColor: COMMON_RED_COLOR,
-          );
-        }
-        break;
-    }
-    update();
-  }
-
-  //* Get Address Details Using public Id  *//
-  void onGetAddressDetails({
-    required String publicId,
-    required String addressType,
-  }) {
-    startLoading();
-    _dio
-        .get(
-      urlDetails,
-      queryParameters: <String, dynamic>{
-        'key': publicKey,
-        'public_id': publicId,
-      },
-      options: Options(
-        headers: <String, dynamic>{
-          'referer': 'http://360connect.app',
-        },
-      ),
-    )
-        .then(
-      (dynamic details) async {
-        fillAddressData(
-            data: details.data,
-            addressType: details.data['result']['types'].first);
-        dismissLoading();
-      },
-    ).onError(
-      (Object? error, StackTrace stackTrace) {
-        dismissLoading();
-      },
-    );
-  }
-
-  void fillAddressData({
-    required dynamic data,
-    required String addressType,
-  }) {
-    addressData = data;
-
-    data['result']['address_components'].forEach((dynamic item) =>
-        addressDetails![item['types'][0]] = item['long_name']);
-    update();
-
-    final String addressLat =
-        data['result']['geometry']['location']['lat'].toString();
-    final String addressLng =
-        data['result']['geometry']['location']['lng'].toString();
-
-    if (addressType == 'locality' ||
-        addressType == 'address' ||
-        (addressType == 'postal_code' &&
-            data['result']['addresses']['list'].isEmpty)) {
-      //!------------
-      consoleLogPretty(addressDetails, key: 'addressDetails');
-      setUserAddressData(
-        addressName: data['result']['formatted_address'] ?? '',
-        cityName: addressDetails!['locality'] ?? '',
-        stateName: addressDetails!['administrative_area_level_1'] ?? '',
-        countryName: addressDetails!['country'] ?? '',
-        postCode: addressDetails!['postal_codes'] ?? '',
-        streetName: addressDetails!['route'] ?? '',
-        streetNum: addressDetails!['street_number'] ?? '',
-        lat: addressLat,
-        lng: addressLng,
-      );
-    } else if (addressType == 'postal_code' &&
-        data['result']['addresses']['list'].isNotEmpty) {
-      final List<dynamic> postalCodeResult =
-          data['result']['addresses']['list'];
-
-      searchAllAddress = postalCodeResult;
-      update();
-      Get.bottomSheet(
-        const SearchFullAddress(),
-        isScrollControlled: true,
-        elevation: 0.0,
-      );
-    }
-    update();
-  }
-
-  //* Set Address Data Functions *//
-  bool showAddressFiled = false;
-  void setUserAddressData({
-    required String addressName,
-    required String cityName,
-    required String stateName,
-    required String postCode,
-    required String countryName,
-    required String streetName,
-    required String streetNum,
-    required String lat,
-    required String lng,
-  }) {
-    addressController.text = addressName;
-    cityController.text = cityName;
-    postcodeController.text = postCode;
-    countryController.text = countryName;
-    stateController.text = stateName;
-
-    if (streetName.isNotEmpty && streetNum.isNotEmpty) {
-      streetController.text = '$streetNum $streetName';
-    } else if (streetName.isNotEmpty && streetNum.isEmpty) {
-      streetController.text = '  $streetName';
-    } else if (streetName.isEmpty && streetNum.isNotEmpty) {
-      streetController.text = '$streetNum, ';
-    }
-
-    searchForCountryId();
-
-    if (Get.isBottomSheetOpen!) {
-      Get.back();
-    }
-    showAddressFiled = true;
-
-    // final bool isSuccess = addressController.text.isNotEmpty &&
-    //     cityController.text.isNotEmpty &&
-    //     postcodeController.text.isNotEmpty &&
-    //     countryController.text.isNotEmpty &&
-    //     stateController.text.isNotEmpty &&
-    //     streetController.text.isNotEmpty;
-
-    // showBottomSheetMessage(
-    //   isSuccess: isSuccess,
-    // );
-
-    update();
-  }
-
   Future<void> onCompleteProfile() async {
     final Map<String, dynamic> bodyJson = <String, dynamic>{
       'categories_id': selectFormGroupId,
@@ -683,27 +375,17 @@ class CompleteProfileController extends GetxController {
       'has_vat': vATNumberController.text.trim().isEmpty ? 'no' : 'yes',
       'vat_number': vATNumberController.text.trim(),
       //
-      'registered_address': isManualAddressEntry
-          ? entryAddressController.text.trim()
-          : addressController.text.trim(),
+      'registered_address': mapController.listAddressData.first.address,
 
-      'postal_code': isManualAddressEntry
-          ? entryPostcodeController.text.trim()
-          : postcodeController.text.trim(),
+      'postal_code': mapController.listAddressData.first.postcode,
 
-      'number_street_name': isManualAddressEntry
-          ? entryStreetController.text.trim()
-          : streetController.text.trim(),
+      'number_street_name': mapController.listAddressData.first.street,
 
-      'city': isManualAddressEntry
-          ? entryCityController.text.trim()
-          : cityController.text.trim(),
+      'city': mapController.listAddressData.first.city,
+
+      'state': mapController.listAddressData.first.state,
 
       'country_id': '218',
-
-      'state': isManualAddressEntry
-          ? entryStateController.text.trim()
-          : stateController.text.trim(),
     };
     // consoleLog(bodyJson);
     ApiRequest(
@@ -741,23 +423,6 @@ class CompleteProfileController extends GetxController {
     Get.offAllNamed(routeHomeBottomBar);
   }
 
-  // Future<void> getCountries() async {
-  //   hideKeyboard();
-  //   if (allCountries.isEmpty) {
-  //     ApiRequest(
-  //       path: keyGetCountries,
-  //       className: 'CompleteProfileController/getCountries',
-  //       requestFunction: getCountries,
-  //     ).request(
-  //       onSuccess: (dynamic data, dynamic response) {
-  //         allCountries = data;
-
-  //         update();
-  //       },
-  //     );
-  //   }
-  // }
-
   Future<dynamic> pickerImage(ImageSource source) async {
     hideKeyboard();
     await ImagePicker()
@@ -788,33 +453,4 @@ class CompleteProfileController extends GetxController {
       );
     }
   }
-
-  // void showBottomSheetMessage({bool isSuccess = true}) {
-  //   Get.bottomSheet(
-  //     BottomSheetContainer(
-  //       responsiveContent: true,
-  //       child: SingleChildScrollView(
-  //         child: Center(
-  //           child: Column(
-  //             children: <Widget>[
-  //               0.03.boxHeight,
-  //               Icon(
-  //                 isSuccess ? Icons.task_alt : Icons.cancel_outlined,
-  //                 color: isSuccess ? Colors.green : Colors.red[800],
-  //                 size: 0.1.flexAll,
-  //               ),
-  //               CommonText(
-  //                 isSuccess
-  //                     ? 'Address Successfully Added'
-  //                     : 'The Address Could Not Be Verified',
-  //                 marginTop: 0.02,
-  //               ),
-  //               0.04.boxHeight,
-  //             ],
-  //           ),
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
 }

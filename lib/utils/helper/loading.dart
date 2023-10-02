@@ -23,6 +23,7 @@ void startLoading() {
 void startLoadingBooking({String? msg}) {
   SmartDialog.showLoading(
     msg: msg ?? 'reservation_being_sent'.tr,
+   
   );
 }
 
