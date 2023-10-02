@@ -49,7 +49,7 @@ class CustomerDetailsTab extends StatelessWidget {
                   CertTitleItem(
                     title: 'Email',
                     subTitle:
-                        '${controller.certDetails['form_data']['customer']['contacts'][0]['email']}',
+                        '${controller.certDetails['form_data']['customer']['contacts']?[0]['email'] ?? 'There is no email'}',
                   ),
                   // if (controller.certDetails['form_data']['status']
                   //       ['status'] !=

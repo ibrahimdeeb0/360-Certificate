@@ -23,7 +23,7 @@ class CertificateDetails extends StatelessWidget {
                   child: Column(
                     children: <Widget>[
                       CertificateTitleCard(
-                        certCode: '#${controller.certId}',
+                        certCode: '#${controller.certNum}',
                         certStatus: controller.certStatus,
                         statusColor: controller.statusId == idCompleted
                             ? AppColors.completedClr

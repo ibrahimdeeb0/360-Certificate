@@ -37,7 +37,7 @@ class CompletedCert extends StatelessWidget {
                             'customer_id': item['customer_id'],
                           },
                         ),
-                        code: '#${item[keyId]}',
+                        code: '#${item['num_cert'] ?? item['id']}',
                         formType: item['form']['type'],
                         price: '£ 0.0',
                         date: DateFormat('dd-MM-yyyy').format(
