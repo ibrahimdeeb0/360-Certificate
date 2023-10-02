@@ -1,12 +1,12 @@
 import '../../../../../general_exports.dart';
 
 class EICRRemarkSection extends StatelessWidget {
-  const EICRRemarkSection({required this.controller, super.key});
+  const EICRRemarkSection({super.key});
 
-  final EicrController controller;
 
   @override
   Widget build(BuildContext context) {
+     final EicrController controller = Get.find<EicrController>();
     return CommonContainer(
       style: appContainerStyles.cardContainer(
         backgroundColor: Colors.white,
