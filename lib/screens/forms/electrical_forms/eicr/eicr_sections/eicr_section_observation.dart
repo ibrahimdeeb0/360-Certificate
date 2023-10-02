@@ -1,15 +1,16 @@
 import '../../../../../general_exports.dart';
 
 class SectionObservation extends StatelessWidget {
-  const SectionObservation({required this.controller, super.key});
+  const SectionObservation({super.key});
 
-  final EicrController controller;
+  // final EicrController controller;
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ObservationDetailsController>(
       init: ObservationDetailsController(),
       builder: (ObservationDetailsController observationController) {
+        final EicrController controller = Get.find<EicrController>();
         return Column(
           children: <Widget>[
             if (observationController.observationsDataBase.isNotEmpty)

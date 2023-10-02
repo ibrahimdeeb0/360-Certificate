@@ -330,6 +330,7 @@ class EicrController extends GetxController {
         const EICRSectionKPart6(),
         const EICRSectionKPart7(),
         const EICRSectionInputField(),
+        const SectionObservation(),
         const EICRFinalPage(),
       ];
 
@@ -397,7 +398,7 @@ class EicrController extends GetxController {
         gazSafetyData = formBody[keyData][formKeyGazSafetyData][0];
       }
       distrBoardDataBase = gazSafetyData[allDistributionBoardData];
-      observationsDataBase = gazSafetyData[allObservationData];
+      observationsDataBase = gazSafetyData[allObservationData] ?? '';
       isCertificateCreated = false;
 
       update();

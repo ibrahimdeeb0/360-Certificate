@@ -100,9 +100,18 @@ class CircuitDetailsP1 extends StatelessWidget {
               SmallInputField(
                 title: 'Number of Point Served',
                 value: controller.childCircuitData[formKeyNumberOfPointA],
-                onChanged: (dynamic value) => controller.onChangeChildeDbValues(
-                    formKeyNumberOfPointA, value),
-                keyboardType: TextInputType.name,
+                onTap: () => Get.bottomSheet(
+                  DBSelectBT(
+                    listTitles: controller.listNumberPoint,
+                    keyOfValue: formKeyNumberOfPointA,
+                    controller: controller,
+                    isChilde: true,
+                    keyboardType: TextInputType.number,
+                    withSearch: false,
+                  ),
+                  isScrollControlled: true,
+                ),
+                isInputSelection: true,
               ),
               // Section 2
               CommonContainer(

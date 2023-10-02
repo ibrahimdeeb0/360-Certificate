@@ -423,6 +423,11 @@ class DistributionBoardController extends GetxController
     'N/A',
     'Other',
   ];
+  List<String> listNumberPoint = <String>[
+    'N/A',
+    'LIM',
+    'Other',
+  ];
 
   List<int> listNumbers = <int>[];
   List<String> listCircuitReference = <String>[

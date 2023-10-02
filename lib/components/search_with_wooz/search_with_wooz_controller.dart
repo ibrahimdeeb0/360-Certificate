@@ -91,49 +91,58 @@ class SearchWithWoozController extends GetxController {
   }
 
   //* Searching for Address using Autocomplete *//
-  void onSearchingAddress(String value) {
+  void onSearchingAddress({String? value, bool isClicked = false}) {
+    consoleLog('value2');
     if (value == '') {
       listAddress = <dynamic>[];
       update();
     } else {
       lastDateTime = DateTime.now();
-      // startLoading();
+
       Future<dynamic>.delayed(
-        const Duration(milliseconds: 1500),
+        Duration(milliseconds: isClicked ? 0 : 1500),
         () {
-          if (DateTime.now().difference(lastDateTime!) >=
-                  const Duration(milliseconds: 1500) &&
-              value == addressController.text) {
-            // dismissLoading();
-            //*-------------------- Function Body  ---------------------//
-            // consoleLog('inside Function Body', key: 'Inside_Function_Body');
-            _dio
-                .get(
-              urlAutocomplete,
-              queryParameters: <String, dynamic>{
-                'key': publicKey,
-                'input': value,
-                'language': language,
-                'types': types,
-                'components': components,
-              },
-              options: Options(
-                headers: <String, dynamic>{
-                  'referer': 'http://360connect.app',
-                },
-              ),
-            )
-                .then(
-              (dynamic response) {
-                listAddress = response.data['localities'];
-                consoleLogPretty(listAddress, key: 'list_Address');
-                update();
-              },
-            );
+          if ((DateTime.now().difference(lastDateTime!) >=
+                  Duration(milliseconds: isClicked ? 0 : 1500) &&
+              value == addressController.text)) {
+            consoleLog('value');
+            startLoading();
+            getAutocompleteData(value);
           }
         },
       );
-      //*--------------------   ---------------------//
+    }
+  }
+
+  void getAutocompleteData(String? value) {
+    try {
+      _dio
+          .get(
+        urlAutocomplete,
+        queryParameters: <String, dynamic>{
+          'key': publicKey,
+          'input': value,
+          'language': language,
+          'types': 'address',
+          'components': components,
+        },
+        options: Options(
+          headers: <String, dynamic>{
+            'referer': 'http://360connect.app',
+          },
+        ),
+      )
+          .then(
+        (dynamic response) {
+          listAddress = response.data['localities'];
+          consoleLogPretty(listAddress, key: 'list_Address_api_log');
+          update();
+          dismissLoading();
+        },
+      );
+    } on Exception catch (error) {
+      consoleLog(error, key: 'Exception_Error');
+      dismissLoading();
     }
   }
 
@@ -199,12 +208,14 @@ class SearchWithWoozController extends GetxController {
     required SearchWithWoozController controller,
   }) {
     startLoading();
+    consoleLog(publicId, key: 'publicId');
     _dio
         .get(
-      urlDetails,
+      'https://api.woosmap.com/address/details/json',
       queryParameters: <String, dynamic>{
-        'key': publicKey,
         'public_id': publicId,
+        'key': publicKey,
+        'language': language,
       },
       options: Options(
         headers: <String, dynamic>{
@@ -214,8 +225,11 @@ class SearchWithWoozController extends GetxController {
     )
         .then(
       (dynamic details) async {
-        consoleLogPretty(details.data, key: 'onGetAddressDetails');
+        // consoleLog(details);
+        consoleLogPretty(details.data,
+            key: 'onGetAddressDetails_api_log'); // address/details/json?
         hideKeyboard();
+
         setAddressData(
           data: details.data,
           addressType: details.data['result']['types'].first,
@@ -225,6 +239,7 @@ class SearchWithWoozController extends GetxController {
       },
     ).onError(
       (Object? error, StackTrace stackTrace) {
+        consoleLog(error, key: 'onError');
         dismissLoading();
       },
     );
@@ -237,84 +252,53 @@ class SearchWithWoozController extends GetxController {
   }) {
     addressData = data;
 
-    // consoleLogPretty(addressData, key: 'addressData_aa');
+    consoleLogPretty(addressType, key: 'addressType');
+    consoleLogPretty(addressData, key: 'data');
 
     data['result']['address_components'].forEach((dynamic item) =>
         addressDetails![item['types'][0]] = item['long_name']);
-
-    // consoleLogPretty(addressDetails, key: 'json_Details');
-    consoleLogPretty(data, key: 'more_Details_data');
+    final Map<String, dynamic> address = <String, dynamic>{
+      'formatted_address': data['result']['formatted_address']
+    };
+    addressDetails?.addEntries(address.entries);
+    consoleLogPretty(addressDetails, key: 'Details_data');
+    // consoleLogPretty(data, key: 'more_Details_data');
     update();
 
-    final String addressLat =
-        data['result']['geometry']['location']['lat'].toString();
-    final String addressLng =
-        data['result']['geometry']['location']['lng'].toString();
+    saveAddressData(
+      data: addressDetails ?? <String, dynamic>{},
+      location: data['result']['geometry']['location'],
+    );
 
-    if (addressType == 'locality' ||
-        addressType == 'address' ||
-        (addressType == 'postal_code' &&
-            data['result']['addresses']['list'].isEmpty)) {
-      saveAddressData(
-        addressName: data['result']['formatted_address'] ?? '',
-        stateName: addressDetails!['administrative_area_level_1'] ?? '',
-        cityName: addressDetails!['locality'] ?? '',
-        countryName: addressDetails!['country'] ?? '',
-        postCode: addressDetails!['postal_codes'] ?? '',
-        streetName: addressDetails!['route'] ?? '',
-        streetNumber: addressDetails!['street_number'] ?? '',
-        lat: addressLat,
-        lng: addressLng,
-      );
-    } else if (addressType == 'postal_code' &&
-        data['result']['addresses']['list'].isNotEmpty) {
-      final List<dynamic> postalCodeResult =
-          data['result']['addresses']['list'];
-
-      searchAllAddress = postalCodeResult;
-      update();
-      hideKeyboard();
-      Get.bottomSheet(
-        SearchingFullAddress(
-          searchWithWoozController: controller,
-        ),
-        isScrollControlled: true,
-        elevation: 0.0,
-      );
-    }
     update();
   }
 
   bool? isIndividualSite;
   void saveAddressData({
-    required String addressName,
-    required String stateName,
-    required String cityName,
-    required String postCode,
-    required String countryName,
-    required String streetName,
-    required String streetNumber,
-    required String lat,
-    required String lng,
+    required Map<String, dynamic> data,
+    required Map<String, dynamic> location,
   }) {
     final Map<String, dynamic> addressData = <String, dynamic>{};
 
     addressData[keySiteName] = siteNameController.text.trim();
-    addressData[keyAddress] = addressName;
-    addressData[keyCity] = cityName;
-    addressData[keyState] = stateName;
-    addressData[keyPostcode] = postCode;
-    addressData[keyCountry] = countryName;
+    addressData[keyAddress] = data['formatted_address'];
+    addressData[keyCity] = data['locality'];
+    addressData[keyState] = data['state'];
+    addressData[keyPostcode] = data['postal_code'];
+    addressData[keyCountry] = data['country'];
 
-    if (streetName.isNotEmpty && streetNumber.isNotEmpty) {
-      addressData[keyStreet] = '$streetNumber $streetName';
-    } else if (streetName.isNotEmpty && streetNumber.isEmpty) {
-      addressData[keyStreet] = ' $streetName';
-    } else if (streetName.isEmpty && streetNumber.isNotEmpty) {
-      addressData[keyStreet] = '$streetNumber ';
+    // if founded street_Number and street_Name
+    if (data.containsKey('route') && data.containsKey('street_number')) {
+      addressData[keyStreet] = '${data['street_number']} ${data['route']}';
     }
-
-    consoleLog(addressData, key: 'addressData');
+    // if founded Just street_Name
+    else if (data.containsKey('route')) {
+      addressData[keyStreet] = '${data['route']}';
+    }
+    // if founded Just street_Number
+    else if (data.containsKey('street_number')) {
+      addressData[keyStreet] = '${data['street_number']}';
+    }
 
     siteNameController.clear();
 
@@ -343,11 +327,6 @@ class SearchWithWoozController extends GetxController {
     if (Get.isBottomSheetOpen!) {
       Get.back();
     }
-
-    // consoleLogPretty(addressData, key: 'saved_addressData');
-
-    // addressController.clear();
-    // addressMoreController.clear();
 
     isExpandedDetails = true;
 

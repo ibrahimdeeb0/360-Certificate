@@ -34,13 +34,20 @@ class EICRSectionA extends StatelessWidget {
                     formKeyReasonProducingA, value),
                 suffix: SuffixInputIcon(
                   onPress: () => Get.bottomSheet(
-                    isScrollControlled: true,
+                    /*   
                     EICRSelectBT(
                       controller: controller,
                       keyOfValue: formKeyReasonProducingA,
                       listTitles: formList.listReasonsSuggestions,
                     ),
-                    elevation: 0.0,
+                   */
+
+                    EICRMultiSelect(
+                      controller: controller,
+                      keyOfValue: formKeyReasonProducingA,
+                      listTitles: formList.listReasonsSuggestions,
+                    ),
+                    isScrollControlled: true,
                   ),
                   iconWidget: const Icon(
                     Icons.filter_list,

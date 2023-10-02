@@ -105,7 +105,7 @@ const String keyNameTemp = 'name_temp';
 const String publicKey = 'woos-5b6fb592-1146-3acf-a259-e3fc6ddd77a4';
 const String urlAutocomplete =
     'https://api.woosmap.com/localities/autocomplete';
-const String urlDetails = 'https://api.woosmap.com/localities/details';
+const String urlDetails = 'https://api.woosmap.com/address/details/json';
 const String language = 'gb';
 const String types = 'postal_code|address|locality';
 const String components = '';

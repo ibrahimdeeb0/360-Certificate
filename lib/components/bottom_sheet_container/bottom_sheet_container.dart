@@ -7,6 +7,8 @@ class BottomSheetContainer extends StatelessWidget {
     this.height,
     this.style,
     this.responsiveContent = false,
+    this.withButton = false,
+    this.buttonData,
     Key? key,
   }) : super(key: key);
 
@@ -15,6 +17,8 @@ class BottomSheetContainer extends StatelessWidget {
   final double? height;
   final CommonContainerModel? style;
   final bool responsiveContent;
+  final bool withButton;
+  final ButtonSheetClass? buttonData;
 
   @override
   Widget build(BuildContext context) {
@@ -69,8 +73,36 @@ class BottomSheetContainer extends StatelessWidget {
               ),
             ),
           ),
+          Visibility(
+            visible: withButton,
+            replacement: const SizedBox(),
+            child: Positioned(
+              bottom: 0,
+              right: 0,
+              left: 0,
+              child: CommonButton(
+                style: buttonData?.style,
+                onPress: () {
+                  buttonData?.onPress?.call();
+                },
+                text: buttonData?.text,
+              ),
+            ),
+          ),
         ],
       ),
     );
   }
+}
+
+class ButtonSheetClass {
+  const ButtonSheetClass({
+    this.text,
+    this.onPress,
+    this.style,
+  });
+
+  final String? text;
+  final Function()? onPress;
+  final CommonButtonModel? style;
 }

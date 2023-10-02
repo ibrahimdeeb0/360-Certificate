@@ -25,9 +25,29 @@ class SearchSelectedAddress extends StatelessWidget {
               CommonInput(
                 hint: 'Enter the full postcode',
                 controller: controller.addressController,
-                onChanged: controller.onSearchingAddress,
+                onChanged: (String? value) {
+                  controller.onSearchingAddress(value: value);
+                },
                 keyboardType: TextInputType.streetAddress,
                 maxLength: 9,
+                suffix: getIcon(
+                  CommonIcon(
+                    containerStyle: CommonContainerModel(
+                      touchEffect:
+                          TouchableEffect(type: TouchTypes.scaleAndFade),
+                      size: 0.14,
+                    ),
+                    path: iconSearchBorder,
+                    color: Colors.blue[800],
+                    iconDataSize: 12.0,
+                    onPress: () {
+                      controller.onSearchingAddress(
+                        value: controller.addressController.text.trim(),
+                        isClicked: true,
+                      );
+                    },
+                  ),
+                ),
               ),
               SizedBox(
                 height: DEVICE_HEIGHT * 0.02,

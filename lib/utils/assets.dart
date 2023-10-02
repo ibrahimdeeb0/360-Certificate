@@ -76,6 +76,7 @@ const String iconRightRearLight = '${iconsPath}icon_right_rear_light.svg';
 const String iconLeftReaLight = '${iconsPath}icon_left_rear_light.svg';
 const String iconFromToLine = '${iconsPath}from_to_line.svg';
 const String iconFullTripLine = '${iconsPath}full_trip_line.svg';
+const String iconSearchBorder = '${iconsPath}search-border.svg';
 
 //** */
 

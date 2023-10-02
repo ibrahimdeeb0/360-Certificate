@@ -122,7 +122,20 @@ class CertTab extends StatelessWidget {
                   ),
                 ),
               ),
-            if (controller.statusId != idCompleted &&
+            // controller.statusId != idCompleted &&
+
+            if (currentMode == AppMode.dev && controller.statusId != idCanceled)
+              CommonButton(
+                onPress: controller.onEditCert,
+                text: 'Edit Certificate',
+                backgroundColor: Color(AppColors.primary).withOpacity(0.3),
+                marginBottom: 0.02,
+                marginTop: 0.01,
+                elevation: 0.0,
+                fontColor: AppColors.primary,
+                overlayColor: Colors.black12,
+              )
+            else if (controller.statusId != idCompleted &&
                 controller.statusId != idCanceled)
               CommonButton(
                 onPress: controller.onEditCert,
@@ -134,14 +147,11 @@ class CertTab extends StatelessWidget {
                 fontColor: AppColors.primary,
                 overlayColor: Colors.black12,
               ),
+            //
             if (controller.statusId != idCompleted &&
                 controller.statusId != idCanceled)
               CommonButton(
                 onPress: controller.onCancelCertificate,
-                // onPress: controller.onCancelCertificate,
-                // onPress: () {
-                //   consoleLogPretty(controller.formBody);
-                // },
                 text: 'Cancel',
                 backgroundColor: Colors.white,
                 marginBottom: 0.02,

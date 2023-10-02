@@ -106,11 +106,15 @@ class CreateCustomerV2Controller extends GetxController {
   // *--------Copy Postcode to Site Name-----------------*//
   void copyPostCode() {
     if (customerType == CustomerType.individual) {
-      siteNameController.text =
-          customerIfoAddress.listAddressData.first.postcode ?? '';
+      if (siteNameController.text.isEmpty) {
+        siteNameController.text =
+            customerIfoAddress.listAddressData.first.postcode ?? '';
+      }
     } else if (customerType == CustomerType.company) {
-      siteNameController.text =
-          companyIfoAddress.listAddressData.first.postcode ?? '';
+      if (siteNameController.text.isEmpty) {
+        siteNameController.text =
+            companyIfoAddress.listAddressData.first.postcode ?? '';
+      }
     }
     update();
   }

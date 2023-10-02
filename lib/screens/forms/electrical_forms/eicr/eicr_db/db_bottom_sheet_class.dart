@@ -6,6 +6,8 @@ class DBSelectBT extends StatefulWidget {
     required this.keyOfValue,
     required this.controller,
     this.isChilde = false,
+    this.keyboardType,
+    this.withSearch = true,
     super.key,
   });
 
@@ -13,6 +15,8 @@ class DBSelectBT extends StatefulWidget {
   final String keyOfValue;
   final DistributionBoardController controller;
   final bool isChilde;
+  final TextInputType? keyboardType;
+  final bool withSearch;
 
   @override
   State<DBSelectBT> createState() => _DBSelectBTState();
@@ -52,11 +56,12 @@ class _DBSelectBTState extends State<DBSelectBT> {
         child: Column(
           children: <Widget>[
             0.015.boxHeight,
-            CommonInput(
-              hint: 'Type here to search',
-              onChanged: onSearchForCustomer,
-              controller: textEditingController,
-            ),
+            if (widget.withSearch)
+              CommonInput(
+                hint: 'Type here to search',
+                onChanged: onSearchForCustomer,
+                controller: textEditingController,
+              ),
             if (filterValues != null)
               if (filterValues!.isNotEmpty)
                 ...filterValues!
@@ -68,6 +73,7 @@ class _DBSelectBTState extends State<DBSelectBT> {
                                     controller: widget.controller,
                                     keyOfValue: widget.keyOfValue,
                                     isChilde: widget.isChilde,
+                                    keyboardType: widget.keyboardType,
                                   ),
                                   isScrollControlled: true,
                                 )
@@ -113,12 +119,14 @@ class DBInputOtherBT extends StatelessWidget {
     required this.keyOfValue,
     required this.controller,
     this.isChilde = false,
+    this.keyboardType,
     super.key,
   });
 
   final String keyOfValue;
   final DistributionBoardController controller;
   final bool isChilde;
+  final TextInputType? keyboardType;
 
   @override
   Widget build(BuildContext context) {
@@ -133,6 +141,7 @@ class DBInputOtherBT extends StatelessWidget {
               topLabelText: 'Type the other value',
               hint: 'typing...',
               textInputAction: TextInputAction.go,
+              keyboardType: keyboardType,
               controller: controller.otherInputController,
               onChanged: (dynamic value) {
                 isChilde == false

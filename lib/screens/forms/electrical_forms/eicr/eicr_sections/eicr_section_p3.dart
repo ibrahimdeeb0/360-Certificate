@@ -30,8 +30,7 @@ class EICRSectionC extends StatelessWidget {
                     formKeyExtentElectricalC, value),
                 suffix: SuffixInputIcon(
                   onPress: () => Get.bottomSheet(
-                    elevation: 0.0,
-                    EICRPart3Select(
+                    EICRMultiSelect(
                       controller: controller,
                       keyOfValue: formKeyExtentElectricalC,
                       listTitles: formList.listExtentSuggestions,
@@ -58,12 +57,17 @@ class EICRSectionC extends StatelessWidget {
                     formKeyAgreedLimitationsC, value),
                 suffix: SuffixInputIcon(
                   onPress: () => Get.bottomSheet(
-                    EICRSelectBT(
+                    /*  EICRSelectBT(
+                      controller: controller,
+                      keyOfValue: formKeyAgreedLimitationsC,
+                      listTitles: formList.listAgreedSuggestions,
+                    ), */
+                    EICRMultiSelect(
                       controller: controller,
                       keyOfValue: formKeyAgreedLimitationsC,
                       listTitles: formList.listAgreedSuggestions,
                     ),
-                    elevation: 0.0,
+                    isScrollControlled: true,
                   ),
                   iconWidget: const Icon(
                     Icons.filter_list,

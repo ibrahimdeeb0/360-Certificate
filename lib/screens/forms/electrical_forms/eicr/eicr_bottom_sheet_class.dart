@@ -146,8 +146,8 @@ class EICRInputOtherBT extends StatelessWidget {
   }
 }
 
-class EICRPart3Select extends StatefulWidget {
-  const EICRPart3Select({
+class EICRMultiSelect extends StatefulWidget {
+  const EICRMultiSelect({
     required this.listTitles,
     required this.keyOfValue,
     required this.controller,
@@ -159,50 +159,64 @@ class EICRPart3Select extends StatefulWidget {
   final EicrController controller;
 
   @override
-  State<EICRPart3Select> createState() => _EICRPart3SelectState();
+  State<EICRMultiSelect> createState() => _EICRMultiSelectState();
 }
 
-class _EICRPart3SelectState extends State<EICRPart3Select> {
+class _EICRMultiSelectState extends State<EICRMultiSelect> {
   List<String> listWords = <String>[];
   String myWord = '';
   @override
   Widget build(BuildContext context) {
     return BottomSheetContainer(
-      title: 'Type here',
+      title: 'Select',
       responsiveContent: true,
-      child: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            ...widget.listTitles.map(
-              (String title) => CustomRadioSelection(
-                isSelected: listWords.contains(title),
-                onPress: () {
-                  setState(
-                    () {
-                      if (listWords.contains(title)) {
-                        listWords.remove(title);
-                      } else {
-                        listWords.add(title);
-                      }
+      withButton: true,
+      buttonData: ButtonSheetClass(
+        text: 'Confirm',
+        onPress: () {
+          myWord = listWords.join(', \n');
+          widget.controller.gazSafetyData[widget.keyOfValue] =
+              myWord == '' ? 'N/A' : myWord;
+          widget.controller.update();
+          if (Get.isBottomSheetOpen!) {
+            Get.back();
+          }
+        },
+      ),
+      child: RawScrollbar(
+        thumbColor: Colors.grey[400],
+        crossAxisMargin: 2.0,
+        radius: const Radius.circular(20),
+        thickness: 4,
+        // thumbVisibility: true,
+        child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 0.02.flexWidth),
+            child: Column(
+              children: <Widget>[
+                0.015.boxHeight,
+                ...widget.listTitles.map(
+                  (String title) => CustomRadioSelection(
+                    isSelected: listWords.contains(title),
+                    onPress: () {
+                      setState(
+                        () {
+                          if (listWords.contains(title)) {
+                            listWords.remove(title);
+                          } else {
+                            listWords.add(title);
+                          }
+                        },
+                      );
                     },
-                  );
-                },
-                title: title,
-              ),
+                    title: title,
+                  ),
+                ),
+                0.07.boxHeight,
+              ],
             ),
-            CommonButton(
-              onPress: () {
-                // Get.back();
-                myWord = listWords.join(', \n');
-                widget.controller.gazSafetyData[widget.keyOfValue] = myWord;
-                widget.controller.update();
-                Get.back();
-              },
-              marginTop: 0.02,
-              marginBottom: 0.015,
-              text: 'Confirm',
-            ),
-          ],
+          ),
         ),
       ),
     );
