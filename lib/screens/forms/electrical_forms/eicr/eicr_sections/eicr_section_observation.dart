@@ -10,7 +10,7 @@ class SectionObservation extends StatelessWidget {
     return GetBuilder<ObservationDetailsController>(
       init: ObservationDetailsController(),
       builder: (ObservationDetailsController observationController) {
-        final EicrController controller = Get.find<EicrController>();
+        // final EicrController controller = Get.find<EicrController>();
         return Column(
           children: <Widget>[
             if (observationController.observationsDataBase.isNotEmpty)
@@ -23,26 +23,32 @@ class SectionObservation extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    CommonText(
-                      'Remedial Works Completed',
-                      style: appTextStyles.h3StyleBlack(),
-                      leftChild: Switch(
-                        // thumb color (round icon)
-                        activeColor: Color(AppColors.primary),
-                        activeTrackColor:
-                            Color(AppColors.primary).withOpacity(0.5),
-                        inactiveThumbColor: Colors.blueGrey.shade600,
-                        inactiveTrackColor: Colors.grey.shade400,
-                        splashRadius: 50.0,
-                        value: controller
-                            .gazSafetyData['remedial_works_completed'],
-                        onChanged: (bool value) {
-                          controller.gazSafetyData['remedial_works_completed'] =
-                              value;
-                          controller.update();
-                        },
-                      ),
-                    ),
+                    GetBuilder<EicrController>(
+                        builder: (EicrController controller) {
+                      return CommonText(
+                        'Remedial Works Completed',
+                        style: appTextStyles.h3StyleBlack(),
+                        leftChild: Switch(
+                          // thumb color (round icon)
+                          activeColor: Color(AppColors.primary),
+                          activeTrackColor:
+                              Color(AppColors.primary).withOpacity(0.5),
+                          inactiveThumbColor: Colors.blueGrey.shade600,
+                          inactiveTrackColor: Colors.grey.shade400,
+                          splashRadius: 50.0,
+                          value: controller
+                                  .gazSafetyData['remedial_works_completed'] ==
+                              true,
+                          onChanged: (bool value) {
+                            consoleLog(value);
+                            controller
+                                    .gazSafetyData['remedial_works_completed'] =
+                                value;
+                            controller.update();
+                          },
+                        ),
+                      );
+                    }),
                     CommonContainer(
                       onPress: () => formsDialog(
                         title: 'Remedial Works Complete',

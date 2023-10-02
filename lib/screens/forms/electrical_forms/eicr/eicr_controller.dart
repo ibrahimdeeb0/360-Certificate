@@ -331,6 +331,7 @@ class EicrController extends GetxController {
         const EICRSectionKPart7(),
         const EICRSectionInputField(),
         const SectionObservation(),
+        const EICRRemarkSection(),
         const EICRFinalPage(),
       ];
 
