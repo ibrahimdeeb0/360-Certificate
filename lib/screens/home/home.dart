@@ -32,18 +32,19 @@ class Home extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        // CommonButton(
-                        //   onPress: () {
-                        //     Get.toNamed(
-                        //       routeCompleteProfile,
-                        //       arguments: <String, dynamic>{
-                        //         keyEmail: 'test',
-                        //         'f_name': 'test',
-                        //         'l_name': 'test',
-                        //       },
-                        //     );
-                        //   },
-                        // ),
+                        CommonButton(
+                          onPress: () {
+                            Get.toNamed(
+                              routeCompleteProfile,
+                              arguments: <String, dynamic>{
+                                keyEmail: 'test',
+                                'f_name': 'test',
+                                'l_name': 'test',
+                              },
+                            );
+                            // Get.toNamed(routeSubscription);
+                          },
+                        ),
                         if (controller.showFreeAlert)
                           CommonContainer(
                             backgroundColor:

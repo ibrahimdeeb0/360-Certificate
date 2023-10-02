@@ -37,11 +37,11 @@ class CreateCustomerV2Controller extends GetxController {
     customerSiteAddress.siteNameController.text = value ?? '';
   }
 
-  bool isShowLess = false;
-  void toggleShowLess() {
-    isShowLess = !isShowLess;
-    update();
-  }
+  // bool isShowLess = false;
+  // void toggleShowLess() {
+  //   isShowLess = !isShowLess;
+  //   update();
+  // }
 
   List<CustomerContactType> listCustomerContactType =
       const <CustomerContactType>[

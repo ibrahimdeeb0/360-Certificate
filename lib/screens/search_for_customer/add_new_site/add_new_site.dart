@@ -32,7 +32,6 @@ class AddNewSite extends StatelessWidget {
                     marginBottom: 0.03,
                     child: SearchWithWooz(
                       searchWithWoozController: controller.addressControllerMap,
-                      showJustOneSite: true,
                     ),
                   ),
                   CommonContainer(

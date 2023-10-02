@@ -1,6 +1,6 @@
 import '../../general_exports.dart';
 
-class SearchSelectedAddress extends StatelessWidget {
+class SearchSelectedAddress extends StatefulWidget {
   const SearchSelectedAddress({
     required this.searchWithWoozController,
     super.key,
@@ -9,9 +9,23 @@ class SearchSelectedAddress extends StatelessWidget {
   final SearchWithWoozController searchWithWoozController;
 
   @override
+  State<SearchSelectedAddress> createState() => _SearchSelectedAddressState();
+}
+
+class _SearchSelectedAddressState extends State<SearchSelectedAddress> {
+  FocusNode focusNode = FocusNode();
+
+  @override
+  void deactivate() {
+    focusNode.dispose();
+    super.deactivate();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    FocusScope.of(context).requestFocus(focusNode);
     return GetBuilder<SearchWithWoozController>(
-      init: searchWithWoozController,
+      init: widget.searchWithWoozController,
       builder: (SearchWithWoozController controller) {
         // FocusScope.of(context).requestFocus(controller.focusNode2);
         return BottomSheetContainer(
@@ -30,6 +44,7 @@ class SearchSelectedAddress extends StatelessWidget {
                 },
                 keyboardType: TextInputType.streetAddress,
                 maxLength: 9,
+                focusNode: focusNode,
                 suffix: getIcon(
                   CommonIcon(
                     containerStyle: CommonContainerModel(
@@ -71,7 +86,8 @@ class SearchSelectedAddress extends StatelessWidget {
                                         onPress: () =>
                                             controller.onSelectAddress(
                                           address: element,
-                                          controller: searchWithWoozController,
+                                          controller:
+                                              widget.searchWithWoozController,
                                         ),
                                       ),
                                     )

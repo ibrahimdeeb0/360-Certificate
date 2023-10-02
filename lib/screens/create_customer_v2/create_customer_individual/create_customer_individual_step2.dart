@@ -150,8 +150,8 @@ class CreateCustomerIndividualStep2 extends StatelessWidget {
                       : SearchWithWooz(
                           searchWithWoozController:
                               controller.customerSiteAddress,
-                          isLess: controller.isShowLess,
-                          pressSeeLess: controller.toggleShowLess,
+                          // isLess: controller.isShowLess,
+                          // pressSeeLess: controller.toggleShowLess,
                         ),
                 ),
               ),

@@ -13,28 +13,21 @@ class Subscription extends StatelessWidget {
       body: GetBuilder<SubscriptionController>(
         init: SubscriptionController(),
         builder: (SubscriptionController controller) {
-          return Padding(
-            padding: EdgeInsets.symmetric(horizontal: 0.04.flexWidth),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                ToggleButtons(
-                  onPressed: controller.onChange,
-                  isSelected: controller.isSelected
-                      .map(
-                        (bool element) => element,
-                      )
-                      .toList(),
-                  children: const <Widget>[
-                    Icon(Icons.anchor),
-                    Icon(Icons.access_alarm),
-                    Icon(Icons.account_balance_wallet_outlined),
-                    Icon(Icons.add_call),
-                    Icon(Icons.format_italic),
-                  ],
-                ),
-              ],
+          return CommonContainer(
+            style: appContainerStyles.containerStyles,
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  AttentionMessage(
+                    message: 'test',
+                    marginBottom: 0,
+                    child: SearchWithWooz(
+                      searchWithWoozController: controller.mapController,
+                    ),
+                  ),
+                ],
+              ),
             ),
           );
         },

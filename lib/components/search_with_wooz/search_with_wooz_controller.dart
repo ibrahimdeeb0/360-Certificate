@@ -53,19 +53,18 @@ class SearchWithWoozController extends GetxController {
   TextEditingController addressMoreController = TextEditingController();
   TextEditingController siteNameController = TextEditingController();
 
-  bool isExpandedDetails = false;
+  //*-------------------*//
+
+  TextEditingController entryStreetController = TextEditingController();
+  TextEditingController entryCityController = TextEditingController();
+  TextEditingController entryStateController = TextEditingController();
+  TextEditingController entryPostcodeController = TextEditingController();
+  TextEditingController entryCountryController = TextEditingController();
 
   List<AddressData> listAddressData = <AddressData>[];
 
-  // Map<String, dynamic> bodyData = <String, dynamic>{
-  //   keyAddress: '',
-  //   keyStreet: '',
-  //   keyCity: '',
-  //   keyState: '',
-  //   keyPostcode: '',
-  //   keyCountry: '',
-  //   keyCountryId: '',
-  // };
+  bool isExpandedDetails = false;
+  final FocusNode inputFocus = FocusNode();
 
   //* ----- Map
 
@@ -90,9 +89,61 @@ class SearchWithWoozController extends GetxController {
     super.onReady();
   }
 
+  //* ----- Switch  Manual Address Entry
+
+  AddressData? tempAddress;
+  bool isManualAddressEntry = false;
+  void toggleManualAddressEntry({bool? value}) {
+    isManualAddressEntry = value!;
+
+    setValues();
+    update();
+  }
+
+  void setValues() {
+    if (isManualAddressEntry) {
+      tempAddress = listAddressData.first;
+      entryCityController.text = tempAddress?.city ?? '';
+      entryCountryController.text = tempAddress?.country ?? '';
+      entryPostcodeController.text = tempAddress?.postcode ?? '';
+      entryStateController.text = tempAddress?.state ?? '';
+      entryStreetController.text = tempAddress?.street ?? '';
+    } else {
+      listAddressData.first = tempAddress!;
+    }
+  }
+
+  DateTime? lastDateChanges;
+  void onChangeInputs(String? value) {
+    final Map<String, dynamic> addressData = <String, dynamic>{};
+
+    lastDateTime = DateTime.now();
+
+    Future<dynamic>.delayed(
+      const Duration(seconds: 3),
+      () {
+        if ((DateTime.now().difference(lastDateTime!) >=
+                const Duration(seconds: 3) &&
+            isManualAddressEntry)) {
+          // consoleLog('save entry data', key: 'entry');
+          //*---------//
+          addressData[keyCity] = entryCityController.text;
+          addressData[keyState] = entryStateController.text;
+          addressData[keyPostcode] = entryPostcodeController.text;
+          addressData[keyStreet] = entryStreetController.text;
+          addressData[keyCountry] = entryCountryController.text;
+
+          final AddressData address = AddressData.fromMap(addressData);
+          listAddressData.clear();
+          listAddressData.add(address);
+          //*---------//
+        }
+      },
+    );
+  }
+
   //* Searching for Address using Autocomplete *//
   void onSearchingAddress({String? value, bool isClicked = false}) {
-    consoleLog('value2');
     if (value == '') {
       listAddress = <dynamic>[];
       update();
@@ -273,7 +324,7 @@ class SearchWithWoozController extends GetxController {
     update();
   }
 
-  bool? isIndividualSite;
+  bool isIndividualSite = true;
   void saveAddressData({
     required Map<String, dynamic> data,
     required Map<String, dynamic> location,
@@ -314,12 +365,15 @@ class SearchWithWoozController extends GetxController {
 
     final AddressData address = AddressData.fromMap(addressData);
 
-    if (isIndividualSite != null && isIndividualSite!) {
-      listAddressData.clear();
-      listAddressData.add(address);
-    } else {
-      listAddressData.add(address);
-    }
+    // if (isIndividualSite) {
+    //   listAddressData.clear();
+    //   listAddressData.add(address);
+    // } else {
+    //   listAddressData.add(address);
+    // }
+
+    listAddressData.clear();
+    listAddressData.add(address);
 
     if (Get.isBottomSheetOpen!) {
       Get.back();

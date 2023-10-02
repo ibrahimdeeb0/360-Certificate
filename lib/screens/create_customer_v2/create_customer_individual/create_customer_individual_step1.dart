@@ -18,7 +18,7 @@ class CreateCustomerIndividualStep1 extends StatelessWidget {
                       'As you selected Individual please enter the inspection property address. Please input the postcode below.',
                   child: SearchWithWooz(
                     searchWithWoozController: controller.customerIfoAddress,
-                    showJustOneSite: true,
+                    
                   ),
                 ),
                 const AttentionMessage(
