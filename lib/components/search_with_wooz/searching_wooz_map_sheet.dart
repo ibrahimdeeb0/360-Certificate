@@ -37,13 +37,13 @@ class _SearchSelectedAddressState extends State<SearchSelectedAddress> {
                 height: DEVICE_HEIGHT * 0.02,
               ),
               CommonInput(
-                hint: 'Enter the full postcode',
+                hint: 'Please start typing the address',
                 controller: controller.addressController,
                 onChanged: (String? value) {
                   controller.onSearchingAddress(value: value);
                 },
                 keyboardType: TextInputType.streetAddress,
-                maxLength: 9,
+                // maxLength: 9,
                 focusNode: focusNode,
                 suffix: getIcon(
                   CommonIcon(

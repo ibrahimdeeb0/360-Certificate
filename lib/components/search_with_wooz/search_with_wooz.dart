@@ -27,7 +27,7 @@ class SearchWithWooz extends StatelessWidget {
               if (!hideSearchField)
                 if (!(controller.isManualAddressEntry))
                   CommonInput(
-                    hint: 'Type The Postcode Of The Property',
+                    hint: 'Please start typing the address',
                     prefix: SvgIconHelper(
                       iconPath: iconSearch,
                       color: Color(AppColors.primary),
