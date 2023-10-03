@@ -6,14 +6,14 @@ import '../../general_exports.dart';
 
 class AddressData {
   AddressData.fromMap(Map<String, dynamic> data) {
-    siteName = data[keySiteName];
-    address = data[keyAddress];
-    street = data[keyStreet];
-    city = data[keyCity];
-    state = data[keyState];
-    postcode = data[keyPostcode];
-    country = data[keyCountry];
-    countryId = data[keyCountryId];
+    siteName = data[keySiteName] ?? '';
+    address = data[keyAddress] ?? '';
+    street = data[keyStreet] ?? '';
+    city = data[keyCity] ?? '';
+    state = data[keyState] ?? '';
+    postcode = data[keyPostcode] ?? '';
+    country = data[keyCountry] ?? '';
+    countryId = data[keyCountryId] ?? 218;
   }
   AddressData(
     this.siteName,
@@ -103,6 +103,7 @@ class SearchWithWoozController extends GetxController {
   void setValues() {
     if (isManualAddressEntry) {
       tempAddress = listAddressData.first;
+
       entryCityController.text = tempAddress?.city ?? '';
       entryCountryController.text = tempAddress?.country ?? '';
       entryPostcodeController.text = tempAddress?.postcode ?? '';
@@ -111,6 +112,7 @@ class SearchWithWoozController extends GetxController {
     } else {
       listAddressData.first = tempAddress!;
     }
+    // consoleLogPretty(tempAddress, key: 'tempAddress');
   }
 
   DateTime? lastDateChanges;
@@ -125,17 +127,22 @@ class SearchWithWoozController extends GetxController {
         if ((DateTime.now().difference(lastDateTime!) >=
                 const Duration(seconds: 3) &&
             isManualAddressEntry)) {
-          // consoleLog('save entry data', key: 'entry');
           //*---------//
+          // this data will NOT changed
+          addressData[keySiteName] = tempAddress?.siteName ?? '';
+          addressData[keyAddress] = tempAddress?.address ?? '';
+          addressData[keyCountryId] = tempAddress?.countryId ?? '';
+          addressData[keyCountry] = tempAddress?.country ?? '';
+          // this data will change
           addressData[keyCity] = entryCityController.text;
           addressData[keyState] = entryStateController.text;
           addressData[keyPostcode] = entryPostcodeController.text;
           addressData[keyStreet] = entryStreetController.text;
-          addressData[keyCountry] = entryCountryController.text;
 
           final AddressData address = AddressData.fromMap(addressData);
           listAddressData.clear();
           listAddressData.add(address);
+          consoleLogPretty(address.toJson(), key: 'Data_after_edit');
           //*---------//
         }
       },
@@ -332,11 +339,11 @@ class SearchWithWoozController extends GetxController {
     final Map<String, dynamic> addressData = <String, dynamic>{};
 
     addressData[keySiteName] = siteNameController.text.trim();
-    addressData[keyAddress] = data['formatted_address'];
-    addressData[keyCity] = data['locality'];
-    addressData[keyState] = data['state'];
-    addressData[keyPostcode] = data['postal_code'];
-    addressData[keyCountry] = data['country'];
+    addressData[keyAddress] = data['formatted_address'] ?? '';
+    addressData[keyCity] = data['locality'] ?? '';
+    addressData[keyState] = data['state'] ?? '';
+    addressData[keyPostcode] = data['postal_code'] ?? '';
+    addressData[keyCountry] = data['country'] ?? '';
 
     // if founded street_Number and street_Name
     if (data.containsKey('route') && data.containsKey('street_number')) {
@@ -349,6 +356,8 @@ class SearchWithWoozController extends GetxController {
     // if founded Just street_Number
     else if (data.containsKey('street_number')) {
       addressData[keyStreet] = '${data['street_number']}';
+    } else {
+      addressData[keyStreet] = '';
     }
 
     siteNameController.clear();
@@ -360,6 +369,9 @@ class SearchWithWoozController extends GetxController {
           (dynamic e) => e['name'] == addressData[keyCountry]);
       if (selectedCountry != null) {
         addressData[keyCountryId] = selectedCountry?[keyId];
+      } else {
+        addressData[keyCountry] = 'United Kingdom';
+        addressData[keyCountryId] = 218;
       }
     }
 
@@ -394,6 +406,7 @@ class SearchWithWoozController extends GetxController {
         path: keyGetCountries,
         className: 'SearchWithWoozController/getCountries',
         requestFunction: getCountries,
+        withLoading: true,
       ).request(
         onSuccess: (dynamic data, dynamic response) {
           allCountries = data;
@@ -403,11 +416,4 @@ class SearchWithWoozController extends GetxController {
       );
     }
   }
-
-  // @override
-  // void onClose() {
-  //   focusNode1.dispose();
-  //   focusNode2.dispose();
-  //   super.onClose();
-  // }
 }
