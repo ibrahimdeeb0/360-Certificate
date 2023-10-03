@@ -99,7 +99,7 @@ class DistributionBoardScreen extends StatelessWidget {
                           },
                           circuitName: 'circuit: ${item['id']}',
                           locationName: item['circuit_designation_a'],
-                          isComplete: item['mark_as_completed'],
+                          isComplete: item['mark_as_completed'] == true,
                         ),
                       )
                       .toList(),

@@ -293,8 +293,9 @@ class CircuitDetailsP2 extends StatelessWidget {
                           inactiveThumbColor: Colors.blueGrey.shade600,
                           inactiveTrackColor: Colors.grey.shade400,
                           splashRadius: 50.0,
-                          value:
-                              controller.childCircuitData['mark_as_completed'],
+                          value: controller
+                                  .childCircuitData['mark_as_completed'] ==
+                              true,
                           onChanged: controller.onToggleCompleted
                           // (bool value) {
                           //   controller.childCircuitData['mark_as_completed'] =

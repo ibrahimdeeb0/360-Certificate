@@ -98,7 +98,7 @@ class DBScreen extends StatelessWidget {
                           circuitName:
                               'circuit: ${item['circuit_reference_a']}',
                           locationName: item['circuit_designation_a'],
-                          isComplete: item['mark_as_completed'],
+                          isComplete: item['mark_as_completed'] == true,
                         ),
                       )
                       .toList(),
